@@ -74,8 +74,8 @@ export async function POST(req: NextRequest) {
 
     await prisma.intensivePlan.upsert({
       where: { userId: user.id },
-      update: plan,
-      create: { userId: user.id, ...plan },
+      update: plan as any,
+      create: { userId: user.id, ...plan } as any,
     });
   } else {
     const plan = generateStandardPlan({
