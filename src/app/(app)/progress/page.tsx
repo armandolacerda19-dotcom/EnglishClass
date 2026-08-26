@@ -5,6 +5,7 @@ import { SkillOctagon } from "@/components/ui/SkillOctagon";
 import { CefrLevelTag } from "@/components/ui/CefrLevelTag";
 import { formatLevelCode } from "@/lib/level";
 import { StampBadge } from "@/components/ui/StampBadge";
+import { getCheckpointSummary } from "@/lib/checkpoints";
 
 // Código curto para caber no carimbo circular (docs/09-sistema-design.md) — o título
 // completo da conquista aparece por baixo do carimbo.
@@ -15,10 +16,11 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
 export default async function ProgressPage() {
   const { user, learningProfile } = await requireUserWithProfile();
 
-  const [exerciseAttempts, resolvedErrors, achievements] = await Promise.all([
+  const [exerciseAttempts, resolvedErrors, achievements, checkpoints] = await Promise.all([
     prisma.exerciseAttempt.count({ where: { userId: user.id } }),
     prisma.userError.count({ where: { userId: user.id, resolvedAt: { not: null } } }),
     prisma.userAchievement.findMany({ where: { userId: user.id }, include: { achievement: true }, orderBy: { earnedAt: "desc" } }),
+    getCheckpointSummary(user.id),
   ]);
 
   const skillProfile = {
@@ -41,6 +43,24 @@ export default async function ProgressPage() {
 
       <Card className="mb-4 flex justify-center">
         <SkillOctagon scores={skillProfile} />
+      </Card>
+
+      <Card className="mb-4">
+        <p className="mb-3 font-mono text-xs uppercase tracking-wide text-verdigris">Checkpoints</p>
+        <div className="grid grid-cols-3 gap-3 text-center">
+          <div>
+            <p className="font-mono text-xl">{checkpoints.doneToday ? "✓" : "—"}</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">hoje</p>
+          </div>
+          <div>
+            <p className="font-mono text-xl">{checkpoints.daysThisWeek}/7</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">esta semana</p>
+          </div>
+          <div>
+            <p className="font-mono text-xl">{checkpoints.daysThisMonth}/30</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">este mês</p>
+          </div>
+        </div>
       </Card>
 
       <div className="grid grid-cols-2 gap-4">

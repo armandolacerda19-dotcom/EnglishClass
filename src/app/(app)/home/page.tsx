@@ -38,6 +38,15 @@ export default async function HomePage() {
 
       <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} />
 
+      <Link href="/practice/daily-challenge">
+        <Card className="mb-4 hover:border-brass">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
+          <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
+            5-10 palavras, escolha múltipla — leva 2 minutos, faz parte do seu checkpoint diário.
+          </p>
+        </Card>
+      </Link>
+
       <Card className="mb-4">
         <p className="mb-2 font-mono text-xs uppercase tracking-wide text-verdigris">Continuar</p>
         <p className="mb-4 font-display text-lg">{nextLesson?.title ?? "Sem lições disponíveis de momento"}</p>
@@ -91,6 +100,15 @@ function IntensiveHome({
       </div>
 
       <StreakXp xp={xp} streak={streak} />
+
+      <Link href="/practice/daily-challenge">
+        <Card className="mb-4 hover:border-brass">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
+          <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
+            5-10 palavras, escolha múltipla — leva 2 minutos, faz parte do seu checkpoint diário.
+          </p>
+        </Card>
+      </Link>
 
       <Card className="mb-4">
         <ProgressBar value={(currentDay / totalDays) * 100} label="Progresso do plano intensivo" />

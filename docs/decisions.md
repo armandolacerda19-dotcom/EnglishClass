@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Desafio Diário e checkpoints (pedido do utilizador)
+
+- **Desafio Diário de vocabulário**: seleção determinística por dia (hash da data, sem `Math.random()`) a partir de todo o `VocabularyItem` seedado — 5 a 10 palavras, escolha múltipla de tradução (1 correta + 3 distratores de outras palavras), seguido de até 3 frases de exemplo para praticar. Ver `src/lib/dailyChallenge.ts`.
+- **Checkpoints diário/semanal/mensal**: em vez de criar uma tabela nova, reutiliza-se `AssessmentResult` (já existia no schema com `type: DAILY|WEEKLY|MONTHLY|...`, secção 8 do master prompt) — completar o Desafio Diário cria um `AssessmentResult` tipo `DAILY`; o checkpoint semanal/mensal é uma contagem desses registos nos últimos 7/30 dias, mostrada em Progress. Ver `src/lib/checkpoints.ts`. Evita duplicar conceitos de "avaliação" já modelados.
+- **Continuidade entre sessões**: criado `PROJECT_STATE.md` na raiz do repositório — deve ser lido em primeiro lugar por qualquer sessão nova do Claude Code, e atualizado a cada mudança relevante (pedido explícito do utilizador, para poupar tokens ao retomar trabalho).
+
 ## 2026-08-26 — Confirmação de stack (Fase 0)
 
 | Camada | Proposta do master prompt | Decisão | Justificação |

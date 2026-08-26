@@ -7,6 +7,7 @@ const XP = {
   SPEAKING: 15,
   TRANSLATION: 10,
   LESSON_COMPLETE: 30,
+  DAILY_CHALLENGE: 20,
 } as const;
 
 export type ActivityKind = keyof typeof XP;
