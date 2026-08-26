@@ -1,0 +1,23 @@
+# Dependências e artefactos de build (instalados/gerados só pela Netlify — ver README.md)
+node_modules/
+.next/
+out/
+
+# Segredos — nunca commitar, preencher via variáveis de ambiente na Netlify
+.env
+.env.local
+.env*.local
+
+# Prisma
+prisma/generated/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

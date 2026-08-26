@@ -1,0 +1,633 @@
+// Fase 0 — schema de dados proposto (secção 6 do master prompt).
+// Pronto a migrar; ajustar índices/constraints à medida que MVP1 avança.
+// Convenções: ids cuid(), timestamps createdAt/updatedAt em todas as entidades,
+// enums em PascalCase, tabelas em PascalCase singular (Prisma model), FKs explícitas.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// DATABASE_URL: connection pooling do Supabase (porta 6543, pgbouncer) — usada em runtime
+// pelas Netlify Functions (curta duração, muitas invocações concorrentes).
+// DIRECT_URL: ligação direta do Supabase (porta 5432) — usada só por `prisma db push`
+// no build da Netlify (ver netlify.toml e docs/decisions.md).
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────────────────────────────────
+
+enum CefrLevel {
+  PRE_A1
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+enum LearningTrack {
+  STANDARD
+  INTENSIVE
+}
+
+enum Pillar {
+  GRAMMAR
+  VOCABULARY
+  LISTENING
+  SPEAKING
+  PRONUNCIATION
+  READING
+  WRITING
+  TRANSLATION
+}
+
+enum MasteryState {
+  INTRODUCED
+  PRACTISING
+  DEVELOPING
+  STRONG
+  MASTERED
+}
+
+enum EnglishVariant {
+  BRITISH
+  AMERICAN
+  INTERNATIONAL
+}
+
+enum SubscriptionPlan {
+  FREE
+  PREMIUM
+  PRO
+  INTENSIVE_PREMIUM
+}
+
+enum Goal {
+  TRAVEL
+  WORK
+  INTERVIEW
+  PROMOTION
+  RELOCATION
+  MEETINGS
+  EXAM
+  GENERAL
+}
+
+enum AssessmentType {
+  DAILY
+  WEEKLY
+  MONTHLY
+  UNIT
+  MODULE
+  LEVEL_EXAM
+  PLACEMENT
+}
+
+enum TutorPersonality {
+  COACH
+  PROFESSOR
+  CONVERSATION_PARTNER
+  EXAMINER
+  INTERVIEWER
+  NATIVE_FRIEND
+}
+
+enum AttemptSource {
+  LESSON
+  PRACTICE
+  ASSESSMENT
+  AI_CONVERSATION
+  BOOTCAMP
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// UTILIZADOR E PERFIL
+// ─────────────────────────────────────────────────────────────────────────
+
+model User {
+  id                 String   @id @default(cuid())
+  email              String   @unique
+  name               String
+  passwordHash       String?
+  authProvider       String? // "credentials" | "google" | etc.
+  interfaceLanguage  String   @default("pt-PT")
+  subscriptionPlan   SubscriptionPlan @default(FREE)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  learningProfile    LearningProfile?
+  placementTests     PlacementTest[]
+  attempts           ExerciseAttempt[]
+  speakingAttempts   SpeakingAttempt[]
+  writingAttempts    WritingAttempt[]
+  translations       Translation[]
+  errors             UserError[]
+  reviewItems        ReviewScheduleItem[]
+  assessments        AssessmentResult[]
+  certificates       Certificate[]
+  achievements        UserAchievement[]
+  aiConversations    AIConversation[]
+  learningPlan       LearningPlan?
+  intensivePlan      IntensivePlan?
+  bootcampEnrollments BootcampEnrollment[]
+  analyticsEvents    AnalyticsEvent[]
+  conceptMastery     UserConceptMastery[]
+  vocabMastery       UserVocabularyMastery[]
+}
+
+model LearningProfile {
+  id                  String    @id @default(cuid())
+  userId              String    @unique
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  currentLevel        CefrLevel @default(PRE_A1)
+  currentSublevel     Int       @default(1) // 1-3, ignorado em PRE_A1
+
+  track               LearningTrack @default(STANDARD)
+  dailyMinutesTarget  Int       @default(15)
+
+  goal                Goal      @default(GENERAL)
+  targetDate          DateTime?
+  profession          String?
+  interests           String[]  @default([])
+  englishVariant      EnglishVariant @default(INTERNATIONAL)
+
+  // skill scores 0-100 por pilar, recalculados após assessments
+  grammarScore        Int       @default(0)
+  vocabularyScore     Int       @default(0)
+  listeningScore      Int       @default(0)
+  speakingScore       Int       @default(0)
+  pronunciationScore  Int       @default(0)
+  readingScore        Int       @default(0)
+  writingScore        Int       @default(0)
+  translationScore    Int       @default(0)
+
+  weakAreas           Pillar[]  @default([])
+  strongAreas         Pillar[]  @default([])
+
+  updatedAt           DateTime  @updatedAt
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// ESTRUTURA CURRICULAR
+// ─────────────────────────────────────────────────────────────────────────
+
+model Level {
+  id          String     @id @default(cuid())
+  cefr        CefrLevel  @unique
+  order       Int        @unique
+  title       String
+  description String
+
+  sublevels   Sublevel[]
+}
+
+model Sublevel {
+  id          String   @id @default(cuid())
+  levelId     String
+  level       Level    @relation(fields: [levelId], references: [id])
+  number      Int      // 1-3
+  code        String   @unique // ex. "A1.2"
+  order       Int      @unique
+
+  modules     Module[]
+
+  @@unique([levelId, number])
+}
+
+model Module {
+  id          String    @id @default(cuid())
+  sublevelId  String
+  sublevel    Sublevel  @relation(fields: [sublevelId], references: [id])
+  title       String
+  theme       String
+  order       Int
+
+  units       Unit[]
+}
+
+model Unit {
+  id          String   @id @default(cuid())
+  moduleId    String
+  module      Module   @relation(fields: [moduleId], references: [id])
+  title       String
+  order       Int
+  skippable   Boolean  @default(true) // elegível para level skipping via fast-check
+
+  lessons          Lesson[]
+  grammarConcepts  GrammarConcept[]
+}
+
+model Lesson {
+  id          String   @id @default(cuid())
+  unitId      String
+  unit        Unit     @relation(fields: [unitId], references: [id])
+  title       String
+  pillars     Pillar[] // pilares cobertos por esta lição
+  order       Int
+  contentJson Json     // segue prisma/../08-schema-json-conteudo.md
+
+  exercises   Exercise[]
+
+  @@index([unitId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// GRAMÁTICA E VOCABULÁRIO
+// ─────────────────────────────────────────────────────────────────────────
+
+// Anatomia obrigatória: regra → explicação → exemplo → tradução →
+// erro comum PT→EN → correção → exercício → speaking → writing → translation → uso real
+model GrammarConcept {
+  id                String   @id @default(cuid())
+  unitId            String
+  unit              Unit     @relation(fields: [unitId], references: [id])
+
+  title             String
+  rule              String
+  simpleExplanation String
+  example           String
+  exampleTranslation String
+  commonMistakePt   String
+  correction        String
+  realWorldExample  String
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  exercises         Exercise[]
+  masteryRecords    UserConceptMastery[]
+
+  @@index([unitId])
+}
+
+model UserConceptMastery {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conceptId     String
+  concept       GrammarConcept @relation(fields: [conceptId], references: [id])
+  state         MasteryState  @default(INTRODUCED)
+  consistentHits Int          @default(0) // demonstrações espaçadas consecutivas corretas
+  lastSeenAt    DateTime?
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([userId, conceptId])
+}
+
+model VocabularyItem {
+  id            String   @id @default(cuid())
+  headword      String
+  translationPt String
+  definitionEn  String
+  cefr          CefrLevel
+  audioUrl      String?
+  ipa           String?
+  collocations  String[] @default([])
+  synonyms      String[] @default([])
+  antonyms      String[] @default([])
+  exampleSentences String[] @default([])
+  difficulty    Int      @default(1) // 1-5
+
+  createdAt     DateTime @default(now())
+
+  masteryRecords UserVocabularyMastery[]
+
+  @@index([cefr])
+}
+
+model UserVocabularyMastery {
+  id                String        @id @default(cuid())
+  userId            String
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabularyItemId  String
+  vocabularyItem    VocabularyItem @relation(fields: [vocabularyItemId], references: [id])
+
+  recognitionState  MasteryState  @default(INTRODUCED) // passivo
+  productionState   MasteryState  @default(INTRODUCED) // ativo
+  lastSeenAt        DateTime?
+  updatedAt         DateTime      @updatedAt
+
+  @@unique([userId, vocabularyItemId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// EXERCÍCIOS
+// ─────────────────────────────────────────────────────────────────────────
+
+model Exercise {
+  id               String   @id @default(cuid())
+  lessonId         String?
+  lesson           Lesson?  @relation(fields: [lessonId], references: [id])
+  grammarConceptId String?
+  grammarConcept   GrammarConcept? @relation(fields: [grammarConceptId], references: [id])
+
+  pillar           Pillar
+  cefr             CefrLevel
+  contentJson      Json     // ver 08-schema-json-conteudo.md
+  generatedByAi    Boolean  @default(false)
+  qaApproved       Boolean  @default(false)
+
+  createdAt        DateTime @default(now())
+
+  questions        Question[]
+  attempts         ExerciseAttempt[]
+
+  @@index([pillar, cefr])
+}
+
+model Question {
+  id          String   @id @default(cuid())
+  exerciseId  String
+  exercise    Exercise @relation(fields: [exerciseId], references: [id])
+  prompt      String
+  correctAnswers String[] // suporta múltiplas respostas aceitáveis
+  distractors String[]  @default([])
+  explanation String
+  order       Int
+
+  answers     Answer[]
+}
+
+model Answer {
+  id          String   @id @default(cuid())
+  questionId  String
+  question    Question @relation(fields: [questionId], references: [id])
+  attemptId   String
+  attempt     ExerciseAttempt @relation(fields: [attemptId], references: [id])
+  givenAnswer String
+  isCorrect   Boolean
+  createdAt   DateTime @default(now())
+}
+
+model ExerciseAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exerciseId  String
+  exercise    Exercise @relation(fields: [exerciseId], references: [id])
+  source      AttemptSource @default(LESSON)
+  score       Int?
+  durationMs  Int?
+  createdAt   DateTime @default(now())
+
+  answers     Answer[]
+
+  @@index([userId, createdAt])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// SPEAKING / WRITING / TRANSLATION
+// ─────────────────────────────────────────────────────────────────────────
+
+model SpeakingAttempt {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prompt         String
+  audioUrl       String
+  transcript     String?
+  source         AttemptSource @default(PRACTICE)
+
+  feedbackJson   Json?    // grammar/vocab/naturalness/fluency, "correct" vs "natural"
+  fluencyScore   Int?
+  pronunciationScore Int? // null no MVP1 (sem scoring fonético avançado)
+  responseTimeMs Int?     // para Automaticity Training / Quick Speak
+
+  createdAt      DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model WritingAttempt {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prompt       String
+  text         String
+  source       AttemptSource @default(PRACTICE)
+
+  feedbackJson Json? // grammar/vocab/spelling/punctuation/coherence/cohesion/register/naturalness
+  score        Int?
+
+  createdAt    DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model Translation {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sourceText  String
+  sourceLang  String   // "pt" | "en"
+  userAnswer  String
+  correctAnswer String
+  isCorrect   Boolean?
+  createdAt   DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// ERROS E REPETIÇÃO ESPAÇADA
+// ─────────────────────────────────────────────────────────────────────────
+
+model UserError {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pillar           Pillar
+  errorType        String   // ex. "present-perfect-vs-past-simple", "false-friend:actually"
+  commonMistakePt  String?
+  sourceText       String
+  correction       String
+  occurrences      Int      @default(1)
+  lastOccurredAt   DateTime @default(now())
+  resolvedAt       DateTime?
+
+  reviewItems      ReviewScheduleItem[]
+
+  @@index([userId, pillar])
+}
+
+model ReviewScheduleItem {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userErrorId    String?
+  userError      UserError? @relation(fields: [userErrorId], references: [id])
+  itemType       String   // "grammar_concept" | "vocabulary_item" | "error"
+  itemRefId      String   // id do GrammarConcept/VocabularyItem/UserError referenciado
+
+  intervalDays   Int      @default(1)
+  easeFactor     Float    @default(2.5) // algoritmo tipo SM-2
+  dueAt          DateTime
+  lastReviewedAt DateTime?
+
+  @@index([userId, dueAt])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// AVALIAÇÃO E CERTIFICAÇÃO
+// ─────────────────────────────────────────────────────────────────────────
+
+model PlacementTest {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  track         LearningTrack
+
+  resultLevel   CefrLevel?
+  resultSublevel Int?
+  skillProfileJson Json?  // scores por pilar
+  weakAreas     Pillar[]  @default([])
+
+  startedAt     DateTime  @default(now())
+  completedAt   DateTime?
+}
+
+model AssessmentResult {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type         AssessmentType
+  levelId      String?
+  scoreJson    Json     // score por pilar + score global
+  passed       Boolean?
+  createdAt    DateTime @default(now())
+
+  @@index([userId, type, createdAt])
+}
+
+model Certificate {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cefr          CefrLevel
+  overallScore  Int
+  classification String  // Not ready | Developing | Competent | Strong | Exceptional
+  skillBreakdownJson Json
+  issuedAt      DateTime @default(now())
+  verificationCode String @unique @default(cuid())
+
+  @@index([userId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// GAMIFICAÇÃO
+// ─────────────────────────────────────────────────────────────────────────
+
+model Achievement {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  title       String
+  description String
+  iconUrl     String?
+
+  userAchievements UserAchievement[]
+}
+
+model UserAchievement {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  earnedAt      DateTime @default(now())
+
+  @@unique([userId, achievementId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// IA CONVERSACIONAL
+// ─────────────────────────────────────────────────────────────────────────
+
+model AIConversation {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  personality   TutorPersonality
+  scenario      String?  // null quando é sessão livre de tutoria
+  messagesJson  Json     // histórico de turnos
+  feedbackJson  Json?    // feedback estruturado de fim de sessão
+  startedAt     DateTime @default(now())
+  endedAt       DateTime?
+
+  @@index([userId, startedAt])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// PLANOS DE APRENDIZAGEM
+// ─────────────────────────────────────────────────────────────────────────
+
+model LearningPlan {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dailyMinutes  Int
+  focusPillars  Pillar[] @default([])
+  planJson      Json     // sequência de próximas lições/unidades
+  updatedAt     DateTime @updatedAt
+}
+
+model IntensivePlan {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  goal           Goal
+  startDate      DateTime
+  targetDate     DateTime
+  totalDays      Int
+  currentDay     Int      @default(1)
+  weeklyThemesJson Json   // foco temático por semana
+  recoveryLog    Json?    // histórico de recálculos (faltas/excesso)
+  updatedAt      DateTime @updatedAt
+}
+
+model Bootcamp {
+  id            String   @id @default(cuid())
+  code          String   @unique // ex. "7-day-speaking-boost"
+  title         String
+  durationDays  Int
+  description   String
+  curriculumJson Json
+
+  enrollments   BootcampEnrollment[]
+}
+
+model BootcampEnrollment {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bootcampId    String
+  bootcamp      Bootcamp @relation(fields: [bootcampId], references: [id])
+  startedAt     DateTime @default(now())
+  currentDay    Int      @default(1)
+  completedAt   DateTime?
+  finalAssessmentJson Json?
+
+  @@unique([userId, bootcampId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// ANALYTICS
+// ─────────────────────────────────────────────────────────────────────────
+
+model AnalyticsEvent {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  eventName  String
+  propsJson  Json?
+  createdAt  DateTime @default(now())
+
+  @@index([eventName, createdAt])
+  @@index([userId, createdAt])
+}

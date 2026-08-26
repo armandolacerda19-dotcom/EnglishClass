@@ -1,0 +1,13 @@
+# Deploy 100% no browser: ligar este repositório à Netlify (Import from Git) e não é
+# preciso instalar nada localmente — o Node.js só corre na infraestrutura da Netlify.
+# Ver docs/11-deploy-netlify-supabase.md para o passo a passo.
+
+[build]
+  command = "npx prisma generate && npx prisma db push --accept-data-loss && npx tsx prisma/seed.ts && npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"

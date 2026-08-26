@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "levels": [
+    {
+      "cefr": "PRE_A1",
+      "order": 0,
+      "title": "Pre-A1",
+      "description": "Ponto de partida absoluto: alfabeto, números, saudações, frases fixas do dia a dia.",
+      "sublevels": [{ "number": 1, "code": "Pre-A1", "order": 0 }]
+    },
+    {
+      "cefr": "A1",
+      "order": 1,
+      "title": "A1 — Breakthrough",
+      "description": "Comunicação básica sobre necessidades imediatas, rotinas e informação pessoal.",
+      "sublevels": [
+        { "number": 1, "code": "A1.1", "order": 1 },
+        { "number": 2, "code": "A1.2", "order": 2 },
+        { "number": 3, "code": "A1.3", "order": 3 }
+      ]
+    }
+  ]
+}

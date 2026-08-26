@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.1",
+  "module": {
+    "id": "mod_a1_1_daily_life",
+    "title": "Daily Life",
+    "theme": "routines",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_a1_1_daily_routines",
+    "title": "Daily Routines",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_present_simple_routines",
+    "title": "Present Simple for Routines",
+    "rule": "Use the Present Simple to talk about habits, routines and facts. Add -s (or -es) to the verb with he/she/it.",
+    "simple_explanation": "We use this tense for things that happen regularly — not just now, but again and again (every day, every week).",
+    "example": "She works at a bank. I get up at 7am every day.",
+    "example_translation": "Ela trabalha num banco. Eu levanto-me às 7h todos os dias.",
+    "common_mistake_pt": "Falantes de português tendem a esquecer o -s na 3ª pessoa do singular (he/she/it), porque em português essa marcação não é obrigatória na mesma posição: dizem \"She work\" em vez de \"She works\".",
+    "correction": "Add -s to the base verb whenever the subject is he, she or it: work → works, go → goes, study → studies.",
+    "real_world_example": "In a work email: \"My manager usually reviews reports on Fridays.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_wake_up",
+      "headword": "wake up",
+      "type": "phrasal_verb",
+      "translation_pt": "acordar",
+      "definition_en": "to stop sleeping",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/weɪk ʌp/",
+      "related_forms": ["get up"],
+      "example_sentences": ["I wake up at 6:30 every morning."],
+      "difficulty": 1,
+      "tags": ["routine"]
+    },
+    {
+      "id": "vocab_a1_have_breakfast",
+      "headword": "have breakfast",
+      "type": "collocation",
+      "translation_pt": "tomar o pequeno-almoço",
+      "definition_en": "to eat the first meal of the day",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/hæv ˈbrɛkfəst/",
+      "related_forms": ["have lunch", "have dinner"],
+      "example_sentences": ["I have breakfast before I leave for work."],
+      "difficulty": 1,
+      "tags": ["routine", "collocation"]
+    },
+    {
+      "id": "vocab_a1_commute",
+      "headword": "commute",
+      "type": "verb",
+      "translation_pt": "deslocar-se para o trabalho",
+      "definition_en": "to travel regularly between home and work",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/kəˈmjuːt/",
+      "related_forms": ["commute by car", "commute by train"],
+      "example_sentences": ["She commutes to the office by train."],
+      "difficulty": 2,
+      "tags": ["work", "routine"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_present_simple_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_present_simple_routines",
+      "prompt": "Complete the sentence: She ___ (work) at a bank.",
+      "correct_answer": ["works"],
+      "distractors": ["work", "working", "worked"],
+      "explanation": "3ª pessoa do singular (he/she/it) leva -s no Present Simple.",
+      "common_mistake_pt": "Falantes de português esquecem frequentemente o -s final nesta posição.",
+      "audio_url": null,
+      "tags": ["present-simple", "3rd-person-s"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_present_simple_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_present_simple_routines",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["He goes to the gym on Mondays."],
+      "distractors": ["He go to the gym on Mondays.", "He going to the gym on Mondays.", "He is go to the gym on Mondays."],
+      "explanation": "\"go\" torna-se \"goes\" na 3ª pessoa do singular.",
+      "common_mistake_pt": "Uso do gerúndio (\"going\") em vez do Present Simple, por transferência do português \"está a ir\".",
+      "audio_url": null,
+      "tags": ["present-simple", "3rd-person-s"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"commute\" mean?",
+      "correct_answer": ["to travel regularly between home and work"],
+      "distractors": ["to eat breakfast", "to sleep late", "to work from home"],
+      "explanation": "\"Commute\" refere-se especificamente à deslocação regular entre casa e trabalho.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "work"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What time does Anna wake up?",
+      "correct_answer": ["7am", "seven am", "7 am"],
+      "distractors": ["6am", "8am", "9am"],
+      "explanation": "No áudio, Anna diz: \"I wake up at 7am every day.\"",
+      "common_mistake_pt": null,
+      "audio_url": "/audio/a1/anna_routine.mp3",
+      "tags": ["listening", "routine"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Anna wakes up at 7am. She has breakfast and commutes to the office by train. She usually gets to work at 9am.\" What time does Anna get to work?",
+      "correct_answer": ["9am", "9 am", "nine am"],
+      "distractors": ["7am", "8am", "10am"],
+      "explanation": "O texto indica diretamente \"gets to work at 9am\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "routine"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_present_simple_routines",
+      "prompt": "Translate to English: \"Ela acorda às 7h e toma o pequeno-almoço antes de sair para o trabalho.\"",
+      "correct_answer": ["She wakes up at 7am and has breakfast before she leaves for work."],
+      "distractors": [],
+      "explanation": "Atenção ao -s em \"wakes\" e \"has\" (3ª pessoa do singular).",
+      "common_mistake_pt": "Esquecer o -s em ambos os verbos é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "present-simple"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m1_u1_present_simple_routines",
+    "title": "Talking About Daily Routines",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_present_simple_routines",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_present_simple_routines#rule" },
+      { "type": "example", "content_ref": "gc_a1_present_simple_routines#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_present_simple_routines#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_wake_up", "vocab_a1_have_breakfast", "vocab_a1_commute"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_present_simple_001", "ex_a1_present_simple_002", "ex_a1_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Practise the -s ending sound: works /wɜːks/, goes /ɡoʊz/, watches /ˈwɒtʃɪz/ — three different sounds depending on the final letter of the verb."
+      },
+      { "type": "speaking", "prompt": "Describe your typical weekday morning in 3-4 sentences using the Present Simple." },
+      { "type": "writing", "prompt": "Write 5 sentences about your daily routine using the Present Simple." },
+      { "type": "translation", "exercise_ids": ["ex_a1_translation_001"] }
+    ]
+  }
+}
