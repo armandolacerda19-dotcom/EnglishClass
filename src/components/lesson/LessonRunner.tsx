@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -8,7 +8,13 @@ import { ErrorCallout } from "@/components/ui/ErrorCallout";
 import { AudioPlayer } from "@/components/ui/AudioPlayer";
 import { RecordButton } from "@/components/ui/RecordButton";
 import { StampBadge } from "@/components/ui/StampBadge";
-import { submitExerciseAnswer, submitWriting, submitSpeaking, submitTranslation } from "@/app/(app)/learn/actions";
+import {
+  submitExerciseAnswer,
+  submitWriting,
+  submitSpeaking,
+  submitTranslation,
+  completeLesson,
+} from "@/app/(app)/learn/actions";
 
 interface LessonStep {
   type: string;
@@ -275,6 +281,10 @@ function TranslationStep({ exercise }: { exercise: ExerciseContent }) {
 }
 
 function LessonComplete() {
+  useEffect(() => {
+    completeLesson();
+  }, []);
+
   return (
     <div className="flex flex-col items-center gap-4 py-12 text-center">
       <StampBadge code="A1.1" tone="brass" />

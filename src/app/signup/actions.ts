@@ -10,7 +10,12 @@ export async function signUp(formData: FormData) {
   const name = String(formData.get("name"));
 
   const supabase = createClient();
-  const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { name } } });
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: { data: { name }, emailRedirectTo: `${siteUrl}/auth/callback` },
+  });
 
   if (error) redirect(`/signup?error=${encodeURIComponent(error.message)}`);
   if (!data.user) redirect(`/signup?error=${encodeURIComponent("Não foi possível criar a conta.")}`);
@@ -20,6 +25,10 @@ export async function signUp(formData: FormData) {
     update: { name },
     create: { email, name },
   });
+
+  // Se a confirmação de email estiver ativa no Supabase (por omissão), não há sessão
+  // ainda aqui — o utilizador só entra depois de clicar no link, via /auth/callback.
+  if (!data.session) redirect("/signup/check-email");
 
   redirect("/onboarding");
 }

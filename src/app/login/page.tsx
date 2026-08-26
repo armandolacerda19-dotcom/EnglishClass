@@ -30,6 +30,10 @@ export default function LoginPage({
         <Button type="submit">Entrar</Button>
       </form>
 
+      <Link href="/forgot-password" className="text-sm text-verdigris underline">
+        Esqueceu-se da palavra-passe?
+      </Link>
+
       <p className="text-sm text-inkNeutral/70">
         Ainda não tem conta?{" "}
         <Link href="/signup" className="text-verdigris underline">

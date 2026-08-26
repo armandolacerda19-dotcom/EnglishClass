@@ -171,6 +171,12 @@ model LearningProfile {
   weakAreas           Pillar[]  @default([])
   strongAreas         Pillar[]  @default([])
 
+  // Gamificação adulta — secção 9 do master prompt (XP, streak; nunca punitivo).
+  xp                  Int       @default(0)
+  currentStreak       Int       @default(0)
+  longestStreak       Int       @default(0)
+  lastActivityAt      DateTime?
+
   updatedAt           DateTime  @updatedAt
 }
 

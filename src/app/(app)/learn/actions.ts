@@ -3,6 +3,7 @@
 import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { anthropic, TUTOR_MODEL } from "@/lib/ai/anthropic";
+import { recordActivity } from "@/lib/gamification/recordActivity";
 
 export async function submitExerciseAnswer(exerciseId: string, given: string) {
   const user = await requireUser();
@@ -42,6 +43,8 @@ export async function submitExerciseAnswer(exerciseId: string, given: string) {
     });
   }
 
+  await recordActivity(user.id, isCorrect ? "EXERCISE_CORRECT" : "EXERCISE_INCORRECT");
+
   return { isCorrect, explanation: content.explanation as string, attemptId: attempt.id };
 }
 
@@ -53,6 +56,7 @@ export async function submitWriting(prompt: string, text: string) {
   await prisma.writingAttempt.create({
     data: { userId: user.id, prompt, text, source: "LESSON", feedbackJson: feedback },
   });
+  await recordActivity(user.id, "WRITING");
 
   return feedback;
 }
@@ -65,6 +69,7 @@ export async function submitSpeaking(prompt: string, transcript: string) {
   await prisma.speakingAttempt.create({
     data: { userId: user.id, prompt, audioUrl: "", transcript, source: "LESSON", feedbackJson: feedback },
   });
+  await recordActivity(user.id, "SPEAKING");
 
   return feedback;
 }
@@ -88,7 +93,16 @@ export async function submitTranslation(exerciseId: string, given: string) {
     },
   });
 
+  await recordActivity(user.id, "TRANSLATION");
+
   return { feedback, referenceAnswer: content.correct_answer[0] as string };
+}
+
+// Chamado pelo LessonRunner quando o utilizador chega ao ecrã final da lição —
+// XP extra de conclusão, para além do XP por passo já atribuído acima.
+export async function completeLesson() {
+  const user = await requireUser();
+  await recordActivity(user.id, "LESSON_COMPLETE");
 }
 
 // Correção de writing/speaking/translation seguindo docs/06-arquitetura-ia.md:

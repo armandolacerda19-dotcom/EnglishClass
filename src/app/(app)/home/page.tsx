@@ -6,13 +6,23 @@ import { Button } from "@/components/ui/Button";
 import { CefrLevelTag } from "@/components/ui/CefrLevelTag";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { formatLevelCode } from "@/lib/level";
+import { StreakXp } from "@/components/ui/StreakXp";
 
 export default async function HomePage() {
   const { user, learningProfile } = await requireUserWithProfile();
 
   if (learningProfile.track === "INTENSIVE") {
     const intensivePlan = await prisma.intensivePlan.findUnique({ where: { userId: user.id } });
-    return <IntensiveHome levelCode={formatLevelCode(learningProfile)} plan={intensivePlan} name={user.name} weakAreas={learningProfile.weakAreas} />;
+    return (
+      <IntensiveHome
+        levelCode={formatLevelCode(learningProfile)}
+        plan={intensivePlan}
+        name={user.name}
+        weakAreas={learningProfile.weakAreas}
+        xp={learningProfile.xp}
+        streak={learningProfile.currentStreak}
+      />
+    );
   }
 
   const standardPlan = await prisma.learningPlan.findUnique({ where: { userId: user.id } });
@@ -26,6 +36,8 @@ export default async function HomePage() {
         <h1 className="font-display text-2xl">O que vamos praticar hoje?</h1>
         <CefrLevelTag code={formatLevelCode(learningProfile)} />
       </div>
+
+      <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} />
 
       <Card className="mb-4">
         <p className="mb-2 font-mono text-xs uppercase tracking-wide text-verdigris">Continuar</p>
@@ -56,11 +68,15 @@ function IntensiveHome({
   plan,
   name,
   weakAreas,
+  xp,
+  streak,
 }: {
   levelCode: string;
   plan: { currentDay: number; totalDays: number; weeklyThemesJson: unknown } | null;
   name: string;
   weakAreas: string[];
+  xp: number;
+  streak: number;
 }) {
   const currentDay = plan?.currentDay ?? 1;
   const totalDays = plan?.totalDays ?? 1;
@@ -74,6 +90,8 @@ function IntensiveHome({
         </h1>
         <CefrLevelTag code={code} />
       </div>
+
+      <StreakXp xp={xp} streak={streak} />
 
       <Card className="mb-4">
         <ProgressBar value={(currentDay / totalDays) * 100} label="Progresso do plano intensivo" />

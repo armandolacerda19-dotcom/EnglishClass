@@ -43,6 +43,7 @@ git push -u origin main
 3. Antes do primeiro deploy, ir a **Site configuration → Environment variables** e adicionar:
    - `DATABASE_URL`, `DIRECT_URL` (Supabase, passo 1)
    - `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (Supabase, passo 1)
+   - `NEXT_PUBLIC_SITE_URL` — o domínio que a Netlify vai atribuir (ex. `https://ingles-platform.netlify.app`; pode confirmar/editar depois do primeiro deploy, no separador **Domain management**, e voltar a esta variável para o corrigir se mudar)
    - `ANTHROPIC_API_KEY` (criar em [console.anthropic.com](https://console.anthropic.com))
    - `OPENAI_API_KEY` (criar em [platform.openai.com](https://platform.openai.com) — usado só para transcrição via Whisper, ver `docs/decisions.md`)
 4. **Deploy site**. A Netlify instala dependências, corre `prisma generate`, `prisma db push`, o seed do currículo A1, e o build do Next.js — tudo na cloud.
