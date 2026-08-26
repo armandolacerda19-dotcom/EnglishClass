@@ -99,10 +99,20 @@ export async function submitTranslation(exerciseId: string, given: string) {
 }
 
 // Chamado pelo LessonRunner quando o utilizador chega ao ecrã final da lição —
-// XP extra de conclusão, para além do XP por passo já atribuído acima.
+// XP extra de conclusão, para além do XP por passo já atribuído acima, e a
+// conquista "Primeira Lição" na primeira vez.
 export async function completeLesson() {
   const user = await requireUser();
   await recordActivity(user.id, "LESSON_COMPLETE");
+
+  const achievement = await prisma.achievement.findUnique({ where: { code: "first_lesson_complete" } });
+  if (achievement) {
+    await prisma.userAchievement.upsert({
+      where: { userId_achievementId: { userId: user.id, achievementId: achievement.id } },
+      update: {},
+      create: { userId: user.id, achievementId: achievement.id },
+    });
+  }
 }
 
 // Correção de writing/speaking/translation seguindo docs/06-arquitetura-ia.md:
@@ -111,15 +121,20 @@ export async function completeLesson() {
 async function getHolisticFeedback(kind: "writing" | "speaking" | "translation", prompt: string, text: string) {
   if (!text.trim()) return "Não foi possível avaliar: resposta vazia.";
 
-  const model = getGeminiModel(
-    "You are correcting a single " +
-      kind +
-      " response from an adult Portuguese-speaking English learner. " +
-      "Cover grammar, vocabulary, spelling/punctuation where relevant, coherence, register and naturalness. " +
-      'Explicitly distinguish "incorrect" from "not natural / not idiomatic". Never invent a grammar rule — ' +
-      "say you are not sure rather than guess. Keep the feedback under 120 words, in English, direct and encouraging."
-  );
+  try {
+    const model = getGeminiModel(
+      "You are correcting a single " +
+        kind +
+        " response from an adult Portuguese-speaking English learner. " +
+        "Cover grammar, vocabulary, spelling/punctuation where relevant, coherence, register and naturalness. " +
+        'Explicitly distinguish "incorrect" from "not natural / not idiomatic". Never invent a grammar rule — ' +
+        "say you are not sure rather than guess. Keep the feedback under 120 words, in English, direct and encouraging."
+    );
 
-  const result = await model.generateContent(`Prompt: ${prompt}\nLearner response: ${text}`);
-  return result.response.text();
+    const result = await model.generateContent(`Prompt: ${prompt}\nLearner response: ${text}`);
+    return result.response.text();
+  } catch (error) {
+    console.error("Gemini feedback request failed", error);
+    return "Não foi possível avaliar esta resposta agora — pode ser um problema temporário com o serviço de IA. Tente novamente daqui a pouco.";
+  }
 }

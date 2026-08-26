@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.3",
+  "module": {
+    "id": "mod_a1_3_comparing_things",
+    "title": "Comparing Things",
+    "theme": "comparatives",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_a1_3_comparatives",
+    "title": "Comparative Adjectives",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_comparative_adjectives",
+    "title": "Comparative Adjectives",
+    "rule": "Short adjectives (1 syllable, or 2 ending in -y) add -er: big → bigger, cheap → cheaper, easy → easier. Longer adjectives use more + adjective: more expensive, more comfortable. Some are irregular: good → better, bad → worse.",
+    "simple_explanation": "Usamos comparativos para dizer que algo tem mais ou menos de uma qualidade do que outra coisa.",
+    "example": "This phone is cheaper than that one. This hotel is more comfortable than the last one.",
+    "example_translation": "Este telemóvel é mais barato do que aquele. Este hotel é mais confortável do que o último.",
+    "common_mistake_pt": "Em português, o comparativo forma-se sempre com \"mais\" (mais barato, mais grande), o que leva muitos falantes de português a dizer \"more cheap\" ou \"more big\" em vez de \"cheaper\" ou \"bigger\", e a esquecer formas irregulares como \"better\" (em vez de \"more good\" ou \"gooder\").",
+    "correction": "Adjetivos curtos levam -er (cheaper, bigger); não usar \"more\" com eles. \"Good\" e \"bad\" são irregulares: better, worse.",
+    "real_world_example": "Comparando produtos numa loja: \"This one is better and cheaper than the other model.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_expensive",
+      "headword": "expensive",
+      "type": "adjective",
+      "translation_pt": "caro",
+      "definition_en": "costing a lot of money",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ɪkˈspɛnsɪv/",
+      "related_forms": ["more expensive", "cheap (opposite)"],
+      "example_sentences": ["This restaurant is more expensive than the one near my house."],
+      "difficulty": 2,
+      "tags": ["adjective", "shopping"]
+    },
+    {
+      "id": "vocab_a1_comfortable",
+      "headword": "comfortable",
+      "type": "adjective",
+      "translation_pt": "confortável",
+      "definition_en": "physically relaxing, not causing pain or difficulty",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈkʌmftəbəl/",
+      "related_forms": ["more comfortable", "uncomfortable (opposite)"],
+      "example_sentences": ["This chair is more comfortable than that one."],
+      "difficulty": 2,
+      "tags": ["adjective"]
+    },
+    {
+      "id": "vocab_a1_than",
+      "headword": "than",
+      "type": "conjunction",
+      "translation_pt": "do que",
+      "definition_en": "used after a comparative to introduce the second thing being compared",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ðæn/",
+      "related_forms": ["bigger than", "better than"],
+      "example_sentences": ["My car is faster than yours."],
+      "difficulty": 1,
+      "tags": ["comparatives", "function-word"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_comparative_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_comparative_adjectives",
+      "prompt": "Complete: This phone is ___ (cheap) than that one.",
+      "correct_answer": ["cheaper"],
+      "distractors": ["more cheap", "cheapest", "more cheaper"],
+      "explanation": "\"Cheap\" é um adjetivo curto, por isso o comparativo forma-se com -er: cheaper.",
+      "common_mistake_pt": "\"More cheap\" é o erro mais comum, por transferência direta do português \"mais barato\".",
+      "audio_url": null,
+      "tags": ["comparatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_comparative_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_comparative_adjectives",
+      "prompt": "Complete: This hotel is ___ (good) than the last one.",
+      "correct_answer": ["better"],
+      "distractors": ["more good", "gooder", "best"],
+      "explanation": "\"Good\" é irregular: o comparativo é \"better\", não \"more good\" nem \"gooder\".",
+      "common_mistake_pt": "\"More good\" e \"gooder\" são ambos erros comuns — falantes de português tentam aplicar a regra regular a uma exceção.",
+      "audio_url": null,
+      "tags": ["comparatives", "irregular"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_vocab_004",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "\"Comfortable\" means:",
+      "correct_answer": ["physically relaxing, not causing pain or difficulty"],
+      "distractors": ["expensive", "very fast", "difficult to use"],
+      "explanation": "\"Comfortable\" descreve algo fisicamente agradável de usar, como uma cadeira ou uma cama.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "adjective"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_listening_004",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen: which hotel does the speaker prefer?",
+      "correct_answer": ["the new one", "new one"],
+      "distractors": ["the old one", "neither", "both"],
+      "explanation": "No áudio, a pessoa diz: \"The new hotel is more comfortable and cheaper than the old one, so I prefer it.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "The new hotel is more comfortable and cheaper than the old one, so I prefer it.",
+      "tags": ["listening", "comparatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reading_004",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Car A costs 20,000 euros. Car B costs 25,000 euros. Car B is faster and more comfortable.\" Which car is cheaper?",
+      "correct_answer": ["Car A", "car a"],
+      "distractors": ["Car B", "Both are the same price", "It doesn't say"],
+      "explanation": "Car A custa menos (20.000€ vs 25.000€), por isso é a mais barata.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "comparatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_translation_004",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_comparative_adjectives",
+      "prompt": "Translate to English: \"Este carro é mais rápido e mais confortável do que o outro.\"",
+      "correct_answer": ["This car is faster and more comfortable than the other one."],
+      "distractors": [],
+      "explanation": "\"Faster\" (adjetivo curto, -er) mas \"more comfortable\" (adjetivo longo, more + adjetivo).",
+      "common_mistake_pt": "Usar \"more fast\" em vez de \"faster\" é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "comparatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m4_u1_comparatives",
+    "title": "Comparing Things",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_comparative_adjectives",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_comparative_adjectives#rule" },
+      { "type": "example", "content_ref": "gc_a1_comparative_adjectives#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_comparative_adjectives#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_expensive", "vocab_a1_comfortable", "vocab_a1_than"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_comparative_001", "ex_a1_comparative_002", "ex_a1_vocab_004"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_listening_004"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_reading_004"] },
+      {
+        "type": "pronunciation",
+        "content": "Practise the -er ending sound: cheaper /ˈtʃiːpər/, bigger /ˈbɪɡər/ — a soft, unstressed \"er\" at the end, not a strong separate syllable."
+      },
+      { "type": "speaking", "prompt": "Compare two things you own (e.g. two phones, two bags) using at least two comparative adjectives." },
+      { "type": "writing", "prompt": "Write 4 sentences comparing two cities, hotels, or restaurants you know, using comparative adjectives." },
+      { "type": "translation", "exercise_ids": ["ex_a1_translation_004"] }
+    ]
+  }
+}

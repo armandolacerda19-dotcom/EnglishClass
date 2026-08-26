@@ -4,13 +4,14 @@ import moduleDailyLife from "../content/curriculum/a1-module-01-daily-life.json"
 import moduleFirstWords from "../content/curriculum/pre-a1-module-01-first-words.json";
 import moduleAboutMe from "../content/curriculum/a1-module-02-about-me.json";
 import moduleShopping from "../content/curriculum/a1-module-03-shopping.json";
+import moduleComparatives from "../content/curriculum/a1-module-04-comparatives.json";
 
 const prisma = new PrismaClient();
 
 // Cada ficheiro em content/curriculum/ segue o formato de docs/08-schema-json-conteudo.md:
 // um módulo com uma unidade, um conceito de gramática, vocabulário, exercícios e uma lição.
 // Adicionar conteúdo novo = adicionar um ficheiro aqui, sem tocar na lógica de seed abaixo.
-const MODULE_FILES = [moduleFirstWords, moduleDailyLife, moduleAboutMe, moduleShopping];
+const MODULE_FILES = [moduleFirstWords, moduleDailyLife, moduleAboutMe, moduleShopping, moduleComparatives];
 
 async function seedLevels() {
   for (const level of levelsData.levels) {
@@ -173,8 +174,29 @@ async function seedModuleFile(data: (typeof MODULE_FILES)[number], lessonOrder: 
   console.log(`Seeded "${dbModule.title}" (${sublevel.code}) → "${dbUnit.title}" → "${dbLesson.title}" (concept: ${dbConcept.title})`);
 }
 
+// Conquistas MVP1 — gamificação simples (XP/streak já corridos por src/lib/gamification/recordActivity.ts),
+// esta tabela cobre marcos discretos em vez de progresso contínuo.
+const ACHIEVEMENTS = [
+  {
+    code: "first_lesson_complete",
+    title: "Primeira Lição",
+    description: "Completou a sua primeira lição na plataforma.",
+  },
+];
+
+async function seedAchievements() {
+  for (const a of ACHIEVEMENTS) {
+    await prisma.achievement.upsert({
+      where: { code: a.code },
+      update: { title: a.title, description: a.description },
+      create: a,
+    });
+  }
+}
+
 async function main() {
   await seedLevels();
+  await seedAchievements();
   for (let i = 0; i < MODULE_FILES.length; i++) {
     await seedModuleFile(MODULE_FILES[i]!, i + 1);
   }

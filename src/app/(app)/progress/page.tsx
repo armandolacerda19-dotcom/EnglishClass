@@ -4,13 +4,21 @@ import { Card } from "@/components/ui/Card";
 import { SkillOctagon } from "@/components/ui/SkillOctagon";
 import { CefrLevelTag } from "@/components/ui/CefrLevelTag";
 import { formatLevelCode } from "@/lib/level";
+import { StampBadge } from "@/components/ui/StampBadge";
+
+// Código curto para caber no carimbo circular (docs/09-sistema-design.md) — o título
+// completo da conquista aparece por baixo do carimbo.
+const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
+  first_lesson_complete: "1ª",
+};
 
 export default async function ProgressPage() {
   const { user, learningProfile } = await requireUserWithProfile();
 
-  const [exerciseAttempts, resolvedErrors] = await Promise.all([
+  const [exerciseAttempts, resolvedErrors, achievements] = await Promise.all([
     prisma.exerciseAttempt.count({ where: { userId: user.id } }),
     prisma.userError.count({ where: { userId: user.id, resolvedAt: { not: null } } }),
+    prisma.userAchievement.findMany({ where: { userId: user.id }, include: { achievement: true }, orderBy: { earnedAt: "desc" } }),
   ]);
 
   const skillProfile = {
@@ -45,6 +53,20 @@ export default async function ProgressPage() {
           <p className="text-xs text-inkNeutral/60 dark:text-linen/60">erros já corrigidos</p>
         </Card>
       </div>
+
+      {achievements.length > 0 && (
+        <Card className="mt-4">
+          <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brass">Conquistas</p>
+          <div className="flex flex-wrap gap-4">
+            {achievements.map((a) => (
+              <div key={a.id} className="flex flex-col items-center gap-1">
+                <StampBadge code={ACHIEVEMENT_SHORT_CODE[a.achievement.code] ?? "★"} tone="brass" />
+                <p className="max-w-16 text-center text-xs text-inkNeutral/60 dark:text-linen/60">{a.achievement.title}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
     </main>
   );
 }

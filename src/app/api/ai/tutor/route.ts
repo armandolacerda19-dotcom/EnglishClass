@@ -33,12 +33,19 @@ export async function POST(req: NextRequest) {
     })),
   });
 
-  const model = getGeminiModel(systemPrompt);
-  const chat = model.startChat({
-    history: history.map((h) => ({ role: h.role === "assistant" ? "model" : "user", parts: [{ text: h.text }] })),
-  });
-  const result = await chat.sendMessage(message);
-  const replyText = result.response.text();
+  let replyText: string;
+  try {
+    const model = getGeminiModel(systemPrompt);
+    const chat = model.startChat({
+      history: history.map((h) => ({ role: h.role === "assistant" ? "model" : "user", parts: [{ text: h.text }] })),
+    });
+    const result = await chat.sendMessage(message);
+    replyText = result.response.text();
+  } catch (error) {
+    console.error("Gemini tutor request failed", error);
+    replyText =
+      "Desculpe, não consegui responder agora — pode ser um problema temporário com o serviço de IA. Tente novamente daqui a pouco.";
+  }
   const newHistory = [...history, { role: "user", text: message }, { role: "assistant", text: replyText }];
 
   if (conversation) {
