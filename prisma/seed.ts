@@ -5,13 +5,21 @@ import moduleFirstWords from "../content/curriculum/pre-a1-module-01-first-words
 import moduleAboutMe from "../content/curriculum/a1-module-02-about-me.json";
 import moduleShopping from "../content/curriculum/a1-module-03-shopping.json";
 import moduleComparatives from "../content/curriculum/a1-module-04-comparatives.json";
+import moduleRestaurant from "../content/curriculum/a1-module-05-restaurant.json";
 
 const prisma = new PrismaClient();
 
 // Cada ficheiro em content/curriculum/ segue o formato de docs/08-schema-json-conteudo.md:
 // um módulo com uma unidade, um conceito de gramática, vocabulário, exercícios e uma lição.
 // Adicionar conteúdo novo = adicionar um ficheiro aqui, sem tocar na lógica de seed abaixo.
-const MODULE_FILES = [moduleFirstWords, moduleDailyLife, moduleAboutMe, moduleShopping, moduleComparatives];
+const MODULE_FILES = [
+  moduleFirstWords,
+  moduleDailyLife,
+  moduleAboutMe,
+  moduleShopping,
+  moduleComparatives,
+  moduleRestaurant,
+];
 
 async function seedLevels() {
   for (const level of levelsData.levels) {

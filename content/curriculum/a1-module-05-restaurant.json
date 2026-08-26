@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.2",
+  "module": {
+    "id": "mod_a1_2_restaurant",
+    "title": "At the Restaurant",
+    "theme": "polite-requests",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_a1_2_polite_requests",
+    "title": "Polite Requests",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_polite_requests_can_could",
+    "title": "Polite Requests with Can / Could",
+    "rule": "Use \"Can I have...?\" or the more formal \"Could I have...?\" to ask for something politely. Avoid \"I want\" in service situations — it sounds too direct in English.",
+    "simple_explanation": "Em inglês, pedir algo diretamente com \"I want\" soa rude num restaurante ou loja. \"Can/Could I have...?\" é a forma educada padrão.",
+    "example": "Can I have the menu, please? Could I have a glass of water?",
+    "example_translation": "Posso ter o menu, por favor? Podia trazer-me um copo de água?",
+    "common_mistake_pt": "Em português, \"Eu quero um café\" é perfeitamente educado no dia a dia, o que leva falantes de português a traduzir diretamente para \"I want a coffee\" — em inglês isto soa abrupto ou mal-educado num contexto de serviço; o correto é \"Can I have a coffee, please?\".",
+    "correction": "Trocar \"I want...\" por \"Can I have...?\" ou \"Could I have...?\" em qualquer situação de pedir algo a alguém (restaurante, loja, balcão).",
+    "real_world_example": "Num café: \"Can I have a cappuccino and a croissant, please?\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_menu",
+      "headword": "menu",
+      "type": "noun",
+      "translation_pt": "ementa",
+      "definition_en": "a list of food and drinks available in a restaurant",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈmɛnjuː/",
+      "related_forms": ["the menu, please"],
+      "example_sentences": ["Can I have the menu, please?"],
+      "difficulty": 1,
+      "tags": ["restaurant"]
+    },
+    {
+      "id": "vocab_a1_bill",
+      "headword": "the bill",
+      "type": "noun",
+      "translation_pt": "a conta",
+      "definition_en": "the piece of paper showing how much you must pay",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ðə bɪl/",
+      "related_forms": ["Can I have the bill, please?"],
+      "example_sentences": ["Could I have the bill, please?"],
+      "difficulty": 1,
+      "tags": ["restaurant"]
+    },
+    {
+      "id": "vocab_a1_recommend",
+      "headword": "recommend",
+      "type": "verb",
+      "translation_pt": "recomendar",
+      "definition_en": "to suggest that something is good",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˌrɛkəˈmɛnd/",
+      "related_forms": ["What do you recommend?"],
+      "example_sentences": ["What do you recommend? The fish is very good today."],
+      "difficulty": 2,
+      "tags": ["restaurant"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_polite_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_polite_requests_can_could",
+      "prompt": "Choose the most polite way to ask for the menu.",
+      "correct_answer": ["Can I have the menu, please?"],
+      "distractors": ["I want the menu.", "Give me the menu.", "The menu now."],
+      "explanation": "\"Can I have...please?\" é a forma educada padrão para pedir algo num restaurante.",
+      "common_mistake_pt": "\"I want the menu\" é o erro mais comum — soa direto demais em inglês, mesmo sendo normal em português.",
+      "audio_url": null,
+      "tags": ["polite-requests"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_polite_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_polite_requests_can_could",
+      "prompt": "Complete: ___ I have a glass of water, please?",
+      "correct_answer": ["Can", "Could"],
+      "distractors": ["I want", "Give"],
+      "explanation": "Ambos \"Can\" e \"Could\" funcionam aqui — \"Could\" é ligeiramente mais formal.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["polite-requests"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_vocab_005",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "At the end of the meal, you ask for...",
+      "correct_answer": ["the bill"],
+      "distractors": ["the menu", "the recommendation", "the water"],
+      "explanation": "\"The bill\" é o documento que mostra quanto tem de pagar.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "restaurant"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_listening_005",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen: what does the customer ask for?",
+      "correct_answer": ["the bill"],
+      "distractors": ["the menu", "more water", "a recommendation"],
+      "explanation": "No áudio, o cliente diz: \"Could I have the bill, please?\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Could I have the bill, please?",
+      "tags": ["listening", "restaurant"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reading_005",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Waiter: What do you recommend? Me: The fish is very good today. Waiter: Great, can I have that, please?\" What does the customer order?",
+      "correct_answer": ["the fish", "fish"],
+      "distractors": ["the menu", "water", "nothing"],
+      "explanation": "O cliente pede o peixe depois de o empregado o recomendar.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "restaurant"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_translation_005",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_polite_requests_can_could",
+      "prompt": "Translate to English: \"Podia trazer-me a conta, por favor?\"",
+      "correct_answer": ["Could I have the bill, please?"],
+      "distractors": [],
+      "explanation": "\"Could I have...\" é a forma educada; nunca traduzir \"trazer-me\" como \"bring me\" sozinho sem \"please\" e sem a estrutura educada.",
+      "common_mistake_pt": "Traduzir diretamente como \"Bring me the bill\" soa como uma ordem, não um pedido educado.",
+      "audio_url": null,
+      "tags": ["translation", "polite-requests"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m5_u1_polite_requests",
+    "title": "At the Restaurant",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_polite_requests_can_could",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_polite_requests_can_could#rule" },
+      { "type": "example", "content_ref": "gc_a1_polite_requests_can_could#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_polite_requests_can_could#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_menu", "vocab_a1_bill", "vocab_a1_recommend"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_polite_001", "ex_a1_polite_002", "ex_a1_vocab_005"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_listening_005"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_reading_005"] },
+      {
+        "type": "pronunciation",
+        "content": "Practise the polite intonation of \"Could I...?\" — a rising, soft tone at the end signals politeness in English, more than the words alone."
+      },
+      { "type": "speaking", "prompt": "Order a meal politely: ask for the menu, ask what the waiter recommends, and order something." },
+      { "type": "writing", "prompt": "Write a short dialogue (4-5 lines) between a customer and a waiter, using at least two polite requests." },
+      { "type": "translation", "exercise_ids": ["ex_a1_translation_005"] }
+    ]
+  }
+}

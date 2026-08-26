@@ -2,7 +2,10 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26 (sessão de desafios diários e continuidade).
+Última atualização: 2026-08-26, deploy `7d6215c` (Micro-Desafios) publicado com sucesso e confirmado sem erro de build.
+
+### Pendente — não esquecer na próxima sessão
+- `NEXT_PUBLIC_SITE_URL` na Netlify ainda tem o domínio antigo (`dashing-beignet-654e88...`); deve ser `https://english-platafform.netlify.app`. Tentativa de correção via browser automation falhou por instabilidade repetida da página de env vars da Netlify (timeouts de screenshot) — falta concluir. Só afeta os links de confirmação de email/recovery, não bloqueia o resto da app.
 
 ## 1. O que é isto
 
@@ -51,7 +54,7 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 | Decisões (log vivo) | — | `docs/decisions.md` — **atualizar sempre que uma decisão técnica mudar** |
 | Deploy | Netlify | `netlify.toml` |
 
-## 4. Conteúdo curricular seedado (5 lições)
+## 4. Conteúdo curricular seedado (6 lições)
 
 | Sublevel | Módulo | Conceito de gramática | Erro PT→EN destacado |
 |---|---|---|---|
@@ -60,6 +63,7 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 | A1.1 | About Me | Perguntas com Do/Does | "You like coffee?" → "Do you like coffee?" |
 | A1.2 | Shopping | There is/There are | "há" invariável em PT vs. singular/plural em EN |
 | A1.3 | Comparing Things | Comparativos | "more cheap" → "cheaper"; "more good" → "better" |
+| A1.2 | At the Restaurant | Pedidos educados (Can/Could) | "I want a coffee" → "Can I have a coffee, please?" |
 
 ~15 itens de vocabulário no total, distribuídos por estes módulos. Ver `content/curriculum/` para o JSON completo de cada um.
 
