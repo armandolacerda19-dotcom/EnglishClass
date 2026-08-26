@@ -2,10 +2,10 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, deploy `7d6215c` (Micro-Desafios) publicado com sucesso e confirmado sem erro de build.
+Última atualização: 2026-08-26, deploy `ea0214e` + redeploy de env var publicados com sucesso. 6 lições em produção, `NEXT_PUBLIC_SITE_URL` corrigido para o domínio atual.
 
-### Pendente — não esquecer na próxima sessão
-- `NEXT_PUBLIC_SITE_URL` na Netlify ainda tem o domínio antigo (`dashing-beignet-654e88...`); deve ser `https://english-platafform.netlify.app`. Tentativa de correção via browser automation falhou por instabilidade repetida da página de env vars da Netlify (timeouts de screenshot) — falta concluir. Só afeta os links de confirmação de email/recovery, não bloqueia o resto da app.
+### Nota técnica — clicar em elementos da UI da Netlify via browser automation
+A navegação por `find`/`ref` na consola da Netlify revelou-se instável (refs ficam obsoletos entre re-renders, timeouts de screenshot frequentes nesta página em concreto). **Solução mais fiável**: usar `javascript_tool` para localizar e clicar elementos diretamente no DOM (`document.querySelectorAll`, filtrar por `offsetParent !== null` para apanhar só o elemento visível/ativo, `.click()`), e para editar inputs React controlados usar o setter nativo do `HTMLInputElement.prototype` antes de disparar o evento `input` (`Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set.call(input, valor)`). Preferir este método a `find`/`computer` para esta consola específica.
 
 ## 1. O que é isto
 
@@ -79,7 +79,9 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 - [x] Desafio Diário de vocabulário (5-10 palavras, escolha múltipla, + frases de exemplo) — `src/lib/dailyChallenge.ts`, rota `/practice/daily-challenge`.
 - [x] Checkpoints diários/semanais/mensais — `src/lib/checkpoints.ts`, cartão em `/progress`.
 - [x] Micro-Desafios ("5 Minutos Matinais", "Casa de Banho", "Sofá") — implementados diretamente (utilizador pediu para avançar sem esperar confirmação): `src/lib/microChallenges.ts`, rota `/practice/micro-challenges`.
-- [ ] **Por confirmar pelo utilizador em produção**: testar o Desafio Diário e os Micro-Desafios no site real depois do deploy do commit que introduziu `src/lib/microChallenges.ts`.
+- [x] 6ª lição adicional (A1.2 "At the Restaurant" — pedidos educados Can/Could) — para reforçar a profundidade do currículo enquanto havia orçamento de tokens.
+- [x] `NEXT_PUBLIC_SITE_URL` corrigido para `https://english-platafform.netlify.app` e redeploy confirmado publicado.
+- [ ] **Por confirmar pelo utilizador em produção**: clicar em Desafio Diário e Micro-Desafios no site real (deploy `ea0214e` já publicado, deploy código-fonte confirmado sem erros; falta só confirmação visual/funcional do próprio utilizador).
 
 Ver o corpo da conversa da sessão de 2026-08-26 para o pedido exato.
 
