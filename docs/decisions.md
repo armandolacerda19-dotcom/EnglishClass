@@ -47,6 +47,11 @@ Guia passo a passo (só browser + `git`, sem `npm`/`node`): `docs/11-deploy-netl
 - Todo conteúdo gerado por IA passa por `generatedByAi` + `qaApproved`/`qa_status` antes de ser servido a utilizadores reais (ver `06-arquitetura-ia.md`).
 - Interface em português europeu (evitar PT-BR, salvo comparação linguística explícita) — ver secção 10 do master prompt.
 
+## 2026-08-26 — Expansão de conteúdo e heurística de "próxima lição"
+
+- Conteúdo curricular expandido de 1 para 4 lições seedáveis: Pre-A1 "Greetings and Introductions" (verbo to be — inclui explicitamente o erro clássico "I have 38 years" citado na secção 4 do master prompt), A1.1 "Daily Routines" (Present Simple), A1.1 "Likes and Hobbies" (perguntas com Do/Does), A1.2 "At the Shop" (There is/There are). `prisma/seed.ts` generalizado para iterar sobre uma lista de ficheiros de módulo (`MODULE_FILES`) em vez de ter uma função por módulo — adicionar conteúdo novo passa a ser só criar o ficheiro JSON e adicioná-lo à lista.
+- **Heurística de "próxima lição" na Home** (`src/lib/lessons.ts`): sem uma tabela dedicada de conclusão de lição, usa-se como proxy "tem pelo menos uma `ExerciseAttempt` num exercício dessa lição" para considerar a lição "tocada" e avançar para a seguinte. Aceitável para MVP1; **não filtra pelo nível atual do utilizador** (mostra sempre a próxima lição não tocada, independentemente de `LearningProfile.currentLevel`) — revisitar em MVP2 quando o currículo cobrir mais níveis e o level skipping (`docs/04-arquitetura-curricular-cefr.md`) precisar de gating real.
+
 ## Pontos em aberto para decidir antes/durante MVP1
 
 - Algoritmo exato de spaced repetition (`ReviewScheduleItem.easeFactor`/`intervalDays`): proposto tipo SM-2 como ponto de partida; afinar com dados reais de retenção a partir do MVP2.

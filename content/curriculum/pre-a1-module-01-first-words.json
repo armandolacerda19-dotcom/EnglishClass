@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "Pre-A1",
+  "module": {
+    "id": "mod_prea1_1_first_words",
+    "title": "First Words",
+    "theme": "basics",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_prea1_1_greetings",
+    "title": "Greetings and Introductions",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_prea1_verb_to_be",
+    "title": "The Verb \"To Be\" — am / is / are",
+    "rule": "Use am/is/are to say who you are, where you are from, your age or how you feel. I am, you/we/they are, he/she/it is.",
+    "simple_explanation": "\"To be\" is the most basic verb in English — it connects a subject to a name, place, age or feeling.",
+    "example": "I am from Portugal. She is 38 years old.",
+    "example_translation": "Eu sou de Portugal. Ela tem 38 anos.",
+    "common_mistake_pt": "Para dizer a idade, o português usa o verbo \"ter\" (\"Eu tenho 38 anos\"), o que leva muitos falantes de português a dizer \"I have 38 years\" em vez de \"I am 38 years old\" — em inglês, a idade usa-se sempre com o verbo \"to be\".",
+    "correction": "Say \"I am 38 years old\" (or simply \"I'm 38\"), never \"I have 38 years\".",
+    "real_world_example": "Filling in a form: \"Name: Ana. Age: I am 29 years old. From: Portugal.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_prea1_hello",
+      "headword": "hello / hi",
+      "type": "expression",
+      "translation_pt": "olá",
+      "definition_en": "a greeting used when meeting someone",
+      "cefr_level": "PRE_A1",
+      "audio_url": null,
+      "ipa": "/həˈloʊ/",
+      "related_forms": ["good morning", "good afternoon", "good evening"],
+      "example_sentences": ["Hello, my name is Ana."],
+      "difficulty": 1,
+      "tags": ["greeting"]
+    },
+    {
+      "id": "vocab_prea1_my_name_is",
+      "headword": "my name is",
+      "type": "expression",
+      "translation_pt": "o meu nome é",
+      "definition_en": "used to introduce yourself",
+      "cefr_level": "PRE_A1",
+      "audio_url": null,
+      "ipa": "/maɪ neɪm ɪz/",
+      "related_forms": ["I'm", "what's your name?"],
+      "example_sentences": ["Hi, my name is Ricardo."],
+      "difficulty": 1,
+      "tags": ["introduction"]
+    },
+    {
+      "id": "vocab_prea1_nice_to_meet_you",
+      "headword": "nice to meet you",
+      "type": "expression",
+      "translation_pt": "prazer em conhecê-lo/la",
+      "definition_en": "a polite phrase said when meeting someone for the first time",
+      "cefr_level": "PRE_A1",
+      "audio_url": null,
+      "ipa": "/naɪs tə miːt juː/",
+      "related_forms": ["nice to meet you too"],
+      "example_sentences": ["Nice to meet you! I'm Marta."],
+      "difficulty": 1,
+      "tags": ["introduction", "politeness"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_prea1_tobe_001",
+      "cefr_level": "PRE_A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_prea1_verb_to_be",
+      "prompt": "Complete: I ___ from Portugal.",
+      "correct_answer": ["am"],
+      "distractors": ["is", "are", "be"],
+      "explanation": "Com \"I\" usa-se sempre \"am\".",
+      "common_mistake_pt": "Falantes de português por vezes tentam usar \"is\" com qualquer sujeito, por não haver conjugação equivalente tão marcada em português informal falado rapidamente.",
+      "audio_url": null,
+      "tags": ["to-be"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_tobe_002",
+      "cefr_level": "PRE_A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_prea1_verb_to_be",
+      "prompt": "Complete: She ___ 38 years old.",
+      "correct_answer": ["is"],
+      "distractors": ["has", "have", "am"],
+      "explanation": "A idade em inglês usa-se sempre com o verbo \"to be\", nunca \"to have\".",
+      "common_mistake_pt": "\"She have 38 years\" é o erro mais comum aqui, por transferência direta do português \"ela tem 38 anos\".",
+      "audio_url": null,
+      "tags": ["to-be", "age"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_vocab_001",
+      "cefr_level": "PRE_A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What do you say when you meet someone for the first time?",
+      "correct_answer": ["nice to meet you"],
+      "distractors": ["good night", "see you later", "how much is it"],
+      "explanation": "\"Nice to meet you\" é a expressão usada especificamente no primeiro encontro.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "greeting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_listening_001",
+      "cefr_level": "PRE_A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What is the woman's name?",
+      "correct_answer": ["Marta"],
+      "distractors": ["Ana", "Rita", "Sofia"],
+      "explanation": "No áudio, ouve-se: \"Hello, my name is Marta.\"",
+      "common_mistake_pt": null,
+      "audio_url": "/audio/prea1/marta_intro.mp3",
+      "tags": ["listening", "greeting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_reading_001",
+      "cefr_level": "PRE_A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Hi, my name is João. I am 45 years old. I am from Lisbon.\" Where is João from?",
+      "correct_answer": ["Lisbon"],
+      "distractors": ["Portugal", "Porto", "It doesn't say"],
+      "explanation": "O texto diz diretamente \"I am from Lisbon\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "greeting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_translation_001",
+      "cefr_level": "PRE_A1",
+      "pillar": "translation",
+      "concept_ref": "gc_prea1_verb_to_be",
+      "prompt": "Translate to English: \"Olá, o meu nome é Pedro. Eu tenho 41 anos.\"",
+      "correct_answer": ["Hello, my name is Pedro. I am 41 years old."],
+      "distractors": [],
+      "explanation": "Atenção: \"tenho 41 anos\" traduz-se para \"I am 41 years old\", não \"I have\".",
+      "common_mistake_pt": "Traduzir \"tenho\" literalmente como \"have\" é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "to-be", "age"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_prea1_m1_u1_greetings",
+    "title": "Greetings and Introductions",
+    "cefr_level": "PRE_A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_prea1_verb_to_be",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_prea1_verb_to_be#rule" },
+      { "type": "example", "content_ref": "gc_prea1_verb_to_be#example" },
+      { "type": "common_mistake", "content_ref": "gc_prea1_verb_to_be#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_prea1_hello", "vocab_prea1_my_name_is", "vocab_prea1_nice_to_meet_you"] },
+      { "type": "exercise", "exercise_ids": ["ex_prea1_tobe_001", "ex_prea1_tobe_002", "ex_prea1_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_prea1_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_prea1_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Practise the contraction I'm /aɪm/ — in natural speech, \"I am\" is almost always shortened to \"I'm\", not pronounced as two separate words."
+      },
+      { "type": "speaking", "prompt": "Introduce yourself in 2-3 sentences: your name, where you're from, and your age." },
+      { "type": "writing", "prompt": "Write 3 sentences introducing yourself, as if filling in a simple form." },
+      { "type": "translation", "exercise_ids": ["ex_prea1_translation_001"] }
+    ]
+  }
+}

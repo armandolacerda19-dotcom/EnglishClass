@@ -1,8 +1,16 @@
 import { PrismaClient, Pillar } from "@prisma/client";
 import levelsData from "../content/curriculum/levels.json";
-import module01 from "../content/curriculum/a1-module-01-daily-life.json";
+import moduleDailyLife from "../content/curriculum/a1-module-01-daily-life.json";
+import moduleFirstWords from "../content/curriculum/pre-a1-module-01-first-words.json";
+import moduleAboutMe from "../content/curriculum/a1-module-02-about-me.json";
+import moduleShopping from "../content/curriculum/a1-module-03-shopping.json";
 
 const prisma = new PrismaClient();
+
+// Cada ficheiro em content/curriculum/ segue o formato de docs/08-schema-json-conteudo.md:
+// um módulo com uma unidade, um conceito de gramática, vocabulário, exercícios e uma lição.
+// Adicionar conteúdo novo = adicionar um ficheiro aqui, sem tocar na lógica de seed abaixo.
+const MODULE_FILES = [moduleFirstWords, moduleDailyLife, moduleAboutMe, moduleShopping];
 
 async function seedLevels() {
   for (const level of levelsData.levels) {
@@ -32,36 +40,36 @@ async function seedLevels() {
   }
 }
 
-async function seedModule01() {
+async function seedModuleFile(data: (typeof MODULE_FILES)[number], lessonOrder: number) {
   const sublevel = await prisma.sublevel.findUniqueOrThrow({
-    where: { code: module01.sublevel_code },
+    where: { code: data.sublevel_code },
   });
 
   const dbModule = await prisma.module.upsert({
-    where: { id: module01.module.id },
-    update: { title: module01.module.title, theme: module01.module.theme, order: module01.module.order, sublevelId: sublevel.id },
+    where: { id: data.module.id },
+    update: { title: data.module.title, theme: data.module.theme, order: data.module.order, sublevelId: sublevel.id },
     create: {
-      id: module01.module.id,
-      title: module01.module.title,
-      theme: module01.module.theme,
-      order: module01.module.order,
+      id: data.module.id,
+      title: data.module.title,
+      theme: data.module.theme,
+      order: data.module.order,
       sublevelId: sublevel.id,
     },
   });
 
   const dbUnit = await prisma.unit.upsert({
-    where: { id: module01.unit.id },
-    update: { title: module01.unit.title, order: module01.unit.order, skippable: module01.unit.skippable, moduleId: dbModule.id },
+    where: { id: data.unit.id },
+    update: { title: data.unit.title, order: data.unit.order, skippable: data.unit.skippable, moduleId: dbModule.id },
     create: {
-      id: module01.unit.id,
-      title: module01.unit.title,
-      order: module01.unit.order,
-      skippable: module01.unit.skippable,
+      id: data.unit.id,
+      title: data.unit.title,
+      order: data.unit.order,
+      skippable: data.unit.skippable,
       moduleId: dbModule.id,
     },
   });
 
-  const gc = module01.grammar_concept;
+  const gc = data.grammar_concept;
   const dbConcept = await prisma.grammarConcept.upsert({
     where: { id: gc.id },
     update: {
@@ -89,7 +97,7 @@ async function seedModule01() {
     },
   });
 
-  for (const v of module01.vocabulary) {
+  for (const v of data.vocabulary) {
     await prisma.vocabularyItem.upsert({
       where: { id: v.id },
       update: {
@@ -119,25 +127,25 @@ async function seedModule01() {
   }
 
   const dbLesson = await prisma.lesson.upsert({
-    where: { id: module01.lesson.id },
+    where: { id: data.lesson.id },
     update: {
-      title: module01.lesson.title,
-      pillars: module01.lesson.pillars.map((p) => p.toUpperCase()) as Pillar[],
-      order: 1,
-      contentJson: module01.lesson as any,
+      title: data.lesson.title,
+      pillars: data.lesson.pillars.map((p) => p.toUpperCase()) as Pillar[],
+      order: lessonOrder,
+      contentJson: data.lesson as any,
       unitId: dbUnit.id,
     },
     create: {
-      id: module01.lesson.id,
-      title: module01.lesson.title,
-      pillars: module01.lesson.pillars.map((p) => p.toUpperCase()) as Pillar[],
-      order: 1,
-      contentJson: module01.lesson as any,
+      id: data.lesson.id,
+      title: data.lesson.title,
+      pillars: data.lesson.pillars.map((p) => p.toUpperCase()) as Pillar[],
+      order: lessonOrder,
+      contentJson: data.lesson as any,
       unitId: dbUnit.id,
     },
   });
 
-  for (const ex of module01.exercises) {
+  for (const ex of data.exercises) {
     await prisma.exercise.upsert({
       where: { id: ex.id },
       update: {
@@ -162,12 +170,14 @@ async function seedModule01() {
     });
   }
 
-  console.log(`Seeded module "${dbModule.title}" → unit "${dbUnit.title}" → lesson "${dbLesson.title}" (concept: ${dbConcept.title})`);
+  console.log(`Seeded "${dbModule.title}" (${sublevel.code}) → "${dbUnit.title}" → "${dbLesson.title}" (concept: ${dbConcept.title})`);
 }
 
 async function main() {
   await seedLevels();
-  await seedModule01();
+  for (let i = 0; i < MODULE_FILES.length; i++) {
+    await seedModuleFile(MODULE_FILES[i]!, i + 1);
+  }
 }
 
 main()

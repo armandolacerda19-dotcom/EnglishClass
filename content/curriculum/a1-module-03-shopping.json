@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.2",
+  "module": {
+    "id": "mod_a1_2_shopping",
+    "title": "Shopping",
+    "theme": "shopping",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_a1_2_at_the_shop",
+    "title": "At the Shop",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_there_is_there_are",
+    "title": "There is / There are",
+    "rule": "Use \"there is\" with singular or uncountable nouns, and \"there are\" with plural nouns, to say that something exists.",
+    "simple_explanation": "\"There is/are\" introduces something for the first time — it tells the listener something exists, without saying who owns it.",
+    "example": "There is a bakery on this street. There are three shops near my house.",
+    "example_translation": "Há uma padaria nesta rua. Há três lojas perto da minha casa.",
+    "common_mistake_pt": "Em português, \"há\" não muda consoante o singular ou plural (\"há um livro\" / \"há livros\"), o que leva muitos falantes de português a usar sempre \"there is\", mesmo com substantivos no plural: \"there is three shops\" em vez de \"there are three shops\".",
+    "correction": "Match the verb to the noun: \"there is\" + singular, \"there are\" + plural.",
+    "real_world_example": "Asking for directions: \"Is there a supermarket near here?\" — \"Yes, there are two, actually.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_how_much_is_it",
+      "headword": "how much is it?",
+      "type": "expression",
+      "translation_pt": "quanto custa?",
+      "definition_en": "used to ask the price of something",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/haʊ mʌtʃ ɪz ɪt/",
+      "related_forms": ["how much are they?", "how much does it cost?"],
+      "example_sentences": ["Excuse me, how much is it?"],
+      "difficulty": 1,
+      "tags": ["shopping"]
+    },
+    {
+      "id": "vocab_a1_id_like",
+      "headword": "I'd like",
+      "type": "expression",
+      "translation_pt": "eu queria / gostaria",
+      "definition_en": "a polite way to ask for something",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/aɪd laɪk/",
+      "related_forms": ["I'd like to..."],
+      "example_sentences": ["I'd like a coffee, please."],
+      "difficulty": 1,
+      "tags": ["shopping", "politeness"]
+    },
+    {
+      "id": "vocab_a1_receipt",
+      "headword": "receipt",
+      "type": "noun",
+      "translation_pt": "recibo / talão",
+      "definition_en": "a piece of paper that proves you paid for something",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/rɪˈsiːt/",
+      "related_forms": ["keep the receipt"],
+      "example_sentences": ["Can I have the receipt, please?"],
+      "difficulty": 2,
+      "tags": ["shopping"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_thereis_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_there_is_there_are",
+      "prompt": "Complete: ___ a bakery on this street.",
+      "correct_answer": ["There is"],
+      "distractors": ["There are", "Is there", "There"],
+      "explanation": "\"Bakery\" é singular, por isso usa-se \"There is\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["there-is-are"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_thereis_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_there_is_there_are",
+      "prompt": "Complete: ___ three shops near my house.",
+      "correct_answer": ["There are"],
+      "distractors": ["There is", "Is there", "They are"],
+      "explanation": "\"Shops\" é plural, por isso usa-se \"There are\".",
+      "common_mistake_pt": "\"There is three shops\" é o erro mais comum, por transferência do português \"há três lojas\".",
+      "audio_url": null,
+      "tags": ["there-is-are"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_vocab_003",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "You want to know the price of something. You ask:",
+      "correct_answer": ["how much is it?"],
+      "distractors": ["how many is it?", "how is it?", "what is it?"],
+      "explanation": "\"How much\" usa-se para preço/quantidade não contável; \"how many\" seria para itens contáveis no plural.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "shopping"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_listening_003",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen: how much is the coffee?",
+      "correct_answer": ["2 euros", "two euros"],
+      "distractors": ["1 euro", "3 euros", "5 euros"],
+      "explanation": "No áudio, o empregado diz: \"That's 2 euros, please.\"",
+      "common_mistake_pt": null,
+      "audio_url": "/audio/a1/cafe_order.mp3",
+      "tags": ["listening", "shopping"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reading_003",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"There are two supermarkets near the station, but there isn't a pharmacy nearby.\" Is there a pharmacy near the station?",
+      "correct_answer": ["No", "no"],
+      "distractors": ["Yes", "There are two", "It doesn't say"],
+      "explanation": "O texto diz \"there isn't a pharmacy nearby\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "shopping"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_translation_003",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_there_is_there_are",
+      "prompt": "Translate to English: \"Há uma farmácia perto daqui, mas não há supermercados nesta rua.\"",
+      "correct_answer": ["There is a pharmacy near here, but there aren't any supermarkets on this street."],
+      "distractors": [],
+      "explanation": "Atenção à mudança de \"there is\" (singular) para \"there aren't\" (plural negativo).",
+      "common_mistake_pt": "Usar \"there is\" para ambas as partes da frase, ignorando o plural de \"supermarkets\", é o erro mais comum.",
+      "audio_url": null,
+      "tags": ["translation", "there-is-are"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m3_u1_at_the_shop",
+    "title": "At the Shop",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_there_is_there_are",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_there_is_there_are#rule" },
+      { "type": "example", "content_ref": "gc_a1_there_is_there_are#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_there_is_there_are#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_how_much_is_it", "vocab_a1_id_like", "vocab_a1_receipt"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_thereis_001", "ex_a1_thereis_002", "ex_a1_vocab_003"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_listening_003"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_reading_003"] },
+      {
+        "type": "pronunciation",
+        "content": "Practise linking in \"there is a\" → /ðeərɪzə/ — the words blend together in natural speech instead of being said separately."
+      },
+      { "type": "speaking", "prompt": "Describe what shops and places there are near your home, using There is/There are." },
+      { "type": "writing", "prompt": "Write 4 sentences describing a shop: what there is, what it doesn't have, and how much something costs." },
+      { "type": "translation", "exercise_ids": ["ex_a1_translation_003"] }
+    ]
+  }
+}

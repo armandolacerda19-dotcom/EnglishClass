@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.1",
+  "module": {
+    "id": "mod_a1_1_about_me",
+    "title": "About Me",
+    "theme": "personal-information",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_a1_1_likes_and_hobbies",
+    "title": "Likes and Hobbies",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_present_simple_questions",
+    "title": "Present Simple Questions with Do/Does",
+    "rule": "Use \"Do\" (I/you/we/they) or \"Does\" (he/she/it) at the start of a yes/no question in the Present Simple. The main verb stays in its base form.",
+    "simple_explanation": "English needs an auxiliary verb (do/does) to form questions — you can't just raise your voice at the end of a statement like in Portuguese.",
+    "example": "Do you like coffee? Does she play tennis?",
+    "example_translation": "Gostas de café? Ela joga ténis?",
+    "common_mistake_pt": "Em português, uma afirmação torna-se pergunta só com a entoação (\"Gostas de café?\"), sem precisar de um verbo auxiliar. Isto leva muitos falantes de português a perguntar \"You like coffee?\" em vez de \"Do you like coffee?\".",
+    "correction": "Always add Do/Does before the subject: \"Do you like coffee?\", not \"You like coffee?\".",
+    "real_world_example": "Small talk at work: \"Do you take sugar in your coffee?\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_hobby",
+      "headword": "hobby",
+      "type": "noun",
+      "translation_pt": "passatempo",
+      "definition_en": "an activity done regularly for enjoyment in free time",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈhɒbi/",
+      "related_forms": ["free time", "in my free time"],
+      "example_sentences": ["My hobby is reading."],
+      "difficulty": 1,
+      "tags": ["hobbies"]
+    },
+    {
+      "id": "vocab_a1_go_for_a_walk",
+      "headword": "go for a walk",
+      "type": "collocation",
+      "translation_pt": "dar um passeio",
+      "definition_en": "to walk somewhere for leisure",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ɡoʊ fɔːr ə wɔːk/",
+      "related_forms": ["go for a run", "go for a swim"],
+      "example_sentences": ["I go for a walk every evening."],
+      "difficulty": 1,
+      "tags": ["hobbies", "collocation"]
+    },
+    {
+      "id": "vocab_a1_at_weekends",
+      "headword": "at weekends",
+      "type": "expression",
+      "translation_pt": "aos fins de semana",
+      "definition_en": "regularly on Saturdays and Sundays",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/æt ˈwiːkɛndz/",
+      "related_forms": ["on weekdays"],
+      "example_sentences": ["I play football at weekends."],
+      "difficulty": 1,
+      "tags": ["time", "routine"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_questions_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_present_simple_questions",
+      "prompt": "Complete the question: ___ you like coffee?",
+      "correct_answer": ["Do"],
+      "distractors": ["Does", "Are", "Is"],
+      "explanation": "Com \"you\" usa-se \"Do\", não \"Does\".",
+      "common_mistake_pt": "Falantes de português esquecem frequentemente o auxiliar e perguntam apenas \"You like coffee?\".",
+      "audio_url": null,
+      "tags": ["present-simple-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_questions_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_present_simple_questions",
+      "prompt": "Complete the question: ___ she play tennis?",
+      "correct_answer": ["Does"],
+      "distractors": ["Do", "Is", "Has"],
+      "explanation": "Com \"she\" (3ª pessoa do singular) usa-se \"Does\", e o verbo principal volta à forma base (\"play\", não \"plays\").",
+      "common_mistake_pt": "Um erro comum é manter o -s no verbo principal depois de \"Does\": \"Does she plays tennis?\" está errado.",
+      "audio_url": null,
+      "tags": ["present-simple-questions", "3rd-person"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_vocab_002",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "\"Go for a walk\" means:",
+      "correct_answer": ["to walk somewhere for leisure"],
+      "distractors": ["to run a marathon", "to drive somewhere", "to stay at home"],
+      "explanation": "\"Go for a walk\" descreve especificamente uma caminhada de lazer.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "hobbies"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_listening_002",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen: what does Miguel do at weekends?",
+      "correct_answer": ["he goes for a walk", "goes for a walk"],
+      "distractors": ["he plays tennis", "he reads books", "he watches TV"],
+      "explanation": "No áudio, Miguel diz: \"At weekends, I usually go for a walk in the park.\"",
+      "common_mistake_pt": null,
+      "audio_url": "/audio/a1/miguel_hobbies.mp3",
+      "tags": ["listening", "hobbies"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reading_002",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Sara's hobby is painting. She doesn't like sports, but she loves reading too.\" Does Sara like sports?",
+      "correct_answer": ["No", "no"],
+      "distractors": ["Yes", "It doesn't say", "Only football"],
+      "explanation": "O texto diz claramente \"She doesn't like sports\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "hobbies"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_translation_002",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_present_simple_questions",
+      "prompt": "Translate to English: \"Gostas de ler aos fins de semana?\"",
+      "correct_answer": ["Do you like reading at weekends?"],
+      "distractors": [],
+      "explanation": "Não esquecer o \"Do\" no início da pergunta.",
+      "common_mistake_pt": "Traduzir diretamente sem auxiliar (\"You like reading at weekends?\") é o erro mais comum.",
+      "audio_url": null,
+      "tags": ["translation", "present-simple-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m2_u1_likes_and_hobbies",
+    "title": "Talking About Likes and Hobbies",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_present_simple_questions",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_present_simple_questions#rule" },
+      { "type": "example", "content_ref": "gc_a1_present_simple_questions#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_present_simple_questions#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_hobby", "vocab_a1_go_for_a_walk", "vocab_a1_at_weekends"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_questions_001", "ex_a1_questions_002", "ex_a1_vocab_002"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_listening_002"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_reading_002"] },
+      {
+        "type": "pronunciation",
+        "content": "Practise the weak form of \"do\" in questions: \"Do you...?\" is usually said quickly as /dʒə/, not fully pronounced /duː juː/."
+      },
+      { "type": "speaking", "prompt": "Ask a friend three questions about their hobbies using Do/Does, then answer them yourself." },
+      { "type": "writing", "prompt": "Write 4 sentences about your hobbies and what you like doing at weekends." },
+      { "type": "translation", "exercise_ids": ["ex_a1_translation_002"] }
+    ]
+  }
+}

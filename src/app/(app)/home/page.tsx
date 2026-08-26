@@ -7,6 +7,7 @@ import { CefrLevelTag } from "@/components/ui/CefrLevelTag";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { formatLevelCode } from "@/lib/level";
 import { StreakXp } from "@/components/ui/StreakXp";
+import { getNextLessonForUser } from "@/lib/lessons";
 
 export default async function HomePage() {
   const { user, learningProfile } = await requireUserWithProfile();
@@ -25,9 +26,7 @@ export default async function HomePage() {
     );
   }
 
-  const standardPlan = await prisma.learningPlan.findUnique({ where: { userId: user.id } });
-  const nextLessonId = (standardPlan?.planJson as any)?.queue?.[0] as string | undefined;
-  const nextLesson = nextLessonId ? await prisma.lesson.findUnique({ where: { id: nextLessonId } }) : null;
+  const nextLesson = await getNextLessonForUser(user.id);
 
   return (
     <main className="mx-auto max-w-lg px-6 py-10">
