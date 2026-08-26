@@ -17,7 +17,8 @@ export function PlacementTestRunner() {
   const [answers, setAnswers] = useState<AnswerState>({});
   const [submitting, setSubmitting] = useState(false);
 
-  const question = PLACEMENT_QUESTIONS[index];
+  // Seguro: index nunca ultrapassa PLACEMENT_QUESTIONS.length - 1 (ver isLast/handleSubmitTest).
+  const question = PLACEMENT_QUESTIONS[index]!;
   const isLast = index === PLACEMENT_QUESTIONS.length - 1;
 
   function setAnswer(value: string) {

@@ -67,9 +67,10 @@ interface LessonRunnerProps {
 
 export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept }: LessonRunnerProps) {
   const [stepIndex, setStepIndex] = useState(0);
-  const step = lesson.steps[stepIndex];
   const isLast = stepIndex === lesson.steps.length - 1;
   const done = stepIndex >= lesson.steps.length;
+  // Seguro: só acedido quando !done, ou seja, stepIndex < lesson.steps.length.
+  const step = lesson.steps[stepIndex]!;
 
   function next() {
     setStepIndex((i) => i + 1);
