@@ -24,6 +24,18 @@ O master prompt sugeria "avaliar" Web Speech API no MVP1 por custo/latência, co
 
 Scoring fonético avançado (fonema a fonema, tipo ELSA) continua fora do MVP1, conforme o master prompt — só entra em MVP3 com shadowing.
 
+## 2026-08-26 — Pivot: stack 100% gratuita (substitui as decisões de IA acima)
+
+O utilizador pediu explicitamente custo zero — nem a Anthropic nem a OpenAI têm nível gratuito permanente de API (só a app de consumidor Claude.ai é gratuita; a API é sempre paga por uso). Isto **substitui** as linhas "IA de texto/tutoria" e "Speech-to-text" da tabela acima e a secção "Decisão discutida: Speech-to-text no MVP1".
+
+| Camada | Decisão anterior | Nova decisão | Justificação |
+|---|---|---|---|
+| IA de texto/tutoria | Anthropic (Claude) | **Google Gemini** (`gemini-2.0-flash`, `@google/generative-ai`) | Nível gratuito permanente (com limite de pedidos/dia) — não é um trial que expira. Trade-off aceite: limites de rate no plano gratuito podem obrigar a upgrade pago se a app crescer para lá de uso pessoal/piloto. |
+| Speech-to-text | Whisper API (paga) | **Web Speech API do browser** (`SpeechRecognition`, `src/components/ui/RecordButton.tsx`) | Grátis, corre inteiramente no browser do utilizador, sem upload de áudio a nenhum servidor. Volta a ser a opção que o master prompt sugeria originalmente para o MVP1 — nessa altura foi preterida por fiabilidade cross-browser, mas o requisito de custo zero agora tem prioridade. Trade-off aceite: suporte forte em Chrome/Edge, fraco ou ausente em Firefox/Safari. |
+| Text-to-speech | Azure Neural TTS (planeado) | **Já resolvido antes com Web Speech API** (`speechSynthesis`, `PlayTranscript.tsx`) — sem alteração, continua gratuito | Nenhuma mudança necessária; já não dependia de nenhum fornecedor pago. |
+
+Removida a dependência `@anthropic-ai/sdk` e a rota `/api/speaking/transcribe`; adicionada `@google/generative-ai`. Variáveis de ambiente `ANTHROPIC_API_KEY` e `OPENAI_API_KEY` substituídas por uma única `GEMINI_API_KEY` (criar em [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey), grátis).
+
 ## 2026-08-26 — TTS interino no MVP1: Web Speech API do browser
 
 A tabela acima confirma Azure Neural TTS como fornecedor de produção, mas **implementar essa integração fica fora do MVP1** (custo/esforço de pipeline de áudio pré-gerado não se justifica antes de validar o resto do produto). Solução interina aplicada: exercícios de `listening` guardam um `transcript` (ver `docs/08-schema-json-conteudo.md`) que o browser lê em voz alta via Web Speech API (`speechSynthesis`), sem custo e sem backend. **Trade-off aceite**: qualidade de voz inferior a TTS neural, sem controlo de sotaque (British/American — a `EnglishVariant` do perfil ainda não é usada para escolher a voz), e alguns browsers/SOs mais antigos podem não suportar `speechSynthesis` (tratado com mensagem de fallback, não crash). Substituir por áudio pré-gerado com Azure TTS antes do MVP2, gerado a partir do mesmo `transcript`.

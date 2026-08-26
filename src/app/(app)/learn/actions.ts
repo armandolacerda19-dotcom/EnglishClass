@@ -2,7 +2,7 @@
 
 import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
-import { anthropic, TUTOR_MODEL } from "@/lib/ai/anthropic";
+import { getGeminiModel } from "@/lib/ai/gemini";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 
 export async function submitExerciseAnswer(exerciseId: string, given: string) {
@@ -111,18 +111,15 @@ export async function completeLesson() {
 async function getHolisticFeedback(kind: "writing" | "speaking" | "translation", prompt: string, text: string) {
   if (!text.trim()) return "Não foi possível avaliar: resposta vazia.";
 
-  const message = await anthropic.messages.create({
-    model: TUTOR_MODEL,
-    max_tokens: 300,
-    system:
-      "You are correcting a single " +
+  const model = getGeminiModel(
+    "You are correcting a single " +
       kind +
       " response from an adult Portuguese-speaking English learner. " +
       "Cover grammar, vocabulary, spelling/punctuation where relevant, coherence, register and naturalness. " +
       'Explicitly distinguish "incorrect" from "not natural / not idiomatic". Never invent a grammar rule — ' +
-      "say you are not sure rather than guess. Keep the feedback under 120 words, in English, direct and encouraging.",
-    messages: [{ role: "user", content: `Prompt: ${prompt}\nLearner response: ${text}` }],
-  });
+      "say you are not sure rather than guess. Keep the feedback under 120 words, in English, direct and encouraging."
+  );
 
-  return message.content.find((b) => b.type === "text")?.text ?? "";
+  const result = await model.generateContent(`Prompt: ${prompt}\nLearner response: ${text}`);
+  return result.response.text();
 }

@@ -12,7 +12,7 @@ Erros de build são prováveis — nenhuma verificação de tipos (`tsc`) nem li
 
 1. Erros de TypeScript/build reportados no log da Netlify.
 2. O fluxo completo do DoD do MVP1 (`docs/10-scope-mvp1.md`): signup → onboarding → placement test → lição A1 completa → AI Tutor → progress → export/delete de dados.
-3. Os exercícios de listening já não dependem de ficheiros de áudio (não existiam) — usam `transcript` + Web Speech API do browser (`src/components/ui/PlayTranscript.tsx`), solução interina até haver TTS real (ver `docs/decisions.md`). Testar num browser com suporte a `speechSynthesis` (Chrome/Edge/Safari desktop; alguns browsers móveis variam).
+3. Toda a stack de IA é gratuita: listening usa `transcript` + Web Speech API (`speechSynthesis`, `PlayTranscript.tsx`); speaking usa reconhecimento de voz do browser (`SpeechRecognition`, `RecordButton.tsx`) em vez de Whisper; correção/AI Tutor usa Google Gemini em vez de Claude (ver `docs/decisions.md`, pivot de 2026-08-26). Testar num browser com bom suporte — Chrome/Edge são os mais fiáveis para ambas as APIs; Safari/Firefox podem variar.
 4. Middleware de auth (`src/middleware.ts`) assume cookies do Supabase SSR — testar o fluxo de login/logout com atenção, e confirmar as **Redirect URLs** configuradas no Supabase (passo 4 do guia de deploy).
 
 ## Desvios de implementação face aos documentos da Fase 0
@@ -28,4 +28,4 @@ Erros de build são prováveis — nenhuma verificação de tipos (`tsc`) nem li
 - `content/curriculum/` — conteúdo curricular versionado (JSON), formato definido em `docs/08-schema-json-conteudo.md`.
 - `src/app/` — rotas Next.js App Router.
 - `src/components/` — componentes de UI e de fluxo (lição, placement, tutor, onboarding).
-- `src/lib/` — Prisma client, Supabase, IA (Anthropic), placement scoring, geração de plano.
+- `src/lib/` — Prisma client, Supabase, IA (Google Gemini), placement scoring, geração de plano.

@@ -201,15 +201,10 @@ function SpeakingStep({ prompt }: { prompt: string }) {
   const [feedback, setFeedback] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function handleRecording(blob: Blob) {
+  async function handleTranscript(text: string) {
+    setTranscript(text);
     setLoading(true);
-    const form = new FormData();
-    form.append("audio", blob, "recording.webm");
-    const res = await fetch("/api/speaking/transcribe", { method: "POST", body: form });
-    const data = await res.json();
-    setTranscript(data.transcript ?? "");
-
-    const feedbackText = await submitSpeaking(prompt, data.transcript ?? "");
+    const feedbackText = await submitSpeaking(prompt, text);
     setFeedback(feedbackText);
     setLoading(false);
   }
@@ -218,7 +213,7 @@ function SpeakingStep({ prompt }: { prompt: string }) {
     <Card>
       <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Speaking</p>
       <p className="mb-3 text-sm">{prompt}</p>
-      <RecordButton onRecorded={handleRecording} />
+      <RecordButton onTranscript={handleTranscript} />
       {loading && <p className="mt-2 text-sm text-inkNeutral/70">A avaliar...</p>}
       {transcript && <p className="mt-3 text-sm italic">"{transcript}"</p>}
       {feedback && <p className="mt-2 rounded-card bg-verdigris/5 p-3 text-sm">{feedback}</p>}

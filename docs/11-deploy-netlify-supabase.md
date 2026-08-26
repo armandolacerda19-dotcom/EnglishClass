@@ -44,8 +44,7 @@ git push -u origin main
    - `DATABASE_URL`, `DIRECT_URL` (Supabase, passo 1)
    - `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (Supabase, passo 1)
    - `NEXT_PUBLIC_SITE_URL` — o domínio que a Netlify vai atribuir (ex. `https://ingles-platform.netlify.app`; pode confirmar/editar depois do primeiro deploy, no separador **Domain management**, e voltar a esta variável para o corrigir se mudar)
-   - `ANTHROPIC_API_KEY` (criar em [console.anthropic.com](https://console.anthropic.com))
-   - `OPENAI_API_KEY` (criar em [platform.openai.com](https://platform.openai.com) — usado só para transcrição via Whisper, ver `docs/decisions.md`)
+   - `GEMINI_API_KEY` (Google Gemini — nível gratuito permanente, criar em [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey); ver `docs/decisions.md` para a justificação da troca face à Anthropic)
 4. **Deploy site**. A Netlify instala dependências, corre `prisma generate`, `prisma db push`, o seed do currículo A1, e o build do Next.js — tudo na cloud.
 
 ## 4. Configurar autenticação no Supabase

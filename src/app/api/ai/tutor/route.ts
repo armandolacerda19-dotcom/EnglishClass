@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
-import { anthropic, TUTOR_MODEL } from "@/lib/ai/anthropic";
+import { getGeminiModel } from "@/lib/ai/gemini";
 import { buildTutorSystemPrompt } from "@/lib/ai/buildTutorPrompt";
 
 // AI Tutor v1 — MVP1 expõe apenas a personalidade "coach" (docs/10-scope-mvp1.md).
@@ -33,17 +33,12 @@ export async function POST(req: NextRequest) {
     })),
   });
 
-  const response = await anthropic.messages.create({
-    model: TUTOR_MODEL,
-    max_tokens: 500,
-    system: systemPrompt,
-    messages: [
-      ...history.map((h) => ({ role: h.role, content: h.text })),
-      { role: "user" as const, content: message },
-    ],
+  const model = getGeminiModel(systemPrompt);
+  const chat = model.startChat({
+    history: history.map((h) => ({ role: h.role === "assistant" ? "model" : "user", parts: [{ text: h.text }] })),
   });
-
-  const replyText = response.content.find((b) => b.type === "text")?.text ?? "";
+  const result = await chat.sendMessage(message);
+  const replyText = result.response.text();
   const newHistory = [...history, { role: "user", text: message }, { role: "assistant", text: replyText }];
 
   if (conversation) {

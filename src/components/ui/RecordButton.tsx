@@ -4,41 +4,48 @@ import { useRef, useState } from "react";
 import { Button } from "./Button";
 
 interface RecordButtonProps {
-  onRecorded: (blob: Blob) => void;
+  onTranscript: (text: string) => void;
 }
 
-// Gravação básica via MediaRecorder — o blob resultante é enviado para
-// /api/speaking/transcribe (Whisper API, ver docs/decisions.md).
-export function RecordButton({ onRecorded }: RecordButtonProps) {
+// Reconhecimento de voz via Web Speech API do browser — grátis, sem upload de
+// áudio a nenhum servidor (troca da Whisper API paga, ver docs/decisions.md).
+// Suporte sólido em Chrome/Edge; pode estar ausente noutros browsers.
+export function RecordButton({ onTranscript }: RecordButtonProps) {
   const [recording, setRecording] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const chunksRef = useRef<BlobPart[]>([]);
+  const recognitionRef = useRef<any>(null);
 
-  async function start() {
+  function start() {
     setError(null);
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const recorder = new MediaRecorder(stream);
-      chunksRef.current = [];
+    const SpeechRecognition = (window as any).SpeechRecognition ?? (window as any).webkitSpeechRecognition;
 
-      recorder.ondataavailable = (e) => chunksRef.current.push(e.data);
-      recorder.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: "audio/webm" });
-        onRecorded(blob);
-        stream.getTracks().forEach((track) => track.stop());
-      };
-
-      recorder.start();
-      mediaRecorderRef.current = recorder;
-      setRecording(true);
-    } catch {
-      setError("Não foi possível aceder ao microfone. Verifique as permissões do browser.");
+    if (!SpeechRecognition) {
+      setError("O seu browser não suporta reconhecimento de voz. Experimente Chrome ou Edge.");
+      return;
     }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0]?.[0]?.transcript ?? "";
+      onTranscript(transcript);
+    };
+    recognition.onerror = () => {
+      setError("Não foi possível reconhecer a fala. Verifique as permissões do microfone e tente novamente.");
+      setRecording(false);
+    };
+    recognition.onend = () => setRecording(false);
+
+    recognitionRef.current = recognition;
+    recognition.start();
+    setRecording(true);
   }
 
   function stop() {
-    mediaRecorderRef.current?.stop();
+    recognitionRef.current?.stop();
     setRecording(false);
   }
 
@@ -50,7 +57,7 @@ export function RecordButton({ onRecorded }: RecordButtonProps) {
         onClick={recording ? stop : start}
         aria-pressed={recording}
       >
-        {recording ? "Parar gravação" : "Gravar resposta"}
+        {recording ? "A ouvir... (clique para parar)" : "Gravar resposta"}
       </Button>
       {error && <p className="text-sm text-clay">{error}</p>}
     </div>

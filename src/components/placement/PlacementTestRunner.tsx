@@ -16,26 +16,12 @@ export function PlacementTestRunner() {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<AnswerState>({});
   const [submitting, setSubmitting] = useState(false);
-  const [transcribing, setTranscribing] = useState(false);
 
   const question = PLACEMENT_QUESTIONS[index];
   const isLast = index === PLACEMENT_QUESTIONS.length - 1;
 
   function setAnswer(value: string) {
     setAnswers((prev) => ({ ...prev, [question.id]: value }));
-  }
-
-  async function handleRecording(blob: Blob) {
-    setTranscribing(true);
-    try {
-      const form = new FormData();
-      form.append("audio", blob, "recording.webm");
-      const res = await fetch("/api/speaking/transcribe", { method: "POST", body: form });
-      const data = await res.json();
-      setAnswer(data.transcript ?? "");
-    } finally {
-      setTranscribing(false);
-    }
   }
 
   async function handleSubmitTest() {
@@ -73,8 +59,7 @@ export function PlacementTestRunner() {
           />
         ) : (
           <div className="flex flex-col gap-3">
-            <RecordButton onRecorded={handleRecording} />
-            {transcribing && <p className="text-sm text-inkNeutral/70">A transcrever...</p>}
+            <RecordButton onTranscript={setAnswer} />
             {answers[question.id] && (
               <p className="rounded-card border border-ink/10 p-3 text-sm italic">"{answers[question.id]}"</p>
             )}
