@@ -29,6 +29,8 @@ Todo documento de conteúdo inclui `"schema_version"` — permite migrar o forma
 
 Campos mínimos obrigatórios (conforme secção 6 do master prompt): `id, cefr_level, pillar, prompt, correct_answer, distractors, explanation, common_mistake_pt, audio_url, tags`. Campos adicionais (`concept_ref`, `generated_by_ai`, `qa_status`, `schema_version`) suportam rastreabilidade e o pipeline de QA.
 
+**`transcript`** (opcional, usado em exercícios de pillar `listening`): enquanto não há um fornecedor de TTS gravado em produção (ver `docs/decisions.md`), `audio_url` fica `null` e o frontend lê `transcript` em voz alta via Web Speech API do browser (`src/components/ui/PlayTranscript.tsx`). Quando um fornecedor de TTS real for integrado, gerar `audio_url` a partir do mesmo `transcript` e este campo deixa de ser necessário no frontend, mas deve manter-se no conteúdo como fonte da síntese.
+
 ## Lição (fluxo completo dos 8 pilares)
 
 ```json

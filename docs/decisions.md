@@ -24,6 +24,10 @@ O master prompt sugeria "avaliar" Web Speech API no MVP1 por custo/latência, co
 
 Scoring fonético avançado (fonema a fonema, tipo ELSA) continua fora do MVP1, conforme o master prompt — só entra em MVP3 com shadowing.
 
+## 2026-08-26 — TTS interino no MVP1: Web Speech API do browser
+
+A tabela acima confirma Azure Neural TTS como fornecedor de produção, mas **implementar essa integração fica fora do MVP1** (custo/esforço de pipeline de áudio pré-gerado não se justifica antes de validar o resto do produto). Solução interina aplicada: exercícios de `listening` guardam um `transcript` (ver `docs/08-schema-json-conteudo.md`) que o browser lê em voz alta via Web Speech API (`speechSynthesis`), sem custo e sem backend. **Trade-off aceite**: qualidade de voz inferior a TTS neural, sem controlo de sotaque (British/American — a `EnglishVariant` do perfil ainda não é usada para escolher a voz), e alguns browsers/SOs mais antigos podem não suportar `speechSynthesis` (tratado com mensagem de fallback, não crash). Substituir por áudio pré-gerado com Azure TTS antes do MVP2, gerado a partir do mesmo `transcript`.
+
 ## 2026-08-26 — Hosting sem instalação local (Netlify + Supabase)
 
 O utilizador optou por não instalar Node.js localmente em momento nenhum do desenvolvimento. Decisão: todo o ciclo de build/migração/seed corre na infraestrutura da Netlify, não localmente.

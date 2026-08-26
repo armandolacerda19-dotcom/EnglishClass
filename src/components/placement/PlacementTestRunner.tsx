@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { PLACEMENT_QUESTIONS } from "@/lib/placement/questions";
 import { Button } from "@/components/ui/Button";
-import { AudioPlayer } from "@/components/ui/AudioPlayer";
+import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { RecordButton } from "@/components/ui/RecordButton";
 
 interface AnswerState {
@@ -61,7 +61,7 @@ export function PlacementTestRunner() {
 
       <h2 className="font-display text-xl">{question.prompt}</h2>
 
-      {question.audioUrl && <AudioPlayer src={question.audioUrl} />}
+      {question.transcript && <PlayTranscript text={question.transcript} />}
 
       {question.freeResponse ? (
         question.pillar === "writing" ? (

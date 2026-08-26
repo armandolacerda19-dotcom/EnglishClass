@@ -124,7 +124,8 @@
       "distractors": ["Ana", "Rita", "Sofia"],
       "explanation": "No áudio, ouve-se: \"Hello, my name is Marta.\"",
       "common_mistake_pt": null,
-      "audio_url": "/audio/prea1/marta_intro.mp3",
+      "audio_url": null,
+      "transcript": "Hello, my name is Marta. Nice to meet you.",
       "tags": ["listening", "greeting"],
       "generated_by_ai": false,
       "qa_status": "approved"

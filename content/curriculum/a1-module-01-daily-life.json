@@ -124,7 +124,8 @@
       "distractors": ["6am", "8am", "9am"],
       "explanation": "No áudio, Anna diz: \"I wake up at 7am every day.\"",
       "common_mistake_pt": null,
-      "audio_url": "/audio/a1/anna_routine.mp3",
+      "audio_url": null,
+      "transcript": "Anna wakes up at seven a.m. every day, has breakfast, and then commutes to work by train.",
       "tags": ["listening", "routine"],
       "generated_by_ai": false,
       "qa_status": "approved"

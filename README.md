@@ -12,7 +12,7 @@ Erros de build são prováveis — nenhuma verificação de tipos (`tsc`) nem li
 
 1. Erros de TypeScript/build reportados no log da Netlify.
 2. O fluxo completo do DoD do MVP1 (`docs/10-scope-mvp1.md`): signup → onboarding → placement test → lição A1 completa → AI Tutor → progress → export/delete de dados.
-3. Os ficheiros `/audio/...` referenciados no conteúdo seed (`content/curriculum/*.json`) e no banco de placement (`src/lib/placement/questions.ts`) **não existem** — são placeholders; ou gravar áudio real, ou trocar por texto/transcript nesses exercícios antes de testar listening.
+3. Os exercícios de listening já não dependem de ficheiros de áudio (não existiam) — usam `transcript` + Web Speech API do browser (`src/components/ui/PlayTranscript.tsx`), solução interina até haver TTS real (ver `docs/decisions.md`). Testar num browser com suporte a `speechSynthesis` (Chrome/Edge/Safari desktop; alguns browsers móveis variam).
 4. Middleware de auth (`src/middleware.ts`) assume cookies do Supabase SSR — testar o fluxo de login/logout com atenção, e confirmar as **Redirect URLs** configuradas no Supabase (passo 4 do guia de deploy).
 
 ## Desvios de implementação face aos documentos da Fase 0

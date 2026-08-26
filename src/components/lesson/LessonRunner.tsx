@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { ErrorCallout } from "@/components/ui/ErrorCallout";
-import { AudioPlayer } from "@/components/ui/AudioPlayer";
+import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { RecordButton } from "@/components/ui/RecordButton";
 import { StampBadge } from "@/components/ui/StampBadge";
 import {
@@ -33,6 +33,7 @@ interface ExerciseContent {
   explanation: string;
   common_mistake_pt: string | null;
   audio_url: string | null;
+  transcript?: string;
 }
 
 interface VocabularyItem {
@@ -172,7 +173,7 @@ function ExerciseStep({ exercise }: { exercise: ExerciseContent }) {
 
   return (
     <Card>
-      {exercise.audio_url && <AudioPlayer src={exercise.audio_url} />}
+      {exercise.transcript && <PlayTranscript text={exercise.transcript} />}
       <p className="mb-3 mt-2 text-sm">{exercise.prompt}</p>
       <fieldset className="flex flex-col gap-2">
         {options.map((opt) => (

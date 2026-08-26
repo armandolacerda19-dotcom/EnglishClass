@@ -124,7 +124,8 @@
       "distractors": ["he plays tennis", "he reads books", "he watches TV"],
       "explanation": "No áudio, Miguel diz: \"At weekends, I usually go for a walk in the park.\"",
       "common_mistake_pt": null,
-      "audio_url": "/audio/a1/miguel_hobbies.mp3",
+      "audio_url": null,
+      "transcript": "At weekends, I usually go for a walk in the park.",
       "tags": ["listening", "hobbies"],
       "generated_by_ai": false,
       "qa_status": "approved"

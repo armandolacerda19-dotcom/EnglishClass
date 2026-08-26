@@ -19,7 +19,7 @@ export interface PlacementQuestion {
   prompt: string;
   options?: string[];
   correctAnswer: string;
-  audioUrl?: string;
+  transcript?: string; // listening: lido em voz alta via Web Speech API (ver docs/decisions.md — sem ficheiros de áudio gravados no MVP1)
   freeResponse?: boolean; // speaking/writing: sem correção automática binária, avaliado por IA
 }
 
@@ -33,9 +33,9 @@ export const PLACEMENT_QUESTIONS: PlacementQuestion[] = [
   { id: "pt_vo_2", pillar: "vocabulary", difficultyLevel: "A2", prompt: "\"To make a decision\" means:", options: ["to decide", "to change your mind", "to ask a question", "to explain"], correctAnswer: "to decide" },
   { id: "pt_vo_3", pillar: "vocabulary", difficultyLevel: "B1", prompt: "\"Reach a deadline\" is closest in meaning to:", options: ["meet a deadline", "miss a deadline", "extend a deadline", "cancel a deadline"], correctAnswer: "meet a deadline" },
   // Listening
-  { id: "pt_li_1", pillar: "listening", difficultyLevel: "A1", prompt: "Listen: what time is the meeting?", audioUrl: "/audio/placement/li_1.mp3", options: ["9am", "10am", "11am", "2pm"], correctAnswer: "10am" },
-  { id: "pt_li_2", pillar: "listening", difficultyLevel: "A2", prompt: "Listen: where is the speaker going?", audioUrl: "/audio/placement/li_2.mp3", options: ["airport", "station", "office", "hotel"], correctAnswer: "airport" },
-  { id: "pt_li_3", pillar: "listening", difficultyLevel: "B1", prompt: "Listen: what is the main complaint?", audioUrl: "/audio/placement/li_3.mp3", options: ["late delivery", "wrong item", "broken item", "no reply"], correctAnswer: "late delivery" },
+  { id: "pt_li_1", pillar: "listening", difficultyLevel: "A1", prompt: "Listen: what time is the meeting?", transcript: "The meeting is at ten o'clock, not eleven.", options: ["9am", "10am", "11am", "2pm"], correctAnswer: "10am" },
+  { id: "pt_li_2", pillar: "listening", difficultyLevel: "A2", prompt: "Listen: where is the speaker going?", transcript: "I'm running late, my flight to Berlin leaves in two hours, so I need to get to the airport now.", options: ["airport", "station", "office", "hotel"], correctAnswer: "airport" },
+  { id: "pt_li_3", pillar: "listening", difficultyLevel: "B1", prompt: "Listen: what is the main complaint?", transcript: "I ordered this three weeks ago and it still hasn't arrived. The item itself looks fine in the photos, I just need it to actually show up.", options: ["late delivery", "wrong item", "broken item", "no reply"], correctAnswer: "late delivery" },
   // Reading
   { id: "pt_re_1", pillar: "reading", difficultyLevel: "A1", prompt: "\"The shop opens at 9am.\" — At what time does the shop open?", options: ["9am", "9pm", "10am", "It doesn't say"], correctAnswer: "9am" },
   { id: "pt_re_2", pillar: "reading", difficultyLevel: "A2", prompt: "\"Despite the rain, the match continued.\" — Did the match stop because of the rain?", options: ["No", "Yes", "It doesn't say", "Only for 10 minutes"], correctAnswer: "No" },
