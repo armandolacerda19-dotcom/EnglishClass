@@ -25,7 +25,8 @@ O utilizador (dono do projeto) **não instala nada localmente** — não tem Nod
 - Placement test adaptativo (8 pilares)
 - Currículo: **5 lições completas** seedadas (ver secção 4)
 - AI Tutor ("The Coach") via Gemini
-- Progress (octógono de competência, XP, streak, conquistas)
+- Progress (octógono de competência, XP, streak, conquistas, checkpoints)
+- Desafio Diário de vocabulário + Micro-Desafios (deploy `c67143e`/seguintes — ainda não confirmado pelo utilizador em produção, ver secção 6)
 - Privacidade RGPD (exportar/eliminar dados)
 
 ### Histórico de deploy — lições aprendidas (não repetir)
@@ -70,13 +71,13 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 
 ## 6. Próximos passos pedidos pelo utilizador (2026-08-26)
 
-Em curso nesta sessão:
-- [ ] Documento Word com o projeto/fases/atualizações (via skill `docx`)
-- [ ] Desafio Diário de vocabulário (5-10 palavras, escolha múltipla de tradução, + 3 frases de exemplo)
-- [ ] Mais formatos de desafio diário (ideias propostas: momentos de "casa de banho", "sofá", "5 min matinais") — **a aguardar escolha do utilizador sobre quais construir**
-- [ ] Checkpoints diários/semanais/mensais
+- [x] Documento do projeto/fases/atualizações — entregue como `.rtf` (não `.docx`: sem Node/Python/pandoc nesta máquina, ver `docs/decisions.md`), enviado ao utilizador via `SendUserFile`. **Não está no repositório** — se for pedido de novo, o script fonte ficou em `PROJECT_STATE.md` (esta secção) como referência do conteúdo; recriar a partir das secções deste ficheiro + `docs/`.
+- [x] Desafio Diário de vocabulário (5-10 palavras, escolha múltipla, + frases de exemplo) — `src/lib/dailyChallenge.ts`, rota `/practice/daily-challenge`.
+- [x] Checkpoints diários/semanais/mensais — `src/lib/checkpoints.ts`, cartão em `/progress`.
+- [x] Micro-Desafios ("5 Minutos Matinais", "Casa de Banho", "Sofá") — implementados diretamente (utilizador pediu para avançar sem esperar confirmação): `src/lib/microChallenges.ts`, rota `/practice/micro-challenges`.
+- [ ] **Por confirmar pelo utilizador em produção**: testar o Desafio Diário e os Micro-Desafios no site real depois do deploy do commit que introduziu `src/lib/microChallenges.ts`.
 
-Ver o corpo da conversa da sessão de 2026-08-26 para o pedido exato; atualizar esta lista à medida que cada item for concluído.
+Ver o corpo da conversa da sessão de 2026-08-26 para o pedido exato.
 
 ## 7. Convenções a manter
 

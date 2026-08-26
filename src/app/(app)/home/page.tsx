@@ -38,14 +38,20 @@ export default async function HomePage() {
 
       <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} />
 
-      <Link href="/practice/daily-challenge">
-        <Card className="mb-4 hover:border-brass">
-          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
-          <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
-            5-10 palavras, escolha múltipla — leva 2 minutos, faz parte do seu checkpoint diário.
-          </p>
-        </Card>
-      </Link>
+      <div className="mb-4 grid grid-cols-2 gap-3">
+        <Link href="/practice/daily-challenge">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
+            <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Vocabulário, 2 min</p>
+          </Card>
+        </Link>
+        <Link href="/practice/micro-challenges">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Micro-Desafios</p>
+            <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Momentos do dia</p>
+          </Card>
+        </Link>
+      </div>
 
       <Card className="mb-4">
         <p className="mb-2 font-mono text-xs uppercase tracking-wide text-verdigris">Continuar</p>
@@ -101,14 +107,20 @@ function IntensiveHome({
 
       <StreakXp xp={xp} streak={streak} />
 
-      <Link href="/practice/daily-challenge">
-        <Card className="mb-4 hover:border-brass">
-          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
-          <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
-            5-10 palavras, escolha múltipla — leva 2 minutos, faz parte do seu checkpoint diário.
-          </p>
-        </Card>
-      </Link>
+      <div className="mb-4 grid grid-cols-2 gap-3">
+        <Link href="/practice/daily-challenge">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
+            <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Vocabulário, 2 min</p>
+          </Card>
+        </Link>
+        <Link href="/practice/micro-challenges">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Micro-Desafios</p>
+            <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Momentos do dia</p>
+          </Card>
+        </Link>
+      </div>
 
       <Card className="mb-4">
         <ProgressBar value={(currentDay / totalDays) * 100} label="Progresso do plano intensivo" />

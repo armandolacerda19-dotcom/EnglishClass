@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { requireUserWithProfile } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { Card } from "@/components/ui/Card";
@@ -17,6 +18,21 @@ export default async function PracticePage() {
   return (
     <main className="mx-auto max-w-lg px-6 py-10">
       <h1 className="mb-6 font-display text-2xl">Prática</h1>
+
+      <div className="mb-3 grid grid-cols-2 gap-3">
+        <Link href="/practice/daily-challenge">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Vocabulário, 2 min</p>
+          </Card>
+        </Link>
+        <Link href="/practice/micro-challenges">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Micro-Desafios</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Momentos do dia</p>
+          </Card>
+        </Link>
+      </div>
 
       {errors.length === 0 ? (
         <Card>
