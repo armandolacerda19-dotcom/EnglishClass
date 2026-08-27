@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.1",
+  "module": {
+    "id": "mod_a1_1_present_continuous",
+    "title": "Right Now",
+    "theme": "present-continuous",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_a1_1_present_continuous",
+    "title": "What's Happening Now",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_present_continuous",
+    "title": "Present Continuous: am/is/are + verb-ing",
+    "rule": "Use the Present Continuous (am/is/are + verb-ing) for actions happening right now, or temporary situations around the present time.",
+    "simple_explanation": "This tense is for things happening at this exact moment, or for a limited period around now — not for habits or routines, which use the Present Simple instead.",
+    "example": "I am reading a book right now. She is working from home this week.",
+    "example_translation": "Estou a ler um livro agora mesmo. Ela está a trabalhar a partir de casa esta semana.",
+    "common_mistake_pt": "Falantes de português tendem a esquecer o verbo \"to be\" (am/is/are), porque em português basta \"estar a\" + infinitivo: dizem \"I reading\" ou \"I work now\" em vez de \"I am reading\" — o inglês precisa sempre do auxiliar \"to be\" nesta estrutura, mesmo em frases curtas.",
+    "correction": "Nunca omitir am/is/are: \"I am reading\" (não \"I reading\"), \"she is working\" (não \"she working\"). Para uma ação a acontecer neste preciso momento, o Present Simple sozinho (\"I work\") normalmente soa errado ou incompleto.",
+    "real_world_example": "Numa chamada de trabalho: \"Sorry, I can't talk now — I'm finishing a report.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_right_now",
+      "headword": "right now",
+      "type": "adverb",
+      "translation_pt": "agora mesmo",
+      "definition_en": "at this exact moment",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/raɪt naʊ/",
+      "related_forms": [],
+      "example_sentences": ["I'm busy right now, can I call you back?"],
+      "difficulty": 1,
+      "tags": ["present-continuous", "time"]
+    },
+    {
+      "id": "vocab_a1_at_the_moment",
+      "headword": "at the moment",
+      "type": "phrase",
+      "translation_pt": "neste momento",
+      "definition_en": "now, during this period of time",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ət ðə ˈməʊmənt/",
+      "related_forms": [],
+      "example_sentences": ["We're renovating the kitchen at the moment."],
+      "difficulty": 1,
+      "tags": ["present-continuous", "time"]
+    },
+    {
+      "id": "vocab_a1_currently",
+      "headword": "currently",
+      "type": "adverb",
+      "translation_pt": "atualmente",
+      "definition_en": "at the present time",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈkʌrəntli/",
+      "related_forms": [],
+      "example_sentences": ["She is currently living in Lisbon."],
+      "difficulty": 2,
+      "tags": ["present-continuous", "time"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_pc_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_present_continuous",
+      "prompt": "Complete the sentence: Look! It ___ (rain) again.",
+      "correct_answer": ["is raining"],
+      "distractors": ["rains", "rain", "raining"],
+      "explanation": "Uma ação a acontecer neste momento (\"Look!\") pede o Present Continuous: is + verbo-ing.",
+      "common_mistake_pt": "Usar o Present Simple (\"rains\") para uma ação momentânea é um erro comum de transferência do português.",
+      "audio_url": null,
+      "tags": ["present-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pc_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_present_continuous",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["She is working from home this week."],
+      "distractors": ["She working from home this week.", "She work from home this week.", "She is work from home this week."],
+      "explanation": "Precisa do auxiliar \"is\" antes do verbo com -ing: \"is working\", nunca só \"working\" ou \"is work\".",
+      "common_mistake_pt": "Omitir \"is\"/\"am\"/\"are\" é o erro mais comum nesta estrutura para falantes de português.",
+      "audio_url": null,
+      "tags": ["present-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pc_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"at the moment\" mean?",
+      "correct_answer": ["now, during this period of time"],
+      "distractors": ["yesterday", "in the future", "a long time ago"],
+      "explanation": "\"At the moment\" refere-se ao presente, a este período de tempo em concreto.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "present-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pc_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What is Tom doing right now?",
+      "correct_answer": ["cooking dinner", "he is cooking dinner", "making pasta"],
+      "distractors": ["cleaning the kitchen", "watching TV", "doing homework"],
+      "explanation": "No áudio, ouve-se: \"Tom is cooking dinner at the moment — he's making pasta for his family.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Tom is cooking dinner at the moment — he's making pasta for his family.",
+      "tags": ["listening", "present-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pc_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Maria is studying English this year. Right now, she is doing her homework at the kitchen table.\" What is Maria doing right now?",
+      "correct_answer": ["doing her homework", "she is doing her homework"],
+      "distractors": ["studying English", "eating dinner", "watching a film"],
+      "explanation": "O texto indica diretamente: \"she is doing her homework\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "present-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pc_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_present_continuous",
+      "prompt": "Translate to English: \"Não posso falar agora — estou a trabalhar num projeto importante.\"",
+      "correct_answer": ["I can't talk now — I'm working on an important project.", "I can't talk right now — I'm working on an important project."],
+      "distractors": [],
+      "explanation": "Atenção ao \"am\" (contraído em \"I'm\") antes de \"working\" — não pode ser omitido.",
+      "common_mistake_pt": "Traduzir \"estou a trabalhar\" sem o \"am\" (\"I working\") é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "present-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m1u3_present_continuous",
+    "title": "What's Happening Right Now",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_present_continuous",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_present_continuous#rule" },
+      { "type": "example", "content_ref": "gc_a1_present_continuous#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_present_continuous#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_right_now", "vocab_a1_at_the_moment", "vocab_a1_currently"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_pc_001", "ex_a1_pc_002", "ex_a1_pc_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_pc_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_pc_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"am\" almost always contracts in speech: \"I am\" → \"I'm\" /aɪm/. The -ing ending is pronounced /ɪŋ/ in careful speech, but often softens to /ɪn/ in fast, casual conversation (e.g. \"workin'\")."
+      },
+      { "type": "speaking", "prompt": "Look around you and describe 3 things that are happening right now, using the Present Continuous." },
+      { "type": "writing", "prompt": "Write 5 sentences about what you and the people around you are doing at the moment." },
+      { "type": "translation", "exercise_ids": ["ex_a1_pc_translation_001"] }
+    ]
+  }
+}

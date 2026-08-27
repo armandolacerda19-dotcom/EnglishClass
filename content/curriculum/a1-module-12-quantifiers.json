@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.2",
+  "module": {
+    "id": "mod_a1_2_quantifiers",
+    "title": "How Much? How Many?",
+    "theme": "quantifiers",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_a1_2_quantifiers",
+    "title": "Some, Any, Much, Many",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_quantifiers",
+    "title": "Some, Any, Much, Many, A Few, A Little",
+    "rule": "Use \"some\" in positive sentences and offers/requests, \"any\" in negatives and questions. Use \"many\" and \"a few\" with countable plural nouns, \"much\" and \"a little\" with uncountable nouns.",
+    "simple_explanation": "\"Some\"/\"any\" indicam uma quantidade indefinida. A escolha entre \"many\" e \"much\" depende de se conseguimos contar a coisa (many books) ou não (much time).",
+    "example": "I have some money, but I don't have any time. How many books do you have? I don't have much furniture.",
+    "example_translation": "Tenho algum dinheiro, mas não tenho nada de tempo. Quantos livros tens? Não tenho muita mobília.",
+    "common_mistake_pt": "Em português, \"muito/muita/muitos/muitas\" concorda com o género e número do substantivo, não com se é contável ou não — isto leva falantes de português a dizer \"much people\" (em vez de \"many people\") ou \"many information\" (em vez de \"much information\", já que \"information\" é incontável em inglês). Confundir \"some\" e \"any\" também é comum: em português \"algum\" não muda entre frases afirmativas e negativas como muda em inglês.",
+    "correction": "\"Many\"/\"a few\" só com substantivos contáveis no plural (many books, a few friends). \"Much\"/\"a little\" só com substantivos incontáveis (much time, a little money). \"Some\" em frases afirmativas e pedidos; \"any\" em negativas e perguntas: \"I don't have any money\", \"Do you have any questions?\"",
+    "real_world_example": "Numa loja: \"Do you have any batteries? I don't need many, just a few.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_battery",
+      "headword": "battery",
+      "type": "noun",
+      "translation_pt": "pilha",
+      "definition_en": "a small device that stores and provides electrical power",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈbætri/",
+      "related_forms": ["batteries"],
+      "example_sentences": ["I don't have many batteries left."],
+      "difficulty": 1,
+      "tags": ["quantifiers", "countable"]
+    },
+    {
+      "id": "vocab_a1_patience",
+      "headword": "patience",
+      "type": "noun",
+      "translation_pt": "paciência",
+      "definition_en": "the ability to wait calmly without becoming annoyed",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈpeɪʃns/",
+      "related_forms": ["patient (adjective)"],
+      "example_sentences": ["You need a lot of patience to learn a language."],
+      "difficulty": 2,
+      "tags": ["quantifiers", "uncountable"]
+    },
+    {
+      "id": "vocab_a1_luggage",
+      "headword": "luggage",
+      "type": "noun",
+      "translation_pt": "bagagem",
+      "definition_en": "the bags and suitcases that a traveller takes with them (never used with 'a' or in the plural)",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈlʌɡɪdʒ/",
+      "related_forms": [],
+      "example_sentences": ["How much luggage do you have?"],
+      "difficulty": 2,
+      "tags": ["quantifiers", "uncountable", "travel"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_quant_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_quantifiers",
+      "prompt": "Complete: I don't have ___ time to finish this today.",
+      "correct_answer": ["much"],
+      "distractors": ["many", "a few", "some"],
+      "explanation": "\"Time\" é incontável, por isso usa-se \"much\", não \"many\".",
+      "common_mistake_pt": "Usar \"many\" com substantivos incontáveis como \"time\" é um erro comum.",
+      "audio_url": null,
+      "tags": ["quantifiers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_quant_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_quantifiers",
+      "prompt": "Complete: I don't have ___ questions right now.",
+      "correct_answer": ["any"],
+      "distractors": ["some", "many", "much"],
+      "explanation": "Em frases negativas usa-se \"any\", não \"some\".",
+      "common_mistake_pt": "Manter \"some\" em frases negativas é um erro comum, já que em português \"algum\" não muda consoante a frase seja afirmativa ou negativa.",
+      "audio_url": null,
+      "tags": ["quantifiers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_quant_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"luggage\" mean?",
+      "correct_answer": ["the bags and suitcases that a traveller takes with them (never used with 'a' or in the plural)"],
+      "distractors": ["a type of battery", "a small amount of money", "a kind of patience"],
+      "explanation": "\"Luggage\" é incontável em inglês, mesmo sendo \"bagagens\" muitas vezes usado no plural em português.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "uncountable"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_quant_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. How much luggage did the speaker have?",
+      "correct_answer": ["not much", "a few bags", "not a lot"],
+      "distractors": ["a lot", "none at all", "too much to count"],
+      "explanation": "No áudio, ouve-se: \"I only had a few bags, not much at all.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "At the airport, the check-in agent asked how much luggage I had. I said I only had a few bags, not much at all.",
+      "tags": ["listening", "quantifiers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_quant_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Before a long trip, you don't need much luggage — just a few essential things. But you do need a lot of patience at the airport.\" What do you need a lot of at the airport, according to the text?",
+      "correct_answer": ["patience"],
+      "distractors": ["luggage", "batteries", "time"],
+      "explanation": "O texto indica diretamente: \"you do need a lot of patience at the airport\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "quantifiers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_quant_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_quantifiers",
+      "prompt": "Translate to English: \"Não tenho muitas pilhas, só tenho algumas.\"",
+      "correct_answer": ["I don't have many batteries, I only have some.", "I don't have many batteries, I just have a few."],
+      "distractors": [],
+      "explanation": "\"Pilhas\" (batteries) é contável, por isso usa-se \"many\", não \"much\".",
+      "common_mistake_pt": "Usar \"much\" em vez de \"many\" com \"batteries\" (substantivo contável) é um erro comum.",
+      "audio_url": null,
+      "tags": ["translation", "quantifiers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m2u4_quantifiers",
+    "title": "How Much? How Many?",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_quantifiers",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_quantifiers#rule" },
+      { "type": "example", "content_ref": "gc_a1_quantifiers#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_quantifiers#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_battery", "vocab_a1_patience", "vocab_a1_luggage"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_quant_001", "ex_a1_quant_002", "ex_a1_quant_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_quant_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_quant_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Many\" is pronounced /ˈmeni/ — it rhymes with \"penny\", not with \"rainy\". \"Much\" is /mʌtʃ/, with the same short vowel sound as \"cup\" or \"bus\"."
+      },
+      { "type": "speaking", "prompt": "Talk about what you have much/many of and what you have little/few of in your life right now (time, money, patience, free days)." },
+      { "type": "writing", "prompt": "Write 5 sentences about your last trip using some, any, much, many, a few or a little." },
+      { "type": "translation", "exercise_ids": ["ex_a1_quant_translation_001"] }
+    ]
+  }
+}

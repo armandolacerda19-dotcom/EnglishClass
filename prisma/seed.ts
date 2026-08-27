@@ -11,6 +11,12 @@ import moduleFuturePlans from "../content/curriculum/a1-module-07-future-plans.j
 import moduleExperiences from "../content/curriculum/a2-module-01-experiences.json";
 import moduleObligation from "../content/curriculum/a2-module-02-obligation.json";
 import moduleFirstConditional from "../content/curriculum/a2-module-03-first-conditional.json";
+import modulePresentContinuous from "../content/curriculum/a1-module-08-present-continuous.json";
+import modulePronouns from "../content/curriculum/a1-module-09-pronouns.json";
+import moduleArticles from "../content/curriculum/a1-module-10-articles.json";
+import moduleSuperlatives from "../content/curriculum/a1-module-11-superlatives.json";
+import moduleQuantifiers from "../content/curriculum/a1-module-12-quantifiers.json";
+import moduleWhQuestions from "../content/curriculum/a1-module-13-wh-questions.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 
@@ -19,13 +25,25 @@ const prisma = new PrismaClient();
 // Cada ficheiro em content/curriculum/ segue o formato de docs/08-schema-json-conteudo.md:
 // um módulo com uma unidade, um conceito de gramática, vocabulário, exercícios e uma lição.
 // Adicionar conteúdo novo = adicionar um ficheiro aqui, sem tocar na lógica de seed abaixo.
+// A ordem aqui decide Lesson.order (o índice + 1, ver main() abaixo), que por
+// sua vez decide a sequência que getNextLessonForUser() segue. Os 6 módulos
+// novos (Fase 3 da auditoria, 2026-08-26 — gramática em falta) foram inseridos
+// logo a seguir ao módulo A1/A2 da mesma sublevel_code a que pertencem, para
+// que um utilizador a meio do currículo os encontre no sítio pedagogicamente
+// certo, e não todos amontoados no fim.
 const MODULE_FILES = [
   moduleFirstWords,
   moduleDailyLife,
   moduleAboutMe,
+  modulePresentContinuous, // A1.1 — depois de about-me
+  modulePronouns, // A1.1
+  moduleWhQuestions, // A1.1
   moduleShopping,
-  moduleComparatives,
   moduleRestaurant,
+  moduleArticles, // A1.2
+  moduleQuantifiers, // A1.2
+  moduleComparatives,
+  moduleSuperlatives, // A1.3 — logo a seguir a comparatives
   modulePastSimple,
   moduleFuturePlans,
   moduleExperiences,

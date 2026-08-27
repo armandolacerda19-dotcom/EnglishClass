@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.1",
+  "module": {
+    "id": "mod_a1_1_pronouns",
+    "title": "Whose Is It?",
+    "theme": "pronouns",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_a1_1_pronouns",
+    "title": "Object Pronouns and Possessives",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_pronouns",
+    "title": "Object Pronouns and Possessive Adjectives",
+    "rule": "Use object pronouns (me, you, him, her, it, us, them) after a verb or preposition, and possessive adjectives (my, your, his, her, its, our, their) before a noun to show who it belongs to.",
+    "simple_explanation": "Subject pronouns (I, she, they) do the action. Object pronouns (me, her, them) receive it. Possessive adjectives (his, her, their) go before a noun and agree with the OWNER, not with the thing owned.",
+    "example": "She gave him her phone number. Their house is bigger than ours.",
+    "example_translation": "Ela deu-lhe o número de telefone dela. A casa deles é maior do que a nossa.",
+    "common_mistake_pt": "Em português, o género de \"a casa dele/dela\" concorda com a coisa possuída (\"casa\" é feminino, por isso \"a casa\"), não com o dono. Em inglês é ao contrário: \"his\"/\"her\" concordam com o DONO, não com a coisa possuída — por isso é fácil um falante de português dizer \"his car\" quando quer dizer \"her car\", ou vice-versa.",
+    "correction": "Pergunte sempre \"de quem é?\" (não \"o quê?\"): se o dono é um homem, use \"his\" (his car, his bag, his sister); se é uma mulher, use \"her\" (her car, her bag, her brother). O género da coisa possuída em inglês é irrelevante.",
+    "real_world_example": "Num email de trabalho: \"Please send it to her, not to him.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_belong_to",
+      "headword": "belong to",
+      "type": "phrasal_verb",
+      "translation_pt": "pertencer a",
+      "definition_en": "to be owned by someone",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/bɪˈlɒŋ tuː/",
+      "related_forms": [],
+      "example_sentences": ["This bag belongs to her."],
+      "difficulty": 1,
+      "tags": ["possession"]
+    },
+    {
+      "id": "vocab_a1_borrow",
+      "headword": "borrow",
+      "type": "verb",
+      "translation_pt": "pedir emprestado",
+      "definition_en": "to take and use something that belongs to someone else, intending to give it back",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈbɒrəʊ/",
+      "related_forms": ["borrow from"],
+      "example_sentences": ["Can I borrow your pen?"],
+      "difficulty": 1,
+      "tags": ["possession"]
+    },
+    {
+      "id": "vocab_a1_return_give_back",
+      "headword": "return",
+      "type": "verb",
+      "translation_pt": "devolver",
+      "definition_en": "to give something back to its owner",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/rɪˈtɜːn/",
+      "related_forms": [],
+      "example_sentences": ["I need to return his book tomorrow."],
+      "difficulty": 1,
+      "tags": ["possession"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_pron_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_pronouns",
+      "prompt": "Complete the sentence: Can you give the keys to ___? (I)",
+      "correct_answer": ["me"],
+      "distractors": ["I", "my", "mine"],
+      "explanation": "Depois de uma preposição (\"to\") usa-se o pronome objeto (\"me\"), nunca o sujeito (\"I\").",
+      "common_mistake_pt": "Usar \"I\" em vez de \"me\" depois de \"to\"/\"for\"/\"with\" é um erro comum.",
+      "audio_url": null,
+      "tags": ["pronouns", "object-pronoun"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pron_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_pronouns",
+      "prompt": "Complete the sentence: Tom's sister has a new car. ___ car is red.",
+      "correct_answer": ["Her"],
+      "distractors": ["His", "Its", "Their"],
+      "explanation": "O dono é a irmã do Tom (uma mulher) → \"her\", mesmo \"car\" sendo uma palavra feminina em português — o género em inglês segue o dono, não a coisa possuída.",
+      "common_mistake_pt": "Dizer \"his car\" aqui é um erro muito comum, ao confundir o género gramatical português com o género real do dono em inglês.",
+      "audio_url": null,
+      "tags": ["pronouns", "possessive"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pron_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"borrow\" mean?",
+      "correct_answer": ["to take and use something that belongs to someone else, intending to give it back"],
+      "distractors": ["to give something to someone for a while", "to buy something new", "to take something without permission"],
+      "explanation": "\"Borrow\" é pedir algo emprestado (o oposto de \"lend\", que é emprestar a alguém).",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "possession"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pron_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Whose laptop is it?",
+      "correct_answer": ["Sarah's", "it belongs to Sarah"],
+      "distractors": ["the speaker's", "her brother's", "nobody's"],
+      "explanation": "No áudio, ouve-se: \"This laptop isn't mine. It belongs to Sarah — she lent it to me for the week.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "This laptop isn't mine. It belongs to Sarah — she lent it to me for the week.",
+      "tags": ["listening", "possession"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pron_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"David and Rita share a flat. His room is small, but hers has a big window. They both love their kitchen, even though it's tiny.\" Whose room has a big window?",
+      "correct_answer": ["Rita's", "her room", "hers"],
+      "distractors": ["David's", "nobody's", "the kitchen's"],
+      "explanation": "O texto indica diretamente: \"hers has a big window\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "possession"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_pron_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_pronouns",
+      "prompt": "Translate to English: \"Este telemóvel não é meu — é dela.\"",
+      "correct_answer": ["This phone isn't mine — it's hers.", "This phone is not mine — it's hers."],
+      "distractors": [],
+      "explanation": "\"Dela\" sozinho no fim da frase corresponde a \"hers\" (pronome possessivo), não a \"her\" (que só se usa antes de um substantivo).",
+      "common_mistake_pt": "Confundir \"her\" com \"hers\" é comum: aqui precisa de \"hers\" porque não há nenhum substantivo depois.",
+      "audio_url": null,
+      "tags": ["translation", "possession"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m1u4_pronouns",
+    "title": "Whose Is It?",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_pronouns",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_pronouns#rule" },
+      { "type": "example", "content_ref": "gc_a1_pronouns#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_pronouns#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_belong_to", "vocab_a1_borrow", "vocab_a1_return_give_back"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_pron_001", "ex_a1_pron_002", "ex_a1_pron_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_pron_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_pron_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In fast, natural speech, object pronouns often reduce: \"him\" → /ɪm/ (\"tell him\" sounds like \"tell 'im\"), \"her\" → /ə/ (\"ask her\" sounds like \"ask 'er\"). Don't worry about producing this yourself yet — just get used to hearing it, since native speakers rarely pronounce these pronouns fully."
+      },
+      { "type": "speaking", "prompt": "Point to 3 objects near you and say who they belong to, using \"his\", \"her\", \"my\" or \"our\"." },
+      { "type": "writing", "prompt": "Write 5 sentences about things you borrowed or lent, using object pronouns and possessive adjectives." },
+      { "type": "translation", "exercise_ids": ["ex_a1_pron_translation_001"] }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.2",
+  "module": {
+    "id": "mod_a1_2_articles",
+    "title": "A, An, The",
+    "theme": "articles",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_a1_2_articles",
+    "title": "Articles",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_articles",
+    "title": "Articles: a, an, the, and no article",
+    "rule": "Use \"a\"/\"an\" to mention something for the first time or to classify it (not a specific one); use \"the\" when both speaker and listener know exactly which one you mean; use no article at all for general plurals and uncountable nouns.",
+    "simple_explanation": "\"a/an\" = one thing, not specific yet. \"the\" = a specific thing we both already know. No article = talking about something in general.",
+    "example": "I saw a dog in the park. The dog was very friendly. I love dogs in general.",
+    "example_translation": "Vi um cão no parque. O cão era muito simpático. Adoro cães em geral.",
+    "common_mistake_pt": "Em português usa-se o artigo definido muito mais vezes do que em inglês — \"Gosto do café\", \"A vida é difícil\", \"Falo português\" usam artigo, mas as traduções corretas em inglês NÃO levam \"the\": \"I like coffee\", \"Life is difficult\", \"I speak Portuguese\". Um falante de português tende a colocar \"the\" a mais em frases gerais.",
+    "correction": "Não use \"the\" para falar de algo em geral (coffee, life, love, Portuguese, dogs). Só use \"the\" quando se refere a uma coisa específica e concreta que já foi mencionada ou que é óbvia pelo contexto.",
+    "real_world_example": "Numa conversa: \"I don't drink coffee in the evening\" (café em geral) vs. \"Can you pass me the coffee?\" (o café específico que está na mesa)."
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_advice",
+      "headword": "advice",
+      "type": "noun",
+      "translation_pt": "conselho(s)",
+      "definition_en": "an opinion or suggestion about what someone should do (never used with 'a' or in the plural)",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ədˈvaɪs/",
+      "related_forms": ["some advice", "a piece of advice"],
+      "example_sentences": ["Can you give me some advice?"],
+      "difficulty": 2,
+      "tags": ["uncountable", "articles"]
+    },
+    {
+      "id": "vocab_a1_information",
+      "headword": "information",
+      "type": "noun",
+      "translation_pt": "informação",
+      "definition_en": "facts or details about something (never used with 'a' or in the plural)",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˌɪnfəˈmeɪʃn/",
+      "related_forms": ["some information", "a piece of information"],
+      "example_sentences": ["I need more information about the course."],
+      "difficulty": 2,
+      "tags": ["uncountable", "articles"]
+    },
+    {
+      "id": "vocab_a1_furniture",
+      "headword": "furniture",
+      "type": "noun",
+      "translation_pt": "mobília",
+      "definition_en": "chairs, tables, beds and other objects in a room (never used with 'a' or in the plural)",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈfɜːnɪtʃə/",
+      "related_forms": ["a piece of furniture"],
+      "example_sentences": ["We bought some new furniture for the living room."],
+      "difficulty": 2,
+      "tags": ["uncountable", "articles"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_art_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_articles",
+      "prompt": "Complete the sentence: I love ___ music.",
+      "correct_answer": ["(no article)"],
+      "distractors": ["the", "a", "an"],
+      "explanation": "Falar de música em geral não leva artigo nenhum em inglês.",
+      "common_mistake_pt": "Traduzir diretamente do português (\"Adoro a música\") leva a colocar \"the\" a mais nesta frase.",
+      "audio_url": null,
+      "tags": ["articles"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_art_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_articles",
+      "prompt": "Complete the sentence: I saw a cat in the garden. ___ cat was black and white.",
+      "correct_answer": ["The"],
+      "distractors": ["A", "An", "(no article)"],
+      "explanation": "Na segunda menção, ambos já sabem exatamente de que gato se fala → usa-se \"the\".",
+      "common_mistake_pt": "Repetir \"a\" na segunda menção é um erro comum — depois da primeira vez, se já se sabe qual é, usa-se \"the\".",
+      "audio_url": null,
+      "tags": ["articles"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_art_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"advice\" mean?",
+      "correct_answer": ["an opinion or suggestion about what someone should do (never used with 'a' or in the plural)"],
+      "distractors": ["a piece of furniture", "a type of information document", "a formal warning"],
+      "explanation": "\"Advice\" é incontável em inglês — nunca \"an advice\" nem \"advices\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "uncountable"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_art_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What did the speaker's sister give?",
+      "correct_answer": ["advice", "good advice", "some advice"],
+      "distractors": ["money", "a book", "a CV"],
+      "explanation": "No áudio, ouve-se: \"My sister gave me some really good advice about the interview.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "My sister gave me some really good advice about the interview. She said I should arrive early and bring a copy of my CV.",
+      "tags": ["listening", "uncountable"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_art_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Before you buy furniture for a new flat, make a list. You don't need much information — just measure the rooms and know your budget.\" What should you measure before buying furniture?",
+      "correct_answer": ["the rooms", "your rooms"],
+      "distractors": ["the furniture", "your budget", "your list"],
+      "explanation": "O texto indica diretamente: \"measure the rooms\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "uncountable"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_art_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_articles",
+      "prompt": "Translate to English: \"Preciso de alguns conselhos sobre o novo emprego.\"",
+      "correct_answer": ["I need some advice about the new job.", "I need some advice about my new job."],
+      "distractors": [],
+      "explanation": "\"Conselhos\" (plural em português) traduz-se por \"advice\", que em inglês nunca tem plural.",
+      "common_mistake_pt": "Traduzir \"conselhos\" como \"advices\" é um erro muito comum — \"advice\" nunca leva -s.",
+      "audio_url": null,
+      "tags": ["translation", "uncountable"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m2u3_articles",
+    "title": "A, An, The — or Nothing at All",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_articles",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_articles#rule" },
+      { "type": "example", "content_ref": "gc_a1_articles#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_articles#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_advice", "vocab_a1_information", "vocab_a1_furniture"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_art_001", "ex_a1_art_002", "ex_a1_art_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_art_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_art_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The choice between \"a\" and \"an\" depends on the SOUND that follows, not the spelling: \"an hour\" /ən ˈaʊə/ (the h is silent), but \"a university\" /ə ˌjuːnɪˈvɜːsəti/ (starts with a /j/ sound, even though \"u\" is a vowel letter)."
+      },
+      { "type": "speaking", "prompt": "Describe your living room, saying what furniture is in it and where each piece is — without using \"the\" when talking about furniture in general." },
+      { "type": "writing", "prompt": "Write 5 sentences giving someone advice, using \"advice\" and \"information\" correctly (no \"a\", no plural)." },
+      { "type": "translation", "exercise_ids": ["ex_a1_art_translation_001"] }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.3",
+  "module": {
+    "id": "mod_a1_3_superlatives",
+    "title": "The Best of All",
+    "theme": "superlatives",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_a1_3_superlatives",
+    "title": "Superlative Adjectives",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_superlative_adjectives",
+    "title": "Superlative Adjectives",
+    "rule": "Superlatives compare three or more things and always use \"the\": short adjectives add -est (the biggest, the cheapest); longer adjectives use \"the most\" (the most expensive, the most comfortable). Irregular: good → the best, bad → the worst.",
+    "simple_explanation": "Usamos o superlativo quando algo é o número um entre três ou mais coisas — não apenas entre duas, que é o comparativo.",
+    "example": "This is the cheapest hotel in the city. That was the best film I've seen this year.",
+    "example_translation": "Este é o hotel mais barato da cidade. Esse foi o melhor filme que vi este ano.",
+    "common_mistake_pt": "Falantes de português tendem a esquecer o \"the\" antes do superlativo (\"This is cheapest hotel\" em vez de \"This is THE cheapest hotel\") — em inglês, o superlativo leva sempre \"the\", ao contrário do comparativo. Também é comum aplicar \"most\" a adjetivos curtos (\"most cheap\" em vez de \"cheapest\"), pelo mesmo motivo do comparativo.",
+    "correction": "O superlativo leva sempre \"the\" antes: the cheapest, the most expensive, the best. Adjetivos curtos levam -est (the biggest); adjetivos longos levam \"the most\" (the most expensive); \"good\"/\"bad\" são irregulares: the best, the worst.",
+    "real_world_example": "Numa recomendação: \"This is the best restaurant in town — you should try it.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_crowded",
+      "headword": "crowded",
+      "type": "adjective",
+      "translation_pt": "cheio de gente",
+      "definition_en": "full of people",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈkraʊdɪd/",
+      "related_forms": ["the most crowded"],
+      "example_sentences": ["This is the most crowded beach in summer."],
+      "difficulty": 2,
+      "tags": ["adjective", "superlative"]
+    },
+    {
+      "id": "vocab_a1_safe",
+      "headword": "safe",
+      "type": "adjective",
+      "translation_pt": "seguro",
+      "definition_en": "not dangerous; free from risk",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/seɪf/",
+      "related_forms": ["the safest", "dangerous (opposite)"],
+      "example_sentences": ["This is the safest area of the city."],
+      "difficulty": 1,
+      "tags": ["adjective", "superlative"]
+    },
+    {
+      "id": "vocab_a1_reliable",
+      "headword": "reliable",
+      "type": "adjective",
+      "translation_pt": "fiável",
+      "definition_en": "able to be trusted to work well or do what is expected",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/rɪˈlaɪəbl/",
+      "related_forms": ["the most reliable"],
+      "example_sentences": ["That's the most reliable car I've ever owned."],
+      "difficulty": 2,
+      "tags": ["adjective", "superlative"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_sup_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_superlative_adjectives",
+      "prompt": "Complete: This is ___ (cheap) hotel in the city.",
+      "correct_answer": ["the cheapest"],
+      "distractors": ["cheapest", "the most cheap", "more cheap"],
+      "explanation": "Superlativo de adjetivo curto: \"the\" + adjetivo-est.",
+      "common_mistake_pt": "Esquecer o \"the\" (\"cheapest hotel\" sozinho, sem artigo) é um erro muito comum.",
+      "audio_url": null,
+      "tags": ["superlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_sup_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_superlative_adjectives",
+      "prompt": "Complete: That was ___ (good) film I've seen this year.",
+      "correct_answer": ["the best"],
+      "distractors": ["the goodest", "the most good", "better"],
+      "explanation": "\"Good\" é irregular: o superlativo é \"the best\", não \"the goodest\" nem \"the most good\".",
+      "common_mistake_pt": "\"The goodest\" é um erro comum ao tentar regularizar uma forma irregular.",
+      "audio_url": null,
+      "tags": ["superlatives", "irregular"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_sup_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"reliable\" mean?",
+      "correct_answer": ["able to be trusted to work well or do what is expected"],
+      "distractors": ["very expensive", "very fast", "very old"],
+      "explanation": "\"Reliable\" descreve algo ou alguém em quem se pode confiar para funcionar bem.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "adjective"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_sup_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Which car is the most reliable?",
+      "correct_answer": ["the Toyota", "Toyota"],
+      "distractors": ["the Volvo", "the Ford", "none of them"],
+      "explanation": "No áudio, ouve-se: \"The Toyota is the most reliable.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "We tested three cars. The Volvo is the safest, the Toyota is the most reliable, but the Ford is the cheapest.",
+      "tags": ["listening", "superlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_sup_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Three restaurants opened this year. Luigi's is the most expensive, but also the most crowded every weekend. Sunny Café is the cheapest, and Green Table is the quietest.\" Which restaurant is the cheapest?",
+      "correct_answer": ["Sunny Café", "Sunny Cafe"],
+      "distractors": ["Luigi's", "Green Table", "None of them"],
+      "explanation": "O texto indica diretamente: \"Sunny Café is the cheapest\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "superlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_sup_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_superlative_adjectives",
+      "prompt": "Translate to English: \"Este é o carro mais fiável que já tive.\"",
+      "correct_answer": ["This is the most reliable car I've ever had.", "This is the most reliable car I have ever had."],
+      "distractors": [],
+      "explanation": "\"Mais fiável\" (adjetivo longo) traduz-se com \"the most reliable\", nunca sem o \"the\".",
+      "common_mistake_pt": "Esquecer o \"the\" antes de \"most reliable\" é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "superlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m4u2_superlatives",
+    "title": "The Best of All",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_superlative_adjectives",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_superlative_adjectives#rule" },
+      { "type": "example", "content_ref": "gc_a1_superlative_adjectives#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_superlative_adjectives#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_crowded", "vocab_a1_safe", "vocab_a1_reliable"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_sup_001", "ex_a1_sup_002", "ex_a1_sup_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_sup_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_sup_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The -est ending is unstressed, just like -er: cheapest /ˈtʃiːpɪst/, biggest /ˈbɪɡɪst/. In \"the most + adjective\", the stress falls on the adjective, not on \"most\": the most reˈliable, not ˈmost reliable."
+      },
+      { "type": "speaking", "prompt": "Talk about the best and the worst thing you have eaten, watched or visited this year, using superlatives." },
+      { "type": "writing", "prompt": "Write 4 sentences about the best, worst, cheapest and most reliable things in your life, using superlatives." },
+      { "type": "translation", "exercise_ids": ["ex_a1_sup_translation_001"] }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.1",
+  "module": {
+    "id": "mod_a1_1_wh_questions",
+    "title": "Asking Questions",
+    "theme": "wh-questions",
+    "order": 5
+  },
+  "unit": {
+    "id": "unit_a1_1_wh_questions",
+    "title": "Wh- Questions",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_wh_questions",
+    "title": "Wh- Questions with Do/Does/Is/Are",
+    "rule": "Form wh-questions with a question word (what, where, when, who, why, how) + auxiliary (do/does/is/are) + subject + verb: \"Where do you live?\", \"What is she doing?\"",
+    "simple_explanation": "A question word vem sempre primeiro, seguida do auxiliar (do/does/is/are), depois o sujeito, depois o verbo — o auxiliar troca de posição com o sujeito.",
+    "example": "Where do you live? What time does the film start? Why is she crying?",
+    "example_translation": "Onde é que moras? A que horas começa o filme? Porque é que ela está a chorar?",
+    "common_mistake_pt": "Em português, uma pergunta forma-se muitas vezes só com entoação ou com \"é que\" (\"Onde é que moras?\"), sem precisar de um auxiliar equivalente a \"do\"/\"does\". Isto leva falantes de português a esquecer o auxiliar em inglês: \"Where you live?\" em vez de \"Where do you live?\", ou \"What means this word?\" em vez de \"What does this word mean?\".",
+    "correction": "Nas perguntas com wh-word, o auxiliar (do/does/did/is/are/was/were) é quase sempre obrigatório antes do sujeito: wh-word + auxiliar + sujeito + verbo base. Exceção: quando a wh-word é o próprio sujeito (\"Who called you?\" — sem auxiliar extra, porque \"who\" já é quem faz a ação).",
+    "real_world_example": "Numa entrevista de emprego: \"Where did you study? What do you do in your free time?\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_occupation",
+      "headword": "occupation",
+      "type": "noun",
+      "translation_pt": "profissão",
+      "definition_en": "a person's job",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˌɒkjuˈpeɪʃn/",
+      "related_forms": [],
+      "example_sentences": ["What's your occupation?"],
+      "difficulty": 2,
+      "tags": ["questions", "work"]
+    },
+    {
+      "id": "vocab_a1_directions",
+      "headword": "directions",
+      "type": "noun",
+      "translation_pt": "indicações de caminho",
+      "definition_en": "instructions on how to get to a place",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/dɪˈrekʃnz/",
+      "related_forms": ["give directions", "ask for directions"],
+      "example_sentences": ["Could you give me directions to the station?"],
+      "difficulty": 1,
+      "tags": ["questions", "travel"]
+    },
+    {
+      "id": "vocab_a1_reason",
+      "headword": "reason",
+      "type": "noun",
+      "translation_pt": "razão, motivo",
+      "definition_en": "the cause or explanation for something",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈriːzn/",
+      "related_forms": ["the reason for", "the reason why"],
+      "example_sentences": ["What's the reason for the delay?"],
+      "difficulty": 1,
+      "tags": ["questions"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_wh_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_wh_questions",
+      "prompt": "Complete the question: Where ___ you live?",
+      "correct_answer": ["do"],
+      "distractors": ["is", "are", "(nothing)"],
+      "explanation": "Perguntas no Present Simple com \"you\" precisam do auxiliar \"do\".",
+      "common_mistake_pt": "Omitir \"do\"/\"does\" é o erro mais comum em perguntas wh- para falantes de português.",
+      "audio_url": null,
+      "tags": ["wh-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_wh_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_wh_questions",
+      "prompt": "Choose the correct question.",
+      "correct_answer": ["What does this word mean?"],
+      "distractors": ["What means this word?", "What this word means?", "What do this word mean?"],
+      "explanation": "\"Does\" é obrigatório com \"he/she/it\" (aqui, \"this word\"), e o verbo principal fica na forma base (\"mean\").",
+      "common_mistake_pt": "\"What means this word?\" é uma tradução direta muito comum do português \"O que significa esta palavra?\", mas está gramaticalmente incorreta em inglês.",
+      "audio_url": null,
+      "tags": ["wh-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_wh_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"occupation\" mean?",
+      "correct_answer": ["a person's job"],
+      "distractors": ["a place where you live", "a type of question", "a kind of holiday"],
+      "explanation": "\"Occupation\" é uma forma mais formal de perguntar pela profissão de alguém.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "work"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_wh_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What is the speaker asking for?",
+      "correct_answer": ["directions", "directions to the station"],
+      "distractors": ["a reason", "an occupation", "a reservation"],
+      "explanation": "No áudio, ouve-se: \"Could you give me directions to the train station?\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Excuse me, could you give me directions to the train station? I'm not sure which way to go.",
+      "tags": ["listening", "wh-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_wh_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"At the interview, they asked me three things: my occupation, the reason I wanted the job, and where I studied.\" What did they ask about, besides the occupation and the reason?",
+      "correct_answer": ["where I studied", "where the person studied"],
+      "distractors": ["how old I am", "how much I earn", "my address"],
+      "explanation": "O texto indica diretamente: \"and where I studied\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "wh-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_wh_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_wh_questions",
+      "prompt": "Translate to English: \"Qual é a razão para o atraso?\"",
+      "correct_answer": ["What's the reason for the delay?", "What is the reason for the delay?"],
+      "distractors": [],
+      "explanation": "\"Reason for\" é a preposição correta depois de \"reason\" — nunca \"reason of\".",
+      "common_mistake_pt": "Esquecer o \"is\" (\"What the reason for the delay?\" em vez de \"What is the reason for the delay?\") é um erro comum, já que a pergunta em português não exige um verbo equivalente.",
+      "audio_url": null,
+      "tags": ["translation", "wh-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m1u5_wh_questions",
+    "title": "Asking the Right Questions",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_wh_questions",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_wh_questions#rule" },
+      { "type": "example", "content_ref": "gc_a1_wh_questions#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_wh_questions#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_occupation", "vocab_a1_directions", "vocab_a1_reason"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_wh_001", "ex_a1_wh_002", "ex_a1_wh_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_wh_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_wh_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Wh-questions usually have FALLING intonation at the end (the voice goes down on the last word) — unlike yes/no questions, which usually rise. Compare: \"Where do you live?\" (falling) vs. \"Do you live here?\" (rising)."
+      },
+      { "type": "speaking", "prompt": "Ask a friend or family member 5 wh-questions about their occupation, routine and plans, using the correct auxiliary each time." },
+      { "type": "writing", "prompt": "Write 5 wh-questions you would ask a new colleague on their first day at work." },
+      { "type": "translation", "exercise_ids": ["ex_a1_wh_translation_001"] }
+    ]
+  }
+}

@@ -2,6 +2,28 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — FASE 3 da auditoria (início): 6 novos módulos de gramática
+
+A auditoria (`docs/AUDITORIA-2026-08-26.md`, secção 8) identificou 13 conceitos gramaticais essenciais A1-B1 totalmente ausentes do currículo. Este é o primeiro lote — os 6 mais fundamentais, todos dentro do A1 já existente (Pre-A1→A2.2 continuam a ser as únicas sublevels seedadas; B1 fica para um lote posterior desta mesma fase):
+
+1. **Present Continuous** (A1.1) — mod_a1_1_present_continuous
+2. **Object Pronouns e Possessive Adjectives** (A1.1) — mod_a1_1_pronouns
+3. **Wh- Questions com auxiliar** (A1.1) — mod_a1_1_wh_questions
+4. **Articles a/an/the** (A1.2) — mod_a1_2_articles
+5. **Quantifiers some/any/much/many** (A1.2) — mod_a1_2_quantifiers
+6. **Superlatives** (A1.3, junto de "Comparing Things" que já existia) — mod_a1_3_superlatives
+
+Cobertura de gramática passa de 8/24 para 14/24 conceitos do checklist da auditoria.
+
+**Processo usado, dado o risco de um JSON inválido quebrar TODO o seeding** (um único ficheiro malformado faz `prisma/seed.ts` falhar por inteiro, não só o módulo em causa): cada ficheiro novo foi validado individualmente com `Get-Content ... | ConvertFrom-Json` no PowerShell antes de ser ligado ao `seed.ts` — não há Node.js nesta máquina para correr o seed a sério, por isso este foi o teste real disponível. Também confirmei por grep que os 519 ids em `content/curriculum/*.json` continuam todos únicos depois da adição (zero colisões) — um id duplicado faria um `upsert` sobrescrever silenciosamente outro registo.
+
+Cada módulo segue exatamente a estrutura dos 11 já existentes (`docs/08-schema-json-conteudo.md`): grammar_concept com common_mistake_pt específico para falantes de português, 3 itens de vocabulário, 6 exercícios (2 grammar, 1 vocabulary, 1 listening, 1 reading, 1 translation — o mesmo padrão de 5 pilares graded que o resto do currículo já usa), e uma lição de 11 passos incluindo um apontamento de pronúncia genuíno (não genérico) por módulo. Escrito em inglês britânico consistente e português europeu (não brasileiro) em todo o lado, para não repetir os problemas de conteúdo que a própria auditoria encontrou no currículo existente (calques, PT-BR, regras absolutas sem exceção).
+
+`MODULE_FILES` em `seed.ts` foi reordenado (não só apensado ao fim) para que os módulos novos apareçam na sequência certa dentro de cada sublevel — ex. "Superlatives" logo a seguir a "Comparing Things" — em vez de todos amontoados depois de A2.2, onde ficariam pedagogicamente fora de ordem.
+
+### Não feito neste lote
+Os 7 conceitos restantes (past continuous, past perfect, future com will, future continuous, second conditional, passive voice, reported speech, relative clauses) — os últimos 4 destes ultrapassam o que A1/A2 seedado consegue albergar sem introduzir B1 (Level + Sublevels novos), que é uma alteração de schema/conteúdo maior a fazer numa passagem dedicada. Expansão de vocabulário (331 → 2.000+) também fica para um lote seguinte desta mesma Fase 3.
+
 ## 2026-08-26 — FASE 2 da auditoria: fundações técnicas
 
 Segue-se diretamente da auditoria master (ver entrada abaixo). O utilizador pediu para dividir o roadmap por fases e começar já pela Fase 2 (fundações), com "cuidado extra no código" porque os deploys da Netlify continuam pausados até 2026-09-01 — nada do que se segue foi executado, só revisto à mão com mais atenção que o habitual.
