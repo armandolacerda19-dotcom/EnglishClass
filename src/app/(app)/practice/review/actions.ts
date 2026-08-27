@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { scheduleReview, type ReviewItemType } from "@/lib/srs/schedule";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { updateSkillScore } from "@/lib/skillProfile";
+import { awardAchievement } from "@/lib/gamification/awardAchievement";
 
 // Converte a auto-avaliação estilo Anki (1/3/5) num score 0-100 para o octógono
 // de competência — a mesma escala usada nos outros pontos de captura de sinal.
@@ -25,6 +26,7 @@ export async function submitReview(
   const user = await requireUser();
   await scheduleReview(user.id, itemType, itemRefId, quality, userErrorId);
   await recordActivity(user.id, "REVIEW");
+  await awardAchievement(user.id, "first_review");
 
   if (itemType === "vocabulary_item") {
     await updateSkillScore(user.id, "VOCABULARY", qualityToScore(quality));

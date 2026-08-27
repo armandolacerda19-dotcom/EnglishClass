@@ -190,6 +190,36 @@ const ACHIEVEMENTS = [
     title: "Primeira Lição",
     description: "Completou a sua primeira lição na plataforma.",
   },
+  {
+    code: "first_daily_challenge",
+    title: "Primeiro Desafio",
+    description: "Completou o seu primeiro Desafio Diário de vocabulário.",
+  },
+  {
+    code: "first_review",
+    title: "Primeira Revisão",
+    description: "Completou a sua primeira sessão de revisão espaçada.",
+  },
+  {
+    code: "streak_3",
+    title: "Três Seguidos",
+    description: "Praticou 3 dias seguidos.",
+  },
+  {
+    code: "streak_7",
+    title: "Semana Completa",
+    description: "Praticou 7 dias seguidos.",
+  },
+  {
+    code: "streak_30",
+    title: "Hábito Feito",
+    description: "Praticou 30 dias seguidos.",
+  },
+  {
+    code: "first_weekly_test",
+    title: "Primeiro Diagnóstico",
+    description: "Completou o seu primeiro Diagnóstico Semanal.",
+  },
 ];
 
 async function seedAchievements() {

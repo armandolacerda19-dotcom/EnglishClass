@@ -6,6 +6,7 @@ import { getGeminiModel } from "@/lib/ai/gemini";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { scheduleReview } from "@/lib/srs/schedule";
 import { updateSkillScore } from "@/lib/skillProfile";
+import { awardAchievement } from "@/lib/gamification/awardAchievement";
 
 export async function submitExerciseAnswer(exerciseId: string, given: string) {
   const user = await requireUser();
@@ -130,15 +131,7 @@ export async function submitTranslation(exerciseId: string, given: string) {
 export async function completeLesson() {
   const user = await requireUser();
   await recordActivity(user.id, "LESSON_COMPLETE");
-
-  const achievement = await prisma.achievement.findUnique({ where: { code: "first_lesson_complete" } });
-  if (achievement) {
-    await prisma.userAchievement.upsert({
-      where: { userId_achievementId: { userId: user.id, achievementId: achievement.id } },
-      update: {},
-      create: { userId: user.id, achievementId: achievement.id },
-    });
-  }
+  await awardAchievement(user.id, "first_lesson_complete");
 }
 
 interface HolisticFeedback {

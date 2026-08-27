@@ -67,6 +67,22 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
           </Card>
         )}
 
+        {words.some((w) => w.collocations.length > 0) && (
+          <Card className="mb-4">
+            <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brass">Também pode dizer</p>
+            <ul className="flex flex-col gap-2">
+              {words
+                .filter((w) => w.collocations.length > 0)
+                .map((w) => (
+                  <li key={w.id} className="text-sm">
+                    <span className="font-semibold">{w.headword}</span>
+                    <span className="text-inkNeutral/60 dark:text-linen/60"> → {w.collocations.join(", ")}</span>
+                  </li>
+                ))}
+            </ul>
+          </Card>
+        )}
+
         <Link href="/home">
           <Button>Voltar à Home</Button>
         </Link>

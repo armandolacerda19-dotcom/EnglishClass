@@ -57,6 +57,24 @@ export default async function PracticePage() {
         </Link>
       </div>
 
+      <Link href="/practice/weekly-test" className="mb-3 block">
+        <Card className="hover:border-brass">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Diagnóstico Semanal</p>
+          <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+            Teste rápido por pilar — mostra o que corrigir esta semana
+          </p>
+        </Card>
+      </Link>
+
+      <Link href="/speak" className="mb-3 block">
+        <Card className="hover:border-verdigris">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Falar com o Tutor</p>
+          <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+            Conversa livre, entrevista de emprego, ou o Coach de sempre
+          </p>
+        </Card>
+      </Link>
+
       {errors.length === 0 ? (
         <Card>
           <p className="text-sm text-inkNeutral/70 dark:text-linen/70">

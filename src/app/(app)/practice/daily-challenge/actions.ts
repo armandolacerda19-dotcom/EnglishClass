@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { scheduleReview } from "@/lib/srs/schedule";
 import { updateSkillScore } from "@/lib/skillProfile";
+import { awardAchievement } from "@/lib/gamification/awardAchievement";
 
 function startOfDay(d: Date) {
   const x = new Date(d);
@@ -44,6 +45,7 @@ export async function completeDailyChallenge(score: number, total: number) {
     },
   });
   await recordActivity(user.id, "DAILY_CHALLENGE");
+  await awardAchievement(user.id, "first_daily_challenge");
 
   return { alreadyDoneToday: false };
 }

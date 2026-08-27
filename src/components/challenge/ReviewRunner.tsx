@@ -80,7 +80,12 @@ export function ReviewRunner({ reviews }: ReviewRunnerProps) {
                 <p className="mb-1 text-sm font-semibold">{item.translationPt}</p>
                 <p className="mb-2 text-xs text-inkNeutral/60 dark:text-linen/60">{item.definitionEn}</p>
                 {item.exampleSentences[0] && (
-                  <p className="text-sm italic">"{item.exampleSentences[0]}"</p>
+                  <p className="mb-2 text-sm italic">"{item.exampleSentences[0]}"</p>
+                )}
+                {item.collocations.length > 0 && (
+                  <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+                    Também pode dizer: {item.collocations.join(", ")}
+                  </p>
                 )}
               </div>
             )}

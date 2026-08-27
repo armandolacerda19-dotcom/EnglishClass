@@ -30,6 +30,7 @@ export interface DailyChallengeWord {
   translationPt: string;
   definitionEn: string;
   exampleSentences: string[];
+  collocations: string[]; // formas relacionadas/collocations — já no schema, antes nunca mostradas
   options: string[]; // 4 opções de tradução (incl. a correta), já baralhadas
 }
 
@@ -54,6 +55,7 @@ export async function getDailyChallenge(date: Date = new Date()): Promise<DailyC
       translationPt: word.translationPt,
       definitionEn: word.definitionEn,
       exampleSentences: word.exampleSentences,
+      collocations: word.collocations,
       options,
     };
   });

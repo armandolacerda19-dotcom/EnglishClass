@@ -1,4 +1,11 @@
 import { prisma } from "@/lib/prisma";
+import { awardAchievement } from "./awardAchievement";
+
+const STREAK_ACHIEVEMENTS: Record<number, string> = {
+  3: "streak_3",
+  7: "streak_7",
+  30: "streak_30",
+};
 
 const XP = {
   EXERCISE_CORRECT: 10,
@@ -10,6 +17,7 @@ const XP = {
   DAILY_CHALLENGE: 20,
   MICRO_CHALLENGE: 8,
   REVIEW: 5,
+  WEEKLY_TEST: 40,
 } as const;
 
 export type ActivityKind = keyof typeof XP;
@@ -52,4 +60,7 @@ export async function recordActivity(userId: string, kind: ActivityKind) {
       lastActivityAt: now,
     },
   });
+
+  const streakCode = STREAK_ACHIEVEMENTS[nextStreak];
+  if (streakCode) await awardAchievement(userId, streakCode);
 }

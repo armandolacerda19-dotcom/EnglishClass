@@ -2,16 +2,26 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { TUTOR_PERSONALITIES, type TutorPersonalityKey } from "@/lib/ai/personalities";
 
 interface Message {
   role: "user" | "assistant";
   text: string;
 }
 
-export function TutorChat() {
+const GREETINGS: Record<TutorPersonalityKey, string> = {
+  coach: "Hi! I'm your Coach. What would you like to practise today?",
+  professor: "Good day. What grammar point would you like me to explain?",
+  conversation_partner: "Hey! What's on your mind today? Let's just chat.",
+  examiner: "We'll begin the assessment when you're ready.",
+  interviewer: "Thanks for coming in. Let's start — can you tell me a bit about yourself?",
+  native_friend: "Heeey! What's up? How's your day going?",
+};
+
+export function TutorChat({ personality = "coach" }: { personality?: TutorPersonalityKey }) {
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", text: "Hi! I'm your Coach. What would you like to practise today?" },
+    { role: "assistant", text: GREETINGS[personality] },
   ]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -26,7 +36,7 @@ export function TutorChat() {
     const res = await fetch("/api/ai/tutor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ conversationId, message: userMessage.text }),
+      body: JSON.stringify({ conversationId, message: userMessage.text, personality }),
     });
     const data = await res.json();
     setConversationId(data.conversationId);
@@ -36,7 +46,9 @@ export function TutorChat() {
 
   return (
     <main className="mx-auto flex h-screen max-w-lg flex-col px-6 py-8">
-      <p className="mb-4 font-mono text-xs uppercase tracking-widest text-verdigris">The Coach</p>
+      <p className="mb-4 font-mono text-xs uppercase tracking-widest text-verdigris">
+        {TUTOR_PERSONALITIES[personality].label}
+      </p>
 
       <div className="flex-1 space-y-3 overflow-y-auto">
         {messages.map((m, i) => (

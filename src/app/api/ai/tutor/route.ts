@@ -3,11 +3,25 @@ import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { getGeminiModel } from "@/lib/ai/gemini";
 import { buildTutorSystemPrompt } from "@/lib/ai/buildTutorPrompt";
+import { TUTOR_PERSONALITIES, type TutorPersonalityKey } from "@/lib/ai/personalities";
 
-// AI Tutor v1 — MVP1 expõe apenas a personalidade "coach" (docs/10-scope-mvp1.md).
+// AI Tutor v1 — desde 2026-08-26 expõe coach/conversation_partner/interviewer/native_friend
+// (ver docs/decisions.md e src/lib/ai/personalities.ts para o porquê de professor/examiner
+// continuarem fechados).
 export async function POST(req: NextRequest) {
   const user = await requireUser();
-  const { conversationId, message } = (await req.json()) as { conversationId: string | null; message: string };
+  const body = (await req.json()) as {
+    conversationId: string | null;
+    message: string;
+    personality?: string;
+  };
+  const { conversationId, message } = body;
+
+  const requestedPersonality = body.personality as TutorPersonalityKey | undefined;
+  const personality: TutorPersonalityKey =
+    requestedPersonality && TUTOR_PERSONALITIES[requestedPersonality]?.availableInMvp1
+      ? requestedPersonality
+      : "coach";
 
   const [profile, recentErrors] = await Promise.all([
     prisma.learningProfile.findUniqueOrThrow({ where: { userId: user.id } }),
@@ -20,7 +34,7 @@ export async function POST(req: NextRequest) {
 
   const history = (conversation?.messagesJson as { role: "user" | "assistant"; text: string }[]) ?? [];
 
-  const systemPrompt = buildTutorSystemPrompt("coach", {
+  const systemPrompt = buildTutorSystemPrompt(personality, {
     cefrLevel: profile.currentLevel,
     cefrSublevel: profile.currentSublevel,
     goal: profile.goal,
@@ -55,7 +69,7 @@ export async function POST(req: NextRequest) {
     });
   } else {
     conversation = await prisma.aIConversation.create({
-      data: { userId: user.id, personality: "COACH", messagesJson: newHistory },
+      data: { userId: user.id, personality: personality.toUpperCase() as any, messagesJson: newHistory },
     });
   }
 

@@ -11,6 +11,12 @@ import { getCheckpointSummary } from "@/lib/checkpoints";
 // completo da conquista aparece por baixo do carimbo.
 const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_lesson_complete: "1ª",
+  first_daily_challenge: "DIA",
+  first_review: "REV",
+  streak_3: "3d",
+  streak_7: "7d",
+  streak_30: "30d",
+  first_weekly_test: "DIAG",
 };
 
 export default async function ProgressPage() {

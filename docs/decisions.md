@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — 5 updates de maior impacto (continuação da lista priorizada)
+
+Pedido do utilizador: "pode continuar com mais updates. faça no mínimo 5 updates" — continuação direta da lista acordada na crítica de produto. Implementado:
+
+1. **Diagnóstico Semanal** (`src/lib/weeklyTest.ts`, `/practice/weekly-test`) — prioridade #3 acordada ("testes que ajudem a corrigir no futuro"). Reutiliza os `Exercise` já seedados (só os pilares com distratores reais: GRAMMAR/VOCABULARY/LISTENING/READING — TRANSLATION/SPEAKING/WRITING dependem de correção livre por IA, fora de scope de um teste de escolha múltipla). Seleção determinística por semana ISO. 1x por semana, cria `AssessmentResult` tipo `WEEKLY`, atualiza o octógono por pilar, mostra explicitamente "o que corrigir esta semana".
+2. **AI Tutor: mais personalidades** (`src/lib/ai/personalities.ts`, `/speak`) — prioridade #4 acordada ("inglês profissional cedo"). Desbloqueado `interviewer` (entrevista de emprego), `conversation_partner` (conversa livre) e `native_friend`; a infraestrutura (`buildTutorSystemPrompt`, enum `TutorPersonality`) já existia no schema/Fase 0 mas só "coach" estava exposto na UI — trabalho principalmente de wiring, não de construção de raiz. `professor`/`examiner` continuam fechados (ver comentário no ficheiro).
+3. **Collocations deixam de estar escondidas** — o campo `VocabularyItem.collocations` já vinha populado pelo seed (`related_forms` no JSON de conteúdo) mas nunca era mostrado em lado nenhum da UI. Agora aparece em "Também pode dizer" no fim do Desafio Diário e na revelação da Revisão SM-2.
+4. **Mais conquistas de gamificação** — só existia `first_lesson_complete`. Adicionado `first_daily_challenge`, `first_review`, `first_weekly_test`, `streak_3`, `streak_7`, `streak_30` (`src/lib/gamification/awardAchievement.ts`, chamado a partir de `recordActivity` para os marcos de streak).
+5. **Descoberta e ligação de entry points** — Diagnóstico Semanal e Falar com o Tutor não tinham nenhum link a partir de Home/Practice; adicionados às grelhas existentes em ambas as páginas (Standard e Intensive).
+
 ## 2026-08-26 — Octógono de competência deixa de ficar congelado
 
 Descoberto ao continuar a lista de melhorias por impacto (pedido do utilizador: "continue com os updates que têm mais impacto"): os 8 scores de `LearningProfile` (`grammarScore`, `vocabularyScore`, etc., usados no `SkillOctagon` e em "Áreas a reforçar") só eram escritos uma vez, no placement test (`src/app/api/placement/submit/route.ts`) — nenhuma lição, exercício, writing, speaking, tradução ou revisão os voltava a tocar. Isto contradiz diretamente a proposta de valor central ("sabe o que precisa de aprender, porque está a errar") logo a seguir ao onboarding.

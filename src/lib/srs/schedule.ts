@@ -63,6 +63,7 @@ export interface DueVocabReview {
   translationPt: string;
   definitionEn: string;
   exampleSentences: string[];
+  collocations: string[];
 }
 
 export interface DueErrorReview {
@@ -106,6 +107,7 @@ export async function getDueReviews(userId: string, limit = 15): Promise<DueRevi
         translationPt: word.translationPt,
         definitionEn: word.definitionEn,
         exampleSentences: word.exampleSentences,
+        collocations: word.collocations,
       });
     } else if (item.itemType === "error" && item.userError) {
       reviews.push({

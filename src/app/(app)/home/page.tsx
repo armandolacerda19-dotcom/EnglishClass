@@ -70,6 +70,18 @@ export default async function HomePage() {
             <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Momentos do dia</p>
           </Card>
         </Link>
+        <Link href="/practice/weekly-test">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Diagnóstico Semanal</p>
+            <p className="text-xs text-inkNeutral/70 dark:text-linen/70">O que corrigir esta semana</p>
+          </Card>
+        </Link>
+        <Link href="/speak">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Falar com o Tutor</p>
+            <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Coach, entrevista, conversa livre</p>
+          </Card>
+        </Link>
       </div>
 
       <Card className="mb-4">
@@ -155,6 +167,18 @@ function IntensiveHome({
           <Card className="hover:border-verdigris">
             <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Micro-Desafios</p>
             <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Momentos do dia</p>
+          </Card>
+        </Link>
+        <Link href="/practice/weekly-test">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Diagnóstico Semanal</p>
+            <p className="text-xs text-inkNeutral/70 dark:text-linen/70">O que corrigir esta semana</p>
+          </Card>
+        </Link>
+        <Link href="/speak">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Falar com o Tutor</p>
+            <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Coach, entrevista, conversa livre</p>
           </Card>
         </Link>
       </div>
