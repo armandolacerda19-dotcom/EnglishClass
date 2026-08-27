@@ -60,7 +60,7 @@ export function OnboardingWizard() {
   }
 
   return (
-    <div className="mx-auto flex max-w-lg flex-col gap-6 px-6 py-16">
+    <div className="mx-auto flex max-w-lg lg:max-w-2xl flex-col gap-6 px-6 py-16">
       <p className="font-mono text-xs uppercase tracking-widest text-verdigris">Passo {step + 1} de 4</p>
 
       {step === 0 && (

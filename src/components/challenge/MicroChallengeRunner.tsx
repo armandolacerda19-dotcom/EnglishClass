@@ -15,7 +15,7 @@ export function MicroChallengeRunner({ challenge }: { challenge: MicroChallenge 
 
   if (done) {
     return (
-      <main className="mx-auto flex max-w-lg flex-col items-center gap-4 px-6 py-16 text-center">
+      <main className="mx-auto flex max-w-lg lg:max-w-2xl flex-col items-center gap-4 px-6 py-16 text-center">
         <StampBadge code="✓" tone="verdigris" />
         <h1 className="font-display text-xl">Boa! Micro-desafio concluído.</h1>
         <Link href="/practice/micro-challenges">
@@ -29,7 +29,7 @@ export function MicroChallengeRunner({ challenge }: { challenge: MicroChallenge 
   }
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">{challenge.title}</p>
       <p className="mb-6 text-sm text-inkNeutral/70 dark:text-linen/70">{challenge.subtitle}</p>
 

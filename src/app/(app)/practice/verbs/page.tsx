@@ -11,7 +11,7 @@ export default async function VerbsPage() {
   const verb = getVerbOfTheDay();
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <h1 className="mb-2 font-display text-2xl">Verbos Irregulares</h1>
       <p className="mb-6 text-sm text-inkNeutral/70 dark:text-linen/70">
         Um verbo por dia para memorizar, e a tabela completa para consultar sempre que precisar.

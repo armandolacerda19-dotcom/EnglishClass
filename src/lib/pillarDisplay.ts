@@ -9,6 +9,13 @@ export const PILLAR_LABEL: Record<string, string> = {
   LISTENING: "compreensão oral",
   READING: "leitura",
   TRANSLATION: "tradução",
+  // Adicionados para cobrir os 8 pilares de LearningProfile.weakAreas — antes só
+  // tinha os 5 do Diagnóstico Semanal, por isso "Áreas a reforçar" na Home/Progress
+  // mostrava "speaking"/"pronunciation"/"writing" em inglês minúsculo sempre que
+  // um destes três era a área mais fraca. Ver docs/decisions.md, auditoria 2026-08-26.
+  SPEAKING: "fala",
+  PRONUNCIATION: "pronúncia",
+  WRITING: "escrita",
 };
 
 interface PillarAccent {

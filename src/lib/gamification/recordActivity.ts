@@ -35,33 +35,48 @@ function isNextDay(previous: Date, now: Date) {
 
 // Atualiza XP e streak — gamificação adulta, nunca punitiva (secção 9 do master
 // prompt): uma pausa reseta o streak sem penalização extra, "welcome back" silencioso.
+//
+// Tudo corre dentro de uma transação com `SELECT ... FOR UPDATE`: isto bloqueia
+// a linha do utilizador até ao commit, eliminando a corrida ler-modificar-escrever
+// que existia antes (duas respostas quase simultâneas liam o mesmo currentStreak
+// e uma delas "vencia", perdendo o incremento da outra — no pior caso, apagava
+// um streak de semanas). A lógica de datas mantém-se exatamente igual à anterior,
+// só passou a correr sob bloqueio. Ver docs/decisions.md, auditoria 2026-08-26.
 export async function recordActivity(userId: string, kind: ActivityKind) {
-  const profile = await prisma.learningProfile.findUnique({ where: { userId } });
-  if (!profile) return;
+  const nextStreak = await prisma.$transaction(async (tx) => {
+    const rows = await tx.$queryRaw<
+      { currentStreak: number; longestStreak: number; lastActivityAt: Date | null }[]
+    >`SELECT "currentStreak", "longestStreak", "lastActivityAt" FROM "LearningProfile" WHERE "userId" = ${userId} FOR UPDATE`;
+    const profile = rows[0];
+    if (!profile) return null;
 
-  const now = new Date();
-  let nextStreak = profile.currentStreak;
+    const now = new Date();
+    let streak = profile.currentStreak;
 
-  if (!profile.lastActivityAt) {
-    nextStreak = 1;
-  } else if (isSameDay(profile.lastActivityAt, now)) {
-    nextStreak = profile.currentStreak || 1;
-  } else if (isNextDay(profile.lastActivityAt, now)) {
-    nextStreak = profile.currentStreak + 1;
-  } else {
-    nextStreak = 1;
-  }
+    if (!profile.lastActivityAt) {
+      streak = 1;
+    } else if (isSameDay(profile.lastActivityAt, now)) {
+      streak = profile.currentStreak || 1;
+    } else if (isNextDay(profile.lastActivityAt, now)) {
+      streak = profile.currentStreak + 1;
+    } else {
+      streak = 1;
+    }
 
-  await prisma.learningProfile.update({
-    where: { userId },
-    data: {
-      xp: { increment: XP[kind] },
-      currentStreak: nextStreak,
-      longestStreak: Math.max(profile.longestStreak, nextStreak),
-      lastActivityAt: now,
-    },
+    await tx.learningProfile.update({
+      where: { userId },
+      data: {
+        xp: { increment: XP[kind] },
+        currentStreak: streak,
+        longestStreak: Math.max(profile.longestStreak, streak),
+        lastActivityAt: now,
+      },
+    });
+
+    return streak;
   });
 
+  if (nextStreak === null) return;
   const streakCode = STREAK_ACHIEVEMENTS[nextStreak];
   if (streakCode) await awardAchievement(userId, streakCode);
 }

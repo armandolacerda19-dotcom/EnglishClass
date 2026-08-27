@@ -52,7 +52,7 @@ export function PlacementTestRunner() {
   }
 
   return (
-    <div className="mx-auto flex max-w-lg flex-col gap-6 px-6 py-16">
+    <div className="mx-auto flex max-w-lg lg:max-w-2xl flex-col gap-6 px-6 py-16">
       <p className="font-mono text-xs uppercase tracking-widest text-verdigris">
         Pergunta {index + 1} de {PLACEMENT_QUESTIONS.length} · {question.pillar}
       </p>

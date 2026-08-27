@@ -69,7 +69,7 @@ export function TutorChat({
   }
 
   return (
-    <main className="mx-auto flex h-screen max-w-lg flex-col px-6 py-8">
+    <main className="mx-auto flex h-screen max-w-lg lg:max-w-2xl flex-col px-6 py-8">
       <p className="mb-4 font-mono text-xs uppercase tracking-widest text-verdigris">
         {TUTOR_PERSONALITIES[personality].label}
       </p>

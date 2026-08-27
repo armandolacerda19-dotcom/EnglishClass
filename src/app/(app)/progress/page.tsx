@@ -48,7 +48,7 @@ export default async function ProgressPage() {
   };
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <div className="mb-6 flex items-center gap-3">
         <h1 className="font-display text-2xl">O seu progresso</h1>
         <CefrLevelTag code={formatLevelCode(learningProfile)} />

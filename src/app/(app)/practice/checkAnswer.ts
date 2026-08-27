@@ -14,12 +14,12 @@ export interface CheckFreeTextResult {
 // Sheets de tema. Usa correção tolerante por IA em vez de igualdade exata — ver
 // src/lib/ai/gradeAnswer.ts e docs/decisions.md.
 export async function checkFreeTextAnswer(exerciseId: string, given: string): Promise<CheckFreeTextResult> {
-  await requireUser();
+  const user = await requireUser();
 
   const exercise = await prisma.exercise.findUniqueOrThrow({ where: { id: exerciseId } });
   const content = exercise.contentJson as any;
   const referenceAnswers = (content.correct_answer as string[]) ?? [];
-  const isCorrect = await gradeFreeTextAnswer(content.prompt as string, referenceAnswers, given);
+  const isCorrect = await gradeFreeTextAnswer(content.prompt as string, referenceAnswers, given, user.id);
 
   return { isCorrect, referenceAnswer: referenceAnswers[0] ?? "" };
 }

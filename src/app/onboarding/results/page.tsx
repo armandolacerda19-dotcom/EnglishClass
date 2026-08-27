@@ -17,7 +17,7 @@ export default async function OnboardingResultsPage() {
   const skillProfile = (latestTest?.skillProfileJson as Record<string, number>) ?? {};
 
   return (
-    <main className="mx-auto flex max-w-lg flex-col items-center gap-6 px-6 py-16 text-center">
+    <main className="mx-auto flex max-w-lg lg:max-w-2xl flex-col items-center gap-6 px-6 py-16 text-center">
       <p className="font-mono text-xs uppercase tracking-widest text-verdigris">Resultado do placement test</p>
       <CefrLevelTag code={formatLevelCode(profile)} />
       <h1 className="font-display text-2xl">O seu ponto de partida está definido.</h1>

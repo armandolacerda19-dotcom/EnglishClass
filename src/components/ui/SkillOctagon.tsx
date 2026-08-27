@@ -1,15 +1,21 @@
 // Única visualização tipo radar do produto — justificada porque a estrutura de dados é
 // literalmente óctupla (8 pilares), não decorativa. Ver docs/09-sistema-design.md.
 
+// Traduzido para português — estava em inglês numa app inteiramente em
+// português europeu. Todas as traduções escolhidas são iguais ou mais curtas
+// do que o original em inglês (a mais longa antes era "Pronunciation", 13
+// caracteres; "Pronúncia" tem 9), por isso a geometria do SVG abaixo não
+// precisou de ser alterada — só o fontSize subiu ligeiramente (9→10) para
+// melhorar a legibilidade. Ver docs/decisions.md, auditoria 2026-08-26.
 const PILLAR_LABELS: Record<string, string> = {
-  grammar: "Grammar",
-  vocabulary: "Vocabulary",
-  listening: "Listening",
-  speaking: "Speaking",
-  pronunciation: "Pronunciation",
-  reading: "Reading",
-  writing: "Writing",
-  translation: "Translation",
+  grammar: "Gramática",
+  vocabulary: "Vocabulário",
+  listening: "Audição",
+  speaking: "Fala",
+  pronunciation: "Pronúncia",
+  reading: "Leitura",
+  writing: "Escrita",
+  translation: "Tradução",
 };
 
 const ORDER = ["grammar", "vocabulary", "listening", "speaking", "pronunciation", "reading", "writing", "translation"];
@@ -49,7 +55,7 @@ export function SkillOctagon({ scores }: { scores: Record<string, number> }) {
       ))}
       <polygon points={polygon} fill="#3E7C6B" fillOpacity={0.25} stroke="#3E7C6B" strokeWidth={2} />
       {points.map((p) => (
-        <text key={p.pillar} x={p.labelX} y={p.labelY} textAnchor="middle" fontSize={9} className="fill-current">
+        <text key={p.pillar} x={p.labelX} y={p.labelY} textAnchor="middle" fontSize={10} className="fill-current">
           {PILLAR_LABELS[p.pillar]}
         </text>
       ))}

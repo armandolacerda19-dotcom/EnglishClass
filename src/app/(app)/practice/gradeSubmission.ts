@@ -17,7 +17,7 @@ export interface SubmittedAnswer {
   given: string;
 }
 
-export async function gradeAnswersOnServer(answers: SubmittedAnswer[]): Promise<Map<string, boolean>> {
+export async function gradeAnswersOnServer(answers: SubmittedAnswer[], userId: string): Promise<Map<string, boolean>> {
   const results = new Map<string, boolean>();
   if (answers.length === 0) return results;
 
@@ -52,7 +52,7 @@ export async function gradeAnswersOnServer(answers: SubmittedAnswer[]): Promise<
       continue;
     }
 
-    const isCorrect = await gradeFreeTextAnswer(content.prompt as string, correctAnswers, answer.given);
+    const isCorrect = await gradeFreeTextAnswer(content.prompt as string, correctAnswers, answer.given, userId);
     results.set(answer.exerciseId, isCorrect);
   }
 

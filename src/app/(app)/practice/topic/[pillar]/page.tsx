@@ -21,7 +21,7 @@ export default async function TopicPracticePage({ params }: { params: { pillar: 
 
   if (questions.length === 0) {
     return (
-      <main className="mx-auto max-w-lg px-6 py-10">
+      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
         <h1 className="mb-4 font-display text-2xl">Sem exercícios ainda</h1>
         <Card>
           <p className="text-sm text-inkNeutral/70 dark:text-linen/70">

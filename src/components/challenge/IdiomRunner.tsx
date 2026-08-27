@@ -21,7 +21,7 @@ export function IdiomRunner({ idiom, options }: { idiom: Idiom; options: string[
   }
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <p className="mb-1 font-mono text-xs uppercase tracking-widest text-brass">Idioma do Dia</p>
       <p className="mb-6 text-sm text-inkNeutral/70 dark:text-linen/70">Um phrasal verb ou expressão idiomática nova a cada dia.</p>
 

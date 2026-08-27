@@ -18,12 +18,18 @@ const PILLAR_FIELDS = [
   "translationScore",
 ] as const;
 
+// Traduzido para português: ficava em inglês bruto no certificado público
+// /verify/[code] e em /progress, na única app que promete 100% português
+// europeu. Certificados já emitidos guardam o texto antigo em inglês — é um
+// registo histórico imutável, não é retroativamente reescrito, o que é o
+// comportamento correto para um documento já assinado/publicado. Ver
+// docs/decisions.md, auditoria 2026-08-26.
 function classify(average: number): string {
-  if (average < 50) return "Not ready";
-  if (average < 65) return "Developing";
-  if (average < 80) return "Competent";
-  if (average < 90) return "Strong";
-  return "Exceptional";
+  if (average < 50) return "Ainda não pronto";
+  if (average < 65) return "Em desenvolvimento";
+  if (average < 80) return "Competente";
+  if (average < 90) return "Forte";
+  return "Excecional";
 }
 
 // Chamado após um Diagnóstico Semanal — se a média dos 8 pilares justificar

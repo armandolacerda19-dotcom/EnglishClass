@@ -47,7 +47,7 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
 
   if (done) {
     return (
-      <main className="mx-auto max-w-lg px-6 py-10">
+      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
           <StampBadge code={`${score}/${words.length}`} tone="brass" />
           <h1 className="font-display text-2xl">Desafio de hoje concluído!</h1>
@@ -96,7 +96,7 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
   }
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <p className="mb-1 font-mono text-xs uppercase tracking-widest text-brass">
         Desafio Diário · {index + 1} de {words.length}
       </p>

@@ -57,11 +57,18 @@ export function scorePlacementTest(answers: PlacementAnswer[]): PlacementResult 
   return { skillProfile, weakAreas, resultLevel: level, resultSublevel: sublevel };
 }
 
+// Mapeamento simples 0-100 → nível/subnível, cobrindo os 5 subníveis com
+// conteúdo seedado (A1.1 a A2.2 — ver content/curriculum/levels.json). Antes
+// disto, qualquer resultado acima de A1 ficava preso em A1.3 mesmo já existindo
+// currículo de A2: um utilizador forte era sempre mal-colocado abaixo do seu
+// nível real. Se o currículo crescer para B1+, estes cortes devem ser revistos
+// e o LEVEL_ORDER acima já suporta os níveis seguintes. Ver docs/decisions.md,
+// auditoria 2026-08-26.
 function averageToLevel(average: number): { level: (typeof LEVEL_ORDER)[number]; sublevel: number } {
-  // Mapeamento simples 0-100 → nível/subnível. MVP1 só tem conteúdo até A1 (docs/10-scope-mvp1.md),
-  // por isso qualquer resultado acima de A1 fica marcado como A1.3 até A2+ existir no currículo.
   if (average < 15) return { level: "PRE_A1", sublevel: 1 };
-  if (average < 40) return { level: "A1", sublevel: 1 };
-  if (average < 65) return { level: "A1", sublevel: 2 };
-  return { level: "A1", sublevel: 3 };
+  if (average < 32) return { level: "A1", sublevel: 1 };
+  if (average < 48) return { level: "A1", sublevel: 2 };
+  if (average < 62) return { level: "A1", sublevel: 3 };
+  if (average < 80) return { level: "A2", sublevel: 1 };
+  return { level: "A2", sublevel: 2 };
 }

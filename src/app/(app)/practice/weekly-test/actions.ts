@@ -9,6 +9,7 @@ import { updateSkillScore } from "@/lib/skillProfile";
 import { logEvent } from "@/lib/analytics";
 import { maybeIssueCertificate } from "@/lib/certificate";
 import { gradeAnswersOnServer } from "@/app/(app)/practice/gradeSubmission";
+import { PILLAR_LABEL } from "@/lib/pillarDisplay";
 
 const VALID_PILLARS = new Set<string>([
   "GRAMMAR",
@@ -59,7 +60,8 @@ export async function submitWeeklyTest(answers: WeeklyTestAnswer[]): Promise<Wee
 
   // Correção autoritativa no servidor — ver gradeSubmission.ts.
   const graded = await gradeAnswersOnServer(
-    safeAnswers.map((a) => ({ exerciseId: a.exerciseId, given: a.given }))
+    safeAnswers.map((a) => ({ exerciseId: a.exerciseId, given: a.given })),
+    user.id
   );
 
   const byPillar = new Map<Pillar, { correct: number; total: number }>();
@@ -99,7 +101,9 @@ export async function submitWeeklyTest(answers: WeeklyTestAnswer[]): Promise<Wee
   return {
     overallScore,
     breakdown,
-    weakAreas: updatedProfile?.weakAreas.map((p) => p.toLowerCase()) ?? [],
+    // Traduzido: antes disto ia "grammar"/"speaking" em inglês minúsculo direto
+    // para o ecrã de resultado, na única app que promete estar 100% em português.
+    weakAreas: updatedProfile?.weakAreas.map((p) => PILLAR_LABEL[p] ?? p.toLowerCase()) ?? [],
     newCertificateCode: certificate?.verificationCode ?? null,
   };
 }

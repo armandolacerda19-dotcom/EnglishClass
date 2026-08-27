@@ -1,4 +1,5 @@
 import { getGeminiModel } from "@/lib/ai/gemini";
+import { checkAiRateLimit } from "@/lib/ai/rateLimit";
 
 // Correção tolerante para respostas de texto livre (sobretudo tradução) — o
 // exercício só tem UMA frase de referência, mas há muitas traduções válidas em
@@ -10,13 +11,19 @@ import { getGeminiModel } from "@/lib/ai/gemini";
 export async function gradeFreeTextAnswer(
   prompt: string,
   referenceAnswers: string[],
-  given: string
+  given: string,
+  userId: string
 ): Promise<boolean> {
   if (!given.trim()) return false;
 
   const exactMatch = referenceAnswers.some((r) => r.trim().toLowerCase() === given.trim().toLowerCase());
   if (exactMatch) return true;
   if (referenceAnswers.length === 0) return false;
+
+  // Sem quota disponível: cai para igualdade exata em vez de chamar o Gemini.
+  // Mais restritivo do que o ideal (recusa fraseados alternativos válidos), mas
+  // nunca bloqueia o utilizador — só o correção fica temporariamente mais rígida.
+  if (!(await checkAiRateLimit(userId))) return exactMatch;
 
   try {
     const model = getGeminiModel(

@@ -5,7 +5,7 @@ import Link from "next/link";
 // sem navegação. Ver docs/decisions.md 2026-08-26 (auditoria).
 export default function NotFound() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-lg flex-col items-center justify-center gap-4 px-6 text-center">
+    <main className="mx-auto flex min-h-screen max-w-lg lg:max-w-2xl flex-col items-center justify-center gap-4 px-6 text-center">
       <p className="font-mono text-xs uppercase tracking-widest text-verdigris">Erro 404</p>
       <h1 className="font-display text-2xl">Não encontrámos esta página</h1>
       <p className="text-sm text-inkNeutral/70 dark:text-linen/70">

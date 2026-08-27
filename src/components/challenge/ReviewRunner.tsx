@@ -42,7 +42,7 @@ export function ReviewRunner({ reviews }: ReviewRunnerProps) {
 
   if (done) {
     return (
-      <main className="mx-auto max-w-lg px-6 py-10">
+      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
           <StampBadge code={`${reviewedCount}`} tone="verdigris" />
           <h1 className="font-display text-2xl">Revisão concluída!</h1>
@@ -59,7 +59,7 @@ export function ReviewRunner({ reviews }: ReviewRunnerProps) {
   }
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">
         Revisão · {index + 1} de {reviews.length}
       </p>

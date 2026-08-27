@@ -9,6 +9,7 @@ import { formatLevelCode } from "@/lib/level";
 import { StreakXp } from "@/components/ui/StreakXp";
 import { getNextLessonForUser } from "@/lib/lessons";
 import { getDueReviewCount } from "@/lib/srs/schedule";
+import { PILLAR_LABEL } from "@/lib/pillarDisplay";
 
 export default async function HomePage() {
   const { user, learningProfile } = await requireUserWithProfile();
@@ -32,7 +33,7 @@ export default async function HomePage() {
   const nextLesson = await getNextLessonForUser(user.id);
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <p className="text-sm text-inkNeutral/70 dark:text-linen/70">Olá, {user.name.split(" ")[0]}.</p>
       <div className="mb-6 mt-1 flex items-center gap-3">
         <h1 className="font-display text-2xl">O que vamos praticar hoje?</h1>
@@ -108,7 +109,7 @@ export default async function HomePage() {
           <p className="mb-2 font-mono text-xs uppercase tracking-wide text-clay">Áreas a reforçar</p>
           <ul className="list-inside list-disc text-sm">
             {learningProfile.weakAreas.map((area) => (
-              <li key={area}>{area.toLowerCase()}</li>
+              <li key={area}>{PILLAR_LABEL[area] ?? area.toLowerCase()}</li>
             ))}
           </ul>
         </Card>
@@ -127,25 +128,37 @@ function IntensiveHome({
   dueReviews,
 }: {
   levelCode: string;
-  plan: { currentDay: number; totalDays: number; weeklyThemesJson: unknown } | null;
+  plan: { startDate: Date; totalDays: number; weeklyThemesJson: unknown } | null;
   name: string;
   weakAreas: string[];
   xp: number;
   streak: number;
   dueReviews: number;
 }) {
-  // `?? 1` no totalDays dava currentDay/totalDays = 1/1 = barra a 100% no dia 1
-  // quando o plano ainda não existe. 30 é o mesmo default usado ao gerar o plano
-  // em api/placement/submit quando não há data-alvo definida.
-  const currentDay = plan?.currentDay ?? 1;
+  // `currentDay` nunca era incrementado em lado nenhum — ficava preso em "Day 1"
+  // para sempre. Em vez de tentar manter um contador (exigiria um job agendado,
+  // que a app não tem), calcula-se o dia a partir de `startDate`: dias de
+  // calendário decorridos, não dias de uso — o que é como o plano é descrito ao
+  // utilizador ("dia X de Y do plano"), não um contador de sessões. Ver
+  // docs/decisions.md, auditoria 2026-08-26.
   const totalDays = plan?.totalDays ?? 30;
+  const elapsedDays = plan
+    ? Math.floor((Date.now() - plan.startDate.getTime()) / 86_400_000) + 1
+    : 1;
+  const currentDay = Math.min(totalDays, Math.max(1, elapsedDays));
+
+  const weeklyThemes = Array.isArray((plan?.weeklyThemesJson as any)?.weeks)
+    ? ((plan!.weeklyThemesJson as any).weeks as { week: number; focus: string }[])
+    : [];
+  const currentWeek = Math.max(1, Math.ceil(currentDay / 7));
+  const weekFocus = weeklyThemes.find((w) => w.week === currentWeek)?.focus;
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <p className="text-sm text-inkNeutral/70 dark:text-linen/70">Olá, {name.split(" ")[0]}.</p>
       <div className="mb-6 mt-1 flex items-center gap-3">
         <h1 className="font-display text-2xl">
-          Day {currentDay}/{totalDays}
+          Dia {currentDay}/{totalDays}
         </h1>
         <CefrLevelTag code={code} />
       </div>
@@ -197,12 +210,17 @@ function IntensiveHome({
 
       <Card className="mb-4">
         <ProgressBar value={(currentDay / totalDays) * 100} label="Progresso do plano intensivo" />
+        {weekFocus && (
+          <p className="mt-3 text-sm text-inkNeutral/70 dark:text-linen/70">
+            Foco desta semana: {weekFocus}
+          </p>
+        )}
       </Card>
 
       {weakAreas.length > 0 && (
         <Card>
           <p className="mb-2 font-mono text-xs uppercase tracking-wide text-clay">Prioridade de hoje</p>
-          <p className="text-sm">{weakAreas[0]?.toLowerCase()}</p>
+          <p className="text-sm">{weakAreas[0] ? PILLAR_LABEL[weakAreas[0]] ?? weakAreas[0].toLowerCase() : ""}</p>
         </Card>
       )}
     </main>

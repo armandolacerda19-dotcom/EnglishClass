@@ -42,7 +42,7 @@ export async function submitTopicPractice(pillar: Pillar, answers: TopicPractice
     .filter((a) => a && typeof a.exerciseId === "string" && typeof a.given === "string");
 
   // Correção autoritativa no servidor — ver gradeSubmission.ts.
-  const graded = await gradeAnswersOnServer(safeAnswers);
+  const graded = await gradeAnswersOnServer(safeAnswers, user.id);
   const correct = safeAnswers.filter((a) => graded.get(a.exerciseId)).length;
 
   // Uma única chamada agregada em vez de uma por pergunta: antes disto, uma

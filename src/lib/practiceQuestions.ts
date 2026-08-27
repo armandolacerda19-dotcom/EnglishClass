@@ -43,8 +43,25 @@ export async function buildQuestionSet(
 ): Promise<PracticeQuestion[]> {
   const questions: PracticeQuestion[] = [];
 
+  // Uma query para todos os pilares, não uma por pilar — antes disto, o
+  // Diagnóstico Semanal (5 pilares) fazia 5 idas sequenciais à base de dados
+  // só para montar a lista de perguntas. `qaApproved: true` também passou a
+  // ser respeitado: antes o filtro existia no schema mas nunca era aplicado,
+  // por isso conteúdo não aprovado por QA podia ser servido aos utilizadores.
+  // Ver docs/decisions.md, auditoria 2026-08-26.
+  const allExercises = await prisma.exercise.findMany({
+    where: { pillar: { in: pillars }, qaApproved: true },
+    orderBy: { id: "asc" },
+  });
+  const byPillar = new Map<Pillar, typeof allExercises>();
+  for (const ex of allExercises) {
+    const bucket = byPillar.get(ex.pillar) ?? [];
+    bucket.push(ex);
+    byPillar.set(ex.pillar, bucket);
+  }
+
   for (const pillar of pillars) {
-    const exercises = await prisma.exercise.findMany({ where: { pillar }, orderBy: { id: "asc" } });
+    const exercises = byPillar.get(pillar) ?? [];
     if (exercises.length === 0) continue;
 
     const picked = seededPick(exercises, seed + pillar.length * 97, Math.min(perPillar, exercises.length));

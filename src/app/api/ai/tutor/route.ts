@@ -8,19 +8,29 @@ import { recordActivity } from "@/lib/gamification/recordActivity";
 import { awardAchievement } from "@/lib/gamification/awardAchievement";
 import { updateSkillScore } from "@/lib/skillProfile";
 import { scheduleReview } from "@/lib/srs/schedule";
+import { checkAiRateLimit, AI_RATE_LIMIT_MESSAGE_PT } from "@/lib/ai/rateLimit";
 
 // AI Tutor v1 — desde 2026-08-26 expõe coach/conversation_partner/interviewer/native_friend
 // (ver docs/decisions.md e src/lib/ai/personalities.ts para o porquê de professor/examiner
 // continuarem fechados).
 export async function POST(req: NextRequest) {
   const user = await requireUser();
-  const body = (await req.json()) as {
-    conversationId: string | null;
-    message: string;
-    personality?: string;
-    sessionFocus?: string;
-  };
-  const { conversationId, message, sessionFocus } = body;
+
+  // JSON malformado ou `message` ausente devolvia um 500 cru com stack trace.
+  let body: { conversationId?: string | null; message?: string; personality?: string; sessionFocus?: string };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Corpo do pedido inválido." }, { status: 400 });
+  }
+  if (typeof body.message !== "string" || !body.message.trim()) {
+    return NextResponse.json({ error: "Mensagem em falta." }, { status: 400 });
+  }
+  const conversationId = typeof body.conversationId === "string" ? body.conversationId : null;
+  // Limite generoso mas real — sem isto, uma mensagem gigante ia inteira para o
+  // Gemini a cada turno (o histórico completo é reenviado sempre, ver linha 67).
+  const message = body.message.slice(0, 4000);
+  const sessionFocus = body.sessionFocus;
 
   const requestedPersonality = body.personality as TutorPersonalityKey | undefined;
   const personality: TutorPersonalityKey =
@@ -61,18 +71,23 @@ export async function POST(req: NextRequest) {
 
   let replyText: string;
   let succeeded = true;
-  try {
-    const model = getGeminiModel(systemPrompt);
-    const chat = model.startChat({
-      history: history.map((h) => ({ role: h.role === "assistant" ? "model" : "user", parts: [{ text: h.text }] })),
-    });
-    const result = await chat.sendMessage(message);
-    replyText = result.response.text();
-  } catch (error) {
-    console.error("Gemini tutor request failed", error);
-    replyText =
-      "Desculpe, não consegui responder agora — pode ser um problema temporário com o serviço de IA. Tente novamente daqui a pouco.";
+  if (!(await checkAiRateLimit(user.id))) {
+    replyText = AI_RATE_LIMIT_MESSAGE_PT;
     succeeded = false;
+  } else {
+    try {
+      const model = getGeminiModel(systemPrompt);
+      const chat = model.startChat({
+        history: history.map((h) => ({ role: h.role === "assistant" ? "model" : "user", parts: [{ text: h.text }] })),
+      });
+      const result = await chat.sendMessage(message);
+      replyText = result.response.text();
+    } catch (error) {
+      console.error("Gemini tutor request failed", error);
+      replyText =
+        "Desculpe, não consegui responder agora — pode ser um problema temporário com o serviço de IA. Tente novamente daqui a pouco.";
+      succeeded = false;
+    }
   }
   // Parseia a marca ERROR_LOGGED (ver TUTOR_SHARED_RULES em personalities.ts) — é o
   // que torna real a promessa "log for spaced review" que já estava na prompt mas

@@ -8,6 +8,7 @@ import { scheduleReview } from "@/lib/srs/schedule";
 import { updateSkillScore } from "@/lib/skillProfile";
 import { awardAchievement } from "@/lib/gamification/awardAchievement";
 import { logEvent } from "@/lib/analytics";
+import { checkAiRateLimit, AI_RATE_LIMIT_MESSAGE_PT } from "@/lib/ai/rateLimit";
 
 export async function submitExerciseAnswer(exerciseId: string, given: string) {
   const user = await requireUser();
@@ -75,7 +76,7 @@ export async function submitExerciseAnswer(exerciseId: string, given: string) {
 export async function submitWriting(prompt: string, text: string) {
   const user = await requireUser();
 
-  const { feedback, score } = await getHolisticFeedback("writing", prompt, text);
+  const { feedback, score } = await getHolisticFeedback("writing", prompt, text, user.id);
 
   await prisma.writingAttempt.create({
     data: { userId: user.id, prompt, text, source: "LESSON", feedbackJson: feedback, score },
@@ -89,7 +90,7 @@ export async function submitWriting(prompt: string, text: string) {
 export async function submitSpeaking(prompt: string, transcript: string) {
   const user = await requireUser();
 
-  const { feedback, score } = await getHolisticFeedback("speaking", prompt, transcript);
+  const { feedback, score } = await getHolisticFeedback("speaking", prompt, transcript, user.id);
 
   await prisma.speakingAttempt.create({
     data: { userId: user.id, prompt, audioUrl: "", transcript, source: "LESSON", feedbackJson: feedback, fluencyScore: score },
@@ -115,7 +116,7 @@ export async function submitTranslation(exerciseId: string, given: string) {
 
   const { feedback, score } = exactMatch
     ? { feedback: "Correct! That matches the expected translation exactly.", score: 100 }
-    : await getHolisticFeedback("translation", content.prompt, given);
+    : await getHolisticFeedback("translation", content.prompt, given, user.id);
   const looksCorrect = score !== null ? score >= 70 : feedback.toLowerCase().includes("correct") && !feedback.toLowerCase().includes("incorrect");
 
   await prisma.translation.create({
@@ -166,9 +167,14 @@ interface HolisticFeedback {
 async function getHolisticFeedback(
   kind: "writing" | "speaking" | "translation",
   prompt: string,
-  text: string
+  text: string,
+  userId: string
 ): Promise<HolisticFeedback> {
   if (!text.trim()) return { feedback: "Não foi possível avaliar: resposta vazia.", score: null };
+
+  if (!(await checkAiRateLimit(userId))) {
+    return { feedback: AI_RATE_LIMIT_MESSAGE_PT, score: null };
+  }
 
   try {
     const model = getGeminiModel(

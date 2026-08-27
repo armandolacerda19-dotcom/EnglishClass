@@ -61,7 +61,7 @@ interface GrammarConcept {
 
 interface LessonRunnerProps {
   userId: string;
-  lesson: { id: string; title: string; steps: LessonStep[] };
+  lesson: { id: string; title: string; steps: LessonStep[]; sublevelCode: string };
   exercises: ExerciseContent[];
   vocabulary: VocabularyItem[];
   grammarConcept: GrammarConcept | null;
@@ -100,7 +100,7 @@ export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept, im
   const exerciseById = Object.fromEntries(exercises.map((e) => [e.id, e]));
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">{lesson.title}</p>
       <div className="mb-6 h-1 w-full rounded-full bg-ink/10 dark:bg-linen/10">
         <div
@@ -110,7 +110,7 @@ export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept, im
       </div>
 
       {done ? (
-        <LessonComplete lessonId={lesson.id} />
+        <LessonComplete lessonId={lesson.id} sublevelCode={lesson.sublevelCode} />
       ) : (
         <div className="flex flex-col gap-4">
           {step.type === "rule" && grammarConcept && (
@@ -328,14 +328,15 @@ function TranslationStep({ exercise }: { exercise: ExerciseContent }) {
   );
 }
 
-function LessonComplete({ lessonId }: { lessonId: string }) {
+function LessonComplete({ lessonId, sublevelCode }: { lessonId: string; sublevelCode: string }) {
   useEffect(() => {
     completeLesson(lessonId);
   }, [lessonId]);
 
   return (
     <div className="flex flex-col items-center gap-4 py-12 text-center">
-      <StampBadge code="A1.1" tone="brass" />
+      {/* Antes mostrava sempre "A1.1", seja qual fosse a lição real. */}
+      <StampBadge code={sublevelCode} tone="brass" />
       <h2 className="font-display text-xl">Lição concluída.</h2>
       <Link href="/home">
         <Button>Voltar à Home</Button>

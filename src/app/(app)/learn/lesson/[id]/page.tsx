@@ -8,7 +8,7 @@ export default async function LessonPage({ params }: { params: { id: string } })
 
   const lesson = await prisma.lesson.findUnique({
     where: { id: params.id },
-    include: { exercises: true },
+    include: { exercises: true, unit: { include: { module: { include: { sublevel: true } } } } },
   });
 
   if (!lesson) notFound();
@@ -28,7 +28,7 @@ export default async function LessonPage({ params }: { params: { id: string } })
   return (
     <LessonRunner
       userId={user.id}
-      lesson={{ id: lesson.id, title: lesson.title, steps: content.steps }}
+      lesson={{ id: lesson.id, title: lesson.title, steps: content.steps, sublevelCode: lesson.unit.module.sublevel.code }}
       exercises={lesson.exercises.map((e) => e.contentJson as any)}
       vocabulary={vocabulary}
       grammarConcept={grammarConcept}

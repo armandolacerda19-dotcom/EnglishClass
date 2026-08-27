@@ -11,7 +11,7 @@ export default async function VerifyCertificatePage({ params }: { params: { code
   });
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-lg flex-col items-center justify-center bg-ink px-6 py-16 text-center text-linen">
+    <main className="mx-auto flex min-h-screen max-w-lg lg:max-w-2xl flex-col items-center justify-center bg-ink px-6 py-16 text-center text-linen">
       {certificate ? (
         <>
           <div className="mb-6 flex h-24 w-24 -rotate-6 items-center justify-center rounded-full border-2 border-brass font-mono text-sm font-semibold text-brass">

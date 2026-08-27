@@ -82,7 +82,7 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
 
   if (result) {
     return (
-      <main className="mx-auto max-w-lg px-6 py-10">
+      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
           <StampBadge code={`${result.overallScore}%`} tone="brass" />
           <h1 className="font-display text-2xl">Diagnóstico concluído!</h1>
@@ -135,7 +135,7 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
   }
 
   return (
-    <main className="mx-auto max-w-lg px-6 py-10">
+    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <p className={`mb-1 font-mono text-xs uppercase tracking-widest ${accent.text}`}>
         Diagnóstico Semanal · {index + 1} de {questions.length}
       </p>

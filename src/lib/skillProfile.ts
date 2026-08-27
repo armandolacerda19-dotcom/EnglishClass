@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import type { Pillar } from "@prisma/client";
+import type { Pillar, Prisma } from "@prisma/client";
 
 // Mantém o octógono de competência (SkillOctagon) e "Áreas a reforçar" vivos.
 // Antes desta função, os 8 scores só eram escritos uma vez no placement test e
@@ -25,29 +25,46 @@ const EMA_ALPHA = 0.25;
 
 // rawScore: 0-100, representa quão bem o utilizador saiu-se nesta exposição
 // concreta ao pilar (100 = acertou/natural, 0 = falhou por completo).
+//
+// Tudo corre dentro de uma transação com `SELECT ... FOR UPDATE`: a média móvel
+// exponencial é, por natureza, ler→computar→escrever — sem bloquear a linha,
+// duas atualizações quase simultâneas liam o mesmo valor e uma apagava o efeito
+// da outra silenciosamente (podendo até BAIXAR o score depois de uma resposta
+// certa, porque a segunda escrita partia de um valor já desatualizado). O
+// bloqueio de linha estende-se a recalculateAreas, que faz o mesmo padrão sobre
+// weakAreas/strongAreas. Ver docs/decisions.md, auditoria 2026-08-26.
 export async function updateSkillScore(userId: string, pillar: Pillar, rawScore: number) {
   const clamped = Math.max(0, Math.min(100, Math.round(rawScore)));
   const field = PILLAR_FIELD[pillar];
 
-  const profile = await prisma.learningProfile.findUnique({ where: { userId } });
-  if (!profile) return;
+  await prisma.$transaction(async (tx) => {
+    // SELECT * em vez de listar colunas: mais simples e seguro do que reconstruir
+    // manualmente a lista dos 8 campos de score — este SELECT nunca recebe input
+    // do utilizador (userId já vem de requireUser()), por isso não há risco de injeção.
+    const rows = await tx.$queryRawUnsafe<Array<Record<string, unknown>>>(
+      `SELECT * FROM "LearningProfile" WHERE "userId" = $1 FOR UPDATE`,
+      userId
+    );
+    const profile = rows[0];
+    if (!profile) return;
 
-  const current = (profile as unknown as Record<string, number>)[field] ?? 0;
-  // Primeira amostra: assume o valor diretamente em vez de arrastar a EMA a partir de 0.
-  const next = current === 0 ? clamped : Math.round(current * (1 - EMA_ALPHA) + clamped * EMA_ALPHA);
+    const current = (profile[field] as number) ?? 0;
+    // Primeira amostra: assume o valor diretamente em vez de arrastar a EMA a partir de 0.
+    const next = current === 0 ? clamped : Math.round(current * (1 - EMA_ALPHA) + clamped * EMA_ALPHA);
 
-  // `field` é dinâmico (calculado a partir do pilar) — o tipo gerado pelo Prisma
-  // não aceita uma chave computada, daí o cast. Os únicos valores possíveis vêm
-  // de PILLAR_FIELD acima, todos campos reais de LearningProfile.
-  const updatedProfile = await prisma.learningProfile.update({
-    where: { userId },
-    data: { [field]: next } as any,
+    // `field` é dinâmico (calculado a partir do pilar) — o tipo gerado pelo Prisma
+    // não aceita uma chave computada, daí o cast. Os únicos valores possíveis vêm
+    // de PILLAR_FIELD acima, todos campos reais de LearningProfile.
+    const updatedProfile = await tx.learningProfile.update({
+      where: { userId },
+      data: { [field]: next } as any,
+    });
+
+    await recalculateAreas(tx, userId, updatedProfile as unknown as Record<string, unknown>);
   });
-
-  await recalculateAreas(userId, updatedProfile);
 }
 
-async function recalculateAreas(userId: string, profile: Record<string, unknown>) {
+async function recalculateAreas(tx: Prisma.TransactionClient, userId: string, profile: Record<string, unknown>) {
   const scores = ALL_PILLARS.map((p) => ({ pillar: p, score: (profile as Record<string, number>)[PILLAR_FIELD[p]] ?? 0 }));
   const withSignal = scores.filter((s) => s.score > 0);
   if (withSignal.length < 2) return; // dados a menos para comparar áreas de forma justa
@@ -66,7 +83,7 @@ async function recalculateAreas(userId: string, profile: Record<string, unknown>
     .slice(0, 2)
     .map((s) => s.pillar);
 
-  await prisma.learningProfile.update({
+  await tx.learningProfile.update({
     where: { userId },
     data: { weakAreas, strongAreas },
   });

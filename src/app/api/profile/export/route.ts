@@ -6,6 +6,11 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
   const user = await requireUser();
 
+  // Antes faltavam UserAchievement, AssessmentResult e ReviewScheduleItem — a
+  // exportação RGPD não incluía as conquistas do utilizador, os resultados de
+  // testes/diagnósticos, nem a fila de revisão espaçada, apesar de todos serem
+  // dados pessoais gerados pelo próprio utilizador. Ver docs/decisions.md,
+  // auditoria 2026-08-26.
   const [
     learningProfile,
     exerciseAttempts,
@@ -15,6 +20,10 @@ export async function GET() {
     errors,
     aiConversations,
     certificates,
+    achievements,
+    assessmentResults,
+    reviewSchedule,
+    placementTests,
   ] = await Promise.all([
     prisma.learningProfile.findUnique({ where: { userId: user.id } }),
     prisma.exerciseAttempt.findMany({ where: { userId: user.id } }),
@@ -24,6 +33,10 @@ export async function GET() {
     prisma.userError.findMany({ where: { userId: user.id } }),
     prisma.aIConversation.findMany({ where: { userId: user.id } }),
     prisma.certificate.findMany({ where: { userId: user.id } }),
+    prisma.userAchievement.findMany({ where: { userId: user.id }, include: { achievement: true } }),
+    prisma.assessmentResult.findMany({ where: { userId: user.id } }),
+    prisma.reviewScheduleItem.findMany({ where: { userId: user.id } }),
+    prisma.placementTest.findMany({ where: { userId: user.id } }),
   ]);
 
   const payload = {
@@ -37,6 +50,10 @@ export async function GET() {
     errors,
     aiConversations,
     certificates,
+    achievements,
+    assessmentResults,
+    reviewSchedule,
+    placementTests,
   };
 
   return new NextResponse(JSON.stringify(payload, null, 2), {

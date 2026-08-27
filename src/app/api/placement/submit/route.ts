@@ -9,7 +9,25 @@ import type { Pillar } from "@prisma/client";
 
 export async function POST(req: NextRequest) {
   const user = await requireUser();
-  const { answers } = (await req.json()) as { answers: { questionId: string; answer: string }[] };
+
+  // JSON malformado ou `answers` no formato errado devolvia um 500 cru com
+  // stack trace. Um corpo inválido devolve agora um 400 normal.
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Corpo do pedido inválido." }, { status: 400 });
+  }
+  const rawAnswers = (body as { answers?: unknown })?.answers;
+  if (!Array.isArray(rawAnswers)) {
+    return NextResponse.json({ error: "Formato de respostas inválido." }, { status: 400 });
+  }
+  const answers = rawAnswers
+    .slice(0, PLACEMENT_QUESTIONS.length)
+    .filter(
+      (a): a is { questionId: string; answer: string } =>
+        !!a && typeof a.questionId === "string" && typeof a.answer === "string"
+    );
 
   const byId = new Map(answers.map((a) => [a.questionId, a.answer]));
 
@@ -22,6 +40,7 @@ export async function POST(req: NextRequest) {
         prompt: q.prompt,
         learnerResponse: answer,
         cefrDifficulty: q.difficultyLevel,
+        userId: user.id,
       });
       return { questionId: q.id, answer, aiScore };
     })

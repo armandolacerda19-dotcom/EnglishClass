@@ -11,7 +11,7 @@ export default async function ReviewPage() {
 
   if (reviews.length === 0) {
     return (
-      <main className="mx-auto max-w-lg px-6 py-10">
+      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
         <h1 className="mb-4 font-display text-2xl">Revisão</h1>
         <Card>
           <p className="text-sm text-inkNeutral/70 dark:text-linen/70">

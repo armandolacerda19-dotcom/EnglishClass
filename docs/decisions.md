@@ -2,6 +2,39 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — FASE 2 da auditoria: fundações técnicas
+
+Segue-se diretamente da auditoria master (ver entrada abaixo). O utilizador pediu para dividir o roadmap por fases e começar já pela Fase 2 (fundações), com "cuidado extra no código" porque os deploys da Netlify continuam pausados até 2026-09-01 — nada do que se segue foi executado, só revisto à mão com mais atenção que o habitual.
+
+**Race conditions (o item de maior risco desta fase).** `recordActivity` (streak/XP) e `updateSkillScore` (octógono, EMA) faziam ler→computar→escrever sem proteção — sob concorrência real (ex. 8 respostas de uma sessão de tema, ou duas abas abertas), uma escrita podia apagar o efeito da outra, incluindo apagar um streak inteiro. Em vez de reescrever a lógica de datas/EMA em SQL puro (arriscado sem forma de testar), envolvi ambas em `prisma.$transaction` com `SELECT ... FOR UPDATE`, que bloqueia a linha até ao commit — a lógica de JS existente manteve-se exatamente igual, só passou a correr sob bloqueio. `recalculateAreas` (weakAreas/strongAreas) passou a correr dentro da mesma transação.
+
+**Rate limiting no Gemini.** Não existia nenhum. Criado `src/lib/ai/rateLimit.ts` — 20 chamadas/10 min por utilizador, usando a tabela `AnalyticsEvent` já existente (sem alteração de schema). Falha aberta (allow) se a própria verificação der erro — nunca deve ser o rate limiter a quebrar uma funcionalidade que doutra forma funcionaria. Ligado aos 4 pontos que chamam o Gemini: `gradeFreeTextAnswer`, `getHolisticFeedback`, o tutor, e `scoreFreeResponse` (placement). Neste último também corrigi a mesma falha de injeção de prompt já encontrada noutros sítios (texto do aluno sem delimitação `<tags>`).
+
+**Validação de fronteira nas duas rotas API que faltavam** (`/api/placement/submit`, `/api/ai/tutor`) — JSON malformado dava 500 cru; agora dá 400 normal.
+
+**Responsive — fix mecânico e seguro.** Os 40 usos de `max-w-lg` na app inteira seguem todos o mesmo padrão (`<main className="mx-auto ... max-w-lg ... px-6 ...">`), confirmado por grep antes de tocar em nada. Troquei por `max-w-lg lg:max-w-2xl` em todos — aditivo, mobile 100% intocado, só alarga o ecrã a partir de 1024px. Não mexi nos grids internos `grid-cols-2` (risco maior, benefício menor).
+
+**`loading.tsx` — um único ficheiro, não seis.** Criado em `src/app/(app)/loading.tsx`. Como o layout deste grupo persiste entre navegações client-side, este ficheiro cobre automaticamente todas as ~20 páginas do grupo (home, aprender, praticar, progresso, falar, definições) sem precisar de um ficheiro por página.
+
+**Traduções para português que faltavam:**
+- `SkillOctagon`: labels em inglês → português. Fontsize 9→10. Geometria do SVG não mudou (todas as traduções escolhidas são iguais ou mais curtas que o original inglês).
+- `PILLAR_LABEL` (`pillarDisplay.ts`) estava incompleto — só cobria os 5 pilares do Diagnóstico Semanal. Faltavam SPEAKING/PRONUNCIATION/WRITING, por isso "Áreas a reforçar" na Home mostrava esses três em inglês minúsculo sempre que eram a área mais fraca.
+- `classify()` em `certificate.ts` — "Not ready"/"Developing"/"Strong"/"Exceptional" em inglês no certificado público `/verify/[code]`, já identificado numa auditoria anterior e nunca corrigido. Certificados já emitidos mantêm o texto antigo (registo histórico, não é reescrito).
+- "Day {currentDay}/{totalDays}" na Home Intensive → "Dia".
+
+**`currentDay` do plano Intensive — resolvido sem migração.** Nunca era incrementado (ficava preso em "Day 1" para sempre) porque a app não tem nenhum job agendado que o pudesse fazer. Em vez de construir esse mecanismo, `currentDay` deixou de ser lido do schema para a Home — passa a calcular-se em runtime a partir de `IntensivePlan.startDate` (dias de calendário decorridos, coerente com "dia X de Y do plano"). O campo `currentDay` continua no schema (não removido — dead field aceitável por agora), só deixou de ser a fonte de verdade da UI. Também passei a mostrar `weeklyThemesJson.weeks` (o foco da semana atual), que era gerado e nunca lido.
+
+**"Continuar lição" deixa de saltar lições abandonadas.** `getNextLessonForUser` considerava uma lição "feita" assim que houvesse UMA `ExerciseAttempt` nela — responder a um único exercício e fechar a app marcava a lição inteira como concluída. A fonte de verdade passou a ser o evento `lesson_completed` (`AnalyticsEvent`), que já era escrito por `completeLesson()` no fim real da lição mas nunca lido — sem alteração de schema. De caminho, corrigi também o badge de nível no ecrã de "Lição concluída", que mostrava sempre "A1.1" fixo em vez do subnível real da lição.
+
+**Placement test volta a poder recomendar A2.** `averageToLevel()` limitava artificialmente todos os resultados a A1.3, com um comentário a dizer "MVP1 só tem conteúdo até A1" — mas há conteúdo A2 seedado (3 módulos). Um utilizador forte era sempre mal-colocado. Novos cortes cobrem os 5 subníveis que realmente têm conteúdo (A1.1→A2.2); se o currículo crescer para B1+, precisam de revisão.
+
+**`Exercise.qaApproved` finalmente aplicado como filtro** em `buildQuestionSet` (Diagnóstico Semanal + Sheets de tema) — antes existia no schema mas não filtrava nada. Confirmei antes que os 66 exercícios seedados têm todos `qa_status: "approved"`, para não esvaziar acidentalmente o pool de perguntas. Aproveitei para colapsar o N+1 (uma query por pilar) numa única query com `pillar: { in: pillars } }`.
+
+**Exportação RGPD completada** — faltavam `UserAchievement`, `AssessmentResult`, `ReviewScheduleItem` e `PlacementTest`. Adicionados ao `/api/profile/export`.
+
+### Não feito nesta fase (fica para a Fase 3+)
+`zod` formal nas fronteiras (a validação manual já cobre os pontos mais expostos) · limpeza dos 5 modelos mortos do schema (alteração de schema é mais arriscada sem forma de testar contra a BD real — fica para uma passagem dedicada) · grids internos `grid-cols-2` · `loading.tsx` para as rotas fora do grupo `(app)` (onboarding, placement).
+
 ## 2026-08-26 — AUDITORIA MASTER: 23 correções, incluindo 2 críticas
 
 Auditoria completa pedida pelo utilizador (código, arquitetura, conteúdo, UX/UI, segurança, performance, comparação com concorrentes). Relatório integral em **`docs/AUDITORIA-2026-08-26.md`** — este registo cobre só as decisões técnicas.
