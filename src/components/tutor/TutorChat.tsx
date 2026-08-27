@@ -4,7 +4,33 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/TextField";
 import { Spinner } from "@/components/ui/Spinner";
+import { RecordButton } from "@/components/ui/RecordButton";
+import { useEnglishVariant } from "@/components/ui/EnglishVariantContext";
 import { TUTOR_PERSONALITIES, type TutorPersonalityKey } from "@/lib/ai/personalities";
+
+// Mesma preferência de sotaque BRITISH/AMERICAN da Fase 9 (ver
+// PlayTranscript.tsx), duplicada aqui em vez de extraída para um ficheiro
+// partilhado: é uma função pequena e autocontida, e PlayTranscript já está
+// verificado a funcionar — preferível a arriscar mexer nele sem build local
+// para poupar ~10 linhas.
+function speakWithVariant(text: string, variant: string) {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  const voices = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith("en"));
+  const prefix = variant === "BRITISH" ? "en-gb" : variant === "AMERICAN" ? "en-us" : null;
+  const matchesVariant = (v: SpeechSynthesisVoice) => (prefix ? v.lang.toLowerCase().startsWith(prefix) : false);
+  const voice =
+    voices.find((v) => matchesVariant(v) && /natural|neural|online/i.test(v.name)) ??
+    voices.find(matchesVariant) ??
+    voices.find((v) => /natural|neural|online/i.test(v.name)) ??
+    voices.find((v) => v.lang.toLowerCase() === "en-us") ??
+    voices[0];
+
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = voice?.lang ?? "en-US";
+  if (voice) utterance.voice = voice;
+  window.speechSynthesis.speak(utterance);
+}
 
 interface Message {
   role: "user" | "assistant";
@@ -34,6 +60,7 @@ export function TutorChat({
   ]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
+  const variant = useEnglishVariant();
 
   // try/catch + verificação de res.ok obrigatórios: sem eles, uma falha de rede
   // ou uma sessão expirada (o endpoint faz redirect) deixava o chat preso em
@@ -79,11 +106,26 @@ export function TutorChat({
         {messages.map((m, i) => (
           <div
             key={i}
-            className={`max-w-[85%] rounded-card px-3 py-2 text-sm ${
+            className={`flex max-w-[85%] items-start gap-2 rounded-card px-3 py-2 text-sm ${
               m.role === "user" ? "ml-auto bg-verdigris text-white" : "bg-ink/5 dark:bg-linen/10"
             }`}
           >
-            {m.text}
+            <span className="flex-1">{m.text}</span>
+            {m.role === "assistant" && (
+              // Canal de voz do AI Tutor (Fase 10, auditoria 2026-08-27) — antes só
+              // texto; ouvir a resposta ajuda quem está a treinar compreensão oral
+              // sem depender de ler tudo. Botão discreto por mensagem em vez do
+              // PlayTranscript completo (com controlo de velocidade) para não
+              // sobrecarregar cada balão de chat — aqui o objetivo é só ouvir.
+              <button
+                type="button"
+                onClick={() => speakWithVariant(m.text, variant)}
+                aria-label="Ouvir esta mensagem"
+                className="shrink-0 text-inkNeutral/50 hover:text-inkNeutral dark:text-linen/50 dark:hover:text-linen"
+              >
+                🔊
+              </button>
+            )}
           </div>
         ))}
         {sending && (
@@ -110,6 +152,13 @@ export function TutorChat({
           Send
         </Button>
       </form>
+      {/* Fase 10 — em vez de exigir escrever, o utilizador também pode falar: o
+          reconhecimento de voz preenche o campo de texto (não envia sozinho),
+          para dar hipótese de rever/corrigir antes de enviar, tal como já
+          acontece noutros sítios da app com RecordButton. */}
+      <div className="mt-2">
+        <RecordButton onTranscript={(text) => setInput((prev) => (prev ? `${prev} ${text}` : text))} />
+      </div>
     </main>
   );
 }
