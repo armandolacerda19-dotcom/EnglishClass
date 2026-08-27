@@ -2,8 +2,11 @@ import Link from "next/link";
 import { requireUserWithProfile } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { TextField } from "@/components/ui/TextField";
 import { SettingsToggles } from "@/components/profile/SettingsToggles";
 import { SwitchProfileButton } from "@/components/profile/SwitchProfileButton";
+import { renameProfile } from "./actions";
 
 const AVATAR_BG: Record<string, string> = {
   verdigris: "bg-verdigris",
@@ -40,9 +43,19 @@ export default async function SettingsPage() {
           >
             {user.name.charAt(0).toUpperCase()}
           </span>
-          <div>
-            <p className="text-sm font-semibold">{user.name}</p>
+          <div className="flex-1">
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Perfil ativo</p>
+            {/* Fase 12 — antes não havia forma de corrigir o nome de um perfil
+                depois de criado. `key={user.name}` força o TextField a
+                remontar com o valor atualizado depois do submit (Server
+                Actions não devolvem o novo valor para um `defaultValue`
+                atualizar sozinho). */}
+            <form action={renameProfile} className="mt-1 flex gap-2">
+              <TextField key={user.name} name="name" defaultValue={user.name} maxLength={60} required className="text-sm" />
+              <Button type="submit" variant="ghost">
+                Guardar
+              </Button>
+            </form>
           </div>
         </div>
         {otherProfiles.length > 0 && (

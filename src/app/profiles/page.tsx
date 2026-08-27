@@ -1,4 +1,6 @@
-import { requireAccount } from "@/lib/session";
+import Link from "next/link";
+import { cookies } from "next/headers";
+import { requireAccount, ACTIVE_PROFILE_COOKIE } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -25,6 +27,16 @@ export default async function ProfilesPage({
     where: { userId: account.id },
     orderBy: { createdAt: "asc" },
   });
+
+  // Fase 12 (auditoria 2026-08-27, "beco sem saída em /profiles") — uma conta
+  // com 1 só perfil que chega aqui via "Gerir perfis" (Definições)
+  // não tinha forma nenhuma de voltar atrás sem cancelar a navegação do
+  // browser: só o cartão "Adicionar pessoa" aparecia. Mostra-se "Voltar" só
+  // quando é seguro (`/home` não vai fazer bounce de volta para aqui): com 1
+  // perfil, requireUser() escolhe-o sempre automaticamente; com 2+, só se o
+  // cookie de perfil ativo já apontar para um perfil válido desta conta.
+  const activeProfileId = cookies().get(ACTIVE_PROFILE_COOKIE)?.value;
+  const canGoBack = profiles.length === 1 || profiles.some((p) => p.id === activeProfileId);
 
   // Alcançável de duas formas: (1) automaticamente por requireUser() quando
   // há 2+ perfis e nenhum ativo — nesse caso profiles.length é sempre > 1;
@@ -74,6 +86,12 @@ export default async function ProfilesPage({
           </Button>
         </form>
       </Card>
+
+      {canGoBack && (
+        <Link href="/home" className="mt-6 text-center text-sm text-inkNeutral/60 hover:text-verdigris dark:text-linen/60">
+          ← Voltar
+        </Link>
+      )}
     </main>
   );
 }

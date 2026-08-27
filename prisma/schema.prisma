@@ -198,6 +198,13 @@ model LearningProfile {
   currentStreak       Int       @default(0)
   longestStreak       Int       @default(0)
   lastActivityAt      DateTime?
+  // Fase 12 (auditoria 2026-08-27, "reparação de streak") — cada semana de
+  // streak (7 dias seguidos) ganha 1 "congelamento", até um máximo de 2
+  // guardados: perder exatamente 1 dia não zera o streak se houver pelo
+  // menos 1 disponível, gasta-o e o streak continua. Falhar 2+ dias seguidos
+  // continua a resetar sempre — não é para apagar a consequência de parar,
+  // só para não punir um dia esquecido isolado. Ver recordActivity().
+  streakFreezes       Int       @default(0)
 
   updatedAt           DateTime  @updatedAt
 }

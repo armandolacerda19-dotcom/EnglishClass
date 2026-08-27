@@ -26,6 +26,7 @@ export default async function HomePage() {
         weakAreas={learningProfile.weakAreas}
         xp={learningProfile.xp}
         streak={learningProfile.currentStreak}
+        streakFreezes={learningProfile.streakFreezes}
         dueReviews={dueReviews}
         dailyMinutesTarget={learningProfile.dailyMinutesTarget}
       />
@@ -51,7 +52,7 @@ export default async function HomePage() {
         <CefrLevelTag code={formatLevelCode(learningProfile)} />
       </div>
 
-      <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} />
+      <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} streakFreezes={learningProfile.streakFreezes} />
 
       <Card className="mb-3 border-verdigris/30">
         <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">
@@ -156,6 +157,7 @@ function IntensiveHome({
   weakAreas,
   xp,
   streak,
+  streakFreezes,
   dueReviews,
   dailyMinutesTarget,
 }: {
@@ -165,6 +167,7 @@ function IntensiveHome({
   weakAreas: string[];
   xp: number;
   streak: number;
+  streakFreezes: number;
   dueReviews: number;
   dailyMinutesTarget: number;
 }) {
@@ -197,7 +200,7 @@ function IntensiveHome({
         <CefrLevelTag code={code} />
       </div>
 
-      <StreakXp xp={xp} streak={streak} />
+      <StreakXp xp={xp} streak={streak} streakFreezes={streakFreezes} />
 
       <Card className="mb-3 border-verdigris/30">
         <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">

@@ -8,6 +8,7 @@ import { formatLevelCode } from "@/lib/level";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { getCheckpointSummary } from "@/lib/checkpoints";
 import { getWeeklyActivity, getRetentionSnapshot } from "@/lib/metrics";
+import { GOAL_LABEL } from "@/lib/goalLabels";
 
 const WEEKDAY_LABEL_PT = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
@@ -60,6 +61,14 @@ export default async function ProgressPage() {
 
   const weeklyActivityMax = Math.max(1, ...weeklyActivity.map((d) => d.count));
 
+  // Fase 12 (auditoria 2026-08-27, secção "Fase 5 — Personalização"): `goal`
+  // e `targetDate` eram capturados no onboarding e só lidos no prompt oculto
+  // do tutor de IA — nunca devolvidos ao utilizador em nenhum momento de
+  // progresso. `/progress` é exatamente esse momento.
+  const daysToTarget = learningProfile.targetDate
+    ? Math.ceil((learningProfile.targetDate.getTime() - Date.now()) / 86_400_000)
+    : null;
+
   const skillProfile = {
     grammar: learningProfile.grammarScore,
     vocabulary: learningProfile.vocabularyScore,
@@ -77,6 +86,18 @@ export default async function ProgressPage() {
         <h1 className="font-display text-2xl">O seu progresso</h1>
         <CefrLevelTag code={formatLevelCode(learningProfile)} />
       </div>
+
+      {learningProfile.goal !== "GENERAL" && (
+        <Card className="mb-4 border-brass/30">
+          <p className="text-sm">
+            Está a aprender inglês para <strong>{GOAL_LABEL[learningProfile.goal]}</strong>
+            {daysToTarget !== null && daysToTarget >= 0 && (
+              <> — faltam <strong>{daysToTarget}</strong> {daysToTarget === 1 ? "dia" : "dias"} para o seu objetivo.</>
+            )}
+            {daysToTarget !== null && daysToTarget < 0 && <> — a data-alvo já passou, mas o progresso continua a contar.</>}
+          </p>
+        </Card>
+      )}
 
       <Card className="mb-4 flex justify-center">
         <SkillOctagon scores={skillProfile} />
