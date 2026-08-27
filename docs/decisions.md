@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 14 (Inglês autêntico), 1º lote: genre/source + 3 formatos de texto novos
+
+A auditoria (secção 5.4, Fase 14) pede: "Notícias e podcasts graduados · letras de música · clipes com legendas em 3 camadas (EN / EN+PT / sem legendas) · campo `genre`/`source` em `ReadingPassage`". Três desses quatro itens (podcasts, clipes com legendas, e notícias/letras REAIS) dependem de áudio/vídeo real — bloqueado desde a Fase 9 por ser uma decisão financeira do utilizador (TTS neural pago), e reproduzir letras de música ou notícias reais levanta um problema de direitos de autor totalmente à parte, que nunca deve ser contornado escrevendo cópias. O único item deste lote genuinamente executável a custo zero e sem risco de direitos de autor é o campo `genre`/`source` — feito.
+
+- `ReadingPassage` (`src/content/readingPassages.ts`) ganha `genre?: "story" | "dialogue" | "email" | "news" | "instructions"` e `source?: string` (sempre `"original"` quando presente — nunca o nome de uma publicação real, para deixar claro que não é conteúdo copiado). Campo opcional e não retroativo: os 60 textos existentes (todos narrativa em 3ª pessoa, o único género usado até agora) continuam válidos sem ele.
+- 3 textos novos, **originais**, escritos deliberadamente em formatos que nunca existiam no currículo: `email-to-a-colleague` (B1, email de trabalho sobre reagendar uma reunião), `planning-a-trip-dialogue` (A2, diálogo entre dois amigos a planear uma viagem), `local-news-new-park` (A2, notícia local sobre a abertura de um parque — estilo jornalístico, mas evento e nomes inventados).
+- `ReadingRunner.tsx`: o `<p>` que mostra o texto ganhou `whitespace-pre-line` — sem isto, os `\n` usados para separar as falas do diálogo e as linhas do email colapsavam num único parágrafo corrido em HTML. Não afeta nenhum dos 60 textos existentes, que não têm `\n` nenhum (são um único parágrafo contínuo).
+
+**Não feito neste lote, por depender de infraestrutura ainda bloqueada**: notícias/podcasts graduados de verdade (precisam de fontes reais licenciadas ou produção própria), letras de música (direitos de autor — mesmo com áudio pago resolvido, precisaria de licenciamento separado), clipes com legendas em 3 camadas (precisa de vídeo, que a app não tem de todo). Isto fica para quando a Fase 9 for desbloqueada.
+
 ## 2026-08-27 — Fase 13 (Currículo até B2), 1º lote: 3 módulos novos
 
 A auditoria pede 30→80-120 lições (~2-3 meses de trabalho, P2 — a fase de conteúdo mais longa do roadmap). Isto não cabe numa sessão; decisão deliberada de começar pelos 3 gaps mais concretos e citados explicitamente na auditoria, em vez de tentar um lote grande genérico:
