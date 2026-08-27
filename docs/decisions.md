@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — 2ª vaga de vocabulário + 3º módulo A2 (First Conditional)
+
+Utilizador insistiu no mínimo de 20.000 palavras e confirmou ter "bastantes créditos" (orçamento de tokens) para investir. Mantive a mesma posição de honestidade da ronda anterior — 20.000 entradas verificadas à mão continua fora de alcance numa sessão, pelas mesmas razões (risco de erros de tradução sem verificação) — mas fiz uma segunda vaga bem maior: `content/curriculum/vocabulary-bank-2.json`, ~162 palavras novas em 18 temas (roupa, desporto, educação, transportes, animais, natureza, cidade, profissões, dinheiro, comunicação, substantivos abstratos, 15 phrasal verbs adicionais, 15 adjetivos, cozinha, relações sociais, documentos/burocracia, tamanho, quantidades). `seedVocabularyBank()` em `prisma/seed.ts` generalizado para `VOCABULARY_BANKS` (array de ficheiros) em vez de um único import — próximas vagas só precisam de acrescentar ao array, sem tocar na lógica.
+
+Total de vocabulário depois desta ronda: ~24 (módulos) + ~135 (vaga 1) + ~162 (vaga 2) ≈ **320 palavras**. Ainda muito longe de 20.000, mas já dobrou desde a última atualização e é tudo verificado com o mesmo cuidado, não gerado em massa sem revisão.
+
+Também: **3º módulo A2** (`a2-module-03-first-conditional.json`, sublevel A2.2) — First Conditional (if + Present Simple, will + verbo base). Erro PT→EN clássico: usar "will" também na parte do "if" ("If it will rain" em vez de "If it rains"), porque o português permite futuro nas duas orações.
+
 ## 2026-08-26 — Mega expansão de conteúdo: vocabulário, verbos, construção frásica
 
 Pedido explícito do utilizador: "quero uma mega atualização... deve ter um vocabulário de +20000 palavras. deve investir em conteúdo de gramática, verbos, construção frásica, vocabulário."

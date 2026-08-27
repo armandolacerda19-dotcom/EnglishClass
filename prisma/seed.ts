@@ -10,7 +10,9 @@ import modulePastSimple from "../content/curriculum/a1-module-06-past-simple.jso
 import moduleFuturePlans from "../content/curriculum/a1-module-07-future-plans.json";
 import moduleExperiences from "../content/curriculum/a2-module-01-experiences.json";
 import moduleObligation from "../content/curriculum/a2-module-02-obligation.json";
+import moduleFirstConditional from "../content/curriculum/a2-module-03-first-conditional.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
+import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 
 const prisma = new PrismaClient();
 
@@ -28,6 +30,7 @@ const MODULE_FILES = [
   moduleFuturePlans,
   moduleExperiences,
   moduleObligation,
+  moduleFirstConditional,
 ];
 
 async function seedLevels() {
@@ -266,34 +269,43 @@ async function seedAchievements() {
   }
 }
 
-// Vocabulário standalone (content/curriculum/vocabulary-bank.json) — não associado
-// a nenhuma lição, ao contrário do vocabulário de cada módulo. Alimenta
-// imediatamente o Desafio Diário e a Revisão (SRS), que já pescam de todos os
-// VocabularyItem existentes. Ver docs/decisions.md 2026-08-26.
+// Vocabulário standalone (content/curriculum/vocabulary-bank*.json) — não
+// associado a nenhuma lição, ao contrário do vocabulário de cada módulo.
+// Alimenta imediatamente o Desafio Diário e a Revisão (SRS), que já pescam de
+// todos os VocabularyItem existentes. Vagas sucessivas ficam em ficheiros
+// separados (vocabulary-bank-2.json, -3.json...) para cada Write ficar
+// gerível — basta adicionar ao array VOCABULARY_BANKS abaixo. Ver
+// docs/decisions.md 2026-08-26 sobre a decisão de escala responsável.
+const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2];
+
 async function seedVocabularyBank() {
-  for (const v of vocabularyBank.words) {
-    await prisma.vocabularyItem.upsert({
-      where: { id: v.id },
-      update: {
-        headword: v.headword,
-        translationPt: v.translation_pt,
-        definitionEn: v.definition_en,
-        cefr: v.cefr_level as any,
-        exampleSentences: v.example_sentences,
-        difficulty: v.difficulty,
-      },
-      create: {
-        id: v.id,
-        headword: v.headword,
-        translationPt: v.translation_pt,
-        definitionEn: v.definition_en,
-        cefr: v.cefr_level as any,
-        exampleSentences: v.example_sentences,
-        difficulty: v.difficulty,
-      },
-    });
+  let total = 0;
+  for (const bank of VOCABULARY_BANKS) {
+    for (const v of bank.words) {
+      await prisma.vocabularyItem.upsert({
+        where: { id: v.id },
+        update: {
+          headword: v.headword,
+          translationPt: v.translation_pt,
+          definitionEn: v.definition_en,
+          cefr: v.cefr_level as any,
+          exampleSentences: v.example_sentences,
+          difficulty: v.difficulty,
+        },
+        create: {
+          id: v.id,
+          headword: v.headword,
+          translationPt: v.translation_pt,
+          definitionEn: v.definition_en,
+          cefr: v.cefr_level as any,
+          exampleSentences: v.example_sentences,
+          difficulty: v.difficulty,
+        },
+      });
+      total++;
+    }
   }
-  console.log(`Seeded ${vocabularyBank.words.length} standalone vocabulary items.`);
+  console.log(`Seeded ${total} standalone vocabulary items.`);
 }
 
 async function main() {

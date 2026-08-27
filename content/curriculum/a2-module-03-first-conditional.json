@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.2",
+  "module": {
+    "id": "mod_a2_2_first_conditional",
+    "title": "Real Possibilities",
+    "theme": "conditionals",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_a2_2_first_conditional",
+    "title": "The First Conditional",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_first_conditional",
+    "title": "First Conditional: if + Present Simple, will + base verb",
+    "rule": "Use the First Conditional to talk about real, possible situations in the future and their likely result: \"If\" + Present Simple, \"will\" + base verb.",
+    "simple_explanation": "This is for things that could really happen — not imaginary or impossible situations, just realistic \"if this happens, then this will happen\" predictions.",
+    "example": "If it rains, we will stay home. If you study hard, you'll pass the exam.",
+    "example_translation": "Se chover, ficamos em casa. Se estudares muito, vais passar no exame.",
+    "common_mistake_pt": "Falantes de português tendem a usar \"will\" nas duas partes da frase, porque em português o futuro pode aparecer nas duas orações: dizem \"If it will rain, we will stay home\" em vez de \"If it rains, we will stay home\" — a parte depois de \"if\" nunca leva \"will\" no First Conditional, mesmo falando do futuro.",
+    "correction": "A parte com \"if\" usa sempre Present Simple (rains, study, is), nunca \"will\". Só a segunda parte (o resultado) leva \"will\" + verbo base. \"If\" + will é um erro muito comum e muito notado por nativos.",
+    "real_world_example": "Num email de trabalho: \"If you send the report by Friday, I will review it over the weekend.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_unless",
+      "headword": "unless",
+      "type": "conjunction",
+      "translation_pt": "a não ser que",
+      "definition_en": "except if; used to introduce a condition that prevents something",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ənˈles/",
+      "related_forms": [],
+      "example_sentences": ["We won't go unless the weather improves."],
+      "difficulty": 2,
+      "tags": ["conditionals", "conjunction"]
+    },
+    {
+      "id": "vocab_a2_in_case",
+      "headword": "in case",
+      "type": "conjunction",
+      "translation_pt": "caso/no caso de",
+      "definition_en": "used to talk about doing something as a precaution",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ɪn keɪs/",
+      "related_forms": [],
+      "example_sentences": ["Take an umbrella in case it rains."],
+      "difficulty": 2,
+      "tags": ["conditionals", "conjunction"]
+    },
+    {
+      "id": "vocab_a2_as_soon_as",
+      "headword": "as soon as",
+      "type": "conjunction",
+      "translation_pt": "assim que",
+      "definition_en": "immediately after; as quickly as",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/æz suːn æz/",
+      "related_forms": [],
+      "example_sentences": ["I'll call you as soon as I arrive."],
+      "difficulty": 2,
+      "tags": ["time", "conjunction"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_conditional_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_first_conditional",
+      "prompt": "Complete the sentence: If she ___ (have) time, she will call you tomorrow.",
+      "correct_answer": ["has"],
+      "distractors": ["will have", "have", "had"],
+      "explanation": "A parte depois de \"if\" usa Present Simple (\"has\"), nunca \"will\".",
+      "common_mistake_pt": "Usar \"will have\" depois de \"if\" é o erro mais comum nesta estrutura.",
+      "audio_url": null,
+      "tags": ["first-conditional", "if-clause"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_conditional_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_first_conditional",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["If it rains, we will stay home."],
+      "distractors": ["If it will rain, we will stay home.", "If it rains, we stay home will.", "If it will rains, we will stay home."],
+      "explanation": "Só a parte do resultado (depois da vírgula) leva \"will\".",
+      "common_mistake_pt": "Colocar \"will\" na parte do \"if\" é o erro clássico de falantes de português nesta estrutura.",
+      "audio_url": null,
+      "tags": ["first-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_conditional_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"unless\" mean?",
+      "correct_answer": ["except if; used to introduce a condition that prevents something"],
+      "distractors": ["and then", "because of", "at the same time as"],
+      "explanation": "\"Unless\" é essencialmente \"if not\" — introduz uma exceção que impede algo.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "conditionals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_conditional_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What will happen if the team wins?",
+      "correct_answer": ["they will celebrate at a restaurant"],
+      "distractors": ["they will go home early", "they will practise more", "nothing special will happen"],
+      "explanation": "No áudio, ouve-se: \"If the team wins tonight, we will celebrate at a restaurant afterwards.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "If the team wins tonight, we will celebrate at a restaurant afterwards.",
+      "tags": ["listening", "first-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_conditional_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"If you arrive before 9am, you will get a free coffee. Unless you have a reservation, you might have to wait for a table.\" What happens if you arrive before 9am?",
+      "correct_answer": ["you will get a free coffee", "you get a free coffee"],
+      "distractors": ["you have to wait for a table", "you need a reservation", "nothing happens"],
+      "explanation": "O texto indica diretamente: \"you will get a free coffee\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "first-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_conditional_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_first_conditional",
+      "prompt": "Translate to English: \"Se acabares o trabalho cedo, podemos ir jantar fora.\"",
+      "correct_answer": ["If you finish work early, we can go out for dinner."],
+      "distractors": [],
+      "explanation": "\"Se acabares\" (futuro em PT) corresponde a Present Simple em inglês (\"if you finish\"), não a \"will finish\".",
+      "common_mistake_pt": "Traduzir diretamente o futuro do português para \"will\" na parte do \"if\" é o erro mais comum.",
+      "audio_url": null,
+      "tags": ["translation", "first-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m3_u1_first_conditional",
+    "title": "Real Possibilities",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_first_conditional",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_first_conditional#rule" },
+      { "type": "example", "content_ref": "gc_a2_first_conditional#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_first_conditional#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_unless", "vocab_a2_in_case", "vocab_a2_as_soon_as"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_conditional_001", "ex_a2_conditional_002", "ex_a2_conditional_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_conditional_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_conditional_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Will\" is almost always contracted and reduced in natural speech: \"I will\" → \"I'll\" /aɪl/, \"we will\" → \"we'll\" /wiːl/ — native speakers rarely say the full \"will\" in casual conversation."
+      },
+      { "type": "speaking", "prompt": "Talk about 3 real plans using \"If... , I will...\" (e.g. weather, weekend, work)." },
+      { "type": "writing", "prompt": "Write 5 sentences about realistic future possibilities using the First Conditional." },
+      { "type": "translation", "exercise_ids": ["ex_a2_conditional_translation_001"] }
+    ]
+  }
+}
