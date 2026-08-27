@@ -30,6 +30,15 @@ const ROLEPLAY_SCENARIOS = [
   { key: "meeting", label: "Reunião de trabalho" },
 ];
 
+// Objetivos para a conversa livre — auditoria secção 294 ("conversa livre
+// com objetivo"), para não ser sempre um "de que quer falar?" em aberto.
+const CONVERSATION_GOALS = [
+  { key: "small_talk", label: "Small talk" },
+  { key: "weekend", label: "Contar o fim de semana" },
+  { key: "opinion", label: "Dar uma opinião" },
+  { key: "news", label: "Comentar uma notícia" },
+];
+
 // Personalidades do AI Tutor além de "coach" desbloqueadas a pedido do utilizador
 // (2026-08-26) — ver src/lib/ai/personalities.ts e docs/decisions.md.
 export default async function SpeakHubPage() {
@@ -74,6 +83,19 @@ export default async function SpeakHubPage() {
                     className="rounded-control border border-ink/10 px-2 py-1 font-mono text-xs text-inkNeutral/60 hover:border-verdigris hover:text-verdigris dark:border-linen/10 dark:text-linen/60"
                   >
                     {scenario.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+            {key === "conversation_partner" && (
+              <div className="mt-2 flex flex-wrap gap-2 px-1">
+                {CONVERSATION_GOALS.map((goal) => (
+                  <Link
+                    key={goal.key}
+                    href={`/speak/tutor?personality=conversation_partner&goal=${goal.key}`}
+                    className="rounded-control border border-ink/10 px-2 py-1 font-mono text-xs text-inkNeutral/60 hover:border-verdigris hover:text-verdigris dark:border-linen/10 dark:text-linen/60"
+                  >
+                    {goal.label}
                   </Link>
                 ))}
               </div>

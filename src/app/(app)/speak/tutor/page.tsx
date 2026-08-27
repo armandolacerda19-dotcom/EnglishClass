@@ -20,10 +20,22 @@ const SCENARIO_FOCUS: Record<string, string> = {
   meeting: "You are a colleague in a work meeting with the learner. Start the meeting by briefly introducing the agenda and asking for their update.",
 };
 
+// Objetivos de conversa livre — auditoria secção 294 ("conversa livre com
+// objetivo"). Diferente de scenario/roleplay: aqui continua a ser conversa
+// livre e casual, só com um tema/objetivo inicial em vez de "de que quer
+// falar?" em aberto — o Conversation Partner ainda pode desviar para onde
+// a conversa for natural, ao contrário do roleplay, que fica fechado na cena.
+const GOAL_FOCUS: Record<string, string> = {
+  small_talk: "Start with light small talk (weather, weekend, how their day is going) — the kind of casual chat you'd have with a coworker in a break room.",
+  weekend: "Ask the learner about their weekend or a recent trip, and keep asking natural follow-up questions about it.",
+  opinion: "Bring up a light, everyday topic (a hobby, a film, a change in their city, a food trend) and ask for the learner's opinion on it, then react and push back gently to keep the conversation going.",
+  news: "Bring up a light, non-controversial current-events topic suitable for casual conversation and ask what the learner thinks about it.",
+};
+
 export default async function TutorPage({
   searchParams,
 }: {
-  searchParams: { personality?: string; sector?: string; scenario?: string };
+  searchParams: { personality?: string; sector?: string; scenario?: string; goal?: string };
 }) {
   await requireUserWithProfile();
   const requested = searchParams.personality;
@@ -35,10 +47,13 @@ export default async function TutorPage({
   // Setor só faz sentido para o interviewer — item #14 da lista de melhorias.
   const sector = personality === "interviewer" && searchParams.sector ? searchParams.sector : undefined;
   const scenario = personality === "roleplay" ? searchParams.scenario ?? "restaurant" : undefined;
+  const goal = personality === "conversation_partner" ? searchParams.goal : undefined;
   const sessionFocus = sector && SECTOR_LABEL[sector]
     ? `The candidate is interviewing for a role in ${SECTOR_LABEL[sector]}.`
     : scenario && SCENARIO_FOCUS[scenario]
     ? SCENARIO_FOCUS[scenario]
+    : goal && GOAL_FOCUS[goal]
+    ? GOAL_FOCUS[goal]
     : undefined;
 
   return <TutorChat personality={personality} sessionFocus={sessionFocus} />;
