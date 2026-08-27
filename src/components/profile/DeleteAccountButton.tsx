@@ -21,7 +21,7 @@ export function DeleteAccountButton() {
         Esta ação é permanente: todo o seu histórico de aprendizagem, conversas e certificados serão eliminados.
         Tem a certeza?
       </p>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <form action={deleteAccount}>
           <Button type="submit" className="bg-clay hover:bg-clay/90">
             Sim, eliminar tudo

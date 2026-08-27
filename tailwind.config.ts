@@ -38,9 +38,23 @@ const config: Config = {
         "3xl": "2.5625rem",
         "4xl": "3.1875rem",
       },
+      // Raio de canto aumentado (2026-08-26) — pedido explícito do utilizador:
+      // "estilo profissional, mais semelhante ao Busuu". docs/09-sistema-design.md
+      // pedia originalmente cantos discretos (6px/2px, "evitar 24px+") como
+      // escolha deliberada de sofisticação — este pedido do utilizador substitui
+      // essa decisão de propósito, documentado em docs/decisions.md. Mantemos
+      // fora do território "app infantil" (sem pill-shape em tudo), mas bem mais
+      // arredondado e tátil do que antes.
       borderRadius: {
-        control: "6px",
-        card: "2px",
+        control: "14px",
+        card: "18px",
+      },
+      boxShadow: {
+        // Sombra suave usada em cards e botões para dar sensação de elevação/
+        // impacto (Busuu usa isto consistentemente) — antes o produto não tinha
+        // nenhuma sombra, era completamente plano.
+        soft: "0 2px 8px 0 rgb(27 42 74 / 0.08)",
+        lift: "0 4px 16px 0 rgb(27 42 74 / 0.16)",
       },
       spacing: {
         18: "4.5rem",

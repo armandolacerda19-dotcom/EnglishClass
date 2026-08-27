@@ -2,6 +2,23 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Redesenho de interação: botões maiores, campos melhores, estilo "Busuu"
+
+Pedido explícito do utilizador: "deve melhorar a interação, os campos para fazer traduções, a correção mais rápida. mais intuitivo. os botões maiores e com mais impacto visual. tem que estar um estilo profissional, mais semelhante ao busuu."
+
+**Isto substitui deliberadamente uma decisão da Fase 0**: `docs/09-sistema-design.md` pedia cantos discretos (6px controlos / 2px cartões) como escolha de sofisticação minimalista, e nenhuma sombra em lado nenhum. O pedido do utilizador para se parecer mais com o Busuu é uma direção nova e explícita, que passa a ter prioridade — registado aqui para uma sessão futura não "corrigir" isto de volta ao original sem se aperceber da mudança de direção.
+
+Alterações:
+- `tailwind.config.ts`: `rounded-control` 6px→14px, `rounded-card` 2px→18px, `boxShadow.soft`/`boxShadow.lift` novos (o produto não tinha nenhuma sombra antes).
+- `Button.tsx`: padding quase triplicado (px-7 py-3.5 em vez de px-5 py-2.5), `text-base font-semibold` em vez de `text-sm font-medium`, sombra + `active:scale-[0.97]` para feedback tátil ao carregar.
+- `Card.tsx`: sombra suave, mais padding, fundo ligeiramente mais opaco.
+- **Campos de tradução** (`TextAreaField.tsx`, novo componente partilhado): antes cada um dos 3 sítios (Translation step da lição, Diagnóstico Semanal, Sheets de tema) tinha um `<textarea>` inline com borda fina — agora um componente único, maior, com anel de foco em verdigris, sombra e placeholder mais visível.
+- **Perceção de velocidade de correção** (`Spinner.tsx`, novo): estados de "A verificar.../A avaliar..." eram só texto estático, sem sinal visual de atividade — não dá para eliminar a latência real da chamada ao Gemini, mas um spinner ativo muda imenso a perceção de responsividade/profissionalismo.
+- **`/practice` reorganizado em secções** ("Hoje", "Escolher o que praticar", "Falar e Ler", "Referência", "Os seus erros") em vez de uma lista plana de 11 cartões seguidos, que tinha crescido sem hierarquia à medida que cada feature nova era só acrescentada ao fundo. Pedido de "mais intuitivo".
+- **Correção de risco**: com botões bem maiores, filas de 2-3 botões lado a lado (ex. "Não sabia" / "Custou" / "Sabia bem" na Revisão) podiam transbordar em ecrãs estreitos — adicionado `flex-wrap` a todas as filas de botões encontradas (`ReviewRunner`, `VerbRunner`, `TopicPracticeRunner`, `ReadingRunner`, `DeleteAccountButton`, landing page).
+
+**Nota honesta**: não consegui verificar visualmente estas mudanças no site real — os deploys da Netlify continuam pausados (ver aviso no `PROJECT_STATE.md`). Revisto com cuidado extra por causa disso (nomeadamente a auditoria de filas de botões acima), mas uma revisão visual real só é possível depois do próximo deploy.
+
 ## 2026-08-26 — 2ª vaga de vocabulário + 3º módulo A2 (First Conditional)
 
 Utilizador insistiu no mínimo de 20.000 palavras e confirmou ter "bastantes créditos" (orçamento de tokens) para investir. Mantive a mesma posição de honestidade da ronda anterior — 20.000 entradas verificadas à mão continua fora de alcance numa sessão, pelas mesmas razões (risco de erros de tradução sem verificação) — mas fiz uma segunda vaga bem maior: `content/curriculum/vocabulary-bank-2.json`, ~162 palavras novas em 18 temas (roupa, desporto, educação, transportes, animais, natureza, cidade, profissões, dinheiro, comunicação, substantivos abstratos, 15 phrasal verbs adicionais, 15 adjetivos, cozinha, relações sociais, documentos/burocracia, tamanho, quantidades). `seedVocabularyBank()` em `prisma/seed.ts` generalizado para `VOCABULARY_BANKS` (array de ficheiros) em vez de um único import — próximas vagas só precisam de acrescentar ao array, sem tocar na lógica.

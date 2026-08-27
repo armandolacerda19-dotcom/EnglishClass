@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
+import { TextAreaField } from "@/components/ui/TextAreaField";
+import { Spinner } from "@/components/ui/Spinner";
 import { submitWeeklyTest, type WeeklyTestAnswer, type WeeklyTestResult } from "@/app/(app)/practice/weekly-test/actions";
 import { checkFreeTextAnswer } from "@/app/(app)/practice/checkAnswer";
 import type { WeeklyTestQuestion } from "@/lib/weeklyTest";
@@ -168,13 +170,12 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
             ))}
           </fieldset>
         ) : (
-          <textarea
+          <TextAreaField
             rows={2}
             value={textAnswer}
             onChange={(e) => setTextAnswer(e.target.value)}
             disabled={!!checkResult}
             placeholder="Escreva a tradução em inglês..."
-            className="w-full rounded-control border border-ink/20 px-3 py-2 text-sm"
           />
         )}
 
@@ -188,7 +189,13 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
       <div className="mt-4 flex justify-end">
         {!checkResult ? (
           <Button onClick={check} disabled={!given || checking}>
-            {checking ? "A verificar..." : "Verificar"}
+            {checking ? (
+              <span className="flex items-center gap-2">
+                <Spinner /> A verificar...
+              </span>
+            ) : (
+              "Verificar"
+            )}
           </Button>
         ) : (
           <Button onClick={advance} disabled={submitting}>

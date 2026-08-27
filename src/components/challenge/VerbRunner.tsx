@@ -37,7 +37,7 @@ export function VerbRunner({ verb }: { verb: IrregularVerb }) {
           <p className="mb-3 text-xs text-inkNeutral/60 dark:text-linen/60">{verb.translationPt}</p>
 
           {!done ? (
-            <div className="flex justify-end gap-2">
+            <div className="flex flex-wrap justify-end gap-2">
               <Button variant="secondary" onClick={() => grade(false)}>
                 Não sabia
               </Button>

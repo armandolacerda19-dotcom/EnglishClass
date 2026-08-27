@@ -108,7 +108,7 @@ export function ReviewRunner({ reviews }: ReviewRunnerProps) {
         )}
       </Card>
 
-      <div className="mt-4 flex justify-end gap-2">
+      <div className="mt-4 flex flex-wrap justify-end gap-2">
         {!revealed ? (
           <Button onClick={() => setRevealed(true)}>Mostrar resposta</Button>
         ) : (

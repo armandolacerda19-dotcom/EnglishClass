@@ -47,7 +47,7 @@ export function ReadingRunner({ passage }: { passage: ReadingPassage }) {
           <StampBadge code={`${correctCount}/${passage.questions.length}`} tone="verdigris" />
           <h1 className="font-display text-2xl">Leitura concluída!</h1>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Link href="/practice/reading">
             <Button variant="secondary">Outro texto</Button>
           </Link>

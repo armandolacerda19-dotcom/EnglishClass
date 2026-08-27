@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
+import { TextAreaField } from "@/components/ui/TextAreaField";
+import { Spinner } from "@/components/ui/Spinner";
 import { submitTopicPractice, type TopicPracticeAnswer, type TopicPracticeResult } from "@/app/(app)/practice/topic/actions";
 import { checkFreeTextAnswer } from "@/app/(app)/practice/checkAnswer";
 import type { PracticeQuestion } from "@/lib/practiceQuestions";
@@ -85,7 +87,7 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
             {PILLAR_LABEL[pillar] ?? pillar.toLowerCase()} — pode repetir quando quiser, com perguntas novas.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Link href="/practice/topic">
             <Button variant="secondary">Outro tema</Button>
           </Link>
@@ -133,13 +135,12 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
             ))}
           </fieldset>
         ) : (
-          <textarea
+          <TextAreaField
             rows={2}
             value={textAnswer}
             onChange={(e) => setTextAnswer(e.target.value)}
             disabled={!!checkResult}
             placeholder="Escreva a sua resposta..."
-            className="w-full rounded-control border border-ink/20 px-3 py-2 text-sm"
           />
         )}
 
@@ -153,7 +154,13 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
       <div className="mt-4 flex justify-end">
         {!checkResult ? (
           <Button onClick={check} disabled={!given || checking}>
-            {checking ? "A verificar..." : "Verificar"}
+            {checking ? (
+              <span className="flex items-center gap-2">
+                <Spinner /> A verificar...
+              </span>
+            ) : (
+              "Verificar"
+            )}
           </Button>
         ) : (
           <Button onClick={advance} disabled={submitting}>

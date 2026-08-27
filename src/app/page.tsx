@@ -13,7 +13,7 @@ export default function LandingPage() {
           Um sistema que sabe o que precisa de aprender, porque está a errar, e o que deve
           praticar a seguir — não uma coleção de exercícios.
         </p>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Link href="/signup">
             <Button>Começar agora</Button>
           </Link>

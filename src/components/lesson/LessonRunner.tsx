@@ -8,6 +8,8 @@ import { ErrorCallout } from "@/components/ui/ErrorCallout";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { RecordButton } from "@/components/ui/RecordButton";
 import { StampBadge } from "@/components/ui/StampBadge";
+import { TextAreaField } from "@/components/ui/TextAreaField";
+import { Spinner } from "@/components/ui/Spinner";
 import {
   submitExerciseAnswer,
   submitWriting,
@@ -248,7 +250,11 @@ function SpeakingStep({ prompt }: { prompt: string }) {
       <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Speaking</p>
       <p className="mb-3 text-sm">{prompt}</p>
       <RecordButton onTranscript={handleTranscript} />
-      {loading && <p className="mt-2 text-sm text-inkNeutral/70">A avaliar...</p>}
+      {loading && (
+        <p className="mt-2 flex items-center gap-2 text-sm text-inkNeutral/70 dark:text-linen/70">
+          <Spinner /> A avaliar...
+        </p>
+      )}
       {transcript && <p className="mt-3 text-sm italic">"{transcript}"</p>}
       {feedback && <p className="mt-2 rounded-card bg-verdigris/5 p-3 text-sm">{feedback}</p>}
     </Card>
@@ -271,9 +277,15 @@ function WritingStep({ prompt }: { prompt: string }) {
     <Card>
       <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Writing</p>
       <p className="mb-3 text-sm">{prompt}</p>
-      <textarea rows={4} value={text} onChange={(e) => setText(e.target.value)} className="w-full rounded-control border border-ink/20 px-3 py-2" />
+      <TextAreaField rows={4} value={text} onChange={(e) => setText(e.target.value)} placeholder="Escreva a sua resposta em inglês..." />
       <Button className="mt-3" variant="secondary" onClick={handleSubmit} disabled={loading || !text.trim()}>
-        {loading ? "A avaliar..." : "Submeter"}
+        {loading ? (
+          <span className="flex items-center gap-2">
+            <Spinner /> A avaliar...
+          </span>
+        ) : (
+          "Submeter"
+        )}
       </Button>
       {feedback && <p className="mt-2 rounded-card bg-verdigris/5 p-3 text-sm">{feedback}</p>}
     </Card>
@@ -296,9 +308,15 @@ function TranslationStep({ exercise }: { exercise: ExerciseContent }) {
     <Card>
       <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Translation</p>
       <p className="mb-3 text-sm">{exercise.prompt}</p>
-      <textarea rows={2} value={text} onChange={(e) => setText(e.target.value)} className="w-full rounded-control border border-ink/20 px-3 py-2" />
+      <TextAreaField rows={2} value={text} onChange={(e) => setText(e.target.value)} placeholder="Escreva a tradução em inglês..." />
       <Button className="mt-3" variant="secondary" onClick={handleSubmit} disabled={loading || !text.trim()}>
-        {loading ? "A avaliar..." : "Submeter"}
+        {loading ? (
+          <span className="flex items-center gap-2">
+            <Spinner /> A avaliar...
+          </span>
+        ) : (
+          "Submeter"
+        )}
       </Button>
       {result && (
         <div className="mt-2 flex flex-col gap-1">
