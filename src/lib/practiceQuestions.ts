@@ -39,7 +39,8 @@ function seededPick<T>(items: T[], seed: number, count: number): T[] {
 export async function buildQuestionSet(
   pillars: Pillar[],
   seed: number,
-  perPillar: number
+  perPillar: number,
+  userId?: string
 ): Promise<PracticeQuestion[]> {
   const questions: PracticeQuestion[] = [];
 
@@ -60,11 +61,48 @@ export async function buildQuestionSet(
     byPillar.set(ex.pillar, bucket);
   }
 
+  // Fase 11 (auditoria 2026-08-27, secção 3): antes, este motor — que alimenta
+  // tanto o Diagnóstico Semanal como as Sheets de tema, as duas superfícies de
+  // "testa-me" da app — nunca olhava para `UserError`. Um utilizador com um
+  // erro persistente e não resolvido tinha exatamente a mesma probabilidade de
+  // ser testado nesse tópico do que em qualquer outro. Agora, quando há
+  // `userId`, os erros ainda por resolver desse utilizador (por pilar) são
+  // usados para dar prioridade a exercícios cujas tags tocam nesse tópico
+  // concreto — o resto das vagas continua a ser escolhido ao acaso como antes.
+  const errorTagsByPillar = new Map<Pillar, Set<string>>();
+  if (userId) {
+    const errors = await prisma.userError.findMany({
+      where: { userId, pillar: { in: pillars }, resolvedAt: null },
+      select: { pillar: true, errorType: true },
+    });
+    for (const e of errors) {
+      const set = errorTagsByPillar.get(e.pillar) ?? new Set<string>();
+      set.add(e.errorType);
+      errorTagsByPillar.set(e.pillar, set);
+    }
+  }
+
   for (const pillar of pillars) {
     const exercises = byPillar.get(pillar) ?? [];
     if (exercises.length === 0) continue;
 
-    const picked = seededPick(exercises, seed + pillar.length * 97, Math.min(perPillar, exercises.length));
+    const take = Math.min(perPillar, exercises.length);
+    const errorTags = errorTagsByPillar.get(pillar);
+    let picked: typeof exercises;
+
+    if (errorTags && errorTags.size > 0) {
+      const matching = exercises.filter((ex) => {
+        const tags = (ex.contentJson as any)?.tags as string[] | undefined;
+        return tags?.some((t) => errorTags.has(t));
+      });
+      const priority = seededPick(matching, seed + pillar.length * 97, Math.min(take, matching.length));
+      const rest = exercises.filter((ex) => !priority.includes(ex));
+      const fill = seededPick(rest, seed + pillar.length * 197, take - priority.length);
+      picked = [...priority, ...fill];
+    } else {
+      picked = seededPick(exercises, seed + pillar.length * 97, take);
+    }
+
     for (const ex of picked) {
       const content = ex.contentJson as any;
       const correctAnswers = (content.correct_answer as string[]) ?? [];

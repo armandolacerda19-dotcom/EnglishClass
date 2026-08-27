@@ -78,15 +78,63 @@ export interface DueErrorReview {
 
 export type DueReview = DueVocabReview | DueErrorReview;
 
-// Puxa até `limit` itens vencidos, mais antigos primeiro, com o conteúdo já
-// resolvido (palavra ou erro) para a UI não precisar de mais nenhuma query.
+// Puxa até `limit` itens, com o conteúdo já resolvido (palavra ou erro) para a
+// UI não precisar de mais nenhuma query.
+//
+// Fase 11 (auditoria 2026-08-27, secção 3, "accountability por erro
+// persistente — conta mas não age"): antes, ordenava só por `dueAt` — um erro
+// cometido 12 vezes e outro cometido 1 vez eram indistinguíveis na fila. Agora:
+// (1) erros com `occurrences >= 3` ainda não resolvidos entram na fila com
+// "repescagem forçada", mesmo que o SM-2 ainda não os tenha marcado como due —
+// um erro que se repete tantas vezes merece reforço antes do intervalo normal
+// de esquecimento acabar; (2) entre os itens já due, os que têm mais
+// `occurrences` aparecem primeiro, não só os mais antigos.
 export async function getDueReviews(userId: string, limit = 15): Promise<DueReview[]> {
-  const items = await prisma.reviewScheduleItem.findMany({
-    where: { userId, dueAt: { lte: new Date() } },
-    orderBy: { dueAt: "asc" },
+  const now = new Date();
+
+  const forcedErrors = await prisma.userError.findMany({
+    where: { userId, occurrences: { gte: 3 }, resolvedAt: null },
+    orderBy: { occurrences: "desc" },
     take: limit,
+  });
+  const forcedScheduleItems = forcedErrors.length
+    ? await prisma.reviewScheduleItem.findMany({
+        where: { userId, itemType: "error", userErrorId: { in: forcedErrors.map((e) => e.id) } },
+      })
+    : [];
+  const forcedScheduleByErrorId = new Map(forcedScheduleItems.map((i) => [i.userErrorId as string, i]));
+
+  const dueItems = await prisma.reviewScheduleItem.findMany({
+    where: { userId, dueAt: { lte: now } },
+    orderBy: { dueAt: "asc" },
+    take: Math.max(limit * 3, limit + forcedErrors.length),
     include: { userError: true },
   });
+
+  type ScheduleItemWithError = (typeof dueItems)[number];
+  const seen = new Set<string>();
+  const ordered: ScheduleItemWithError[] = [];
+
+  for (const err of forcedErrors) {
+    const scheduleItem = forcedScheduleByErrorId.get(err.id);
+    if (!scheduleItem || seen.has(scheduleItem.id)) continue;
+    seen.add(scheduleItem.id);
+    ordered.push({ ...scheduleItem, userError: err });
+  }
+
+  const restSorted = dueItems
+    .filter((i) => !seen.has(i.id))
+    .sort(
+      (a, b) =>
+        (b.userError?.occurrences ?? 0) - (a.userError?.occurrences ?? 0) || a.dueAt.getTime() - b.dueAt.getTime()
+    );
+  for (const item of restSorted) {
+    if (ordered.length >= limit) break;
+    seen.add(item.id);
+    ordered.push(item);
+  }
+
+  const items = ordered.slice(0, limit);
   if (items.length === 0) return [];
 
   const vocabIds = items.filter((i) => i.itemType === "vocabulary_item").map((i) => i.itemRefId);

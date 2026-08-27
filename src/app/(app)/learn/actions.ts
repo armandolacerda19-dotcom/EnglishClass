@@ -10,6 +10,23 @@ import { awardAchievement } from "@/lib/gamification/awardAchievement";
 import { logEvent } from "@/lib/analytics";
 import { checkAiRateLimit, AI_RATE_LIMIT_MESSAGE_PT } from "@/lib/ai/rateLimit";
 
+// Fase 11 (auditoria 2026-08-27, secção 3: "sem tipologia de erro" — para os
+// pilares não-gramaticais, `content.tags?.[0]` era sempre a string literal do
+// pilar ("vocabulary"/"listening"/"reading"/"translation"), nunca o tópico
+// concreto. Como `UserError` casa por `(userId, errorType)`, isso fazia TODOS
+// os erros de vocabulário de sempre (qualquer palavra, qualquer módulo)
+// colapsarem numa única linha cujo contador só sobe e cujo texto é
+// sobrescrito a cada novo erro — zero forma de distinguir um erro fossilizado
+// de outro. Os exercícios de conteúdo já têm essa granularidade: uma segunda
+// tag mais específica (ex. `["vocabulary", "hobbies"]`, `["listening", "work"]`)
+// que nunca era usada. Para GRAMMAR a 1ª tag já é específica (ex.
+// "present-simple-questions"), por isso o comportamento aí não muda.
+const GENERIC_PILLAR_TAGS = new Set(["vocabulary", "listening", "reading", "translation", "writing", "speaking"]);
+function pickErrorType(tags: string[] | undefined): string {
+  if (!tags || tags.length === 0) return "unspecified";
+  return tags.find((t) => !GENERIC_PILLAR_TAGS.has(t)) ?? tags[0] ?? "unspecified";
+}
+
 export async function submitExerciseAnswer(exerciseId: string, given: string) {
   const user = await requireUser();
 
@@ -35,7 +52,7 @@ export async function submitExerciseAnswer(exerciseId: string, given: string) {
   });
 
   if (!isCorrect && content.common_mistake_pt) {
-    const errorType = (content.tags?.[0] as string) ?? "unspecified";
+    const errorType = pickErrorType(content.tags as string[] | undefined);
     const existingError = await prisma.userError.findFirst({
       where: { userId: user.id, errorType, resolvedAt: null },
     });

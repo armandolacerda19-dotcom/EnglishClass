@@ -36,7 +36,7 @@ export default async function WeeklyTestPage() {
     );
   }
 
-  const questions = await getWeeklyTest();
+  const questions = await getWeeklyTest(new Date(), user.id);
 
   if (questions.length === 0) {
     return (

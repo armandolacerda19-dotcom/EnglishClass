@@ -9,7 +9,7 @@ const VALID_PILLARS: Pillar[] = ["GRAMMAR", "VOCABULARY", "LISTENING", "READING"
 const QUESTIONS_PER_SESSION = 8;
 
 export default async function TopicPracticePage({ params }: { params: { pillar: string } }) {
-  await requireUserWithProfile();
+  const { user } = await requireUserWithProfile();
 
   const pillar = params.pillar.toUpperCase() as Pillar;
   if (!VALID_PILLARS.includes(pillar)) notFound();
@@ -17,7 +17,7 @@ export default async function TopicPracticePage({ params }: { params: { pillar: 
   // Seed variável a cada visita (não é um diagnóstico gated) — perguntas novas
   // de cada vez que o utilizador escolhe este tema, dentro do que existe seedado.
   const seed = Date.now() ^ pillar.length;
-  const questions = await buildQuestionSet([pillar], seed, QUESTIONS_PER_SESSION);
+  const questions = await buildQuestionSet([pillar], seed, QUESTIONS_PER_SESSION, user.id);
 
   if (questions.length === 0) {
     return (
