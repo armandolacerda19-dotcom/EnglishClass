@@ -2,6 +2,19 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Ação #4 (Top 5 imediatas): plano diário liga a sério ao pilar mais fraco
+
+Última das "Top 5 ações imediatas" da auditoria (secção 5.3) ainda por fazer: "Fazer o plano diário cumprir o que promete. Passar `weakAreas` a `generateDailyPlan` e ligar a `/practice/topic/[pillar]` — a rota já existe". Confirmado por leitura: `dailyPlan.ts` gerava o item "Tema à escolha (pilar mais fraco)" mas o texto entre parênteses era decorativo — `generateDailyPlan` nunca recebia `weakAreas`, e o `href` era sempre `/practice/topic` (o seletor genérico), nunca `/practice/topic/[pillar]` (que já existia e já filtra corretamente, desde a Fase 8).
+
+Correção:
+- `generateDailyPlan(dailyMinutes, hasDueReviews, weakAreas = [])` — 3º parâmetro opcional e retrocompatível (todos os testes/chamadas existentes continuam a funcionar sem alteração, `weakestPillar` fica `undefined` e o comportamento é exatamente o de antes).
+- Nova função interna `topicItem(minutes, weakestPillar)`: com um pilar fraco elegível, devolve `{ label: "Tema à escolha: <nome do pilar>", href: "/practice/topic/<pilar>" }`; sem nenhum, cai no comportamento antigo.
+- **Só 5 dos 8 pilares de `weakAreas` são elegíveis**: `/practice/topic/[pillar]` só aceita GRAMMAR/VOCABULARY/LISTENING/READING/TRANSLATION (os que têm banco de `Exercise` de escolha múltipla via `buildQuestionSet`) — SPEAKING/WRITING/PRONUNCIATION dão `notFound()` nessa rota, por não terem esse tipo de conteúdo. `TOPIC_PRACTICE_PILLARS` filtra por isso; se o(s) pilar(es) mais fraco(s) do utilizador forem só destes 3, cai de volta no seletor genérico em vez de linkar para uma página 404.
+- `home/page.tsx` (Standard e Intensive) passam `learningProfile.weakAreas`/`weakAreas` na chamada.
+- 2 testes novos em `dailyPlan.test.ts`, seguindo o padrão já estabelecido (função pura, verificação por leitura cuidada em vez de build local).
+
+Com isto, as 5 ações imediatas da auditoria estão todas fechadas (as outras 4 — forja de certificados, sanitização de prompt/onboarding, contraste WCAG, try/catch nos runners — já tinham sido feitas em fases anteriores desta sessão; contraste continua deliberadamente por decidir pelo utilizador, é uma decisão de identidade visual, não uma correção técnica).
+
 ## 2026-08-27 — 5º eixo da rubrica: Naturalidade
 
 Auditoria (secção "Inglês vivo e rubrica formal"): "os eixos implementados são gramática/vocabulário/coerência/cumprimento da tarefa — fluência e naturalidade não são pontuadas em lado nenhum, apesar de 'naturalness' estar no prompt". Correto: o prompt a `getHolisticFeedback` sempre pediu para "cover grammar, vocabulary, spelling/punctuation, coherence, register and naturalness" e para "explicitly distinguish incorrect from not natural/idiomatic" — mas a rubrica numérica nunca teve um eixo correspondente.
