@@ -7,6 +7,10 @@ export interface TutorProfileContext {
   profession: string | null;
   englishVariant: string;
   recentErrors: { errorType: string; commonMistakePt: string | null; correction: string }[];
+  // Perfil de criança (Fase 6 — "Família") — ver checkbox em /profiles.
+  // Único efeito real hoje: ajusta o tom do tutor. Não muda nível/conteúdo
+  // (isso continua a vir do placement test, não da idade autodeclarada).
+  isChild?: boolean;
 }
 
 // Monta o system prompt seguindo a estrutura definida em docs/06-arquitetura-ia.md:
@@ -43,7 +47,7 @@ Learner profile:
 Recent recurring errors to watch for and reinforce naturally:
 ${errorLines}
 
-${sessionFocus ? `Current session focus: ${sessionFocus}\n` : ""}
+${profile.isChild ? "This learner is a child. Use simpler vocabulary and shorter sentences, keep an extra-encouraging and patient tone, and avoid mature/adult topics or examples — but do NOT talk down to them or use baby talk.\n" : ""}${sessionFocus ? `Current session focus: ${sessionFocus}\n` : ""}
 ${TUTOR_SHARED_RULES}
 `.trim();
 }

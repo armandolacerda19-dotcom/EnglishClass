@@ -10,7 +10,7 @@ export function DeleteAccountButton() {
   if (!confirming) {
     return (
       <Button variant="secondary" className="border-clay text-clay hover:bg-clay/5" onClick={() => setConfirming(true)}>
-        Eliminar a minha conta
+        Eliminar este perfil
       </Button>
     );
   }
@@ -18,8 +18,8 @@ export function DeleteAccountButton() {
   return (
     <div className="flex flex-col gap-3 rounded-card border border-clay/40 bg-clay/5 p-4">
       <p className="text-sm text-clay">
-        Esta ação é permanente: todo o seu histórico de aprendizagem, conversas e certificados serão eliminados.
-        Tem a certeza?
+        Esta ação é permanente: todo o histórico de aprendizagem, conversas e certificados deste perfil serão
+        eliminados. Tem a certeza?
       </p>
       <div className="flex flex-wrap gap-2">
         <form action={deleteAccount}>

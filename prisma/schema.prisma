@@ -102,6 +102,10 @@ enum AttemptSource {
 // UTILIZADOR E PERFIL
 // ─────────────────────────────────────────────────────────────────────────
 
+// Conta partilhada da família (login único no Supabase Auth — email/password).
+// Desde a Fase 6 ("Família"), uma conta pode ter vários Profile (estilo
+// Netflix): quem faz login aqui não é necessariamente quem está a aprender.
+// Ver Profile abaixo e src/lib/session.ts.
 model User {
   id                 String   @id @default(cuid())
   email              String   @unique
@@ -113,6 +117,26 @@ model User {
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
+  profiles           Profile[]
+}
+
+// Perfil individual dentro de uma conta — Fase 6 ("Família": perfis
+// múltiplos, progresso individual, privacidade entre perfis). Todo o
+// progresso de aprendizagem (as ~15 tabelas abaixo) pertence a um Profile,
+// não diretamente à conta — duas pessoas na mesma conta têm currículo,
+// XP, streak, erros e histórico completamente separados. Contas com um só
+// perfil (o caso comum, incluindo todas as contas criadas antes desta
+// funcionalidade) não veem nenhum seletor: o perfil único é escolhido
+// automaticamente em requireUser(), sem passo extra. Ver src/lib/session.ts.
+model Profile {
+  id          String   @id @default(cuid())
+  userId      String   // conta dona deste perfil
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  avatarColor String   @default("verdigris") // sem upload de imagem — custo zero, ver docs/decisions.md
+  isChild     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
   learningProfile    LearningProfile?
   placementTests     PlacementTest[]
   attempts           ExerciseAttempt[]
@@ -123,17 +147,24 @@ model User {
   reviewItems        ReviewScheduleItem[]
   assessments        AssessmentResult[]
   certificates       Certificate[]
-  achievements        UserAchievement[]
+  achievements       UserAchievement[]
   aiConversations    AIConversation[]
   learningPlan       LearningPlan?
   intensivePlan      IntensivePlan?
   analyticsEvents    AnalyticsEvent[]
+
+  @@index([userId])
 }
 
 model LearningProfile {
   id                  String    @id @default(cuid())
+  // Nota Fase 6: `userId` aqui (e nas ~14 tabelas de progresso abaixo) aponta
+  // para Profile.id, não User.id, desde a introdução de perfis familiares —
+  // o nome do campo ficou por mudar de propósito (evitar alterar dezenas de
+  // ficheiros que já fazem `where: { userId: ... }`), só o alvo da FK mudou.
+  // Ver src/lib/session.ts, docs/decisions.md.
   userId              String    @unique
-  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  profile             Profile   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   currentLevel        CefrLevel @default(PRE_A1)
   currentSublevel     Int       @default(1) // 1-3, ignorado em PRE_A1
@@ -322,8 +353,8 @@ model Answer {
 
 model ExerciseAttempt {
   id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String   // aponta para Profile.id, ver nota em LearningProfile
+  profile     Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   exerciseId  String
   exercise    Exercise @relation(fields: [exerciseId], references: [id])
   source      AttemptSource @default(LESSON)
@@ -342,8 +373,8 @@ model ExerciseAttempt {
 
 model SpeakingAttempt {
   id             String   @id @default(cuid())
-  userId         String
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String   // aponta para Profile.id, ver nota em LearningProfile
+  profile        Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   prompt         String
   audioUrl       String
   transcript     String?
@@ -362,8 +393,8 @@ model SpeakingAttempt {
 
 model WritingAttempt {
   id           String   @id @default(cuid())
-  userId       String
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   // aponta para Profile.id, ver nota em LearningProfile
+  profile      Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   prompt       String
   text         String
   source       AttemptSource @default(PRACTICE)
@@ -378,8 +409,8 @@ model WritingAttempt {
 
 model Translation {
   id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String   // aponta para Profile.id, ver nota em LearningProfile
+  profile     Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   sourceText  String
   sourceLang  String   // "pt" | "en"
   userAnswer  String
@@ -396,8 +427,8 @@ model Translation {
 
 model UserError {
   id               String   @id @default(cuid())
-  userId           String
-  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId           String   // aponta para Profile.id, ver nota em LearningProfile
+  profile          Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   pillar           Pillar
   errorType        String   // ex. "present-perfect-vs-past-simple", "false-friend:actually"
   commonMistakePt  String?
@@ -414,8 +445,8 @@ model UserError {
 
 model ReviewScheduleItem {
   id             String   @id @default(cuid())
-  userId         String
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String   // aponta para Profile.id, ver nota em LearningProfile
+  profile        Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   userErrorId    String?
   userError      UserError? @relation(fields: [userErrorId], references: [id])
   itemType       String   // "grammar_concept" | "vocabulary_item" | "error"
@@ -437,8 +468,8 @@ model ReviewScheduleItem {
 
 model PlacementTest {
   id            String    @id @default(cuid())
-  userId        String
-  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String    // aponta para Profile.id, ver nota em LearningProfile
+  profile       Profile   @relation(fields: [userId], references: [id], onDelete: Cascade)
   track         LearningTrack
 
   resultLevel   CefrLevel?
@@ -452,8 +483,8 @@ model PlacementTest {
 
 model AssessmentResult {
   id           String   @id @default(cuid())
-  userId       String
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   // aponta para Profile.id, ver nota em LearningProfile
+  profile      Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   type         AssessmentType
   levelId      String?
   scoreJson    Json     // score por pilar + score global
@@ -465,8 +496,8 @@ model AssessmentResult {
 
 model Certificate {
   id            String   @id @default(cuid())
-  userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String   // aponta para Profile.id, ver nota em LearningProfile
+  profile       Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   cefr          CefrLevel
   overallScore  Int
   classification String  // Not ready | Developing | Competent | Strong | Exceptional
@@ -493,8 +524,8 @@ model Achievement {
 
 model UserAchievement {
   id            String   @id @default(cuid())
-  userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String   // aponta para Profile.id, ver nota em LearningProfile
+  profile       Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   achievementId String
   achievement   Achievement @relation(fields: [achievementId], references: [id])
   earnedAt      DateTime @default(now())
@@ -508,8 +539,8 @@ model UserAchievement {
 
 model AIConversation {
   id            String   @id @default(cuid())
-  userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String   // aponta para Profile.id, ver nota em LearningProfile
+  profile       Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   personality   TutorPersonality
   scenario      String?  // null quando é sessão livre de tutoria
   messagesJson  Json     // histórico de turnos
@@ -526,8 +557,8 @@ model AIConversation {
 
 model LearningPlan {
   id            String   @id @default(cuid())
-  userId        String   @unique
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String   @unique // aponta para Profile.id, ver nota em LearningProfile
+  profile       Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   dailyMinutes  Int
   focusPillars  Pillar[] @default([])
   planJson      Json     // sequência de próximas lições/unidades
@@ -536,8 +567,8 @@ model LearningPlan {
 
 model IntensivePlan {
   id             String   @id @default(cuid())
-  userId         String   @unique
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String   @unique // aponta para Profile.id, ver nota em LearningProfile
+  profile        Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   goal           Goal
   startDate      DateTime
   targetDate     DateTime
@@ -562,8 +593,8 @@ model IntensivePlan {
 
 model AnalyticsEvent {
   id         String   @id @default(cuid())
-  userId     String?
-  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId     String?  // aponta para Profile.id, ver nota em LearningProfile
+  profile    Profile? @relation(fields: [userId], references: [id], onDelete: SetNull)
   eventName  String
   propsJson  Json?
   createdAt  DateTime @default(now())

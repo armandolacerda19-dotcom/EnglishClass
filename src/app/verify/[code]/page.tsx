@@ -7,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 export default async function VerifyCertificatePage({ params }: { params: { code: string } }) {
   const certificate = await prisma.certificate.findUnique({
     where: { verificationCode: params.code },
-    include: { user: { select: { name: true } } },
+    include: { profile: { select: { name: true } } },
   });
 
   return (
@@ -18,7 +18,7 @@ export default async function VerifyCertificatePage({ params }: { params: { code
             {certificate.cefr.replace("_", "-")}
           </div>
           <h1 className="mb-2 font-display text-2xl">Certificado Verificado</h1>
-          <p className="mb-1 text-linen/80">{certificate.user.name}</p>
+          <p className="mb-1 text-linen/80">{certificate.profile.name}</p>
           <p className="mb-6 text-sm text-linen/60">
             Nível {certificate.cefr.replace("_", "-")} · {certificate.classification} · {certificate.overallScore}/100
           </p>

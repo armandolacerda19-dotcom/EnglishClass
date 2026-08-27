@@ -21,9 +21,11 @@ export default async function PrivacyPage() {
       </Card>
 
       <Card>
-        <p className="mb-1 font-display text-lg">Eliminar conta</p>
+        <p className="mb-1 font-display text-lg">Eliminar este perfil</p>
         <p className="mb-3 text-sm text-inkNeutral/70 dark:text-linen/70">
-          Elimina permanentemente a sua conta e todo o histórico associado.
+          Elimina permanentemente este perfil e todo o histórico associado a ele. Se for o único perfil da conta, a
+          conta em si também é eliminada. Outros perfis da mesma conta (ex. outros membros da família) não são
+          afetados.
         </p>
         <DeleteAccountButton />
       </Card>

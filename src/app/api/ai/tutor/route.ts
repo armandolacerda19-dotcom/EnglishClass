@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
         commonMistakePt: e.commonMistakePt,
         correction: e.correction,
       })),
+      isChild: user.isChild,
     },
     sessionFocus
   );
