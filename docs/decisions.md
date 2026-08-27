@@ -2,6 +2,19 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 11 (Accountability de erros): occurrences passa a agir
+
+Achado da auditoria de 2026-08-27 (secção 3): `UserError.occurrences` era incrementado em 2 sítios mas lido em **exatamente um** — só para imprimir "3x" no ecrã de `/practice`. Nenhum limiar, nenhuma repescagem forçada, e as duas superfícies de "testa-me" da app (Diagnóstico Semanal e Sheets de tema, via `buildQuestionSet`) eram completamente cegas ao histórico de erros.
+
+Quatro correções, todas dentro do que já existia no schema (sem migração):
+
+1. **`getDueReviews` (`src/lib/srs/schedule.ts`) prioriza por `occurrences`**: dentro dos itens já `due`, os que têm mais ocorrências aparecem primeiro (antes: só por `dueAt`, mais antigos primeiro — um erro cometido 12 vezes e um cometido 1 vez eram indistinguíveis).
+2. **Repescagem forçada acima de 3 erros**: `UserError` com `occurrences >= 3` e `resolvedAt: null` entram na fila de revisão mesmo que o SM-2 ainda não os tenha marcado como `due` — um erro que se repete tanto merece reforço antes do intervalo normal de esquecimento acabar. Implementado com 2 queries adicionais (erros forçados + os seus `ReviewScheduleItem`), sem alterar a assinatura pública da função nem os seus consumidores.
+3. **`buildQuestionSet` (`src/lib/practiceQuestions.ts`) consulta `UserError`**: quando recebe `userId` (novo parâmetro opcional, para não quebrar chamadas existentes sem essa informação), busca os erros não resolvidos do utilizador por pilar e dá prioridade a exercícios cujas `tags` tocam nesse tópico concreto — o resto das vagas continua aleatório como antes. `getWeeklyTest` e a página de Sheets de tema (`/practice/topic/[pillar]`) passam a fornecer `user.id`. Nota: isto torna o Diagnóstico Semanal, antes idêntico para todos os utilizadores na mesma semana (`weekSeed`), agora também influenciado pelos erros de cada um — decisão deliberada, é exatamente o que "accountability" pede.
+4. **`errorType` granular para pilares não-gramaticais** (`src/app/(app)/learn/actions.ts`, função `pickErrorType`): antes, `content.tags?.[0]` era sempre a string literal do pilar para VOCABULARY/LISTENING/READING/TRANSLATION (confirmado por grep no `content/curriculum/*.json` — ex. `["vocabulary", "hobbies"]`, `["listening", "work"]`), nunca o tópico concreto. Como `UserError` casa por `(userId, errorType)`, isso colapsava TODOS os erros de vocabulário de sempre numa única linha. Agora usa a 1ª tag que não seja um dos 6 nomes literais de pilar — para GRAMMAR, cuja 1ª tag já era específica (ex. "present-simple-questions"), o comportamento não muda.
+
+Não implementado nesta fase, fora do que a auditoria pediu: `getDueReviewCount` (badge de contagem) continua a contar só `dueAt <= now`, sem incluir os itens de repescagem forçada — decisão deliberada de manter o escopo mínimo (é só um número de badge, não afeta o que é mostrado na fila real).
+
 ## 2026-08-27 — Fase 10 (Rubrica e oral a sério): rubrica de 4 eixos estendida a speaking
 
 Achado E da auditoria de 2026-08-27: "rubrica só em writing... a competência mais difícil, e prioridade declarada da app, é a única sem rubrica". `WritingRubric` (grammar/vocabulary/coherence/taskAchievement, 0-100 cada) já existia desde a Fase 4 mas só era pedida/parseada para `kind === "writing"` em `getHolisticFeedback()` (`src/app/(app)/learn/actions.ts`).
