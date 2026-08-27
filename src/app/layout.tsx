@@ -45,6 +45,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-PT" className={`${fraunces.variable} ${inter.variable} ${plexMono.variable}`}>
+      <head>
+        {/* Aplica o tema guardado antes do primeiro paint, para não haver um
+            "flash" do tema claro por defeito seguido de escuro (ou vice-versa).
+            Default é sempre claro a não ser que o utilizador tenha escolhido
+            escuro explicitamente via ThemeToggle — ver docs/decisions.md 2026-08-26. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');}}catch(e){}",
+          }}
+        />
+      </head>
       <body className="font-sans">
         <PwaRegister />
         {children}

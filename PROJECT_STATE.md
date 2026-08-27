@@ -2,7 +2,7 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, badge "Powered by Netlify" desligado (config Netlify, não código) e tamanho de letra aumentado ~10% em toda a app (`tailwind.config.ts`). Ver `docs/decisions.md`. **Deploy por confirmar** (só o commit da letra precisa de deploy — o badge já está desligado, efeito imediato).
+Última atualização: 2026-08-26, tema claro/escuro deixou de seguir automaticamente o sistema operativo — causa provável da queixa "cores sempre pesadas, nunca muda" (se o Windows do utilizador está em modo escuro, a app inteira ficava sempre navy escuro sem controlo). Agora há um `ThemeToggle` explícito no cabeçalho, default claro. Ver `docs/decisions.md`. **Deploy por confirmar.**
 
 ### UX dos quizzes (correção de UX pedida pelo utilizador após testar)
 Feedback imediato (Verificar → correto/incorreto + resposta certa → Seguinte) no Desafio Diário e Diagnóstico Semanal, TRANSLATION deixou de ficar de fora dos testes (vira pergunta de texto), Sheets de tema (`/practice/topic`) para escolher o que praticar, cor por pilar nos quizzes. Ver `docs/decisions.md`.

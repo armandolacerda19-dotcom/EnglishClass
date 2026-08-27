@@ -2,7 +2,13 @@ import type { Config } from "tailwindcss";
 
 // Tokens de docs/09-sistema-design.md — não alterar sem atualizar esse documento.
 const config: Config = {
-  darkMode: "media",
+  // "class" em vez de "media" (2026-08-26) — feedback do utilizador: "as cores
+  // são sempre muito pesadas, nunca muda". Causa real: com "media" a app seguia
+  // sempre o tema do sistema operativo — se o Windows do utilizador estiver em
+  // modo escuro, TODAS as páginas ficavam sempre em fundo navy escuro, sem
+  // controlo nenhum. Com "class" o claro passa a ser o default e o utilizador
+  // escolhe explicitamente com o ThemeToggle (src/components/ui/ThemeToggle.tsx).
+  darkMode: "class",
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {

@@ -2,6 +2,17 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Tema claro/escuro deixa de ser automático, passa a ser escolha do utilizador
+
+Ao continuar a lista de updates, reexaminei a queixa "as cores são sempre muito pesadas, nunca muda" à luz do código: `tailwind.config.ts` tinha `darkMode: "media"`, ou seja, a app seguia sempre a preferência do sistema operativo (`prefers-color-scheme`), sem controlo nenhum do utilizador. Se o Windows do utilizador estiver em modo escuro, a app inteira — todas as páginas, sempre — renderiza em fundo `ink` (navy escuro), o que corresponde exatamente à queixa "sempre pesadas, nunca muda".
+
+Corrigido: `darkMode: "class"` em vez de `"media"`. Todas as classes `dark:` já existentes no código continuam a funcionar sem alterações — só o mecanismo de ativação muda, de automático (media query) para explícito. Adicionado:
+- `src/components/ui/ThemeToggle.tsx` — botão claro/escuro no cabeçalho da app (`(app)/layout.tsx`), guarda a escolha em `localStorage`.
+- Script inline em `src/app/layout.tsx` (`<head>`) que aplica o tema guardado antes do primeiro paint, para não haver flash do tema errado.
+- `globals.css`: `@media (prefers-color-scheme: dark)` trocado por seletores `.dark`.
+
+Default passa a ser sempre claro, a não ser que o utilizador escolha escuro explicitamente — nunca mais preso ao tema do sistema operativo.
+
 ## 2026-08-26 — Badge "Powered by Netlify" desligado + letra maior
 
 Pedido do utilizador: remover o popup "powered by netlify" que atrapalhava a visualização, e aumentar o tamanho da letra para leitura mais fácil.
