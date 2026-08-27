@@ -414,6 +414,38 @@ Guia passo a passo (só browser + `git`, sem `npm`/`node`): `docs/11-deploy-netl
 - Conteúdo curricular expandido de 1 para 4 lições seedáveis: Pre-A1 "Greetings and Introductions" (verbo to be — inclui explicitamente o erro clássico "I have 38 years" citado na secção 4 do master prompt), A1.1 "Daily Routines" (Present Simple), A1.1 "Likes and Hobbies" (perguntas com Do/Does), A1.2 "At the Shop" (There is/There are). `prisma/seed.ts` generalizado para iterar sobre uma lista de ficheiros de módulo (`MODULE_FILES`) em vez de ter uma função por módulo — adicionar conteúdo novo passa a ser só criar o ficheiro JSON e adicioná-lo à lista.
 - **Heurística de "próxima lição" na Home** (`src/lib/lessons.ts`): sem uma tabela dedicada de conclusão de lição, usa-se como proxy "tem pelo menos uma `ExerciseAttempt` num exercício dessa lição" para considerar a lição "tocada" e avançar para a seguinte. Aceitável para MVP1; **não filtra pelo nível atual do utilizador** (mostra sempre a próxima lição não tocada, independentemente de `LearningProfile.currentLevel`) — revisitar em MVP2 quando o currículo cobrir mais níveis e o level skipping (`docs/04-arquitetura-curricular-cefr.md`) precisar de gating real.
 
+## 2026-08-27 — Fase 3 fechada: conteúdo de referência, limpeza de schema, PRONUNCIATION; início da Fase 4
+
+Sessão contínua sem pausas (pedido explícito do utilizador: "não deve parar até os tokens da sessão estiverem perto de esgotar"). Trabalho realizado, por ordem:
+
+### Conteúdo de referência (ficheiros estáticos `src/content/*.ts`, sem schema/seed)
+- **`readingPassages.ts`**: 4 → 20 textos (~61 → ~2.400 palavras), cada um ligado deliberadamente a um conceito de gramática dos 27 módulos seedados (ex. `places-i-have-visited`↔Present Perfect, `if-i-won-the-lottery`↔Second Conditional, `how-coffee-is-made`↔Passive Voice), cobrindo Pre-A1 a B1.
+- **`idioms.ts`**: 8 → 26 expressões idiomáticas/phrasal verbs (schema mantido: `phrase, literalPt, meaningEn, meaningPt, example, distractors[3]`).
+- **`culturalTips.ts`**: 5 → 15 dicas culturais, agora cobrindo as 4 categorias (`small_talk`, `register`, `variants`, `etiquette`) de forma mais equilibrada.
+- **`sentencePatterns.ts`**: 8 → 18 padrões de erro PT→EN (falsos amigos, `make` vs `do`, dupla negativa, etc.).
+- **`irregularVerbs.ts`**: correção de um erro de categorização (`wake up` estava listado como verbo irregular — é um phrasal verb; substituído pelo verbo base `wake/woke/woken`) e expansão de 55 → 99 verbos. Confirmado sem duplicados via `grep -c "base:"` + `sort | uniq -d`.
+
+Todos os ficheiros `.ts` foram relidos por inteiro após edição (sem `tsc` local) para confirmar sintaxe. Nenhum destes ficheiros usa `content/curriculum/*.json` nem passa pelo `seed.ts` — são servidos diretamente pela app, por isso não há risco de o build da Netlify (pausado até 2026-09-01) apanhar um erro que só apareça no seed.
+
+### Limpeza de schema morto (`prisma/schema.prisma`)
+Removidos, após grep exaustivo confirmando zero referências no código da aplicação (incluindo tipos `Prisma.X` gerados): modelos `Question`, `UserVocabularyMastery`, `UserConceptMastery`, `Bootcamp`, `BootcampEnrollment`; enum `MasteryState`; valor `BOOTCAMP` do enum `AttemptSource`; campos de relação órfãos em `User`/`GrammarConcept`/`VocabularyItem`/`Exercise`/`Answer`. Estes modelos tinham sido criados na Fase 0 para funcionalidades nunca implementadas (bootcamps, mastery tracking granular) — nunca chegaram a ser escritos por código nenhum. Segurança da remoção: (1) tabelas nunca tinham linhas escritas, (2) `prisma db push --accept-data-loss` já é a prática padrão deste projeto (sem migrações versionadas a preservar), (3) deploys pausados até 2026-09-01 dão tempo de sobra para apanhar qualquer problema antes do próximo build real. `Answer` fica reduzido a `{ id, attemptId, attempt, givenAnswer, isCorrect, createdAt }`.
+
+### PRONUNCIATION deixa de estar sempre a zero (achado mais citado da auditoria original)
+Sem áudio real nem scoring fonético (fora do MVP1, ver decisão de 2026-08-26 sobre Web Speech API), o octógono de competência tinha o eixo PRONUNCIATION permanentemente vazio. Solução aplicada em `src/app/(app)/learn/actions.ts`: para `kind === "speaking"`, o prompt à Gemini passa a pedir também uma linha `PRONUNCIATION: <n>` (inferida a partir de padrões no transcript de reconhecimento de fala — hesitações, palavras mal reconhecidas, etc.), reaproveitando a mesma metodologia já usada para `SCORE:`. `submitSpeaking()` grava `pronunciationScore` em `SpeakingAttempt` e chama `updateSkillScore(user.id, "PRONUNCIATION", pronunciationScore)`. **Trade-off aceite e documentado**: é um sinal indireto (padrões de transcrição), não scoring fonético fonema-a-fonema — melhor do que zero permanente, mas não deve ser apresentado ao utilizador como precisão clínica.
+- **Vulnerabilidade auto-detetada e corrigida antes de finalizar**: a nova linha `PRONUNCIATION:` no prompt não estava coberta pela sanitização de input existente (só `SCORE:` era removido do texto do utilizador antes de ir para a Gemini) — adicionado `.replace(/PRONUNCIATION\s*:/gi, "pronunciation-")` à mesma cadeia de sanitização, espelhando a defesa já existente. Nenhuma exploração ocorreu; apanhado em revisão própria do código.
+- `submitSpeaking()` ganhou também `responseTimeMs` opcional (tempo entre o prompt aparecer e o utilizador submeter), capturado em `LessonRunner.tsx` via `useRef(Date.now())`, validado (finito, ≥0, limitado a 10 min) e gravado em `SpeakingAttempt`.
+
+### "Inglês de hoje" — plano diário adaptado ao tempo disponível (auditoria secção 47)
+Nova função pura `generateDailyPlan()` (`src/lib/plan/dailyPlan.ts`), sem escrita na BD — deriva de `LearningProfile.dailyMinutesTarget` (já existia) e da existência de revisões pendentes. Gera uma checklist concreta (não só uma frase genérica) com escalões alinhados aos de `generateStandardPlan()`: ≤5min (micro-desafio), ≤15min (revisão + tema), ≤30min (revisão + tema + desafio diário), >30min (revisão + tema + speaking + leitura/diagnóstico). Renderizado como card clicável em `src/app/(app)/home/page.tsx`, tanto no branch Standard como no Intensive.
+
+### Outras correções pequenas nesta sessão
+- Texto de `note` em `generateStandardPlan()` (`src/lib/plan/generate.ts`) tinha uma mistura de inglês/português — corrigido para português europeu puro.
+- Grelhas de atalhos de 4 cartões em `home/page.tsx` (Standard e Intensive): `grid-cols-2` → `grid-cols-2 lg:grid-cols-4`, aditivo, não altera mobile.
+- `role="status" aria-live="polite"` adicionado ao parágrafo de feedback correto/incorreto em 6 componentes de exercício (`DailyChallengeRunner`, `IdiomRunner`, `MicroChallengeRunner`, `ReadingRunner`, `TopicPracticeRunner`, `LessonRunner`) — `WeeklyTestRunner` já tinha isto de uma fase anterior; agora todos os runners de exercício anunciam o resultado a leitores de ecrã.
+
+### Vocabulário — nota de honestidade mantida
+Meta de 2.000 palavras standalone atingida em trabalho anterior desta sessão (2.004 confirmadas, ver entrada de 2026-08-26). Nenhum trabalho de vocabulário novo nesta continuação — o foco foi fechar as lacunas de conteúdo de referência e as correções estruturais que a auditoria original tinha sinalizado mas que ficaram para "uma passagem dedicada".
+
 ## Pontos em aberto para decidir antes/durante MVP1
 
 - Algoritmo exato de spaced repetition (`ReviewScheduleItem.easeFactor`/`intervalDays`): proposto tipo SM-2 como ponto de partida; afinar com dados reais de retenção a partir do MVP2.
