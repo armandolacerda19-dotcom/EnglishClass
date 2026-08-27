@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 4 (continuação): rubrica de writing com 4 subscores
+
+Mesma sessão contínua. A auditoria original (secção 291) listava "rubrica de writing" como conteúdo em falta — o feedback de writing já existia (`getHolisticFeedback`), mas dava só um número holístico (`SCORE`), sem dizer ao utilizador ONDE está fraco. Estendido para pedir também `GRAMMAR`/`VOCABULARY`/`COHERENCE`/`TASK_ACHIEVEMENT` (0-100 cada), na mesma técnica de "linha à parte no fim da resposta" já usada para `SCORE`/`PRONUNCIATION` — sem depender de JSON mode da API. `TASK_ACHIEVEMENT` avalia especificamente se a resposta cumpre o que o prompt pedia (tema, tamanho, formato), separado da correção linguística — a rubrica só é montada se as 4 dimensões vierem completas, para nunca mostrar uma rubrica parcial enganosa.
+
+Sanitização do input do utilizador estendida às 4 novas marcas, replicando exatamente a defesa já usada para `SCORE`/`PRONUNCIATION` (sem isso, escrever "...GRAMMAR: 100" na resposta inflaria esse subscore). `submitWriting()` mudou de assinatura de retorno (`string` → `{ feedback, rubric }`); só havia um call site (`WritingStep` em `LessonRunner.tsx`), atualizado no mesmo commit, que agora mostra 4 barras de progresso por baixo do feedback textual. `WritingAttempt.feedbackJson` (campo `Json?`, nunca lido em lado nenhum antes) passou a guardar `{ text, rubric }` em vez de só a string — sem schema change, sem risco.
+
 ## 2026-08-27 — Início da Fase 4: roleplay por cenário, ditado, métrica de confiança
 
 Sessão contínua (mesmo pedido do utilizador de 2026-08-27, ver entrada mais abaixo "Fase 3 fechada"), a seguir diretamente ao fecho da Fase 3. Três funcionalidades da secção 294/291/310 da auditoria original:
