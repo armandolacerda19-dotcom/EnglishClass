@@ -14,7 +14,7 @@ Alterações:
 - `SpeakingStep` (`src/components/lesson/LessonRunner.tsx`) ganha o mesmo bloco de 4 barras que `WritingStep` já tinha (reaproveitando o `RUBRIC_LABEL` já existente, definido no módulo antes de qualquer render acontecer — a ordem textual das duas funções no ficheiro não importa).
 - Único ponto de chamada de `submitSpeaking()` confirmado por grep: só `LessonRunner.tsx`, nenhum outro sítio a atualizar.
 
-Falta ainda nesta fase (não feito nesta ronda): canal de voz no AI Tutor (`TutorChat.tsx` hoje é só texto) — viável a custo zero via Web Speech API (`RecordButton` já existe e é reaproveitável), fica para a próxima ronda desta sessão.
+**Canal de voz no AI Tutor (fecha a Fase 10 por completo)**: `TutorChat.tsx` era só texto. Ganhou dois sentidos: `RecordButton` junto ao campo de input preenche a pergunta por reconhecimento de voz (não envia sozinho — o utilizador pode rever/corrigir antes de premir Send, mesmo padrão já usado noutros sítios da app), e cada balão de resposta do tutor ganha um botão "🔊 Ouvir" que sintetiza o texto via `speechSynthesis`, respeitando o sotaque escolhido no onboarding (mesma lógica de preferência BRITISH/AMERICAN da Fase 9). A lógica de escolha de voz foi duplicada em `TutorChat.tsx` (função `speakWithVariant`) em vez de extraída de `PlayTranscript.tsx` para um ficheiro partilhado — é pequena e autocontida, e mexer no `PlayTranscript.tsx` já verificado, sem build local para confirmar a refatoração, era um risco desnecessário para poupar ~10 linhas. Com isto, a Fase 10 do roadmap está concluída.
 
 ## 2026-08-27 — Fase 9 (Áudio e Speaking): o que é possível sem custo
 
