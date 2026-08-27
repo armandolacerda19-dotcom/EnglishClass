@@ -2,6 +2,23 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 4: balanço da secção 294 da auditoria (o que ficou e o que falta, com justificação)
+
+Fecho desta ronda de Fase 4. A secção 294 da auditoria listava, em conjunto: "Progressão estruturada · roleplay por cenário (restaurante/hotel/aeroporto/reunião) · scoring de pronúncia · tempo de resposta (automaticidade) · guardar áudio para auto-avaliação · feedback fonético PT→EN · shadowing · conversa livre com objetivo · simulação de entrevista por setor · métrica de confiança". Balanço item a item:
+
+- ✅ **Roleplay por cenário** — feito nesta sessão (personalidade `roleplay`, 4 cenários).
+- ✅ **Scoring de pronúncia** — feito numa sessão anterior (sinal indireto via transcript, `PRONUNCIATION:` em `getHolisticFeedback`).
+- ✅ **Tempo de resposta (automaticidade)** — feito numa sessão anterior (`responseTimeMs` em `SpeakingAttempt`, capturado em `LessonRunner`). Nota: só grava o dado, não constrói ainda uma feature de "Automaticity Training" dedicada em cima dele (ex. comparar tempos ao longo do tempo, dar feedback sobre velocidade) — o dado está lá para essa feature futura.
+- ✅ **Feedback fonético PT→EN** — já existia parcialmente (dicas inline no feedback de speaking); complementado nesta sessão com a referência proativa `/practice/pronunciation`.
+- ✅ **Shadowing** — já existia desde a Fase 2/3 (`MICRO_CHALLENGES` tipo `shadow`, 2 frases). Não expandido nesta sessão (ver nota de progressão estruturada abaixo).
+- ✅ **Conversa livre com objetivo** — feito nesta sessão (`GOAL_FOCUS` no Conversation Partner).
+- ✅ **Simulação de entrevista por setor** — já existia desde 2026-08-26 (`INTERVIEW_SECTORS`).
+- ✅ **Métrica de confiança** — feito nesta sessão (`confidenceSelfRating`).
+- ⚠️ **Progressão estruturada** — **não feito como feature dedicada**. Existem hoje peças soltas que cobrem os 4 níveis do enunciado original ("palavra→frase→diálogo→conversa") — verbos/vocabulário do dia (palavra), shadowing dos micro-desafios e SpeakingStep das lições (frase), roleplay por cenário (diálogo guiado), Conversation Partner/Native Friend (conversa livre) — mas nunca foram amarradas visualmente num percurso único e progressivo que o utilizador percorre passo a passo. Ficaria bem como uma página `/speak` redesenhada em trilha (\"nível 1: palavras → nível 2: frases → ...\"), mas isso é uma alteração de UX maior (não um endpoint novo) e arriscada de fazer sem poder testar visualmente num build real (deploys pausados até 2026-09-01). Deixado para uma sessão com o utilizador presente para validar visualmente, ou para depois de 2026-09-01.
+- ❌ **Guardar áudio para auto-avaliação** — **deliberadamente não implementado**. Exigiria (1) gravação real de áudio no browser (`MediaRecorder`, não só transcript via Web Speech API), (2) upload e armazenamento (Supabase Storage, o único sítio possível dada a stack atual), e (3) custo de armazenamento a crescer sem limite por utilizador — o que contraria o pivot explícito de "custo zero" desta sessão (ver decisão "Pivot: stack 100% gratuita" mais abaixo neste ficheiro). Não é um esquecimento: é incompatível com a restrição de orçamento até essa restrição ser revista com o utilizador.
+
+Todos os itens ✅/⚠️ estão a par de contexto suficiente para uma sessão futura decidir se vale a pena aprofundar (ex. construir a "Progressão estruturada" visual) sem repetir esta análise.
+
 ## 2026-08-27 — Fase 4 (continuação): referência de Sons e Pronúncia PT→EN
 
 Mesma sessão contínua. "Feedback fonético PT→EN" (auditoria secção 294) já tinha uma resposta reativa (dicas inline no feedback de speaking, baseadas no transcript de um erro específico) — faltava a referência proativa, para consultar antes de um erro acontecer. Nova página `/practice/pronunciation` com 8 padrões previsíveis de interferência do português (som TH, consoantes finais engolidas, acento tónico, vogais curtas/longas tipo ship/sheep, R inglês vs. português, letras mudas, clusters S+consoante no início — "eschool" vs. "school" —, as 3 pronúncias de -ED), cada um com palavras de exemplo ouvíveis via `PlayTranscript`. Conteúdo estático (`src/content/pronunciationTips.ts`), mesmo padrão de `culturalTips.ts`/`sentencePatterns.ts`.
