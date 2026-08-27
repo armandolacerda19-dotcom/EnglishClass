@@ -31,6 +31,12 @@ export default async function HomePage() {
   }
 
   const nextLesson = await getNextLessonForUser(user.id);
+  // Gerado em api/placement/submit (generateStandardPlan) e nunca lido em
+  // lado nenhum antes desta correção — o "plano personalizado" prometido no
+  // onboarding não tinha efeito visível nenhum para utilizadores do plano
+  // Standard. Ver docs/decisions.md 2026-08-26 (auditoria).
+  const learningPlan = await prisma.learningPlan.findUnique({ where: { userId: user.id } });
+  const planNote = (learningPlan?.planJson as { note?: string } | null)?.note;
 
   return (
     <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
@@ -41,6 +47,13 @@ export default async function HomePage() {
       </div>
 
       <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} />
+
+      {planNote && (
+        <Card className="mb-3 border-verdigris/30">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">O seu plano</p>
+          <p className="text-sm">{planNote}</p>
+        </Card>
+      )}
 
       <Link href="/practice/topic" className="mb-3 block">
         <Card className="border-2 border-ink/10 hover:border-verdigris dark:border-linen/10">

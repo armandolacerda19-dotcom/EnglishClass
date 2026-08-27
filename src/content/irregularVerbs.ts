@@ -1,8 +1,11 @@
 // Verbos irregulares — item "verbos" pedido explicitamente pelo utilizador
 // (2026-08-26): "deve investir em conteúdo de gramática, verbos, construção
-// frásica, vocabulário". Referência + quiz, os 50 verbos irregulares mais
-// comuns em inglês do dia a dia (não é a lista completa das ~200 formas
-// existentes, mas cobre o que aparece com mais frequência longe).
+// frásica, vocabulário". Referência + quiz, ~87 verbos irregulares comuns em
+// inglês do dia a dia (não é a lista completa das ~200 formas existentes, mas
+// cobre o que aparece com mais frequência). Nota 2026-08-26 (auditoria):
+// "wake up" foi corrigido para "wake" — a forma base do verbo irregular é
+// "wake" (woke/woken); "up" é a partícula do phrasal verb, não faz parte da
+// conjugação irregular em si.
 
 export interface IrregularVerb {
   base: string;
@@ -62,10 +65,54 @@ export const IRREGULAR_VERBS: IrregularVerb[] = [
   { base: "tell", pastSimple: "told", pastParticiple: "told", translationPt: "contar/dizer" },
   { base: "think", pastSimple: "thought", pastParticiple: "thought", translationPt: "pensar" },
   { base: "understand", pastSimple: "understood", pastParticiple: "understood", translationPt: "entender" },
-  { base: "wake up", pastSimple: "woke up", pastParticiple: "woken up", translationPt: "acordar" },
+  { base: "wake", pastSimple: "woke", pastParticiple: "woken", translationPt: "acordar" },
   { base: "wear", pastSimple: "wore", pastParticiple: "worn", translationPt: "vestir/usar" },
   { base: "win", pastSimple: "won", pastParticiple: "won", translationPt: "ganhar" },
   { base: "write", pastSimple: "wrote", pastParticiple: "written", translationPt: "escrever" },
+  { base: "bear", pastSimple: "bore", pastParticiple: "borne", translationPt: "suportar/aguentar" },
+  { base: "beat", pastSimple: "beat", pastParticiple: "beaten", translationPt: "vencer/bater" },
+  { base: "bend", pastSimple: "bent", pastParticiple: "bent", translationPt: "dobrar/curvar" },
+  { base: "bite", pastSimple: "bit", pastParticiple: "bitten", translationPt: "morder" },
+  { base: "blow", pastSimple: "blew", pastParticiple: "blown", translationPt: "soprar" },
+  { base: "dig", pastSimple: "dug", pastParticiple: "dug", translationPt: "cavar" },
+  { base: "draw", pastSimple: "drew", pastParticiple: "drawn", translationPt: "desenhar" },
+  { base: "fight", pastSimple: "fought", pastParticiple: "fought", translationPt: "lutar" },
+  { base: "forgive", pastSimple: "forgave", pastParticiple: "forgiven", translationPt: "perdoar" },
+  { base: "freeze", pastSimple: "froze", pastParticiple: "frozen", translationPt: "congelar" },
+  { base: "grow", pastSimple: "grew", pastParticiple: "grown", translationPt: "crescer/cultivar" },
+  { base: "hang", pastSimple: "hung", pastParticiple: "hung", translationPt: "pendurar" },
+  { base: "hide", pastSimple: "hid", pastParticiple: "hidden", translationPt: "esconder" },
+  { base: "hit", pastSimple: "hit", pastParticiple: "hit", translationPt: "bater/acertar" },
+  { base: "hold", pastSimple: "held", pastParticiple: "held", translationPt: "segurar" },
+  { base: "hurt", pastSimple: "hurt", pastParticiple: "hurt", translationPt: "magoar" },
+  { base: "lay", pastSimple: "laid", pastParticiple: "laid", translationPt: "colocar/pousar" },
+  { base: "lead", pastSimple: "led", pastParticiple: "led", translationPt: "liderar" },
+  { base: "lend", pastSimple: "lent", pastParticiple: "lent", translationPt: "emprestar" },
+  { base: "let", pastSimple: "let", pastParticiple: "let", translationPt: "deixar/permitir" },
+  { base: "lie", pastSimple: "lay", pastParticiple: "lain", translationPt: "deitar-se" },
+  { base: "light", pastSimple: "lit", pastParticiple: "lit", translationPt: "acender" },
+  { base: "mean", pastSimple: "meant", pastParticiple: "meant", translationPt: "significar" },
+  { base: "ride", pastSimple: "rode", pastParticiple: "ridden", translationPt: "andar (bicicleta/cavalo)" },
+  { base: "ring", pastSimple: "rang", pastParticiple: "rung", translationPt: "tocar (campainha/telefone)" },
+  { base: "rise", pastSimple: "rose", pastParticiple: "risen", translationPt: "subir/levantar-se" },
+  { base: "set", pastSimple: "set", pastParticiple: "set", translationPt: "definir/colocar" },
+  { base: "shake", pastSimple: "shook", pastParticiple: "shaken", translationPt: "abanar/tremer" },
+  { base: "shine", pastSimple: "shone", pastParticiple: "shone", translationPt: "brilhar" },
+  { base: "shoot", pastSimple: "shot", pastParticiple: "shot", translationPt: "disparar" },
+  { base: "show", pastSimple: "showed", pastParticiple: "shown", translationPt: "mostrar" },
+  { base: "shut", pastSimple: "shut", pastParticiple: "shut", translationPt: "fechar" },
+  { base: "sing", pastSimple: "sang", pastParticiple: "sung", translationPt: "cantar" },
+  { base: "sink", pastSimple: "sank", pastParticiple: "sunk", translationPt: "afundar" },
+  { base: "spread", pastSimple: "spread", pastParticiple: "spread", translationPt: "espalhar" },
+  { base: "steal", pastSimple: "stole", pastParticiple: "stolen", translationPt: "roubar" },
+  { base: "stick", pastSimple: "stuck", pastParticiple: "stuck", translationPt: "colar/ficar preso" },
+  { base: "strike", pastSimple: "struck", pastParticiple: "struck", translationPt: "atingir/fazer greve" },
+  { base: "swear", pastSimple: "swore", pastParticiple: "sworn", translationPt: "jurar" },
+  { base: "sweep", pastSimple: "swept", pastParticiple: "swept", translationPt: "varrer" },
+  { base: "swim", pastSimple: "swam", pastParticiple: "swum", translationPt: "nadar" },
+  { base: "swing", pastSimple: "swung", pastParticiple: "swung", translationPt: "balançar" },
+  { base: "throw", pastSimple: "threw", pastParticiple: "thrown", translationPt: "atirar" },
+  { base: "withdraw", pastSimple: "withdrew", pastParticiple: "withdrawn", translationPt: "retirar/levantar (dinheiro)" },
 ];
 
 function dailySeed(date: Date) {

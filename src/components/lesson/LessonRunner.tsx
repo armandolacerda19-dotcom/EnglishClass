@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -236,11 +236,19 @@ function SpeakingStep({ prompt }: { prompt: string }) {
   const [transcript, setTranscript] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  // Momento em que o prompt de speaking apareceu no ecrã — base para
+  // SpeakingAttempt.responseTimeMs, campo que existia no schema desde a Fase 0
+  // ("Automaticity Training / Quick Speak") mas nunca era escrito em lado
+  // nenhum. Não implementa a feature completa de treino de automaticidade,
+  // só começa a registar o dado bruto para essa feature poder ser construída
+  // depois. Ver docs/decisions.md 2026-08-26 (auditoria).
+  const promptShownAtRef = useRef(Date.now());
 
   async function handleTranscript(text: string) {
     setTranscript(text);
     setLoading(true);
-    const feedbackText = await submitSpeaking(prompt, text);
+    const responseTimeMs = Date.now() - promptShownAtRef.current;
+    const feedbackText = await submitSpeaking(prompt, text, responseTimeMs);
     setFeedback(feedbackText);
     setLoading(false);
   }

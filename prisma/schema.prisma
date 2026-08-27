@@ -409,7 +409,7 @@ model SpeakingAttempt {
 
   feedbackJson   Json?    // grammar/vocab/naturalness/fluency, "correct" vs "natural"
   fluencyScore   Int?
-  pronunciationScore Int? // null no MVP1 (sem scoring fonético avançado)
+  pronunciationScore Int? // sinal indireto via IA a partir do transcript de voz (sem áudio real, sem scoring fonético avançado) — ver src/app/(app)/learn/actions.ts, correção 2026-08-26 (auditoria: antes ficava sempre null)
   responseTimeMs Int?     // para Automaticity Training / Quick Speak
 
   createdAt      DateTime @default(now())

@@ -16,14 +16,17 @@ export function generateStandardPlan({ dailyMinutes, weakAreas, nextLessonIds }:
     focusPillars: weakAreas,
     planJson: {
       queue: nextLessonIds,
+      // Texto corrigido para português europeu 2026-08-26 (auditoria) — antes
+      // misturava inglês e português, e nunca era mostrado na UI (só passou a
+      // ser exibido em src/app/(app)/home/page.tsx nesta mesma correção).
       note:
         dailyMinutes <= 5
-          ? "Minimum Habit — foco numa única micro-lição por dia."
+          ? "Hábito mínimo — foco numa única micro-lição por dia."
           : dailyMinutes <= 15
-          ? "Standard — uma lição completa por dia."
+          ? "Plano normal — uma lição completa por dia."
           : dailyMinutes <= 30
-          ? "Accelerated Standard — lição + prática adicional no pilar mais fraco."
-          : "High Commitment — lição + prática + sessão de speaking dedicada.",
+          ? "Plano acelerado — lição completa + prática extra no pilar mais fraco."
+          : "Compromisso elevado — lição + prática + sessão de speaking dedicada.",
     },
   };
 }
