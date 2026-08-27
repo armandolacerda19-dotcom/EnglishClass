@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
+import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { submitWeeklyTest, type WeeklyTestAnswer, type WeeklyTestResult } from "@/app/(app)/practice/weekly-test/actions";
 import type { WeeklyTestQuestion } from "@/lib/weeklyTest";
 import { PILLAR_LABEL, PILLAR_ACCENT, DEFAULT_ACCENT } from "@/lib/pillarDisplay";
@@ -108,6 +109,11 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
           {PILLAR_LABEL[question.pillar] ?? question.pillar.toLowerCase()}
         </p>
         <p className="mb-4 text-lg">{question.prompt}</p>
+        {question.transcript && (
+          <div className="mb-4">
+            <PlayTranscript text={question.transcript} />
+          </div>
+        )}
 
         {question.kind === "choice" ? (
           <fieldset className="flex flex-col gap-2">

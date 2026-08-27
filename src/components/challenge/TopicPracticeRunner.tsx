@@ -6,6 +6,7 @@ import type { Pillar } from "@prisma/client";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
+import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { submitTopicPractice, type TopicPracticeAnswer, type TopicPracticeResult } from "@/app/(app)/practice/topic/actions";
 import type { PracticeQuestion } from "@/lib/practiceQuestions";
 import { PILLAR_LABEL, PILLAR_ACCENT, DEFAULT_ACCENT } from "@/lib/pillarDisplay";
@@ -89,6 +90,11 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
 
       <Card className={accent.border}>
         <p className="mb-4 text-lg">{question.prompt}</p>
+        {question.transcript && (
+          <div className="mb-4">
+            <PlayTranscript text={question.transcript} />
+          </div>
+        )}
 
         {question.kind === "choice" ? (
           <fieldset className="flex flex-col gap-2">

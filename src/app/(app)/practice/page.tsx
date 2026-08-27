@@ -75,6 +75,15 @@ export default async function PracticePage() {
         </Card>
       </Link>
 
+      <Link href="/practice/reading" className="mb-3 block">
+        <Card className="hover:border-verdigris">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Leitura</p>
+          <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+            Textos curtos com perguntas de compreensão
+          </p>
+        </Card>
+      </Link>
+
       <Link href="/speak" className="mb-3 block">
         <Card className="hover:border-verdigris">
           <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Falar com o Tutor</p>

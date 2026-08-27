@@ -222,6 +222,11 @@ const ACHIEVEMENTS = [
     title: "Primeiro Diagnóstico",
     description: "Completou o seu primeiro Diagnóstico Semanal.",
   },
+  {
+    code: "first_reading_passage",
+    title: "Primeira Leitura",
+    description: "Completou o seu primeiro texto de leitura extensiva.",
+  },
 ];
 
 async function seedAchievements() {

@@ -17,6 +17,7 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   streak_7: "7d",
   streak_30: "30d",
   first_weekly_test: "DIAG",
+  first_reading_passage: "LER",
 };
 
 export default async function ProgressPage() {

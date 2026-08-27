@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Leitura Extensiva + correção de bug: LISTENING sem áudio no Diagnóstico/Sheets
+
+Ao continuar com "atualizações de alto impacto", ao rever `PlayTranscript.tsx` (já tinha controlo de velocidade 0.75x/1x/1.25x, bem construído) percebi que `src/lib/practiceQuestions.ts` nunca extraía o campo `transcript` do `contentJson` — ou seja, uma pergunta LISTENING no Diagnóstico Semanal ou nas Sheets de tema dizia "Listen to the audio..." mas não havia nenhum botão de áudio. Corrigido: `PracticeQuestion` ganhou o campo `transcript`, `WeeklyTestRunner.tsx` e `TopicPracticeRunner.tsx` renderizam `<PlayTranscript>` quando presente.
+
+Adicionado também **Leitura Extensiva** (`/practice/reading`) — item sinalizado como alto impacto/custo médio na crítica de produto ("exposição a texto conectado, não frases isoladas, é um dos maiores preditores de aquisição de língua"). 3 textos curtos A1 (`src/content/readingPassages.ts`), cada um com 3 perguntas de compreensão. Decisão de arquitetura: conteúdo estático em TypeScript, não no schema `Exercise`/`Lesson` — mais rápido de expandir (só acrescentar ao array) e não obriga a outro `prisma db push`. O texto também pode ser ouvido via `PlayTranscript`, o que dá um bónus de listening "de graça".
+
 ## 2026-08-26 — 7ª lição: Past Simple ("Yesterday")
 
 Início do ataque ao item #5 da lista priorizada (expansão de conteúdo, o de custo mais alto na crítica de produto). Adicionado `content/curriculum/a1-module-06-past-simple.json` — A1.3, Past Simple regular/irregular, erro PT→EN destacado: manter o verbo na forma base com "yesterday" em vez de o mudar para o passado ("I go to the beach yesterday" em vez de "went"). Registado em `prisma/seed.ts` (`MODULE_FILES`), segue exatamente o mesmo formato dos módulos anteriores — nenhuma alteração à lógica de seed.

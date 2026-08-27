@@ -16,6 +16,7 @@ export interface PracticeQuestion {
   prompt: string;
   options: string[]; // só relevante quando kind === "choice"; inclui a resposta certa, baralhada
   correctAnswers: string[]; // todas as respostas aceites — usado para corrigir e para mostrar a correção
+  transcript: string | null; // exercícios LISTENING têm isto — lido em voz alta via PlayTranscript
 }
 
 function seededShuffle<T>(items: T[], seed: number): T[] {
@@ -60,7 +61,15 @@ export async function buildQuestionSet(
           ? seededPick([primary, ...distractors], seed + ex.id.length, Math.min(4, distractors.length + 1))
           : [];
 
-      questions.push({ exerciseId: ex.id, pillar, kind, prompt: content.prompt as string, options, correctAnswers });
+      questions.push({
+        exerciseId: ex.id,
+        pillar,
+        kind,
+        prompt: content.prompt as string,
+        options,
+        correctAnswers,
+        transcript: (content.transcript as string) ?? null,
+      });
     }
   }
 
