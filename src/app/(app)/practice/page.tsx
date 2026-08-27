@@ -136,6 +136,12 @@ export default async function PracticePage() {
           <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Small talk, registo, diferenças AmE/BrE</p>
         </Card>
       </Link>
+      <Link href="/practice/pronunciation" className="mt-3 block">
+        <Card className="hover:border-verdigris">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Sons e Pronúncia</p>
+          <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Padrões PT→EN mais comuns, com áudio</p>
+        </Card>
+      </Link>
 
       <SectionLabel>Os seus erros</SectionLabel>
       {errors.length === 0 ? (
