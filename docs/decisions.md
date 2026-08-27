@@ -2,6 +2,22 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 7: polimento (acessibilidade, performance, código morto)
+
+Passagem sistemática pelos 3 itens do roadmap da Fase 7 ("Acessibilidade completa · performance · limpar schema morto"). Achados e o que foi feito:
+
+**Acessibilidade — corrigido:**
+- `aria-current="page"` no item ativo do `BottomNav` — antes só a cor (verdigris) distinguia o separador ativo, invisível para leitores de ecrã.
+- Campo "Nome" do formulário de criar perfil em `/profiles` tinha só `placeholder`, sem `<label>` — inconsistente com o resto da app (login/signup/forgot-password já envolvem sempre os campos num `<label>` com texto visível). Corrigido para o mesmo padrão.
+- Confirmado (não precisou de correção): `globals.css` já tem uma regra `:focus-visible` global (outline verdigris, 2px, offset 2px) que cobre TODOS os elementos focáveis da app de forma consistente — cheguei a adicionar um anel de foco específico ao `Button` antes de notar isto e reverti, para não criar dois estilos de foco diferentes.
+- Confirmado (não precisou de correção): `<html lang="pt-PT">` já definido; zero `<img>` sem `alt` (a app não usa imagens raster, só SVG/cor); `prefers-reduced-motion` já respeitado desde uma fase anterior.
+
+**Acessibilidade — encontrado, não corrigido (decisão de design, não bug):** o texto na cor `verdigris` (#3E7C6B) sobre fundo `linen` (#F5F2EC) — usado extensivamente como cor de link e de rótulo (`font-mono text-xs uppercase text-verdigris`) — tem uma taxa de contraste calculada de **~4.37:1**, ligeiramente abaixo do mínimo AA de 4.5:1 para texto normal (passa confortavelmente para texto grande, que só precisa de 3:1). A correção seria escurecer ligeiramente o `verdigris` (ex. para algo como #3A7565 dá ~4.8:1) — mas isto é a cor de marca principal, usada em centenas de sítios (botões, links, eyebrows de cards), e mudar identidade visual sem confirmação já foi tratado como decisão do utilizador nesta sessão antes (ver "Redesenho de interação estilo Busuu"). Não alterado sem essa confirmação — fica registado aqui com o número exato para decidir rapidamente numa sessão futura, sem repetir o cálculo.
+
+**Performance — revisto, sem alterações necessárias:** grep por padrões de N+1 (`.map(async` a chamar Prisma dentro de loops) não encontrou nenhum caso real — o único `.map(async)` existente (`api/placement/submit/route.ts`) chama a IA por pergunta de resposta livre, inerente ao scoring individual, não uma query de BD repetida. Proporção de client components (21/72, ~29%) razoável para uma app interativa. Sem forma de medir bundle size real sem build local — não se pode confirmar mais do que isto sem um deploy real.
+
+**Código morto — revisto com um agente dedicado, dado o volume do codebase:** confirmado zero referências residuais aos 5 modelos Prisma já removidos numa fase anterior (`Question`, `UserVocabularyMastery`, `UserConceptMastery`, `Bootcamp`, `BootcampEnrollment`, enum `MasteryState`); zero componentes ou funções de `lib/` nunca importados; zero comentários `TODO`/`FIXME` esquecidos. Único achado: `MicroChallengeKind` (`src/lib/microChallenges.ts`) — um type alias exportado mas nunca importado em lado nenhum (as duas interfaces que o usariam declaram `kind` com literais diretos) — removido.
+
 ## 2026-08-27 — Fase 6: perfis múltiplos por conta ("Família", estilo Netflix)
 
 A maior mudança de arquitetura desta sessão. O utilizador foi explicitamente consultado (via pergunta direta, não decisão unilateral) porque isto tinha um perfil de risco muito diferente de tudo o resto feito nesta sessão — em vez de ser aditivo (ficheiros novos, colunas opcionais), tocava potencialmente em ~15 tabelas de progresso e ~47 ficheiros que as consomem. As 3 opções apresentadas: (1) contas separadas por pessoa + um "hub" para trocar rapidamente, baixo risco; (2) perfis reais sob um único login (estilo Netflix), risco maior, exige mudar o schema; (3) adiar a Fase 6 para outra sessão. **O utilizador escolheu a opção 2.**
