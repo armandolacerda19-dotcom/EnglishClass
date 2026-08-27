@@ -2,6 +2,26 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — FASE 3 da auditoria (continuação): introdução do nível B1
+
+Terceira continuação da mesma sessão. **Correção a uma suposição anterior**: nas duas entradas de decisão abaixo eu tinha assumido que introduzir B1 era "uma alteração maior de schema/conteúdo, reservada para uma passagem dedicada". Isso estava errado — o enum `CefrLevel` do `prisma/schema.prisma` **já incluía B1/B2/C1/C2** desde a Fase 0 (só nunca tinham sido usados). Introduzir B1 é trabalho de conteúdo puro (editar `levels.json` + escrever módulos), não uma migração de schema. Corrigido o entendimento e feito nesta mesma sessão, com a mesma disciplina de validação.
+
+**`content/curriculum/levels.json`**: novo nível B1 ("Threshold"), com 2 sublevels (B1.1, B1.2), a seguir a A2.2.
+
+**5 módulos novos de gramática B1** — os 5 conceitos que restavam da lista original de 15 "em falta" na auditoria:
+- **Past Perfect** (B1.1) — mod_b1_1_past_perfect
+- **Second Conditional** (B1.1) — mod_b1_1_second_conditional
+- **Passive Voice** (B1.1) — mod_b1_1_passive_voice
+- **Reported Speech** (B1.2) — mod_b1_2_reported_speech
+- **Future Continuous** (B1.2) — mod_b1_2_future_continuous
+
+**Cobertura de gramática: 24/24** do checklist original da auditoria (secção 9 do `docs/AUDITORIA-2026-08-26.md`). Todos os 15 conceitos listados como "em falta" estão agora cobertos, mais os que já existiam desde antes desta sessão.
+
+**Processo:** cada um dos 5 ficheiros validado individualmente com PowerShell `ConvertFrom-Json` antes de qualquer coisa. Desta vez, ao contrário do lote anterior, verifiquei explicitamente colisões de **id E headword** contra todo o `content/curriculum/` antes de ligar ao `seed.ts` — a lição da entrada anterior (onde só tinha verificado ids e reintroduzi 12 duplicados). Resultado: **767 ids e 497 headwords, ambos sem duplicados**.
+
+### O que fica para depois
+Vocabulário continua a precisar de expansão substancial (~480 → 2.000+ é o alvo da auditoria). Áudio real continua sem solução (não é algo que eu consiga produzir). B1 tem só 5 módulos — bem menos denso do que A1/A2 — mais conteúdo B1 (reading, exercícios extra, mais vocabulário B1) é o próximo passo natural se o utilizador quiser continuar a aprofundar em vez de alargar para B2.
+
 ## 2026-08-26 — FASE 3 da auditoria (continuação): mais 5 módulos, vocabulary-bank-3, e correção de 12 duplicados que eu próprio introduzi
 
 Continuação direta do lote anterior (ver entrada abaixo), na mesma sessão, pedido do utilizador "pode continuar".

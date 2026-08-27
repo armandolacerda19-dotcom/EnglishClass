@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.2",
+  "module": {
+    "id": "mod_b1_2_reported_speech",
+    "title": "She Said That...",
+    "theme": "reported-speech",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_b1_2_reported_speech",
+    "title": "Reported Speech",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_reported_speech",
+    "title": "Reported Speech: backshifting tenses",
+    "rule": "When reporting what someone said, the tense usually moves one step back into the past (backshift): \"I am tired\" → She said she was tired. Pronouns and time expressions also change to fit the new context.",
+    "simple_explanation": "Quando contamos o que alguém disse (sem usar as palavras exatas, sem aspas), o tempo verbal recua um passo e os pronomes/expressões de tempo mudam para fazer sentido na nova frase.",
+    "example": "\"I am tired,\" she said. → She said she was tired. \"I will call you tomorrow,\" he said. → He said he would call me the next day.",
+    "example_translation": "\"Estou cansada\", ela disse. → Ela disse que estava cansada. \"Vou ligar-te amanhã\", ele disse. → Ele disse que ia ligar-me no dia seguinte.",
+    "common_mistake_pt": "Em português falado, o discurso indireto muitas vezes não muda o tempo verbal de forma rigorosa (\"Ela disse que está cansada\" é comum, mesmo sendo tecnicamente menos correto do que \"estava\"). Isto leva falantes de português a manter o tempo original em inglês também: dizem \"She said she is tired\" em vez de \"She said she was tired\" — em inglês, o recuo do tempo verbal (backshift) é praticamente obrigatório no discurso indireto.",
+    "correction": "Regra geral do backshift: Present Simple → Past Simple; Present Continuous → Past Continuous; Present Perfect → Past Perfect; \"will\" → \"would\"; \"can\" → \"could\". Também mudam os pronomes (\"I\" → \"she/he\") e expressões de tempo (\"tomorrow\" → \"the next day\", \"today\" → \"that day\").",
+    "real_world_example": "A dar um recado: \"He said he would be late.\" (em vez de repetir \"I will be late\")"
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_claim",
+      "headword": "claim",
+      "type": "verb",
+      "translation_pt": "afirmar",
+      "definition_en": "to say that something is true, without proof",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/kleɪm/",
+      "related_forms": [],
+      "example_sentences": ["She claimed she had never seen him before."],
+      "difficulty": 2,
+      "tags": ["reported-speech"]
+    },
+    {
+      "id": "vocab_b1_admit",
+      "headword": "admit",
+      "type": "verb",
+      "translation_pt": "admitir",
+      "definition_en": "to agree, often reluctantly, that something is true",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ədˈmɪt/",
+      "related_forms": [],
+      "example_sentences": ["He admitted he had made a mistake."],
+      "difficulty": 2,
+      "tags": ["reported-speech"]
+    },
+    {
+      "id": "vocab_b1_deny",
+      "headword": "deny",
+      "type": "verb",
+      "translation_pt": "negar",
+      "definition_en": "to say that something is not true",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/dɪˈnaɪ/",
+      "related_forms": [],
+      "example_sentences": ["She denied breaking the vase."],
+      "difficulty": 2,
+      "tags": ["reported-speech"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_rs_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_reported_speech",
+      "prompt": "Report this: \"I am tired,\" she said. → She said she ___ tired.",
+      "correct_answer": ["was"],
+      "distractors": ["is", "were", "has been"],
+      "explanation": "Present Simple (\"am\") recua para Past Simple (\"was\") no discurso indireto.",
+      "common_mistake_pt": "Manter \"is\" sem mudar é o erro mais comum, por transferência do português falado.",
+      "audio_url": null,
+      "tags": ["reported-speech"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_rs_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_reported_speech",
+      "prompt": "Report this: \"I will call you tomorrow,\" he said. Choose the correct sentence.",
+      "correct_answer": ["He said he would call me the next day."],
+      "distractors": ["He said he will call me tomorrow.", "He said he would call me tomorrow.", "He said he would called me the next day."],
+      "explanation": "\"Will\" recua para \"would\", e \"tomorrow\" muda para \"the next day\", já que o momento de referência mudou.",
+      "common_mistake_pt": "Manter \"tomorrow\" sem o mudar para \"the next day\" é um erro comum, mesmo entre alunos que já sabem mudar o verbo.",
+      "audio_url": null,
+      "tags": ["reported-speech"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_rs_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"deny\" mean?",
+      "correct_answer": ["to say that something is not true"],
+      "distractors": ["to admit something is true", "to claim something proudly", "to forget something completely"],
+      "explanation": "\"Deny\" é o oposto de \"admit\" — recusar que algo é verdade.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "reported-speech"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_rs_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What did the manager deny?",
+      "correct_answer": ["that it was his fault", "it being his fault"],
+      "distractors": ["that the report had mistakes", "that the data was wrong", "everything"],
+      "explanation": "No áudio, ouve-se: \"he denied that it was his fault.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "The manager admitted the report had mistakes, but he denied that it was his fault. He claimed the data came from another department.",
+      "tags": ["listening", "reported-speech"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_rs_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"In the interview, she claimed she had ten years of experience. Later, she admitted it was actually closer to five, but she denied lying on purpose.\" What did she admit?",
+      "correct_answer": ["that her experience was closer to five years", "it was closer to five years"],
+      "distractors": ["that she had ten years of experience", "that she lied on purpose", "nothing"],
+      "explanation": "O texto indica diretamente: \"she admitted it was actually closer to five\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "reported-speech"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_rs_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_reported_speech",
+      "prompt": "Translate to English (discurso indireto, frase original \"I am tired\"): \"Ela disse que estava cansada.\"",
+      "correct_answer": ["She said she was tired."],
+      "distractors": [],
+      "explanation": "\"Am\" recua para \"was\" no discurso indireto em inglês.",
+      "common_mistake_pt": "Traduzir sem recuar o tempo verbal (\"She said she is tired\") é o erro mais comum.",
+      "audio_url": null,
+      "tags": ["translation", "reported-speech"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m2u1_reported_speech",
+    "title": "She Said That...",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_reported_speech",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_reported_speech#rule" },
+      { "type": "example", "content_ref": "gc_b1_reported_speech#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_reported_speech#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_claim", "vocab_b1_admit", "vocab_b1_deny"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_rs_001", "ex_b1_rs_002", "ex_b1_rs_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_rs_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_rs_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Said\" is pronounced /sed/, not /seɪd/ — it doesn't rhyme with \"paid\" or \"made\", even though it looks like it should. This is one of the most commonly mispronounced words in English."
+      },
+      { "type": "speaking", "prompt": "Report 3 things a friend or family member recently told you, using reported speech with the correct backshift." },
+      { "type": "writing", "prompt": "Write 5 sentences reporting things people said to you, using claim, admit or deny where relevant." },
+      { "type": "translation", "exercise_ids": ["ex_b1_rs_translation_001"] }
+    ]
+  }
+}

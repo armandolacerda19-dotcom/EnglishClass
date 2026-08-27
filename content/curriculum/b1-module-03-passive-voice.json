@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.1",
+  "module": {
+    "id": "mod_b1_1_passive_voice",
+    "title": "Focus on the Action",
+    "theme": "passive-voice",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_b1_1_passive_voice",
+    "title": "The Passive Voice",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_passive_voice",
+    "title": "Passive Voice: be + past participle",
+    "rule": "Use the passive voice (be + past participle) when the action is more important than who did it, or when we don't know or don't need to say who did it: \"The report was written yesterday\" (we don't say by whom).",
+    "simple_explanation": "Na voz passiva, o foco passa da pessoa que faz a ação para a coisa que recebe a ação. O sujeito da frase deixa de ser quem faz, passa a ser quem sofre a ação.",
+    "example": "The email was sent this morning. This building was built in 1990.",
+    "example_translation": "O email foi enviado esta manhã. Este edifício foi construído em 1990.",
+    "common_mistake_pt": "Em português, além da voz passiva com \"ser\" + particípio (semelhante ao inglês), é muito comum usar-se a construção reflexiva (\"constrói-se\", \"vende-se\") para o mesmo efeito — isto não existe em inglês, o que leva alguns falantes de português a esquecer o verbo \"be\" na passiva inglesa: dizem \"The building built in 1990\" em vez de \"The building was built in 1990\".",
+    "correction": "A passiva em inglês precisa sempre do verbo \"be\" (no tempo certo) + particípio passado: is/are/was/were/has been + particípio. Nunca se omite o \"be\". Para dizer quem fez a ação (opcional), usa-se \"by\": \"The email was sent by Sarah.\"",
+    "real_world_example": "Num relatório formal: \"The results were analysed and the data was presented at the meeting.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_analyse",
+      "headword": "analyse",
+      "type": "verb",
+      "translation_pt": "analisar",
+      "definition_en": "to examine something carefully in order to understand it",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈænəlaɪz/",
+      "related_forms": ["analysis (noun)"],
+      "example_sentences": ["The results were analysed by the research team."],
+      "difficulty": 2,
+      "tags": ["passive-voice"]
+    },
+    {
+      "id": "vocab_b1_publish",
+      "headword": "publish",
+      "type": "verb",
+      "translation_pt": "publicar",
+      "definition_en": "to prepare and issue a book, report or other written material for the public",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈpʌblɪʃ/",
+      "related_forms": [],
+      "example_sentences": ["The report will be published next month."],
+      "difficulty": 2,
+      "tags": ["passive-voice"]
+    },
+    {
+      "id": "vocab_b1_produce",
+      "headword": "produce",
+      "type": "verb",
+      "translation_pt": "produzir",
+      "definition_en": "to make or manufacture something",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/prəˈdjuːs/",
+      "related_forms": [],
+      "example_sentences": ["These cars are produced in Germany."],
+      "difficulty": 1,
+      "tags": ["passive-voice"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_pv_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_passive_voice",
+      "prompt": "Complete: This building ___ (build) in 1990.",
+      "correct_answer": ["was built"],
+      "distractors": ["built", "was building", "is built"],
+      "explanation": "O foco é o edifício (não quem construiu), e a ação aconteceu no passado → Past Simple passivo: was + particípio.",
+      "common_mistake_pt": "Esquecer o \"was\" (\"This building built in 1990\") é o erro mais comum.",
+      "audio_url": null,
+      "tags": ["passive-voice"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pv_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_passive_voice",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["The email was sent this morning."],
+      "distractors": ["The email sent this morning.", "The email was send this morning.", "The email is sent this morning already."],
+      "explanation": "\"Was sent\" é a forma correta: was + particípio passado (\"sent\", não \"send\").",
+      "common_mistake_pt": "Usar a forma base do verbo (\"send\") em vez do particípio passado (\"sent\") é um erro comum.",
+      "audio_url": null,
+      "tags": ["passive-voice"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pv_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"publish\" mean?",
+      "correct_answer": ["to prepare and issue a book, report or other written material for the public"],
+      "distractors": ["to destroy something", "to analyse data", "to produce a car"],
+      "explanation": "\"Publish\" é tornar algo escrito disponível ao público.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "passive-voice"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pv_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Where was the product designed?",
+      "correct_answer": ["London", "in London"],
+      "distractors": ["in the factories", "next spring", "it wasn't designed anywhere"],
+      "explanation": "No áudio, ouve-se: \"The new product was designed in London.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "The new product was designed in London and produced in three different factories. It will be launched next spring.",
+      "tags": ["listening", "passive-voice"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pv_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"The results of the study were analysed for six months before they were published. The research was funded by a university grant.\" How long were the results analysed for?",
+      "correct_answer": ["six months", "for six months"],
+      "distractors": ["one month", "a year", "it doesn't say"],
+      "explanation": "O texto indica diretamente: \"analysed for six months\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "passive-voice"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pv_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_passive_voice",
+      "prompt": "Translate to English: \"O relatório foi escrito ontem.\"",
+      "correct_answer": ["The report was written yesterday."],
+      "distractors": [],
+      "explanation": "\"Was written\" é a forma correta da voz passiva no passado.",
+      "common_mistake_pt": "Esquecer o \"was\" (\"The report written yesterday\") é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "passive-voice"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m1u3_passive_voice",
+    "title": "Focus on the Action",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_passive_voice",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_passive_voice#rule" },
+      { "type": "example", "content_ref": "gc_b1_passive_voice#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_passive_voice#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_analyse", "vocab_b1_publish", "vocab_b1_produce"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_pv_001", "ex_b1_pv_002", "ex_b1_pv_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_pv_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_pv_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In the passive voice, the main stress falls on the past participle, not on \"was\"/\"were\": the email was SENT, the building was BUILT — \"was\"/\"were\" stay weak and unstressed."
+      },
+      { "type": "speaking", "prompt": "Describe 3 things around you (an object, a building, a product) using the passive voice, focusing on the thing itself, not who made it." },
+      { "type": "writing", "prompt": "Write 5 sentences in the passive voice describing facts about a product, a building or a report." },
+      { "type": "translation", "exercise_ids": ["ex_b1_pv_translation_001"] }
+    ]
+  }
+}

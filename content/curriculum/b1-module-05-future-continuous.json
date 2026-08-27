@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.2",
+  "module": {
+    "id": "mod_b1_2_future_continuous",
+    "title": "This Time Tomorrow",
+    "theme": "future-continuous",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_b1_2_future_continuous",
+    "title": "Future Continuous",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_future_continuous",
+    "title": "Future Continuous: will be + verb-ing",
+    "rule": "Use the Future Continuous (will be + verb-ing) for an action that will be in progress at a specific point in the future.",
+    "simple_explanation": "Descreve algo que estará a acontecer, em curso, num momento específico do futuro — o equivalente futuro do Past Continuous.",
+    "example": "This time next week, I will be lying on a beach. Don't call at 9pm — I'll be having dinner.",
+    "example_translation": "Nesta altura na próxima semana, estarei deitado numa praia. Não ligues às 21h — estarei a jantar.",
+    "common_mistake_pt": "É comum confundir o Future Continuous com o futuro simples (\"will\" + verbo base), perdendo a ideia de que a ação estará EM CURSO nesse momento específico: dizem \"I will lie on a beach\" em vez de \"I will be lying on a beach\" quando querem dizer que estarão nesse processo, não que farão isso como facto pontual.",
+    "correction": "\"Will be\" + verbo-ing para uma ação em curso num momento específico do futuro (\"At 9pm, I'll be having dinner\"). Não confundir com o futuro simples (\"I'll have dinner at 9pm\"), que apresenta a ação como um facto ou plano, sem focar que estará a decorrer nesse instante.",
+    "real_world_example": "A explicar por que não pode atender: \"Don't call me at 3pm, I'll be presenting to the whole team.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_presentation",
+      "headword": "presentation",
+      "type": "noun",
+      "translation_pt": "apresentação",
+      "definition_en": "a talk giving information about a particular subject",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˌprezənˈteɪʃn/",
+      "related_forms": ["give a presentation"],
+      "example_sentences": ["I'll be giving a presentation at 3pm."],
+      "difficulty": 2,
+      "tags": ["future-continuous", "work"]
+    },
+    {
+      "id": "vocab_b1_schedule",
+      "headword": "schedule",
+      "type": "noun",
+      "translation_pt": "horário",
+      "definition_en": "a plan of things to be done at particular times",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈʃedjuːl/",
+      "related_forms": [],
+      "example_sentences": ["According to the schedule, we'll be landing at 6pm."],
+      "difficulty": 2,
+      "tags": ["future-continuous", "time"]
+    },
+    {
+      "id": "vocab_b1_meantime",
+      "headword": "in the meantime",
+      "type": "phrase",
+      "translation_pt": "entretanto",
+      "definition_en": "during the period of time between two events",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ɪn ðə ˈmiːntaɪm/",
+      "related_forms": [],
+      "example_sentences": ["In the meantime, I'll be preparing the documents."],
+      "difficulty": 2,
+      "tags": ["future-continuous", "time"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_fc_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_future_continuous",
+      "prompt": "Complete: This time tomorrow, I ___ (fly) to New York.",
+      "correct_answer": ["will be flying"],
+      "distractors": ["will fly", "am flying", "fly"],
+      "explanation": "Ação em curso num momento específico do futuro → Future Continuous: will be + verbo-ing.",
+      "common_mistake_pt": "Usar só \"will fly\" (futuro simples) perde a ideia de estar em curso nesse momento exato.",
+      "audio_url": null,
+      "tags": ["future-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_fc_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_future_continuous",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["Don't call at 9pm — I'll be having dinner."],
+      "distractors": ["Don't call at 9pm — I have dinner.", "Don't call at 9pm — I will have dinner.", "Don't call at 9pm — I am have dinner."],
+      "explanation": "\"I'll be having dinner\" enfatiza que o jantar estará em curso às 21h.",
+      "common_mistake_pt": "Usar \"I will have dinner\" (futuro simples) soa como um plano pontual, não como algo em curso nesse momento.",
+      "audio_url": null,
+      "tags": ["future-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_fc_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"schedule\" mean?",
+      "correct_answer": ["a plan of things to be done at particular times"],
+      "distractors": ["a type of presentation", "a formal meeting", "a written report"],
+      "explanation": "\"Schedule\" é o plano de horários de algo, como uma viagem ou o dia de trabalho.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "time"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_fc_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What will the speaker be doing at 3pm tomorrow?",
+      "correct_answer": ["giving a presentation", "a presentation to the board"],
+      "distractors": ["checking the schedule", "flying to New York", "having dinner"],
+      "explanation": "No áudio, ouve-se: \"At 3pm tomorrow, I'll be giving a presentation to the board.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "At 3pm tomorrow, I'll be giving a presentation to the board. In the meantime, could you check the schedule for the rest of the week?",
+      "tags": ["listening", "future-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_fc_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"According to the schedule, we'll be landing at 6pm. In the meantime, the crew will be serving dinner around 4pm.\" What will the crew be doing around 4pm?",
+      "correct_answer": ["serving dinner", "serving dinner around 4pm"],
+      "distractors": ["landing the plane", "giving a presentation", "checking the schedule"],
+      "explanation": "O texto indica diretamente: \"the crew will be serving dinner around 4pm\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "future-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_fc_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_future_continuous",
+      "prompt": "Translate to English: \"Não me ligues às 15h — estarei a apresentar ao conselho.\"",
+      "correct_answer": ["Don't call me at 3pm — I'll be presenting to the board."],
+      "distractors": [],
+      "explanation": "\"I'll be presenting\" enfatiza que a apresentação estará em curso às 15h.",
+      "common_mistake_pt": "Usar \"I will present\" (futuro simples) em vez de \"I'll be presenting\" perde a ideia de estar em curso nesse momento.",
+      "audio_url": null,
+      "tags": ["translation", "future-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m2u2_future_continuous",
+    "title": "This Time Tomorrow",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_future_continuous",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_future_continuous#rule" },
+      { "type": "example", "content_ref": "gc_b1_future_continuous#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_future_continuous#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_presentation", "vocab_b1_schedule", "vocab_b1_meantime"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_fc_001", "ex_b1_fc_002", "ex_b1_fc_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_fc_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_fc_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Will be\" often contracts and links smoothly in speech: \"I will be\" → \"I'll be\" /aɪl bi/. The verb-ing that follows usually carries the main stress: I'll be HAVing dinner, I'll be FLYing to New York."
+      },
+      { "type": "speaking", "prompt": "Describe what you will be doing at specific times tomorrow (this time tomorrow, at 9am, at 6pm), using the Future Continuous." },
+      { "type": "writing", "prompt": "Write 5 sentences about what you and people you know will be doing at specific moments next week." },
+      { "type": "translation", "exercise_ids": ["ex_b1_fc_translation_001"] }
+    ]
+  }
+}

@@ -22,6 +22,11 @@ import modulePastContinuous from "../content/curriculum/a2-module-04-past-contin
 import moduleRelativeClauses from "../content/curriculum/a2-module-05-relative-clauses.json";
 import moduleGerundsInfinitives from "../content/curriculum/a2-module-06-gerunds-infinitives.json";
 import moduleQuestionTags from "../content/curriculum/a2-module-07-question-tags.json";
+import modulePastPerfect from "../content/curriculum/b1-module-01-past-perfect.json";
+import moduleSecondConditional from "../content/curriculum/b1-module-02-second-conditional.json";
+import modulePassiveVoice from "../content/curriculum/b1-module-03-passive-voice.json";
+import moduleReportedSpeech from "../content/curriculum/b1-module-04-reported-speech.json";
+import moduleFutureContinuous from "../content/curriculum/b1-module-05-future-continuous.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -60,6 +65,11 @@ const MODULE_FILES = [
   moduleQuestionTags, // A2.1
   moduleFirstConditional,
   moduleRelativeClauses, // A2.2 — logo a seguir a first-conditional
+  modulePastPerfect, // B1.1 — primeiro módulo do novo nível B1
+  moduleSecondConditional, // B1.1
+  modulePassiveVoice, // B1.1
+  moduleReportedSpeech, // B1.2
+  moduleFutureContinuous, // B1.2
 ];
 
 async function seedLevels() {

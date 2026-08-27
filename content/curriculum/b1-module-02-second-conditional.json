@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.1",
+  "module": {
+    "id": "mod_b1_1_second_conditional",
+    "title": "Imaginary Situations",
+    "theme": "second-conditional",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_b1_1_second_conditional",
+    "title": "The Second Conditional",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_second_conditional",
+    "title": "Second Conditional: if + Past Simple, would + base verb",
+    "rule": "Use the Second Conditional for imaginary or unlikely situations in the present or future, and their imagined result: \"if\" + Past Simple, \"would\" + base verb.",
+    "simple_explanation": "Ao contrário do First Conditional (situações reais e possíveis), o Second Conditional é para situações imaginárias, hipotéticas, pouco prováveis ou impossíveis.",
+    "example": "If I won the lottery, I would travel the world. If I were you, I would talk to her.",
+    "example_translation": "Se ganhasse a lotaria, viajaria pelo mundo. Se eu fosse tu, falava com ela.",
+    "common_mistake_pt": "Depois de aprender o First Conditional, é comum tentar aplicar a mesma estrutura aqui e usar \"will\" na parte do \"if\", ou usar o Present Simple em vez do Past Simple (\"If I win the lottery\" em vez de \"If I won the lottery\") — porque o português usa o pretérito imperfeito do conjuntivo (\"se ganhasse\"), que não parece obviamente \"passado\" a um aluno. Também é comum esquecer que, no Second Conditional formal, usa-se \"were\" para todas as pessoas (\"If I were\", não \"If I was\").",
+    "correction": "A parte com \"if\" usa sempre Past Simple (won, had, went), nunca \"will\" nem Present Simple. O resultado usa \"would\" + verbo base. Com o verbo \"be\", a forma mais correta e formal é \"were\" para todas as pessoas: \"If I were you...\", embora \"was\" seja aceitável em contextos informais.",
+    "real_world_example": "A dar um conselho: \"If I were you, I would ask for a pay rise.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_imaginary",
+      "headword": "imaginary",
+      "type": "adjective",
+      "translation_pt": "imaginário",
+      "definition_en": "not real; existing only in the mind",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ɪˈmædʒɪnəri/",
+      "related_forms": [],
+      "example_sentences": ["Second Conditional sentences describe imaginary situations."],
+      "difficulty": 2,
+      "tags": ["second-conditional"]
+    },
+    {
+      "id": "vocab_b1_unlikely",
+      "headword": "unlikely",
+      "type": "adjective",
+      "translation_pt": "improvável",
+      "definition_en": "not likely to happen",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ʌnˈlaɪkli/",
+      "related_forms": ["likely (opposite)"],
+      "example_sentences": ["It's unlikely to rain today, but take an umbrella just in case."],
+      "difficulty": 2,
+      "tags": ["second-conditional"]
+    },
+    {
+      "id": "vocab_b1_lottery",
+      "headword": "lottery",
+      "type": "noun",
+      "translation_pt": "lotaria",
+      "definition_en": "a game in which people buy tickets with numbers, and prizes are given to randomly chosen numbers",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈlɒtəri/",
+      "related_forms": [],
+      "example_sentences": ["If I won the lottery, I would travel the world."],
+      "difficulty": 1,
+      "tags": ["second-conditional"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_sc_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_second_conditional",
+      "prompt": "Complete: If I ___ (win) the lottery, I would travel the world.",
+      "correct_answer": ["won"],
+      "distractors": ["win", "will win", "would win"],
+      "explanation": "A parte com \"if\" usa Past Simple (\"won\"), não Present Simple nem \"will\".",
+      "common_mistake_pt": "Usar \"win\" (Present Simple) aqui é um erro comum, misturando com a estrutura do First Conditional.",
+      "audio_url": null,
+      "tags": ["second-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_sc_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_second_conditional",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["If I were you, I would talk to her."],
+      "distractors": ["If I was you, I would talked to her.", "If I am you, I would talk to her.", "If I were you, I will talk to her."],
+      "explanation": "Forma tradicionalmente correta do Second Conditional com \"be\": \"If I were you\".",
+      "common_mistake_pt": "Usar \"was\" em vez de \"were\" é aceitável informalmente, mas \"were\" é a forma mais segura e mais ensinada.",
+      "audio_url": null,
+      "tags": ["second-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_sc_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"unlikely\" mean?",
+      "correct_answer": ["not likely to happen"],
+      "distractors": ["certain to happen", "already happened", "very common"],
+      "explanation": "\"Unlikely\" é o oposto de \"likely\" — algo pouco provável de acontecer.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "second-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_sc_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What would the speaker do with more free time?",
+      "correct_answer": ["learn a new language", "learn a language"],
+      "distractors": ["travel more", "get a new job", "play the lottery"],
+      "explanation": "No áudio, ouve-se: \"If I had more free time, I would learn a new language.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "If I had more free time, I would learn a new language. It's unlikely to happen this year, though, with my work schedule.",
+      "tags": ["listening", "second-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_sc_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"If she had a bigger budget, she would hire more staff. It's an imaginary scenario for now, since the company can't afford it this year.\" What would she do with a bigger budget?",
+      "correct_answer": ["hire more staff", "hire more people"],
+      "distractors": ["buy new equipment", "reduce prices", "close the company"],
+      "explanation": "O texto indica diretamente: \"she would hire more staff\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "second-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_sc_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_second_conditional",
+      "prompt": "Translate to English: \"Se eu fosse tu, aceitava o emprego.\"",
+      "correct_answer": ["If I were you, I would accept the job.", "If I were you, I'd accept the job."],
+      "distractors": [],
+      "explanation": "\"If I were you\" + would é a estrutura correta do Second Conditional.",
+      "common_mistake_pt": "Usar \"will\" em vez de \"would\" no resultado é um erro comum, misturando com o First Conditional.",
+      "audio_url": null,
+      "tags": ["translation", "second-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m1u2_second_conditional",
+    "title": "Imaginary Situations",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_second_conditional",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_second_conditional#rule" },
+      { "type": "example", "content_ref": "gc_b1_second_conditional#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_second_conditional#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_imaginary", "vocab_b1_unlikely", "vocab_b1_lottery"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_sc_001", "ex_b1_sc_002", "ex_b1_sc_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_sc_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_sc_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Would\" almost always contracts to 'd in speech: \"I would\" → \"I'd\" /aɪd/. In the if-clause, \"were\" is often given slightly more stress to signal the hypothetical, unreal nature of the sentence."
+      },
+      { "type": "speaking", "prompt": "Talk about 3 imaginary situations and what you would do — winning the lottery, having a super power, living somewhere else." },
+      { "type": "writing", "prompt": "Write 5 sentences about imaginary or unlikely situations using the Second Conditional." },
+      { "type": "translation", "exercise_ids": ["ex_b1_sc_translation_001"] }
+    ]
+  }
+}

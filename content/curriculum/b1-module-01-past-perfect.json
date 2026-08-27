@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.1",
+  "module": {
+    "id": "mod_b1_1_past_perfect",
+    "title": "Which Happened First?",
+    "theme": "past-perfect",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_b1_1_past_perfect",
+    "title": "Past Perfect",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_past_perfect",
+    "title": "Past Perfect: had + past participle",
+    "rule": "Use the Past Perfect (had + past participle) for an action that happened before another action or point in the past. It shows which of two past events happened first.",
+    "simple_explanation": "Quando há duas coisas no passado, o Past Perfect (had + particípio passado) marca qual delas aconteceu primeiro — a mais antiga das duas.",
+    "example": "When I arrived at the station, the train had already left. She had never been to Japan before that trip.",
+    "example_translation": "Quando cheguei à estação, o comboio já tinha partido. Ela nunca tinha estado no Japão antes dessa viagem.",
+    "common_mistake_pt": "Em português falado é comum usar o pretérito perfeito simples para as duas ações e deixar a ordem implícita pelo contexto (\"Quando cheguei, o comboio partiu\"). Em inglês, se a primeira ação aconteceu claramente antes da segunda, é necessário marcar isso com o Past Perfect: \"When I arrived, the train had left\" — só \"the train left\" fica ambíguo sobre qual aconteceu primeiro.",
+    "correction": "Duas ações no passado, uma claramente antes da outra → a mais antiga leva Past Perfect (had + particípio passado), a mais recente leva Past Simple. Sem essa marcação, a ordem das duas ações fica ambígua em inglês.",
+    "real_world_example": "A contar uma experiência: \"By the time I got the job offer, I had already accepted another one.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_already",
+      "headword": "already",
+      "type": "adverb",
+      "translation_pt": "já",
+      "definition_en": "before now, or before a particular time in the past",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ɔːlˈredi/",
+      "related_forms": [],
+      "example_sentences": ["The train had already left when I arrived."],
+      "difficulty": 1,
+      "tags": ["past-perfect"]
+    },
+    {
+      "id": "vocab_b1_by_the_time",
+      "headword": "by the time",
+      "type": "conjunction",
+      "translation_pt": "quando (até esse momento)",
+      "definition_en": "used to say that something had already happened before a particular moment",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/baɪ ðə taɪm/",
+      "related_forms": [],
+      "example_sentences": ["By the time I got home, everyone had left."],
+      "difficulty": 2,
+      "tags": ["past-perfect"]
+    },
+    {
+      "id": "vocab_b1_previously",
+      "headword": "previously",
+      "type": "adverb",
+      "translation_pt": "anteriormente",
+      "definition_en": "at an earlier time; before",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈpriːviəsli/",
+      "related_forms": [],
+      "example_sentences": ["She had previously worked as a nurse."],
+      "difficulty": 2,
+      "tags": ["past-perfect"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_pp_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_past_perfect",
+      "prompt": "Complete: When I arrived at the station, the train ___ (already/leave).",
+      "correct_answer": ["had already left"],
+      "distractors": ["already left", "has already left", "was already leaving"],
+      "explanation": "A ação do comboio partir aconteceu antes da chegada → Past Perfect.",
+      "common_mistake_pt": "Usar só o Past Simple (\"already left\") deixa ambígua a ordem das duas ações.",
+      "audio_url": null,
+      "tags": ["past-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pp_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_past_perfect",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["She had never been to Japan before that trip."],
+      "distractors": ["She never was to Japan before that trip.", "She has never been to Japan before that trip.", "She never had been to Japan before that trip."],
+      "explanation": "\"Had never been\" é a ordem correta: had + never + particípio passado.",
+      "common_mistake_pt": "Colocar \"never\" antes de \"had\" é um erro comum de ordem das palavras.",
+      "audio_url": null,
+      "tags": ["past-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pp_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"previously\" mean?",
+      "correct_answer": ["at an earlier time; before"],
+      "distractors": ["at the same time", "in the future", "for a short time"],
+      "explanation": "\"Previously\" refere-se a um momento anterior ao que está a ser descrito.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "past-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pp_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What had happened by the time they got to the cinema?",
+      "correct_answer": ["the film had started", "the film had already started"],
+      "distractors": ["the cinema had closed", "the tickets had sold out", "nothing had happened"],
+      "explanation": "No áudio, ouve-se: \"By the time we got to the cinema, the film had already started.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "By the time we got to the cinema, the film had already started. We had to wait for the next showing.",
+      "tags": ["listening", "past-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pp_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"David felt nervous at the interview. He had prepared for weeks, but he had never done a job interview in English before.\" What had David never done before?",
+      "correct_answer": ["a job interview in English", "an interview in English"],
+      "distractors": ["prepared for an interview", "worked in an office", "spoken English"],
+      "explanation": "O texto indica diretamente: \"he had never done a job interview in English before\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "past-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_pp_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_past_perfect",
+      "prompt": "Translate to English: \"Quando ela chegou, a reunião já tinha terminado.\"",
+      "correct_answer": ["When she arrived, the meeting had already finished.", "When she arrived, the meeting had already ended."],
+      "distractors": [],
+      "explanation": "\"Já tinha terminado\" corresponde ao Past Perfect (\"had already finished\"), não ao Past Simple.",
+      "common_mistake_pt": "Usar só o Past Simple (\"the meeting already finished\") em vez do Past Perfect é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "past-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m1u1_past_perfect",
+    "title": "Which Happened First?",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_past_perfect",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_past_perfect#rule" },
+      { "type": "example", "content_ref": "gc_b1_past_perfect#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_past_perfect#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_already", "vocab_b1_by_the_time", "vocab_b1_previously"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_pp_001", "ex_b1_pp_002", "ex_b1_pp_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_pp_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_pp_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In fast speech, \"had\" often reduces to 'd, especially after pronouns: \"I had\" → \"I'd\" /aɪd/, \"she had\" → \"she'd\" /ʃiːd/. This is the same contraction used for \"would\" — context tells you which one is meant."
+      },
+      { "type": "speaking", "prompt": "Tell a short story about a time you arrived somewhere and something had already happened before you got there." },
+      { "type": "writing", "prompt": "Write 5 sentences about your life, using the Past Perfect to show which of two past events happened first." },
+      { "type": "translation", "exercise_ids": ["ex_b1_pp_translation_001"] }
+    ]
+  }
+}
