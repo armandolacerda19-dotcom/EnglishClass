@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { TextField } from "@/components/ui/TextField";
+import { Spinner } from "@/components/ui/Spinner";
 import { TUTOR_PERSONALITIES, type TutorPersonalityKey } from "@/lib/ai/personalities";
 
 interface Message {
@@ -67,7 +69,11 @@ export function TutorChat({
             {m.text}
           </div>
         ))}
-        {sending && <p className="text-sm text-inkNeutral/60">The Coach is typing...</p>}
+        {sending && (
+          <p className="flex items-center gap-2 text-sm text-inkNeutral/60 dark:text-linen/60">
+            <Spinner /> {TUTOR_PERSONALITIES[personality].label} is typing...
+          </p>
+        )}
       </div>
 
       <form
@@ -75,13 +81,13 @@ export function TutorChat({
           e.preventDefault();
           send();
         }}
-        className="mt-4 flex gap-2"
+        className="mt-4 flex flex-wrap gap-2"
       >
-        <input
+        <TextField
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Write in English..."
-          className="flex-1 rounded-control border border-ink/20 px-3 py-2 text-sm"
+          className="flex-1"
         />
         <Button type="submit" disabled={sending}>
           Send

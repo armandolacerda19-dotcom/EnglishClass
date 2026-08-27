@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { TextField } from "@/components/ui/TextField";
 import { signIn } from "./actions";
 
 export default function LoginPage({
@@ -19,13 +20,13 @@ export default function LoginPage({
 
       <form action={signIn} className="flex flex-col gap-4">
         <input type="hidden" name="next" value={searchParams.next ?? "/home"} />
-        <label className="flex flex-col gap-1 text-sm">
+        <label className="flex flex-col gap-1.5 text-sm">
           Email
-          <input name="email" type="email" required className="rounded-control border border-ink/20 px-3 py-2" />
+          <TextField name="email" type="email" required />
         </label>
-        <label className="flex flex-col gap-1 text-sm">
+        <label className="flex flex-col gap-1.5 text-sm">
           Palavra-passe
-          <input name="password" type="password" required className="rounded-control border border-ink/20 px-3 py-2" />
+          <TextField name="password" type="password" required />
         </label>
         <Button type="submit">Entrar</Button>
       </form>

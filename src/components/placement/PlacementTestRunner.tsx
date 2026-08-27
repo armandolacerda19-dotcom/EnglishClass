@@ -6,6 +6,7 @@ import { PLACEMENT_QUESTIONS } from "@/lib/placement/questions";
 import { Button } from "@/components/ui/Button";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { RecordButton } from "@/components/ui/RecordButton";
+import { TextAreaField } from "@/components/ui/TextAreaField";
 
 interface AnswerState {
   [questionId: string]: string;
@@ -52,12 +53,7 @@ export function PlacementTestRunner() {
 
       {question.freeResponse ? (
         question.pillar === "writing" ? (
-          <textarea
-            rows={4}
-            value={answers[question.id] ?? ""}
-            onChange={(e) => setAnswer(e.target.value)}
-            className="rounded-control border border-ink/20 px-3 py-2"
-          />
+          <TextAreaField rows={4} value={answers[question.id] ?? ""} onChange={(e) => setAnswer(e.target.value)} />
         ) : (
           <div className="flex flex-col gap-3">
             <RecordButton onTranscript={setAnswer} />

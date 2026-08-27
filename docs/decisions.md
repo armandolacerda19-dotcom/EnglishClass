@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Continuação do redesenho: velocidade real + campos de texto em toda a app
+
+Continuação do pedido "mais atualizações, cuidado extra a rever o código".
+
+1. **Correção de tradução mais rápida a sério, não só na perceção**: `submitTranslation` (lições) chamava sempre o Gemini, mesmo quando a resposta batia certo com a referência. Adicionado atalho: `normalizeForCompare()` (ignora maiúsculas, espaços, pontuação final) verifica igualdade exata primeiro; só chama a IA se não bater certo. Poupa a latência real da chamada de rede no caso mais comum (resposta correta).
+2. **`TextField.tsx`** (novo, input de uma linha) — mesmo tratamento visual do `TextAreaField`. Havia 13 inputs em 9 ficheiros (login, signup, recuperar/repor password, onboarding, chat do tutor) todos com o mesmo estilo fraco copiado — agora um componente só. `PlacementTestRunner`'s textarea de writing também migrado para `TextAreaField`.
+3. **Bug encontrado e corrigido de caminho**: `TutorChat.tsx` mostrava sempre "The Coach is typing..." independentemente da personalidade escolhida (Interviewer, Native Friend, etc.) — hardcoded, nunca atualizado quando as 4 personalidades foram desbloqueadas. Agora usa `TUTOR_PERSONALITIES[personality].label` dinamicamente. Também ganhou `Spinner`.
+
 ## 2026-08-26 — Redesenho de interação: botões maiores, campos melhores, estilo "Busuu"
 
 Pedido explícito do utilizador: "deve melhorar a interação, os campos para fazer traduções, a correção mais rápida. mais intuitivo. os botões maiores e com mais impacto visual. tem que estar um estilo profissional, mais semelhante ao busuu."

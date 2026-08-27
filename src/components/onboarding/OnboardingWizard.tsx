@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { TextField } from "@/components/ui/TextField";
 import { saveOnboardingBasics, type OnboardingBasics } from "@/app/onboarding/actions";
 
 const GOALS: { value: OnboardingBasics["goal"]; label: string }[] = [
@@ -91,14 +92,9 @@ export function OnboardingWizard() {
           </label>
 
           {track === "INTENSIVE" && (
-            <label className="flex flex-col gap-1 text-sm">
+            <label className="flex flex-col gap-1.5 text-sm">
               Data-alvo
-              <input
-                type="date"
-                value={targetDate}
-                onChange={(e) => setTargetDate(e.target.value)}
-                className="rounded-control border border-ink/20 px-3 py-2"
-              />
+              <TextField type="date" value={targetDate} onChange={(e) => setTargetDate(e.target.value)} />
             </label>
           )}
 
@@ -115,13 +111,13 @@ export function OnboardingWizard() {
       {step === 2 && (
         <fieldset className="flex flex-col gap-4">
           <legend className="mb-2 font-display text-xl">Fale-nos de si</legend>
-          <label className="flex flex-col gap-1 text-sm">
+          <label className="flex flex-col gap-1.5 text-sm">
             Profissão
-            <input value={profession} onChange={(e) => setProfession(e.target.value)} className="rounded-control border border-ink/20 px-3 py-2" />
+            <TextField value={profession} onChange={(e) => setProfession(e.target.value)} />
           </label>
-          <label className="flex flex-col gap-1 text-sm">
+          <label className="flex flex-col gap-1.5 text-sm">
             Interesses (separados por vírgula)
-            <input value={interests} onChange={(e) => setInterests(e.target.value)} className="rounded-control border border-ink/20 px-3 py-2" />
+            <TextField value={interests} onChange={(e) => setInterests(e.target.value)} />
           </label>
           <fieldset className="flex flex-col gap-2">
             <legend className="text-sm">Variante de inglês</legend>

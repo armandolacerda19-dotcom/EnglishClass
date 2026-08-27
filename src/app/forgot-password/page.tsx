@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { TextField } from "@/components/ui/TextField";
 import { requestPasswordReset } from "./actions";
 
 export default function ForgotPasswordPage({ searchParams }: { searchParams: { sent?: string } }) {
@@ -21,9 +22,9 @@ export default function ForgotPasswordPage({ searchParams }: { searchParams: { s
     <main className="mx-auto flex min-h-screen max-w-sm flex-col justify-center gap-6 px-6">
       <h1 className="font-display text-2xl">Recuperar palavra-passe</h1>
       <form action={requestPasswordReset} className="flex flex-col gap-4">
-        <label className="flex flex-col gap-1 text-sm">
+        <label className="flex flex-col gap-1.5 text-sm">
           Email
-          <input name="email" type="email" required className="rounded-control border border-ink/20 px-3 py-2" />
+          <TextField name="email" type="email" required />
         </label>
         <Button type="submit">Enviar link</Button>
       </form>

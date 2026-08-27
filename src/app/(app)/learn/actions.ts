@@ -106,7 +106,17 @@ export async function submitTranslation(exerciseId: string, given: string) {
   const exercise = await prisma.exercise.findUniqueOrThrow({ where: { id: exerciseId } });
   const content = exercise.contentJson as any;
 
-  const { feedback, score } = await getHolisticFeedback("translation", content.prompt, given);
+  // Atalho rápido: se a resposta bate certo com a referência (ignorando maiúsculas/
+  // pontuação final), não vale a pena esperar pela IA — pedido do utilizador
+  // (2026-08-26): "a correção mais rápida". Poupa a latência real da chamada ao
+  // Gemini no caso mais comum (resposta correta), não só a perceção de velocidade.
+  const exactMatch = (content.correct_answer as string[]).some(
+    (c) => normalizeForCompare(c) === normalizeForCompare(given)
+  );
+
+  const { feedback, score } = exactMatch
+    ? { feedback: "Correct! That matches the expected translation exactly.", score: 100 }
+    : await getHolisticFeedback("translation", content.prompt, given);
   const looksCorrect = score !== null ? score >= 70 : feedback.toLowerCase().includes("correct") && !feedback.toLowerCase().includes("incorrect");
 
   await prisma.translation.create({
@@ -134,6 +144,13 @@ export async function completeLesson(lessonId: string) {
   await recordActivity(user.id, "LESSON_COMPLETE");
   await awardAchievement(user.id, "first_lesson_complete");
   await logEvent(user.id, "lesson_completed", { lessonId });
+}
+
+// Compara ignorando maiúsculas/minúsculas, espaços nas pontas e pontuação final
+// (".", "!", "?") — para não falhar o atalho rápido só porque o utilizador
+// esqueceu o ponto final, algo irrelevante para saber se a tradução está certa.
+function normalizeForCompare(text: string): string {
+  return text.trim().toLowerCase().replace(/[.!?]+$/, "");
 }
 
 interface HolisticFeedback {
