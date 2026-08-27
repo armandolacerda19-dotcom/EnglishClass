@@ -8,6 +8,7 @@ const DESCRIPTIONS: Record<string, string> = {
   conversation_partner: "Conversa livre e casual, ao ritmo de um diálogo real.",
   interviewer: "Simula uma entrevista de emprego em inglês — pergunta a pergunta, como na vida real.",
   native_friend: "Conversa informal, cheia de expressões idiomáticas explicadas ao longo do caminho.",
+  roleplay: "Cenários práticos do dia a dia — pratique as frases certas para cada situação.",
 };
 
 // Setores para a entrevista — item #14 da lista de melhorias (inglês
@@ -17,6 +18,16 @@ const INTERVIEW_SECTORS = [
   { key: "healthcare", label: "Saúde" },
   { key: "sales", label: "Vendas / Negócios" },
   { key: "hospitality", label: "Hotelaria / Turismo" },
+];
+
+// Cenários de roleplay — auditoria secção 294 ("roleplay por cenário:
+// restaurante/hotel/aeroporto/reunião"). Mesmo mecanismo de query param que
+// já existia para o setor do interviewer.
+const ROLEPLAY_SCENARIOS = [
+  { key: "restaurant", label: "Restaurante" },
+  { key: "hotel", label: "Hotel" },
+  { key: "airport", label: "Aeroporto" },
+  { key: "meeting", label: "Reunião de trabalho" },
 ];
 
 // Personalidades do AI Tutor além de "coach" desbloqueadas a pedido do utilizador
@@ -50,6 +61,19 @@ export default async function SpeakHubPage() {
                     className="rounded-control border border-ink/10 px-2 py-1 font-mono text-xs text-inkNeutral/60 hover:border-verdigris hover:text-verdigris dark:border-linen/10 dark:text-linen/60"
                   >
                     {sector.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+            {key === "roleplay" && (
+              <div className="mt-2 flex flex-wrap gap-2 px-1">
+                {ROLEPLAY_SCENARIOS.map((scenario) => (
+                  <Link
+                    key={scenario.key}
+                    href={`/speak/tutor?personality=roleplay&scenario=${scenario.key}`}
+                    className="rounded-control border border-ink/10 px-2 py-1 font-mono text-xs text-inkNeutral/60 hover:border-verdigris hover:text-verdigris dark:border-linen/10 dark:text-linen/60"
+                  >
+                    {scenario.label}
                   </Link>
                 ))}
               </div>

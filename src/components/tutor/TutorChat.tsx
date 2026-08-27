@@ -18,6 +18,7 @@ const GREETINGS: Record<TutorPersonalityKey, string> = {
   examiner: "We'll begin the assessment when you're ready.",
   interviewer: "Thanks for coming in. Let's start — can you tell me a bit about yourself?",
   native_friend: "Heeey! What's up? How's your day going?",
+  roleplay: "Alright, let's set the scene! I'll stay in character — jump in whenever you're ready.",
 };
 
 export function TutorChat({

@@ -5,6 +5,10 @@
 // crítica ao produto) — ver docs/decisions.md. professor/examiner ficam por agora:
 // professor é redundante com as lições de gramática existentes, examiner fica
 // reservado para o motor de testes periódicos (ainda não construído).
+// roleplay adicionado em 2026-08-27 (Fase 4, auditoria secção 294 — "roleplay
+// por cenário: restaurante/hotel/aeroporto/reunião") — reaproveita o mesmo
+// mecanismo de sessionFocus já usado pelo setor do interviewer, ver
+// src/app/(app)/speak/page.tsx e tutor/page.tsx.
 
 export type TutorPersonalityKey =
   | "coach"
@@ -12,7 +16,8 @@ export type TutorPersonalityKey =
   | "conversation_partner"
   | "examiner"
   | "interviewer"
-  | "native_friend";
+  | "native_friend"
+  | "roleplay";
 
 export const TUTOR_PERSONALITIES: Record<
   TutorPersonalityKey,
@@ -66,6 +71,20 @@ export const TUTOR_PERSONALITIES: Record<
       "Portuguese-speaking learner. Tone: relaxed, colourful, idiomatic. Use everyday " +
       "expressions and phrasal verbs naturally, and casually explain any you use that " +
       "might be new to the learner.",
+  },
+  roleplay: {
+    label: "Roleplay",
+    availableInMvp1: true,
+    systemPrompt:
+      "You are playing a specific character in a real-world scenario (restaurant waiter, " +
+      "hotel receptionist, airport staff, meeting colleague — the exact scenario is given below " +
+      "under 'Current session focus'), practising with an adult Portuguese-speaking English " +
+      "learner. Tone: stay fully in character, react the way that real person would in that " +
+      "situation. Keep the scene moving with short, natural, practical exchanges — the goal is " +
+      "for the learner to rehearse the specific phrases and vocabulary that situation actually " +
+      "requires, not to have an open-ended chat. If the learner goes silent or stuck, offer a " +
+      "natural in-character prompt to nudge them forward (e.g. as a waiter: 'Are you ready to " +
+      "order, or do you need another minute?').",
   },
 };
 
