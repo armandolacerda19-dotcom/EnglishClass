@@ -10,7 +10,7 @@ import { updateSkillScore } from "@/lib/skillProfile";
 export interface WeeklyTestAnswer {
   exerciseId: string;
   pillar: Pillar;
-  given: string;
+  isCorrect: boolean; // já determinado pergunta a pergunta (checkAnswer.ts para texto livre)
 }
 
 export interface WeeklyTestResult {
@@ -19,30 +19,19 @@ export interface WeeklyTestResult {
   weakAreas: string[];
 }
 
-// Corrige o Diagnóstico Semanal, atualiza o octógono de competência por pilar
-// (src/lib/skillProfile.ts) e regista um AssessmentResult tipo WEEKLY — a mesma
-// fonte de dados que já alimenta os checkpoints em /progress.
+// Fecha o Diagnóstico Semanal: agrega a correção já feita pergunta a pergunta
+// (ver src/app/(app)/practice/checkAnswer.ts — texto livre usa correção tolerante
+// por IA, escolha múltipla é exata), atualiza o octógono de competência por pilar
+// e regista um AssessmentResult tipo WEEKLY — a mesma fonte de dados que já
+// alimenta os checkpoints em /progress.
 export async function submitWeeklyTest(answers: WeeklyTestAnswer[]): Promise<WeeklyTestResult> {
   const user = await requireUser();
 
-  const exercises = await prisma.exercise.findMany({
-    where: { id: { in: answers.map((a) => a.exerciseId) } },
-  });
-  const byId = new Map(exercises.map((e) => [e.id, e]));
-
   const byPillar = new Map<Pillar, { correct: number; total: number }>();
-
   for (const answer of answers) {
-    const exercise = byId.get(answer.exerciseId);
-    if (!exercise) continue;
-    const content = exercise.contentJson as any;
-    const isCorrect = (content.correct_answer as string[]).some(
-      (c) => c.trim().toLowerCase() === answer.given.trim().toLowerCase()
-    );
-
     const bucket = byPillar.get(answer.pillar) ?? { correct: 0, total: 0 };
     bucket.total += 1;
-    if (isCorrect) bucket.correct += 1;
+    if (answer.isCorrect) bucket.correct += 1;
     byPillar.set(answer.pillar, bucket);
   }
 

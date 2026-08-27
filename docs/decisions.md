@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Correção tolerante por IA para respostas de texto livre
+
+Gap de justiça encontrado ao continuar "atualizações": no Diagnóstico Semanal e nas Sheets de tema, uma pergunta de texto livre (sobretudo TRANSLATION, desde a correção do "não aparece hipótese de traduzir") era corrigida por igualdade exata contra uma única frase de referência — uma tradução válida mas com fraseado diferente era marcada como errada. Isto contradiz o próprio motivo de ter adicionado a resposta livre.
+
+Corrigido com `src/lib/ai/gradeAnswer.ts` (`gradeFreeTextAnswer`): tenta igualdade exata primeiro (grátis, instantâneo), só chama o Gemini se não bater certo, pedindo uma classificação binária YES/NO tolerante a fraseado diferente/sinónimos/pontuação — cai para igualdade exata se a IA falhar. Exposto via `src/app/(app)/practice/checkAnswer.ts` (`checkFreeTextAnswer`).
+
+Isto obrigou a mudar o fluxo de "Verificar" para perguntas de texto: antes a correção era instantânea no cliente (comparação simples); agora é assíncrona (chamada ao servidor) só para `kind: "text"` — escolha múltipla continua instantânea, sem custo de IA. `WeeklyTestAnswer`/`TopicPracticeAnswer` passaram a carregar `isCorrect` (já determinado pergunta a pergunta) em vez de `given`, e os `submitWeeklyTest`/`submitTopicPractice` deixaram de re-corrigir no fim — só agregam o que já foi decidido, evitando corrigir a mesma resposta duas vezes com critérios diferentes.
+
+**Nota**: esta sessão ficou sem créditos de deploy da Netlify a meio deste trabalho (ver aviso no topo do `PROJECT_STATE.md`) — este código não foi validado por um build real. Revisto com cuidado extra por não haver essa rede de segurança; confirmar com um build assim que os deploys voltarem (2026-09-01).
+
 ## 2026-08-26 — 5 updates: erros do tutor no SRS, micro-desafios, mais conteúdo
 
 Continuação de "atualizações com mais impacto" (pedido: "mais 5 atualizações"):

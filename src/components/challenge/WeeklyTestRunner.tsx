@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { submitWeeklyTest, type WeeklyTestAnswer, type WeeklyTestResult } from "@/app/(app)/practice/weekly-test/actions";
+import { checkFreeTextAnswer } from "@/app/(app)/practice/checkAnswer";
 import type { WeeklyTestQuestion } from "@/lib/weeklyTest";
 import { PILLAR_LABEL, PILLAR_ACCENT, DEFAULT_ACCENT } from "@/lib/pillarDisplay";
 
@@ -14,11 +15,17 @@ interface WeeklyTestRunnerProps {
   questions: WeeklyTestQuestion[];
 }
 
+interface CheckResult {
+  isCorrect: boolean;
+  referenceAnswer: string;
+}
+
 export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [textAnswer, setTextAnswer] = useState("");
-  const [checked, setChecked] = useState(false);
+  const [checkResult, setCheckResult] = useState<CheckResult | null>(null);
+  const [checking, setChecking] = useState(false);
   const [answers, setAnswers] = useState<WeeklyTestAnswer[]>([]);
   const [result, setResult] = useState<WeeklyTestResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -26,17 +33,33 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
   const question = questions[index]!;
   const isLast = index === questions.length - 1;
   const given = question.kind === "text" ? textAnswer : selected;
-  const isCorrect =
-    !!given && question.correctAnswers.some((c) => c.trim().toLowerCase() === given.trim().toLowerCase());
   const accent = PILLAR_ACCENT[question.pillar] ?? DEFAULT_ACCENT;
 
-  function check() {
+  // Escolha múltipla: correção exata local, instantânea. Texto livre (tradução):
+  // correção tolerante por IA no servidor — ver checkAnswer.ts/gradeAnswer.ts,
+  // porque comparar por igualdade exata penalizava traduções válidas mas com
+  // fraseado diferente da referência.
+  async function check() {
     if (!given) return;
-    setChecked(true);
+    if (question.kind === "choice") {
+      setCheckResult({
+        isCorrect: question.correctAnswers.some((c) => c.trim().toLowerCase() === given.trim().toLowerCase()),
+        referenceAnswer: question.correctAnswers[0] ?? "",
+      });
+      return;
+    }
+    setChecking(true);
+    const res = await checkFreeTextAnswer(question.exerciseId, given);
+    setCheckResult(res);
+    setChecking(false);
   }
 
   async function advance() {
-    const nextAnswers = [...answers, { exerciseId: question.exerciseId, pillar: question.pillar, given: given ?? "" }];
+    if (!checkResult) return;
+    const nextAnswers: WeeklyTestAnswer[] = [
+      ...answers,
+      { exerciseId: question.exerciseId, pillar: question.pillar, isCorrect: checkResult.isCorrect },
+    ];
     setAnswers(nextAnswers);
 
     if (isLast) {
@@ -48,7 +71,7 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
       setIndex((i) => i + 1);
       setSelected(null);
       setTextAnswer("");
-      setChecked(false);
+      setCheckResult(null);
     }
   }
 
@@ -124,7 +147,7 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
                   name={question.exerciseId}
                   checked={selected === opt}
                   onChange={() => setSelected(opt)}
-                  disabled={checked}
+                  disabled={!!checkResult}
                 />
                 {opt}
               </label>
@@ -135,23 +158,23 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
             rows={2}
             value={textAnswer}
             onChange={(e) => setTextAnswer(e.target.value)}
-            disabled={checked}
+            disabled={!!checkResult}
             placeholder="Escreva a tradução em inglês..."
             className="w-full rounded-control border border-ink/20 px-3 py-2 text-sm"
           />
         )}
 
-        {checked && (
-          <p className={`mt-3 text-sm ${isCorrect ? "text-verdigris" : "text-clay"}`}>
-            {isCorrect ? "Correto." : `Incorreto. Resposta certa: ${question.correctAnswers[0]}`}
+        {checkResult && (
+          <p className={`mt-3 text-sm ${checkResult.isCorrect ? "text-verdigris" : "text-clay"}`}>
+            {checkResult.isCorrect ? "Correto." : `Incorreto. Resposta certa: ${checkResult.referenceAnswer}`}
           </p>
         )}
       </Card>
 
       <div className="mt-4 flex justify-end">
-        {!checked ? (
-          <Button onClick={check} disabled={!given}>
-            Verificar
+        {!checkResult ? (
+          <Button onClick={check} disabled={!given || checking}>
+            {checking ? "A verificar..." : "Verificar"}
           </Button>
         ) : (
           <Button onClick={advance} disabled={submitting}>
