@@ -2,6 +2,10 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 4 (continuação): conversa livre com objetivo
+
+Mesma sessão contínua. Último item da secção 294 da auditoria a fechar nesta ronda: "conversa livre com objetivo". O Conversation Partner já existia mas começava sempre com um "de que quer falar?" em aberto. Adicionados 4 objetivos rápidos (small talk, contar o fim de semana, dar uma opinião, comentar uma notícia) selecionáveis em `/speak`, mesmo mecanismo de `sessionFocus` já usado para setor/cenário (`GOAL_FOCUS` em `speak/tutor/page.tsx`). Diferença deliberada face ao roleplay: aqui a conversa continua livre e pode divergir do objetivo inicial — só deixa de começar do zero.
+
 ## 2026-08-27 — Fase 4 (continuação): rubrica de writing com 4 subscores
 
 Mesma sessão contínua. A auditoria original (secção 291) listava "rubrica de writing" como conteúdo em falta — o feedback de writing já existia (`getHolisticFeedback`), mas dava só um número holístico (`SCORE`), sem dizer ao utilizador ONDE está fraco. Estendido para pedir também `GRAMMAR`/`VOCABULARY`/`COHERENCE`/`TASK_ACHIEVEMENT` (0-100 cada), na mesma técnica de "linha à parte no fim da resposta" já usada para `SCORE`/`PRONUNCIATION` — sem depender de JSON mode da API. `TASK_ACHIEVEMENT` avalia especificamente se a resposta cumpre o que o prompt pedia (tema, tamanho, formato), separado da correção linguística — a rubrica só é montada se as 4 dimensões vierem completas, para nunca mostrar uma rubrica parcial enganosa.
