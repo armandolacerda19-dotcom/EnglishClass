@@ -1693,6 +1693,126 @@ export const READING_PASSAGES: ReadingPassage[] = [
       },
     ],
   },
+  // Fase 14 (continuação, 2026-08-27) — 2º lote de formatos autênticos:
+  // instructions (género que ainda faltava), mais um dialogue, email e news
+  // originais, em níveis diferentes. Mesma regra: nada copiado de fonte real.
+  {
+    id: "recipe-instructions",
+    title: "How to Make Simple Scrambled Eggs",
+    level: "A1",
+    genre: "instructions",
+    source: "original",
+    text: "First, crack three eggs into a bowl. Then, add a little salt and mix well with a fork. Next, heat a small pan with a little butter on medium heat. When the butter melts, pour in the eggs. Stir slowly with a spoon for about two minutes, until the eggs are soft but not liquid. Finally, take the pan off the heat and serve immediately with toast.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "How many eggs does the recipe use?",
+        options: ["Two", "Three", "Four", "It doesn't say"],
+        correctAnswer: "Three",
+      },
+      {
+        id: "q2",
+        prompt: "What do you add to the pan before the eggs?",
+        options: ["Oil", "A little butter", "Milk", "Cheese"],
+        correctAnswer: "A little butter",
+      },
+      {
+        id: "q3",
+        prompt: "What should you do as soon as the eggs are ready?",
+        options: ["Add more salt", "Serve immediately with toast", "Cook them for 10 more minutes", "Add milk"],
+        correctAnswer: "Serve immediately with toast",
+      },
+    ],
+  },
+  {
+    id: "job-interview-dialogue",
+    title: "A Job Interview",
+    level: "B1",
+    genre: "dialogue",
+    source: "original",
+    text: "INTERVIEWER: So, tell me a little about your experience in customer service.\nCANDIDATE: Sure. I've worked in customer service for about three years now, mostly in retail. I handled complaints, returns, and general questions from customers every day.\nINTERVIEWER: What would you say is the most difficult part of that job?\nCANDIDATE: Probably staying calm when a customer is upset, even when the problem isn't really something I can control. I've learned to listen first, then explain what I can actually do to help.\nINTERVIEWER: That's a good approach. And why are you interested in this position specifically?\nCANDIDATE: I've heard great things about the team here, and I'd like to work somewhere with more opportunities to grow into a team leader role eventually.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "How long has the candidate worked in customer service?",
+        options: ["One year", "About three years", "Five years", "It doesn't say"],
+        correctAnswer: "About three years",
+      },
+      {
+        id: "q2",
+        prompt: "What does the candidate say is the most difficult part of the job?",
+        options: [
+          "Working long hours",
+          "Staying calm when a customer is upset",
+          "Handling returns",
+          "Working alone",
+        ],
+        correctAnswer: "Staying calm when a customer is upset",
+      },
+      {
+        id: "q3",
+        prompt: "What is the candidate hoping for in the future?",
+        options: ["To work from home", "To grow into a team leader role", "To change industries", "To work fewer hours"],
+        correctAnswer: "To grow into a team leader role",
+      },
+    ],
+  },
+  {
+    id: "gym-membership-email",
+    title: "Cancelling a Gym Membership",
+    level: "A2",
+    genre: "email",
+    source: "original",
+    text: "Subject: Cancelling my membership\n\nHi,\n\nI'd like to cancel my gym membership starting next month, please. I'm moving to a different city for work, so I won't be able to use the gym anymore.\n\nCould you confirm the last day I'll be charged? I remember reading that cancellations need at least 30 days' notice, so I wanted to write to you as early as possible.\n\nAlso, is there any way to pause the membership instead, in case I move back within a few months? I'd rather not lose my current rate if I don't have to.\n\nThank you for your help.\n\nKind regards,\nTiago",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why does Tiago want to cancel his membership?",
+        options: ["He's unhappy with the gym", "He's moving to a different city", "It's too expensive", "He's injured"],
+        correctAnswer: "He's moving to a different city",
+      },
+      {
+        id: "q2",
+        prompt: "What does Tiago ask about as an alternative to cancelling completely?",
+        options: ["A refund", "Pausing the membership", "A cheaper plan", "Freezing his card"],
+        correctAnswer: "Pausing the membership",
+      },
+      {
+        id: "q3",
+        prompt: "How much notice does Tiago think cancellations need?",
+        options: ["7 days", "14 days", "At least 30 days", "It doesn't say"],
+        correctAnswer: "At least 30 days",
+      },
+    ],
+  },
+  {
+    id: "weather-warning-news",
+    title: "Strong Winds Expected This Weekend",
+    level: "B1",
+    genre: "news",
+    source: "original",
+    text: "The national weather service has issued a warning for strong winds across the coastal region this weekend, with gusts expected to reach up to 90 km/h on Saturday afternoon. Residents in low-lying coastal areas are advised to secure loose objects outdoors and avoid unnecessary travel during the peak hours of the storm.\n\nSeveral outdoor events planned for Saturday have already been postponed, including a local market and an open-air concert. Officials say the winds should ease by Sunday morning, with calmer conditions expected for the rest of the week. Anyone experiencing storm damage is asked to contact the local council rather than emergency services, unless there is an immediate danger to life.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "How strong are the expected wind gusts?",
+        options: ["Up to 50 km/h", "Up to 90 km/h", "Up to 120 km/h", "It doesn't say"],
+        correctAnswer: "Up to 90 km/h",
+      },
+      {
+        id: "q2",
+        prompt: "What happened to the local market and the open-air concert?",
+        options: ["They were cancelled permanently", "They were postponed", "They were moved indoors", "Nothing changed"],
+        correctAnswer: "They were postponed",
+      },
+      {
+        id: "q3",
+        prompt: "Who should people contact if they have storm damage but no danger to life?",
+        options: ["Emergency services", "The local council", "The weather service", "Their neighbours"],
+        correctAnswer: "The local council",
+      },
+    ],
+  },
 ];
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {
