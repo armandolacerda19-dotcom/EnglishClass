@@ -2,6 +2,32 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 6: perfis múltiplos por conta ("Família", estilo Netflix)
+
+A maior mudança de arquitetura desta sessão. O utilizador foi explicitamente consultado (via pergunta direta, não decisão unilateral) porque isto tinha um perfil de risco muito diferente de tudo o resto feito nesta sessão — em vez de ser aditivo (ficheiros novos, colunas opcionais), tocava potencialmente em ~15 tabelas de progresso e ~47 ficheiros que as consomem. As 3 opções apresentadas: (1) contas separadas por pessoa + um "hub" para trocar rapidamente, baixo risco; (2) perfis reais sob um único login (estilo Netflix), risco maior, exige mudar o schema; (3) adiar a Fase 6 para outra sessão. **O utilizador escolheu a opção 2.**
+
+### Desenho da migração
+
+O princípio orientador foi minimizar a superfície de mudança no código de aplicação, mesmo à custa de o schema ficar um pouco menos "limpo" à primeira vista:
+
+1. **Novo modelo `Profile`**: pertence a um `User` (a conta/login partilhado da família), tem `name`, `avatarColor` (cor sólida, sem upload de imagem — mantém o custo zero), `isChild`.
+2. **As ~15 tabelas de progresso** (LearningProfile, ExerciseAttempt, SpeakingAttempt, WritingAttempt, Translation, UserError, ReviewScheduleItem, PlacementTest, AssessmentResult, Certificate, UserAchievement, AIConversation, LearningPlan, IntensivePlan, AnalyticsEvent) **mantiveram o campo escalar `userId` com esse nome** — só a FK passou a apontar para `Profile.id` em vez de `User.id`, e a relação Prisma foi renomeada de `user` para `profile`. Isto significa que **nenhum dos ~47 ficheiros que fazem `where: { userId: ... }` ou `data: { userId: ... }` precisou de ser tocado** — continuam a compilar e a funcionar exatamente como antes, só que agora corretamente isolados por perfil em vez de por conta. Confirmado por grep exaustivo: só 1 sítio no código acedia à relação Prisma pelo nome (`certificate.user.name` em `verify/[code]/page.tsx`), corrigido para `certificate.profile.name`.
+3. **`requireUser()` em `src/lib/session.ts` foi reescrita** para devolver o PERFIL ativo (não a conta) com a mesma forma (`id`, `name`, `email`, `createdAt`) que devolvia antes — a conta real fica em `.accountId`/`.accountEmail` para os poucos sítios que precisam mesmo dela (apagar conta, exportação RGPD). Nova `requireAccount()` para autenticação pura, sem resolução de perfil (usada só em `/profiles`, para não criar um ciclo de redirect).
+4. **Resolução automática do perfil ativo**: conta nova → cria o primeiro perfil automaticamente com o nome da conta (comportamento idêntico ao de sempre, zero passo extra). Conta com 1 perfil → esse é sempre o ativo, sem seletor. Conta com 2+ perfis → lê um cookie `active_profile_id` (httpOnly); se não corresponder a nenhum perfil válido dessa conta, redireciona para `/profiles`.
+5. **`/profiles`** (fora do grupo `(app)`, tal como `/onboarding`): seletor visual (avatares coloridos com inicial) quando há 2+ perfis, e um formulário "Adicionar pessoa" sempre visível (também acessível com 1 só perfil, via "Gerir perfis" em Definições, para criar o segundo). `selectProfile`/`createProfile`/`switchProfile` como Server Actions, com autorização (`findFirst({ where: { id, userId: account.id } })`) para impedir ativar um perfil de outra conta.
+6. **Eliminação de dados (RGPD)** — `deleteAccount()` em `profile/privacy/actions.ts` foi reescrita: apaga o PERFIL ativo (cascata já existente no schema trata do resto), e só apaga também a conta + termina sessão se era o último perfil. Antes disto (numa conta com vários perfis), apagar o "meu perfil" apagaria sempre a conta inteira, incluindo o progresso de outros membros da família — exatamente o oposto de "privacidade entre perfis".
+7. **AI Tutor ganha consciência de `isChild`** (`buildTutorPrompt.ts`): quando o perfil é marcado como criança no formulário de criação, o prompt do tutor pede vocabulário mais simples, tom mais paciente, e evita temas adultos — sem alterar nível/conteúdo (isso continua a vir do placement test, não da idade autodeclarada). Adicionado porque o checkbox "é uma criança" no formulário já prometia isto na copy — preferível implementar o efeito real a deixar uma promessa vazia na UI.
+
+### Verificação
+
+Sem build local disponível (sem Node.js) e com os deploys da Netlify pausados até 2026-09-01, esta foi a mudança de maior risco de toda a sessão — não há forma de a testar viva antes de chegar a produção. Por isso, ao contrário do resto da sessão (onde uma releitura cuidadosa bastava), foi pedida uma revisão independente por um agente à parte, cobrindo: schema completo (as 15 relações + índices/uniques), `session.ts` linha a linha, grep exaustivo por qualquer acesso remanescente à relação `user` renomeada, os ficheiros novos (`/profiles`), a reescrita de `deleteAccount()`, e todos os pontos de criação de `User` (signup, seed). Veredito: sem problemas estruturais encontrados, seguro para avançar.
+
+### O que fica por fazer (deliberadamente fora desta ronda)
+
+- Sem forma de o utilizador **renomear** um perfil depois de criado (só criar/escolher/apagar). Pequeno, fácil de adicionar depois.
+- Sem avatar com imagem — só cor sólida com inicial, para manter custo zero (sem upload/armazenamento de imagens).
+- O primeiro perfil de uma conta nova herda o `name` da conta (do metadata do Supabase Auth no signup) — se o titular da conta quiser mudar esse nome depois de criar mais perfis, não há UI para isso ainda (só para os perfis criados depois, via `/profiles`).
+
 ## 2026-08-27 — Teto global diário de chamadas à IA + 3 módulos B1 novos (densidade)
 
 Duas correções pequenas, mesma sessão, depois de fechar a leitura graduada.
