@@ -2,7 +2,7 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, tema claro/escuro deixou de seguir automaticamente o sistema operativo — causa provável da queixa "cores sempre pesadas, nunca muda" (se o Windows do utilizador está em modo escuro, a app inteira ficava sempre navy escuro sem controlo). Agora há um `ThemeToggle` explícito no cabeçalho, default claro. Ver `docs/decisions.md`. **Deploy por confirmar.**
+Última atualização: 2026-08-26, 7ª lição adicional (A1.3 "Yesterday" — Past Simple regular/irregular) para começar a atacar o item #5 da lista priorizada (expansão de conteúdo). Antes disso: tema claro/escuro deixou de seguir automaticamente o sistema operativo — causa provável da queixa "cores sempre pesadas, nunca muda" (se o Windows do utilizador está em modo escuro, a app inteira ficava sempre navy escuro sem controlo). Agora há um `ThemeToggle` explícito no cabeçalho, default claro. Ver `docs/decisions.md`. **Deploy por confirmar.**
 
 ### UX dos quizzes (correção de UX pedida pelo utilizador após testar)
 Feedback imediato (Verificar → correto/incorreto + resposta certa → Seguinte) no Desafio Diário e Diagnóstico Semanal, TRANSLATION deixou de ficar de fora dos testes (vira pergunta de texto), Sheets de tema (`/practice/topic`) para escolher o que praticar, cor por pilar nos quizzes. Ver `docs/decisions.md`.
@@ -61,7 +61,7 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 | Decisões (log vivo) | — | `docs/decisions.md` — **atualizar sempre que uma decisão técnica mudar** |
 | Deploy | Netlify | `netlify.toml` |
 
-## 4. Conteúdo curricular seedado (6 lições)
+## 4. Conteúdo curricular seedado (7 lições)
 
 | Sublevel | Módulo | Conceito de gramática | Erro PT→EN destacado |
 |---|---|---|---|
@@ -71,8 +71,9 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 | A1.2 | Shopping | There is/There are | "há" invariável em PT vs. singular/plural em EN |
 | A1.3 | Comparing Things | Comparativos | "more cheap" → "cheaper"; "more good" → "better" |
 | A1.2 | At the Restaurant | Pedidos educados (Can/Could) | "I want a coffee" → "Can I have a coffee, please?" |
+| A1.3 | Yesterday | Past Simple (regular/irregular) | "I go to the beach yesterday" → "I went to the beach yesterday" |
 
-~15 itens de vocabulário no total, distribuídos por estes módulos. Ver `content/curriculum/` para o JSON completo de cada um.
+~18 itens de vocabulário no total, distribuídos por estes módulos. Ver `content/curriculum/` para o JSON completo de cada um. Cada módulo novo alimenta automaticamente o Diagnóstico Semanal e as Sheets de tema (`/practice/topic`), que reutilizam os `Exercise` já seedados — mais conteúdo = mais variedade nesses dois sítios sem precisar de código novo.
 
 ## 5. Variáveis de ambiente na Netlify (nomes, não os valores — ver gestor de password/Netlify para os valores reais)
 

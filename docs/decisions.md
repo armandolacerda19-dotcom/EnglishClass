@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — 7ª lição: Past Simple ("Yesterday")
+
+Início do ataque ao item #5 da lista priorizada (expansão de conteúdo, o de custo mais alto na crítica de produto). Adicionado `content/curriculum/a1-module-06-past-simple.json` — A1.3, Past Simple regular/irregular, erro PT→EN destacado: manter o verbo na forma base com "yesterday" em vez de o mudar para o passado ("I go to the beach yesterday" em vez de "went"). Registado em `prisma/seed.ts` (`MODULE_FILES`), segue exatamente o mesmo formato dos módulos anteriores — nenhuma alteração à lógica de seed.
+
+Efeito indireto importante: mais um módulo = mais exercícios na pool partilhada (`src/lib/practiceQuestions.ts`) que alimenta o Diagnóstico Semanal e as Sheets de tema — esses dois ganham variedade automaticamente, sem código novo.
+
 ## 2026-08-26 — Tema claro/escuro deixa de ser automático, passa a ser escolha do utilizador
 
 Ao continuar a lista de updates, reexaminei a queixa "as cores são sempre muito pesadas, nunca muda" à luz do código: `tailwind.config.ts` tinha `darkMode: "media"`, ou seja, a app seguia sempre a preferência do sistema operativo (`prefers-color-scheme`), sem controlo nenhum do utilizador. Se o Windows do utilizador estiver em modo escuro, a app inteira — todas as páginas, sempre — renderiza em fundo `ink` (navy escuro), o que corresponde exatamente à queixa "sempre pesadas, nunca muda".
