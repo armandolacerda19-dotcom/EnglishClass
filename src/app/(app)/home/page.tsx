@@ -80,7 +80,7 @@ export default async function HomePage() {
         </Link>
       )}
 
-      <div className="mb-4 grid grid-cols-2 gap-3">
+      <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Link href="/practice/daily-challenge">
           <Card className="hover:border-brass">
             <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
@@ -194,7 +194,7 @@ function IntensiveHome({
         </Link>
       )}
 
-      <div className="mb-4 grid grid-cols-2 gap-3">
+      <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Link href="/practice/daily-challenge">
           <Card className="hover:border-brass">
             <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Desafio Diário</p>
