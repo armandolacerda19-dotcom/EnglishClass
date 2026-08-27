@@ -3,21 +3,44 @@ import { requireUserWithProfile } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { Card } from "@/components/ui/Card";
 import { ErrorCallout } from "@/components/ui/ErrorCallout";
+import { getDueReviewCount } from "@/lib/srs/schedule";
 
-// MVP1: lista de erros recorrentes por pilar, sem fila de repetição espaçada completa
-// (algoritmo SM-2 completo fica para MVP2 — docs/10-scope-mvp1.md).
+// Fila de revisão espaçada real (SM-2) — src/lib/srs/. A lista de erros abaixo
+// mostra todo o histórico não resolvido; /practice/review só mostra o que está
+// vencido agora, no momento certo para consolidar a memória.
 export default async function PracticePage() {
   const { user } = await requireUserWithProfile();
 
-  const errors = await prisma.userError.findMany({
-    where: { userId: user.id, resolvedAt: null },
-    orderBy: { lastOccurredAt: "desc" },
-    take: 20,
-  });
+  const [errors, dueReviews] = await Promise.all([
+    prisma.userError.findMany({
+      where: { userId: user.id, resolvedAt: null },
+      orderBy: { lastOccurredAt: "desc" },
+      take: 20,
+    }),
+    getDueReviewCount(user.id),
+  ]);
 
   return (
     <main className="mx-auto max-w-lg px-6 py-10">
       <h1 className="mb-6 font-display text-2xl">Prática</h1>
+
+      <Link href="/practice/review" className="mb-3 block">
+        <Card className={dueReviews > 0 ? "border-clay hover:border-clay" : "hover:border-clay"}>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Revisão</p>
+              <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+                {dueReviews > 0 ? "Palavras e erros prontos a rever" : "Sem revisões pendentes agora"}
+              </p>
+            </div>
+            {dueReviews > 0 && (
+              <span className="rounded-full bg-clay px-3 py-1 font-mono text-sm font-semibold text-white">
+                {dueReviews}
+              </span>
+            )}
+          </div>
+        </Card>
+      </Link>
 
       <div className="mb-3 grid grid-cols-2 gap-3">
         <Link href="/practice/daily-challenge">

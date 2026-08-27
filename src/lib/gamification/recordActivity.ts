@@ -9,6 +9,7 @@ const XP = {
   LESSON_COMPLETE: 30,
   DAILY_CHALLENGE: 20,
   MICRO_CHALLENGE: 8,
+  REVIEW: 5,
 } as const;
 
 export type ActivityKind = keyof typeof XP;

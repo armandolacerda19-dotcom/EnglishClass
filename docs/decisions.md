@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Crítica ao produto e SRS (repetição espaçada) real
+
+Pedido do utilizador: crítica dura ao estado atual da app do ponto de vista de "alguém se tornar nativo em inglês", com lista de melhorias por custo (tokens)/impacto. Conclusão principal: o MVP1 tinha conteúdo insuficiente (6 lições, ~15 palavras) e nenhum motor de retenção — `UserError`/`ReviewScheduleItem` existiam no schema mas nunca eram lidos/escritos por nenhuma rota. Perguntado ao utilizador o que priorizar: escolheu **SRS primeiro**, fluência prática com testes/exames periódicos como reforço futuro, e inglês profissional genérico "cedo".
+
+Implementado nesta sessão: motor SM-2 real (`src/lib/srs/sm2.ts`), agendamento (`src/lib/srs/schedule.ts`), nova rota `/practice/review` (fila de revisão estilo Anki: mostrar frente → revelar → auto-avaliação Não sabia/Custou/Sabia bem). Ligado a duas fontes de exposição: Desafio Diário (cada palavra respondida agenda revisão) e exercícios de lição (cada erro cria/incrementa `UserError` deduplicado por `errorType` e agenda revisão do erro). Contagem de pendentes visível em Home e Prática.
+
+Schema: adicionado `repetitions` e `@@unique([userId, itemType, itemRefId])` a `ReviewScheduleItem`, para permitir upsert idempotente por item. Não há migração dedicada — `prisma db push --accept-data-loss` aplica no build da Netlify, como já é o fluxo estabelecido.
+
+**Deliberadamente fora desta sessão** (ver crítica completa na conversa): expansão de vocabulário/currículo, phrasal verbs/idiomas, roleplay profissional, exames periódicos, listening mais natural. Ficam como próximos passos — ver `PROJECT_STATE.md` secção 6.
+
 ## 2026-08-26 — PWA: instalação no Android como app normal
 
 Pedido do utilizador: poder instalar a webapp no telemóvel Android como uma app nativa. Adicionado suporte mínimo a Progressive Web App:

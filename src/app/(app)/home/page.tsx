@@ -8,9 +8,11 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { formatLevelCode } from "@/lib/level";
 import { StreakXp } from "@/components/ui/StreakXp";
 import { getNextLessonForUser } from "@/lib/lessons";
+import { getDueReviewCount } from "@/lib/srs/schedule";
 
 export default async function HomePage() {
   const { user, learningProfile } = await requireUserWithProfile();
+  const dueReviews = await getDueReviewCount(user.id);
 
   if (learningProfile.track === "INTENSIVE") {
     const intensivePlan = await prisma.intensivePlan.findUnique({ where: { userId: user.id } });
@@ -22,6 +24,7 @@ export default async function HomePage() {
         weakAreas={learningProfile.weakAreas}
         xp={learningProfile.xp}
         streak={learningProfile.currentStreak}
+        dueReviews={dueReviews}
       />
     );
   }
@@ -37,6 +40,22 @@ export default async function HomePage() {
       </div>
 
       <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} />
+
+      {dueReviews > 0 && (
+        <Link href="/practice/review" className="mb-3 block">
+          <Card className="border-clay hover:border-clay">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Revisão pendente</p>
+                <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Não deixe esquecer o que já aprendeu</p>
+              </div>
+              <span className="rounded-full bg-clay px-3 py-1 font-mono text-sm font-semibold text-white">
+                {dueReviews}
+              </span>
+            </div>
+          </Card>
+        </Link>
+      )}
 
       <div className="mb-4 grid grid-cols-2 gap-3">
         <Link href="/practice/daily-challenge">
@@ -84,6 +103,7 @@ function IntensiveHome({
   weakAreas,
   xp,
   streak,
+  dueReviews,
 }: {
   levelCode: string;
   plan: { currentDay: number; totalDays: number; weeklyThemesJson: unknown } | null;
@@ -91,6 +111,7 @@ function IntensiveHome({
   weakAreas: string[];
   xp: number;
   streak: number;
+  dueReviews: number;
 }) {
   const currentDay = plan?.currentDay ?? 1;
   const totalDays = plan?.totalDays ?? 1;
@@ -106,6 +127,22 @@ function IntensiveHome({
       </div>
 
       <StreakXp xp={xp} streak={streak} />
+
+      {dueReviews > 0 && (
+        <Link href="/practice/review" className="mb-3 block">
+          <Card className="border-clay hover:border-clay">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Revisão pendente</p>
+                <p className="text-xs text-inkNeutral/70 dark:text-linen/70">Não deixe esquecer o que já aprendeu</p>
+              </div>
+              <span className="rounded-full bg-clay px-3 py-1 font-mono text-sm font-semibold text-white">
+                {dueReviews}
+              </span>
+            </div>
+          </Card>
+        </Link>
+      )}
 
       <div className="mb-4 grid grid-cols-2 gap-3">
         <Link href="/practice/daily-challenge">

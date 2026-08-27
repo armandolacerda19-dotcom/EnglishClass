@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
-import { completeDailyChallenge } from "@/app/(app)/practice/daily-challenge/actions";
+import { completeDailyChallenge, recordVocabExposure } from "@/app/(app)/practice/daily-challenge/actions";
 import type { DailyChallengeWord } from "@/lib/dailyChallenge";
 
 interface DailyChallengeRunnerProps {
@@ -28,6 +28,7 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
     const isCorrect = selected === word.translationPt;
     const nextScore = isCorrect ? score + 1 : score;
     setScore(nextScore);
+    void recordVocabExposure(word.id, isCorrect);
 
     if (isLast) {
       const result = await completeDailyChallenge(nextScore, words.length);

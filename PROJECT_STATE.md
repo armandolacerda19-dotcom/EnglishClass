@@ -2,7 +2,7 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, PWA (instalação Android) adicionada — manifest, ícones SVG, service worker mínimo. Ainda por confirmar publicação em produção (ver secção 6).
+Última atualização: 2026-08-26, motor de repetição espaçada real (SM-2) adicionado — `/practice/review`, ligado ao Desafio Diário e aos erros de lição. Ver secção 6 para o resto da lista de melhorias priorizada com o utilizador.
 
 ### Nota técnica — clicar em elementos da UI da Netlify via browser automation
 A navegação por `find`/`ref` na consola da Netlify revelou-se instável (refs ficam obsoletos entre re-renders, timeouts de screenshot frequentes nesta página em concreto). **Solução mais fiável**: usar `javascript_tool` para localizar e clicar elementos diretamente no DOM (`document.querySelectorAll`, filtrar por `offsetParent !== null` para apanhar só o elemento visível/ativo, `.click()`), e para editar inputs React controlados usar o setter nativo do `HTMLInputElement.prototype` antes de disparar o evento `input` (`Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set.call(input, valor)`). Preferir este método a `find`/`computer` para esta consola específica.
@@ -31,7 +31,8 @@ O utilizador (dono do projeto) **não instala nada localmente** — não tem Nod
 - Progress (octógono de competência, XP, streak, conquistas, checkpoints)
 - Desafio Diário de vocabulário + Micro-Desafios (deploy `c67143e`/seguintes — ainda não confirmado pelo utilizador em produção, ver secção 6)
 - Privacidade RGPD (exportar/eliminar dados)
-- Instalação como app (PWA) — manifest + service worker mínimo, ver secção 6 (deploy pendente)
+- Instalação como app (PWA) — manifest + service worker mínimo, confirmado publicado e a funcionar (service worker registado em produção)
+- Revisão espaçada real (SRS/SM-2) — `/practice/review`, ver secção 6 (deploy pendente)
 
 ### Histórico de deploy — lições aprendidas (não repetir)
 Passámos por vários ciclos de build falhado antes do primeiro deploy bem-sucedido. Erros já corrigidos, não os reintroduzir:
@@ -83,7 +84,13 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 - [x] 6ª lição adicional (A1.2 "At the Restaurant" — pedidos educados Can/Could) — para reforçar a profundidade do currículo enquanto havia orçamento de tokens.
 - [x] `NEXT_PUBLIC_SITE_URL` corrigido para `https://english-platafform.netlify.app` e redeploy confirmado publicado.
 - [ ] **Por confirmar pelo utilizador em produção**: clicar em Desafio Diário e Micro-Desafios no site real (deploy `ea0214e` já publicado, deploy código-fonte confirmado sem erros; falta só confirmação visual/funcional do próprio utilizador).
-- [x] App instalável no Android (PWA) — `public/manifest.webmanifest`, `public/icon.svg`, `public/icon-maskable.svg`, `public/sw.js`, `src/components/PwaRegister.tsx`, `src/app/layout.tsx`, `src/middleware.ts` (exclusão do matcher). Ver `docs/decisions.md` 2026-08-26. **Nota**: ícones em SVG, não PNG (sem ferramenta de imagem nesta máquina) — funciona no Chrome/Android mas considerar gerar PNGs (192×192, 512×512) numa sessão futura com Node/Python disponível, para compatibilidade máxima. Falta confirmar no telemóvel do utilizador: abrir o site no Chrome Android → menu (⋮) → "Adicionar ao ecrã principal" / "Instalar app".
+- [x] App instalável no Android (PWA) — `public/manifest.webmanifest`, `public/icon.svg`, `public/icon-maskable.svg`, `public/sw.js`, `src/components/PwaRegister.tsx`, `src/app/layout.tsx`, `src/middleware.ts` (exclusão do matcher). Ver `docs/decisions.md` 2026-08-26. Deploy confirmado publicado, manifest/ícone/service worker verificados em produção. **Nota**: ícones em SVG, não PNG — considerar gerar PNGs (192×192, 512×512) numa sessão futura com Node/Python disponível. Falta só o utilizador confirmar no telemóvel: Chrome Android → menu (⋮) → "Adicionar ao ecrã principal".
+- [x] **SRS real (SM-2)** — crítica dura ao produto pedida pelo utilizador (2026-08-26), priorizado por ele como #1: `src/lib/srs/sm2.ts` (algoritmo), `src/lib/srs/schedule.ts` (agendamento/consulta), `/practice/review` (fila estilo Anki). Ligado ao Desafio Diário (cada palavra agenda revisão) e aos erros de exercícios de lição (dedupe por `errorType`, agenda revisão do erro). Badge de pendentes em Home e Prática. **Deploy ainda por confirmar publicado** — próximo passo desta sessão.
+- [ ] **Lista de melhorias priorizada com o utilizador (crítica de 2026-08-26), por ordem de prioridade acordada**:
+  1. ~~SRS (repetição espaçada real)~~ — feito acima.
+  2. Testes/exames periódicos (diagnóstico, não necessariamente formato IELTS/Cambridge — o utilizador quer "fluência prática, mas com testes que ajudem a corrigir no futuro"). Aproveitar `AssessmentType.WEEKLY/MONTHLY/UNIT/MODULE` já no schema.
+  3. Inglês profissional genérico cedo (roleplay de reunião/entrevista, mesmo antes de A2/B1 estar completo) — usar `AIConversation`/`TutorPersonality.INTERVIEWER` já no schema.
+  4. Expansão de vocabulário e currículo (A2+), phrasal verbs/idiomas/collocations, listening mais natural, leitura extensiva — itens de custo mais alto, ver crítica completa na conversa de 2026-08-26 para a lista completa com custo/impacto.
 
 Ver o corpo da conversa da sessão de 2026-08-26 para o pedido exato.
 

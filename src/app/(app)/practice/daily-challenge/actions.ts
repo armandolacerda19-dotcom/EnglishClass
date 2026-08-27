@@ -3,11 +3,19 @@
 import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { recordActivity } from "@/lib/gamification/recordActivity";
+import { scheduleReview } from "@/lib/srs/schedule";
 
 function startOfDay(d: Date) {
   const x = new Date(d);
   x.setUTCHours(0, 0, 0, 0);
   return x;
+}
+
+// Chamado a cada palavra respondida no Desafio Diário — agenda a próxima revisão
+// via SM-2 (src/lib/srs/sm2.ts). quality 5 = acertou, 1 = falhou.
+export async function recordVocabExposure(vocabularyItemId: string, correct: boolean) {
+  const user = await requireUser();
+  await scheduleReview(user.id, "vocabulary_item", vocabularyItemId, correct ? 5 : 1);
 }
 
 // Checkpoint diário (docs/05-avaliacao-certificacao.md) — completar o Desafio Diário

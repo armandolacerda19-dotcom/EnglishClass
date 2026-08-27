@@ -4,6 +4,7 @@ import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { getGeminiModel } from "@/lib/ai/gemini";
 import { recordActivity } from "@/lib/gamification/recordActivity";
+import { scheduleReview } from "@/lib/srs/schedule";
 
 export async function submitExerciseAnswer(exerciseId: string, given: string) {
   const user = await requireUser();
@@ -31,16 +32,34 @@ export async function submitExerciseAnswer(exerciseId: string, given: string) {
   });
 
   if (!isCorrect && content.common_mistake_pt) {
-    await prisma.userError.create({
-      data: {
-        userId: user.id,
-        pillar: exercise.pillar,
-        errorType: (content.tags?.[0] as string) ?? "unspecified",
-        commonMistakePt: content.common_mistake_pt,
-        sourceText: given,
-        correction: content.correct_answer[0],
-      },
+    const errorType = (content.tags?.[0] as string) ?? "unspecified";
+    const existingError = await prisma.userError.findFirst({
+      where: { userId: user.id, errorType, resolvedAt: null },
     });
+
+    const userError = existingError
+      ? await prisma.userError.update({
+          where: { id: existingError.id },
+          data: {
+            occurrences: { increment: 1 },
+            lastOccurredAt: new Date(),
+            sourceText: given,
+          },
+        })
+      : await prisma.userError.create({
+          data: {
+            userId: user.id,
+            pillar: exercise.pillar,
+            errorType,
+            commonMistakePt: content.common_mistake_pt,
+            sourceText: given,
+            correction: content.correct_answer[0],
+          },
+        });
+
+    // Entra na fila de revisão espaçada (SM-2) — falhou agora, por isso volta a
+    // aparecer já amanhã em /practice/review, não daqui a semanas.
+    await scheduleReview(user.id, "error", userError.id, 1, userError.id);
   }
 
   await recordActivity(user.id, isCorrect ? "EXERCISE_CORRECT" : "EXERCISE_INCORRECT");

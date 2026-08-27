@@ -474,9 +474,11 @@ model ReviewScheduleItem {
 
   intervalDays   Int      @default(1)
   easeFactor     Float    @default(2.5) // algoritmo tipo SM-2
+  repetitions    Int      @default(0)
   dueAt          DateTime
   lastReviewedAt DateTime?
 
+  @@unique([userId, itemType, itemRefId])
   @@index([userId, dueAt])
 }
 
