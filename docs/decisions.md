@@ -2,6 +2,18 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Achado N6 corrigido: seed paralelizado
+
+A auditoria de 2026-08-27 (achados de segurança novos, N6) apontava o `prisma/seed.ts` — que corre a **cada** deploy Netlify (`netlify.toml`) — como ~2.400 upserts 100% sequenciais, zero `createMany`, zero `$transaction`, com risco real de builds lentos ou com timeout. O problema só cresce: entre esta sessão ter começado e este ponto, o currículo passou de 30 para 35 módulos, e o vocabulário standalone já ia em 2.000+ palavras antes disto.
+
+Correção, sem tocar na lógica de upsert em si — só na forma como as chamadas são disparadas:
+- Novo `mapWithConcurrency<T>(items, concurrency, fn)`: corre `fn` sobre `items` em lotes de `concurrency` em paralelo (não tudo de uma vez, para não arriscar esgotar o pool de ligações do Postgres).
+- `seedVocabularyBank`: os 2.000+ upserts (todos independentes entre si — ids distintos, sem FK) passam a correr em lotes de 25.
+- `main()`: os 35 módulos de `MODULE_FILES` (confirmado por grep, ao longo de toda a sessão, que nenhum ficheiro de `content/curriculum/` partilha id com outro) passam a correr em lotes de 4. `lessonOrder` continua calculado do índice do array **antes** de qualquer `await` — por isso a ordem final das lições (`Lesson.order`) não depende da ordem em que os módulos terminam de ser seedados, mesmo correndo em paralelo.
+- **Deliberadamente deixado sequencial**: os upserts *dentro* de cada módulo (vocabulário ~3-5 itens, exercícios 6 itens) — são poucos, e os exercícios têm uma FK real (`grammarConceptId`) para o `grammar_concept` do mesmo módulo, que tem de existir primeiro. Paralelizar ali teria risco sem benefício real, ao contrário dos dois casos acima onde os itens são genuinamente independentes.
+
+**[POR CONFIRMAR EM RUNTIME]** — sem Node.js local nem deploy Netlify disponível (pausado até 2026-09-01) para medir o tempo de build real antes/depois desta mudança. Revisto com cuidado extra por leitura completa do ficheiro, exatamente pela mesma razão.
+
 ## 2026-08-27 — Fase 13 continuada: Zero Conditional + Present Perfect vs. Past Simple (A2)
 
 Depois do 1º lote da Fase 13 (ver entrada abaixo), continuei a rever a cobertura de gramática à procura de gaps reais — não para "encher" o currículo, só onde havia mesmo uma lacuna genuína:
