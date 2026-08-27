@@ -255,6 +255,7 @@ function SpeakingStep({ prompt }: { prompt: string }) {
   const [attemptId, setAttemptId] = useState<string | null>(null);
   const [fluencyScore, setFluencyScore] = useState<number | null>(null);
   const [pronunciationScore, setPronunciationScore] = useState<number | null>(null);
+  const [rubric, setRubric] = useState<WritingRubric | null>(null);
   const [confidenceGiven, setConfidenceGiven] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -277,11 +278,13 @@ function SpeakingStep({ prompt }: { prompt: string }) {
         attemptId: newAttemptId,
         fluencyScore: newFluencyScore,
         pronunciationScore: newPronunciationScore,
+        rubric: newRubric,
       } = await submitSpeaking(prompt, text, responseTimeMs);
       setFeedback(feedbackText);
       setAttemptId(newAttemptId);
       setFluencyScore(newFluencyScore);
       setPronunciationScore(newPronunciationScore);
+      setRubric(newRubric);
     } catch {
       setSubmitError("Não foi possível avaliar a resposta — verifique a ligação e tente novamente.");
     } finally {
@@ -344,6 +347,21 @@ function SpeakingStep({ prompt }: { prompt: string }) {
               </div>
             </div>
           )}
+        </div>
+      )}
+      {rubric && (
+        <div className="mt-3 flex flex-col gap-2 border-t border-ink/10 pt-3 dark:border-linen/10">
+          {(Object.keys(RUBRIC_LABEL) as (keyof WritingRubric)[]).map((key) => (
+            <div key={key}>
+              <div className="mb-1 flex items-center justify-between text-xs text-inkNeutral/60 dark:text-linen/60">
+                <span>{RUBRIC_LABEL[key]}</span>
+                <span className="font-mono">{rubric[key]}</span>
+              </div>
+              <div className="h-1.5 w-full rounded-full bg-ink/10 dark:bg-linen/10">
+                <div className="h-1.5 rounded-full bg-verdigris" style={{ width: `${rubric[key]}%` }} />
+              </div>
+            </div>
+          ))}
         </div>
       )}
       {feedback && attemptId && (

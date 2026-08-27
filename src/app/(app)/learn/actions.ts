@@ -98,7 +98,7 @@ export async function submitWriting(prompt: string, text: string) {
 export async function submitSpeaking(prompt: string, transcript: string, responseTimeMs?: number) {
   const user = await requireUser();
 
-  const { feedback, score, pronunciationScore } = await getHolisticFeedback("speaking", prompt, transcript, user.id);
+  const { feedback, score, pronunciationScore, rubric } = await getHolisticFeedback("speaking", prompt, transcript, user.id);
 
   // Validação de fronteira: um valor negativo ou absurdamente alto (relógio do
   // cliente adulterado, ou aba deixada aberta horas) não deve corromper
@@ -116,7 +116,10 @@ export async function submitSpeaking(prompt: string, transcript: string, respons
       audioUrl: "",
       transcript,
       source: "LESSON",
-      feedbackJson: feedback,
+      // Fase 10: feedbackJson passa a guardar { text, rubric }, mesmo padrão
+      // já usado em WritingAttempt — campo Json?, nunca lido a torto/direito
+      // em lado nenhum antes disto, por isso mudar a forma não quebra nada.
+      feedbackJson: { text: feedback, rubric },
       fluencyScore: score,
       pronunciationScore,
       responseTimeMs: safeResponseTimeMs,
@@ -134,7 +137,7 @@ export async function submitSpeaking(prompt: string, transcript: string, respons
   // eram gravados desde a Fase 3 mas nunca devolvidos ao ecrã — o utilizador
   // via o feedback em texto, mas nunca o número junto da frase que o gerou.
   // Só chegava a aparecer, dias depois, como um eixo do octógono em /progress.
-  return { feedback, attemptId: attempt.id, fluencyScore: score, pronunciationScore };
+  return { feedback, attemptId: attempt.id, fluencyScore: score, pronunciationScore, rubric };
 }
 
 // Métrica de confiança (auditoria secção 294) — perguntada depois do feedback
@@ -216,7 +219,10 @@ export interface WritingRubric {
 interface HolisticFeedback {
   feedback: string;
   score: number | null; // 0-100, null se a IA falhou ou não devolveu um score parseável
-  // Só preenchido quando kind === "writing".
+  // Preenchido para "writing" e, desde a Fase 10 (auditoria 2026-08-27,
+  // achado E: "rubrica só em writing... a competência mais difícil, e
+  // prioridade declarada da app, é a única sem rubrica"), também para
+  // "speaking" — os mesmos 4 eixos, agora nos dois modos.
   rubric: WritingRubric | null;
   // Só preenchido quando kind === "speaking". Antes desta correção, o eixo
   // PRONUNCIATION do octógono de competência (SkillOctagon) nunca recebia
@@ -271,22 +277,30 @@ async function getHolisticFeedback(
               "smoothly with no signs of misheard words; a low number means several words look misrecognized in a " +
               "way that suggests a pronunciation issue."
           : "") +
-        (kind === "writing"
-          ? // Rubrica de writing (auditoria secção 291) — 4 subscores em vez de um
-            // único número. Mesma técnica de "linha à parte", sem JSON mode.
+        (kind === "writing" || kind === "speaking"
+          ? // Rubrica de 4 eixos (auditoria secção 291, estendida a speaking na
+            // Fase 10 — secção 294: "a competência mais difícil, e prioridade
+            // declarada da app, é a única sem rubrica"). Para speaking,
+            // "grammar"/"vocabulary" avaliam o que foi dito (não a pronúncia,
+            // já coberta por PRONUNCIATION abaixo), "coherence" avalia se a
+            // resposta fez sentido como discurso falado, "task achievement" se
+            // respondeu mesmo ao prompt.
             "Also rate the response on 4 separate dimensions, one number 0-100 each: how correct the grammar is, " +
-              "how appropriate and varied the vocabulary is, how coherent/well-organized the writing is, and how " +
+              "how appropriate and varied the vocabulary is, how coherent/well-organized the response is, and how " +
               "well the response actually achieves the task set by the prompt (right topic, right length, right " +
               "format) regardless of language correctness."
           : "") +
-        "End your response on its own final line with exactly: SCORE: <a number from 0 to 100 rating how correct and natural the response was>." +
-        (kind === "speaking"
-          ? " On the line immediately before that, write exactly: PRONUNCIATION: <a number from 0 to 100 as described above>."
+        // Ordem exata das linhas finais pedida explicitamente (em vez de duas
+        // instruções separadas a competir por "imediatamente antes de SCORE",
+        // o que deixava a ordem ambígua para o modelo quando speaking passou
+        // a pedir rubrica E pronúncia ao mesmo tempo — Fase 10).
+        "End your response with these exact final lines, in this exact order, each on its own line: " +
+        (kind === "writing" || kind === "speaking"
+          ? "GRAMMAR: <0-100>, then VOCABULARY: <0-100>, then COHERENCE: <0-100>, then TASK_ACHIEVEMENT: <0-100>, "
           : "") +
-        (kind === "writing"
-          ? " On the 4 lines immediately before that, write exactly, one per line: GRAMMAR: <0-100>, VOCABULARY: <0-100>, " +
-              "COHERENCE: <0-100>, TASK_ACHIEVEMENT: <0-100>."
-          : "")
+        (kind === "speaking" ? "then PRONUNCIATION: <a number from 0 to 100 as described above>, " : "") +
+        "then finally SCORE: <a number from 0 to 100 rating how correct and natural the response was overall> " +
+        "as the very last line."
     );
 
     // A resposta do aluno vai delimitada e com as marcas de controlo removidas.
@@ -335,7 +349,7 @@ async function getHolisticFeedback(
     }
 
     let rubric: WritingRubric | null = null;
-    if (kind === "writing") {
+    if (kind === "writing" || kind === "speaking") {
       const clamp = (n: string | undefined) => (n ? Math.max(0, Math.min(100, parseInt(n, 10))) : null);
       const grammarMatch = raw.match(/GRAMMAR:\s*(\d{1,3})\s*$/im);
       const vocabMatch = raw.match(/VOCABULARY:\s*(\d{1,3})\s*$/im);
