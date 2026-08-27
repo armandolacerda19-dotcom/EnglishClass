@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Leitura graduada: alvo de 60 textos atingido (4→60)
+
+Quarto e último lote desta ronda de conteúdo. `readingPassages.ts` tinha 4 textos no início da auditoria de 2026-08-26 (item "leitura graduada (4→60 textos)" explicitamente citado como em falta). Depois de 4 lotes de 20+10+10+7 ao longo desta sessão, chega aos **60 textos**, distribuídos de forma equilibrada: 10 Pre-A1, 17 A1, 17 A2, 16 B1. Últimos 7: `my-favourite-toy`, `at-the-playground` (Pre-A1), `a-rainy-day`, `my-favourite-food` (A1), `starting-a-new-job`, `learning-to-swim` (A2), `the-importance-of-sleep` (B1).
+
+Mesmo processo de verificação em todos os 4 lotes: escrever → grep de ids/títulos duplicados contra TODO o ficheiro (não só o lote novo) → corrigir antes do commit se necessário → só depois commitar. Isto apanhou 1 duplicado real (`the-weekly-market`, ver entrada "Segundo lote" abaixo) antes de chegar ao repositório — prova de que a verificação continua a valer a pena a esta escala, tal como já tinha acontecido com o vocabulário.
+
+**Fecha completamente** o item "leitura graduada" da secção 291 da auditoria original. Não fica nenhum item de conteúdo por fazer da lista original — o que resta agora é aprofundamento (mais textos, mais módulos B1, mais vocabulário ligado a lições), não lacunas estruturais.
+
 ## 2026-08-27 — Segundo lote: mais 10 textos de leitura (33→43)
 
 Continuação imediata do lote anterior. Mesmo critério (reforçar módulos gramaticais, variar temas, balancear níveis). **Incidente apanhado pela verificação de rotina**: o rascunho inicial deste lote incluía um texto A1 chamado "The Weekly Market" que, ao correr a verificação de ids duplicados (mesma prática obrigatória desde o incidente de duplicados no vocabulário), revelou ser quase idêntico a um texto já existente com o mesmo título e tema (mercado semanal, do primeiro lote de 20 do fecho da Fase 3). Substituído por "A Trip to the Library" antes do commit — nenhum duplicado chegou a ir para o repositório. Fica registado como lembrete: com 40+ textos já escritos, a probabilidade de reinventar sem querer um tema já usado sobe, por isso a verificação de ids/títulos deixou de ser opcional também para este conteúdo (mesmo raciocínio já aplicado ao vocabulário a partir dos 2.000+ headwords).
