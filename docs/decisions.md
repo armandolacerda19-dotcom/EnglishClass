@@ -2,6 +2,20 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Correção de UX nos quizzes: feedback imediato, tradução, sheets, cor por pilar
+
+Feedback direto do utilizador depois de testar os updates anteriores: "não estou a gostar do formato da app deve dar correção no final se a resposta estiver errada. o tipo de perguntas é muito repetitivo... Nos testes, também não aparece hipótese de traduzir, quando faz a pergunta translate... as cores também são sempre muito pesadas, nunca muda". Comparação implícita com Duolingo/Busuu (feedback imediato por pergunta, variedade de formato, uso de cor para orientar).
+
+Diagnóstico da causa: o Desafio Diário e o Diagnóstico Semanal (construídos nesta sessão) só davam pontuação silenciosa no fim, sem mostrar a resposta certa por pergunta — ao contrário do `ExerciseStep` das lições (`LessonRunner.tsx`), que já fazia isto bem desde o início. E o Diagnóstico Semanal excluía TRANSLATION por completo (exercícios desse pilar não têm `distractors`, logo não davam para escolha múltipla) — daí "não aparece hipótese de traduzir".
+
+Corrigido:
+- **`src/lib/practiceQuestions.ts`** (novo, substitui a lógica antiga de `weeklyTest.ts`): motor partilhado de seleção de exercícios. Regra nova: um exercício sem distratores vira pergunta de texto livre (`kind: "text"`) em vez de ficar de fora — cobre TRANSLATION automaticamente, sem hardcode por pilar.
+- **Feedback imediato de dois passos** ("Verificar" → mostra correto/incorreto + revela a resposta certa → "Seguinte") aplicado ao Desafio Diário (`DailyChallengeRunner.tsx`) e ao Diagnóstico Semanal (`WeeklyTestRunner.tsx`) — mesmo padrão que já existia nas lições.
+- **`src/lib/pillarDisplay.ts`** (novo): mapa pilar→cor (verdigris/brass/clay, as únicas cores de acento do sistema de design — ver `docs/09-sistema-design.md`, não inventadas de novo) com classes Tailwind completas e estáticas (o JIT não gera classes a partir de template strings interpoladas em runtime — risco real que foi evitado aqui). Cada pergunta do Diagnóstico Semanal muda de cor consoante o pilar, em vez de ser sempre verdigris.
+- **Sheets de tema** (`/practice/topic`, `/practice/topic/[pillar]`) — pedido explícito: "deve ter várias sheets, que possa escolher o que quero trabalhar hoje". Ao contrário do Diagnóstico (1x/semana, todos os pilares), aqui o utilizador escolhe um pilar e pratica quantas vezes quiser, com perguntas novas de cada vez (seed variável, não fixado à semana). Não cria `AssessmentResult` — só atualiza o score desse pilar — para não poluir os checkpoints do Diagnóstico.
+
+**Não feito nesta ronda, sinalizado para o utilizador**: o pedido "refaça toda a estrutura" e "as cores são sempre muito pesadas" também aponta para o fundo `ink` (navy) a toda a largura na landing/hero, que é uma escolha de design deliberada nos documentos de Fase 0 (`docs/09-sistema-design.md`, "produto premium, sofisticado"). Mudar isso é um trabalho de redesenho visual maior, que beneficia de iteração com screenshots reais no browser — não foi tentado às cegas nesta ronda para não arriscar uma mudança estética unilateral mal calibrada.
+
 ## 2026-08-26 — 5 updates de maior impacto (continuação da lista priorizada)
 
 Pedido do utilizador: "pode continuar com mais updates. faça no mínimo 5 updates" — continuação direta da lista acordada na crítica de produto. Implementado:

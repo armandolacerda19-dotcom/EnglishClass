@@ -41,6 +41,15 @@ export default async function HomePage() {
 
       <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} />
 
+      <Link href="/practice/topic" className="mb-3 block">
+        <Card className="border-2 border-ink/10 hover:border-verdigris dark:border-linen/10">
+          <p className="mb-1 font-display text-lg">Escolher tema de hoje</p>
+          <p className="text-xs text-inkNeutral/70 dark:text-linen/70">
+            Vocabulário, gramática, listening, leitura ou tradução
+          </p>
+        </Card>
+      </Link>
+
       {dueReviews > 0 && (
         <Link href="/practice/review" className="mb-3 block">
           <Card className="border-clay hover:border-clay">

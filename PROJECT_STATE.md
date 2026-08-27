@@ -2,7 +2,7 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, mais 5 updates da lista priorizada: Diagnóstico Semanal (`/practice/weekly-test`), AI Tutor com interviewer/conversation_partner/native_friend (`/speak`), collocations mostradas no Desafio Diário/Revisão, 6 novas conquistas de gamificação, entry points ligados em Home/Practice. Deploy `b5f6400` confirmado publicado sem erros.
+Última atualização: 2026-08-26, correção de UX pedida pelo utilizador após testar: feedback imediato (Verificar → correto/incorreto + resposta certa → Seguinte) no Desafio Diário e Diagnóstico Semanal, TRANSLATION deixou de ficar de fora dos testes (vira pergunta de texto), Sheets de tema (`/practice/topic`) para escolher o que praticar, cor por pilar nos quizzes. Ver `docs/decisions.md`. **Deploy por confirmar.**
 
 ### Nota técnica — clicar em elementos da UI da Netlify via browser automation
 A navegação por `find`/`ref` na consola da Netlify revelou-se instável (refs ficam obsoletos entre re-renders, timeouts de screenshot frequentes nesta página em concreto). **Solução mais fiável**: usar `javascript_tool` para localizar e clicar elementos diretamente no DOM (`document.querySelectorAll`, filtrar por `offsetParent !== null` para apanhar só o elemento visível/ativo, `.click()`), e para editar inputs React controlados usar o setter nativo do `HTMLInputElement.prototype` antes de disparar o evento `input` (`Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set.call(input, valor)`). Preferir este método a `find`/`computer` para esta consola específica.
@@ -96,6 +96,7 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
   4. ~~Inglês profissional genérico cedo~~ — feito: `interviewer`/`conversation_partner`/`native_friend` desbloqueados em `/speak` (`src/lib/ai/personalities.ts`).
   5. Expansão de vocabulário e currículo (A2+), phrasal verbs/idiomas novos (distintos dos `related_forms` já existentes, agora mostrados), listening mais natural, leitura extensiva — itens de custo mais alto, ver crítica completa na conversa de 2026-08-26 para a lista completa com custo/impacto.
 - [x] **5 updates adicionais (pedido "faça no mínimo 5 updates")**: Diagnóstico Semanal, AI Tutor multi-personalidade, collocations visíveis, 6 novas conquistas, entry points em Home/Practice. Ver `docs/decisions.md` 2026-08-26 para detalhe de cada um. Deploy `b5f6400` confirmado publicado.
+- [x] **Correção de UX pós-teste do utilizador**: feedback imediato por pergunta (não silencioso), TRANSLATION deixou de faltar nos testes (vira texto livre em vez de MC), Sheets de tema (`/practice/topic/[pillar]`, `src/lib/practiceQuestions.ts`), cor por pilar (`src/lib/pillarDisplay.ts`) nos quizzes. Ver `docs/decisions.md` para o porquê de o redesenho visual mais amplo ("cores pesadas" no fundo/hero) ter ficado por fazer nesta ronda — precisa de iteração com screenshots, não de uma mudança às cegas. **Deploy por confirmar.**
 
 Ver o corpo da conversa da sessão de 2026-08-26 para o pedido exato.
 

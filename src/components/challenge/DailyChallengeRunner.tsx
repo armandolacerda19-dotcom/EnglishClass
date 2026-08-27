@@ -16,20 +16,24 @@ interface DailyChallengeRunnerProps {
 export function DailyChallengeRunner({ words, practiceSentences }: DailyChallengeRunnerProps) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
+  const [checked, setChecked] = useState(false);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const [alreadyDoneToday, setAlreadyDoneToday] = useState<boolean | null>(null);
 
   const word = words[index]!;
   const isLast = index === words.length - 1;
+  const isCorrect = selected === word.translationPt;
 
-  async function confirm() {
+  function check() {
     if (!selected) return;
-    const isCorrect = selected === word.translationPt;
-    const nextScore = isCorrect ? score + 1 : score;
-    setScore(nextScore);
+    setChecked(true);
+    setScore((s) => (isCorrect ? s + 1 : s));
     void recordVocabExposure(word.id, isCorrect);
+  }
 
+  async function advance() {
+    const nextScore = score;
     if (isLast) {
       const result = await completeDailyChallenge(nextScore, words.length);
       setAlreadyDoneToday(result.alreadyDoneToday);
@@ -37,6 +41,7 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
     } else {
       setIndex((i) => i + 1);
       setSelected(null);
+      setChecked(false);
     }
   }
 
@@ -92,34 +97,50 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
 
   return (
     <main className="mx-auto max-w-lg px-6 py-10">
-      <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">
+      <p className="mb-1 font-mono text-xs uppercase tracking-widest text-brass">
         Desafio Diário · {index + 1} de {words.length}
       </p>
       <div className="mb-6 h-1 w-full rounded-full bg-ink/10 dark:bg-linen/10">
         <div
-          className="h-1 rounded-full bg-verdigris transition-[width]"
+          className="h-1 rounded-full bg-brass transition-[width]"
           style={{ width: `${((index + 1) / words.length) * 100}%` }}
         />
       </div>
 
-      <Card>
-        <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">O que significa...</p>
+      <Card className="border-brass/30">
+        <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">O que significa...</p>
         <p className="mb-4 font-display text-2xl">{word.headword}</p>
 
         <fieldset className="flex flex-col gap-2">
           {word.options.map((opt) => (
             <label key={opt} className="flex items-center gap-2 rounded-control border border-ink/10 p-3 text-sm">
-              <input type="radio" name={word.id} checked={selected === opt} onChange={() => setSelected(opt)} />
+              <input
+                type="radio"
+                name={word.id}
+                checked={selected === opt}
+                onChange={() => setSelected(opt)}
+                disabled={checked}
+              />
               {opt}
             </label>
           ))}
         </fieldset>
+
+        {checked && (
+          <p className={`mt-3 text-sm ${isCorrect ? "text-verdigris" : "text-clay"}`}>
+            {isCorrect ? "Correto." : `Incorreto. Era: ${word.translationPt}`}
+          </p>
+        )}
       </Card>
 
       <div className="mt-4 flex justify-end">
-        <Button onClick={confirm} disabled={!selected}>
-          {isLast ? "Terminar" : "Seguinte"}
-        </Button>
+        {!checked ? (
+          <Button onClick={check} disabled={!selected}>
+            Verificar
+          </Button>
+        ) : (
+          <Button onClick={advance}>{isLast ? "Terminar" : "Seguinte"}</Button>
+        )}
       </div>
     </main>
   );
