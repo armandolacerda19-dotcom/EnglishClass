@@ -107,6 +107,12 @@ export default async function PracticePage() {
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Phrasal verbs, expressões</p>
           </Card>
         </Link>
+        <Link href="/practice/dictation">
+          <Card className="hover:border-clay">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Ditado</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Ouça e escreva a frase</p>
+          </Card>
+        </Link>
       </div>
 
       <SectionLabel>Referência</SectionLabel>

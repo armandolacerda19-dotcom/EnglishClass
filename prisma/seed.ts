@@ -312,6 +312,11 @@ const ACHIEVEMENTS = [
     title: "Primeiro Verbo",
     description: "Estudou o seu primeiro verbo irregular do dia.",
   },
+  {
+    code: "first_dictation",
+    title: "Primeiro Ditado",
+    description: "Completou o seu primeiro exercício de ditado (ouvir e escrever).",
+  },
 ];
 
 async function seedAchievements() {
