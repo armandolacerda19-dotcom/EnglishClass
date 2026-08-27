@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.3",
+  "module": {
+    "id": "mod_a1_3_future_plans",
+    "title": "Making Plans",
+    "theme": "future_plans",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_a1_3_future_plans",
+    "title": "Talking About Plans",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_going_to_future",
+    "title": "Future with \"going to\"",
+    "rule": "Use \"am/is/are + going to + base verb\" to talk about plans and intentions already decided before the moment of speaking.",
+    "simple_explanation": "We use this when we already decided to do something — it's not a spontaneous decision, it's a plan.",
+    "example": "I am going to visit my parents next weekend. She is going to start a new job in June.",
+    "example_translation": "Eu vou visitar os meus pais no próximo fim de semana. Ela vai começar um trabalho novo em junho.",
+    "common_mistake_pt": "Falantes de português tendem a esquecer o verbo \"to be\" (am/is/are), porque em português \"vou viajar\" não precisa de um verbo auxiliar equivalente: dizem \"I going to travel\" em vez de \"I am going to travel\".",
+    "correction": "\"Going to\" precisa sempre do verbo \"to be\" antes: I am going to / she is going to / they are going to — nunca \"I going to\" sozinho.",
+    "real_world_example": "A dizer a um colega: \"We are going to launch the new website next month.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_plan_to",
+      "headword": "plan to",
+      "type": "verb_phrase",
+      "translation_pt": "planear",
+      "definition_en": "to intend to do something in the future",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/plæn tuː/",
+      "related_forms": ["planning to", "have a plan"],
+      "example_sentences": ["We plan to move to a new apartment next year."],
+      "difficulty": 1,
+      "tags": ["future", "plans"]
+    },
+    {
+      "id": "vocab_a1_next_week",
+      "headword": "next week",
+      "type": "time_expression",
+      "translation_pt": "na próxima semana",
+      "definition_en": "the week after this one",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/nekst wiːk/",
+      "related_forms": ["next month", "next year"],
+      "example_sentences": ["I am going to start the course next week."],
+      "difficulty": 1,
+      "tags": ["future", "time"]
+    },
+    {
+      "id": "vocab_a1_move_to",
+      "headword": "move to",
+      "type": "phrasal_verb",
+      "translation_pt": "mudar-se para",
+      "definition_en": "to change your home to a new place",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/muːv tuː/",
+      "related_forms": ["moving to", "move house"],
+      "example_sentences": ["They are going to move to a bigger city."],
+      "difficulty": 2,
+      "tags": ["future", "life-events"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_going_to_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_going_to_future",
+      "prompt": "Complete the sentence: I ___ going to call you tomorrow.",
+      "correct_answer": ["am"],
+      "distractors": ["is", "are", "be"],
+      "explanation": "Com \"I\", o verbo \"to be\" no presente é sempre \"am\".",
+      "common_mistake_pt": "Falantes de português tendem a esquecer o verbo \"to be\" por completo, não só a forma correta.",
+      "audio_url": null,
+      "tags": ["going-to-future", "to-be"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_going_to_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_going_to_future",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["She is going to start a new job."],
+      "distractors": ["She going to start a new job.", "She go to start a new job.", "She is go to start a new job."],
+      "explanation": "\"Going to\" precisa do verbo \"to be\" (is, com \"she\") antes.",
+      "common_mistake_pt": "Omitir o \"is\" é o erro mais comum nesta posição.",
+      "audio_url": null,
+      "tags": ["going-to-future", "to-be"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_going_to_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"move to\" mean?",
+      "correct_answer": ["to change your home to a new place"],
+      "distractors": ["to visit a friend", "to buy furniture", "to clean the house"],
+      "explanation": "\"Move to\" refere-se especificamente a mudar de casa para um novo lugar.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "life-events"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_going_to_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What is Laura going to do next month?",
+      "correct_answer": ["move to a new city"],
+      "distractors": ["start a new job", "visit her parents", "buy a car"],
+      "explanation": "No áudio, ouve-se: \"Next month, Laura is going to move to a new city for her studies.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Next month, Laura is going to move to a new city for her studies.",
+      "tags": ["listening", "future"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_going_to_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Next week, Marco is going to start a new course at the university. He is also going to move into a new apartment closer to the campus.\" What is Marco going to do closer to the campus?",
+      "correct_answer": ["move into a new apartment", "move into a new apartment closer to the campus"],
+      "distractors": ["start a new job", "visit his family", "buy a car"],
+      "explanation": "O texto indica diretamente que ele vai \"move into a new apartment closer to the campus\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "future"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_going_to_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_going_to_future",
+      "prompt": "Translate to English: \"Nós vamos visitar os meus pais na próxima semana.\"",
+      "correct_answer": ["We are going to visit my parents next week."],
+      "distractors": [],
+      "explanation": "Atenção ao verbo \"to be\" (\"are\", com \"we\") antes de \"going to\" — não pode ser omitido.",
+      "common_mistake_pt": "Esquecer o \"are\" é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "going-to-future"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m4_u1_going_to_future",
+    "title": "Making Plans",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_going_to_future",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_going_to_future#rule" },
+      { "type": "example", "content_ref": "gc_a1_going_to_future#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_going_to_future#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_plan_to", "vocab_a1_next_week", "vocab_a1_move_to"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_going_to_001", "ex_a1_going_to_002", "ex_a1_going_to_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_going_to_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_going_to_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In natural speech, \"going to\" is often pronounced \"gonna\" /ˈɡʌnə/ in casual conversation — you will hear this a lot, but keep writing \"going to\" in formal contexts."
+      },
+      { "type": "speaking", "prompt": "Describe 3 plans you have for next month using \"going to\"." },
+      { "type": "writing", "prompt": "Write 5 sentences about your plans for next year using \"going to\"." },
+      { "type": "translation", "exercise_ids": ["ex_a1_going_to_translation_001"] }
+    ]
+  }
+}

@@ -2,7 +2,7 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, corrigido outro gap real: conversar com o AI Tutor (Coach/Interviewer/Conversation Partner/Native Friend) não dava XP nem contava para streak/octógono — `src/app/api/ai/tutor/route.ts` nunca chamava `recordActivity`/`updateSkillScore`. Antes disso: deploy `341a48e` (Leitura Extensiva + correção de LISTENING sem áudio) confirmado publicado sem erros. Ver `docs/decisions.md`. **Deploy por confirmar.**
+Última atualização: 2026-08-26, mais 5 updates: AI Tutor passa a registar erros recorrentes no SRS de verdade (`ERROR_LOGGED:` parseado da resposta), Micro-Desafios alimentam o octógono, 2 micro-desafios novos, 1 texto de leitura novo, 8ª lição ("Making Plans" — `going to` future). Deploy `b583b7a` (AI Tutor conta para XP) confirmado publicado sem erros. Ver `docs/decisions.md`. **Deploy por confirmar.**
 
 ### UX dos quizzes (correção de UX pedida pelo utilizador após testar)
 Feedback imediato (Verificar → correto/incorreto + resposta certa → Seguinte) no Desafio Diário e Diagnóstico Semanal, TRANSLATION deixou de ficar de fora dos testes (vira pergunta de texto), Sheets de tema (`/practice/topic`) para escolher o que praticar, cor por pilar nos quizzes. Ver `docs/decisions.md`.
@@ -61,7 +61,7 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 | Decisões (log vivo) | — | `docs/decisions.md` — **atualizar sempre que uma decisão técnica mudar** |
 | Deploy | Netlify | `netlify.toml` |
 
-## 4. Conteúdo curricular seedado (7 lições)
+## 4. Conteúdo curricular seedado (8 lições)
 
 | Sublevel | Módulo | Conceito de gramática | Erro PT→EN destacado |
 |---|---|---|---|
@@ -72,8 +72,9 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 | A1.3 | Comparing Things | Comparativos | "more cheap" → "cheaper"; "more good" → "better" |
 | A1.2 | At the Restaurant | Pedidos educados (Can/Could) | "I want a coffee" → "Can I have a coffee, please?" |
 | A1.3 | Yesterday | Past Simple (regular/irregular) | "I go to the beach yesterday" → "I went to the beach yesterday" |
+| A1.3 | Making Plans | Futuro com "going to" | "I going to travel" → "I am going to travel" |
 
-~18 itens de vocabulário no total, distribuídos por estes módulos. Ver `content/curriculum/` para o JSON completo de cada um. Cada módulo novo alimenta automaticamente o Diagnóstico Semanal e as Sheets de tema (`/practice/topic`), que reutilizam os `Exercise` já seedados — mais conteúdo = mais variedade nesses dois sítios sem precisar de código novo.
+~21 itens de vocabulário no total, distribuídos por estes módulos. Ver `content/curriculum/` para o JSON completo de cada um. Cada módulo novo alimenta automaticamente o Diagnóstico Semanal e as Sheets de tema (`/practice/topic`), que reutilizam os `Exercise` já seedados — mais conteúdo = mais variedade nesses dois sítios sem precisar de código novo.
 
 ## 5. Variáveis de ambiente na Netlify (nomes, não os valores — ver gestor de password/Netlify para os valores reais)
 

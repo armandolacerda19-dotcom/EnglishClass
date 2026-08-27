@@ -73,6 +73,37 @@ export const READING_PASSAGES: ReadingPassage[] = [
     ],
   },
   {
+    id: "the-weekly-market",
+    title: "The Weekly Market",
+    level: "A1",
+    text: "Every Saturday morning, there is a market in the main square of the town. Local farmers sell fresh fruit, vegetables and cheese. There is also a stand with fresh bread and one with homemade jam. Maria goes there every week to buy vegetables for her family. She likes the market because the food is cheaper than at the supermarket, and she can talk to the farmers.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "When does the market happen?",
+        options: ["Every Saturday morning", "Every Sunday evening", "Every day", "Only in summer"],
+        correctAnswer: "Every Saturday morning",
+      },
+      {
+        id: "q2",
+        prompt: "Why does Maria like the market?",
+        options: [
+          "Because it's close to her house",
+          "Because the food is cheaper and she can talk to the farmers",
+          "Because it's the only shop in town",
+          "Because she works there",
+        ],
+        correctAnswer: "Because the food is cheaper and she can talk to the farmers",
+      },
+      {
+        id: "q3",
+        prompt: "What does Maria buy at the market?",
+        options: ["Vegetables", "Only bread", "Clothes", "Nothing, she just visits"],
+        correctAnswer: "Vegetables",
+      },
+    ],
+  },
+  {
     id: "toms-new-job",
     title: "Tom's New Job",
     level: "A1",

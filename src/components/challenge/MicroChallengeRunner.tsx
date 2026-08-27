@@ -46,7 +46,7 @@ function ShadowRunner({ sentence, translation, onDone }: { sentence: string; tra
   const [transcript, setTranscript] = useState<string | null>(null);
 
   async function finish() {
-    await completeMicroChallenge();
+    await completeMicroChallenge("SPEAKING", 65);
     onDone();
   }
 
@@ -79,7 +79,7 @@ function ListenRunner({
   async function confirm() {
     if (selected === null) return;
     setAnswered(true);
-    await completeMicroChallenge();
+    await completeMicroChallenge("LISTENING", selected === challenge.correctIndex ? 100 : 20);
   }
 
   return (

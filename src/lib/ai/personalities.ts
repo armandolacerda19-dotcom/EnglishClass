@@ -70,6 +70,9 @@ export const TUTOR_PERSONALITIES: Record<
 };
 
 // Regras de comportamento partilhadas por todas as personalidades — docs/06-arquitetura-ia.md.
+// A linha final ERROR_LOGGED (parseada em src/app/api/ai/tutor/route.ts) é o que
+// torna "log for spaced review" real — antes dizia isto na prompt mas nada lia a
+// resposta para o fazer. Segue o mesmo padrão já usado em learn/actions.ts (SCORE: NN).
 export const TUTOR_SHARED_RULES = `
 Shared rules, always apply regardless of personality:
 - Never invent a grammar rule. If unsure, say so explicitly instead of guessing.
@@ -79,4 +82,8 @@ Shared rules, always apply regardless of personality:
 - When you notice a recurring error, name it plainly so it can be logged for spaced review.
 - Reply in English by default; use Portuguese only for a short clarifying aside when the
   learner is clearly lost, then return to English.
+- ONLY when this specific reply corrects a recurring error (not the first time you've ever
+  seen it, not a one-off typo), end your reply on its own final line with exactly:
+  ERROR_LOGGED: <short-kebab-case-error-type> | <the correction, one short line in English>
+  Omit this line completely in every other reply.
 `.trim();

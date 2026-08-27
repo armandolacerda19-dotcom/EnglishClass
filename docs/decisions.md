@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — 5 updates: erros do tutor no SRS, micro-desafios, mais conteúdo
+
+Continuação de "atualizações com mais impacto" (pedido: "mais 5 atualizações"):
+
+1. **AI Tutor regista erros recorrentes de verdade** — `TUTOR_SHARED_RULES` (`personalities.ts`) já dizia ao modelo "name it plainly so it can be logged for spaced review", mas nada lia a resposta para o fazer — a promessa nunca foi implementada. Corrigido com o mesmo padrão do `SCORE: NN` (learn/actions.ts): o modelo termina a resposta com `ERROR_LOGGED: <tipo> | <correção>` só quando está a corrigir um erro recorrente; `src/app/api/ai/tutor/route.ts` parseia essa linha, remove-a do texto mostrado, cria/incrementa um `UserError` (dedupe por `errorType`, pilar GRAMMAR por omissão) e agenda-o no SRS.
+2. **Micro-Desafios alimentam o octógono** — mesma classe de gap do AI Tutor: `completeMicroChallenge()` dava XP mas nunca chamava `updateSkillScore`. Agora recebe `(pillar, score)` — "shadow" usa um score de engagement (65, sem correção formal), "listen" usa a correção real (100/20).
+3. **2 micro-desafios novos** — "Fila de Espera" (shadow) e "Antes de Dormir" (listen), mais variedade de momentos do dia.
+4. **1 texto de leitura novo** — "The Weekly Market", mais variedade em `/practice/reading`.
+5. **8ª lição: "Making Plans"** (`going to` future, A1.3) — erro PT→EN: omitir o verbo "to be" ("I going to travel" em vez de "I am going to travel"), simétrico à lição de Past Simple já existente.
+
 ## 2026-08-26 — Conversar com o AI Tutor passa a contar para XP/streak/octógono
 
 Outro gap real encontrado ao rever o código com o mesmo critério da correção do LISTENING: `src/app/api/ai/tutor/route.ts` nunca chamava `recordActivity`, `updateSkillScore` nem `awardAchievement` — falar com o Coach, o Interviewer, o Conversation Partner ou o Native Friend (a funcionalidade mais promovida da app) não dava XP, não contava para o streak, e não mexia no octógono de competência, ao contrário de todas as outras formas de praticar (lições, Desafio Diário, Diagnóstico, Revisão, Leitura). Isto era inconsistente com o resto do sistema construído nesta sessão.

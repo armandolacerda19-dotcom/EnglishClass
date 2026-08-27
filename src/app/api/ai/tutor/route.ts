@@ -7,6 +7,7 @@ import { TUTOR_PERSONALITIES, type TutorPersonalityKey } from "@/lib/ai/personal
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { awardAchievement } from "@/lib/gamification/awardAchievement";
 import { updateSkillScore } from "@/lib/skillProfile";
+import { scheduleReview } from "@/lib/srs/schedule";
 
 // AI Tutor v1 — desde 2026-08-26 expõe coach/conversation_partner/interviewer/native_friend
 // (ver docs/decisions.md e src/lib/ai/personalities.ts para o porquê de professor/examiner
@@ -65,6 +66,13 @@ export async function POST(req: NextRequest) {
       "Desculpe, não consegui responder agora — pode ser um problema temporário com o serviço de IA. Tente novamente daqui a pouco.";
     succeeded = false;
   }
+  // Parseia a marca ERROR_LOGGED (ver TUTOR_SHARED_RULES em personalities.ts) — é o
+  // que torna real a promessa "log for spaced review" que já estava na prompt mas
+  // que nada lia. Mesmo padrão do SCORE: NN em learn/actions.ts.
+  const errorMatch = replyText.match(/ERROR_LOGGED:\s*([\w-]+)\s*\|\s*(.+?)\s*$/i);
+  if (errorMatch) {
+    replyText = replyText.replace(/\n?ERROR_LOGGED:\s*[\w-]+\s*\|\s*.+?\s*$/i, "").trim();
+  }
   const newHistory = [...history, { role: "user", text: message }, { role: "assistant", text: replyText }];
 
   // Conversar com o tutor é prática de speaking/conversação — antes não contava
@@ -74,6 +82,25 @@ export async function POST(req: NextRequest) {
     await recordActivity(user.id, "TUTOR_MESSAGE");
     await updateSkillScore(user.id, "SPEAKING", 65);
     await awardAchievement(user.id, "first_tutor_conversation");
+
+    if (errorMatch) {
+      // Grupos garantidos pela regex (2 grupos de captura obrigatórios) — os `!`
+      // só contornam o noUncheckedIndexedAccess do TS, não escondem um caso real.
+      const errorType = errorMatch[1]!;
+      const correction = errorMatch[2]!;
+      const existingError = await prisma.userError.findFirst({
+        where: { userId: user.id, errorType, resolvedAt: null },
+      });
+      const userError = existingError
+        ? await prisma.userError.update({
+            where: { id: existingError.id },
+            data: { occurrences: { increment: 1 }, lastOccurredAt: new Date(), correction },
+          })
+        : await prisma.userError.create({
+            data: { userId: user.id, pillar: "GRAMMAR", errorType, sourceText: message, correction },
+          });
+      await scheduleReview(user.id, "error", userError.id, 1, userError.id);
+    }
   }
 
   if (conversation) {

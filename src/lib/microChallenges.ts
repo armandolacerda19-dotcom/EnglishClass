@@ -57,6 +57,28 @@ export const MICRO_CHALLENGES: MicroChallenge[] = [
     options: ["B has no plans", "B is working", "B is traveling", "B doesn't want to meet"],
     correctIndex: 0,
   },
+  {
+    id: "waiting",
+    kind: "shadow",
+    title: "Fila de Espera",
+    subtitle: "À espera de algo (transportes, consulta, loja) — ouça e repita baixinho.",
+    sentence: "Excuse me, do you know how long the wait is?",
+    translation: "Desculpe, sabe quanto tempo é a espera?",
+  },
+  {
+    id: "before-bed",
+    kind: "listen",
+    title: "Antes de Dormir",
+    subtitle: "Últimos minutos do dia — ouça o diálogo e responda a uma pergunta.",
+    dialogue: [
+      "A: How was your day?",
+      "B: Pretty good, actually. I finished a big project at work.",
+      "A: That's great, you must be relieved.",
+    ],
+    question: "How does B feel about finishing the project?",
+    options: ["Relieved", "Angry", "Bored", "Confused"],
+    correctIndex: 0,
+  },
 ];
 
 export function getMicroChallenge(id: string): MicroChallenge | undefined {
