@@ -36,6 +36,7 @@ import vocabularyBank6 from "../content/curriculum/vocabulary-bank-6.json";
 import vocabularyBank7 from "../content/curriculum/vocabulary-bank-7.json";
 import vocabularyBank8 from "../content/curriculum/vocabulary-bank-8.json";
 import vocabularyBank9 from "../content/curriculum/vocabulary-bank-9.json";
+import vocabularyBank10 from "../content/curriculum/vocabulary-bank-10.json";
 
 const prisma = new PrismaClient();
 
@@ -321,7 +322,7 @@ async function seedAchievements() {
 // separados (vocabulary-bank-2.json, -3.json...) para cada Write ficar
 // gerível — basta adicionar ao array VOCABULARY_BANKS abaixo. Ver
 // docs/decisions.md 2026-08-26 sobre a decisão de escala responsável.
-const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2, vocabularyBank3, vocabularyBank4, vocabularyBank5, vocabularyBank6, vocabularyBank7, vocabularyBank8, vocabularyBank9];
+const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2, vocabularyBank3, vocabularyBank4, vocabularyBank5, vocabularyBank6, vocabularyBank7, vocabularyBank8, vocabularyBank9, vocabularyBank10];
 
 async function seedVocabularyBank() {
   let total = 0;
