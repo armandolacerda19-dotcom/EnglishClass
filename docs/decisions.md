@@ -2,6 +2,13 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Badge "Powered by Netlify" desligado + letra maior
+
+Pedido do utilizador: remover o popup "powered by netlify" que atrapalhava a visualização, e aumentar o tamanho da letra para leitura mais fácil.
+
+- **Badge da Netlify**: não era código nosso — é uma funcionalidade opt-in da própria Netlify ("Powered by Netlify badge", em Project configuration → General) que injeta um badge fixo no canto do site. Desligada diretamente na consola Netlify (checkbox "Show the badge on this project" → desmarcada → Save). Nada a alterar no repositório.
+- **Tamanho de letra**: escala `fontSize` em `tailwind.config.ts` aumentada ~10% em todos os níveis (xs→4xl), mantendo a mesma proporção modular entre eles — afeta toda a app de uma vez, sem tocar em cada componente individualmente.
+
 ## 2026-08-26 — Correção de UX nos quizzes: feedback imediato, tradução, sheets, cor por pilar
 
 Feedback direto do utilizador depois de testar os updates anteriores: "não estou a gostar do formato da app deve dar correção no final se a resposta estiver errada. o tipo de perguntas é muito repetitivo... Nos testes, também não aparece hipótese de traduzir, quando faz a pergunta translate... as cores também são sempre muito pesadas, nunca muda". Comparação implícita com Duolingo/Busuu (feedback imediato por pergunta, variedade de formato, uso de cor para orientar).

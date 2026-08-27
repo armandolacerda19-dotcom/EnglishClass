@@ -19,15 +19,18 @@ const config: Config = {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         mono: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
       },
+      // Aumentado ~10% em toda a escala (2026-08-26) — pedido do utilizador: "deve
+      // aumentar o tamanho da letra, para uma leitura mais fácil". Mantém a mesma
+      // proporção entre níveis (escala modular), só desloca a base para cima.
       fontSize: {
-        xs: "0.75rem",
-        sm: "0.875rem",
-        base: "1rem",
-        lg: "1.25rem",
-        xl: "1.5625rem",
-        "2xl": "1.953rem",
-        "3xl": "2.441rem",
-        "4xl": "3.052rem",
+        xs: "0.8125rem",
+        sm: "0.9375rem",
+        base: "1.0625rem",
+        lg: "1.3125rem",
+        xl: "1.6875rem",
+        "2xl": "2.0625rem",
+        "3xl": "2.5625rem",
+        "4xl": "3.1875rem",
       },
       borderRadius: {
         control: "6px",
