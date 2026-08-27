@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.2",
+  "module": {
+    "id": "mod_b1_2_modals_deduction",
+    "title": "It Must Be True",
+    "theme": "modals-deduction",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_b1_2_modals_deduction",
+    "title": "Modals of Deduction",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_modals_deduction",
+    "title": "Must / might / could / can't for deduction",
+    "rule": "Use \"must\" for a logical conclusion you are almost certain about, \"might\"/\"could\"/\"may\" for a possibility you are not sure about, and \"can't\" for something you are almost certain is NOT true — all based on evidence or reasoning, not fact.",
+    "simple_explanation": "Estes modais servem para tirar conclusões lógicas a partir de provas, não para falar de obrigação: \"must\" (deve ser, tenho quase a certeza), \"might/could/may\" (pode ser, não tenho a certeza), \"can't\" (não pode ser, tenho quase a certeza que não).",
+    "example": "She hasn't answered any calls all day — she must be busy. He might be at home, I'm not sure. That can't be his car, his is red.",
+    "example_translation": "Ela não atendeu nenhuma chamada o dia todo — deve estar ocupada. Ele pode estar em casa, não tenho a certeza. Isso não pode ser o carro dele, o dele é vermelho.",
+    "common_mistake_pt": "Em português, \"deve\" serve tanto para obrigação (\"deves estudar\") como para dedução (\"deve estar em casa\"), o que leva a confundir \"must\" de dedução com \"must\" de obrigação, ou a usar \"have to\" onde só faz sentido dedução. Outro erro comum é usar \"can\" em vez de \"can't\" para negar uma dedução (\"That can be true\" em vez de \"That can't be true\" para dizer que algo é impossível).",
+    "correction": "Dedução a partir de provas: \"must\" (quase certeza que é verdade), \"might/could/may\" (possibilidade, incerteza), \"can't\" (quase certeza que NÃO é verdade). Nunca \"mustn't\" para negar uma dedução — usa-se \"can't\".",
+    "real_world_example": "A adivinhar porque um colega está atrasado: \"The traffic must be terrible today — he's never this late.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_certain",
+      "headword": "certain",
+      "type": "adjective",
+      "translation_pt": "certo, seguro",
+      "definition_en": "completely sure that something is true",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈsɜːtn/",
+      "related_forms": ["certainly", "uncertain"],
+      "example_sentences": ["I'm not certain, but she might be running late."],
+      "difficulty": 1,
+      "tags": ["modals-deduction"]
+    },
+    {
+      "id": "vocab_b1_possibility",
+      "headword": "possibility",
+      "type": "noun",
+      "translation_pt": "possibilidade",
+      "definition_en": "a chance that something might happen or be true",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˌpɒsəˈbɪləti/",
+      "related_forms": ["possible", "possibly"],
+      "example_sentences": ["There's a possibility he forgot about the meeting."],
+      "difficulty": 2,
+      "tags": ["modals-deduction"]
+    },
+    {
+      "id": "vocab_b1_impossible",
+      "headword": "impossible",
+      "type": "adjective",
+      "translation_pt": "impossível",
+      "definition_en": "not able to happen or be true",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ɪmˈpɒsəbl/",
+      "related_forms": ["impossibly"],
+      "example_sentences": ["It's impossible that she forgot — she wrote it down herself."],
+      "difficulty": 1,
+      "tags": ["modals-deduction"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_md_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_modals_deduction",
+      "prompt": "Complete: She hasn't answered any calls all day — she ___ be busy.",
+      "correct_answer": ["must"],
+      "distractors": ["can", "should", "will"],
+      "explanation": "Quase a certeza a partir de provas (não atende chamadas o dia todo) → \"must\".",
+      "common_mistake_pt": "Usar \"should\" aqui soa a conselho, não a dedução.",
+      "audio_url": null,
+      "tags": ["modals-deduction"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_md_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_modals_deduction",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["That can't be his car — his is red."],
+      "distractors": ["That mustn't be his car — his is red.", "That doesn't can be his car — his is red.", "That not can be his car — his is red."],
+      "explanation": "\"Can't\" é a forma correta para negar uma dedução; \"mustn't\" tem outro significado (proibição).",
+      "common_mistake_pt": "Usar \"mustn't\" para negar uma dedução é um erro muito comum de falantes de português.",
+      "audio_url": null,
+      "tags": ["modals-deduction"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_md_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"impossible\" mean?",
+      "correct_answer": ["not able to happen or be true"],
+      "distractors": ["very likely to happen", "certain to be true", "possible but unusual"],
+      "explanation": "\"Impossible\" descreve algo que não pode acontecer ou ser verdade.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "modals-deduction"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_md_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker think might have happened?",
+      "correct_answer": ["he forgot about the meeting", "he might have forgotten about the meeting"],
+      "distractors": ["he is on holiday", "he changed jobs", "he is on the phone"],
+      "explanation": "No áudio, ouve-se: \"There's a possibility he forgot about the meeting — he must have a lot going on this week.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "There's a possibility he forgot about the meeting — he must have a lot going on this week. It's impossible that he did it on purpose, he's always so reliable.",
+      "tags": ["listening", "modals-deduction"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_md_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"The lights are off and the car isn't in the driveway. They must be out. They can't be asleep this early, it's only 6pm.\" Why does the writer think they are out?",
+      "correct_answer": ["the lights are off and the car isn't there", "the car isn't in the driveway"],
+      "distractors": ["someone told them", "they saw them leave", "they called to check"],
+      "explanation": "O texto indica a evidência: luzes apagadas e o carro não está na garagem.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "modals-deduction"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_md_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_modals_deduction",
+      "prompt": "Translate to English: \"Ele deve estar a dormir, ainda não respondeu à mensagem.\"",
+      "correct_answer": ["He must be asleep, he hasn't replied to the message yet."],
+      "distractors": [],
+      "explanation": "\"Deve estar\" (dedução, quase certeza) corresponde a \"must be\", não a obrigação.",
+      "common_mistake_pt": "Traduzir \"deve\" sempre por \"should\" ignora que aqui é uma dedução, não um conselho.",
+      "audio_url": null,
+      "tags": ["translation", "modals-deduction"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m2u3_modals_deduction",
+    "title": "It Must Be True",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_modals_deduction",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_modals_deduction#rule" },
+      { "type": "example", "content_ref": "gc_b1_modals_deduction#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_modals_deduction#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_certain", "vocab_b1_possibility", "vocab_b1_impossible"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_md_001", "ex_b1_md_002", "ex_b1_md_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_md_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_md_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Must be\" is usually stressed on \"must\" when making a deduction: I MUST be right. \"Can't\" is pronounced with a clear, slightly longer vowel /kɑːnt/ in British English to distinguish it clearly from \"can\" /kən/ in fast speech."
+      },
+      { "type": "speaking", "prompt": "Look around you right now and make 3 deductions about your surroundings using must/might/can't (e.g. \"Someone must have just left, the light is still on\")." },
+      { "type": "writing", "prompt": "Write 5 sentences making deductions about a mystery situation of your choice (a messy room, a missing person, a strange noise), using must/might/could/can't." },
+      { "type": "translation", "exercise_ids": ["ex_b1_md_translation_001"] }
+    ]
+  }
+}

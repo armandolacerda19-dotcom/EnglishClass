@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.1",
+  "module": {
+    "id": "mod_b1_1_used_to",
+    "title": "The Way Things Were",
+    "theme": "used-to",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_b1_1_used_to",
+    "title": "Used to for Past Habits",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_used_to",
+    "title": "Used to + base verb",
+    "rule": "Use \"used to\" + base verb for repeated actions or states that were true in the past but are not true now. It only exists in the past — there is no present form.",
+    "simple_explanation": "\"Used to\" descreve um hábito ou estado que era verdade no passado mas já não é agora — não existe \"use to\" no presente, só serve para comparar o passado com o presente.",
+    "example": "I used to live in Lisbon, but now I live in Porto. She didn't use to like coffee, but now she drinks it every day.",
+    "example_translation": "Eu costumava viver em Lisboa, mas agora vivo no Porto. Ela não costumava gostar de café, mas agora bebe-o todos os dias.",
+    "common_mistake_pt": "Falantes de português tendem a usar o Past Simple sozinho onde o inglês prefere \"used to\" para deixar claro que já não é verdade (\"I lived in Lisbon\" só diz que aconteceu, não sublinha o contraste com agora). Também é comum esquecer que a forma negativa/interrogativa usa \"did\" + \"use to\" (sem -d): \"I didn't used to\" está errado, o correto é \"I didn't use to\".",
+    "correction": "\"Used to\" + verbo base para um hábito/estado do passado que já não é verdade — sublinha o contraste com o presente. Negativa e interrogativa: \"did\" + \"use to\" (sem -d no \"use\"): \"Did you use to...?\", \"I didn't use to...\".",
+    "real_world_example": "A comparar como a tua vida mudou: \"I used to work in an office every day, but now I work from home.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_habit",
+      "headword": "habit",
+      "type": "noun",
+      "translation_pt": "hábito",
+      "definition_en": "something you do often and regularly, sometimes without thinking about it",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈhæbɪt/",
+      "related_forms": ["a bad habit", "out of habit"],
+      "example_sentences": ["I used to have the habit of checking my phone first thing every morning."],
+      "difficulty": 1,
+      "tags": ["used-to"]
+    },
+    {
+      "id": "vocab_b1_nowadays",
+      "headword": "nowadays",
+      "type": "adverb",
+      "translation_pt": "hoje em dia",
+      "definition_en": "at the present time, in contrast with the past",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈnaʊədeɪz/",
+      "related_forms": [],
+      "example_sentences": ["I used to write letters, but nowadays I only send emails."],
+      "difficulty": 1,
+      "tags": ["used-to"]
+    },
+    {
+      "id": "vocab_b1_no_longer",
+      "headword": "no longer",
+      "type": "phrase",
+      "translation_pt": "já não",
+      "definition_en": "not anymore; used to be true but not now",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/noʊ ˈlɒŋɡər/",
+      "related_forms": [],
+      "example_sentences": ["He used to smoke, but he no longer does."],
+      "difficulty": 2,
+      "tags": ["used-to"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_ut_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_used_to",
+      "prompt": "Complete: I ___ (live) in Lisbon, but now I live in Porto.",
+      "correct_answer": ["used to live"],
+      "distractors": ["use to live", "was living", "lived to"],
+      "explanation": "Hábito/estado do passado que já não é verdade → \"used to\" + verbo base.",
+      "common_mistake_pt": "Escrever \"use to live\" (sem -d) na afirmativa é um erro comum — o -d só desaparece na negativa/interrogativa.",
+      "audio_url": null,
+      "tags": ["used-to"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ut_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_used_to",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["She didn't use to like coffee."],
+      "distractors": ["She didn't used to like coffee.", "She usedn't to like coffee.", "She not used to like coffee."],
+      "explanation": "Na negativa, \"did\" já carrega o passado, por isso \"use to\" fica sem -d.",
+      "common_mistake_pt": "\"Didn't used to\" (com -d) é o erro mais comum nesta estrutura.",
+      "audio_url": null,
+      "tags": ["used-to"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ut_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"no longer\" mean?",
+      "correct_answer": ["not anymore; used to be true but not now"],
+      "distractors": ["for a very long time", "very often", "in the near future"],
+      "explanation": "\"No longer\" marca que algo era verdade antes, mas já não é.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "used-to"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ut_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What did the speaker use to do every morning?",
+      "correct_answer": ["check their phone", "check their phone first thing"],
+      "distractors": ["go for a run", "read the newspaper", "make coffee"],
+      "explanation": "No áudio, ouve-se: \"I used to have the habit of checking my phone first thing every morning, but nowadays I no longer do that.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I used to have the habit of checking my phone first thing every morning, but nowadays I no longer do that. I leave it in the kitchen instead.",
+      "tags": ["listening", "used-to"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ut_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"My grandfather used to walk five kilometres to school every day. Nowadays, most children no longer walk to school at all.\" What did the grandfather use to do?",
+      "correct_answer": ["walk five kilometres to school", "walk to school every day"],
+      "distractors": ["drive to school", "take the bus to school", "cycle to school"],
+      "explanation": "O texto indica diretamente: \"My grandfather used to walk five kilometres to school every day.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "used-to"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ut_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_used_to",
+      "prompt": "Translate to English: \"Eu costumava jogar futebol todos os fins de semana.\"",
+      "correct_answer": ["I used to play football every weekend."],
+      "distractors": [],
+      "explanation": "\"Costumava\" corresponde a \"used to\" + verbo base, para um hábito do passado.",
+      "common_mistake_pt": "Traduzir \"costumava\" só pelo Past Simple (\"I played football every weekend\") perde a ênfase no contraste com o presente.",
+      "audio_url": null,
+      "tags": ["translation", "used-to"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m1u4_used_to",
+    "title": "The Way Things Were",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_used_to",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_used_to#rule" },
+      { "type": "example", "content_ref": "gc_b1_used_to#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_used_to#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_habit", "vocab_b1_nowadays", "vocab_b1_no_longer"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_ut_001", "ex_b1_ut_002", "ex_b1_ut_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_ut_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_ut_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Used to\" is pronounced as one linked chunk in fast speech: /ˈjuːstə/ — the D of \"used\" and the initial sound of \"to\" blend together, so it sounds almost like \"yoosta\", not \"yoozd too\"."
+      },
+      { "type": "speaking", "prompt": "Talk about 3 things you used to do as a child that you no longer do now." },
+      { "type": "writing", "prompt": "Write 5 sentences comparing your life now with how it used to be 10 years ago." },
+      { "type": "translation", "exercise_ids": ["ex_b1_ut_translation_001"] }
+    ]
+  }
+}

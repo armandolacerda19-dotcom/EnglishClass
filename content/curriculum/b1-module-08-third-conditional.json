@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.2",
+  "module": {
+    "id": "mod_b1_2_third_conditional",
+    "title": "If Only I Had Known",
+    "theme": "third-conditional",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_b1_2_third_conditional",
+    "title": "Third Conditional",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_third_conditional",
+    "title": "Third Conditional: if + past perfect, would have + past participle",
+    "rule": "Use the Third Conditional (if + past perfect, would have + past participle) to talk about an imaginary result in the past — something that did NOT happen, and how things would have been different if it had.",
+    "simple_explanation": "O Terceiro Condicional serve para imaginar um passado diferente do que realmente aconteceu — usa-se para arrependimentos ou reflexões sobre decisões passadas que já não podem mudar.",
+    "example": "If I had studied more, I would have passed the exam. She wouldn't have missed the flight if she had left earlier.",
+    "example_translation": "Se eu tivesse estudado mais, teria passado no exame. Ela não teria perdido o voo se tivesse saído mais cedo.",
+    "common_mistake_pt": "É comum misturar tempos verbais, usando o Second Conditional (\"if I studied more, I would have passed\") em vez do Third Conditional completo em ambas as partes da frase. Também é comum esquecer o \"have\" depois de \"would\" (\"I would passed\" em vez de \"I would have passed\").",
+    "correction": "As duas partes da frase levam formas de passado mais distante: \"if\" + Past Perfect, \"would have\" + particípio passado. Nunca misturar com o Second Conditional (\"if I studied\", \"I would pass\") quando se fala de um momento específico do passado que já não pode mudar.",
+    "real_world_example": "A refletir sobre uma decisão de carreira: \"If I had accepted that job offer, I would have moved abroad.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_regret",
+      "headword": "regret",
+      "type": "verb",
+      "translation_pt": "arrepender-se, lamentar",
+      "definition_en": "to feel sorry about something you did or didn't do",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/rɪˈɡret/",
+      "related_forms": ["regretful", "no regrets"],
+      "example_sentences": ["I regret not calling her back that day."],
+      "difficulty": 2,
+      "tags": ["third-conditional"]
+    },
+    {
+      "id": "vocab_b1_miss_out",
+      "headword": "miss out (on)",
+      "type": "phrasal verb",
+      "translation_pt": "perder a oportunidade (de)",
+      "definition_en": "to fail to have an enjoyable or useful experience",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/mɪs aʊt/",
+      "related_forms": [],
+      "example_sentences": ["If I hadn't stayed home, I would have missed out on the whole trip."],
+      "difficulty": 2,
+      "tags": ["third-conditional"]
+    },
+    {
+      "id": "vocab_b1_hindsight",
+      "headword": "hindsight",
+      "type": "noun",
+      "translation_pt": "retrospetiva, visão a posteriori",
+      "definition_en": "understanding of a situation only after it has happened",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈhaɪndsaɪt/",
+      "related_forms": ["in hindsight"],
+      "example_sentences": ["In hindsight, I would have prepared differently."],
+      "difficulty": 3,
+      "tags": ["third-conditional"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_tc_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_third_conditional",
+      "prompt": "Complete: If I ___ (study) more, I would have passed the exam.",
+      "correct_answer": ["had studied"],
+      "distractors": ["studied", "would study", "have studied"],
+      "explanation": "Resultado imaginário no passado → \"if\" + Past Perfect (\"had studied\").",
+      "common_mistake_pt": "Usar só \"studied\" (Past Simple) mistura o Second Conditional com o Third.",
+      "audio_url": null,
+      "tags": ["third-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_tc_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_third_conditional",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["She wouldn't have missed the flight if she had left earlier."],
+      "distractors": ["She wouldn't missed the flight if she had left earlier.", "She wouldn't have missed the flight if she left earlier.", "She won't have missed the flight if she had left earlier."],
+      "explanation": "Ambas as partes da frase precisam da estrutura completa: \"had left\" + \"would have missed\".",
+      "common_mistake_pt": "Esquecer o \"have\" depois de \"would\" (\"wouldn't missed\") é um erro muito comum.",
+      "audio_url": null,
+      "tags": ["third-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_tc_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"hindsight\" mean?",
+      "correct_answer": ["understanding of a situation only after it has happened"],
+      "distractors": ["a strong feeling of hope", "a sudden decision", "a plan for the future"],
+      "explanation": "\"Hindsight\" é a compreensão que só se tem depois de algo já ter acontecido.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "third-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_tc_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker regret?",
+      "correct_answer": ["not calling her back", "not calling her back that day"],
+      "distractors": ["missing a flight", "not studying", "moving abroad"],
+      "explanation": "No áudio, ouve-se: \"I regret not calling her back that day — if I had called, things would have been different.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I regret not calling her back that day. If I had called, things would have been different. In hindsight, I should have picked up the phone.",
+      "tags": ["listening", "third-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_tc_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"If I hadn't stayed home that weekend, I would have missed out on meeting my best friend at the party.\" What would have happened if the writer had stayed home?",
+      "correct_answer": ["they would have missed out on meeting their best friend", "missing out on meeting their best friend"],
+      "distractors": ["they would have met their best friend anyway", "nothing would have changed", "they would have gone to a different party"],
+      "explanation": "O texto indica: se tivesse ficado em casa, teria perdido a oportunidade de conhecer o/a melhor amigo/a.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "third-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_tc_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_third_conditional",
+      "prompt": "Translate to English: \"Se eu tivesse saído mais cedo, não teria perdido o comboio.\"",
+      "correct_answer": ["If I had left earlier, I wouldn't have missed the train."],
+      "distractors": [],
+      "explanation": "Ambas as partes usam a estrutura do Third Conditional: \"had left\" + \"wouldn't have missed\".",
+      "common_mistake_pt": "Traduzir só com o Past Simple (\"If I left earlier\") perde o Third Conditional completo.",
+      "audio_url": null,
+      "tags": ["translation", "third-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m2u4_third_conditional",
+    "title": "If Only I Had Known",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_third_conditional",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_third_conditional#rule" },
+      { "type": "example", "content_ref": "gc_b1_third_conditional#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_third_conditional#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_regret", "vocab_b1_miss_out", "vocab_b1_hindsight"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_tc_001", "ex_b1_tc_002", "ex_b1_tc_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_tc_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_tc_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Would have\" is almost always contracted and reduced in speech to \"would've\" /ˈwʊdəv/, and further to \"woulda\" in very casual speech. Learners who only know the written form \"would have\" often fail to recognise it when listening."
+      },
+      { "type": "speaking", "prompt": "Talk about a decision in your past you sometimes think about, using the Third Conditional to imagine what would have happened if you had chosen differently." },
+      { "type": "writing", "prompt": "Write 5 sentences about things that would have been different in your life if you had made different choices, using the Third Conditional." },
+      { "type": "translation", "exercise_ids": ["ex_b1_tc_translation_001"] }
+    ]
+  }
+}

@@ -27,6 +27,9 @@ import moduleSecondConditional from "../content/curriculum/b1-module-02-second-c
 import modulePassiveVoice from "../content/curriculum/b1-module-03-passive-voice.json";
 import moduleReportedSpeech from "../content/curriculum/b1-module-04-reported-speech.json";
 import moduleFutureContinuous from "../content/curriculum/b1-module-05-future-continuous.json";
+import moduleUsedTo from "../content/curriculum/b1-module-06-used-to.json";
+import moduleModalsDeduction from "../content/curriculum/b1-module-07-modals-deduction.json";
+import moduleThirdConditional from "../content/curriculum/b1-module-08-third-conditional.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -84,8 +87,11 @@ const MODULE_FILES = [
   modulePastPerfect, // B1.1 — primeiro módulo do novo nível B1
   moduleSecondConditional, // B1.1
   modulePassiveVoice, // B1.1
+  moduleUsedTo, // B1.1 — 4º módulo, reforço de densidade B1 (2026-08-27)
   moduleReportedSpeech, // B1.2
   moduleFutureContinuous, // B1.2
+  moduleModalsDeduction, // B1.2 — reforço de densidade B1 (2026-08-27)
+  moduleThirdConditional, // B1.2 — reforço de densidade B1 (2026-08-27)
 ];
 
 async function seedLevels() {
