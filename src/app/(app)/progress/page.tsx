@@ -22,6 +22,7 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_tutor_conversation: "TUTOR",
   first_idiom: "IDIOM",
   first_certificate: "CERT",
+  first_verb: "VERB",
 };
 
 export default async function ProgressPage() {

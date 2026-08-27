@@ -10,6 +10,7 @@ import modulePastSimple from "../content/curriculum/a1-module-06-past-simple.jso
 import moduleFuturePlans from "../content/curriculum/a1-module-07-future-plans.json";
 import moduleExperiences from "../content/curriculum/a2-module-01-experiences.json";
 import moduleObligation from "../content/curriculum/a2-module-02-obligation.json";
+import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 
 const prisma = new PrismaClient();
 
@@ -248,6 +249,11 @@ const ACHIEVEMENTS = [
     title: "Primeiro Certificado",
     description: "Atingiu pontuação suficiente em todos os pilares para receber um certificado de nível.",
   },
+  {
+    code: "first_verb",
+    title: "Primeiro Verbo",
+    description: "Estudou o seu primeiro verbo irregular do dia.",
+  },
 ];
 
 async function seedAchievements() {
@@ -260,12 +266,43 @@ async function seedAchievements() {
   }
 }
 
+// Vocabulário standalone (content/curriculum/vocabulary-bank.json) — não associado
+// a nenhuma lição, ao contrário do vocabulário de cada módulo. Alimenta
+// imediatamente o Desafio Diário e a Revisão (SRS), que já pescam de todos os
+// VocabularyItem existentes. Ver docs/decisions.md 2026-08-26.
+async function seedVocabularyBank() {
+  for (const v of vocabularyBank.words) {
+    await prisma.vocabularyItem.upsert({
+      where: { id: v.id },
+      update: {
+        headword: v.headword,
+        translationPt: v.translation_pt,
+        definitionEn: v.definition_en,
+        cefr: v.cefr_level as any,
+        exampleSentences: v.example_sentences,
+        difficulty: v.difficulty,
+      },
+      create: {
+        id: v.id,
+        headword: v.headword,
+        translationPt: v.translation_pt,
+        definitionEn: v.definition_en,
+        cefr: v.cefr_level as any,
+        exampleSentences: v.example_sentences,
+        difficulty: v.difficulty,
+      },
+    });
+  }
+  console.log(`Seeded ${vocabularyBank.words.length} standalone vocabulary items.`);
+}
+
 async function main() {
   await seedLevels();
   await seedAchievements();
   for (let i = 0; i < MODULE_FILES.length; i++) {
     await seedModuleFile(MODULE_FILES[i]!, i + 1);
   }
+  await seedVocabularyBank();
 }
 
 main()

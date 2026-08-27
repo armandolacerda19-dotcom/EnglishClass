@@ -90,6 +90,21 @@ export default async function PracticePage() {
         </Link>
       </div>
 
+      <div className="mb-3 grid grid-cols-2 gap-3">
+        <Link href="/practice/verbs">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Verbos Irregulares</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Verbo do dia + tabela</p>
+          </Card>
+        </Link>
+        <Link href="/practice/patterns">
+          <Card className="hover:border-clay">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Construção Frásica</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Ordem de palavras</p>
+          </Card>
+        </Link>
+      </div>
+
       <Link href="/practice/culture" className="mb-3 block">
         <Card className="hover:border-brass">
           <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Cultura</p>

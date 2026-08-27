@@ -2,6 +2,18 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Mega expansão de conteúdo: vocabulário, verbos, construção frásica
+
+Pedido explícito do utilizador: "quero uma mega atualização... deve ter um vocabulário de +20000 palavras. deve investir em conteúdo de gramática, verbos, construção frásica, vocabulário."
+
+**Decisão de honestidade, comunicada ao utilizador antes de começar**: 20.000 palavras curadas com traduções corretas não é possível escrever à mão numa sessão — seria preciso importar um dataset de frequência de palavras externo (sem acesso a `npm install`/internet fora do build da Netlify para o fazer com confiança) ou fabricar entradas sem verificação, o que arriscaria introduzir traduções erradas — precisamente o oposto do valor central da app ("ponte português-inglês"). Optei por uma expansão real e substancial em vez de volume fabricado:
+
+1. **Banco de vocabulário standalone** (`content/curriculum/vocabulary-bank.json`, ~135 palavras) — a primeira vez que se adiciona vocabulário sem estar preso a uma lição/módulo completo (regra de gramática + 6 exercícios), o que tornou possível escalar mais depressa do que o padrão de módulo completo usado até agora. Cobre 13 temas (família, comida, casa, trabalho, tempo, viagens, emoções/personalidade, 20 verbos comuns, adjetivos, tecnologia, compras, tempo/meteorologia, saúde). `seedVocabularyBank()` em `prisma/seed.ts` — upsert direto em `VocabularyItem`, sem passar pelo mecanismo de Module/Unit/Lesson. Efeito imediato: mais que sextuplica o vocabulário total (~24 → ~159), o que alimenta diretamente o Desafio Diário e a Revisão (SRS), sem precisar de código novo.
+2. **Verbos irregulares** (`src/content/irregularVerbs.ts`, `/practice/verbs`) — 51 verbos irregulares comuns (base/past simple/past participle/tradução), com "Verbo do Dia" (auto-avaliação, alimenta GRAMMAR) e tabela de referência completa sempre visível. Item explicitamente pedido ("verbos") que não existia de forma nenhuma até agora.
+3. **Construção frásica** (`src/content/sentencePatterns.ts`, `/practice/patterns`) — 8 padrões de ordem de palavras que costumam persistir muito depois da gramática "estar aprendida" precisamente por nunca serem ensinados como tópico próprio: adjetivo antes do substantivo, perguntas com do/does, negação com don't/doesn't, posição de advérbios de frequência, there is/are, genitivo 's, preposições de tempo in/on/at, ordem fixa sujeito-verbo-objeto. Cada um com exemplo errado vs. certo lado a lado.
+
+Todo este conteúdo foi escrito e revisto manualmente por mim (não gerado por chamada externa a outro modelo) — as traduções e exemplos foram verificados com o mesmo cuidado dos módulos de lição anteriores, apesar do volume maior.
+
 ## 2026-08-26 — 2ª lição A2: Must/Have To/Should
 
 Continuação da fundação A2 (item #6). `content/curriculum/a2-module-02-obligation.json` — obrigação/permissão/conselho, distinção must (autoridade do falante) vs. have to (regra externa) vs. should (conselho, não obrigação). Erro PT→EN: "ter de" em português cobre must/have to sem distinção, levando a usar "must" mesmo para conselhos leves, o que soa muito mais autoritário em inglês do que pretendido.
