@@ -2,6 +2,20 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 10 (Rubrica e oral a sério): rubrica de 4 eixos estendida a speaking
+
+Achado E da auditoria de 2026-08-27: "rubrica só em writing... a competência mais difícil, e prioridade declarada da app, é a única sem rubrica". `WritingRubric` (grammar/vocabulary/coherence/taskAchievement, 0-100 cada) já existia desde a Fase 4 mas só era pedida/parseada para `kind === "writing"` em `getHolisticFeedback()` (`src/app/(app)/learn/actions.ts`).
+
+Alterações:
+- Condição do pedido de rubrica ao Gemini e do parsing da resposta passam de `kind === "writing"` para `kind === "writing" || kind === "speaking"`.
+- **Ambiguidade de ordem resolvida antes de acontecer**: para speaking, o prompt já pedia uma linha extra `PRONUNCIATION:` antes de `SCORE:`. Ter duas instruções separadas, cada uma a dizer "linha imediatamente antes de SCORE", ficaria ambíguo para o modelo assim que speaking passasse a pedir rubrica E pronúncia ao mesmo tempo. Reescrito como uma única instrução ordenada: `GRAMMAR → VOCABULARY → COHERENCE → TASK_ACHIEVEMENT → PRONUNCIATION → SCORE`, cada marcador na sua própria linha, SCORE sempre o último.
+- **Parsing verificado consistente com essa ordem**: o código extrai/remove de trás para a frente (SCORE primeiro, com `$` sem flag `m` — fim absoluto da string; depois PRONUNCIATION, mesma técnica, agora correto porque já é o novo fim depois do SCORE ser removido; só depois os 4 eixos da rubrica, com flag `m` por linha, independentes da posição exata). Confirmado por leitura cuidada linha a linha (sem build local para correr um teste real desta função — depende da API do Gemini).
+- `submitSpeaking()` passa a devolver `rubric` tal como `submitWriting()` já devolvia.
+- `SpeakingStep` (`src/components/lesson/LessonRunner.tsx`) ganha o mesmo bloco de 4 barras que `WritingStep` já tinha (reaproveitando o `RUBRIC_LABEL` já existente, definido no módulo antes de qualquer render acontecer — a ordem textual das duas funções no ficheiro não importa).
+- Único ponto de chamada de `submitSpeaking()` confirmado por grep: só `LessonRunner.tsx`, nenhum outro sítio a atualizar.
+
+Falta ainda nesta fase (não feito nesta ronda): canal de voz no AI Tutor (`TutorChat.tsx` hoje é só texto) — viável a custo zero via Web Speech API (`RecordButton` já existe e é reaproveitável), fica para a próxima ronda desta sessão.
+
 ## 2026-08-27 — Fase 9 (Áudio e Speaking): o que é possível sem custo
 
 A Fase 9 do roadmap ("Áudio real") tem, no seu núcleo, um item que **não pode ser decidido nem executado unilateralmente nesta sessão**: gerar áudio pré-produzido com um TTS neural pago (Azure/ElevenLabs, já avaliados e postos de lado em decisões anteriores por causa do pivot de custo zero pedido explicitamente pelo utilizador). Contratar/pagar um serviço externo é uma decisão financeira — fica registada aqui como bloqueada à espera de confirmação do utilizador, não como "feita" nem "esquecida".
