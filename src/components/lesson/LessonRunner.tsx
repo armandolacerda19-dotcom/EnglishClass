@@ -253,6 +253,8 @@ function SpeakingStep({ prompt }: { prompt: string }) {
   const [transcript, setTranscript] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [attemptId, setAttemptId] = useState<string | null>(null);
+  const [fluencyScore, setFluencyScore] = useState<number | null>(null);
+  const [pronunciationScore, setPronunciationScore] = useState<number | null>(null);
   const [confidenceGiven, setConfidenceGiven] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -270,9 +272,16 @@ function SpeakingStep({ prompt }: { prompt: string }) {
     setSubmitError(null);
     try {
       const responseTimeMs = Date.now() - promptShownAtRef.current;
-      const { feedback: feedbackText, attemptId: newAttemptId } = await submitSpeaking(prompt, text, responseTimeMs);
+      const {
+        feedback: feedbackText,
+        attemptId: newAttemptId,
+        fluencyScore: newFluencyScore,
+        pronunciationScore: newPronunciationScore,
+      } = await submitSpeaking(prompt, text, responseTimeMs);
       setFeedback(feedbackText);
       setAttemptId(newAttemptId);
+      setFluencyScore(newFluencyScore);
+      setPronunciationScore(newPronunciationScore);
     } catch {
       setSubmitError("Não foi possível avaliar a resposta — verifique a ligação e tente novamente.");
     } finally {
@@ -311,6 +320,32 @@ function SpeakingStep({ prompt }: { prompt: string }) {
         </p>
       )}
       {feedback && <p className="mt-2 rounded-card bg-verdigris/5 p-3 text-sm">{feedback}</p>}
+      {feedback && (fluencyScore !== null || pronunciationScore !== null) && (
+        <div className="mt-3 flex flex-col gap-2">
+          {fluencyScore !== null && (
+            <div>
+              <div className="mb-1 flex items-center justify-between text-xs text-inkNeutral/60 dark:text-linen/60">
+                <span>Fluência e correção</span>
+                <span className="font-mono">{fluencyScore}</span>
+              </div>
+              <div className="h-1.5 w-full rounded-full bg-ink/10 dark:bg-linen/10">
+                <div className="h-1.5 rounded-full bg-verdigris" style={{ width: `${fluencyScore}%` }} />
+              </div>
+            </div>
+          )}
+          {pronunciationScore !== null && (
+            <div>
+              <div className="mb-1 flex items-center justify-between text-xs text-inkNeutral/60 dark:text-linen/60">
+                <span>Pronúncia (estimativa)</span>
+                <span className="font-mono">{pronunciationScore}</span>
+              </div>
+              <div className="h-1.5 w-full rounded-full bg-ink/10 dark:bg-linen/10">
+                <div className="h-1.5 rounded-full bg-brass" style={{ width: `${pronunciationScore}%` }} />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
       {feedback && attemptId && (
         <div className="mt-3 border-t border-ink/10 pt-3 dark:border-linen/10">
           <p className="mb-2 text-xs text-inkNeutral/60 dark:text-linen/60">

@@ -130,7 +130,11 @@ export async function submitSpeaking(prompt: string, transcript: string, respons
   // o único disponível sem gravação de som — melhor do que zero permanente.
   if (pronunciationScore !== null) await updateSkillScore(user.id, "PRONUNCIATION", pronunciationScore);
 
-  return { feedback, attemptId: attempt.id };
+  // Fase 9 (auditoria 2026-08-27, achado B): pronunciationScore/fluencyScore
+  // eram gravados desde a Fase 3 mas nunca devolvidos ao ecrã — o utilizador
+  // via o feedback em texto, mas nunca o número junto da frase que o gerou.
+  // Só chegava a aparecer, dias depois, como um eixo do octógono em /progress.
+  return { feedback, attemptId: attempt.id, fluencyScore: score, pronunciationScore };
 }
 
 // Métrica de confiança (auditoria secção 294) — perguntada depois do feedback
