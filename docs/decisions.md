@@ -2,6 +2,10 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 4 (continuação): referência de Sons e Pronúncia PT→EN
+
+Mesma sessão contínua. "Feedback fonético PT→EN" (auditoria secção 294) já tinha uma resposta reativa (dicas inline no feedback de speaking, baseadas no transcript de um erro específico) — faltava a referência proativa, para consultar antes de um erro acontecer. Nova página `/practice/pronunciation` com 8 padrões previsíveis de interferência do português (som TH, consoantes finais engolidas, acento tónico, vogais curtas/longas tipo ship/sheep, R inglês vs. português, letras mudas, clusters S+consoante no início — "eschool" vs. "school" —, as 3 pronúncias de -ED), cada um com palavras de exemplo ouvíveis via `PlayTranscript`. Conteúdo estático (`src/content/pronunciationTips.ts`), mesmo padrão de `culturalTips.ts`/`sentencePatterns.ts`.
+
 ## 2026-08-27 — Fase 4 (continuação): conversa livre com objetivo
 
 Mesma sessão contínua. Último item da secção 294 da auditoria a fechar nesta ronda: "conversa livre com objetivo". O Conversation Partner já existia mas começava sempre com um "de que quer falar?" em aberto. Adicionados 4 objetivos rápidos (small talk, contar o fim de semana, dar uma opinião, comentar uma notícia) selecionáveis em `/speak`, mesmo mecanismo de `sessionFocus` já usado para setor/cenário (`GOAL_FOCUS` em `speak/tutor/page.tsx`). Diferença deliberada face ao roleplay: aqui a conversa continua livre e pode divergir do objetivo inicial — só deixa de começar do zero.
