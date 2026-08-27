@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Teto global diário de chamadas à IA + 3 módulos B1 novos (densidade)
+
+Duas correções pequenas, mesma sessão, depois de fechar a leitura graduada.
+
+**Teto global de IA (auditoria ALTO #6, "sem rate limiting... pode esgotar a quota gratuita partilhada", sinalizado como NÃO CORRIGIDO)**: `checkAiRateLimit` já tinha um limite por utilizador (20/10min, desde a Fase 2), mas nada protegia contra vários utilizadores/contas juntos esgotarem a quota diária partilhada do Gemini. Adicionado um teto global de 800 chamadas/24h (todos os utilizadores juntos), mesma tabela `AnalyticsEvent`, mesmo padrão de falha aberta. 800 é uma estimativa conservadora, não confirmada por teste ao vivo (deploys pausados) — o objetivo é nunca chegar perto do limite real, não usá-lo até ao fim. Fecha o último item ALTO da lista de bugs críticos da auditoria original que ainda estava por corrigir.
+
+**3 módulos B1 novos** (`b1-module-06-used-to.json`, `-07-modals-deduction.json`, `-08-third-conditional.json`): B1 tinha só 5 módulos desde a introdução do nível, sinalizado como "menos denso que A1/A2". Agora tem 8 (4 em B1.1, 4 em B1.2): "used to" para hábitos passados, modais de dedução (must/might/could/can't — distintos do "must" de obrigação já ensinado em A2), Third Conditional para arrependimentos sobre o passado. Mesmo formato completo dos módulos existentes (regra + exemplo + erro comum PT + 3 vocab + 6 exercícios + lição de 10 passos). Total de módulos de gramática seedados: 27→30.
+
 ## 2026-08-27 — Leitura graduada: alvo de 60 textos atingido (4→60)
 
 Quarto e último lote desta ronda de conteúdo. `readingPassages.ts` tinha 4 textos no início da auditoria de 2026-08-26 (item "leitura graduada (4→60 textos)" explicitamente citado como em falta). Depois de 4 lotes de 20+10+10+7 ao longo desta sessão, chega aos **60 textos**, distribuídos de forma equilibrada: 10 Pre-A1, 17 A1, 17 A2, 16 B1. Últimos 7: `my-favourite-toy`, `at-the-playground` (Pre-A1), `a-rainy-day`, `my-favourite-food` (A1), `starting-a-new-job`, `learning-to-swim` (A2), `the-importance-of-sleep` (B1).
