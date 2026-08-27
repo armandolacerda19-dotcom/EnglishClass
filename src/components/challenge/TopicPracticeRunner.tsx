@@ -58,9 +58,11 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
 
   async function advance() {
     if (!checkResult) return;
+    // Envia a resposta em bruto, não o veredito — a correção que conta é a do
+    // servidor (ver gradeSubmission.ts).
     const nextAnswers: TopicPracticeAnswer[] = [
       ...answers,
-      { exerciseId: question.exerciseId, isCorrect: checkResult.isCorrect },
+      { exerciseId: question.exerciseId, given: given ?? "" },
     ];
     setAnswers(nextAnswers);
 

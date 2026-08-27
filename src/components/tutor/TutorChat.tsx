@@ -34,6 +34,9 @@ export function TutorChat({
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
 
+  // try/catch + verificação de res.ok obrigatórios: sem eles, uma falha de rede
+  // ou uma sessão expirada (o endpoint faz redirect) deixava o chat preso em
+  // "está a escrever..." para sempre, sem mensagem nenhuma ao utilizador.
   async function send() {
     if (!input.trim()) return;
     const userMessage: Message = { role: "user", text: input };
@@ -41,15 +44,28 @@ export function TutorChat({
     setInput("");
     setSending(true);
 
-    const res = await fetch("/api/ai/tutor", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ conversationId, message: userMessage.text, personality, sessionFocus }),
-    });
-    const data = await res.json();
-    setConversationId(data.conversationId);
-    setMessages((prev) => [...prev, { role: "assistant", text: data.reply }]);
-    setSending(false);
+    try {
+      const res = await fetch("/api/ai/tutor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ conversationId, message: userMessage.text, personality, sessionFocus }),
+      });
+      if (!res.ok) throw new Error(`Tutor request failed: ${res.status}`);
+
+      const data = await res.json();
+      if (data.conversationId) setConversationId(data.conversationId);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", text: data.reply ?? "Não recebi resposta. Tente novamente." },
+      ]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", text: "Não consegui responder agora — verifique a ligação e tente novamente." },
+      ]);
+    } finally {
+      setSending(false);
+    }
   }
 
   return (

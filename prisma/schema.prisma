@@ -365,8 +365,12 @@ model Question {
 
 model Answer {
   id          String   @id @default(cuid())
-  questionId  String
-  question    Question @relation(fields: [questionId], references: [id])
+  // Opcional desde 2026-08-26: no MVP1 um Exercise É a pergunta (não há linhas
+  // Question criadas em lado nenhum). Antes disto, `questionId` era obrigatório e
+  // recebia um id de Exercise — uma FK inválida que fazia falhar TODOS os
+  // exercícios de escolha múltipla dentro de uma lição. Ver docs/decisions.md.
+  questionId  String?
+  question    Question? @relation(fields: [questionId], references: [id])
   attemptId   String
   attempt     ExerciseAttempt @relation(fields: [attemptId], references: [id])
   givenAnswer String

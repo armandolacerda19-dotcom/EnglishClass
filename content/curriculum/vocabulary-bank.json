@@ -110,7 +110,7 @@
     { "id": "vb_verb_deserve", "headword": "deserve", "translation_pt": "merecer", "definition_en": "to have earned or be entitled to something", "cefr_level": "A2", "example_sentences": ["You deserve a break after all that work."], "difficulty": 2 },
     { "id": "vb_verb_notice", "headword": "notice", "translation_pt": "reparar/notar", "definition_en": "to become aware of something", "cefr_level": "A2", "example_sentences": ["I noticed you were upset earlier."], "difficulty": 2 },
 
-    { "id": "vb_adj_expensive", "headword": "expensive", "translation_pt": "caro", "definition_en": "costing a lot of money", "cefr_level": "A1", "example_sentences": ["This restaurant is quite expensive."], "difficulty": 1 },
+    { "id": "vb_adj_affordable", "headword": "affordable", "translation_pt": "acessível (de preço)", "definition_en": "cheap enough that most people can pay for it", "cefr_level": "A2", "example_sentences": ["We found an affordable hotel near the centre."], "difficulty": 2 },
     { "id": "vb_adj_cheap", "headword": "cheap", "translation_pt": "barato", "definition_en": "costing little money", "cefr_level": "A1", "example_sentences": ["I found a cheap flight to Lisbon."], "difficulty": 1 },
     { "id": "vb_adj_crowded", "headword": "crowded", "translation_pt": "cheio de gente/lotado", "definition_en": "full of people", "cefr_level": "A2", "example_sentences": ["The train was very crowded this morning."], "difficulty": 2 },
     { "id": "vb_adj_convenient", "headword": "convenient", "translation_pt": "conveniente/prático", "definition_en": "suitable for your needs, without much trouble", "cefr_level": "A2", "example_sentences": ["Is it convenient to meet at 5pm?"], "difficulty": 2 },
@@ -130,7 +130,7 @@
     { "id": "vb_tech_wifi", "headword": "wifi connection", "translation_pt": "ligação wifi", "definition_en": "a wireless internet connection", "cefr_level": "A1", "example_sentences": ["The wifi connection here is really slow."], "difficulty": 1 },
     { "id": "vb_tech_backup", "headword": "backup", "translation_pt": "cópia de segurança", "definition_en": "a copy of data kept in case the original is lost", "cefr_level": "A2", "example_sentences": ["Always keep a backup of your files."], "difficulty": 2 },
 
-    { "id": "vb_shop_receipt", "headword": "receipt", "translation_pt": "recibo/talão", "definition_en": "a printed document proving a purchase", "cefr_level": "A1", "example_sentences": ["Keep your receipt in case you need to return it."], "difficulty": 1 },
+    { "id": "vb_shop_warranty", "headword": "warranty", "translation_pt": "garantia", "definition_en": "a promise to repair or replace a product if it breaks", "cefr_level": "A2", "example_sentences": ["The laptop comes with a two-year warranty."], "difficulty": 2 },
     { "id": "vb_shop_refund", "headword": "refund", "translation_pt": "reembolso", "definition_en": "money given back after a purchase is returned", "cefr_level": "A2", "example_sentences": ["I asked for a refund because the item was broken."], "difficulty": 2 },
     { "id": "vb_shop_discount", "headword": "discount", "translation_pt": "desconto", "definition_en": "a reduction in the usual price", "cefr_level": "A1", "example_sentences": ["I got a 20% discount on the jacket."], "difficulty": 1 },
     { "id": "vb_shop_size", "headword": "size", "translation_pt": "tamanho", "definition_en": "the measurements of an object or item of clothing", "cefr_level": "A1", "example_sentences": ["Do you have this in a bigger size?"], "difficulty": 1 },

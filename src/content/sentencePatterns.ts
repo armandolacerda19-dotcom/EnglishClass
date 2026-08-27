@@ -16,10 +16,10 @@ export const SENTENCE_PATTERNS: SentencePattern[] = [
   {
     id: "adjective-before-noun",
     title: "Adjetivo antes do substantivo",
-    rule: "Em inglês, o adjetivo vem sempre ANTES do substantivo — nunca depois, ao contrário do português.",
+    rule: "Quando o adjetivo qualifica diretamente um substantivo, vem ANTES dele em inglês — ao contrário do português.",
     wrong: "I bought a car red.",
     right: "I bought a red car.",
-    explanation: "Em português dizemos \"um carro vermelho\" (substantivo + adjetivo). Em inglês é sempre ao contrário: \"a red car\" (adjetivo + substantivo). Isto aplica-se sempre, sem exceção, para adjetivos simples.",
+    explanation: "Em português dizemos \"um carro vermelho\" (substantivo + adjetivo). Em inglês é ao contrário: \"a red car\" (adjetivo + substantivo). Há exceções que vai ouvir — depois de \"something/anything\" (\"something interesting\") e em algumas expressões fixas (\"attorney general\") — mas na esmagadora maioria dos casos a ordem é adjetivo + substantivo.",
   },
   {
     id: "question-do-does",

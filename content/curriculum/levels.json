@@ -26,8 +26,7 @@
       "description": "Comunicação em tarefas simples e rotineiras, descrição de aspetos do passado e do ambiente próximo.",
       "sublevels": [
         { "number": 1, "code": "A2.1", "order": 4 },
-        { "number": 2, "code": "A2.2", "order": 5 },
-        { "number": 3, "code": "A2.3", "order": 6 }
+        { "number": 2, "code": "A2.2", "order": 5 }
       ]
     }
   ]

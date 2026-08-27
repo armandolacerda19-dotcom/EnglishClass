@@ -17,6 +17,7 @@ export function PlacementTestRunner() {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<AnswerState>({});
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Seguro: index nunca ultrapassa PLACEMENT_QUESTIONS.length - 1 (ver isLast/handleSubmitTest).
   const question = PLACEMENT_QUESTIONS[index]!;
@@ -26,19 +27,28 @@ export function PlacementTestRunner() {
     setAnswers((prev) => ({ ...prev, [question.id]: value }));
   }
 
+  // try/catch obrigatório: sem ele, uma falha de rede deixava `submitting` a true
+  // para sempre — o utilizador ficava preso no fim do teste de nivelamento, com o
+  // botão desativado, sem mensagem e sem forma de tentar outra vez.
   async function handleSubmitTest() {
     setSubmitting(true);
+    setSubmitError(null);
     const payload = PLACEMENT_QUESTIONS.map((q) => ({ questionId: q.id, answer: answers[q.id] ?? "" }));
-    const res = await fetch("/api/placement/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ answers: payload }),
-    });
-    if (res.ok) {
-      router.push("/onboarding/results");
-    } else {
-      setSubmitting(false);
+    try {
+      const res = await fetch("/api/placement/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answers: payload }),
+      });
+      if (res.ok) {
+        router.push("/onboarding/results");
+        return;
+      }
+      setSubmitError("Não foi possível calcular o resultado. Tente novamente.");
+    } catch {
+      setSubmitError("Sem ligação à internet. Verifique a ligação e tente novamente.");
     }
+    setSubmitting(false);
   }
 
   return (
@@ -73,7 +83,13 @@ export function PlacementTestRunner() {
         </fieldset>
       )}
 
-      <div className="flex justify-between">
+      {submitError && (
+        <p role="alert" className="rounded-card border-l-4 border-clay bg-clay/5 p-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
+
+      <div className="flex flex-wrap justify-between gap-2">
         <Button type="button" variant="ghost" disabled={index === 0} onClick={() => setIndex((i) => i - 1)}>
           Voltar
         </Button>

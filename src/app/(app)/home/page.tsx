@@ -134,8 +134,11 @@ function IntensiveHome({
   streak: number;
   dueReviews: number;
 }) {
+  // `?? 1` no totalDays dava currentDay/totalDays = 1/1 = barra a 100% no dia 1
+  // quando o plano ainda não existe. 30 é o mesmo default usado ao gerar o plano
+  // em api/placement/submit quando não há data-alvo definida.
   const currentDay = plan?.currentDay ?? 1;
-  const totalDays = plan?.totalDays ?? 1;
+  const totalDays = plan?.totalDays ?? 30;
 
   return (
     <main className="mx-auto max-w-lg px-6 py-10">

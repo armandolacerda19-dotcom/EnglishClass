@@ -33,8 +33,11 @@ export async function POST(req: NextRequest) {
     prisma.userError.findMany({ where: { userId: user.id, resolvedAt: null }, orderBy: { lastOccurredAt: "desc" }, take: 5 }),
   ]);
 
+  // `userId` no where é obrigatório: sem ele, qualquer utilizador que soubesse
+  // (ou adivinhasse) um conversationId lia o histórico de outro — e o update
+  // no fim substituía-o pelo seu. Ver docs/decisions.md 2026-08-26 (auditoria).
   let conversation = conversationId
-    ? await prisma.aIConversation.findUnique({ where: { id: conversationId } })
+    ? await prisma.aIConversation.findFirst({ where: { id: conversationId, userId: user.id } })
     : null;
 
   const history = (conversation?.messagesJson as { role: "user" | "assistant"; text: string }[]) ?? [];
@@ -91,8 +94,13 @@ export async function POST(req: NextRequest) {
     if (errorMatch) {
       // Grupos garantidos pela regex (2 grupos de captura obrigatórios) — os `!`
       // só contornam o noUncheckedIndexedAccess do TS, não escondem um caso real.
-      const errorType = errorMatch[1]!;
-      const correction = errorMatch[2]!;
+      // Sanitizar antes de guardar: `correction` é reinjetado VERBATIM no
+      // system prompt de todas as sessões futuras (buildTutorPrompt.ts). Sem
+      // limpar aspas/newlines, um utilizador podia fazer o modelo emitir um
+      // ERROR_LOGGED forjado e deixar instruções permanentes no seu próprio
+      // prompt. Ver docs/decisions.md 2026-08-26 (auditoria).
+      const errorType = errorMatch[1]!.slice(0, 60);
+      const correction = errorMatch[2]!.replace(/["'\r\n]/g, " ").trim().slice(0, 200);
       const existingError = await prisma.userError.findFirst({
         where: { userId: user.id, errorType, resolvedAt: null },
       });

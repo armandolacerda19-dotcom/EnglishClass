@@ -2,6 +2,38 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — AUDITORIA MASTER: 23 correções, incluindo 2 críticas
+
+Auditoria completa pedida pelo utilizador (código, arquitetura, conteúdo, UX/UI, segurança, performance, comparação com concorrentes). Relatório integral em **`docs/AUDITORIA-2026-08-26.md`** — este registo cobre só as decisões técnicas.
+
+**Nota global atribuída: 4,2/10.** Fundações de engenharia acima da média, conteúdo educativo muito abaixo do necessário (11 lições ≈ 5 semanas de material para uma promessa de 4 meses).
+
+### Duas correções críticas
+
+1. **`Answer.questionId` era FK obrigatória para `Question`, que nunca é criada.** O código passava um id de `Exercise`. Toda a chamada a `submitExerciseAnswer` devia falhar com violação de FK — ou seja, **responder a qualquer exercício dentro de uma lição estava quebrado**. Passou despercebido a sessão inteira porque o placement test usa outro caminho e nunca se executou uma lição até ao fim. Corrigido tornando `questionId` opcional (no MVP1 o `Exercise` É a pergunta). **[POR CONFIRMAR EM RUNTIME]**
+
+2. **Correção do lado do cliente tornava notas e certificados forjáveis.** `submitWeeklyTest`/`submitTopicPractice` aceitavam `isCorrect` do browser. Um pedido forjado com tudo `true` produzia um certificado real, público e verificável. **Esta vulnerabilidade foi introduzida por mim mais cedo nesta mesma sessão**, ao trocar correção no servidor por correção no cliente para evitar dupla-correção — resolveu um problema e abriu um maior. Corrigido com `src/app/(app)/practice/gradeSubmission.ts`: o servidor volta a corrigir a partir do `Exercise` real. O cliente passa a enviar `given` (resposta em bruto), nunca o veredito. `gradeFreeTextAnswer` já faz igualdade exata primeiro, por isso respostas certas não custam chamadas de IA extra.
+
+### Segurança (todas corrigidas)
+- **2 IDOR**: conversas do tutor (`findFirst` com `userId`) e erros na fila SRS (verificação de dono **antes** de agendar, não depois).
+- **3 injeções de prompt**: `SCORE:` em `getHolisticFeedback`, veredito em `gradeFreeTextAnswer`, `ERROR_LOGGED` forjado. Todas resolvidas com delimitação `<tags>` + instrução explícita de não seguir instruções internas + sanitização antes de persistir.
+- **Open redirect** no login (`?next=` sem validação) e **reescrita não autenticada do nome** de outro utilizador no signup (o Supabase devolve sucesso para emails já registados, por anti-enumeração — o `upsert` reescrevia o nome do dono verdadeiro, que aparece no certificado público). O signup deixou de escrever na BD; `requireUser()` já cria a linha com sessão válida.
+
+### Robustez
+- `error.tsx` e `not-found.tsx` (não existia nenhum — 4 `notFound()` caíam no ecrã cru do Next.js, em inglês).
+- try/catch em `PlacementTestRunner` (falha de rede prendia o utilizador no fim do teste, botão desativado, sem mensagem) e `TutorChat` (chat eterno em "a escrever...").
+- Validação de fronteira em 3 server actions (limites de array, pilares válidos, `quality` 0-5).
+- `resolvedAt` passa a ser escrito após 3 revisões bem-sucedidas — "erros já corrigidos" estava permanentemente a 0.
+- N+1 em `submitTopicPractice`: 8 chamadas a `recordActivity` → 1 agregada.
+
+### Conteúdo
+- 4 palavras duplicadas entre módulos e bancos (o SRS servia a mesma palavra como se fossem duas) — substituídas por palavras novas.
+- `A2.3` estava definido em `levels.json` **sem qualquer conteúdo** → aparecia como nível vazio. Removido até haver módulos.
+- 3 erros de ensino: `"Posso ter o menu"` (calque que não existe em português), `"Sempre mude"` (PT-BR numa app PT-PT), e a regra de adjetivos afirmar "sempre, sem exceção" quando há exceções produtivas (*something interesting*).
+
+### Não corrigido (exige decisão ou trabalho maior) — ver roadmap na auditoria
+Race conditions no streak e no octógono (ler-modificar-escrever sem transação) · `currentDay` do plano Intensive nunca incrementa · `LearningPlan` escrito e nunca lido · 5 modelos mortos no schema · exportação RGPD incompleta · rate limiting ausente · zero breakpoints responsive · zero testes automáticos.
+
 ## 2026-08-26 — Continuação do redesenho: velocidade real + campos de texto em toda a app
 
 Continuação do pedido "mais atualizações, cuidado extra a rever o código".

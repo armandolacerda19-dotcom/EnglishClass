@@ -58,9 +58,12 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
 
   async function advance() {
     if (!checkResult) return;
+    // Envia a resposta em bruto, não o veredito: a correção que conta é a do
+    // servidor (ver gradeSubmission.ts). O `checkResult` aqui serve só para o
+    // feedback imediato no ecrã.
     const nextAnswers: WeeklyTestAnswer[] = [
       ...answers,
-      { exerciseId: question.exerciseId, pillar: question.pillar, isCorrect: checkResult.isCorrect },
+      { exerciseId: question.exerciseId, pillar: question.pillar, given: given ?? "" },
     ];
     setAnswers(nextAnswers);
 
@@ -180,7 +183,7 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
         )}
 
         {checkResult && (
-          <p className={`mt-3 text-sm ${checkResult.isCorrect ? "text-verdigris" : "text-clay"}`}>
+          <p role="status" aria-live="polite" className={`mt-3 text-sm ${checkResult.isCorrect ? "text-verdigris" : "text-clay"}`}>
             {checkResult.isCorrect ? "Correto." : `Incorreto. Resposta certa: ${checkResult.referenceAnswer}`}
           </p>
         )}

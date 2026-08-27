@@ -8,11 +8,24 @@ import { awardAchievement } from "@/lib/gamification/awardAchievement";
 import { updateSkillScore } from "@/lib/skillProfile";
 import { logEvent } from "@/lib/analytics";
 import { maybeIssueCertificate } from "@/lib/certificate";
+import { gradeAnswersOnServer } from "@/app/(app)/practice/gradeSubmission";
+
+const VALID_PILLARS = new Set<string>([
+  "GRAMMAR",
+  "VOCABULARY",
+  "LISTENING",
+  "SPEAKING",
+  "PRONUNCIATION",
+  "READING",
+  "WRITING",
+  "TRANSLATION",
+]);
+const MAX_ANSWERS = 50; // o teste tem 10 perguntas; 50 é folga generosa
 
 export interface WeeklyTestAnswer {
   exerciseId: string;
   pillar: Pillar;
-  isCorrect: boolean; // já determinado pergunta a pergunta (checkAnswer.ts para texto livre)
+  given: string; // a resposta em bruto — o servidor corrige, nunca confia no cliente
 }
 
 export interface WeeklyTestResult {
@@ -22,19 +35,38 @@ export interface WeeklyTestResult {
   newCertificateCode: string | null;
 }
 
-// Fecha o Diagnóstico Semanal: agrega a correção já feita pergunta a pergunta
-// (ver src/app/(app)/practice/checkAnswer.ts — texto livre usa correção tolerante
-// por IA, escolha múltipla é exata), atualiza o octógono de competência por pilar
-// e regista um AssessmentResult tipo WEEKLY — a mesma fonte de dados que já
-// alimenta os checkpoints em /progress.
+// Fecha o Diagnóstico Semanal. O servidor volta a corrigir todas as respostas a
+// partir do Exercise real (gradeSubmission.ts) — a correção feita no cliente
+// durante o quiz serve só para feedback imediato e nunca é aceite como verdade.
+// Atualiza o octógono por pilar e regista um AssessmentResult tipo WEEKLY, a
+// mesma fonte de dados que alimenta os checkpoints em /progress.
 export async function submitWeeklyTest(answers: WeeklyTestAnswer[]): Promise<WeeklyTestResult> {
   const user = await requireUser();
 
+  // Validação de fronteira: sem isto, um cliente podia enviar milhares de
+  // entradas (amplificação de pedidos) ou um `pillar` inventado, que rebentava
+  // com o update do Prisma em skillProfile.ts com um 500.
+  if (!Array.isArray(answers)) throw new Error("Formato de respostas inválido.");
+  const safeAnswers = answers
+    .slice(0, MAX_ANSWERS)
+    .filter(
+      (a) =>
+        a &&
+        typeof a.exerciseId === "string" &&
+        typeof a.given === "string" &&
+        VALID_PILLARS.has(a.pillar as unknown as string)
+    );
+
+  // Correção autoritativa no servidor — ver gradeSubmission.ts.
+  const graded = await gradeAnswersOnServer(
+    safeAnswers.map((a) => ({ exerciseId: a.exerciseId, given: a.given }))
+  );
+
   const byPillar = new Map<Pillar, { correct: number; total: number }>();
-  for (const answer of answers) {
+  for (const answer of safeAnswers) {
     const bucket = byPillar.get(answer.pillar) ?? { correct: 0, total: 0 };
     bucket.total += 1;
-    if (answer.isCorrect) bucket.correct += 1;
+    if (graded.get(answer.exerciseId)) bucket.correct += 1;
     byPillar.set(answer.pillar, bucket);
   }
 

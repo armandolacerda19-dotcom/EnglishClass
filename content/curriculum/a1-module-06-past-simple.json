@@ -21,7 +21,7 @@
     "example": "I worked late yesterday. She went to the cinema last night.",
     "example_translation": "Eu trabalhei até tarde ontem. Ela foi ao cinema ontem à noite.",
     "common_mistake_pt": "Falantes de português tendem a usar o verbo na forma base com uma palavra de tempo passado, sem mudar o verbo: dizem \"I go to the beach yesterday\" em vez de \"I went to the beach yesterday\" — em português o tempo já está marcado no verbo, mas em inglês é preciso mudar mesmo a palavra.",
-    "correction": "Sempre mude o verbo para a forma de passado: verbos regulares levam -ed (watch → watched), verbos irregulares mudam de forma (go → went, have → had, see → saw) — não basta adicionar \"yesterday\" ao verbo no presente.",
+    "correction": "Mude sempre o verbo para a forma de passado: verbos regulares levam -ed (watch → watched), verbos irregulares mudam de forma (go → went, have → had, see → saw) — não basta adicionar \"yesterday\" ao verbo no presente.",
     "real_world_example": "A dizer a um colega: \"I finished the report yesterday and sent it to the client.\""
   },
   "vocabulary": [
