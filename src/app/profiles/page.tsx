@@ -61,7 +61,10 @@ export default async function ProfilesPage({
       <Card>
         <p className="mb-3 font-mono text-xs uppercase tracking-wide text-verdigris">Adicionar pessoa</p>
         <form action={createProfile} className="flex flex-col gap-3">
-          <TextField name="name" placeholder="Nome" required maxLength={60} />
+          <label className="flex flex-col gap-1.5 text-sm">
+            Nome
+            <TextField name="name" required maxLength={60} />
+          </label>
           <label className="flex items-center gap-2 text-sm text-inkNeutral/70 dark:text-linen/70">
             <input type="checkbox" name="isChild" className="h-4 w-4" />
             É uma criança (ajusta o tom das explicações)

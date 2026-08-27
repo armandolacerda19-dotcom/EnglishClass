@@ -2,8 +2,6 @@
 // ver PROJECT_STATE.md). Complementam o Desafio Diário de vocabulário (que é o checkpoint
 // formal do dia) com engagement leve, sem exigir atenção total ao ecrã.
 
-export type MicroChallengeKind = "shadow" | "listen";
-
 interface ShadowChallenge {
   id: string;
   kind: "shadow";

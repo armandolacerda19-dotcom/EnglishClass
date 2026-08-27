@@ -23,6 +23,7 @@ export function BottomNav() {
             <li key={item.href}>
               <Link
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={`flex flex-col items-center gap-0.5 rounded-control px-3 py-1.5 text-xs font-medium ${
                   active ? "text-verdigris" : "text-inkNeutral/60 dark:text-linen/60"
                 }`}
