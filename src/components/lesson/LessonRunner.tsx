@@ -14,6 +14,7 @@ import {
   submitExerciseAnswer,
   submitWriting,
   submitSpeaking,
+  submitSpeakingConfidence,
   submitTranslation,
   completeLesson,
 } from "@/app/(app)/learn/actions";
@@ -235,6 +236,8 @@ function ExerciseStep({ exercise }: { exercise: ExerciseContent }) {
 function SpeakingStep({ prompt }: { prompt: string }) {
   const [transcript, setTranscript] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
+  const [attemptId, setAttemptId] = useState<string | null>(null);
+  const [confidenceGiven, setConfidenceGiven] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   // Momento em que o prompt de speaking apareceu no ecrã — base para
   // SpeakingAttempt.responseTimeMs, campo que existia no schema desde a Fase 0
@@ -248,9 +251,18 @@ function SpeakingStep({ prompt }: { prompt: string }) {
     setTranscript(text);
     setLoading(true);
     const responseTimeMs = Date.now() - promptShownAtRef.current;
-    const feedbackText = await submitSpeaking(prompt, text, responseTimeMs);
+    const { feedback: feedbackText, attemptId: newAttemptId } = await submitSpeaking(prompt, text, responseTimeMs);
     setFeedback(feedbackText);
+    setAttemptId(newAttemptId);
     setLoading(false);
+  }
+
+  // Métrica de confiança (auditoria secção 294) — perguntada só depois do
+  // feedback aparecer, para não interromper o fluxo de gravar/avaliar.
+  async function rateConfidence(rating: number) {
+    if (!attemptId || confidenceGiven) return;
+    setConfidenceGiven(rating);
+    await submitSpeakingConfidence(attemptId, rating);
   }
 
   return (
@@ -265,6 +277,32 @@ function SpeakingStep({ prompt }: { prompt: string }) {
       )}
       {transcript && <p className="mt-3 text-sm italic">"{transcript}"</p>}
       {feedback && <p className="mt-2 rounded-card bg-verdigris/5 p-3 text-sm">{feedback}</p>}
+      {feedback && attemptId && (
+        <div className="mt-3 border-t border-ink/10 pt-3 dark:border-linen/10">
+          <p className="mb-2 text-xs text-inkNeutral/60 dark:text-linen/60">
+            Quão confiante se sentiu a responder?
+          </p>
+          <div className="flex gap-2">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => rateConfidence(n)}
+                disabled={!!confidenceGiven}
+                aria-pressed={confidenceGiven === n}
+                className={`h-8 w-8 rounded-full font-mono text-xs ${
+                  confidenceGiven === n
+                    ? "bg-verdigris text-white"
+                    : "bg-ink/5 text-inkNeutral/70 hover:bg-ink/10 dark:bg-linen/10 dark:text-linen/70"
+                } disabled:cursor-not-allowed`}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+          {confidenceGiven && <p className="mt-2 text-xs text-verdigris">Obrigado!</p>}
+        </div>
+      )}
     </Card>
   );
 }

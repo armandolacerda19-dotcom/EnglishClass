@@ -106,7 +106,7 @@ export async function submitSpeaking(prompt: string, transcript: string, respons
       ? Math.min(responseTimeMs, 10 * 60 * 1000)
       : null;
 
-  await prisma.speakingAttempt.create({
+  const attempt = await prisma.speakingAttempt.create({
     data: {
       userId: user.id,
       prompt,
@@ -127,7 +127,20 @@ export async function submitSpeaking(prompt: string, transcript: string, respons
   // o único disponível sem gravação de som — melhor do que zero permanente.
   if (pronunciationScore !== null) await updateSkillScore(user.id, "PRONUNCIATION", pronunciationScore);
 
-  return feedback;
+  return { feedback, attemptId: attempt.id };
+}
+
+// Métrica de confiança (auditoria secção 294) — perguntada depois do feedback
+// já ter aparecido, por isso é um segundo pedido a atualizar a linha criada
+// acima, não parte de submitSpeaking. `userId` no where garante que um
+// utilizador não consegue avaliar a tentativa de outro adivinhando o id.
+export async function submitSpeakingConfidence(attemptId: string, rating: number) {
+  const user = await requireUser();
+  const safeRating = Math.max(1, Math.min(5, Math.round(rating)));
+  await prisma.speakingAttempt.updateMany({
+    where: { id: attemptId, userId: user.id },
+    data: { confidenceSelfRating: safeRating },
+  });
 }
 
 export async function submitTranslation(exerciseId: string, given: string) {

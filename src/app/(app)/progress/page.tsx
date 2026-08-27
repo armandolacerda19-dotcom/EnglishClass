@@ -23,18 +23,33 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_idiom: "IDIOM",
   first_certificate: "CERT",
   first_verb: "VERB",
+  first_dictation: "DICT",
 };
 
 export default async function ProgressPage() {
   const { user, learningProfile } = await requireUserWithProfile();
 
-  const [exerciseAttempts, resolvedErrors, achievements, checkpoints, certificates] = await Promise.all([
+  const [exerciseAttempts, resolvedErrors, achievements, checkpoints, certificates, recentConfidence] = await Promise.all([
     prisma.exerciseAttempt.count({ where: { userId: user.id } }),
     prisma.userError.count({ where: { userId: user.id, resolvedAt: { not: null } } }),
     prisma.userAchievement.findMany({ where: { userId: user.id }, include: { achievement: true }, orderBy: { earnedAt: "desc" } }),
     getCheckpointSummary(user.id),
     prisma.certificate.findMany({ where: { userId: user.id }, orderBy: { issuedAt: "desc" } }),
+    // Métrica de confiança (auditoria secção 294) — média das últimas 20
+    // autoavaliações de speaking, não de sempre: reflete como o utilizador se
+    // sente ULTIMAMENTE, não um histórico diluído de meses atrás.
+    prisma.speakingAttempt.findMany({
+      where: { userId: user.id, confidenceSelfRating: { not: null } },
+      orderBy: { createdAt: "desc" },
+      take: 20,
+      select: { confidenceSelfRating: true },
+    }),
   ]);
+
+  const avgConfidence =
+    recentConfidence.length > 0
+      ? recentConfidence.reduce((sum, a) => sum + (a.confidenceSelfRating ?? 0), 0) / recentConfidence.length
+      : null;
 
   const skillProfile = {
     grammar: learningProfile.grammarScore,
@@ -86,6 +101,18 @@ export default async function ProgressPage() {
           <p className="text-xs text-inkNeutral/60 dark:text-linen/60">erros já corrigidos</p>
         </Card>
       </div>
+
+      {avgConfidence !== null && (
+        <Card className="mt-4">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Confiança a falar</p>
+          <div className="flex items-center gap-3">
+            <p className="font-mono text-2xl">{avgConfidence.toFixed(1)}/5</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+              Média das últimas {recentConfidence.length} autoavaliações em exercícios de speaking
+            </p>
+          </div>
+        </Card>
+      )}
 
       {certificates.length > 0 && (
         <Card className="mt-4">

@@ -353,6 +353,7 @@ model SpeakingAttempt {
   fluencyScore   Int?
   pronunciationScore Int? // sinal indireto via IA a partir do transcript de voz (sem áudio real, sem scoring fonético avançado) — ver src/app/(app)/learn/actions.ts, correção 2026-08-26 (auditoria: antes ficava sempre null)
   responseTimeMs Int?     // para Automaticity Training / Quick Speak
+  confidenceSelfRating Int? // 1-5, autoavaliado pelo utilizador após ver o feedback — "métrica de confiança" da auditoria (secção 294). Subjetivo por natureza (não é medido, é perguntado), mas é o sinal disponível sem análise de voz avançada. Ver src/app/(app)/learn/actions.ts.
 
   createdAt      DateTime @default(now())
 
