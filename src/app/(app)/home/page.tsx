@@ -10,6 +10,7 @@ import { StreakXp } from "@/components/ui/StreakXp";
 import { getNextLessonForUser } from "@/lib/lessons";
 import { getDueReviewCount } from "@/lib/srs/schedule";
 import { PILLAR_LABEL } from "@/lib/pillarDisplay";
+import { generateDailyPlan } from "@/lib/plan/dailyPlan";
 
 export default async function HomePage() {
   const { user, learningProfile } = await requireUserWithProfile();
@@ -26,6 +27,7 @@ export default async function HomePage() {
         xp={learningProfile.xp}
         streak={learningProfile.currentStreak}
         dueReviews={dueReviews}
+        dailyMinutesTarget={learningProfile.dailyMinutesTarget}
       />
     );
   }
@@ -37,6 +39,9 @@ export default async function HomePage() {
   // Standard. Ver docs/decisions.md 2026-08-26 (auditoria).
   const learningPlan = await prisma.learningPlan.findUnique({ where: { userId: user.id } });
   const planNote = (learningPlan?.planJson as { note?: string } | null)?.note;
+  // "Inglês de hoje" — secção 47 da auditoria: uma lista concreta de atividades
+  // e minutos, não só uma frase genérica sobre o ritmo. Ver src/lib/plan/dailyPlan.ts.
+  const dailyPlan = generateDailyPlan(learningProfile.dailyMinutesTarget, dueReviews > 0);
 
   return (
     <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
@@ -48,12 +53,25 @@ export default async function HomePage() {
 
       <StreakXp xp={learningProfile.xp} streak={learningProfile.currentStreak} />
 
-      {planNote && (
-        <Card className="mb-3 border-verdigris/30">
-          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">O seu plano</p>
-          <p className="text-sm">{planNote}</p>
-        </Card>
-      )}
+      <Card className="mb-3 border-verdigris/30">
+        <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">
+          Inglês de hoje · {learningProfile.dailyMinutesTarget} min
+        </p>
+        {planNote && <p className="mb-3 text-xs text-inkNeutral/60 dark:text-linen/60">{planNote}</p>}
+        <ul className="flex flex-col gap-2">
+          {dailyPlan.map((item) => (
+            <li key={item.href + item.label}>
+              <Link
+                href={item.href}
+                className="flex items-center justify-between rounded-control border border-ink/10 p-2 text-sm hover:border-verdigris dark:border-linen/10"
+              >
+                <span>{item.label}</span>
+                <span className="font-mono text-xs text-inkNeutral/60 dark:text-linen/60">{item.minutes} min</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Card>
 
       <Link href="/practice/topic" className="mb-3 block">
         <Card className="border-2 border-ink/10 hover:border-verdigris dark:border-linen/10">
@@ -139,6 +157,7 @@ function IntensiveHome({
   xp,
   streak,
   dueReviews,
+  dailyMinutesTarget,
 }: {
   levelCode: string;
   plan: { startDate: Date; totalDays: number; weeklyThemesJson: unknown } | null;
@@ -147,7 +166,9 @@ function IntensiveHome({
   xp: number;
   streak: number;
   dueReviews: number;
+  dailyMinutesTarget: number;
 }) {
+  const dailyPlan = generateDailyPlan(dailyMinutesTarget, dueReviews > 0);
   // `currentDay` nunca era incrementado em lado nenhum — ficava preso em "Day 1"
   // para sempre. Em vez de tentar manter um contador (exigiria um job agendado,
   // que a app não tem), calcula-se o dia a partir de `startDate`: dias de
@@ -177,6 +198,25 @@ function IntensiveHome({
       </div>
 
       <StreakXp xp={xp} streak={streak} />
+
+      <Card className="mb-3 border-verdigris/30">
+        <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">
+          Inglês de hoje · {dailyMinutesTarget} min
+        </p>
+        <ul className="flex flex-col gap-2">
+          {dailyPlan.map((item) => (
+            <li key={item.href + item.label}>
+              <Link
+                href={item.href}
+                className="flex items-center justify-between rounded-control border border-ink/10 p-2 text-sm hover:border-verdigris dark:border-linen/10"
+              >
+                <span>{item.label}</span>
+                <span className="font-mono text-xs text-inkNeutral/60 dark:text-linen/60">{item.minutes} min</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Card>
 
       {dueReviews > 0 && (
         <Link href="/practice/review" className="mb-3 block">
