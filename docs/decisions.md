@@ -2,6 +2,20 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Limpeza do schema morto (5 modelos + 2 enums órfãos)
+
+Continuação da Fase 3/4 (sessão sem o utilizador presente, "avançar sem parar"). A auditoria original tinha identificado 5 modelos Prisma nunca escritos nem lidos por nenhum código: `Question`, `UserVocabularyMastery`, `UserConceptMastery`, `Bootcamp`, `BootcampEnrollment`. Confirmei com grep exaustivo em `src/` e `prisma/` antes de tocar em nada — zero referências a qualquer um destes nomes, incluindo tipos gerados (`Prisma.Question...`, etc.).
+
+Removidos do `prisma/schema.prisma`:
+- `Question` — e o campo `Answer.questionId`/`Answer.question` que lhe apontava (já tinha sido tornado opcional na Fase 1, precisamente por causa da FK inválida que este modelo causava; agora deixa de existir de todo).
+- `UserVocabularyMastery` e `UserConceptMastery` — e os campos `masteryRecords` em `VocabularyItem`/`GrammarConcept` e `conceptMastery`/`vocabMastery` em `User` que lhes apontavam.
+- `Bootcamp` e `BootcampEnrollment` — e o campo `bootcampEnrollments` em `User`, e o valor `BOOTCAMP` do enum `AttemptSource`.
+- O enum `MasteryState`, que ficou órfão depois de remover os dois modelos de mastery.
+
+Cada remoção deixou um comentário no schema a explicar o quê e porquê, para não parecer uma omissão acidental numa leitura futura. Isto é seguro por três razões: (1) as tabelas nunca receberam nenhuma escrita, por isso `prisma db push --accept-data-loss` (já usado em todos os deploys) não perde dados reais; (2) zero código de aplicação referencia estes nomes, confirmado por grep; (3) os deploys continuam pausados até 2026-09-01, por isso há tempo de sobra para detetar qualquer problema antes de isto chegar a produção.
+
+## 2026-08-26 — FASE 3 da auditoria (fecho): 2.004 palavras de vocabulário
+
 ## 2026-08-26 — FASE 3 da auditoria (fecho): 2.004 palavras de vocabulário
 
 Pedido explícito do utilizador: "pode continuar e agora só parar quando chegar às 2000 palavras de vocabulário." Trabalho contínuo, sem pausas para confirmação, ao longo de **11 novos bancos de vocabulário** (`vocabulary-bank-4.json` a `-19.json`, mais o `-3.json` já existente da entrada de fase 3 anterior), levando o total de **~480 para 2.004 palavras**.

@@ -47,14 +47,6 @@ enum Pillar {
   TRANSLATION
 }
 
-enum MasteryState {
-  INTRODUCED
-  PRACTISING
-  DEVELOPING
-  STRONG
-  MASTERED
-}
-
 enum EnglishVariant {
   BRITISH
   AMERICAN
@@ -103,7 +95,6 @@ enum AttemptSource {
   PRACTICE
   ASSESSMENT
   AI_CONVERSATION
-  BOOTCAMP
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -135,10 +126,7 @@ model User {
   aiConversations    AIConversation[]
   learningPlan       LearningPlan?
   intensivePlan      IntensivePlan?
-  bootcampEnrollments BootcampEnrollment[]
   analyticsEvents    AnalyticsEvent[]
-  conceptMastery     UserConceptMastery[]
-  vocabMastery       UserVocabularyMastery[]
 }
 
 model LearningProfile {
@@ -270,23 +258,8 @@ model GrammarConcept {
   updatedAt         DateTime @updatedAt
 
   exercises         Exercise[]
-  masteryRecords    UserConceptMastery[]
 
   @@index([unitId])
-}
-
-model UserConceptMastery {
-  id            String        @id @default(cuid())
-  userId        String
-  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  conceptId     String
-  concept       GrammarConcept @relation(fields: [conceptId], references: [id])
-  state         MasteryState  @default(INTRODUCED)
-  consistentHits Int          @default(0) // demonstrações espaçadas consecutivas corretas
-  lastSeenAt    DateTime?
-  updatedAt     DateTime      @updatedAt
-
-  @@unique([userId, conceptId])
 }
 
 model VocabularyItem {
@@ -305,24 +278,7 @@ model VocabularyItem {
 
   createdAt     DateTime @default(now())
 
-  masteryRecords UserVocabularyMastery[]
-
   @@index([cefr])
-}
-
-model UserVocabularyMastery {
-  id                String        @id @default(cuid())
-  userId            String
-  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  vocabularyItemId  String
-  vocabularyItem    VocabularyItem @relation(fields: [vocabularyItemId], references: [id])
-
-  recognitionState  MasteryState  @default(INTRODUCED) // passivo
-  productionState   MasteryState  @default(INTRODUCED) // ativo
-  lastSeenAt        DateTime?
-  updatedAt         DateTime      @updatedAt
-
-  @@unique([userId, vocabularyItemId])
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -344,33 +300,18 @@ model Exercise {
 
   createdAt        DateTime @default(now())
 
-  questions        Question[]
   attempts         ExerciseAttempt[]
 
   @@index([pillar, cefr])
 }
 
-model Question {
-  id          String   @id @default(cuid())
-  exerciseId  String
-  exercise    Exercise @relation(fields: [exerciseId], references: [id])
-  prompt      String
-  correctAnswers String[] // suporta múltiplas respostas aceitáveis
-  distractors String[]  @default([])
-  explanation String
-  order       Int
-
-  answers     Answer[]
-}
-
+// Question foi removido daqui em 2026-08-26 (auditoria, limpeza de schema
+// morto): nunca era criado em lado nenhum do código — no MVP1 o próprio
+// Exercise já É a pergunta. Answer.questionId (abaixo) já tinha sido tornado
+// opcional antes desta limpeza, precisamente por causa disto; agora o campo
+// deixa de existir de todo, já que nada nunca o escreve. Ver docs/decisions.md.
 model Answer {
   id          String   @id @default(cuid())
-  // Opcional desde 2026-08-26: no MVP1 um Exercise É a pergunta (não há linhas
-  // Question criadas em lado nenhum). Antes disto, `questionId` era obrigatório e
-  // recebia um id de Exercise — uma FK inválida que fazia falhar TODOS os
-  // exercícios de escolha múltipla dentro de uma lição. Ver docs/decisions.md.
-  questionId  String?
-  question    Question? @relation(fields: [questionId], references: [id])
   attemptId   String
   attempt     ExerciseAttempt @relation(fields: [attemptId], references: [id])
   givenAnswer String
@@ -605,30 +546,13 @@ model IntensivePlan {
   updatedAt      DateTime @updatedAt
 }
 
-model Bootcamp {
-  id            String   @id @default(cuid())
-  code          String   @unique // ex. "7-day-speaking-boost"
-  title         String
-  durationDays  Int
-  description   String
-  curriculumJson Json
-
-  enrollments   BootcampEnrollment[]
-}
-
-model BootcampEnrollment {
-  id            String   @id @default(cuid())
-  userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  bootcampId    String
-  bootcamp      Bootcamp @relation(fields: [bootcampId], references: [id])
-  startedAt     DateTime @default(now())
-  currentDay    Int      @default(1)
-  completedAt   DateTime?
-  finalAssessmentJson Json?
-
-  @@unique([userId, bootcampId])
-}
+// Bootcamp e BootcampEnrollment removidos daqui em 2026-08-26 (auditoria,
+// limpeza de schema morto): nenhuma rota, página ou script de seed alguma vez
+// os referenciou — puro vapor desde a Fase 0, incluindo o valor BOOTCAMP do
+// enum AttemptSource (também removido). Se a ideia de bootcamps intensivos
+// for retomada no futuro, fica registada aqui para não se perder: um
+// "bootcamp" seria um currículo curto e intensivo (ex. "7-day-speaking-boost")
+// com progresso próprio por utilizador. Ver docs/decisions.md.
 
 // ─────────────────────────────────────────────────────────────────────────
 // ANALYTICS
