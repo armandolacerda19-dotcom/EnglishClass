@@ -399,6 +399,10 @@ const RUBRIC_LABEL: Record<keyof WritingRubric, string> = {
   vocabulary: "Vocabulário",
   coherence: "Coerência",
   taskAchievement: "Cumpre o pedido",
+  // Fase 14 (auditoria 2026-08-27) — o prompt à IA sempre pediu para avaliar
+  // naturalidade ("would a native speaker say it this way"), mas não havia
+  // nenhum número correspondente antes disto.
+  naturalness: "Naturalidade",
 };
 
 function WritingStep({ prompt }: { prompt: string }) {

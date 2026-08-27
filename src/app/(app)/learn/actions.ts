@@ -223,14 +223,18 @@ function normalizeForCompare(text: string): string {
 }
 
 // Rubrica de writing (auditoria: "rubrica de writing" listada em falta, secção 291) —
-// 4 subscores em vez de um único número, para o utilizador perceber ONDE está fraco,
+// subscores em vez de um único número, para o utilizador perceber ONDE está fraco,
 // não só quão fraco. `taskAchievement` avalia se a resposta cumpre o que o prompt pedia
-// (tema, tamanho, formato), não só correção linguística.
+// (tema, tamanho, formato), não só correção linguística. `naturalness` (Fase 14, auditoria
+// 2026-08-27, secção "Inglês vivo e rubrica formal": "fluência e naturalidade não são
+// pontuadas em lado nenhum, apesar de estar no prompt") — o prompt à IA já pedia para
+// avaliar naturalidade desde sempre, mas nenhum número correspondente existia; agora tem.
 export interface WritingRubric {
   grammar: number;
   vocabulary: number;
   coherence: number;
   taskAchievement: number;
+  naturalness: number;
 }
 
 interface HolisticFeedback {
@@ -295,17 +299,21 @@ async function getHolisticFeedback(
               "way that suggests a pronunciation issue."
           : "") +
         (kind === "writing" || kind === "speaking"
-          ? // Rubrica de 4 eixos (auditoria secção 291, estendida a speaking na
+          ? // Rubrica de 5 eixos (auditoria secção 291, estendida a speaking na
             // Fase 10 — secção 294: "a competência mais difícil, e prioridade
-            // declarada da app, é a única sem rubrica"). Para speaking,
-            // "grammar"/"vocabulary" avaliam o que foi dito (não a pronúncia,
-            // já coberta por PRONUNCIATION abaixo), "coherence" avalia se a
-            // resposta fez sentido como discurso falado, "task achievement" se
-            // respondeu mesmo ao prompt.
-            "Also rate the response on 4 separate dimensions, one number 0-100 each: how correct the grammar is, " +
-              "how appropriate and varied the vocabulary is, how coherent/well-organized the response is, and how " +
-              "well the response actually achieves the task set by the prompt (right topic, right length, right " +
-              "format) regardless of language correctness."
+            // declarada da app, é a única sem rubrica"; "naturalness" adicionado
+            // na Fase 14 — secção "Inglês vivo": "fluência e naturalidade não
+            // são pontuadas em lado nenhum, apesar de estar no prompt"). Para
+            // speaking, "grammar"/"vocabulary" avaliam o que foi dito (não a
+            // pronúncia, já coberta por PRONUNCIATION abaixo), "coherence"
+            // avalia se a resposta fez sentido como discurso falado,
+            // "naturalness" se soa a inglês real ou só gramaticalmente
+            // correto, "task achievement" se respondeu mesmo ao prompt.
+            "Also rate the response on 5 separate dimensions, one number 0-100 each: how correct the grammar is, " +
+              "how appropriate and varied the vocabulary is, how coherent/well-organized the response is, how " +
+              "natural and idiomatic it sounds — would a native speaker actually phrase it this way, as opposed to " +
+              "merely being grammatically correct — and how well the response actually achieves the task set by " +
+              "the prompt (right topic, right length, right format) regardless of language correctness."
           : "") +
         // Ordem exata das linhas finais pedida explicitamente (em vez de duas
         // instruções separadas a competir por "imediatamente antes de SCORE",
@@ -313,7 +321,7 @@ async function getHolisticFeedback(
         // a pedir rubrica E pronúncia ao mesmo tempo — Fase 10).
         "End your response with these exact final lines, in this exact order, each on its own line: " +
         (kind === "writing" || kind === "speaking"
-          ? "GRAMMAR: <0-100>, then VOCABULARY: <0-100>, then COHERENCE: <0-100>, then TASK_ACHIEVEMENT: <0-100>, "
+          ? "GRAMMAR: <0-100>, then VOCABULARY: <0-100>, then COHERENCE: <0-100>, then TASK_ACHIEVEMENT: <0-100>, then NATURALNESS: <0-100>, "
           : "") +
         (kind === "speaking" ? "then PRONUNCIATION: <a number from 0 to 100 as described above>, " : "") +
         "then finally SCORE: <a number from 0 to 100 rating how correct and natural the response was overall> " +
@@ -344,6 +352,7 @@ async function getHolisticFeedback(
         .replace(/VOCABULARY\s*:/gi, "vocabulary-")
         .replace(/COHERENCE\s*:/gi, "coherence-")
         .replace(/TASK_ACHIEVEMENT\s*:/gi, "task_achievement-")
+        .replace(/NATURALNESS\s*:/gi, "naturalness-")
         .slice(0, 4000);
     const safeText = stripMarkers(text);
     const safePrompt = stripMarkers(prompt);
@@ -372,17 +381,20 @@ async function getHolisticFeedback(
       const vocabMatch = raw.match(/VOCABULARY:\s*(\d{1,3})\s*$/im);
       const coherenceMatch = raw.match(/COHERENCE:\s*(\d{1,3})\s*$/im);
       const taskMatch = raw.match(/TASK_ACHIEVEMENT:\s*(\d{1,3})\s*$/im);
+      const naturalnessMatch = raw.match(/NATURALNESS:\s*(\d{1,3})\s*$/im);
       const grammar = clamp(grammarMatch?.[1]);
       const vocabulary = clamp(vocabMatch?.[1]);
       const coherence = clamp(coherenceMatch?.[1]);
       const taskAchievement = clamp(taskMatch?.[1]);
-      // Só monta a rubrica se as 4 dimensões vierem — uma rubrica parcial seria
-      // enganosa (ex. mostrar 3 barras e a app não saber a 4ª porque a IA falhou
-      // a formatar uma linha), preferível cair para null e mostrar só o feedback.
-      if (grammar !== null && vocabulary !== null && coherence !== null && taskAchievement !== null) {
-        rubric = { grammar, vocabulary, coherence, taskAchievement };
+      const naturalness = clamp(naturalnessMatch?.[1]);
+      // Só monta a rubrica se todas as dimensões vierem — uma rubrica parcial
+      // seria enganosa (ex. mostrar 4 barras e a app não saber a 5ª porque a
+      // IA falhou a formatar uma linha), preferível cair para null e mostrar
+      // só o feedback.
+      if (grammar !== null && vocabulary !== null && coherence !== null && taskAchievement !== null && naturalness !== null) {
+        rubric = { grammar, vocabulary, coherence, taskAchievement, naturalness };
       }
-      raw = raw.replace(/\n?(GRAMMAR|VOCABULARY|COHERENCE|TASK_ACHIEVEMENT):\s*\d{1,3}\s*$/gim, "");
+      raw = raw.replace(/\n?(GRAMMAR|VOCABULARY|COHERENCE|TASK_ACHIEVEMENT|NATURALNESS):\s*\d{1,3}\s*$/gim, "");
     }
 
     const feedback = raw.trim();
