@@ -1403,4 +1403,186 @@ export const READING_PASSAGES: ReadingPassage[] = [
       },
     ],
   },
+  {
+    id: "my-favourite-toy",
+    title: "My Favourite Toy",
+    level: "Pre-A1",
+    text: "My favourite toy is a small brown bear. Its name is Teddy. Teddy is soft and old. I sleep with Teddy every night. My grandmother gave me Teddy when I was a baby. I don't have many toys, but Teddy is the best one.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What is the toy's name?",
+        options: ["Bear", "Teddy", "Brownie", "Softy"],
+        correctAnswer: "Teddy",
+      },
+      {
+        id: "q2",
+        prompt: "Who gave the writer Teddy?",
+        options: ["Their mother", "Their grandmother", "Their friend", "Their teacher"],
+        correctAnswer: "Their grandmother",
+      },
+      {
+        id: "q3",
+        prompt: "When does the writer sleep with Teddy?",
+        options: ["Never", "Every night", "Only on weekends", "Only in winter"],
+        correctAnswer: "Every night",
+      },
+    ],
+  },
+  {
+    id: "at-the-playground",
+    title: "At the Playground",
+    level: "Pre-A1",
+    text: "There is a playground near my house. There is a slide, two swings and a small climbing frame. I go there with my little brother after school. He likes the swings, but I like the slide. There aren't many children there in the morning, but there are lots of children in the afternoon.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What does the little brother like?",
+        options: ["The slide", "The swings", "The climbing frame", "Nothing"],
+        correctAnswer: "The swings",
+      },
+      {
+        id: "q2",
+        prompt: "When does the writer go to the playground?",
+        options: ["Before school", "After school", "At night", "On Sundays only"],
+        correctAnswer: "After school",
+      },
+      {
+        id: "q3",
+        prompt: "When are there lots of children at the playground?",
+        options: ["In the morning", "In the afternoon", "At night", "Never"],
+        correctAnswer: "In the afternoon",
+      },
+    ],
+  },
+  {
+    id: "a-rainy-day",
+    title: "A Rainy Day",
+    level: "A1",
+    text: "It's raining outside today, so we can't go to the park. My sister is drawing at the table, and my father is reading the newspaper. I am watching a film on my laptop. Our dog is sleeping next to the window. My mother is making hot chocolate for everyone. Rainy days aren't so bad when you're at home with your family.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why can't they go to the park?",
+        options: ["It's too cold", "It's raining", "It's too late", "The park is closed"],
+        correctAnswer: "It's raining",
+      },
+      {
+        id: "q2",
+        prompt: "What is the sister doing?",
+        options: ["Reading", "Drawing", "Sleeping", "Cooking"],
+        correctAnswer: "Drawing",
+      },
+      {
+        id: "q3",
+        prompt: "What is the mother making?",
+        options: ["Coffee", "Tea", "Hot chocolate", "Soup"],
+        correctAnswer: "Hot chocolate",
+      },
+    ],
+  },
+  {
+    id: "my-favourite-food",
+    title: "My Favourite Food",
+    level: "A1",
+    text: "My favourite food is pasta with tomato sauce. I eat it at least once a week. I also like chicken and rice, but I don't like fish very much. My mother makes the best pasta in the world — better than any restaurant. On my birthday, I always ask her to make it for dinner.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What is the writer's favourite food?",
+        options: ["Chicken and rice", "Pasta with tomato sauce", "Fish", "Pizza"],
+        correctAnswer: "Pasta with tomato sauce",
+      },
+      {
+        id: "q2",
+        prompt: "What food doesn't the writer like very much?",
+        options: ["Pasta", "Chicken", "Rice", "Fish"],
+        correctAnswer: "Fish",
+      },
+      {
+        id: "q3",
+        prompt: "What does the writer ask for on their birthday?",
+        options: ["Cake", "Pasta made by their mother", "A restaurant meal", "Pizza"],
+        correctAnswer: "Pasta made by their mother",
+      },
+    ],
+  },
+  {
+    id: "starting-a-new-job",
+    title: "Starting a New Job",
+    level: "A2",
+    text: "I started my new job last Monday, and it's been a busy first week. I've already met most of my colleagues, and everyone has been very friendly. On my first day, my manager showed me around the office and explained my main tasks. I haven't learned everyone's name yet, but I've written most of them down. It's a bit tiring learning so many new things at once, but I'm enjoying the challenge so far.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "When did the writer start the new job?",
+        options: ["Last Monday", "Last Friday", "Yesterday", "Next week"],
+        correctAnswer: "Last Monday",
+      },
+      {
+        id: "q2",
+        prompt: "What did the manager do on the first day?",
+        options: ["Gave a test", "Showed the writer around and explained the tasks", "Sent them home early", "Nothing"],
+        correctAnswer: "Showed the writer around and explained the tasks",
+      },
+      {
+        id: "q3",
+        prompt: "How does the writer feel about the new job?",
+        options: ["Bored", "Tired but enjoying the challenge", "Angry", "Confused and unhappy"],
+        correctAnswer: "Tired but enjoying the challenge",
+      },
+    ],
+  },
+  {
+    id: "learning-to-swim",
+    title: "Learning to Swim",
+    level: "A2",
+    text: "When I was a child, I couldn't swim at all — I was actually quite afraid of water. My parents signed me up for swimming lessons when I was eight, and after a few months, I could swim a full length of the pool. Now I can swim for an hour without stopping, and I even joined a swimming club last year. It's strange to remember how scared I used to be of something I now really enjoy.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "How did the writer feel about water as a young child?",
+        options: ["Excited", "Afraid", "Bored", "Confident"],
+        correctAnswer: "Afraid",
+      },
+      {
+        id: "q2",
+        prompt: "How old was the writer when they started swimming lessons?",
+        options: ["Six", "Seven", "Eight", "Ten"],
+        correctAnswer: "Eight",
+      },
+      {
+        id: "q3",
+        prompt: "What did the writer join last year?",
+        options: ["A swimming club", "A running club", "A dance class", "A gym"],
+        correctAnswer: "A swimming club",
+      },
+    ],
+  },
+  {
+    id: "the-importance-of-sleep",
+    title: "The Importance of Sleep",
+    level: "B1",
+    text: "Most adults are recommended to sleep between seven and nine hours a night, but many people get much less than that. Poor sleep has been linked to problems with memory, concentration and even long-term health. Simple habits, such as avoiding screens before bed and keeping a regular sleep schedule, are often suggested by doctors to improve sleep quality. It might seem tempting to stay up late finishing tasks, but a well-rested brain usually works far more efficiently the next day.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "How many hours of sleep are adults recommended to get?",
+        options: ["Four to six hours", "Seven to nine hours", "Ten to twelve hours", "Two to four hours"],
+        correctAnswer: "Seven to nine hours",
+      },
+      {
+        id: "q2",
+        prompt: "What has poor sleep been linked to?",
+        options: ["Better memory", "Problems with memory and concentration", "Faster reactions", "Nothing"],
+        correctAnswer: "Problems with memory and concentration",
+      },
+      {
+        id: "q3",
+        prompt: "What habit is suggested to improve sleep quality?",
+        options: ["Using screens before bed", "Avoiding screens before bed", "Sleeping less", "Skipping breakfast"],
+        correctAnswer: "Avoiding screens before bed",
+      },
+    ],
+  },
 ];
