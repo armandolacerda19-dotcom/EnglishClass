@@ -2,6 +2,15 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 continuada: Zero Conditional + Present Perfect vs. Past Simple (A2)
+
+Depois do 1º lote da Fase 13 (ver entrada abaixo), continuei a rever a cobertura de gramática à procura de gaps reais — não para "encher" o currículo, só onde havia mesmo uma lacuna genuína:
+
+- **Zero Conditional** (`a2-module-10-zero-conditional.json`, A2.1, logo antes de first-conditional): 1st/2nd/3rd conditional existiam desde a Fase 4/9, mas o Zero Conditional (verdades gerais e hábitos — "If you heat water, it boils") nunca foi seedado, apesar de ser tipicamente o primeiro a ser ensinado, por ser o mais simples (Presente Simples nas duas orações, sem nenhum "would"/"will").
+- **Present Perfect vs. Past Simple** (`a2-module-11-present-perfect-vs-past-simple.json`, A2.2, último módulo A2): Present Perfect (`a2-module-01-experiences.json`, "ever been to...") e Past Simple (A1) já existiam isolados, mas nunca a distinção direta entre os dois — provavelmente o ponto gramatical mais confuso para falantes de português especificamente, porque o Pretérito Perfeito Simples português ("já vi", "vi ontem") cobre os dois casos com o mesmo tempo verbal, sem a distinção que o inglês exige (Present Perfect sem data específica vs. Past Simple com data específica). Cobre `ever`/`yet`/`already` como vocabulário de apoio.
+
+Mesmo processo de verificação dos lotes anteriores: JSON validado com `ConvertFrom-Json`, ids confirmados únicos por `grep` contra todo `content/curriculum/`, `prisma/seed.ts` atualizado com import + entrada em `MODULE_FILES` na posição pedagogicamente certa. **Currículo: 33 → 35 lições.**
+
 ## 2026-08-27 — Fase 14 (Inglês autêntico), 1º lote: genre/source + 3 formatos de texto novos
 
 A auditoria (secção 5.4, Fase 14) pede: "Notícias e podcasts graduados · letras de música · clipes com legendas em 3 camadas (EN / EN+PT / sem legendas) · campo `genre`/`source` em `ReadingPassage`". Três desses quatro itens (podcasts, clipes com legendas, e notícias/letras REAIS) dependem de áudio/vídeo real — bloqueado desde a Fase 9 por ser uma decisão financeira do utilizador (TTS neural pago), e reproduzir letras de música ou notícias reais levanta um problema de direitos de autor totalmente à parte, que nunca deve ser contornado escrevendo cópias. O único item deste lote genuinamente executável a custo zero e sem risco de direitos de autor é o campo `genre`/`source` — feito.
