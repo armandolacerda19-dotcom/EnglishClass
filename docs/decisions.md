@@ -2,6 +2,20 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 9 (Áudio e Speaking): o que é possível sem custo
+
+A Fase 9 do roadmap ("Áudio real") tem, no seu núcleo, um item que **não pode ser decidido nem executado unilateralmente nesta sessão**: gerar áudio pré-produzido com um TTS neural pago (Azure/ElevenLabs, já avaliados e postos de lado em decisões anteriores por causa do pivot de custo zero pedido explicitamente pelo utilizador). Contratar/pagar um serviço externo é uma decisão financeira — fica registada aqui como bloqueada à espera de confirmação do utilizador, não como "feita" nem "esquecida".
+
+Dito isto, a auditoria (secção C) tinha 3 achados concretos que **são** resolvíveis sem sair do custo zero, porque a app já tinha os dados e a infraestrutura (Web Speech API) — só não os estava a usar corretamente. Os três foram corrigidos nesta sessão:
+
+- **Sotaque nunca respeitado pelo TTS**: `LearningProfile.englishVariant` existia desde a Fase 0, era usado no prompt do tutor, mas nunca influenciava `PlayTranscript.tsx` — toda a gente ouvia sempre a mesma voz americana. Novo `EnglishVariantContext` (Provider em `(app)/layout.tsx` e `onboarding/placement/page.tsx`, os dois sítios com `PlayTranscript` fora do fluxo principal) evita ter de alterar os 11 sítios que já usam o componente; `pickVoice()` passa a preferir `en-GB` para BRITISH e `en-US` para AMERICAN, mantendo o comportamento antigo para INTERNATIONAL ou quando o sotaque pedido não está instalado no browser do utilizador.
+- **Shadowing não pontuado de verdade**: `completeMicroChallenge` dava sempre 65 a um desafio "shadow", independentemente do que a pessoa dizia (ou não dizia) ao microfone — "ficar em silêncio dava a mesma nota". Ganhou um 3º parâmetro opcional `transcript`; quando presente, reaproveita `checkDictation` (já testado) para comparar palavra a palavra com a frase alvo e mapear a % de acerto para 30-100. Continua sem ser scoring fonético (não há áudio gravado para isso) — só deixa de ser uma constante cega.
+- **`pronunciationScore`/`fluencyScore` nunca chegavam ao ecrã**: eram calculados e gravados desde a Fase 3, mas `submitSpeaking()` só devolvia `{feedback, attemptId}` — o utilizador só via esses números dias depois, como um eixo do octógono em `/progress`, nunca junto da frase que os gerou. `submitSpeaking()` passa a devolver os dois; `SpeakingStep` mostra-os como barras, rotulado "Pronúncia (estimativa)" para manter a honestidade já documentada no código (sinal indireto via transcript, não fonética real).
+
+**O que fica genuinamente por fazer**, sem ambiguidade sobre a razão:
+- Áudio pré-produzido / voz humana real — bloqueado, decisão financeira do utilizador.
+- Progressão de listening em 5 níveis até filmes/música sem legendas, conteúdo autêntico (notícias/podcasts), fonologia de fala ligada — trabalho de conteúdo grande (Fases 13/14 do roadmap), não tocado nesta ronda.
+
 ## 2026-08-27 — Fase 8 (Blindagem): regressão crítica corrigida + endurecimento + primeiros testes
 
 Resposta direta ao achado mais grave da 2ª auditoria (`docs/AUDITORIA-2026-08-27.md`). O utilizador pediu para avançar pelo roadmap sem pausar para perguntas — esta foi a primeira prioridade (P0).
