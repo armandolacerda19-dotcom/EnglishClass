@@ -61,7 +61,10 @@ function ShadowRunner({
     setSubmitting(true);
     setSubmitError(null);
     try {
-      await completeMicroChallenge(id);
+      // Fase 9 — o transcript reconhecido é enviado para o servidor comparar
+      // com a frase alvo (ver micro-challenges/actions.ts): sem gravação, ir
+      // buscar a nota exigia dizer ALGUMA coisa reconhecível, já não é fixa.
+      await completeMicroChallenge(id, undefined, transcript ?? undefined);
       onDone();
     } catch {
       setSubmitError("Não foi possível guardar — verifique a ligação e tente novamente.");

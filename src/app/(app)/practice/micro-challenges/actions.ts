@@ -4,6 +4,7 @@ import { requireUser } from "@/lib/session";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { updateSkillScore } from "@/lib/skillProfile";
 import { getMicroChallenge } from "@/lib/microChallenges";
+import { checkDictation } from "@/lib/dictation";
 
 // Fase 8 (auditoria 2026-08-27, ACHADO CRÍTICO) — esta action aceitava
 // `pillar`/`score` DIRETAMENTE do cliente. Uma Server Action é um endpoint
@@ -15,7 +16,7 @@ import { getMicroChallenge } from "@/lib/microChallenges";
 // para "listen", o índice escolhido) — pilar e nota são SEMPRE derivados no
 // servidor a partir do desafio real (src/lib/microChallenges.ts), nunca do
 // que o cliente diz que aconteceu.
-export async function completeMicroChallenge(challengeId: string, selectedIndex?: number) {
+export async function completeMicroChallenge(challengeId: string, selectedIndex?: number, transcript?: string) {
   const user = await requireUser();
   const challenge = getMicroChallenge(challengeId);
   if (!challenge) return;
@@ -23,10 +24,17 @@ export async function completeMicroChallenge(challengeId: string, selectedIndex?
   await recordActivity(user.id, "MICRO_CHALLENGE");
 
   if (challenge.kind === "shadow") {
-    // Sem gravação real de áudio, não há forma de verificar a pronúncia — o
-    // score de participação (65) é uma constante fixa no servidor, não um
-    // valor recebido do cliente.
-    await updateSkillScore(user.id, "SPEAKING", 65);
+    // Fase 9 (auditoria 2026-08-27, achado B: "o transcript nunca é comparado
+    // com a frase alvo — ficar em silêncio dá a mesma nota"). Sem gravação
+    // real de áudio não há forma de pontuar a PRONÚNCIA, mas há forma de
+    // pontuar se a pessoa disse (aproximadamente) a frase certa: reaproveita
+    // checkDictation (já testado em src/lib/dictation.test.ts) para comparar
+    // o transcript reconhecido com `challenge.sentence`, palavra a palavra —
+    // a nota reflete agora quantas palavras bateram certo, com um mínimo de
+    // 30 para não penalizar demasiado erros normais de reconhecimento de
+    // voz (nomes próprios, ruído de fundo) que não são culpa do utilizador.
+    const score = transcript ? shadowScoreFromTranscript(transcript, challenge.sentence) : 30;
+    await updateSkillScore(user.id, "SPEAKING", score);
     return;
   }
 
@@ -35,4 +43,17 @@ export async function completeMicroChallenge(challengeId: string, selectedIndex?
   // já calculado pelo cliente.
   const correct = selectedIndex === challenge.correctIndex;
   await updateSkillScore(user.id, "LISTENING", correct ? 100 : 20);
+}
+
+// % de palavras do transcript reconhecido que batem certo com a frase alvo,
+// mapeado para 30-100 (nunca 0 — reconhecimento de voz imperfeito não deve
+// arrasar o score de quem genuinamente tentou). `checkDictation` já compara
+// palavra a palavra ignorando maiúsculas/pontuação; aqui só se aproveita o
+// `diff`, não o `isCorrect` (que exige a frase perfeita — bom demais para o
+// shadowing, onde o objetivo é praticar oralmente, não escrever com rigor).
+function shadowScoreFromTranscript(transcript: string, targetSentence: string): number {
+  const { diff } = checkDictation(transcript, targetSentence);
+  if (diff.length === 0) return 30;
+  const percentCorrect = diff.filter((w) => w.correct).length / diff.length;
+  return Math.round(30 + percentCorrect * 70);
 }
