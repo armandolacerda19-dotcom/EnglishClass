@@ -2,6 +2,47 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 8 (Blindagem): regressão crítica corrigida + endurecimento + primeiros testes
+
+Resposta direta ao achado mais grave da 2ª auditoria (`docs/AUDITORIA-2026-08-27.md`). O utilizador pediu para avançar pelo roadmap sem pausar para perguntas — esta foi a primeira prioridade (P0).
+
+### A regressão
+
+A vulnerabilidade central da 1ª auditoria — notas/certificados forjáveis a partir do browser — tinha sido corrigida a 2026-08-26 (servidor volta a corrigir a partir do `Exercise` real no Diagnóstico Semanal e na prática por tema) e **reaberta na mesma sessão**, no commit `3753fb3`, ao ligar os micro-desafios ao octógono: `completeMicroChallenge(pillar: Pillar, score: number)` era uma Server Action pública que aceitava os dois valores do cliente sem verificação nenhuma (`Pillar` é só uma anotação TypeScript, apagada em runtime). O mesmo padrão tinha sido copiado, sem se aperceber, para mais 4 rotas (`dictation`, `reading`, `daily-challenge`, `idioms`) ao longo da sessão — nenhuma delas tocada pela correção original de 2026-08-26, por serem features novas criadas depois.
+
+### A correção — verificação sempre no servidor, nunca no cliente
+
+Padrão aplicado consistentemente às 5 rotas corrigíveis: o cliente deixa de enviar "o que aconteceu" (pilar, nota, correto/incorreto) e passa a enviar só "o que a pessoa fez" (que opção escolheu, que texto escreveu) — a correção real é recalculada no servidor a partir do conteúdo:
+
+- **micro-challenges**: `completeMicroChallenge(challengeId, selectedIndex?)` — procura o desafio real em `src/lib/microChallenges.ts`, deriva o pilar do `kind` (shadow→SPEAKING, listen→LISTENING) e a nota da comparação `selectedIndex === challenge.correctIndex`.
+- **dictation**: recebe `{itemId, given}[]`, recalcula com `checkDictation` contra `content/dictation.ts`.
+- **reading**: recebe `{questionId, selected}[]`, recalcula contra `content/readingPassages.ts` (novo export `getReadingPassage`).
+- **idioms**: recebe só `selected` — `getIdiomOfTheDay()` é determinístico por data, o servidor não precisa de nenhum id para saber qual é o idioma de hoje.
+- **daily-challenge**: `recordVocabExposure` passa a comparar a tradução escolhida com o `VocabularyItem` real da BD; `completeDailyChallenge` teve uma correção mais leve e deliberada — não toca em nenhum pilar do octógono (só cria um registo de checkpoint), por isso só ganhou um clamp (`total` recalculado a partir do desafio real de hoje, `score` limitado a `[0, total]`), não uma reverificação item a item.
+- **verbs**: `completeVerbOfTheDay(knewIt: boolean)` ficou **deliberadamente inalterado**. É uma autoavaliação ("sabia esta palavra?"), não uma correção objetiva — não há forma de "verificar" se alguém sabia uma palavra sem a testar, e o mesmo padrão de confiança em booleano já é aceite noutro sítio da app (`SpeakingAttempt.confidenceSelfRating`). Diferente de um score numérico inventado.
+
+### Pilar não verificado no Diagnóstico Semanal e na prática por tema
+
+Achado relacionado, na mesma família: `gradeSubmission.ts` já corrigia respostas a partir do `Exercise` real, mas `weekly-test/actions.ts` e `topic/actions.ts` continuavam a agrupar o resultado pelo `pillar` que o CLIENTE enviava, não pelo pilar real do exercício — submeter a resposta certa de um exercício fácil de GRAMMAR rotulado como WRITING inflacionava `writingScore`. `gradeAnswersOnServer` passou a devolver também o `pillar` real de cada `Exercise`; os dois chamadores agrupam/filtram por esse valor.
+
+### Outros achados fechados nesta ronda
+
+- **Injeção via `prompt`**: `submitWriting`/`submitSpeaking` só limpavam `text` dos marcadores de controlo (`SCORE:`, etc.) — `prompt` (também um argumento de uma Server Action pública) entrava cru na chamada ao Gemini, fora do fence. Os dois passam agora pela mesma cadeia de limpeza, e ambos ficam delimitados (`<lesson_prompt>`/`<learner_response>`).
+- **Tutor**: `sessionFocus` não tinha validação nenhuma na API (só a página o gerava com segurança); `ERROR_LOGGED:` não era removido da mensagem do utilizador antes de ir para o Gemini (só o valor já parseado era limpo antes de gravar). Ambos corrigidos.
+- **`onboarding/actions.ts`**: reescrito com validação completa — enums contra allowlists, `dailyMinutes` limitado a [1,240], `profession`/`interests` com limite de tamanho, `targetDate` validada como data futura real dentro de 2 anos. Antes não validava nada, e `profession` é injetado verbatim no system prompt do tutor em todas as sessões futuras — era uma injeção persistente.
+- **Open redirect**: `safeNext` em `login/actions.ts` bloqueava `//evil.com` mas não `/\evil.com` — browsers normalizam `\` para `/` em esquemas especiais, por isso resolvia na mesma a um redirect externo. Corrigido o regex + limite de tamanho.
+- **`checkAiRateLimit` não atómico**: fazia `count()` e `create()` como duas instruções separadas, sem exclusão mútua — pedidos concorrentes liam a mesma contagem e passavam todos. Corrigido com `pg_advisory_xact_lock` (um por utilizador via hash do id, um fixo para o teto global) dentro de uma `$transaction`.
+- **IDOR na fila SRS**: `submitReview` só verificava a posse do `userErrorId` quando `itemType === "error"` — o ramo `vocabulary_item` reencaminhava um `userErrorId` não verificado para `scheduleReview`. Corrigido: só é encaminhado depois de confirmado como dono, nunca noutro caso.
+- **Error boundaries**: novo `src/app/(app)/error.tsx`; try/catch adicionado aos 10 componentes de exercício que ainda não tinham (o pior caso citado pela auditoria: uma falha de rede a meio de um Diagnóstico Semanal deixava o utilizador preso num botão desativado, sem mensagem, num teste que só se pode repetir daqui a uma semana).
+
+### Primeiros testes automáticos do projeto
+
+Prometidos na Fase 2 original (2026-08-26), nunca feitos — confirmado pela 2ª auditoria. Adicionado `vitest` + `vite-tsconfig-paths` (lê o `paths` do `tsconfig.json`, sem duplicar o mapeamento `@/*`), script `npm test`. 4 ficheiros de teste, todos sobre lógica pura (sem mockar Prisma/BD): `sm2.test.ts` (SRS), `dictation.test.ts` (correção de ditado), `certificate.test.ts` (fronteiras de classificação — `classify` foi exportada para isto), `dailyPlan.test.ts` (plano diário). **A escrever o último, o teste "nunca devolve minutos negativos" falhou contra a implementação real**: para 16-19 minutos com revisões pendentes, `dailyMinutes - 20` dava um valor negativo (revisão 10 + desafio diário 10 = 20, mais do que o total disponível nesses casos), mostrando ao utilizador um item de "-4 min" em `src/lib/plan/dailyPlan.ts`. Corrigido com `Math.max(5, ...)` no mesmo commit — prova concreta de que vale a pena escrever estes testes mesmo sem conseguir correr a suite localmente (a lógica do teste é verificada manualmente linha a linha, mas a própria escrita do teste já obriga a percorrer casos-limite que a implementação original não tinha considerado).
+
+### Verificação
+
+Sem build local (sem Node.js) nem deploy real (Netlify pausada até 2026-09-01) para validar 34 ficheiros de mudanças de segurança, foram usados 2 agentes de revisão independentes antes do commit: um a confirmar cada achado da auditoria por leitura de código antes de começar a corrigir, outro a rever cada correção depois de aplicada (assinaturas de função, chamadores atualizados, ausência de caminhos por validar). Ambos confirmaram sem problemas bloqueantes.
+
 ## 2026-08-27 — Fase 7: polimento (acessibilidade, performance, código morto)
 
 Passagem sistemática pelos 3 itens do roadmap da Fase 7 ("Acessibilidade completa · performance · limpar schema morto"). Achados e o que foi feito:
