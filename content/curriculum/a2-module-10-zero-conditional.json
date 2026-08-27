@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.1",
+  "module": {
+    "id": "mod_a2_10_zero_conditional",
+    "title": "Zero Conditional",
+    "theme": "conditionals",
+    "order": 7
+  },
+  "unit": {
+    "id": "unit_a2_10_zero_conditional",
+    "title": "General Truths and Habits",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_zero_conditional",
+    "title": "Zero Conditional",
+    "rule": "Use 'If + present simple, ... present simple' to talk about things that are always true — general facts, scientific truths, or personal habits. Both parts of the sentence stay in the present simple.",
+    "simple_explanation": "The Zero Conditional describes something that always happens under a certain condition — not a prediction about a specific future situation (that's the First Conditional), but a rule that is always true.",
+    "example": "If you heat water to 100°C, it boils. If I drink coffee at night, I don't sleep well.",
+    "example_translation": "Se aqueces a água a 100°C, ela ferve. Se bebo café à noite, não durmo bem.",
+    "common_mistake_pt": "Falantes de português tendem a misturar o Zero Conditional com o First Conditional, usando \"will\" na oração principal mesmo quando o significado é uma verdade geral ou um hábito (\"If you heat water, it will boil\" em vez de \"it boils\") — no Zero Conditional, as duas orações ficam sempre no Presente Simples, nunca com \"will\".",
+    "correction": "Nas duas orações do Zero Conditional (a condição e o resultado), use sempre o Presente Simples — nunca \"will\" — porque se está a falar de algo sempre verdadeiro, não de uma previsão sobre um caso específico no futuro.",
+    "real_world_example": "Giving instructions: \"If the light turns red, you stop the car.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_boil",
+      "headword": "boil",
+      "type": "verb",
+      "translation_pt": "ferver",
+      "definition_en": "to reach the temperature at which a liquid turns into gas",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/bɔɪl/",
+      "related_forms": ["boiling point", "boiled"],
+      "example_sentences": ["Water boils at 100°C at sea level."],
+      "difficulty": 1,
+      "tags": ["science", "cooking"]
+    },
+    {
+      "id": "vocab_a2_freeze",
+      "headword": "freeze",
+      "type": "verb",
+      "translation_pt": "congelar",
+      "definition_en": "to become solid because of very low temperature",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/friːz/",
+      "related_forms": ["frozen", "freezing"],
+      "example_sentences": ["Water freezes at 0°C."],
+      "difficulty": 1,
+      "tags": ["science"]
+    },
+    {
+      "id": "vocab_a2_turn_into",
+      "headword": "turn into",
+      "type": "phrasal_verb",
+      "translation_pt": "transformar-se em",
+      "definition_en": "to change and become something different",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/tɜːrn ˈɪntuː/",
+      "related_forms": ["turn into ice", "turn into steam"],
+      "example_sentences": ["If you heat water enough, it turns into steam."],
+      "difficulty": 2,
+      "tags": ["phrasal-verb", "science"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_zeroconditional_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_zero_conditional",
+      "prompt": "Complete: If you heat ice, it ___ (melt).",
+      "correct_answer": ["melts"],
+      "distractors": ["will melt", "melted", "is melting"],
+      "explanation": "No Zero Conditional, a oração de resultado fica no Presente Simples: \"melts\", não \"will melt\".",
+      "common_mistake_pt": "Usar \"will melt\" (como no First Conditional) é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["zero-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_zeroconditional_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_zero_conditional",
+      "prompt": "Complete: If I ___ (drink) coffee at night, I don't sleep well.",
+      "correct_answer": ["drink"],
+      "distractors": ["will drink", "drank", "am drinking"],
+      "explanation": "A oração da condição também fica no Presente Simples: \"drink\", não \"will drink\".",
+      "common_mistake_pt": "Tentar usar \"will\" na oração da condição é um erro comum, por confusão com o First Conditional.",
+      "audio_url": null,
+      "tags": ["zero-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_zeroconditional_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"freeze\" mean?",
+      "correct_answer": ["to become solid because of very low temperature"],
+      "distractors": ["to become liquid because of heat", "to become gas because of heat", "to disappear completely"],
+      "explanation": "\"Freeze\" é o oposto de \"boil\" — descreve o líquido a tornar-se sólido, não gás.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "science"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_zeroconditional_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. At what temperature does water freeze?",
+      "correct_answer": ["0°C", "zero degrees", "0 degrees"],
+      "distractors": ["100°C", "50°C", "10°C"],
+      "explanation": "No áudio, ouve-se: \"If the temperature drops to zero degrees, water freezes.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Water is a simple example of the zero conditional. If you heat water to 100 degrees, it boils. If the temperature drops to zero degrees, water freezes.",
+      "tags": ["listening", "zero-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_zeroconditional_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"If you mix blue and yellow paint, you get green. If you mix red and white, you get pink.\" What do you get if you mix blue and yellow?",
+      "correct_answer": ["green"],
+      "distractors": ["pink", "purple", "orange"],
+      "explanation": "O texto diz diretamente \"you get green\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "zero-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_zeroconditional_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_zero_conditional",
+      "prompt": "Translate to English: \"Se aqueces o gelo, ele derrete.\"",
+      "correct_answer": ["If you heat ice, it melts.", "If you heat the ice, it melts."],
+      "distractors": [],
+      "explanation": "Verdade geral: as duas orações ficam no Presente Simples — \"heat\" e \"melts\", nunca \"will melt\".",
+      "common_mistake_pt": "Traduzir para \"it will melt\" é o erro mais comum, por confusão com o First Conditional.",
+      "audio_url": null,
+      "tags": ["translation", "zero-conditional"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m10_u1_zero_conditional",
+    "title": "General Truths and Habits",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_zero_conditional",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_zero_conditional#rule" },
+      { "type": "example", "content_ref": "gc_a2_zero_conditional#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_zero_conditional#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_boil", "vocab_a2_freeze", "vocab_a2_turn_into"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_zeroconditional_001", "ex_a2_zeroconditional_002", "ex_a2_zeroconditional_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_zeroconditional_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_zeroconditional_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In natural speech, \"if you\" often links together as /ɪˈfjuː/ — the \"f\" and \"y\" sounds blend, instead of being said as two separate, clearly-divided words."
+      },
+      { "type": "speaking", "prompt": "Say 2-3 sentences about things that are always true for you — a habit, or something that always happens under a certain condition." },
+      { "type": "writing", "prompt": "Write 3 Zero Conditional sentences: one about science, one about a personal habit, and one giving an instruction." },
+      { "type": "translation", "exercise_ids": ["ex_a2_zeroconditional_translation_001"] }
+    ]
+  }
+}

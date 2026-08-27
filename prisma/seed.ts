@@ -33,6 +33,7 @@ import moduleThirdConditional from "../content/curriculum/b1-module-08-third-con
 import moduleNumbersTime from "../content/curriculum/pre-a1-module-02-numbers-time.json";
 import moduleModalsAbility from "../content/curriculum/a2-module-08-modals-ability.json";
 import modulePhrasalVerbs from "../content/curriculum/a2-module-09-phrasal-verbs.json";
+import moduleZeroConditional from "../content/curriculum/a2-module-10-zero-conditional.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -87,6 +88,7 @@ const MODULE_FILES = [
   modulePastContinuous, // A2.1
   moduleGerundsInfinitives, // A2.1
   moduleQuestionTags, // A2.1
+  moduleZeroConditional, // A2.1 — logo antes de first-conditional (0→1→2→3, mais simples primeiro), gap encontrado na Fase 13 (2026-08-27): only 1st/2nd/3rd existiam
   moduleFirstConditional,
   moduleRelativeClauses, // A2.2 — logo a seguir a first-conditional
   modulePhrasalVerbs, // A2.2 — último módulo A2, achado explícito da auditoria ("módulo de phrasal verbs" em falta), Fase 13, 2026-08-27
