@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Segundo lote: mais 10 textos de leitura (33→43)
+
+Continuação imediata do lote anterior. Mesmo critério (reforçar módulos gramaticais, variar temas, balancear níveis). **Incidente apanhado pela verificação de rotina**: o rascunho inicial deste lote incluía um texto A1 chamado "The Weekly Market" que, ao correr a verificação de ids duplicados (mesma prática obrigatória desde o incidente de duplicados no vocabulário), revelou ser quase idêntico a um texto já existente com o mesmo título e tema (mercado semanal, do primeiro lote de 20 do fecho da Fase 3). Substituído por "A Trip to the Library" antes do commit — nenhum duplicado chegou a ir para o repositório. Fica registado como lembrete: com 40+ textos já escritos, a probabilidade de reinventar sem querer um tema já usado sobe, por isso a verificação de ids/títulos deixou de ser opcional também para este conteúdo (mesmo raciocínio já aplicado ao vocabulário a partir dos 2.000+ headwords).
+
+Total agora: **43/60** textos do alvo da auditoria ("leitura graduada").
+
 ## 2026-08-27 — Mais 10 textos de leitura (leitura graduada, auditoria secção 291)
 
 Continuação da mesma sessão, depois de fechar o balanço da secção 294. "Leitura graduada (4→60 textos)" continua na lista da auditoria — este é mais um incremento, não o fecho do item (33 de um alvo de 60, ver nota de honestidade abaixo). Reforçados os níveis mais fracos: Pre-A1 tinha só 1 texto (agora 3), A1/A2/B1 receberam mais 3/2/3 respetivamente. Cada texto novo foi escolhido para reforçar um ponto gramatical de um módulo já seedado, mesmo critério usado no primeiro lote de 20 (2026-08-27, "Fase 3 fechada"): `learning-a-new-hobby`→Present Perfect, `a-visit-to-the-doctor`→should/have to, `a-difficult-decision`→Past Perfect + condicionais, `how-paper-is-recycled`→Passive Voice (tema diferente de `how-coffee-is-made`, para não repetir o mesmo assunto), `choosing-a-university-course`→modais de possibilidade (might/could), pouco usados noutro conteúdo.
