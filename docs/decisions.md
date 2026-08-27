@@ -2,6 +2,10 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — 2ª lição A2: Must/Have To/Should
+
+Continuação da fundação A2 (item #6). `content/curriculum/a2-module-02-obligation.json` — obrigação/permissão/conselho, distinção must (autoridade do falante) vs. have to (regra externa) vs. should (conselho, não obrigação). Erro PT→EN: "ter de" em português cobre must/have to sem distinção, levando a usar "must" mesmo para conselhos leves, o que soa muito mais autoritário em inglês do que pretendido.
+
 ## 2026-08-26 — Fecha a lista de 19 melhorias (pedido: "todas de uma só vez")
 
 Pedido explícito do utilizador: terminar todos os itens da lista de melhorias ainda não feitos, de uma vez. Implementado nesta ronda:

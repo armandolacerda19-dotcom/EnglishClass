@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.1",
+  "module": {
+    "id": "mod_a2_1_obligation",
+    "title": "Rules and Obligations",
+    "theme": "obligation",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_a2_1_must_have_to",
+    "title": "Must, Have To and Should",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_must_have_to_should",
+    "title": "Must, Have To and Should",
+    "rule": "\"Must\" and \"have to\" both express obligation, but \"must\" often comes from the speaker's own authority/opinion, while \"have to\" usually comes from an external rule. \"Should\" is weaker — it's advice or a recommendation, not an obligation.",
+    "simple_explanation": "Must: I (the speaker) think this is necessary. Have to: a rule or someone else says this is necessary. Should: it would be a good idea, but it's not required.",
+    "example": "You must wear a seatbelt (it's the law). I have to finish this report by Friday (my boss said so). You should drink more water (just advice).",
+    "example_translation": "Tens de usar cinto de segurança (é a lei). Tenho de acabar este relatório até sexta (o meu chefe disse). Devias beber mais água (só um conselho).",
+    "common_mistake_pt": "Em português, \"ter de\" cobre tanto \"must\" como \"have to\" sem distinção clara, e é comum falantes de português usarem \"must\" para tudo, mesmo conselhos leves — dizem \"You must drink more water\" quando querem dar um conselho simples, o que soa muito mais forte/autoritário em inglês do que pretendido.",
+    "correction": "Para conselhos leves, use \"should\", não \"must\". Guarde \"must\"/\"have to\" para obrigações reais e regras. \"Must not\" (não podes) é muito mais forte do que \"don't have to\" (não precisas, mas podes se quiseres) — não são opostos equivalentes.",
+    "real_world_example": "Num email de trabalho: \"You don't have to attend the meeting, but you should read the notes afterwards.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_must_not",
+      "headword": "must not",
+      "type": "modal_verb",
+      "translation_pt": "não pode/não deve (proibido)",
+      "definition_en": "used to say something is forbidden or strongly prohibited",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/mʌst nɒt/",
+      "related_forms": ["mustn't"],
+      "example_sentences": ["You must not park here — it's a fire exit."],
+      "difficulty": 2,
+      "tags": ["obligation", "modal-verbs"]
+    },
+    {
+      "id": "vocab_a2_dont_have_to",
+      "headword": "don't have to",
+      "type": "modal_verb",
+      "translation_pt": "não precisa de/não é obrigatório",
+      "definition_en": "used to say something is not necessary, but is still allowed",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/doʊnt hæv tuː/",
+      "related_forms": ["doesn't have to"],
+      "example_sentences": ["You don't have to bring anything, we have everything we need."],
+      "difficulty": 2,
+      "tags": ["obligation", "modal-verbs"]
+    },
+    {
+      "id": "vocab_a2_had_better",
+      "headword": "had better",
+      "type": "modal_verb",
+      "translation_pt": "é melhor (aviso)",
+      "definition_en": "a strong piece of advice, often with a warning of a bad consequence",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/hæd ˈbetər/",
+      "related_forms": ["you'd better"],
+      "example_sentences": ["You'd better hurry, or you'll miss the train."],
+      "difficulty": 3,
+      "tags": ["advice", "modal-verbs"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_obligation_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_must_have_to_should",
+      "prompt": "Complete: Employees ___ wear a uniform — it's company policy.",
+      "correct_answer": ["have to"],
+      "distractors": ["should", "would", "can"],
+      "explanation": "É uma regra externa (política da empresa), por isso \"have to\" é mais natural do que \"must\" aqui.",
+      "common_mistake_pt": "Usar \"must\" para todas as obrigações, sem distinguir regra externa de opinião pessoal.",
+      "audio_url": null,
+      "tags": ["obligation", "have-to"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_obligation_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_must_have_to_should",
+      "prompt": "Choose the correct sentence for giving light advice (not an obligation).",
+      "correct_answer": ["You should try the new restaurant downtown."],
+      "distractors": ["You must try the new restaurant downtown.", "You have to try the new restaurant downtown.", "You must not try the new restaurant downtown."],
+      "explanation": "\"Should\" é o mais adequado para um conselho leve, sem obrigação.",
+      "common_mistake_pt": "Usar \"must\" para conselhos soa demasiado autoritário em inglês.",
+      "audio_url": null,
+      "tags": ["advice", "should"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_obligation_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"don't have to\" mean?",
+      "correct_answer": ["something is not necessary, but is still allowed"],
+      "distractors": ["something is forbidden", "something is a good idea", "something happened in the past"],
+      "explanation": "\"Don't have to\" é diferente de \"must not\" — não é proibido, só não é obrigatório.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "obligation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_obligation_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker say is not necessary?",
+      "correct_answer": ["bringing your own laptop"],
+      "distractors": ["arriving on time", "wearing a badge", "signing in at reception"],
+      "explanation": "No áudio, ouve-se: \"You have to sign in at reception, but you don't have to bring your own laptop — we provide one.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "You have to sign in at reception, but you don't have to bring your own laptop — we provide one.",
+      "tags": ["listening", "obligation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_obligation_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Visitors must not touch the paintings. You don't have to whisper, but please keep your voice low. You should also turn off your phone.\" What is strictly forbidden?",
+      "correct_answer": ["touching the paintings"],
+      "distractors": ["talking normally", "keeping your phone on", "whispering"],
+      "explanation": "\"Must not\" é a única proibição real no texto — os outros são conselhos ou não-obrigações.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "obligation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_obligation_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_must_have_to_should",
+      "prompt": "Translate to English: \"Não precisas de vir, mas devias avisar-me se não vieres.\"",
+      "correct_answer": ["You don't have to come, but you should let me know if you don't."],
+      "distractors": [],
+      "explanation": "\"Não precisas\" = \"don't have to\" (não obrigatório); \"devias\" = \"should\" (conselho).",
+      "common_mistake_pt": "Traduzir ambas as partes com \"must\"/\"must not\" muda completamente o tom da frase.",
+      "audio_url": null,
+      "tags": ["translation", "obligation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m2_u1_must_have_to_should",
+    "title": "Rules and Obligations",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_must_have_to_should",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_must_have_to_should#rule" },
+      { "type": "example", "content_ref": "gc_a2_must_have_to_should#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_must_have_to_should#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_must_not", "vocab_a2_dont_have_to", "vocab_a2_had_better"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_obligation_001", "ex_a2_obligation_002", "ex_a2_obligation_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_obligation_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_obligation_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Have to\" in fast speech often sounds like \"hafta\" /ˈhæftə/, and \"got to\" becomes \"gotta\" /ˈɡɒtə/ — you'll hear these constantly in casual native speech."
+      },
+      { "type": "speaking", "prompt": "Describe 3 rules at your workplace or school using must/have to/should." },
+      { "type": "writing", "prompt": "Write 5 sentences about rules in your country, using must, have to, and should correctly." },
+      { "type": "translation", "exercise_ids": ["ex_a2_obligation_translation_001"] }
+    ]
+  }
+}

@@ -9,6 +9,7 @@ import moduleRestaurant from "../content/curriculum/a1-module-05-restaurant.json
 import modulePastSimple from "../content/curriculum/a1-module-06-past-simple.json";
 import moduleFuturePlans from "../content/curriculum/a1-module-07-future-plans.json";
 import moduleExperiences from "../content/curriculum/a2-module-01-experiences.json";
+import moduleObligation from "../content/curriculum/a2-module-02-obligation.json";
 
 const prisma = new PrismaClient();
 
@@ -25,6 +26,7 @@ const MODULE_FILES = [
   modulePastSimple,
   moduleFuturePlans,
   moduleExperiences,
+  moduleObligation,
 ];
 
 async function seedLevels() {
