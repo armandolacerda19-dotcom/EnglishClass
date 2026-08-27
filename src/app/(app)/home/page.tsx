@@ -42,7 +42,7 @@ export default async function HomePage() {
   const planNote = (learningPlan?.planJson as { note?: string } | null)?.note;
   // "Inglês de hoje" — secção 47 da auditoria: uma lista concreta de atividades
   // e minutos, não só uma frase genérica sobre o ritmo. Ver src/lib/plan/dailyPlan.ts.
-  const dailyPlan = generateDailyPlan(learningProfile.dailyMinutesTarget, dueReviews > 0);
+  const dailyPlan = generateDailyPlan(learningProfile.dailyMinutesTarget, dueReviews > 0, learningProfile.weakAreas);
 
   return (
     <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
@@ -171,7 +171,7 @@ function IntensiveHome({
   dueReviews: number;
   dailyMinutesTarget: number;
 }) {
-  const dailyPlan = generateDailyPlan(dailyMinutesTarget, dueReviews > 0);
+  const dailyPlan = generateDailyPlan(dailyMinutesTarget, dueReviews > 0, weakAreas);
   // `currentDay` nunca era incrementado em lado nenhum — ficava preso em "Day 1"
   // para sempre. Em vez de tentar manter um contador (exigiria um job agendado,
   // que a app não tem), calcula-se o dia a partir de `startDate`: dias de

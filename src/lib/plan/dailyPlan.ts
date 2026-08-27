@@ -6,17 +6,39 @@
 // LearningProfile) e é recalculada a cada visita à Home, por isso nunca fica
 // desatualizada nem precisa de schema novo.
 
+import { PILLAR_LABEL } from "@/lib/pillarDisplay";
+
 export interface DailyPlanItem {
   label: string;
   minutes: number;
   href: string;
 }
 
+// Auditoria 2026-08-27, "Top 5 ações imediatas" #4: o item dizia "Tema à
+// escolha (pilar mais fraco)" mas ligava sempre para o seletor genérico
+// /practice/topic, nunca para /practice/topic/[pillar] com o pilar real —
+// a UI prometia adaptação que não acontecia. `/practice/topic/[pillar]` só
+// aceita os 5 pilares com exercícios discretos seedados (não SPEAKING/
+// WRITING/PRONUNCIATION, que não têm banco de exercícios de escolha
+// múltipla) — por isso só se usa o primeiro `weakArea` que pertença a este
+// conjunto; sem nenhum, cai de volta no seletor genérico.
+const TOPIC_PRACTICE_PILLARS = new Set(["GRAMMAR", "VOCABULARY", "LISTENING", "READING", "TRANSLATION"]);
+
+function topicItem(minutes: number, weakestPillar: string | undefined): DailyPlanItem {
+  if (!weakestPillar) return { label: "Tema à escolha", minutes, href: "/practice/topic" };
+  const label = PILLAR_LABEL[weakestPillar] ?? weakestPillar.toLowerCase();
+  return { label: `Tema à escolha: ${label}`, minutes, href: `/practice/topic/${weakestPillar.toLowerCase()}` };
+}
+
 // Escalões alinhados com generateStandardPlan (src/lib/plan/generate.ts) —
 // "Hábito mínimo" (≤5), "Normal" (≤15), "Acelerado" (≤30), "Compromisso
 // elevado" (>30) — para os dois textos nunca se contradizerem.
-export function generateDailyPlan(dailyMinutes: number, hasDueReviews: boolean): DailyPlanItem[] {
+// `weakAreas` (opcional, retrocompatível): `LearningProfile.weakAreas`, na
+// ordem em que o octógono os calcula — o primeiro elegível para
+// /practice/topic/[pillar] é o usado.
+export function generateDailyPlan(dailyMinutes: number, hasDueReviews: boolean, weakAreas: string[] = []): DailyPlanItem[] {
   const items: DailyPlanItem[] = [];
+  const weakestPillar = weakAreas.find((p) => TOPIC_PRACTICE_PILLARS.has(p));
 
   if (dailyMinutes <= 5) {
     items.push({ label: "Micro-desafio rápido", minutes: dailyMinutes, href: "/practice/micro-challenges" });
@@ -25,7 +47,7 @@ export function generateDailyPlan(dailyMinutes: number, hasDueReviews: boolean):
 
   if (dailyMinutes <= 15) {
     if (hasDueReviews) items.push({ label: "Revisão espaçada", minutes: 5, href: "/practice/review" });
-    items.push({ label: "Tema à escolha", minutes: hasDueReviews ? dailyMinutes - 5 : dailyMinutes, href: "/practice/topic" });
+    items.push(topicItem(hasDueReviews ? dailyMinutes - 5 : dailyMinutes, weakestPillar));
     return items;
   }
 
@@ -39,11 +61,7 @@ export function generateDailyPlan(dailyMinutes: number, hasDueReviews: boolean):
     // pode ultrapassar ligeiramente `dailyMinutes` nesse caso raro, o que é
     // preferível a um número sem sentido no ecrã.
     if (hasDueReviews) items.push({ label: "Revisão espaçada", minutes: 10, href: "/practice/review" });
-    items.push({
-      label: "Tema à escolha (pilar mais fraco)",
-      minutes: Math.max(5, hasDueReviews ? dailyMinutes - 20 : dailyMinutes - 10),
-      href: "/practice/topic",
-    });
+    items.push(topicItem(Math.max(5, hasDueReviews ? dailyMinutes - 20 : dailyMinutes - 10), weakestPillar));
     items.push({ label: "Desafio Diário de vocabulário", minutes: 10, href: "/practice/daily-challenge" });
     return items;
   }
@@ -51,7 +69,7 @@ export function generateDailyPlan(dailyMinutes: number, hasDueReviews: boolean):
   // > 30 min: "Compromisso elevado" — inclui sempre speaking, o pilar mais
   // difícil de praticar sozinho e a prioridade declarada da app.
   if (hasDueReviews) items.push({ label: "Revisão espaçada", minutes: 10, href: "/practice/review" });
-  items.push({ label: "Tema à escolha (pilar mais fraco)", minutes: 15, href: "/practice/topic" });
+  items.push(topicItem(15, weakestPillar));
   items.push({ label: "Sessão de speaking com o Tutor", minutes: 15, href: "/speak" });
   const remaining = dailyMinutes - (hasDueReviews ? 40 : 30);
   if (remaining >= 15) {
