@@ -2,6 +2,22 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 (Currículo até B2), 1º lote: 3 módulos novos
+
+A auditoria pede 30→80-120 lições (~2-3 meses de trabalho, P2 — a fase de conteúdo mais longa do roadmap). Isto não cabe numa sessão; decisão deliberada de começar pelos 3 gaps mais concretos e citados explicitamente na auditoria, em vez de tentar um lote grande genérico:
+
+1. **Pre-A1 tinha só 1 módulo** (contra 14 de A1) — `pre-a1-module-02-numbers-time.json`: números, dias da semana, horas, gramática "there is/there are" (primeira vez que este módulo aparece no currículo, apesar de ser básico e muito usado).
+2. **"Módulo de phrasal verbs"** — citado textualmente como item em falta na auditoria (secção 5.4, Fase 13). `a2-module-09-phrasal-verbs.json` (A2.2, último módulo A2): turn off, look after, give up, look into, get back to — 5 phrasal verbs em vez dos 3 habituais por módulo, porque o módulo inteiro é sobre este tópico.
+3. **"Modais de capacidade"** — também citado textualmente. `a2-module-08-modals-ability.json` (A2.1, logo a seguir a obligation — must/have to → can/could/be able to, agrupando a família de modais): can/could/be able to, incluindo o erro clássico de falantes de português "I will can drive" em vez de "I will be able to drive" (\"can\" não tem forma de futuro).
+
+Processo de verificação, igual ao usado em todos os lotes de conteúdo anteriores desta sessão (sem Node.js local para correr o seed a sério):
+- Os 3 ficheiros seguem exatamente o schema de `docs/08-schema-json-conteudo.md` (confirmado por comparação lado a lado com `a1-module-01-daily-life.json` e `pre-a1-module-01-first-words.json`).
+- Validados individualmente com PowerShell `ConvertFrom-Json` antes do commit — todos passaram.
+- Ids (`module`, `unit`, `grammar_concept`, `vocabulary[].id`, `exercises[].id`, `lesson.id`) confirmados únicos por `grep` contra todo `content/curriculum/` antes de escrever os ficheiros — zero colisões.
+- `prisma/seed.ts`: 3 imports novos + 3 entradas em `MODULE_FILES`, inseridas na posição pedagogicamente certa (logo a seguir ao módulo relacionado da mesma `sublevel_code`), seguindo a convenção já documentada no comentário acima do array.
+
+**Currículo: 30 → 33 lições** (Pre-A1: 1→2, A2: 7→9). **Falta ainda, deliberadamente fora do escopo deste lote**: rebalancear A2 até aproximar de A1 (14 módulos), fonologia de fala ligada (elisão, reduções — o que a auditoria aponta como o que realmente bloqueia a compreensão de filmes), e o currículo B2 completo (B1 tem 8 módulos, B2 ainda não existe no schema como nível seedado). Isto fica para sessões futuras — é trabalho de escala, não uma correção pontual.
+
 ## 2026-08-27 — Fase 12 (Retenção): reparação de streak, "porquê", beco sem saída, renomear perfil
 
 4 itens do roadmap, todos pequenos e independentes entre si:
