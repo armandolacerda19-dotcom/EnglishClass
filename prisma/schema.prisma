@@ -157,6 +157,8 @@ model LearningProfile {
   profession          String?
   interests           String[]  @default([])
   englishVariant      EnglishVariant @default(INTERNATIONAL)
+  immersionMode       Boolean   @default(false) // esconde traduções PT nas lições — item #12 da lista de melhorias
+  accessibleReadingMode Boolean @default(false) // tipografia mais legível (espaçamento, sem itálico) — item #18
 
   // skill scores 0-100 por pilar, recalculados após assessments
   grammarScore        Int       @default(0)

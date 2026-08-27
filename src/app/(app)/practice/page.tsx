@@ -75,11 +75,26 @@ export default async function PracticePage() {
         </Card>
       </Link>
 
-      <Link href="/practice/reading" className="mb-3 block">
-        <Card className="hover:border-verdigris">
-          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Leitura</p>
+      <div className="mb-3 grid grid-cols-2 gap-3">
+        <Link href="/practice/reading">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Leitura</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Textos com perguntas</p>
+          </Card>
+        </Link>
+        <Link href="/practice/idioms">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Idioma do Dia</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Phrasal verbs, expressões</p>
+          </Card>
+        </Link>
+      </div>
+
+      <Link href="/practice/culture" className="mb-3 block">
+        <Card className="hover:border-brass">
+          <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Cultura</p>
           <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
-            Textos curtos com perguntas de compreensão
+            Small talk, registo, diferenças AmE/BrE
           </p>
         </Card>
       </Link>

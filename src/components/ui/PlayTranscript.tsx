@@ -12,6 +12,18 @@ export function PlayTranscript({ text }: { text: string }) {
   const [playing, setPlaying] = useState(false);
   const [unsupported, setUnsupported] = useState(false);
 
+  // Item #8 da lista de melhorias (listening mais natural): a voz por defeito do
+  // browser costuma ser a mais robótica das disponíveis. Preferimos explicitamente
+  // uma voz "Natural"/"Neural"/online quando o browser expõe uma (Edge e Chrome em
+  // muitos SO já trazem vozes deste tipo) — sem isso, cai na voz por defeito do
+  // browser como sempre fez.
+  function pickVoice(): SpeechSynthesisVoice | null {
+    const voices = window.speechSynthesis.getVoices().filter((v) => v.lang.startsWith("en"));
+    if (voices.length === 0) return null;
+    const preferred = voices.find((v) => /natural|neural|online/i.test(v.name));
+    return preferred ?? voices.find((v) => v.lang === "en-US") ?? voices[0]!;
+  }
+
   function play() {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
       setUnsupported(true);
@@ -21,6 +33,8 @@ export function PlayTranscript({ text }: { text: string }) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "en-US";
     utterance.rate = speed;
+    const voice = pickVoice();
+    if (voice) utterance.voice = voice;
     utterance.onstart = () => setPlaying(true);
     utterance.onend = () => setPlaying(false);
     window.speechSynthesis.speak(utterance);

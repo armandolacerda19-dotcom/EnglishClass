@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { LessonRunner } from "@/components/lesson/LessonRunner";
 
 export default async function LessonPage({ params }: { params: { id: string } }) {
-  const { user } = await requireUserWithProfile();
+  const { user, learningProfile } = await requireUserWithProfile();
 
   const lesson = await prisma.lesson.findUnique({
     where: { id: params.id },
@@ -32,6 +32,7 @@ export default async function LessonPage({ params }: { params: { id: string } })
       exercises={lesson.exercises.map((e) => e.contentJson as any)}
       vocabulary={vocabulary}
       grammarConcept={grammarConcept}
+      immersionMode={learningProfile.immersionMode}
     />
   );
 }

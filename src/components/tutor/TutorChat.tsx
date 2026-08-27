@@ -18,7 +18,13 @@ const GREETINGS: Record<TutorPersonalityKey, string> = {
   native_friend: "Heeey! What's up? How's your day going?",
 };
 
-export function TutorChat({ personality = "coach" }: { personality?: TutorPersonalityKey }) {
+export function TutorChat({
+  personality = "coach",
+  sessionFocus,
+}: {
+  personality?: TutorPersonalityKey;
+  sessionFocus?: string;
+}) {
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", text: GREETINGS[personality] },
@@ -36,7 +42,7 @@ export function TutorChat({ personality = "coach" }: { personality?: TutorPerson
     const res = await fetch("/api/ai/tutor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ conversationId, message: userMessage.text, personality }),
+      body: JSON.stringify({ conversationId, message: userMessage.text, personality, sessionFocus }),
     });
     const data = await res.json();
     setConversationId(data.conversationId);

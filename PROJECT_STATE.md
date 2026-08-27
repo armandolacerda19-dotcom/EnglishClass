@@ -2,7 +2,7 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, correção tolerante por IA para respostas de texto livre no Diagnóstico Semanal/Sheets (antes era igualdade exata, penalizava traduções válidas com fraseado diferente) — `src/lib/ai/gradeAnswer.ts`, `checkAnswer.ts`. **Este código ainda não foi validado por build real** (deploys pausados, ver aviso abaixo) — revisto com cuidado extra, mas confirmar com um build assim que possível. Antes disso: mais 5 updates (AI Tutor regista erros no SRS, Micro-Desafios alimentam o octógono, 2 micro-desafios novos, 1 texto de leitura novo, 8ª lição). Deploy `b583b7a` confirmado publicado sem erros. Ver `docs/decisions.md`.
+Última atualização: 2026-08-26, **lista de 19 melhorias fechada** (pedido explícito: "todas de uma só vez") — Modo Imersão, Leitura Facilitada, Cultura (`/practice/culture`), Idioma do Dia (`/practice/idioms`), voz mais natural no PlayTranscript, entrevista por setor, analytics básico (`AnalyticsEvent` finalmente usado), certificação interna (`/verify/[code]`, sem QR real — sem lib disponível), PWA com cache do shell estático, fundação de A2 (9ª lição). Ver `docs/decisions.md` para o que ficou honestamente por fazer (#19 comunidade, #6 A2 "completo") e porquê. **Nenhum commit desde `b583b7a` foi validado por build real** (deploys pausados, ver aviso abaixo) — revistos com cuidado extra, confirmar com um build assim que possível.
 
 ### ⚠️ Deploys da Netlify pausados até 2026-09-01 (créditos gratuitos esgotados)
 O plano Free da Netlify tem 300 créditos/mês; esgotaram-se hoje (muitos deploys triggados nesta sessão longa). Commit `3753fb3` (e todos os seguintes) ficam "Canceled" em vez de publicar — **o código está no GitHub, só não constrói**. O site continua online normalmente na última versão publicada (`b583b7a`). Reinicia automaticamente a 1 de setembro de 2026 (ciclo de faturação corre 1-31 de cada mês) — nenhuma ação necessária, os pushes acumulados publicam-se sozinhos assim que os créditos renovarem. Alternativa (não usada, quebraria o requisito de custo zero): upgrade de plano, só com autorização explícita do utilizador. **Numa sessão nova antes de 2026-09-01**: não há forma de verificar deploys ao vivo — continuar a codificar/commitar/fazer push normalmente, mas rever o código com mais cuidado (sem o build da Netlify a apanhar erros de TypeScript em tempo real) e avisar já no início da sessão que os deploys estão pausados, sem repetir esta investigação.
@@ -64,7 +64,7 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 | Decisões (log vivo) | — | `docs/decisions.md` — **atualizar sempre que uma decisão técnica mudar** |
 | Deploy | Netlify | `netlify.toml` |
 
-## 4. Conteúdo curricular seedado (8 lições)
+## 4. Conteúdo curricular seedado (9 lições — 8× A1 + 1ª de A2)
 
 | Sublevel | Módulo | Conceito de gramática | Erro PT→EN destacado |
 |---|---|---|---|
@@ -76,8 +76,11 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 | A1.2 | At the Restaurant | Pedidos educados (Can/Could) | "I want a coffee" → "Can I have a coffee, please?" |
 | A1.3 | Yesterday | Past Simple (regular/irregular) | "I go to the beach yesterday" → "I went to the beach yesterday" |
 | A1.3 | Making Plans | Futuro com "going to" | "I going to travel" → "I am going to travel" |
+| A2.1 | Life Experiences | Present Perfect (experiência) | "I visited Paris" (sem data) → "I have visited Paris" |
 
-~21 itens de vocabulário no total, distribuídos por estes módulos. Ver `content/curriculum/` para o JSON completo de cada um. Cada módulo novo alimenta automaticamente o Diagnóstico Semanal e as Sheets de tema (`/practice/topic`), que reutilizam os `Exercise` já seedados — mais conteúdo = mais variedade nesses dois sítios sem precisar de código novo.
+**Nota sobre A2**: só 1 módulo — é o início do nível, não um currículo A2 completo (isso é o item #6 da lista de melhorias, sinalizado como "fundação, não conclusão" em `docs/decisions.md`). `levels.json` já tem A2.1/A2.2/A2.3 definidos, prontos para mais módulos numa sessão futura.
+
+~24 itens de vocabulário no total, distribuídos por estes módulos. Ver `content/curriculum/` para o JSON completo de cada um. Cada módulo novo alimenta automaticamente o Diagnóstico Semanal e as Sheets de tema (`/practice/topic`), que reutilizam os `Exercise` já seedados — mais conteúdo = mais variedade nesses dois sítios sem precisar de código novo.
 
 ## 5. Variáveis de ambiente na Netlify (nomes, não os valores — ver gestor de password/Netlify para os valores reais)
 
@@ -104,7 +107,12 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
   4. ~~Inglês profissional genérico cedo~~ — feito: `interviewer`/`conversation_partner`/`native_friend` desbloqueados em `/speak` (`src/lib/ai/personalities.ts`).
   5. Expansão de vocabulário e currículo (A2+), phrasal verbs/idiomas novos (distintos dos `related_forms` já existentes, agora mostrados), listening mais natural, leitura extensiva — itens de custo mais alto, ver crítica completa na conversa de 2026-08-26 para a lista completa com custo/impacto.
 - [x] **5 updates adicionais (pedido "faça no mínimo 5 updates")**: Diagnóstico Semanal, AI Tutor multi-personalidade, collocations visíveis, 6 novas conquistas, entry points em Home/Practice. Ver `docs/decisions.md` 2026-08-26 para detalhe de cada um. Deploy `b5f6400` confirmado publicado.
-- [x] **Correção de UX pós-teste do utilizador**: feedback imediato por pergunta (não silencioso), TRANSLATION deixou de faltar nos testes (vira texto livre em vez de MC), Sheets de tema (`/practice/topic/[pillar]`, `src/lib/practiceQuestions.ts`), cor por pilar (`src/lib/pillarDisplay.ts`) nos quizzes. Ver `docs/decisions.md` para o porquê de o redesenho visual mais amplo ("cores pesadas" no fundo/hero) ter ficado por fazer nesta ronda — precisa de iteração com screenshots, não de uma mudança às cegas. **Deploy por confirmar.**
+- [x] **Correção de UX pós-teste do utilizador**: feedback imediato por pergunta (não silencioso), TRANSLATION deixou de faltar nos testes (vira texto livre em vez de MC), Sheets de tema (`/practice/topic/[pillar]`, `src/lib/practiceQuestions.ts`), cor por pilar (`src/lib/pillarDisplay.ts`) nos quizzes. Ver `docs/decisions.md` para o porquê de o redesenho visual mais amplo ("cores pesadas" no fundo/hero) ter ficado por fazer nesta ronda — precisa de iteração com screenshots, não de uma mudança às cegas.
+- [x] **Lista de 19 melhorias — fechada** (pedido explícito: "termina todas as atualizações das 19 que ainda não estão feitas... quero todas de uma só vez"). Estado final de cada item, ver tabela completa na conversa e detalhe em `docs/decisions.md`:
+  - Feitos nesta ronda final: #3 (idiomas dedicado), #8 (voz mais natural), #9 (cultura), #12 (Modo Imersão), #13 (PWA offline parcial), #14 (entrevista por setor), #16 (analytics básico), #17 (certificação sem QR real), #18 (leitura facilitada, parcial).
+  - Já feitos antes: #1 (SRS), #2/#5 (conteúdo — parcial, 9 lições), #4 (roleplay), #10 (multi-personalidade), #15 (Diagnóstico Semanal).
+  - **Genuinamente não feito, com justificação em `docs/decisions.md`**: #6 (A2 "completo" — só a fundação foi feita), #19 (comunidade — incompatível com o modelo 1:1 atual, precisaria de infraestrutura nova).
+  - #7 (writing "completo") já estava razoavelmente bom (score numérico); não recebeu trabalho extra nesta ronda por ser melhoria incremental, não gap em falta.
 
 Ver o corpo da conversa da sessão de 2026-08-26 para o pedido exato.
 

@@ -2,6 +2,34 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Fecha a lista de 19 melhorias (pedido: "todas de uma só vez")
+
+Pedido explícito do utilizador: terminar todos os itens da lista de melhorias ainda não feitos, de uma vez. Implementado nesta ronda:
+
+- **#12 Modo Imersão** — `LearningProfile.immersionMode`, toggle em `/profile/settings`, esconde traduções PT nas lições atrás de "Mostrar tradução" (`RevealPt` em `LessonRunner.tsx`).
+- **#18 Acessibilidade (parcial)** — `LearningProfile.accessibleReadingMode`, aplicado globalmente via classe `.accessible-reading` no `(app)/layout.tsx` (mais espaço entre linhas/letras, sem itálico — recomendações comuns para dislexia). Não é uma auditoria completa de acessibilidade (WCAG), é uma funcionalidade concreta.
+- **#9 Cultura e pragmática** — `/practice/culture`, 5 dicas (small talk, registo, AmE/BrE, etiqueta).
+- **#3 Phrasal verbs/idiomas dedicado** — `/practice/idioms`, "Idioma do Dia" determinístico por data, distinto dos `related_forms` já mostrados no Desafio Diário.
+- **#8 Listening mais natural (continuação)** — `PlayTranscript` passa a preferir uma voz "Natural/Neural/Online" quando o browser expõe uma, em vez de aceitar sempre a primeira voz da lista.
+- **#14 Inglês profissional por setor** — seletor de setor (tech/saúde/vendas/hotelaria) para o Interviewer em `/speak`, usa o `sessionFocus` que já existia em `buildTutorSystemPrompt` mas nunca era passado pela API.
+- **#16 Analytics de progresso (instrumentação básica)** — `src/lib/analytics.ts`, o modelo `AnalyticsEvent` existia desde a Fase 0 mas nunca era escrito; regista `lesson_completed` e `weekly_test_completed`. **Não é um dashboard** — é a base de dados a começar a ser preenchida.
+- **#17 Certificação interna** — `src/lib/certificate.ts`, emite um `Certificate` quando a média dos 8 pilares atinge "Competent" (≥65) pela primeira vez nesse nível, com página pública `/verify/[code]`. **Sem QR real**: não há biblioteca de geração de QR disponível nesta sessão (não há `npm install` no fluxo de trabalho — só o build da Netlify instala dependências); o "código" é o link de verificação em si, não uma imagem.
+- **#13 PWA offline (parcial)** — `sw.js` passa a fazer cache-first do "shell" estático (ícones, manifest) em vez de cache vazio. Deliberadamente não cacheia páginas/dados — ver comentário no ficheiro.
+- **#6 Currículo A2 (fundação, não "completo")** — `A2` adicionado a `levels.json` (A2.1/A2.2/A2.3), 1ª lição A2 seedada (`content/curriculum/a2-module-01-experiences.json`, Present Perfect para experiências de vida). **Honestidade**: um currículo A2 "completo" seria dezenas de módulos — isto é o início de A2, não a conclusão do item #6.
+
+**Não feito, com justificação**:
+- **#19 Comunidade/prática entre pares** — exigiria infraestrutura nova (multi-utilizador, moderação, provavelmente tempo real) incompatível com o modelo atual "1:1 com IA" da app. Construir um esboço vazio só para marcar como "feito" seria enganoso; fica fora desta ronda.
+- **#7 Writing com correção holística "completa"** — já melhorado nesta sessão (score numérico, `WritingAttempt.score` preenchido); uma versão "completa" implicaria feedback estruturado por categoria (gramática/vocabulário/coerência separados) em vez de texto corrido — deixado como está por ser uma melhoria incremental, não um gap em falta.
+- **#15 Testes periódicos** já estava feito (Diagnóstico Semanal).
+
+**Aviso importante que se mantém**: nenhum destes commits foi validado por build real — os créditos de deploy da Netlify esgotaram-se a meio da sessão (ver aviso no topo do `PROJECT_STATE.md`), reinicia em 2026-09-01. Todo este trabalho foi revisto com cuidado extra por não haver essa rede de segurança, mas fica por confirmar com um build assim que possível.
+
+## 2026-08-26 — Feedback de pronúncia mais específico no Speaking
+
+Item #11 da lista de melhorias (baixo custo, impacto médio). Scoring fonético avançado continua fora do scope do MVP1 (não há áudio, só o transcript da Web Speech API — ver docs/10-scope-mvp1.md), mas o transcript já é, por si só, um sinal indireto de pronúncia: quando o reconhecimento de voz "ouve" uma palavra diferente da que fazia sentido no contexto, isso é frequentemente sintoma de um som mal pronunciado, não de um erro de vocabulário genuíno. `getHolisticFeedback("speaking", ...)` em `learn/actions.ts` ganhou uma instrução extra (só para speaking) a pedir ao Gemini para tratar esses casos como pistas de pronúncia e dar uma dica concreta, com atenção aos erros mais comuns de falantes de português (som TH, consoantes finais engolidas, acentuação tónica errada).
+
+Mudança de baixo risco — só texto do system prompt, sem novos tipos/ficheiros/fluxos.
+
 ## 2026-08-26 — Correção tolerante por IA para respostas de texto livre
 
 Gap de justiça encontrado ao continuar "atualizações": no Diagnóstico Semanal e nas Sheets de tema, uma pergunta de texto livre (sobretudo TRANSLATION, desde a correção do "não aparece hipótese de traduzir") era corrigida por igualdade exata contra uma única frase de referência — uma tradução válida mas com fraseado diferente era marcada como errada. Isto contradiz o próprio motivo de ter adicionado a resposta livre.

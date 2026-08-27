@@ -18,8 +18,9 @@ export async function POST(req: NextRequest) {
     conversationId: string | null;
     message: string;
     personality?: string;
+    sessionFocus?: string;
   };
-  const { conversationId, message } = body;
+  const { conversationId, message, sessionFocus } = body;
 
   const requestedPersonality = body.personality as TutorPersonalityKey | undefined;
   const personality: TutorPersonalityKey =
@@ -38,18 +39,22 @@ export async function POST(req: NextRequest) {
 
   const history = (conversation?.messagesJson as { role: "user" | "assistant"; text: string }[]) ?? [];
 
-  const systemPrompt = buildTutorSystemPrompt(personality, {
-    cefrLevel: profile.currentLevel,
-    cefrSublevel: profile.currentSublevel,
-    goal: profile.goal,
-    profession: profile.profession,
-    englishVariant: profile.englishVariant,
-    recentErrors: recentErrors.map((e) => ({
-      errorType: e.errorType,
-      commonMistakePt: e.commonMistakePt,
-      correction: e.correction,
-    })),
-  });
+  const systemPrompt = buildTutorSystemPrompt(
+    personality,
+    {
+      cefrLevel: profile.currentLevel,
+      cefrSublevel: profile.currentSublevel,
+      goal: profile.goal,
+      profession: profile.profession,
+      englishVariant: profile.englishVariant,
+      recentErrors: recentErrors.map((e) => ({
+        errorType: e.errorType,
+        commonMistakePt: e.commonMistakePt,
+        correction: e.correction,
+      })),
+    },
+    sessionFocus
+  );
 
   let replyText: string;
   let succeeded = true;

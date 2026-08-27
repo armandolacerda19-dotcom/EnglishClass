@@ -7,6 +7,7 @@ import { recordActivity } from "@/lib/gamification/recordActivity";
 import { scheduleReview } from "@/lib/srs/schedule";
 import { updateSkillScore } from "@/lib/skillProfile";
 import { awardAchievement } from "@/lib/gamification/awardAchievement";
+import { logEvent } from "@/lib/analytics";
 
 export async function submitExerciseAnswer(exerciseId: string, given: string) {
   const user = await requireUser();
@@ -128,10 +129,11 @@ export async function submitTranslation(exerciseId: string, given: string) {
 // Chamado pelo LessonRunner quando o utilizador chega ao ecrã final da lição —
 // XP extra de conclusão, para além do XP por passo já atribuído acima, e a
 // conquista "Primeira Lição" na primeira vez.
-export async function completeLesson() {
+export async function completeLesson(lessonId: string) {
   const user = await requireUser();
   await recordActivity(user.id, "LESSON_COMPLETE");
   await awardAchievement(user.id, "first_lesson_complete");
+  await logEvent(user.id, "lesson_completed", { lessonId });
 }
 
 interface HolisticFeedback {
@@ -160,6 +162,18 @@ async function getHolisticFeedback(
         "Cover grammar, vocabulary, spelling/punctuation where relevant, coherence, register and naturalness. " +
         'Explicitly distinguish "incorrect" from "not natural / not idiomatic". Never invent a grammar rule — ' +
         "say you are not sure rather than guess. Keep the feedback under 120 words, in English, direct and encouraging. " +
+        (kind === "speaking"
+          ? // Não há scoring fonético (fora do scope, ver docs/10-scope-mvp1.md) nem
+            // áudio disponível aqui — só o transcript do reconhecimento de voz. Mas o
+            // próprio transcript já é um sinal indireto de pronúncia: uma palavra
+            // errada reconhecida onde fazia sentido outra é frequentemente sintoma
+            // de um som mal pronunciado, não de um erro de vocabulário.
+            "This text came from speech recognition, not typing — if a word looks like the wrong word was " +
+              "recognized where a similar-sounding word would make more sense in context, treat that as a likely " +
+              "pronunciation issue (not a vocabulary error) and give one specific, practical tip about the sound " +
+              "or word stress involved. Common Portuguese-speaker pronunciation issues to watch for: the TH sound " +
+              "(often becomes /t/ or /d/), word-final consonants being dropped, and wrong syllable stress. "
+          : "") +
         "End your response on its own final line with exactly: SCORE: <a number from 0 to 100 rating how correct and natural the response was>."
     );
 

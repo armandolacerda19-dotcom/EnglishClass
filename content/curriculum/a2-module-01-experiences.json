@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.1",
+  "module": {
+    "id": "mod_a2_1_experiences",
+    "title": "Life Experiences",
+    "theme": "experiences",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_a2_1_present_perfect",
+    "title": "Talking About Experiences",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_present_perfect_experience",
+    "title": "Present Perfect for Life Experiences",
+    "rule": "Use \"have/has + past participle\" to talk about experiences at an unspecified time in your life — the exact when doesn't matter, only that it happened (or hasn't).",
+    "simple_explanation": "This is different from the Past Simple: Past Simple needs a specific time (yesterday, in 2019); Present Perfect for experience deliberately does NOT give one — it's about your life up to now, as a whole.",
+    "example": "I have visited Paris twice. She has never eaten sushi. Have you ever worked abroad?",
+    "example_translation": "Já visitei Paris duas vezes. Ela nunca comeu sushi. Já alguma vez trabalhaste no estrangeiro?",
+    "common_mistake_pt": "Português não tem um tempo verbal equivalente para esta ideia específica — \"já visitei\" tanto pode ser Present Perfect como Past Simple em inglês, dependendo do contexto. Falantes de português tendem a usar sempre Past Simple (\"I visited Paris\") mesmo quando a ideia é \"alguma vez na vida\", não um momento específico, e a esquecer o particípio passado correto de verbos irregulares (\"I have eated\" em vez de \"I have eaten\").",
+    "correction": "Se há uma data ou momento específico (yesterday, last year, in 2019), use Past Simple. Se a pergunta é \"alguma vez na tua vida\", sem data nenhuma, use Present Perfect: have/has + particípio passado (go→gone, eat→eaten, see→seen).",
+    "real_world_example": "Numa entrevista de emprego: \"Have you ever managed a team before?\" — \"Yes, I've managed a team of five people at my last job.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_have_never",
+      "headword": "have never",
+      "type": "grammar_pattern",
+      "translation_pt": "nunca (na vida)",
+      "definition_en": "used with Present Perfect to say something has not happened at any point in your life",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/hæv ˈnevər/",
+      "related_forms": ["has never", "never been"],
+      "example_sentences": ["I have never been to Japan."],
+      "difficulty": 2,
+      "tags": ["present-perfect", "experience"]
+    },
+    {
+      "id": "vocab_a2_have_ever",
+      "headword": "have you ever",
+      "type": "grammar_pattern",
+      "translation_pt": "já alguma vez",
+      "definition_en": "used to ask if someone has had a particular experience at any point in their life",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/hæv juː ˈevər/",
+      "related_forms": ["has she ever", "has he ever"],
+      "example_sentences": ["Have you ever tried Thai food?"],
+      "difficulty": 2,
+      "tags": ["present-perfect", "experience"]
+    },
+    {
+      "id": "vocab_a2_so_far",
+      "headword": "so far",
+      "type": "time_expression",
+      "translation_pt": "até agora",
+      "definition_en": "up to the present moment",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/soʊ fɑːr/",
+      "related_forms": ["up to now"],
+      "example_sentences": ["So far, I have read three books this year."],
+      "difficulty": 2,
+      "tags": ["present-perfect", "time"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_present_perfect_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_present_perfect_experience",
+      "prompt": "Complete the sentence: I ___ never ___ (be) to Australia.",
+      "correct_answer": ["have, been"],
+      "distractors": ["has, been", "have, was", "did, be"],
+      "explanation": "\"I\" usa \"have\" (não \"has\"), e o particípio passado de \"be\" é \"been\".",
+      "common_mistake_pt": "Confundir o particípio passado \"been\" com o infinitivo \"be\" é muito comum.",
+      "audio_url": null,
+      "tags": ["present-perfect", "irregular-participle"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_present_perfect_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_present_perfect_experience",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["She has visited Paris three times."],
+      "distractors": ["She has visit Paris three times.", "She have visited Paris three times.", "She visited Paris three times ago."],
+      "explanation": "\"She\" usa \"has\" + particípio passado (\"visited\") — sem data específica, é experiência de vida.",
+      "common_mistake_pt": "Usar \"have\" em vez de \"has\" com a 3ª pessoa do singular é o erro mais comum.",
+      "audio_url": null,
+      "tags": ["present-perfect", "3rd-person"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_experiences_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"have you ever\" mean?",
+      "correct_answer": ["to ask if someone has had a particular experience at any point in their life"],
+      "distractors": ["to ask what someone did yesterday", "to ask about someone's future plans", "to ask for permission"],
+      "explanation": "\"Have you ever...?\" pergunta sobre experiência de vida, sem data específica.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "present-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_experiences_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What has Carla never done?",
+      "correct_answer": ["ridden a horse"],
+      "distractors": ["visited Italy", "eaten sushi", "learned to swim"],
+      "explanation": "No áudio, ouve-se: \"Carla has travelled a lot, but she has never ridden a horse.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Carla has travelled a lot, but she has never ridden a horse.",
+      "tags": ["listening", "present-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_experiences_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Marco has lived in three different countries. So far, he has learned two new languages and made friends all over the world.\" How many languages has Marco learned so far?",
+      "correct_answer": ["two", "2"],
+      "distractors": ["three", "one", "none"],
+      "explanation": "O texto diz diretamente \"he has learned two new languages\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "present-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_experiences_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_present_perfect_experience",
+      "prompt": "Translate to English: \"Já alguma vez trabalhaste no estrangeiro?\"",
+      "correct_answer": ["Have you ever worked abroad?"],
+      "distractors": [],
+      "explanation": "\"Já alguma vez...?\" sem data específica corresponde a Present Perfect: \"Have you ever...?\".",
+      "common_mistake_pt": "Traduzir diretamente com Past Simple (\"Did you work abroad?\") perde a nuance de \"alguma vez na vida\".",
+      "audio_url": null,
+      "tags": ["translation", "present-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m1_u1_present_perfect_experience",
+    "title": "Life Experiences",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_present_perfect_experience",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_present_perfect_experience#rule" },
+      { "type": "example", "content_ref": "gc_a2_present_perfect_experience#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_present_perfect_experience#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_have_never", "vocab_a2_have_ever", "vocab_a2_so_far"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_present_perfect_001", "ex_a2_present_perfect_002", "ex_a2_experiences_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_experiences_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_experiences_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Have\" in fast, natural speech is often reduced to /əv/ or even just /v/ — \"I've been\", \"She's visited\" — listen for this contracted form, you will hear it constantly from native speakers."
+      },
+      { "type": "speaking", "prompt": "Talk about 3 things you have never done, using \"I have never...\"." },
+      { "type": "writing", "prompt": "Write 5 sentences about your life experiences using the Present Perfect (have you visited, tried, learned...)." },
+      { "type": "translation", "exercise_ids": ["ex_a2_experiences_translation_001"] }
+    ]
+  }
+}

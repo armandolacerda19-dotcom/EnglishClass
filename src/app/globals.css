@@ -23,6 +23,25 @@ body {
   outline-offset: 2px;
 }
 
+/* Leitura facilitada — item #18 (acessibilidade). Recomendações comuns para
+   dislexia/baixa visão: mais espaço entre linhas e letras, sem itálico
+   (itálico é notoriamente difícil de ler para muitos utilizadores disléxicos). */
+.accessible-reading {
+  letter-spacing: 0.02em;
+}
+
+.accessible-reading p,
+.accessible-reading li {
+  line-height: 1.9;
+}
+
+.accessible-reading em,
+.accessible-reading .italic {
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

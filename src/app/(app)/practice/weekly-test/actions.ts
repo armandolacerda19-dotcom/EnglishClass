@@ -6,6 +6,8 @@ import type { Pillar } from "@prisma/client";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { awardAchievement } from "@/lib/gamification/awardAchievement";
 import { updateSkillScore } from "@/lib/skillProfile";
+import { logEvent } from "@/lib/analytics";
+import { maybeIssueCertificate } from "@/lib/certificate";
 
 export interface WeeklyTestAnswer {
   exerciseId: string;
@@ -17,6 +19,7 @@ export interface WeeklyTestResult {
   overallScore: number;
   breakdown: { pillar: Pillar; correct: number; total: number }[];
   weakAreas: string[];
+  newCertificateCode: string | null;
 }
 
 // Fecha o Diagnóstico Semanal: agrega a correção já feita pergunta a pergunta
@@ -55,6 +58,9 @@ export async function submitWeeklyTest(answers: WeeklyTestAnswer[]): Promise<Wee
 
   await recordActivity(user.id, "WEEKLY_TEST");
   await awardAchievement(user.id, "first_weekly_test");
+  await logEvent(user.id, "weekly_test_completed", { overallScore });
+  const certificate = await maybeIssueCertificate(user.id);
+  if (certificate) await awardAchievement(user.id, "first_certificate");
 
   const updatedProfile = await prisma.learningProfile.findUnique({ where: { userId: user.id } });
 
@@ -62,5 +68,6 @@ export async function submitWeeklyTest(answers: WeeklyTestAnswer[]): Promise<Wee
     overallScore,
     breakdown,
     weakAreas: updatedProfile?.weakAreas.map((p) => p.toLowerCase()) ?? [],
+    newCertificateCode: certificate?.verificationCode ?? null,
   };
 }

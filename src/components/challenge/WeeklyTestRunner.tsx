@@ -108,6 +108,20 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
           </Card>
         )}
 
+        {result.newCertificateCode && (
+          <Card className="mb-4 border-brass">
+            <p className="mb-2 font-mono text-xs uppercase tracking-wide text-brass">Novo certificado!</p>
+            <p className="mb-2 text-sm">Atingiu pontuação suficiente em todos os pilares para um certificado de nível.</p>
+            <Link
+              href={`/verify/${result.newCertificateCode}`}
+              target="_blank"
+              className="text-sm text-brass underline"
+            >
+              Ver certificado
+            </Link>
+          </Card>
+        )}
+
         <Link href="/progress">
           <Button>Ver progresso</Button>
         </Link>

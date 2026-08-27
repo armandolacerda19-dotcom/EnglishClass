@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { requireUserWithProfile } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { Card } from "@/components/ui/Card";
@@ -19,16 +20,19 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_weekly_test: "DIAG",
   first_reading_passage: "LER",
   first_tutor_conversation: "TUTOR",
+  first_idiom: "IDIOM",
+  first_certificate: "CERT",
 };
 
 export default async function ProgressPage() {
   const { user, learningProfile } = await requireUserWithProfile();
 
-  const [exerciseAttempts, resolvedErrors, achievements, checkpoints] = await Promise.all([
+  const [exerciseAttempts, resolvedErrors, achievements, checkpoints, certificates] = await Promise.all([
     prisma.exerciseAttempt.count({ where: { userId: user.id } }),
     prisma.userError.count({ where: { userId: user.id, resolvedAt: { not: null } } }),
     prisma.userAchievement.findMany({ where: { userId: user.id }, include: { achievement: true }, orderBy: { earnedAt: "desc" } }),
     getCheckpointSummary(user.id),
+    prisma.certificate.findMany({ where: { userId: user.id }, orderBy: { issuedAt: "desc" } }),
   ]);
 
   const skillProfile = {
@@ -81,6 +85,27 @@ export default async function ProgressPage() {
           <p className="text-xs text-inkNeutral/60 dark:text-linen/60">erros já corrigidos</p>
         </Card>
       </div>
+
+      {certificates.length > 0 && (
+        <Card className="mt-4">
+          <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brass">Certificados</p>
+          <div className="flex flex-col gap-2">
+            {certificates.map((c) => (
+              <Link
+                key={c.id}
+                href={`/verify/${c.verificationCode}`}
+                target="_blank"
+                className="flex items-center justify-between rounded-control border border-ink/10 p-3 text-sm hover:border-brass dark:border-linen/10"
+              >
+                <span>
+                  {c.cefr.replace("_", "-")} · {c.classification}
+                </span>
+                <span className="font-mono text-xs text-brass">ver →</span>
+              </Link>
+            ))}
+          </div>
+        </Card>
+      )}
 
       {achievements.length > 0 && (
         <Card className="mt-4">

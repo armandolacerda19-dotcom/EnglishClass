@@ -8,6 +8,7 @@ import moduleComparatives from "../content/curriculum/a1-module-04-comparatives.
 import moduleRestaurant from "../content/curriculum/a1-module-05-restaurant.json";
 import modulePastSimple from "../content/curriculum/a1-module-06-past-simple.json";
 import moduleFuturePlans from "../content/curriculum/a1-module-07-future-plans.json";
+import moduleExperiences from "../content/curriculum/a2-module-01-experiences.json";
 
 const prisma = new PrismaClient();
 
@@ -23,6 +24,7 @@ const MODULE_FILES = [
   moduleRestaurant,
   modulePastSimple,
   moduleFuturePlans,
+  moduleExperiences,
 ];
 
 async function seedLevels() {
@@ -233,6 +235,16 @@ const ACHIEVEMENTS = [
     code: "first_tutor_conversation",
     title: "Primeira Conversa",
     description: "Trocou a primeira mensagem com o AI Tutor.",
+  },
+  {
+    code: "first_idiom",
+    title: "Primeiro Idioma",
+    description: "Aprendeu o seu primeiro idioma/phrasal verb do dia.",
+  },
+  {
+    code: "first_certificate",
+    title: "Primeiro Certificado",
+    description: "Atingiu pontuação suficiente em todos os pilares para receber um certificado de nível.",
   },
 ];
 

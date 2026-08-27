@@ -63,9 +63,28 @@ interface LessonRunnerProps {
   exercises: ExerciseContent[];
   vocabulary: VocabularyItem[];
   grammarConcept: GrammarConcept | null;
+  immersionMode: boolean;
 }
 
-export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept }: LessonRunnerProps) {
+// Modo Imersão (#12 da lista de melhorias) — esconde a tradução PT atrás de um
+// botão de revelar, em vez de a mostrar sempre. Ligado/desligado em
+// /profile/settings, persistido em LearningProfile.immersionMode.
+function RevealPt({ text, immersionMode, className = "" }: { text: string; immersionMode: boolean; className?: string }) {
+  const [revealed, setRevealed] = useState(false);
+  if (!immersionMode) return <p className={className}>{text}</p>;
+  if (revealed) return <p className={className}>{text}</p>;
+  return (
+    <button
+      type="button"
+      onClick={() => setRevealed(true)}
+      className="text-xs font-mono uppercase tracking-wide text-verdigris underline"
+    >
+      Mostrar tradução
+    </button>
+  );
+}
+
+export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept, immersionMode }: LessonRunnerProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const isLast = stepIndex === lesson.steps.length - 1;
   const done = stepIndex >= lesson.steps.length;
@@ -89,7 +108,7 @@ export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept }: 
       </div>
 
       {done ? (
-        <LessonComplete />
+        <LessonComplete lessonId={lesson.id} />
       ) : (
         <div className="flex flex-col gap-4">
           {step.type === "rule" && grammarConcept && (
@@ -105,7 +124,13 @@ export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept }: 
             <Card>
               <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Exemplo</p>
               <p className="text-sm">{grammarConcept.example}</p>
-              <p className="mt-1 text-sm italic text-inkNeutral/70 dark:text-linen/70">{grammarConcept.exampleTranslation}</p>
+              <div className="mt-1">
+                <RevealPt
+                  text={grammarConcept.exampleTranslation}
+                  immersionMode={immersionMode}
+                  className="text-sm italic text-inkNeutral/70 dark:text-linen/70"
+                />
+              </div>
             </Card>
           )}
 
@@ -120,9 +145,17 @@ export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept }: 
                 {vocabulary.map((v) => (
                   <li key={v.id}>
                     <p className="font-display text-base">{v.headword}</p>
-                    <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
-                      {v.translationPt} — {v.definitionEn}
-                    </p>
+                    {immersionMode ? (
+                      <RevealPt
+                        text={`${v.translationPt} — ${v.definitionEn}`}
+                        immersionMode
+                        className="text-sm text-inkNeutral/70 dark:text-linen/70"
+                      />
+                    ) : (
+                      <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
+                        {v.translationPt} — {v.definitionEn}
+                      </p>
+                    )}
                     {v.exampleSentences[0] && <p className="text-sm italic">"{v.exampleSentences[0]}"</p>}
                   </li>
                 ))}
@@ -277,10 +310,10 @@ function TranslationStep({ exercise }: { exercise: ExerciseContent }) {
   );
 }
 
-function LessonComplete() {
+function LessonComplete({ lessonId }: { lessonId: string }) {
   useEffect(() => {
-    completeLesson();
-  }, []);
+    completeLesson(lessonId);
+  }, [lessonId]);
 
   return (
     <div className="flex flex-col items-center gap-4 py-12 text-center">
