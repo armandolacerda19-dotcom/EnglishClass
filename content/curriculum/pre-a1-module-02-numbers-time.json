@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "Pre-A1",
+  "module": {
+    "id": "mod_prea1_2_numbers_time",
+    "title": "Numbers and Time",
+    "theme": "basics",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_prea1_2_numbers_time",
+    "title": "Counting and Telling the Time",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_prea1_there_is_are",
+    "title": "There is / There are",
+    "rule": "Use 'there is' with a singular or uncountable noun, and 'there are' with a plural noun, to say that something exists or is present.",
+    "simple_explanation": "\"There is/are\" says what exists in a place — a room, a bag, a city. The verb changes depending on whether you are talking about one thing or many things.",
+    "example": "There is one chair. There are three books on the table.",
+    "example_translation": "Há uma cadeira. Há três livros na mesa.",
+    "common_mistake_pt": "Em português, \"há\" nunca muda de forma, quer se fale de uma coisa ou de muitas (\"há um livro\" / \"há três livros\") — isso leva a usar sempre \"there is\", mesmo com plural, dizendo \"there is three books\" em vez de \"there are three books\".",
+    "correction": "Use \"there are\" sempre que o substantivo a seguir estiver no plural — mesmo que em português a palavra \"há\" nunca mude de forma.",
+    "real_world_example": "Describing a room: \"There are four chairs and there is one table.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_prea1_how_many",
+      "headword": "how many",
+      "type": "expression",
+      "translation_pt": "quantos/quantas",
+      "definition_en": "used to ask about the number of countable things",
+      "cefr_level": "PRE_A1",
+      "audio_url": null,
+      "ipa": "/haʊ ˈmɛni/",
+      "related_forms": ["how much"],
+      "example_sentences": ["How many books are there on the table?"],
+      "difficulty": 1,
+      "tags": ["question", "numbers"]
+    },
+    {
+      "id": "vocab_prea1_oclock",
+      "headword": "o'clock",
+      "type": "expression",
+      "translation_pt": "em ponto",
+      "definition_en": "used after a number to say the exact hour",
+      "cefr_level": "PRE_A1",
+      "audio_url": null,
+      "ipa": "/əˈklɒk/",
+      "related_forms": ["What time is it?", "It's ... o'clock"],
+      "example_sentences": ["It's three o'clock."],
+      "difficulty": 1,
+      "tags": ["time"]
+    },
+    {
+      "id": "vocab_prea1_days_of_week",
+      "headword": "Monday",
+      "type": "noun",
+      "translation_pt": "segunda-feira",
+      "definition_en": "the first day of the working week",
+      "cefr_level": "PRE_A1",
+      "audio_url": null,
+      "ipa": "/ˈmʌndeɪ/",
+      "related_forms": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "example_sentences": ["I have my English class on Monday."],
+      "difficulty": 1,
+      "tags": ["days", "time"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_prea1_thereis_001",
+      "cefr_level": "PRE_A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_prea1_there_is_are",
+      "prompt": "Complete: ___ one apple on the table.",
+      "correct_answer": ["There is"],
+      "distractors": ["There are", "There is a", "Is there"],
+      "explanation": "\"Apple\" está no singular, por isso usa-se \"there is\".",
+      "common_mistake_pt": "Alguns alunos tentam usar \"is there\" (forma de pergunta) numa frase afirmativa.",
+      "audio_url": null,
+      "tags": ["there-is-are"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_thereis_002",
+      "cefr_level": "PRE_A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_prea1_there_is_are",
+      "prompt": "Complete: ___ five students in the class.",
+      "correct_answer": ["There are"],
+      "distractors": ["There is", "Is there", "There have"],
+      "explanation": "\"Students\" está no plural, por isso usa-se \"there are\".",
+      "common_mistake_pt": "Erro comum: usar \"there is\" com um substantivo no plural, por transferência do português \"há\", que nunca muda de forma.",
+      "audio_url": null,
+      "tags": ["there-is-are"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_vocab_002",
+      "cefr_level": "PRE_A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What do you say to ask about the number of things?",
+      "correct_answer": ["how many"],
+      "distractors": ["how much", "what time", "how are you"],
+      "explanation": "\"How many\" é usado com substantivos contáveis (books, students); \"how much\" é usado com incontáveis (water, money).",
+      "common_mistake_pt": "Confundir \"how many\" com \"how much\" é muito comum entre iniciantes.",
+      "audio_url": null,
+      "tags": ["vocabulary", "numbers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_listening_002",
+      "cefr_level": "PRE_A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. How many chairs are there in the room?",
+      "correct_answer": ["four", "4"],
+      "distractors": ["two", "three", "five"],
+      "explanation": "No áudio, ouve-se: \"There are four chairs and one table in the room.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "There are four chairs and one table in the room.",
+      "tags": ["listening", "numbers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_reading_002",
+      "cefr_level": "PRE_A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"My English class is on Monday and Wednesday, at seven o'clock.\" What time is the class?",
+      "correct_answer": ["seven o'clock", "7 o'clock", "seven"],
+      "distractors": ["six o'clock", "eight o'clock", "nine o'clock"],
+      "explanation": "O texto diz diretamente \"at seven o'clock\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "time"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_prea1_translation_002",
+      "cefr_level": "PRE_A1",
+      "pillar": "translation",
+      "concept_ref": "gc_prea1_there_is_are",
+      "prompt": "Translate to English: \"Há três cadeiras e uma mesa na sala.\"",
+      "correct_answer": ["There are three chairs and one table in the room.", "There are three chairs and a table in the room."],
+      "distractors": [],
+      "explanation": "\"Cadeiras\" está no plural, por isso pede \"there are\"; \"mesa\" está no singular (\"one table\"/\"a table\") mas junta-se à mesma frase com \"and\".",
+      "common_mistake_pt": "Usar \"there is\" para a frase inteira, ignorando que \"cadeiras\" está no plural, é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "there-is-are"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_prea1_m2_u1_numbers_time",
+    "title": "Numbers and Time",
+    "cefr_level": "PRE_A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_prea1_there_is_are",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_prea1_there_is_are#rule" },
+      { "type": "example", "content_ref": "gc_prea1_there_is_are#example" },
+      { "type": "common_mistake", "content_ref": "gc_prea1_there_is_are#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_prea1_how_many", "vocab_prea1_oclock", "vocab_prea1_days_of_week"] },
+      { "type": "exercise", "exercise_ids": ["ex_prea1_thereis_001", "ex_prea1_thereis_002", "ex_prea1_vocab_002"] },
+      { "type": "listening", "exercise_ids": ["ex_prea1_listening_002"] },
+      { "type": "reading", "exercise_ids": ["ex_prea1_reading_002"] },
+      {
+        "type": "pronunciation",
+        "content": "Practise linking numbers to \"o'clock\" smoothly: \"three o'clock\" /θriː əˈklɒk/ is said as one flowing phrase, not two separate words with a pause."
+      },
+      { "type": "speaking", "prompt": "Describe your room: say how many chairs, tables and windows there are, using \"there is/are\"." },
+      { "type": "writing", "prompt": "Write 3 sentences about your weekly schedule: what day and what time your English class (or work) is." },
+      { "type": "translation", "exercise_ids": ["ex_prea1_translation_002"] }
+    ]
+  }
+}

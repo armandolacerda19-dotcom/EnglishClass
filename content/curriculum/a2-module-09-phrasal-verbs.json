@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.2",
+  "module": {
+    "id": "mod_a2_9_phrasal_verbs",
+    "title": "Everyday Phrasal Verbs",
+    "theme": "phrasal-verbs",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_a2_9_phrasal_verbs",
+    "title": "Phrasal Verbs for Everyday Life",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_phrasal_verbs",
+    "title": "Phrasal Verbs: Verb + Particle",
+    "rule": "A phrasal verb is a verb combined with a particle (a preposition or adverb like up, off, into, after) whose meaning is often different from the individual words. Some are separable — the object can go between the verb and the particle — and some are inseparable — the object must go after the particle.",
+    "simple_explanation": "English uses phrasal verbs constantly in everyday speech — \"turn off\", \"give up\", \"look after\" — and their meaning usually can't be guessed just from the verb alone, so each one has to be learned as its own unit.",
+    "example": "Can you turn off the light? / Can you turn the light off? I look after my little brother on Saturdays.",
+    "example_translation": "Podes desligar a luz? Eu tomo conta do meu irmão mais novo aos sábados.",
+    "common_mistake_pt": "Como o português normalmente usa um único verbo onde o inglês usa verbo+partícula (\"desligar\" = \"turn off\", \"tomar conta de\" = \"look after\"), falantes de português tendem a esquecer a partícula por completo — dizer só \"turn\" em vez de \"turn off\" — o que muda completamente o significado da frase.",
+    "correction": "Aprenda cada phrasal verb como uma única unidade de vocabulário, não como duas palavras separadas — a partícula não é opcional, faz parte do significado.",
+    "real_world_example": "At work: \"I need to look into this problem and get back to you by Friday.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_turn_off",
+      "headword": "turn off",
+      "type": "phrasal_verb",
+      "translation_pt": "desligar",
+      "definition_en": "to stop a machine, light or device from working",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/tɜːrn ɒf/",
+      "related_forms": ["turn on"],
+      "example_sentences": ["Please turn off the TV before you go to bed."],
+      "difficulty": 1,
+      "tags": ["phrasal-verb", "separable"]
+    },
+    {
+      "id": "vocab_a2_look_after",
+      "headword": "look after",
+      "type": "phrasal_verb",
+      "translation_pt": "tomar conta de",
+      "definition_en": "to take care of someone or something",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/lʊk ˈæftər/",
+      "related_forms": ["take care of"],
+      "example_sentences": ["My grandmother looks after the kids on Fridays."],
+      "difficulty": 2,
+      "tags": ["phrasal-verb", "inseparable"]
+    },
+    {
+      "id": "vocab_a2_give_up",
+      "headword": "give up",
+      "type": "phrasal_verb",
+      "translation_pt": "desistir",
+      "definition_en": "to stop trying to do something",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/gɪv ʌp/",
+      "related_forms": ["give up on"],
+      "example_sentences": ["Don't give up — you're almost finished."],
+      "difficulty": 2,
+      "tags": ["phrasal-verb", "separable"]
+    },
+    {
+      "id": "vocab_a2_look_into",
+      "headword": "look into",
+      "type": "phrasal_verb",
+      "translation_pt": "investigar",
+      "definition_en": "to examine or investigate a problem",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/lʊk ˈɪntuː/",
+      "related_forms": ["look into it"],
+      "example_sentences": ["The manager promised to look into the complaint."],
+      "difficulty": 2,
+      "tags": ["phrasal-verb", "inseparable"]
+    },
+    {
+      "id": "vocab_a2_get_back_to",
+      "headword": "get back to",
+      "type": "phrasal_verb",
+      "translation_pt": "responder mais tarde a",
+      "definition_en": "to contact someone again later, especially to answer a question",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/gɛt bæk tuː/",
+      "related_forms": ["get back to someone"],
+      "example_sentences": ["I'll get back to you by email tomorrow."],
+      "difficulty": 2,
+      "tags": ["phrasal-verb", "inseparable", "work"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_phrasalverb_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_phrasal_verbs",
+      "prompt": "Complete: Can you ___ the light? It's too bright.",
+      "correct_answer": ["turn off"],
+      "distractors": ["turn on", "turn up", "turn into"],
+      "explanation": "\"Turn off\" significa desligar; \"turn on\" seria o oposto.",
+      "common_mistake_pt": "Confundir \"turn off\" com \"turn on\" é comum entre iniciantes.",
+      "audio_url": null,
+      "tags": ["phrasal-verb"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_phrasalverb_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_phrasal_verbs",
+      "prompt": "Complete: I need to ___ my little sister this weekend.",
+      "correct_answer": ["look after"],
+      "distractors": ["look into", "look for", "look at"],
+      "explanation": "\"Look after\" significa tomar conta de alguém.",
+      "common_mistake_pt": "Confundir \"look after\" (tomar conta) com \"look for\" (procurar) é um erro muito comum.",
+      "audio_url": null,
+      "tags": ["phrasal-verb"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_phrasalverb_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"give up\" mean?",
+      "correct_answer": ["to stop trying to do something"],
+      "distractors": ["to start something new", "to succeed at something", "to help someone"],
+      "explanation": "\"Give up\" implica parar de tentar, geralmente antes de terminar.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "phrasal-verb"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_phrasalverb_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What will the manager do?",
+      "correct_answer": ["look into the complaint", "look into it"],
+      "distractors": ["ignore the complaint", "give up", "turn off the phone"],
+      "explanation": "No áudio, ouve-se: \"I promise I'll look into it and get back to you by Friday.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Thank you for your complaint. I promise I'll look into it and get back to you by Friday.",
+      "tags": ["listening", "phrasal-verb"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_phrasalverb_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Maria almost gave up on her English course, but her teacher told her not to give up. Now she looks after her own study plan every week.\" What did Maria almost do?",
+      "correct_answer": ["give up on her English course", "give up"],
+      "distractors": ["look after her study plan", "turn off her computer", "get back to her teacher"],
+      "explanation": "O texto diz diretamente \"Maria almost gave up on her English course\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "phrasal-verb"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_phrasalverb_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_phrasal_verbs",
+      "prompt": "Translate to English: \"Não desistas — vou investigar o problema e responder-te amanhã.\"",
+      "correct_answer": ["Don't give up — I'll look into the problem and get back to you tomorrow."],
+      "distractors": [],
+      "explanation": "\"Desistir\" = \"give up\", \"investigar\" = \"look into\", \"responder mais tarde\" = \"get back to\" — três phrasal verbs na mesma frase.",
+      "common_mistake_pt": "Traduzir \"investigar\" ou \"responder\" com um único verbo em vez do phrasal verb correto é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "phrasal-verb"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m9_u1_phrasal_verbs",
+    "title": "Everyday Phrasal Verbs",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_phrasal_verbs",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_phrasal_verbs#rule" },
+      { "type": "example", "content_ref": "gc_a2_phrasal_verbs#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_phrasal_verbs#common_mistake_pt" },
+      {
+        "type": "vocabulary",
+        "vocabulary_ids": ["vocab_a2_turn_off", "vocab_a2_look_after", "vocab_a2_give_up", "vocab_a2_look_into", "vocab_a2_get_back_to"]
+      },
+      { "type": "exercise", "exercise_ids": ["ex_a2_phrasalverb_001", "ex_a2_phrasalverb_002", "ex_a2_phrasalverb_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_phrasalverb_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_phrasalverb_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In separable phrasal verbs like \"turn off\", when the particle comes at the end of the sentence (\"turn it off\"), it usually carries extra stress — /tɜːrn ɪt ˈɒf/ — because it's the word that carries the real meaning."
+      },
+      { "type": "speaking", "prompt": "Talk about something you almost gave up on, and who looks after you (or who you look after)." },
+      { "type": "writing", "prompt": "Write 4 sentences, each using one of the phrasal verbs from this lesson: turn off, look after, give up, look into, get back to (pick 4)." },
+      { "type": "translation", "exercise_ids": ["ex_a2_phrasalverb_translation_001"] }
+    ]
+  }
+}

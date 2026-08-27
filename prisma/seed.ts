@@ -30,6 +30,9 @@ import moduleFutureContinuous from "../content/curriculum/b1-module-05-future-co
 import moduleUsedTo from "../content/curriculum/b1-module-06-used-to.json";
 import moduleModalsDeduction from "../content/curriculum/b1-module-07-modals-deduction.json";
 import moduleThirdConditional from "../content/curriculum/b1-module-08-third-conditional.json";
+import moduleNumbersTime from "../content/curriculum/pre-a1-module-02-numbers-time.json";
+import moduleModalsAbility from "../content/curriculum/a2-module-08-modals-ability.json";
+import modulePhrasalVerbs from "../content/curriculum/a2-module-09-phrasal-verbs.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -63,6 +66,7 @@ const prisma = new PrismaClient();
 // certo, e não todos amontoados no fim.
 const MODULE_FILES = [
   moduleFirstWords,
+  moduleNumbersTime, // Pre-A1 — reforço de densidade (auditoria 2026-08-27, Fase 13: Pre-A1 tinha só 1 módulo)
   moduleDailyLife,
   moduleAboutMe,
   modulePresentContinuous, // A1.1 — depois de about-me
@@ -79,11 +83,13 @@ const MODULE_FILES = [
   moduleFutureWill, // A1.3 — logo a seguir a future-plans (going to vs. will)
   moduleExperiences,
   moduleObligation,
+  moduleModalsAbility, // A2.1 — logo a seguir a obligation (must/have to → can/could/be able to), reforço de densidade (Fase 13, 2026-08-27)
   modulePastContinuous, // A2.1
   moduleGerundsInfinitives, // A2.1
   moduleQuestionTags, // A2.1
   moduleFirstConditional,
   moduleRelativeClauses, // A2.2 — logo a seguir a first-conditional
+  modulePhrasalVerbs, // A2.2 — último módulo A2, achado explícito da auditoria ("módulo de phrasal verbs" em falta), Fase 13, 2026-08-27
   modulePastPerfect, // B1.1 — primeiro módulo do novo nível B1
   moduleSecondConditional, // B1.1
   modulePassiveVoice, // B1.1

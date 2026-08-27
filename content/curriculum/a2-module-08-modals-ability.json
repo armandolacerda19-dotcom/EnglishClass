@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.1",
+  "module": {
+    "id": "mod_a2_8_modals_ability",
+    "title": "Ability: Can, Could, Be Able To",
+    "theme": "modals",
+    "order": 6
+  },
+  "unit": {
+    "id": "unit_a2_8_ability",
+    "title": "Talking About Ability",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_modals_ability",
+    "title": "Ability: Can, Could and Be Able To",
+    "rule": "Use 'can' for present ability, 'could' for general ability in the past, and 'be able to' (in any tense, including 'will be able to' for the future) whenever 'can'/'could' isn't grammatically possible.",
+    "simple_explanation": "\"Can\" and \"could\" are modal verbs — they never change form (no -s, no -ed, no \"to\" before the next verb) and have no future form. \"Be able to\" behaves like a normal verb and can fill the gaps that \"can\"/\"could\" leave, especially in the future.",
+    "example": "I can swim. When I was a child, I could run very fast. Next year, she will be able to drive.",
+    "example_translation": "Eu sei nadar. Quando era criança, eu conseguia correr muito depressa. No próximo ano, ela vai poder conduzir.",
+    "common_mistake_pt": "Falantes de português tendem a tentar usar \"can\" em qualquer tempo verbal, por transferência direta de \"poder\"/\"conseguir\" — dizem \"I will can drive\" em vez de \"I will be able to drive\", porque \"can\" não tem forma de futuro nem se combina com outro modal.",
+    "correction": "Nunca use \"can\" no futuro ou depois de outro modal — use \"will be able to\". Para o passado, \"could\" serve para capacidade geral; para uma conquista específica, prefira \"was/were able to\".",
+    "real_world_example": "In a CV: \"I am able to work under pressure and can speak three languages.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_be_able_to",
+      "headword": "be able to",
+      "type": "expression",
+      "translation_pt": "conseguir / poder",
+      "definition_en": "to have the ability or opportunity to do something",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/biː ˈeɪbl tuː/",
+      "related_forms": ["was able to", "will be able to"],
+      "example_sentences": ["She wasn't able to come to the meeting yesterday."],
+      "difficulty": 2,
+      "tags": ["modals", "ability"]
+    },
+    {
+      "id": "vocab_a2_manage_to",
+      "headword": "manage to",
+      "type": "verb",
+      "translation_pt": "conseguir (apesar da dificuldade)",
+      "definition_en": "to succeed in doing something difficult",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈmænɪdʒ tuː/",
+      "related_forms": ["manage without"],
+      "example_sentences": ["We managed to finish the project on time."],
+      "difficulty": 2,
+      "tags": ["ability"]
+    },
+    {
+      "id": "vocab_a2_under_pressure",
+      "headword": "under pressure",
+      "type": "expression",
+      "translation_pt": "sob pressão",
+      "definition_en": "in a stressful situation with high demands",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈʌndər ˈprɛʃər/",
+      "related_forms": ["work under pressure"],
+      "example_sentences": ["He works well under pressure."],
+      "difficulty": 2,
+      "tags": ["work"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_ability_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_modals_ability",
+      "prompt": "Complete: When I was young, I ___ swim very well.",
+      "correct_answer": ["could"],
+      "distractors": ["can", "will can", "am able"],
+      "explanation": "Capacidade geral no passado usa-se \"could\".",
+      "common_mistake_pt": "Usar \"can\" no passado (\"I can swim when I was young\") é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["modals", "ability"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ability_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_modals_ability",
+      "prompt": "Complete: Next year, she ___ drive to work.",
+      "correct_answer": ["will be able to"],
+      "distractors": ["will can", "can", "could"],
+      "explanation": "\"Can\" não existe no futuro — usa-se \"will be able to\".",
+      "common_mistake_pt": "\"Will can\" é um erro muito comum, por tradução direta de \"vai poder\".",
+      "audio_url": null,
+      "tags": ["modals", "ability"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ability_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"manage to\" mean?",
+      "correct_answer": ["to succeed in doing something difficult"],
+      "distractors": ["to fail at something", "to want to do something", "to refuse to do something"],
+      "explanation": "\"Manage to\" implica sucesso apesar da dificuldade, não apenas a intenção.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "ability"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ability_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Could Marco swim when he was five?",
+      "correct_answer": ["no", "no, he couldn't"],
+      "distractors": ["yes", "he doesn't say"],
+      "explanation": "No áudio, ouve-se: \"When Marco was five, he couldn't swim at all.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "When Marco was five, he couldn't swim at all. Now he's able to swim very well.",
+      "tags": ["listening", "ability"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ability_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Ana wasn't able to attend the interview on Monday, but she managed to reschedule it for Friday.\" When is Ana's interview now?",
+      "correct_answer": ["Friday"],
+      "distractors": ["Monday", "Tuesday", "It was cancelled"],
+      "explanation": "O texto diz diretamente que ela \"reschedule[d] it for Friday\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "ability"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ability_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_modals_ability",
+      "prompt": "Translate to English: \"Eu não consegui terminar o relatório ontem, mas vou conseguir terminá-lo amanhã.\"",
+      "correct_answer": [
+        "I wasn't able to finish the report yesterday, but I will be able to finish it tomorrow.",
+        "I couldn't finish the report yesterday, but I will be able to finish it tomorrow."
+      ],
+      "distractors": [],
+      "explanation": "No passado, \"não consegui\" pode ser \"wasn't able to\" ou \"couldn't\"; no futuro, só \"will be able to\" é possível — \"will can\" não existe.",
+      "common_mistake_pt": "Traduzir \"vou conseguir\" como \"I will can\" é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "ability"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m8_u1_ability",
+    "title": "Talking About Ability",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_modals_ability",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_modals_ability#rule" },
+      { "type": "example", "content_ref": "gc_a2_modals_ability#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_modals_ability#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_be_able_to", "vocab_a2_manage_to", "vocab_a2_under_pressure"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_ability_001", "ex_a2_ability_002", "ex_a2_ability_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_ability_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_ability_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Can\" is usually weak and fast in a sentence — /kən/, almost swallowed — but \"can't\" is stressed and clear — /kænt/. Listen for that stress difference, not just the final \"t\", to tell them apart in natural speech."
+      },
+      { "type": "speaking", "prompt": "Talk about something you couldn't do as a child but can do now, and something you hope you'll be able to do in the future." },
+      { "type": "writing", "prompt": "Write 4 sentences about your abilities: one with \"can\", one with \"could\", one with \"was/were able to\", and one with \"will be able to\"." },
+      { "type": "translation", "exercise_ids": ["ex_a2_ability_translation_001"] }
+    ]
+  }
+}
