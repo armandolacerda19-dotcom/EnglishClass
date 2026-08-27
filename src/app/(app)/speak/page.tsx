@@ -39,6 +39,34 @@ const CONVERSATION_GOALS = [
   { key: "news", label: "Comentar uma notícia" },
 ];
 
+// Progressão estruturada — auditoria secção 294 ("progressão estruturada
+// · palavra → frase → diálogo → conversa"). As peças já existiam soltas
+// (pronúncia/verbos, shadowing/ditado, roleplay, conversa livre) — isto só
+// amarra-as num percurso visual explícito, sem lógica nova nem alterar
+// nenhuma das rotas existentes por baixo. Puramente aditivo e apresentação.
+const SPEAKING_PROGRESSION = [
+  {
+    stage: "1. Palavra",
+    label: "Sons e pronúncia isolados",
+    href: "/practice/pronunciation",
+  },
+  {
+    stage: "2. Frase",
+    label: "Ouvir e repetir (shadowing) ou ditado",
+    href: "/practice/micro-challenges",
+  },
+  {
+    stage: "3. Diálogo",
+    label: "Roleplay guiado por cenário",
+    href: "/speak/tutor?personality=roleplay",
+  },
+  {
+    stage: "4. Conversa",
+    label: "Conversa livre, sem guião",
+    href: "/speak/tutor?personality=conversation_partner",
+  },
+];
+
 // Personalidades do AI Tutor além de "coach" desbloqueadas a pedido do utilizador
 // (2026-08-26) — ver src/lib/ai/personalities.ts e docs/decisions.md.
 export default async function SpeakHubPage() {
@@ -51,6 +79,24 @@ export default async function SpeakHubPage() {
       <h1 className="mb-2 font-display text-2xl">Speak</h1>
       <p className="mb-6 text-sm text-inkNeutral/70 dark:text-linen/70">
         Escolha com quem quer praticar hoje.
+      </p>
+
+      <p className="mb-3 font-mono text-xs uppercase tracking-widest text-inkNeutral/50 dark:text-linen/50">
+        Progressão sugerida
+      </p>
+      <div className="mb-8 grid grid-cols-2 gap-3">
+        {SPEAKING_PROGRESSION.map((step) => (
+          <Link key={step.stage} href={step.href}>
+            <Card className="hover:border-verdigris">
+              <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">{step.stage}</p>
+              <p className="text-xs text-inkNeutral/60 dark:text-linen/60">{step.label}</p>
+            </Card>
+          </Link>
+        ))}
+      </div>
+
+      <p className="mb-3 font-mono text-xs uppercase tracking-widest text-inkNeutral/50 dark:text-linen/50">
+        Ou escolha diretamente
       </p>
       <div className="flex flex-col gap-3">
         {available.map(([key, persona]) => (
