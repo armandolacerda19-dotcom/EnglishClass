@@ -4,6 +4,7 @@ import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { scheduleReview } from "@/lib/srs/schedule";
+import { updateSkillScore } from "@/lib/skillProfile";
 
 function startOfDay(d: Date) {
   const x = new Date(d);
@@ -16,6 +17,7 @@ function startOfDay(d: Date) {
 export async function recordVocabExposure(vocabularyItemId: string, correct: boolean) {
   const user = await requireUser();
   await scheduleReview(user.id, "vocabulary_item", vocabularyItemId, correct ? 5 : 1);
+  await updateSkillScore(user.id, "VOCABULARY", correct ? 100 : 20);
 }
 
 // Checkpoint diário (docs/05-avaliacao-certificacao.md) — completar o Desafio Diário

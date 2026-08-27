@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { getGeminiModel } from "@/lib/ai/gemini";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { scheduleReview } from "@/lib/srs/schedule";
+import { updateSkillScore } from "@/lib/skillProfile";
 
 export async function submitExerciseAnswer(exerciseId: string, given: string) {
   const user = await requireUser();
@@ -63,6 +64,9 @@ export async function submitExerciseAnswer(exerciseId: string, given: string) {
   }
 
   await recordActivity(user.id, isCorrect ? "EXERCISE_CORRECT" : "EXERCISE_INCORRECT");
+  // Alimenta o octógono de competência (SkillOctagon) — sem isto o score do pilar
+  // ficava congelado no valor do placement test para sempre. Ver docs/decisions.md.
+  await updateSkillScore(user.id, exercise.pillar, isCorrect ? 100 : 20);
 
   return { isCorrect, explanation: content.explanation as string, attemptId: attempt.id };
 }
@@ -70,12 +74,13 @@ export async function submitExerciseAnswer(exerciseId: string, given: string) {
 export async function submitWriting(prompt: string, text: string) {
   const user = await requireUser();
 
-  const feedback = await getHolisticFeedback("writing", prompt, text);
+  const { feedback, score } = await getHolisticFeedback("writing", prompt, text);
 
   await prisma.writingAttempt.create({
-    data: { userId: user.id, prompt, text, source: "LESSON", feedbackJson: feedback },
+    data: { userId: user.id, prompt, text, source: "LESSON", feedbackJson: feedback, score },
   });
   await recordActivity(user.id, "WRITING");
+  if (score !== null) await updateSkillScore(user.id, "WRITING", score);
 
   return feedback;
 }
@@ -83,12 +88,13 @@ export async function submitWriting(prompt: string, text: string) {
 export async function submitSpeaking(prompt: string, transcript: string) {
   const user = await requireUser();
 
-  const feedback = await getHolisticFeedback("speaking", prompt, transcript);
+  const { feedback, score } = await getHolisticFeedback("speaking", prompt, transcript);
 
   await prisma.speakingAttempt.create({
-    data: { userId: user.id, prompt, audioUrl: "", transcript, source: "LESSON", feedbackJson: feedback },
+    data: { userId: user.id, prompt, audioUrl: "", transcript, source: "LESSON", feedbackJson: feedback, fluencyScore: score },
   });
   await recordActivity(user.id, "SPEAKING");
+  if (score !== null) await updateSkillScore(user.id, "SPEAKING", score);
 
   return feedback;
 }
@@ -98,8 +104,8 @@ export async function submitTranslation(exerciseId: string, given: string) {
   const exercise = await prisma.exercise.findUniqueOrThrow({ where: { id: exerciseId } });
   const content = exercise.contentJson as any;
 
-  const feedback = await getHolisticFeedback("translation", content.prompt, given);
-  const looksCorrect = feedback.toLowerCase().includes("correct") && !feedback.toLowerCase().includes("incorrect");
+  const { feedback, score } = await getHolisticFeedback("translation", content.prompt, given);
+  const looksCorrect = score !== null ? score >= 70 : feedback.toLowerCase().includes("correct") && !feedback.toLowerCase().includes("incorrect");
 
   await prisma.translation.create({
     data: {
@@ -113,6 +119,7 @@ export async function submitTranslation(exerciseId: string, given: string) {
   });
 
   await recordActivity(user.id, "TRANSLATION");
+  await updateSkillScore(user.id, "TRANSLATION", score ?? (looksCorrect ? 100 : 20));
 
   return { feedback, referenceAnswer: content.correct_answer[0] as string };
 }
@@ -134,11 +141,23 @@ export async function completeLesson() {
   }
 }
 
+interface HolisticFeedback {
+  feedback: string;
+  score: number | null; // 0-100, null se a IA falhou ou não devolveu um score parseável
+}
+
 // Correção de writing/speaking/translation seguindo docs/06-arquitetura-ia.md:
 // gramática, vocabulário, coerência, registo, naturalidade — nunca inventar regras,
-// distinguir "correto" de "mais natural".
-async function getHolisticFeedback(kind: "writing" | "speaking" | "translation", prompt: string, text: string) {
-  if (!text.trim()) return "Não foi possível avaliar: resposta vazia.";
+// distinguir "correto" de "mais natural". Pede também um score 0-100 numa linha à
+// parte (não JSON mode, para não depender de suporte específico da API) para
+// alimentar o octógono de competência (src/lib/skillProfile.ts) e os campos
+// score/fluencyScore do schema, que antes existiam mas nunca eram preenchidos.
+async function getHolisticFeedback(
+  kind: "writing" | "speaking" | "translation",
+  prompt: string,
+  text: string
+): Promise<HolisticFeedback> {
+  if (!text.trim()) return { feedback: "Não foi possível avaliar: resposta vazia.", score: null };
 
   try {
     const model = getGeminiModel(
@@ -147,13 +166,23 @@ async function getHolisticFeedback(kind: "writing" | "speaking" | "translation",
         " response from an adult Portuguese-speaking English learner. " +
         "Cover grammar, vocabulary, spelling/punctuation where relevant, coherence, register and naturalness. " +
         'Explicitly distinguish "incorrect" from "not natural / not idiomatic". Never invent a grammar rule — ' +
-        "say you are not sure rather than guess. Keep the feedback under 120 words, in English, direct and encouraging."
+        "say you are not sure rather than guess. Keep the feedback under 120 words, in English, direct and encouraging. " +
+        "End your response on its own final line with exactly: SCORE: <a number from 0 to 100 rating how correct and natural the response was>."
     );
 
     const result = await model.generateContent(`Prompt: ${prompt}\nLearner response: ${text}`);
-    return result.response.text();
+    const raw = result.response.text();
+
+    const match = raw.match(/SCORE:\s*(\d{1,3})\s*$/i);
+    const score = match?.[1] ? Math.max(0, Math.min(100, parseInt(match[1], 10))) : null;
+    const feedback = raw.replace(/\n?SCORE:\s*\d{1,3}\s*$/i, "").trim();
+
+    return { feedback, score };
   } catch (error) {
     console.error("Gemini feedback request failed", error);
-    return "Não foi possível avaliar esta resposta agora — pode ser um problema temporário com o serviço de IA. Tente novamente daqui a pouco.";
+    return {
+      feedback: "Não foi possível avaliar esta resposta agora — pode ser um problema temporário com o serviço de IA. Tente novamente daqui a pouco.",
+      score: null,
+    };
   }
 }

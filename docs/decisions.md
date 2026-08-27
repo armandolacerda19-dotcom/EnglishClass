@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Octógono de competência deixa de ficar congelado
+
+Descoberto ao continuar a lista de melhorias por impacto (pedido do utilizador: "continue com os updates que têm mais impacto"): os 8 scores de `LearningProfile` (`grammarScore`, `vocabularyScore`, etc., usados no `SkillOctagon` e em "Áreas a reforçar") só eram escritos uma vez, no placement test (`src/app/api/placement/submit/route.ts`) — nenhuma lição, exercício, writing, speaking, tradução ou revisão os voltava a tocar. Isto contradiz diretamente a proposta de valor central ("sabe o que precisa de aprender, porque está a errar") logo a seguir ao onboarding.
+
+Corrigido com `src/lib/skillProfile.ts`: `updateSkillScore(userId, pillar, rawScore)` aplica uma média móvel exponencial (EMA, α=0.25) ao score do pilar e recalcula `weakAreas`/`strongAreas` por comparação com a média dos pilares com sinal. Ligado a: exercícios de lição (`submitExerciseAnswer`), writing/speaking/translation (`submitWriting`/`submitSpeaking`/`submitTranslation`), Desafio Diário (`recordVocabExposure`) e revisões SM-2 (`submitReview`).
+
+Efeito colateral positivo: `WritingAttempt.score` e `SpeakingAttempt.fluencyScore` existiam no schema mas nunca eram preenchidos — o feedback holístico da IA (Gemini) passou a terminar com uma linha `SCORE: NN` parseada por regex (sem depender de JSON mode da API), guardada nesses campos e removida do texto mostrado ao utilizador.
+
 ## 2026-08-26 — Crítica ao produto e SRS (repetição espaçada) real
 
 Pedido do utilizador: crítica dura ao estado atual da app do ponto de vista de "alguém se tornar nativo em inglês", com lista de melhorias por custo (tokens)/impacto. Conclusão principal: o MVP1 tinha conteúdo insuficiente (6 lições, ~15 palavras) e nenhum motor de retenção — `UserError`/`ReviewScheduleItem` existiam no schema mas nunca eram lidos/escritos por nenhuma rota. Perguntado ao utilizador o que priorizar: escolheu **SRS primeiro**, fluência prática com testes/exames periódicos como reforço futuro, e inglês profissional genérico "cedo".
