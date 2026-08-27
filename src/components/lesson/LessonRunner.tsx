@@ -17,6 +17,7 @@ import {
   submitSpeakingConfidence,
   submitTranslation,
   completeLesson,
+  type WritingRubric,
 } from "@/app/(app)/learn/actions";
 
 interface LessonStep {
@@ -307,15 +308,24 @@ function SpeakingStep({ prompt }: { prompt: string }) {
   );
 }
 
+const RUBRIC_LABEL: Record<keyof WritingRubric, string> = {
+  grammar: "Gramática",
+  vocabulary: "Vocabulário",
+  coherence: "Coerência",
+  taskAchievement: "Cumpre o pedido",
+};
+
 function WritingStep({ prompt }: { prompt: string }) {
   const [text, setText] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
+  const [rubric, setRubric] = useState<WritingRubric | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit() {
     setLoading(true);
-    const feedbackText = await submitWriting(prompt, text);
-    setFeedback(feedbackText);
+    const result = await submitWriting(prompt, text);
+    setFeedback(result.feedback);
+    setRubric(result.rubric);
     setLoading(false);
   }
 
@@ -334,6 +344,21 @@ function WritingStep({ prompt }: { prompt: string }) {
         )}
       </Button>
       {feedback && <p className="mt-2 rounded-card bg-verdigris/5 p-3 text-sm">{feedback}</p>}
+      {rubric && (
+        <div className="mt-3 flex flex-col gap-2">
+          {(Object.keys(RUBRIC_LABEL) as (keyof WritingRubric)[]).map((key) => (
+            <div key={key}>
+              <div className="mb-1 flex items-center justify-between text-xs text-inkNeutral/60 dark:text-linen/60">
+                <span>{RUBRIC_LABEL[key]}</span>
+                <span className="font-mono">{rubric[key]}</span>
+              </div>
+              <div className="h-1.5 w-full rounded-full bg-ink/10 dark:bg-linen/10">
+                <div className="h-1.5 rounded-full bg-verdigris" style={{ width: `${rubric[key]}%` }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </Card>
   );
 }
