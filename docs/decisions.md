@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — Conversar com o AI Tutor passa a contar para XP/streak/octógono
+
+Outro gap real encontrado ao rever o código com o mesmo critério da correção do LISTENING: `src/app/api/ai/tutor/route.ts` nunca chamava `recordActivity`, `updateSkillScore` nem `awardAchievement` — falar com o Coach, o Interviewer, o Conversation Partner ou o Native Friend (a funcionalidade mais promovida da app) não dava XP, não contava para o streak, e não mexia no octógono de competência, ao contrário de todas as outras formas de praticar (lições, Desafio Diário, Diagnóstico, Revisão, Leitura). Isto era inconsistente com o resto do sistema construído nesta sessão.
+
+Corrigido: cada resposta bem-sucedida do tutor (não a mensagem de erro de fallback) chama `recordActivity(user.id, "TUTOR_MESSAGE")` (XP baixo, 3 — evita farming por spam de mensagens curtas), `updateSkillScore(user.id, "SPEAKING", 65)` (sinal de engagement moderado, não há correção formal por mensagem) e `awardAchievement(user.id, "first_tutor_conversation")`.
+
 ## 2026-08-26 — Leitura Extensiva + correção de bug: LISTENING sem áudio no Diagnóstico/Sheets
 
 Ao continuar com "atualizações de alto impacto", ao rever `PlayTranscript.tsx` (já tinha controlo de velocidade 0.75x/1x/1.25x, bem construído) percebi que `src/lib/practiceQuestions.ts` nunca extraía o campo `transcript` do `contentJson` — ou seja, uma pergunta LISTENING no Diagnóstico Semanal ou nas Sheets de tema dizia "Listen to the audio..." mas não havia nenhum botão de áudio. Corrigido: `PracticeQuestion` ganhou o campo `transcript`, `WeeklyTestRunner.tsx` e `TopicPracticeRunner.tsx` renderizam `<PlayTranscript>` quando presente.

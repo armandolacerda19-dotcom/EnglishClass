@@ -227,6 +227,11 @@ const ACHIEVEMENTS = [
     title: "Primeira Leitura",
     description: "Completou o seu primeiro texto de leitura extensiva.",
   },
+  {
+    code: "first_tutor_conversation",
+    title: "Primeira Conversa",
+    description: "Trocou a primeira mensagem com o AI Tutor.",
+  },
 ];
 
 async function seedAchievements() {

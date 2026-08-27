@@ -2,7 +2,7 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, corrigido um bug real (perguntas LISTENING no Diagnóstico Semanal/Sheets não tinham forma de ouvir o áudio — `transcript` não estava a ser passado ao cliente) e adicionada Leitura Extensiva (`/practice/reading`, 3 textos curtos com perguntas de compreensão, conteúdo estático em `src/content/readingPassages.ts`). Deploy `4ab67ea` (7ª lição + tema claro/escuro) confirmado publicado sem erros. Ver `docs/decisions.md`.
+Última atualização: 2026-08-26, corrigido outro gap real: conversar com o AI Tutor (Coach/Interviewer/Conversation Partner/Native Friend) não dava XP nem contava para streak/octógono — `src/app/api/ai/tutor/route.ts` nunca chamava `recordActivity`/`updateSkillScore`. Antes disso: deploy `341a48e` (Leitura Extensiva + correção de LISTENING sem áudio) confirmado publicado sem erros. Ver `docs/decisions.md`. **Deploy por confirmar.**
 
 ### UX dos quizzes (correção de UX pedida pelo utilizador após testar)
 Feedback imediato (Verificar → correto/incorreto + resposta certa → Seguinte) no Desafio Diário e Diagnóstico Semanal, TRANSLATION deixou de ficar de fora dos testes (vira pergunta de texto), Sheets de tema (`/practice/topic`) para escolher o que praticar, cor por pilar nos quizzes. Ver `docs/decisions.md`.

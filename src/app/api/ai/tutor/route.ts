@@ -4,6 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { getGeminiModel } from "@/lib/ai/gemini";
 import { buildTutorSystemPrompt } from "@/lib/ai/buildTutorPrompt";
 import { TUTOR_PERSONALITIES, type TutorPersonalityKey } from "@/lib/ai/personalities";
+import { recordActivity } from "@/lib/gamification/recordActivity";
+import { awardAchievement } from "@/lib/gamification/awardAchievement";
+import { updateSkillScore } from "@/lib/skillProfile";
 
 // AI Tutor v1 — desde 2026-08-26 expõe coach/conversation_partner/interviewer/native_friend
 // (ver docs/decisions.md e src/lib/ai/personalities.ts para o porquê de professor/examiner
@@ -48,6 +51,7 @@ export async function POST(req: NextRequest) {
   });
 
   let replyText: string;
+  let succeeded = true;
   try {
     const model = getGeminiModel(systemPrompt);
     const chat = model.startChat({
@@ -59,8 +63,18 @@ export async function POST(req: NextRequest) {
     console.error("Gemini tutor request failed", error);
     replyText =
       "Desculpe, não consegui responder agora — pode ser um problema temporário com o serviço de IA. Tente novamente daqui a pouco.";
+    succeeded = false;
   }
   const newHistory = [...history, { role: "user", text: message }, { role: "assistant", text: replyText }];
+
+  // Conversar com o tutor é prática de speaking/conversação — antes não contava
+  // para XP, streak nem para o octógono de competência, ao contrário de todas
+  // as outras formas de praticar. Ver docs/decisions.md 2026-08-26.
+  if (succeeded) {
+    await recordActivity(user.id, "TUTOR_MESSAGE");
+    await updateSkillScore(user.id, "SPEAKING", 65);
+    await awardAchievement(user.id, "first_tutor_conversation");
+  }
 
   if (conversation) {
     conversation = await prisma.aIConversation.update({
