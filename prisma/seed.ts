@@ -34,6 +34,7 @@ import moduleNumbersTime from "../content/curriculum/pre-a1-module-02-numbers-ti
 import moduleModalsAbility from "../content/curriculum/a2-module-08-modals-ability.json";
 import modulePhrasalVerbs from "../content/curriculum/a2-module-09-phrasal-verbs.json";
 import moduleZeroConditional from "../content/curriculum/a2-module-10-zero-conditional.json";
+import modulePresentPerfectVsPastSimple from "../content/curriculum/a2-module-11-present-perfect-vs-past-simple.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -91,7 +92,8 @@ const MODULE_FILES = [
   moduleZeroConditional, // A2.1 — logo antes de first-conditional (0→1→2→3, mais simples primeiro), gap encontrado na Fase 13 (2026-08-27): only 1st/2nd/3rd existiam
   moduleFirstConditional,
   moduleRelativeClauses, // A2.2 — logo a seguir a first-conditional
-  modulePhrasalVerbs, // A2.2 — último módulo A2, achado explícito da auditoria ("módulo de phrasal verbs" em falta), Fase 13, 2026-08-27
+  modulePhrasalVerbs, // A2.2, achado explícito da auditoria ("módulo de phrasal verbs" em falta), Fase 13, 2026-08-27
+  modulePresentPerfectVsPastSimple, // A2.2 — último módulo A2, gap real: existia Present Perfect (experiences) e Past Simple isolados, mas nunca a distinção entre os dois, um dos pontos mais confusos para falantes de português (Fase 13, 2026-08-27)
   modulePastPerfect, // B1.1 — primeiro módulo do novo nível B1
   moduleSecondConditional, // B1.1
   modulePassiveVoice, // B1.1

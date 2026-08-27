@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.2",
+  "module": {
+    "id": "mod_a2_11_present_perfect_vs_past_simple",
+    "title": "Present Perfect vs. Past Simple",
+    "theme": "tenses",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_a2_11_present_perfect_vs_past_simple",
+    "title": "Choosing the Right Past Tense",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_present_perfect_vs_past_simple",
+    "title": "Present Perfect vs. Past Simple",
+    "rule": "Use the Past Simple for a finished action at a specific, stated time in the past (yesterday, last year, in 2019). Use the Present Perfect for an action with no specific time given, when the connection to now matters more than when exactly it happened.",
+    "simple_explanation": "Both tenses talk about the past, but they answer different questions: Past Simple answers \"when did it happen?\" with a specific time; Present Perfect answers \"has it ever happened?\" or \"what's the result now?\", without naming a specific moment.",
+    "example": "I went to Paris in 2019. (specific time) — I have been to Paris. (no specific time, just the experience)",
+    "example_translation": "Eu fui a Paris em 2019. — Eu já fui a Paris.",
+    "common_mistake_pt": "O português usa o Pretérito Perfeito Simples (\"fui\", \"vi\", \"comi\") tanto para ações com data específica como para experiências gerais sem data — não há esta distinção gramatical. Isso leva falantes de português a usar o Past Simple em inglês mesmo quando não há nenhuma data específica (\"I saw that film\" para dizer \"já vi esse filme\", em vez de \"I have seen that film\"), ou a misturar as duas ao adicionar um tempo específico a uma frase no Present Perfect (\"I have seen that film yesterday\" — errado, porque \"yesterday\" exige Past Simple).",
+    "correction": "Se a frase tem (ou implica) uma data ou momento específico — yesterday, last week, in 2020, when I was 10 — use sempre o Past Simple. Se não há nenhuma data específica e o que importa é só \"já aconteceu alguma vez\" ou o resultado agora, use o Present Perfect.",
+    "real_world_example": "In a job interview: \"I have worked in marketing for five years. I worked at a small agency from 2018 to 2020, and I've been at my current company since then.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_ever",
+      "headword": "ever",
+      "type": "adverb",
+      "translation_pt": "alguma vez",
+      "definition_en": "at any time (used in questions and negatives with the Present Perfect)",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈɛvər/",
+      "related_forms": ["never", "have you ever...?"],
+      "example_sentences": ["Have you ever been to Japan?"],
+      "difficulty": 1,
+      "tags": ["present-perfect"]
+    },
+    {
+      "id": "vocab_a2_yet",
+      "headword": "yet",
+      "type": "adverb",
+      "translation_pt": "ainda (em perguntas/negativas)",
+      "definition_en": "used in questions and negative sentences to say something hasn't happened up to now",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/jɛt/",
+      "related_forms": ["not yet", "already"],
+      "example_sentences": ["I haven't finished the report yet."],
+      "difficulty": 2,
+      "tags": ["present-perfect"]
+    },
+    {
+      "id": "vocab_a2_already",
+      "headword": "already",
+      "type": "adverb",
+      "translation_pt": "já",
+      "definition_en": "used in positive sentences to say something happened before now, often sooner than expected",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ɔːlˈrɛdi/",
+      "related_forms": ["yet"],
+      "example_sentences": ["I've already sent the email."],
+      "difficulty": 2,
+      "tags": ["present-perfect"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_ppvps_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_present_perfect_vs_past_simple",
+      "prompt": "Complete: I ___ (see) that film yesterday.",
+      "correct_answer": ["saw"],
+      "distractors": ["have seen", "have saw", "seen"],
+      "explanation": "\"Yesterday\" é um momento específico, por isso exige Past Simple: \"saw\".",
+      "common_mistake_pt": "Usar \"have seen\" com \"yesterday\" é o erro mais comum aqui — o Present Perfect nunca se combina com uma data específica.",
+      "audio_url": null,
+      "tags": ["present-perfect-vs-past-simple"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ppvps_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_present_perfect_vs_past_simple",
+      "prompt": "Complete: ___ you ever ___ (be) to Japan?",
+      "correct_answer": ["Have you ever been"],
+      "distractors": ["Did you ever be", "Have you ever went", "Did you ever went"],
+      "explanation": "\"Ever\" numa pergunta sobre experiência, sem data específica, pede Present Perfect: \"Have you ever been\".",
+      "common_mistake_pt": "Usar Past Simple (\"Did you ever go\") em vez de Present Perfect é um erro muito comum nesta estrutura.",
+      "audio_url": null,
+      "tags": ["present-perfect-vs-past-simple"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ppvps_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "Which word means \"até agora, isto ainda não aconteceu\"?",
+      "correct_answer": ["yet"],
+      "distractors": ["already", "ever", "never"],
+      "explanation": "\"Yet\" usa-se em perguntas e frases negativas para dizer que algo ainda não aconteceu.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "present-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ppvps_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. When did Sofia go to Rome?",
+      "correct_answer": ["last summer"],
+      "distractors": ["last week", "in 2019", "she hasn't been"],
+      "explanation": "No áudio, ouve-se: \"I went to Rome last summer.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I've traveled to a few countries in Europe. I went to Rome last summer, and I've also been to Paris, though I don't remember exactly when.",
+      "tags": ["listening", "present-perfect-vs-past-simple"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ppvps_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"I have worked in marketing for five years. I worked at a small agency from 2018 to 2020.\" Which part has a specific time period stated?",
+      "correct_answer": ["I worked at a small agency from 2018 to 2020", "from 2018 to 2020"],
+      "distractors": ["I have worked in marketing", "for five years", "It doesn't say"],
+      "explanation": "\"From 2018 to 2020\" é um período específico, por isso essa parte usa Past Simple (\"worked\"), não Present Perfect.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "present-perfect-vs-past-simple"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ppvps_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_present_perfect_vs_past_simple",
+      "prompt": "Translate to English: \"Já vi esse filme. Eu vi-o no ano passado.\"",
+      "correct_answer": ["I have seen that film. I saw it last year.", "I've seen that film. I saw it last year."],
+      "distractors": [],
+      "explanation": "A primeira frase não tem data específica (Present Perfect: \"have seen\"); a segunda tem (\"last year\"), por isso usa Past Simple: \"saw\".",
+      "common_mistake_pt": "Usar Past Simple nas duas frases, ou Present Perfect nas duas, é o erro mais comum — cada uma pede um tempo verbal diferente.",
+      "audio_url": null,
+      "tags": ["translation", "present-perfect-vs-past-simple"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m11_u1_present_perfect_vs_past_simple",
+    "title": "Choosing the Right Past Tense",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_present_perfect_vs_past_simple",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_present_perfect_vs_past_simple#rule" },
+      { "type": "example", "content_ref": "gc_a2_present_perfect_vs_past_simple#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_present_perfect_vs_past_simple#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_ever", "vocab_a2_yet", "vocab_a2_already"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_ppvps_001", "ex_a2_ppvps_002", "ex_a2_ppvps_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_ppvps_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_ppvps_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The contracted \"'ve\" in \"I've\", \"you've\", \"we've\" is very weak in natural speech — almost just a /v/ sound glued onto the pronoun — while \"have\" said in full is much rarer in conversation than learners expect."
+      },
+      { "type": "speaking", "prompt": "Talk about a country you have been to (no specific date) and then describe one specific trip there, saying when it happened." },
+      { "type": "writing", "prompt": "Write 4 sentences: 2 using Present Perfect (no specific time, e.g. an experience) and 2 using Past Simple (with a specific time)." },
+      { "type": "translation", "exercise_ids": ["ex_a2_ppvps_translation_001"] }
+    ]
+  }
+}
