@@ -101,7 +101,7 @@ function ListenRunner({
         </Button>
       ) : (
         <>
-          <p className={`mt-3 text-sm ${selected === challenge.correctIndex ? "text-verdigris" : "text-clay"}`}>
+          <p role="status" aria-live="polite" className={`mt-3 text-sm ${selected === challenge.correctIndex ? "text-verdigris" : "text-clay"}`}>
             {selected === challenge.correctIndex ? "Correto!" : `A resposta certa era: ${challenge.options[challenge.correctIndex]}`}
           </p>
           <Button className="mt-4" onClick={onDone}>

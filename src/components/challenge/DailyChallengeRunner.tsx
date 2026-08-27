@@ -127,7 +127,7 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
         </fieldset>
 
         {checked && (
-          <p className={`mt-3 text-sm ${isCorrect ? "text-verdigris" : "text-clay"}`}>
+          <p role="status" aria-live="polite" className={`mt-3 text-sm ${isCorrect ? "text-verdigris" : "text-clay"}`}>
             {isCorrect ? "Correto." : `Incorreto. Era: ${word.translationPt}`}
           </p>
         )}

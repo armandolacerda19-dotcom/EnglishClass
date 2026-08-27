@@ -50,7 +50,7 @@ export function IdiomRunner({ idiom, options }: { idiom: Idiom; options: string[
 
         {checked && (
           <div className="mt-4 border-t border-ink/10 pt-4 dark:border-linen/10">
-            <p className={`mb-2 text-sm ${isCorrect ? "text-verdigris" : "text-clay"}`}>
+            <p role="status" aria-live="polite" className={`mb-2 text-sm ${isCorrect ? "text-verdigris" : "text-clay"}`}>
               {isCorrect ? "Correto!" : `Não. Significa: ${idiom.meaningEn}`}
             </p>
             <p className="mb-1 text-xs text-inkNeutral/60 dark:text-linen/60">Em português: {idiom.meaningPt}</p>

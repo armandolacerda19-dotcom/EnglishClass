@@ -224,7 +224,7 @@ function ExerciseStep({ exercise }: { exercise: ExerciseContent }) {
           Verificar
         </Button>
       ) : (
-        <p className={`mt-3 text-sm ${result.isCorrect ? "text-verdigris" : "text-clay"}`}>
+        <p role="status" aria-live="polite" className={`mt-3 text-sm ${result.isCorrect ? "text-verdigris" : "text-clay"}`}>
           {result.isCorrect ? "Correto." : "Incorreto."} {result.explanation}
         </p>
       )}

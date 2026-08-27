@@ -147,7 +147,7 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
         )}
 
         {checkResult && (
-          <p className={`mt-3 text-sm ${checkResult.isCorrect ? "text-verdigris" : "text-clay"}`}>
+          <p role="status" aria-live="polite" className={`mt-3 text-sm ${checkResult.isCorrect ? "text-verdigris" : "text-clay"}`}>
             {checkResult.isCorrect ? "Correto." : `Incorreto. Resposta certa: ${checkResult.referenceAnswer}`}
           </p>
         )}
