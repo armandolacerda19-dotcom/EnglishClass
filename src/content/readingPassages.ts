@@ -17,6 +17,15 @@ export interface ReadingPassage {
   level: string;
   text: string;
   questions: ReadingQuestion[];
+  // Fase 14 (auditoria 2026-08-27, "Inglês autêntico") — campo pedido
+  // explicitamente no roadmap. Opcional e não retroativo: os 60 textos
+  // existentes são todos narrativa curta em 3ª pessoa (o único género usado
+  // até agora) e continuam válidos sem esta informação — só os textos novos,
+  // escritos deliberadamente noutros formatos (diálogo, email, notícia), a
+  // preenchem. Sem isto, não havia forma nenhuma de a app algum dia filtrar
+  // ou variar por tipo de texto.
+  genre?: "story" | "dialogue" | "email" | "news" | "instructions";
+  source?: string; // ex. "original" — nunca um nome de publicação real (evita direitos de autor)
 }
 
 export const READING_PASSAGES: ReadingPassage[] = [
@@ -1582,6 +1591,105 @@ export const READING_PASSAGES: ReadingPassage[] = [
         prompt: "What habit is suggested to improve sleep quality?",
         options: ["Using screens before bed", "Avoiding screens before bed", "Sleeping less", "Skipping breakfast"],
         correctAnswer: "Avoiding screens before bed",
+      },
+    ],
+  },
+  // Fase 14 (auditoria 2026-08-27) — 1º lote de "inglês autêntico": 3 formatos
+  // de texto que nunca existiam no currículo (só havia narrativa em 3ª
+  // pessoa). Originais, não copiados de nenhuma fonte real — nunca reproduzir
+  // letras de música reais ou notícias reais, questão de direitos de autor,
+  // ver docs/decisions.md.
+  {
+    id: "email-to-a-colleague",
+    title: "An Email to a Colleague",
+    level: "B1",
+    genre: "email",
+    source: "original",
+    text: "Subject: Meeting moved to Thursday\n\nHi Carlos,\n\nI hope you're doing well. I'm writing to let you know that our meeting on Wednesday has been moved to Thursday at 2pm, because the client asked for more time to review the proposal. Could you please confirm that this new time works for you? If not, let me know and we'll find another slot.\n\nAlso, could you send me the updated budget spreadsheet before the meeting? I'd like to go through the numbers beforehand so we don't waste time on Thursday.\n\nThanks in advance, and sorry for the short notice.\n\nBest regards,\nInês",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why was the meeting moved?",
+        options: [
+          "Carlos was on holiday",
+          "The client asked for more time",
+          "Inês was sick",
+          "The office was closed",
+        ],
+        correctAnswer: "The client asked for more time",
+      },
+      {
+        id: "q2",
+        prompt: "What does Inês ask Carlos to send her?",
+        options: ["A new proposal", "The updated budget spreadsheet", "His holiday dates", "A meeting invite"],
+        correctAnswer: "The updated budget spreadsheet",
+      },
+      {
+        id: "q3",
+        prompt: "What time is the new meeting?",
+        options: ["Wednesday at 2pm", "Thursday at 2pm", "Thursday morning", "It doesn't say"],
+        correctAnswer: "Thursday at 2pm",
+      },
+    ],
+  },
+  {
+    id: "planning-a-trip-dialogue",
+    title: "Planning a Trip",
+    level: "A2",
+    genre: "dialogue",
+    source: "original",
+    text: "MARTA: So, have you decided where we're going for the long weekend?\nPEDRO: I was thinking maybe Porto? We haven't been there in ages.\nMARTA: That sounds good, but isn't it going to rain all weekend there?\nPEDRO: Actually, I checked — it's supposed to be sunny on Saturday, only a bit of rain on Sunday.\nMARTA: OK, that changes things. Should we book a hotel near the river?\nPEDRO: Yes, and I found one that isn't too expensive. Do you want me to book it tonight?\nMARTA: Go ahead. Let's leave early on Saturday so we have the whole day there.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Where are Marta and Pedro thinking of going?",
+        options: ["Lisbon", "Porto", "The beach", "The mountains"],
+        correctAnswer: "Porto",
+      },
+      {
+        id: "q2",
+        prompt: "What is the weather forecast for Saturday?",
+        options: ["Rain all day", "Sunny", "Snow", "It doesn't say"],
+        correctAnswer: "Sunny",
+      },
+      {
+        id: "q3",
+        prompt: "What does Marta ask Pedro to do?",
+        options: ["Cancel the trip", "Book the hotel tonight", "Check the weather again", "Change the destination"],
+        correctAnswer: "Book the hotel tonight",
+      },
+    ],
+  },
+  {
+    id: "local-news-new-park",
+    title: "New Park Opens Downtown",
+    level: "A2",
+    genre: "news",
+    source: "original",
+    text: "A new public park opened in the city centre last weekend, after almost two years of construction. The park has a large playground, a small lake, and space for outdoor sports. City officials say the project cost around 3 million euros and was built to give residents more green space in an area that previously had very few parks.\n\nLocal shop owners say the new park has already brought more visitors to the area, especially on weekends. \"We've seen many more families walking past the shop since the park opened,\" said one café owner nearby. The park will be open every day from 7am to 10pm, and entry is free.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "How long did the park take to build?",
+        options: ["Almost two years", "Six months", "Ten years", "It doesn't say"],
+        correctAnswer: "Almost two years",
+      },
+      {
+        id: "q2",
+        prompt: "What did local shop owners notice?",
+        options: [
+          "Fewer customers",
+          "More visitors to the area",
+          "Higher prices",
+          "The shops had to close",
+        ],
+        correctAnswer: "More visitors to the area",
+      },
+      {
+        id: "q3",
+        prompt: "Is there a fee to enter the park?",
+        options: ["Yes, 3 euros", "No, it's free", "Only on weekends", "It doesn't say"],
+        correctAnswer: "No, it's free",
       },
     ],
   },

@@ -85,7 +85,12 @@ export function ReadingRunner({ passage }: { passage: ReadingPassage }) {
         <div className="mb-3">
           <PlayTranscript text={passage.text} />
         </div>
-        <p className="text-sm leading-relaxed">{passage.text}</p>
+        {/* Fase 14 — whitespace-pre-line preserva quebras de linha (`\n`) sem
+            quebrar os 60 textos existentes, que são um único parágrafo
+            contínuo sem `\n` nenhum: essencial para os novos géneros
+            "dialogue"/"email", onde a formatação em linhas faz parte de como
+            o texto se lê (falas separadas, "Subject:" numa linha própria). */}
+        <p className="whitespace-pre-line text-sm leading-relaxed">{passage.text}</p>
       </Card>
 
       <Card>
