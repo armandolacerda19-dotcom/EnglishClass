@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.1",
+  "module": {
+    "id": "mod_a2_1_past_continuous",
+    "title": "In the Middle of Something",
+    "theme": "past-continuous",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_a2_1_past_continuous",
+    "title": "Past Continuous",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_past_continuous",
+    "title": "Past Continuous: was/were + verb-ing",
+    "rule": "Use the Past Continuous (was/were + verb-ing) for an action in progress at a specific past moment, often interrupted by another, shorter action (in Past Simple).",
+    "simple_explanation": "Descreve algo que estava a acontecer, em curso, num momento específico do passado — muitas vezes interrompido por outra coisa.",
+    "example": "I was cooking dinner when the phone rang. They were watching TV all evening.",
+    "example_translation": "Eu estava a cozinhar o jantar quando o telefone tocou. Eles estiveram a ver televisão a noite toda.",
+    "common_mistake_pt": "Falantes de português tendem a usar o Past Simple para as duas ações, sem distinguir a ação em curso (interrompida) da ação que interrompe: dizem \"I cooked dinner when the phone rang\" em vez de \"I was cooking dinner when the phone rang\". A ação de fundo, mais longa, pede Past Continuous; a ação pontual que a interrompe pede Past Simple.",
+    "correction": "Ação em curso, interrompida → was/were + verbo-ing (\"I was cooking...\"). Ação pontual que interrompe → Past Simple (\"...when the phone rang\"). As duas partes normalmente aparecem juntas, ligadas por \"when\" ou \"while\".",
+    "real_world_example": "A contar uma história: \"I was walking home when I saw an old friend.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_interrupt",
+      "headword": "interrupt",
+      "type": "verb",
+      "translation_pt": "interromper",
+      "definition_en": "to stop someone while they are doing something, by suddenly doing or saying something",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˌɪntəˈrʌpt/",
+      "related_forms": [],
+      "example_sentences": ["Sorry to interrupt, but you have a phone call."],
+      "difficulty": 2,
+      "tags": ["past-continuous"]
+    },
+    {
+      "id": "vocab_a2_meanwhile",
+      "headword": "meanwhile",
+      "type": "adverb",
+      "translation_pt": "entretanto",
+      "definition_en": "at the same time, while something else is happening",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈmiːnwaɪl/",
+      "related_forms": [],
+      "example_sentences": ["I was cooking. Meanwhile, my son was doing his homework."],
+      "difficulty": 2,
+      "tags": ["past-continuous", "time"]
+    },
+    {
+      "id": "vocab_a2_suddenly",
+      "headword": "suddenly",
+      "type": "adverb",
+      "translation_pt": "de repente",
+      "definition_en": "quickly and unexpectedly",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈsʌdənli/",
+      "related_forms": [],
+      "example_sentences": ["I was walking home when it suddenly started to rain."],
+      "difficulty": 1,
+      "tags": ["past-continuous", "time"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_pc_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_past_continuous",
+      "prompt": "Complete: I ___ (cook) dinner when the phone rang.",
+      "correct_answer": ["was cooking"],
+      "distractors": ["cooked", "cook", "am cooking"],
+      "explanation": "Ação em curso no passado, interrompida → Past Continuous (\"was cooking\").",
+      "common_mistake_pt": "Usar o Past Simple (\"cooked\") aqui é um erro comum, perdendo a ideia de que a ação estava em curso.",
+      "audio_url": null,
+      "tags": ["past-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_pc_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_past_continuous",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["They were watching a film when the power went out."],
+      "distractors": ["They watched a film when the power was going out.", "They were watching a film when the power was going out.", "They watch a film when the power went out."],
+      "explanation": "A ação de fundo (assistir ao filme) leva Past Continuous; a ação pontual que interrompe (a luz falhar) leva Past Simple.",
+      "common_mistake_pt": "Colocar as duas ações no Past Continuous é um erro comum — só a ação de fundo leva essa forma.",
+      "audio_url": null,
+      "tags": ["past-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_pc_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"meanwhile\" mean?",
+      "correct_answer": ["at the same time, while something else is happening"],
+      "distractors": ["a long time ago", "never again", "very quickly"],
+      "explanation": "\"Meanwhile\" liga duas ações que acontecem ao mesmo tempo.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "time"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_pc_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What was the speaker doing when someone knocked?",
+      "correct_answer": ["reading a book", "reading"],
+      "distractors": ["sleeping", "cooking", "answering the door"],
+      "explanation": "No áudio, ouve-se: \"I was reading a book when someone suddenly knocked on the door.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I was reading a book when someone suddenly knocked on the door. Meanwhile, my sister was sleeping in the next room.",
+      "tags": ["listening", "past-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_pc_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Yesterday at 8pm, I was having dinner with friends. Meanwhile, my neighbour was moving furniture into her new flat — I could hear it through the wall.\" What was the neighbour doing at 8pm?",
+      "correct_answer": ["moving furniture", "moving furniture into her flat"],
+      "distractors": ["having dinner", "sleeping", "watching TV"],
+      "explanation": "O texto indica diretamente: \"my neighbour was moving furniture\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "past-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_pc_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_past_continuous",
+      "prompt": "Translate to English: \"Eu estava a dormir quando o meu telemóvel tocou de repente.\"",
+      "correct_answer": ["I was sleeping when my phone suddenly rang.", "I was sleeping when my phone rang suddenly."],
+      "distractors": [],
+      "explanation": "\"Estava a dormir\" corresponde ao Past Continuous (\"was sleeping\"), não ao Past Simple.",
+      "common_mistake_pt": "Usar \"I slept\" em vez de \"I was sleeping\" é o erro mais comum nesta frase — perde-se a ideia de que o sono já estava em curso.",
+      "audio_url": null,
+      "tags": ["translation", "past-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m1u3_past_continuous",
+    "title": "In the Middle of Something",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_past_continuous",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_past_continuous#rule" },
+      { "type": "example", "content_ref": "gc_a2_past_continuous#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_past_continuous#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_interrupt", "vocab_a2_meanwhile", "vocab_a2_suddenly"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_pc_001", "ex_a2_pc_002", "ex_a2_pc_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_pc_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_pc_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In the middle of a sentence, \"was\"/\"were\" are usually weak and unstressed: \"was\" → /wəz/ (\"I was cooking\" sounds like \"I wz cooking\"). In a short answer like \"Yes, I was\", it's pronounced fully and clearly: /wɒz/."
+      },
+      { "type": "speaking", "prompt": "Tell a short story about something that interrupted you while you were doing another activity." },
+      { "type": "writing", "prompt": "Write 5 sentences about what you and people you know were doing at specific past moments, using the Past Continuous." },
+      { "type": "translation", "exercise_ids": ["ex_a2_pc_translation_001"] }
+    ]
+  }
+}

@@ -17,8 +17,14 @@ import moduleArticles from "../content/curriculum/a1-module-10-articles.json";
 import moduleSuperlatives from "../content/curriculum/a1-module-11-superlatives.json";
 import moduleQuantifiers from "../content/curriculum/a1-module-12-quantifiers.json";
 import moduleWhQuestions from "../content/curriculum/a1-module-13-wh-questions.json";
+import moduleFutureWill from "../content/curriculum/a1-module-14-future-will.json";
+import modulePastContinuous from "../content/curriculum/a2-module-04-past-continuous.json";
+import moduleRelativeClauses from "../content/curriculum/a2-module-05-relative-clauses.json";
+import moduleGerundsInfinitives from "../content/curriculum/a2-module-06-gerunds-infinitives.json";
+import moduleQuestionTags from "../content/curriculum/a2-module-07-question-tags.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
+import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
 
 const prisma = new PrismaClient();
 
@@ -26,7 +32,7 @@ const prisma = new PrismaClient();
 // um módulo com uma unidade, um conceito de gramática, vocabulário, exercícios e uma lição.
 // Adicionar conteúdo novo = adicionar um ficheiro aqui, sem tocar na lógica de seed abaixo.
 // A ordem aqui decide Lesson.order (o índice + 1, ver main() abaixo), que por
-// sua vez decide a sequência que getNextLessonForUser() segue. Os 6 módulos
+// sua vez decide a sequência que getNextLessonForUser() segue. Os módulos
 // novos (Fase 3 da auditoria, 2026-08-26 — gramática em falta) foram inseridos
 // logo a seguir ao módulo A1/A2 da mesma sublevel_code a que pertencem, para
 // que um utilizador a meio do currículo os encontre no sítio pedagogicamente
@@ -46,9 +52,14 @@ const MODULE_FILES = [
   moduleSuperlatives, // A1.3 — logo a seguir a comparatives
   modulePastSimple,
   moduleFuturePlans,
+  moduleFutureWill, // A1.3 — logo a seguir a future-plans (going to vs. will)
   moduleExperiences,
   moduleObligation,
+  modulePastContinuous, // A2.1
+  moduleGerundsInfinitives, // A2.1
+  moduleQuestionTags, // A2.1
   moduleFirstConditional,
+  moduleRelativeClauses, // A2.2 — logo a seguir a first-conditional
 ];
 
 async function seedLevels() {
@@ -294,7 +305,7 @@ async function seedAchievements() {
 // separados (vocabulary-bank-2.json, -3.json...) para cada Write ficar
 // gerível — basta adicionar ao array VOCABULARY_BANKS abaixo. Ver
 // docs/decisions.md 2026-08-26 sobre a decisão de escala responsável.
-const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2];
+const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2, vocabularyBank3];
 
 async function seedVocabularyBank() {
   let total = 0;

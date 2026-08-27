@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.2",
+  "module": {
+    "id": "mod_a2_2_relative_clauses",
+    "title": "The Person Who...",
+    "theme": "relative-clauses",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_a2_2_relative_clauses",
+    "title": "Relative Clauses",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_relative_clauses",
+    "title": "Relative Clauses: who, which, that",
+    "rule": "Use \"who\" for people, \"which\" for things, and \"that\" for either, to add extra information about a noun without starting a new sentence.",
+    "simple_explanation": "Uma oração relativa junta duas frases numa só, evitando repetir o substantivo: em vez de \"I have a friend. My friend lives in London.\", dizemos \"I have a friend who lives in London.\"",
+    "example": "The woman who called you is my sister. This is the book that I told you about.",
+    "example_translation": "A mulher que te ligou é minha irmã. Este é o livro de que te falei.",
+    "common_mistake_pt": "Em português falado é comum repetir o pronome depois da oração relativa (\"A mulher que ela ligou...\"). Em inglês isso está errado: a oração relativa já substitui completamente o pronome — nunca se repete o sujeito ou objeto. \"The woman who she called you\" está incorreto; o correto é \"The woman who called you\", sem \"she\" a mais.",
+    "correction": "\"Who\"/\"which\"/\"that\" substituem completamente o sujeito ou objeto — nunca use outro pronome a seguir dentro da mesma oração relativa. \"Who\" para pessoas, \"which\" para coisas, \"that\" pode substituir os dois em orações relativas essenciais (sem vírgulas).",
+    "real_world_example": "A descrever alguém: \"That's the man who fixed my car last week.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_colleague",
+      "headword": "colleague",
+      "type": "noun",
+      "translation_pt": "colega de trabalho",
+      "definition_en": "a person you work with",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈkɒliːɡ/",
+      "related_forms": [],
+      "example_sentences": ["She's a colleague who I really trust."],
+      "difficulty": 2,
+      "tags": ["relative-clauses", "work"]
+    },
+    {
+      "id": "vocab_a2_landlord",
+      "headword": "landlord",
+      "type": "noun",
+      "translation_pt": "senhorio",
+      "definition_en": "a person who owns and rents out a property",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈlændlɔːd/",
+      "related_forms": ["landlady"],
+      "example_sentences": ["My landlord is the person who fixed the heating."],
+      "difficulty": 2,
+      "tags": ["relative-clauses", "housing"]
+    },
+    {
+      "id": "vocab_a2_stranger",
+      "headword": "stranger",
+      "type": "noun",
+      "translation_pt": "desconhecido",
+      "definition_en": "a person you don't know",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈstreɪndʒə/",
+      "related_forms": [],
+      "example_sentences": ["A stranger who helped me pick up my bags didn't even give his name."],
+      "difficulty": 2,
+      "tags": ["relative-clauses"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_rel_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_relative_clauses",
+      "prompt": "Complete: The woman ___ called you is my sister.",
+      "correct_answer": ["who"],
+      "distractors": ["which", "she", "what"],
+      "explanation": "\"Who\" é usado para pessoas.",
+      "common_mistake_pt": "Usar \"which\" para pessoas, ou repetir \"she\" a mais, são erros comuns.",
+      "audio_url": null,
+      "tags": ["relative-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_rel_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_relative_clauses",
+      "prompt": "Choose the correct sentence.",
+      "correct_answer": ["This is the book that I told you about."],
+      "distractors": ["This is the book that I told you about it.", "This is the book which I told you it.", "This is the book I told you about it."],
+      "explanation": "Não se repete \"it\" depois da oração relativa — já está implícito em \"that\".",
+      "common_mistake_pt": "Repetir o pronome (\"about it\") no fim é um erro muito comum de transferência do português falado.",
+      "audio_url": null,
+      "tags": ["relative-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_rel_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"landlord\" mean?",
+      "correct_answer": ["a person who owns and rents out a property"],
+      "distractors": ["a person who rents a flat (the tenant)", "a type of neighbour", "a government official"],
+      "explanation": "\"Landlord\" é o dono do imóvel; quem aluga e vive lá é o \"tenant\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "housing"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_rel_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What did the landlord do?",
+      "correct_answer": ["fixed the heating", "he fixed the heating"],
+      "distractors": ["broke the heating", "rented a new flat", "called a stranger"],
+      "explanation": "No áudio, ouve-se: \"My landlord is the person who fixed the heating last week.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "My landlord is the person who fixed the heating last week. He's actually a really nice guy.",
+      "tags": ["listening", "relative-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_rel_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"I have a colleague who speaks four languages. She's the person who helped me with the translation last month.\" What did the colleague help with?",
+      "correct_answer": ["the translation", "a translation"],
+      "distractors": ["fixing the heating", "renting a flat", "learning a language"],
+      "explanation": "O texto indica diretamente: \"helped me with the translation\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "relative-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_rel_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_relative_clauses",
+      "prompt": "Translate to English: \"Este é o colega que me ajudou ontem.\"",
+      "correct_answer": ["This is the colleague who helped me yesterday.", "This is the colleague that helped me yesterday."],
+      "distractors": [],
+      "explanation": "\"Who\"/\"that\" substituem completamente o sujeito da oração relativa.",
+      "common_mistake_pt": "Acrescentar \"he\" a mais (\"who he helped me\") é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "relative-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m2u2_relative_clauses",
+    "title": "The Person Who...",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_relative_clauses",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_relative_clauses#rule" },
+      { "type": "example", "content_ref": "gc_a2_relative_clauses#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_relative_clauses#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_colleague", "vocab_a2_landlord", "vocab_a2_stranger"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_rel_001", "ex_a2_rel_002", "ex_a2_rel_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_rel_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_rel_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Relative clauses are usually said as one continuous phrase with the noun they describe, with no pause before \"who\"/\"which\"/\"that\": \"the woman who called\" — not \"the woman... who called\"."
+      },
+      { "type": "speaking", "prompt": "Describe 3 people in your life using relative clauses (a colleague who..., a friend who..., a neighbour who...)." },
+      { "type": "writing", "prompt": "Write 5 sentences describing people or things you know, using \"who\", \"which\" or \"that\"." },
+      { "type": "translation", "exercise_ids": ["ex_a2_rel_translation_001"] }
+    ]
+  }
+}

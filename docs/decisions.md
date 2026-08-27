@@ -2,6 +2,27 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — FASE 3 da auditoria (continuação): mais 5 módulos, vocabulary-bank-3, e correção de 12 duplicados que eu próprio introduzi
+
+Continuação direta do lote anterior (ver entrada abaixo), na mesma sessão, pedido do utilizador "pode continuar".
+
+**Mais 5 módulos de gramática**, todos ainda dentro de A1/A2 (sem precisar de introduzir B1):
+- **Future with "will"** (A1.3) — mod_a1_3_future_will, distinção com "going to" (já existente)
+- **Past Continuous** (A2.1) — mod_a2_1_past_continuous
+- **Gerunds vs. To-Infinitives** (A2.1) — mod_a2_1_gerunds_infinitives
+- **Question Tags** (A2.1) — mod_a2_1_question_tags
+- **Relative Clauses** (A2.2, who/which/that) — mod_a2_2_relative_clauses
+
+Cobertura de gramática sobe de 14/24 para cerca de **18/24** (10 dos 15 itens listados como "em falta" na secção 9 da auditoria estão agora cobertos). Os 5 que restam — past perfect, future continuous, segundo condicional, voz passiva, discurso indireto — são todos genuinamente B1, e exigiriam introduzir um Level/Sublevels B1 novos no schema, o que fica reservado para uma passagem dedicada e não deve ser feito de forma apressada.
+
+**`vocabulary-bank-3.json`: 122 palavras novas**, focadas em categorias que a auditoria confirmou estarem **inteiramente ausentes** — sobretudo partes do corpo e sintomas de saúde (não existia um único item para "cabeça", "tosse", "alérgico"...), além de emoções, trabalho, tecnologia, casa, viagens, tempo/frequência e verbos abstratos comuns.
+
+**Erro cometido e corrigido nesta mesma sessão:** ao escolher vocabulário para os 11 módulos novos desta Fase 3, verifiquei colisões de **id** a cada lote, mas não de **headword** — e 12 dos meus próprios vocab items (furniture, battery, borrow, avoid, safe, reliable, crowded, colleague, landlord, luggage, reason, suggest) colidiam com palavras já existentes em `vocabulary-bank.json`/`vocabulary-bank-2.json`. Exatamente o mesmo tipo de bug que a auditoria original tinha encontrado e que eu tinha corrigido no início desta sessão — reintroduzido enquanto fazia o trabalho de o resolver. Detetado só depois de escrever `vocabulary-bank-3.json` e correr a verificação de headwords em todo o `content/curriculum/` (não só de ids), que devia ter feito desde o primeiro lote.
+
+Corrigido substituindo as **12 entradas antigas e desacopladas** dos bancos standalone por palavras diferentes (ex. "colleague" → "supervisor", "furniture" → "wardrobe", "avoid" → "escape") — nunca o vocabulário dos módulos novos, que está integrado a `lesson.steps[].vocabulary_ids` e partir isso quebraria a lição. Confirmado no fim: **702 ids e 482 headwords em todo o `content/curriculum/`, ambos sem duplicados**.
+
+**Lição para lotes futuros de conteúdo:** verificar sempre headwords, não só ids, e fazê-lo ANTES de escrever o lote seguinte, não só no fim.
+
 ## 2026-08-26 — FASE 3 da auditoria (início): 6 novos módulos de gramática
 
 A auditoria (`docs/AUDITORIA-2026-08-26.md`, secção 8) identificou 13 conceitos gramaticais essenciais A1-B1 totalmente ausentes do currículo. Este é o primeiro lote — os 6 mais fundamentais, todos dentro do A1 já existente (Pre-A1→A2.2 continuam a ser as únicas sublevels seedadas; B1 fica para um lote posterior desta mesma fase):

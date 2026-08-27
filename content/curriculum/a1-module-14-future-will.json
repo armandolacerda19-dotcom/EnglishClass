@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.3",
+  "module": {
+    "id": "mod_a1_3_future_will",
+    "title": "Right Now Decisions",
+    "theme": "future-will",
+    "order": 5
+  },
+  "unit": {
+    "id": "unit_a1_3_future_will",
+    "title": "Future with Will",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_future_will",
+    "title": "Future with \"will\": predictions and spontaneous decisions",
+    "rule": "Use \"will\" + base verb for predictions without firm evidence, promises, offers, and decisions made at the moment of speaking (not already planned). Use \"going to\" instead for plans already decided before now.",
+    "simple_explanation": "\"Will\" é para o que decidimos agora, no momento, ou para prever o futuro sem termos a certeza — não para planos que já tínhamos decidido antes.",
+    "example": "I think it will rain tomorrow. I'm thirsty — I'll get a glass of water. I promise I'll call you.",
+    "example_translation": "Acho que vai chover amanhã. Tenho sede — vou buscar um copo de água. Prometo que te ligo.",
+    "common_mistake_pt": "Em português usa-se \"vou\" tanto para uma decisão tomada agora (\"vou buscar água\") como para um plano já combinado (\"vou encontrar-me com a Sara às 15h, já combinámos\") — a mesma forma serve para os dois casos. Em inglês são estruturas diferentes: \"will\" é só para decisões espontâneas, tomadas no momento; planos já combinados usam \"going to\" ou o Present Continuous.",
+    "correction": "Se a decisão foi tomada agora mesmo, ao falar, use \"will\": \"I'm thirsty — I'll get some water.\" Se já estava decidido antes desta conversa, use \"going to\" ou o Present Continuous: \"I'm meeting Sarah at 3pm\" (já combinado), não \"I will meet Sarah\".",
+    "real_world_example": "Ao telefone: \"The phone's ringing — I'll get it!\" (decisão espontânea) vs. \"I'm calling my mother at 6pm, we already planned it\" (já combinado)."
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_promise",
+      "headword": "promise",
+      "type": "verb",
+      "translation_pt": "prometer",
+      "definition_en": "to say that you will definitely do something",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈprɒmɪs/",
+      "related_forms": ["a promise (noun)"],
+      "example_sentences": ["I promise I'll call you tonight."],
+      "difficulty": 1,
+      "tags": ["future", "will"]
+    },
+    {
+      "id": "vocab_a1_probably",
+      "headword": "probably",
+      "type": "adverb",
+      "translation_pt": "provavelmente",
+      "definition_en": "likely, but not completely certain",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈprɒbəbli/",
+      "related_forms": [],
+      "example_sentences": ["It will probably rain later."],
+      "difficulty": 1,
+      "tags": ["future", "will"]
+    },
+    {
+      "id": "vocab_a1_definitely",
+      "headword": "definitely",
+      "type": "adverb",
+      "translation_pt": "com certeza",
+      "definition_en": "without any doubt; certainly",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/ˈdefɪnətli/",
+      "related_forms": [],
+      "example_sentences": ["I'll definitely be there on time."],
+      "difficulty": 2,
+      "tags": ["future", "will"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_will_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_future_will",
+      "prompt": "Complete: I'm thirsty — I ___ (get) some water.",
+      "correct_answer": ["will get", "'ll get"],
+      "distractors": ["am going to get", "get", "getting"],
+      "explanation": "Decisão espontânea, tomada neste momento → \"will\", não \"going to\".",
+      "common_mistake_pt": "Usar \"going to\" aqui soa estranho — \"going to\" pede um plano já decidido antes de falar.",
+      "audio_url": null,
+      "tags": ["future-will"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_will_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_future_will",
+      "prompt": "You arranged to meet Sarah last week. Now you're telling a friend about it. Choose the correct sentence.",
+      "correct_answer": ["I'm meeting Sarah at 3pm tomorrow."],
+      "distractors": ["I will meet Sarah at 3pm tomorrow.", "I meet Sarah at 3pm tomorrow.", "I meeting Sarah at 3pm tomorrow."],
+      "explanation": "Já estava combinado antes desta conversa → Present Continuous, não \"will\".",
+      "common_mistake_pt": "Usar \"will\" para um plano já combinado é um erro comum, porque em português \"vou\" serve para os dois casos.",
+      "audio_url": null,
+      "tags": ["future-will"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_will_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"probably\" mean?",
+      "correct_answer": ["likely, but not completely certain"],
+      "distractors": ["without any doubt", "never", "immediately"],
+      "explanation": "\"Probably\" indica uma previsão provável, mas sem certeza absoluta — ao contrário de \"definitely\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "future"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_will_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker promise?",
+      "correct_answer": ["to finish the report by Friday", "finish the report by Friday"],
+      "distractors": ["to send it on Monday", "to cancel the report", "to finish it today"],
+      "explanation": "No áudio, ouve-se: \"I promise I'll finish the report by Friday.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I promise I'll finish the report by Friday. I'm not completely sure, but I'll probably send it earlier, on Wednesday.",
+      "tags": ["listening", "future-will"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_will_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"Weather forecast: It will probably rain in the morning, but it will definitely be sunny by the afternoon.\" What will definitely happen, according to the forecast?",
+      "correct_answer": ["it will be sunny in the afternoon", "sunny in the afternoon"],
+      "distractors": ["it will rain all day", "it will snow", "nothing is certain"],
+      "explanation": "O texto indica diretamente: \"it will definitely be sunny by the afternoon\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "future-will"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_will_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_future_will",
+      "prompt": "Translate to English (decisão tomada agora mesmo): \"Tenho fome — vou fazer uma sandes.\"",
+      "correct_answer": ["I'm hungry — I'll make a sandwich.", "I'm hungry — I will make a sandwich."],
+      "distractors": [],
+      "explanation": "\"Will\" é mais natural aqui, já que a decisão é tomada no momento em que se fala.",
+      "common_mistake_pt": "Usar \"going to\" aqui é um erro comum, mesmo sendo tecnicamente compreensível — \"will\" soa mais natural para decisões espontâneas.",
+      "audio_url": null,
+      "tags": ["translation", "future-will"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m4u5_future_will",
+    "title": "Deciding Right Now",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_future_will",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_future_will#rule" },
+      { "type": "example", "content_ref": "gc_a1_future_will#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_future_will#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_promise", "vocab_a1_probably", "vocab_a1_definitely"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_will_001", "ex_a1_will_002", "ex_a1_will_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_will_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_will_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Will\" almost always contracts in speech: \"I will\" → \"I'll\" /aɪl/, \"it will\" → \"it'll\" /ˈɪtl/. Saying the full \"will\" in casual conversation can sound unnaturally formal."
+      },
+      { "type": "speaking", "prompt": "Make 3 predictions about the weather, your week, or the future in general, using \"will\"." },
+      { "type": "writing", "prompt": "Write 5 sentences: 2 promises, 2 predictions, and 1 spontaneous decision, all using \"will\"." },
+      { "type": "translation", "exercise_ids": ["ex_a1_will_translation_001"] }
+    ]
+  }
+}

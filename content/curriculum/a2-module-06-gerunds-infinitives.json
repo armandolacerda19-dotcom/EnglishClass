@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.1",
+  "module": {
+    "id": "mod_a2_1_gerunds_infinitives",
+    "title": "-ing or To?",
+    "theme": "gerunds-infinitives",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_a2_1_gerunds_infinitives",
+    "title": "Gerunds and Infinitives",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_gerunds_infinitives",
+    "title": "Verb + Gerund vs. Verb + To-Infinitive",
+    "rule": "Some verbs are followed by a gerund (verb+ing): enjoy, avoid, finish, mind, suggest. Other verbs are followed by a to-infinitive: want, decide, promise, need, hope. There is no simple rule for which is which — you need to learn each verb's pattern.",
+    "simple_explanation": "Depois de certos verbos, o verbo seguinte tem de ficar em -ing (gerúndio); depois de outros, tem de ficar com \"to\" (infinitivo). Não há uma regra simples — aprende-se caso a caso, verbo a verbo.",
+    "example": "I enjoy reading before bed. I want to travel next year.",
+    "example_translation": "Gosto de ler antes de dormir. Quero viajar no próximo ano.",
+    "common_mistake_pt": "Em português, a maioria dos verbos equivalentes usa o infinitivo (\"gosto de ler\", \"quero viajar\"), o que leva falantes de português a usar sempre \"to\" + infinitivo em inglês também: dizem \"I enjoy to read\" em vez de \"I enjoy reading\". Alguns verbos em inglês (enjoy, avoid, finish, mind, suggest) exigem obrigatoriamente o gerúndio, nunca o infinitivo com \"to\".",
+    "correction": "Não existe atalho: é preciso decorar o padrão de cada verbo. Os mais comuns com gerúndio: enjoy, avoid, finish, mind, suggest, keep, practise. Os mais comuns com to-infinitivo: want, decide, promise, need, hope, plan, agree.",
+    "real_world_example": "Numa conversa: \"I'm thinking about changing jobs, but I haven't decided to leave yet.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_avoid",
+      "headword": "avoid",
+      "type": "verb",
+      "translation_pt": "evitar",
+      "definition_en": "to try not to do something, or to stay away from something",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/əˈvɔɪd/",
+      "related_forms": ["avoid + verb-ing"],
+      "example_sentences": ["I avoid eating late at night."],
+      "difficulty": 2,
+      "tags": ["gerund-verb"]
+    },
+    {
+      "id": "vocab_a2_suggest",
+      "headword": "suggest",
+      "type": "verb",
+      "translation_pt": "sugerir",
+      "definition_en": "to say an idea for someone to consider",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/səˈdʒest/",
+      "related_forms": ["suggest + verb-ing"],
+      "example_sentences": ["She suggested going to the cinema."],
+      "difficulty": 2,
+      "tags": ["gerund-verb"]
+    },
+    {
+      "id": "vocab_a2_practise_verb",
+      "headword": "practise",
+      "type": "verb",
+      "translation_pt": "praticar",
+      "definition_en": "to do something regularly in order to improve a skill",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈpræktɪs/",
+      "related_forms": ["practise + verb-ing", "practice (noun)"],
+      "example_sentences": ["I practise speaking English every day."],
+      "difficulty": 1,
+      "tags": ["gerund-verb"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_ger_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_gerunds_infinitives",
+      "prompt": "Complete: I enjoy ___ (read) before bed.",
+      "correct_answer": ["reading"],
+      "distractors": ["to read", "read", "reads"],
+      "explanation": "\"Enjoy\" é sempre seguido de gerúndio (-ing), nunca de \"to\" + infinitivo.",
+      "common_mistake_pt": "\"I enjoy to read\" é um erro muito comum, por transferência direta do português.",
+      "audio_url": null,
+      "tags": ["gerunds-infinitives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ger_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_gerunds_infinitives",
+      "prompt": "Complete: I want ___ (travel) next year.",
+      "correct_answer": ["to travel"],
+      "distractors": ["travelling", "travel", "will travel"],
+      "explanation": "\"Want\" é seguido de to-infinitivo (\"to travel\"), nunca de gerúndio.",
+      "common_mistake_pt": "Usar o gerúndio (\"travelling\") depois de \"want\" é um erro comum, misturando o padrão de outros verbos.",
+      "audio_url": null,
+      "tags": ["gerunds-infinitives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ger_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"avoid\" mean?",
+      "correct_answer": ["to try not to do something, or to stay away from something"],
+      "distractors": ["to do something very often", "to suggest an idea", "to finish a task"],
+      "explanation": "\"Avoid\" é seguido de gerúndio: \"avoid doing something\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "gerund-verb"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ger_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What did the doctor suggest?",
+      "correct_answer": ["changing the diet", "changing my diet"],
+      "distractors": ["stopping exercise", "seeing a specialist", "avoiding sugar only"],
+      "explanation": "No áudio, ouve-se: \"My doctor suggested changing my diet.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "My doctor suggested changing my diet. I've decided to try it, even though I don't enjoy cooking very much.",
+      "tags": ["listening", "gerunds-infinitives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ger_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"I practise speaking English every morning. I've also decided to watch films without subtitles, even though I sometimes avoid difficult ones.\" What has the speaker decided to do?",
+      "correct_answer": ["watch films without subtitles", "to watch films without subtitles"],
+      "distractors": ["avoid all films", "stop practising English", "add subtitles"],
+      "explanation": "O texto indica diretamente: \"decided to watch films without subtitles\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "gerunds-infinitives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_ger_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_gerunds_infinitives",
+      "prompt": "Translate to English: \"Ela sugeriu experimentar o novo restaurante.\"",
+      "correct_answer": ["She suggested trying the new restaurant."],
+      "distractors": [],
+      "explanation": "\"Suggest\" exige sempre gerúndio depois: \"suggested trying\".",
+      "common_mistake_pt": "Usar \"to try\" depois de \"suggest\" (\"suggested to try\") é um erro comum.",
+      "audio_url": null,
+      "tags": ["translation", "gerunds-infinitives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m1u4_gerunds_infinitives",
+    "title": "-ing or To?",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_gerunds_infinitives",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_gerunds_infinitives#rule" },
+      { "type": "example", "content_ref": "gc_a2_gerunds_infinitives#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_gerunds_infinitives#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_avoid", "vocab_a2_suggest", "vocab_a2_practise_verb"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_ger_001", "ex_a2_ger_002", "ex_a2_ger_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_ger_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_ger_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In fast, casual speech, \"want to\" often reduces to something close to \"wanna\" /ˈwɒnə/ — you'll hear this a lot, but it's not used in writing or formal contexts."
+      },
+      { "type": "speaking", "prompt": "Talk about 3 things you enjoy doing and 3 things you want to do this year, using the correct gerund or infinitive for each verb." },
+      { "type": "writing", "prompt": "Write 5 sentences using enjoy, avoid, suggest, want and decide correctly (gerund or to-infinitive)." },
+      { "type": "translation", "exercise_ids": ["ex_a2_ger_translation_001"] }
+    ]
+  }
+}

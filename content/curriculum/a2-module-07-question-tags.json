@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.1",
+  "module": {
+    "id": "mod_a2_1_question_tags",
+    "title": "You Agree, Don't You?",
+    "theme": "question-tags",
+    "order": 5
+  },
+  "unit": {
+    "id": "unit_a2_1_question_tags",
+    "title": "Question Tags",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_question_tags",
+    "title": "Question Tags",
+    "rule": "A question tag is a short question added to the end of a statement, to check information or invite agreement. If the statement is positive, the tag is negative; if the statement is negative, the tag is positive — and the tag always repeats the same auxiliary verb as the statement.",
+    "simple_explanation": "É uma mini-pergunta no fim de uma afirmação, como \"não é?\" em português — mas em inglês muda consoante o verbo da frase principal, não é sempre a mesma expressão.",
+    "example": "You're from Portugal, aren't you? She doesn't like coffee, does she?",
+    "example_translation": "És de Portugal, não és? Ela não gosta de café, pois não?",
+    "common_mistake_pt": "Em português usa-se quase sempre a mesma expressão fixa (\"não é?\", \"não foi?\") no fim de qualquer frase. Em inglês, o question tag tem de repetir o mesmo auxiliar/verbo da frase principal: falantes de português tendem a usar sempre \"isn't it?\" para tudo, dizendo \"You like coffee, isn't it?\" em vez de \"You like coffee, don't you?\", ou \"She went home, isn't it?\" em vez de \"She went home, didn't she?\".",
+    "correction": "O tag repete o auxiliar da frase principal (do/does/did/is/are/was/were/have/can...) e inverte a polaridade (afirmativa → tag negativa; negativa → tag afirmativa), sempre com um pronome, nunca com o nome outra vez: \"Sarah is here, isn't she?\" (não \"isn't Sarah?\").",
+    "real_world_example": "Numa conversa informal: \"It's a nice day, isn't it?\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_agree",
+      "headword": "agree",
+      "type": "verb",
+      "translation_pt": "concordar",
+      "definition_en": "to have the same opinion as someone else",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/əˈɡriː/",
+      "related_forms": ["disagree (opposite)"],
+      "example_sentences": ["Do you agree with me?"],
+      "difficulty": 1,
+      "tags": ["question-tags"]
+    },
+    {
+      "id": "vocab_a2_assume",
+      "headword": "assume",
+      "type": "verb",
+      "translation_pt": "presumir",
+      "definition_en": "to think that something is true without checking",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/əˈsjuːm/",
+      "related_forms": [],
+      "example_sentences": ["I assumed you already knew."],
+      "difficulty": 2,
+      "tags": ["question-tags"]
+    },
+    {
+      "id": "vocab_a2_confirm",
+      "headword": "confirm",
+      "type": "verb",
+      "translation_pt": "confirmar",
+      "definition_en": "to say that something is definitely true or will definitely happen",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/kənˈfɜːm/",
+      "related_forms": [],
+      "example_sentences": ["Can you confirm the time of the meeting?"],
+      "difficulty": 2,
+      "tags": ["question-tags"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_tag_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_question_tags",
+      "prompt": "Complete: You're from Portugal, ___?",
+      "correct_answer": ["aren't you"],
+      "distractors": ["isn't it", "don't you", "aren't they"],
+      "explanation": "A frase principal usa \"are\", por isso o tag também usa \"are\" (na forma negativa): \"aren't you\".",
+      "common_mistake_pt": "Usar \"isn't it\" aqui é o erro mais comum — o tag tem de repetir o verbo certo, não uma fórmula fixa.",
+      "audio_url": null,
+      "tags": ["question-tags"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_tag_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_question_tags",
+      "prompt": "Complete: She doesn't like coffee, ___?",
+      "correct_answer": ["does she"],
+      "distractors": ["isn't it", "doesn't she", "is she"],
+      "explanation": "A frase principal é negativa (\"doesn't\"), por isso o tag é afirmativo: \"does she\".",
+      "common_mistake_pt": "Repetir a negação no tag (\"doesn't she\") é um erro comum — a polaridade tem de se inverter.",
+      "audio_url": null,
+      "tags": ["question-tags"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_tag_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"assume\" mean?",
+      "correct_answer": ["to think that something is true without checking"],
+      "distractors": ["to confirm something officially", "to disagree strongly", "to ask a question"],
+      "explanation": "\"Assume\" é pensar que algo é verdade sem confirmar.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_tag_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker want to confirm?",
+      "correct_answer": ["that the listener has been to Lisbon before", "that they have been to Lisbon"],
+      "distractors": ["that the listener lives in Lisbon", "that the listener is going to Lisbon", "that the listener likes Lisbon"],
+      "explanation": "No áudio, ouve-se: \"You've been to Lisbon before, haven't you?\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "You've been to Lisbon before, haven't you? I can't remember if you told me.",
+      "tags": ["listening", "question-tags"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_tag_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read the text: \"'You didn't forget the tickets, did you?' Maria asked, looking worried. 'Of course not,' I said, showing her my bag.\" What was Maria worried about?",
+      "correct_answer": ["forgetting the tickets", "that the tickets were forgotten"],
+      "distractors": ["losing her bag", "being late", "the wrong date"],
+      "explanation": "A pergunta \"You didn't forget the tickets, did you?\" mostra que Maria estava preocupada com isso.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "question-tags"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_tag_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_question_tags",
+      "prompt": "Translate to English: \"Ela foi para casa cedo, não foi?\"",
+      "correct_answer": ["She went home early, didn't she?"],
+      "distractors": [],
+      "explanation": "O tag tem de corresponder ao Past Simple da frase principal (\"went\") → \"didn't she\".",
+      "common_mistake_pt": "Usar \"isn't it\" em vez de \"didn't she\" é o erro mais comum nesta frase.",
+      "audio_url": null,
+      "tags": ["translation", "question-tags"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m1u5_question_tags",
+    "title": "You Agree, Don't You?",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_question_tags",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_question_tags#rule" },
+      { "type": "example", "content_ref": "gc_a2_question_tags#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_question_tags#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_agree", "vocab_a2_assume", "vocab_a2_confirm"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_tag_001", "ex_a2_tag_002", "ex_a2_tag_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_tag_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_tag_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The intonation of a tag changes its meaning: RISING intonation (\"...isn't it?\" ↗) means a real question — you're not sure. FALLING intonation (\"...isn't it?\" ↘) means you're fairly sure and just want agreement — this is the most common use in casual conversation."
+      },
+      { "type": "speaking", "prompt": "Make 5 statements about your partner/friend and add the correct question tag to each, checking if they agree." },
+      { "type": "writing", "prompt": "Write 5 sentences with question tags about things you assume to be true about someone you know." },
+      { "type": "translation", "exercise_ids": ["ex_a2_tag_translation_001"] }
+    ]
+  }
+}
