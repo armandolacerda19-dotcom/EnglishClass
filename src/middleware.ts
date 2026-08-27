@@ -43,5 +43,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|mp3|wav)$).*)"],
+  // Exclui também manifest.webmanifest e sw.js (PWA — precisam de ser
+  // acessíveis sem sessão, o Chrome pede-os de forma anónima).
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|manifest\\.webmanifest|sw\\.js|.*\\.(?:svg|png|jpg|jpeg|mp3|wav)$).*)",
+  ],
 };

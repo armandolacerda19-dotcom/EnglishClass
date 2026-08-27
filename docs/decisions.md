@@ -2,6 +2,15 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-26 — PWA: instalação no Android como app normal
+
+Pedido do utilizador: poder instalar a webapp no telemóvel Android como uma app nativa. Adicionado suporte mínimo a Progressive Web App:
+- `public/manifest.webmanifest` (nome, ícones, `display: standalone`, cores do sistema de design — Atlantic Ink `#1B2A4A`).
+- `public/icon.svg` e `public/icon-maskable.svg` — ícone em SVG (carimbo circular a brass sobre fundo ink, coerente com o "Carimbo de Passaporte" do sistema de design). **Nota**: ícones SVG cobrem o pedido (instalação no Chrome/Android), mas PNG seria mais universalmente compatível (ex. Lighthouse PWA audit, alguns launchers Android mais antigos) — não gerado por não haver Node/Python/ferramenta de imagem nesta máquina; considerar gerar PNGs (192×192 e 512×512) a partir do SVG quando houver uma sessão com essas ferramentas.
+- `public/sw.js` — service worker mínimo, sem caching agressivo (a app depende de dados em tempo real: sessão, progresso, IA); existe só para satisfazer o critério de instalabilidade do Chrome (manifest + service worker com `fetch` handler).
+- `src/components/PwaRegister.tsx` — regista o service worker no cliente, montado em `src/app/layout.tsx`.
+- `src/middleware.ts`: `manifest.webmanifest` e `sw.js` excluídos do matcher — o Chrome pede-os sem sessão, e o middleware anterior estava a redirecioná-los para `/login`, o que quebraria a instalabilidade.
+
 ## 2026-08-26 — Desafio Diário e checkpoints (pedido do utilizador)
 
 - **Desafio Diário de vocabulário**: seleção determinística por dia (hash da data, sem `Math.random()`) a partir de todo o `VocabularyItem` seedado — 5 a 10 palavras, escolha múltipla de tradução (1 correta + 3 distratores de outras palavras), seguido de até 3 frases de exemplo para praticar. Ver `src/lib/dailyChallenge.ts`.

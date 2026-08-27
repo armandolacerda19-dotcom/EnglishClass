@@ -2,7 +2,7 @@
 
 > **Para uma sessão nova do Claude Code**: leia este ficheiro primeiro, depois `docs/decisions.md` (histórico de decisões técnicas) e `docs/10-scope-mvp1.md` (o que está dentro/fora do MVP1). Este ficheiro deve ser atualizado sempre que houver uma mudança relevante na app — não deixar desatualizado.
 
-Última atualização: 2026-08-26, deploy `ea0214e` + redeploy de env var publicados com sucesso. 6 lições em produção, `NEXT_PUBLIC_SITE_URL` corrigido para o domínio atual.
+Última atualização: 2026-08-26, PWA (instalação Android) adicionada — manifest, ícones SVG, service worker mínimo. Ainda por confirmar publicação em produção (ver secção 6).
 
 ### Nota técnica — clicar em elementos da UI da Netlify via browser automation
 A navegação por `find`/`ref` na consola da Netlify revelou-se instável (refs ficam obsoletos entre re-renders, timeouts de screenshot frequentes nesta página em concreto). **Solução mais fiável**: usar `javascript_tool` para localizar e clicar elementos diretamente no DOM (`document.querySelectorAll`, filtrar por `offsetParent !== null` para apanhar só o elemento visível/ativo, `.click()`), e para editar inputs React controlados usar o setter nativo do `HTMLInputElement.prototype` antes de disparar o evento `input` (`Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set.call(input, valor)`). Preferir este método a `find`/`computer` para esta consola específica.
@@ -31,6 +31,7 @@ O utilizador (dono do projeto) **não instala nada localmente** — não tem Nod
 - Progress (octógono de competência, XP, streak, conquistas, checkpoints)
 - Desafio Diário de vocabulário + Micro-Desafios (deploy `c67143e`/seguintes — ainda não confirmado pelo utilizador em produção, ver secção 6)
 - Privacidade RGPD (exportar/eliminar dados)
+- Instalação como app (PWA) — manifest + service worker mínimo, ver secção 6 (deploy pendente)
 
 ### Histórico de deploy — lições aprendidas (não repetir)
 Passámos por vários ciclos de build falhado antes do primeiro deploy bem-sucedido. Erros já corrigidos, não os reintroduzir:
@@ -82,6 +83,7 @@ Passámos por vários ciclos de build falhado antes do primeiro deploy bem-suced
 - [x] 6ª lição adicional (A1.2 "At the Restaurant" — pedidos educados Can/Could) — para reforçar a profundidade do currículo enquanto havia orçamento de tokens.
 - [x] `NEXT_PUBLIC_SITE_URL` corrigido para `https://english-platafform.netlify.app` e redeploy confirmado publicado.
 - [ ] **Por confirmar pelo utilizador em produção**: clicar em Desafio Diário e Micro-Desafios no site real (deploy `ea0214e` já publicado, deploy código-fonte confirmado sem erros; falta só confirmação visual/funcional do próprio utilizador).
+- [x] App instalável no Android (PWA) — `public/manifest.webmanifest`, `public/icon.svg`, `public/icon-maskable.svg`, `public/sw.js`, `src/components/PwaRegister.tsx`, `src/app/layout.tsx`, `src/middleware.ts` (exclusão do matcher). Ver `docs/decisions.md` 2026-08-26. **Nota**: ícones em SVG, não PNG (sem ferramenta de imagem nesta máquina) — funciona no Chrome/Android mas considerar gerar PNGs (192×192, 512×512) numa sessão futura com Node/Python disponível, para compatibilidade máxima. Falta confirmar no telemóvel do utilizador: abrir o site no Chrome Android → menu (⋮) → "Adicionar ao ecrã principal" / "Instalar app".
 
 Ver o corpo da conversa da sessão de 2026-08-26 para o pedido exato.
 
