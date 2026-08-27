@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Mais 10 textos de leitura (leitura graduada, auditoria secção 291)
+
+Continuação da mesma sessão, depois de fechar o balanço da secção 294. "Leitura graduada (4→60 textos)" continua na lista da auditoria — este é mais um incremento, não o fecho do item (33 de um alvo de 60, ver nota de honestidade abaixo). Reforçados os níveis mais fracos: Pre-A1 tinha só 1 texto (agora 3), A1/A2/B1 receberam mais 3/2/3 respetivamente. Cada texto novo foi escolhido para reforçar um ponto gramatical de um módulo já seedado, mesmo critério usado no primeiro lote de 20 (2026-08-27, "Fase 3 fechada"): `learning-a-new-hobby`→Present Perfect, `a-visit-to-the-doctor`→should/have to, `a-difficult-decision`→Past Perfect + condicionais, `how-paper-is-recycled`→Passive Voice (tema diferente de `how-coffee-is-made`, para não repetir o mesmo assunto), `choosing-a-university-course`→modais de possibilidade (might/could), pouco usados noutro conteúdo.
+
+**Nota de honestidade**: 33/60 é mais de metade do alvo original da auditoria, mas ainda não está lá. Ao ritmo de ~10 textos por lote (cada um requer escrever texto + 3 perguntas + verificar manualmente sem `tsc`), fechar os 60 exigiria mais 2-3 lotes semelhantes. Prioridade mais baixa do que os itens estruturais/funcionais da secção 294 (já fechados nesta sessão), porque conteúdo de referência estático tem menor risco e pode ser continuado em qualquer sessão futura sem perder contexto — este ficheiro de decisões documenta o critério (reforçar módulos gramaticais, variar níveis, não repetir temas) para essa continuação não precisar repetir a análise.
+
 ## 2026-08-27 — Fase 4: balanço da secção 294 da auditoria (o que ficou e o que falta, com justificação)
 
 Fecho desta ronda de Fase 4. A secção 294 da auditoria listava, em conjunto: "Progressão estruturada · roleplay por cenário (restaurante/hotel/aeroporto/reunião) · scoring de pronúncia · tempo de resposta (automaticidade) · guardar áudio para auto-avaliação · feedback fonético PT→EN · shadowing · conversa livre com objetivo · simulação de entrevista por setor · métrica de confiança". Balanço item a item:
