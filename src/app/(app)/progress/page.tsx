@@ -7,6 +7,9 @@ import { CefrLevelTag } from "@/components/ui/CefrLevelTag";
 import { formatLevelCode } from "@/lib/level";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { getCheckpointSummary } from "@/lib/checkpoints";
+import { getWeeklyActivity, getRetentionSnapshot } from "@/lib/metrics";
+
+const WEEKDAY_LABEL_PT = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
 // Código curto para caber no carimbo circular (docs/09-sistema-design.md) — o título
 // completo da conquista aparece por baixo do carimbo.
@@ -29,27 +32,33 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
 export default async function ProgressPage() {
   const { user, learningProfile } = await requireUserWithProfile();
 
-  const [exerciseAttempts, resolvedErrors, achievements, checkpoints, certificates, recentConfidence] = await Promise.all([
-    prisma.exerciseAttempt.count({ where: { userId: user.id } }),
-    prisma.userError.count({ where: { userId: user.id, resolvedAt: { not: null } } }),
-    prisma.userAchievement.findMany({ where: { userId: user.id }, include: { achievement: true }, orderBy: { earnedAt: "desc" } }),
-    getCheckpointSummary(user.id),
-    prisma.certificate.findMany({ where: { userId: user.id }, orderBy: { issuedAt: "desc" } }),
-    // Métrica de confiança (auditoria secção 294) — média das últimas 20
-    // autoavaliações de speaking, não de sempre: reflete como o utilizador se
-    // sente ULTIMAMENTE, não um histórico diluído de meses atrás.
-    prisma.speakingAttempt.findMany({
-      where: { userId: user.id, confidenceSelfRating: { not: null } },
-      orderBy: { createdAt: "desc" },
-      take: 20,
-      select: { confidenceSelfRating: true },
-    }),
-  ]);
+  const [exerciseAttempts, resolvedErrors, achievements, checkpoints, certificates, recentConfidence, weeklyActivity, retention] =
+    await Promise.all([
+      prisma.exerciseAttempt.count({ where: { userId: user.id } }),
+      prisma.userError.count({ where: { userId: user.id, resolvedAt: { not: null } } }),
+      prisma.userAchievement.findMany({ where: { userId: user.id }, include: { achievement: true }, orderBy: { earnedAt: "desc" } }),
+      getCheckpointSummary(user.id),
+      prisma.certificate.findMany({ where: { userId: user.id }, orderBy: { issuedAt: "desc" } }),
+      // Métrica de confiança (auditoria secção 294) — média das últimas 20
+      // autoavaliações de speaking, não de sempre: reflete como o utilizador se
+      // sente ULTIMAMENTE, não um histórico diluído de meses atrás.
+      prisma.speakingAttempt.findMany({
+        where: { userId: user.id, confidenceSelfRating: { not: null } },
+        orderBy: { createdAt: "desc" },
+        take: 20,
+        select: { confidenceSelfRating: true },
+      }),
+      // Fase 5 da auditoria ("Personalização"), item "métricas" — src/lib/metrics.ts.
+      getWeeklyActivity(user.id),
+      getRetentionSnapshot(user.id),
+    ]);
 
   const avgConfidence =
     recentConfidence.length > 0
       ? recentConfidence.reduce((sum, a) => sum + (a.confidenceSelfRating ?? 0), 0) / recentConfidence.length
       : null;
+
+  const weeklyActivityMax = Math.max(1, ...weeklyActivity.map((d) => d.count));
 
   const skillProfile = {
     grammar: learningProfile.grammarScore,
@@ -90,6 +99,48 @@ export default async function ProgressPage() {
           </div>
         </div>
       </Card>
+
+      <Card className="mb-4">
+        <p className="mb-3 font-mono text-xs uppercase tracking-wide text-verdigris">Atividade — últimos 7 dias</p>
+        <div className="flex items-end justify-between gap-2" style={{ height: "64px" }}>
+          {weeklyActivity.map((day) => {
+            const heightPct = Math.max(6, Math.round((day.count / weeklyActivityMax) * 100));
+            const label = WEEKDAY_LABEL_PT[new Date(day.date + "T00:00:00Z").getUTCDay()];
+            return (
+              <div key={day.date} className="flex flex-1 flex-col items-center gap-1">
+                <div className="flex w-full flex-1 items-end">
+                  <div
+                    className={`w-full rounded-t-control ${day.count > 0 ? "bg-verdigris" : "bg-ink/10 dark:bg-linen/10"}`}
+                    style={{ height: `${heightPct}%` }}
+                    title={`${day.count} ${day.count === 1 ? "ação" : "ações"}`}
+                  />
+                </div>
+                <span className="font-mono text-[10px] text-inkNeutral/50 dark:text-linen/50">{label}</span>
+              </div>
+            );
+          })}
+        </div>
+      </Card>
+
+      {retention.totalItems > 0 && (
+        <Card className="mb-4">
+          <p className="mb-3 font-mono text-xs uppercase tracking-wide text-verdigris">Retenção (revisão espaçada)</p>
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div>
+              <p className="font-mono text-xl">{retention.totalItems}</p>
+              <p className="text-xs text-inkNeutral/60 dark:text-linen/60">em rotação</p>
+            </div>
+            <div>
+              <p className="font-mono text-xl">{retention.mastered}</p>
+              <p className="text-xs text-inkNeutral/60 dark:text-linen/60">já domina bem</p>
+            </div>
+            <div>
+              <p className="font-mono text-xl">{retention.averageEase?.toFixed(1) ?? "—"}</p>
+              <p className="text-xs text-inkNeutral/60 dark:text-linen/60">facilidade média</p>
+            </div>
+          </div>
+        </Card>
+      )}
 
       <div className="grid grid-cols-2 gap-4">
         <Card>
