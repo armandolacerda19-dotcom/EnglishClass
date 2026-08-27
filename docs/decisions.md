@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — 5º eixo da rubrica: Naturalidade
+
+Auditoria (secção "Inglês vivo e rubrica formal"): "os eixos implementados são gramática/vocabulário/coerência/cumprimento da tarefa — fluência e naturalidade não são pontuadas em lado nenhum, apesar de 'naturalness' estar no prompt". Correto: o prompt a `getHolisticFeedback` sempre pediu para "cover grammar, vocabulary, spelling/punctuation, coherence, register and naturalness" e para "explicitly distinguish incorrect from not natural/idiomatic" — mas a rubrica numérica nunca teve um eixo correspondente.
+
+Adicionado `naturalness` como 5º campo de `WritingRubric`, pedido à IA como "how natural and idiomatic it sounds — would a native speaker actually phrase it this way, as opposed to merely being grammatically correct". Posicionado no grupo da rubrica (depois de `TASK_ACHIEVEMENT`, antes de `PRONUNCIATION`/`SCORE`) na instrução de ordem exata das linhas finais já cuidadosamente desambiguada na Fase 10 — como os 4 eixos da rubrica são extraídos por regex multiline independente da posição exata (não pela técnica de "stripping do fim para o início" usada para SCORE/PRONUNCIATION), acrescentar um 5º eixo ao mesmo grupo não introduz nenhuma ambiguidade nova. `stripMarkers` (sanitização de `text`/`prompt`) ganha `NATURALNESS` à lista de marcadores removidos, pelo mesmo motivo de segurança do achado N1 (Fase 8). `WritingStep`/`SpeakingStep` (`LessonRunner.tsx`) não precisaram de nenhuma alteração de UI — já iteram `Object.keys(RUBRIC_LABEL)` em vez de listar os eixos a dedo, por isso a 5ª barra aparece automaticamente ao adicionar a entrada `naturalness: "Naturalidade"` ao mapa.
+
+Com isto, todos os achados concretos e citados textualmente na auditoria de 2026-08-27 estão fechados: Fases 8-12 completas, achado N6 corrigido, rubrica com todos os eixos pedidos. O que resta (Fases 13/14) é trabalho de escala — currículo até 80-120 lições, áudio real, conteúdo autêntico — não lacunas pontuais; cada uma já tem um primeiro lote sólido feito nesta sessão.
+
 ## 2026-08-27 — Achado N6 corrigido: seed paralelizado
 
 A auditoria de 2026-08-27 (achados de segurança novos, N6) apontava o `prisma/seed.ts` — que corre a **cada** deploy Netlify (`netlify.toml`) — como ~2.400 upserts 100% sequenciais, zero `createMany`, zero `$transaction`, com risco real de builds lentos ou com timeout. O problema só cresce: entre esta sessão ter começado e este ponto, o currículo passou de 30 para 35 módulos, e o vocabulário standalone já ia em 2.000+ palavras antes disto.
