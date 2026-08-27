@@ -57,6 +57,20 @@ import vocabularyBank19 from "../content/curriculum/vocabulary-bank-19.json";
 
 const prisma = new PrismaClient();
 
+// Fase 13/achado N6 (auditoria 2026-08-27): o seed corre a CADA deploy
+// (netlify.toml) e era ~2.400 upserts 100% sequenciais (30 módulos + 2.000+
+// palavras de vocabulário standalone) — risco real de build lento ou com
+// timeout, que só cresce à medida que o currículo cresce (35 módulos e a
+// contar, depois deste lote). Upserts de itens independentes entre si (sem
+// FK uns dos outros) não precisam de correr um de cada vez — só corridas
+// concorrentes DEMASIADO grandes arriscam esgotar o pool de ligações do
+// Postgres, por isso corre em lotes de `concurrency`, não tudo de uma vez.
+async function mapWithConcurrency<T>(items: T[], concurrency: number, fn: (item: T) => Promise<unknown>) {
+  for (let i = 0; i < items.length; i += concurrency) {
+    await Promise.all(items.slice(i, i + concurrency).map(fn));
+  }
+}
+
 // Cada ficheiro em content/curriculum/ segue o formato de docs/08-schema-json-conteudo.md:
 // um módulo com uma unidade, um conceito de gramática, vocabulário, exercícios e uma lição.
 // Adicionar conteúdo novo = adicionar um ficheiro aqui, sem tocar na lógica de seed abaixo.
@@ -355,41 +369,46 @@ async function seedAchievements() {
 const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2, vocabularyBank3, vocabularyBank4, vocabularyBank5, vocabularyBank6, vocabularyBank7, vocabularyBank8, vocabularyBank9, vocabularyBank10, vocabularyBank11, vocabularyBank12, vocabularyBank13, vocabularyBank14, vocabularyBank15, vocabularyBank16, vocabularyBank17, vocabularyBank18, vocabularyBank19];
 
 async function seedVocabularyBank() {
-  let total = 0;
-  for (const bank of VOCABULARY_BANKS) {
-    for (const v of bank.words) {
-      await prisma.vocabularyItem.upsert({
-        where: { id: v.id },
-        update: {
-          headword: v.headword,
-          translationPt: v.translation_pt,
-          definitionEn: v.definition_en,
-          cefr: v.cefr_level as any,
-          exampleSentences: v.example_sentences,
-          difficulty: v.difficulty,
-        },
-        create: {
-          id: v.id,
-          headword: v.headword,
-          translationPt: v.translation_pt,
-          definitionEn: v.definition_en,
-          cefr: v.cefr_level as any,
-          exampleSentences: v.example_sentences,
-          difficulty: v.difficulty,
-        },
-      });
-      total++;
-    }
-  }
-  console.log(`Seeded ${total} standalone vocabulary items.`);
+  // Achado N6 (auditoria 2026-08-27): eram 2.000+ upserts sequenciais, o
+  // grosso do tempo de build do seed. Cada palavra é independente das outras
+  // (ids distintos, sem FK entre si), por isso corre em lotes de 25 em
+  // paralelo em vez de um de cada vez — ver mapWithConcurrency() acima.
+  const allWords = VOCABULARY_BANKS.flatMap((bank) => bank.words);
+  await mapWithConcurrency(allWords, 25, (v) =>
+    prisma.vocabularyItem.upsert({
+      where: { id: v.id },
+      update: {
+        headword: v.headword,
+        translationPt: v.translation_pt,
+        definitionEn: v.definition_en,
+        cefr: v.cefr_level as any,
+        exampleSentences: v.example_sentences,
+        difficulty: v.difficulty,
+      },
+      create: {
+        id: v.id,
+        headword: v.headword,
+        translationPt: v.translation_pt,
+        definitionEn: v.definition_en,
+        cefr: v.cefr_level as any,
+        exampleSentences: v.example_sentences,
+        difficulty: v.difficulty,
+      },
+    })
+  );
+  console.log(`Seeded ${allWords.length} standalone vocabulary items.`);
 }
 
 async function main() {
   await seedLevels();
   await seedAchievements();
-  for (let i = 0; i < MODULE_FILES.length; i++) {
-    await seedModuleFile(MODULE_FILES[i]!, i + 1);
-  }
+  // Achado N6: módulos são independentes entre si (nenhum id ou FK partilhado
+  // entre ficheiros de content/curriculum/, confirmado por grep antes de cada
+  // lote de conteúdo desta sessão) — `lessonOrder` já vem calculado do índice
+  // no array, antes de qualquer chamada assíncrona, por isso a ordem final das
+  // lições não depende da ordem de conclusão. Corre em lotes de 4 em paralelo.
+  const moduleEntries = MODULE_FILES.map((moduleData, i) => ({ moduleData, lessonOrder: i + 1 }));
+  await mapWithConcurrency(moduleEntries, 4, (entry) => seedModuleFile(entry.moduleData, entry.lessonOrder));
   await seedVocabularyBank();
 }
 
