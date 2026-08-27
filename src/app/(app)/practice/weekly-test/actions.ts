@@ -64,12 +64,18 @@ export async function submitWeeklyTest(answers: WeeklyTestAnswer[]): Promise<Wee
     user.id
   );
 
+  // Fase 8 (auditoria 2026-08-27, achado N5): agrupa pelo pilar REAL do
+  // exercício (devolvido por gradeAnswersOnServer), nunca pelo `answer.pillar`
+  // que o cliente enviou — sem isto, submeter a resposta certa de um
+  // exercício de GRAMMAR rotulado como WRITING inflacionava writingScore.
   const byPillar = new Map<Pillar, { correct: number; total: number }>();
   for (const answer of safeAnswers) {
-    const bucket = byPillar.get(answer.pillar) ?? { correct: 0, total: 0 };
+    const graded_ = graded.get(answer.exerciseId);
+    if (!graded_ || !graded_.pillar) continue; // exerciseId inexistente — ignora, não conta para nenhum pilar
+    const bucket = byPillar.get(graded_.pillar) ?? { correct: 0, total: 0 };
     bucket.total += 1;
-    if (graded.get(answer.exerciseId)) bucket.correct += 1;
-    byPillar.set(answer.pillar, bucket);
+    if (graded_.isCorrect) bucket.correct += 1;
+    byPillar.set(graded_.pillar, bucket);
   }
 
   const breakdown = Array.from(byPillar.entries()).map(([pillar, b]) => ({ pillar, ...b }));

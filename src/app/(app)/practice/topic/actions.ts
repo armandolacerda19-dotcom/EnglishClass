@@ -43,15 +43,23 @@ export async function submitTopicPractice(pillar: Pillar, answers: TopicPractice
 
   // Correção autoritativa no servidor — ver gradeSubmission.ts.
   const graded = await gradeAnswersOnServer(safeAnswers, user.id);
-  const correct = safeAnswers.filter((a) => graded.get(a.exerciseId)).length;
+
+  // Fase 8 (auditoria 2026-08-27, achado N5): `pillar` aqui é escolhido pelo
+  // cliente (vem da rota /practice/topic/[pillar]) e decide em que eixo do
+  // octógono o resultado entra — por isso só CONTAM as respostas cujo
+  // exercício real (devolvido por gradeAnswersOnServer) pertence mesmo a
+  // esse pilar. Sem isto, submeter a resposta certa de um exercício fácil
+  // de outro pilar, com `pillar` trocado, inflacionava um eixo à escolha.
+  const matching = safeAnswers.filter((a) => graded.get(a.exerciseId)?.pillar === pillar);
+  const correct = matching.filter((a) => graded.get(a.exerciseId)?.isCorrect).length;
 
   // Uma única chamada agregada em vez de uma por pergunta: antes disto, uma
   // sessão de 8 perguntas fazia 8 × recordActivity (16 idas à base de dados) e
   // reescrevia o streak 8 vezes com o mesmo valor.
-  if (safeAnswers.length > 0) {
-    await recordActivity(user.id, correct > safeAnswers.length / 2 ? "EXERCISE_CORRECT" : "EXERCISE_INCORRECT");
-    await updateSkillScore(user.id, pillar, Math.round((correct / safeAnswers.length) * 100));
+  if (matching.length > 0) {
+    await recordActivity(user.id, correct > matching.length / 2 ? "EXERCISE_CORRECT" : "EXERCISE_INCORRECT");
+    await updateSkillScore(user.id, pillar, Math.round((correct / matching.length) * 100));
   }
 
-  return { correct, total: safeAnswers.length };
+  return { correct, total: matching.length };
 }

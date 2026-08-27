@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { gradeFreeTextAnswer } from "@/lib/ai/gradeAnswer";
+import type { Pillar } from "@prisma/client";
 
 // Correção AUTORITATIVA no servidor.
 //
@@ -17,8 +18,19 @@ export interface SubmittedAnswer {
   given: string;
 }
 
-export async function gradeAnswersOnServer(answers: SubmittedAnswer[], userId: string): Promise<Map<string, boolean>> {
-  const results = new Map<string, boolean>();
+export interface GradedAnswer {
+  isCorrect: boolean;
+  // Fase 8 (auditoria 2026-08-27, achado N5) — o pilar REAL do Exercise na BD,
+  // nunca o que o cliente diz que é. Antes, submitWeeklyTest/submitTopicPractice
+  // confiavam no `pillar` enviado pelo cliente para decidir que eixo do
+  // octógono atualizar — submeter a resposta certa de um exercício fácil de
+  // GRAMMAR rotulado como WRITING inflacionava writingScore. Os chamadores
+  // agora usam ESTE campo, não o que veio no pedido.
+  pillar: Pillar | null; // null se o exerciseId não existir
+}
+
+export async function gradeAnswersOnServer(answers: SubmittedAnswer[], userId: string): Promise<Map<string, GradedAnswer>> {
+  const results = new Map<string, GradedAnswer>();
   if (answers.length === 0) return results;
 
   const exercises = await prisma.exercise.findMany({
@@ -29,7 +41,7 @@ export async function gradeAnswersOnServer(answers: SubmittedAnswer[], userId: s
   for (const answer of answers) {
     const exercise = byId.get(answer.exerciseId);
     if (!exercise) {
-      results.set(answer.exerciseId, false);
+      results.set(answer.exerciseId, { isCorrect: false, pillar: null });
       continue;
     }
 
@@ -40,7 +52,7 @@ export async function gradeAnswersOnServer(answers: SubmittedAnswer[], userId: s
     );
 
     if (exact) {
-      results.set(answer.exerciseId, true);
+      results.set(answer.exerciseId, { isCorrect: true, pillar: exercise.pillar });
       continue;
     }
 
@@ -48,12 +60,12 @@ export async function gradeAnswersOnServer(answers: SubmittedAnswer[], userId: s
     // alternativo válido via IA, tal como na correção durante o quiz.
     const hasDistractors = ((content.distractors as string[]) ?? []).length > 0;
     if (hasDistractors) {
-      results.set(answer.exerciseId, false);
+      results.set(answer.exerciseId, { isCorrect: false, pillar: exercise.pillar });
       continue;
     }
 
     const isCorrect = await gradeFreeTextAnswer(content.prompt as string, correctAnswers, answer.given, userId);
-    results.set(answer.exerciseId, isCorrect);
+    results.set(answer.exerciseId, { isCorrect, pillar: exercise.pillar });
   }
 
   return results;

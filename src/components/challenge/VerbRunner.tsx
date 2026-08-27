@@ -10,10 +10,20 @@ import type { IrregularVerb } from "@/content/irregularVerbs";
 export function VerbRunner({ verb }: { verb: IrregularVerb }) {
   const [revealed, setRevealed] = useState(false);
   const [done, setDone] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function grade(knewIt: boolean) {
-    await completeVerbOfTheDay(knewIt);
-    setDone(true);
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await completeVerbOfTheDay(knewIt);
+      setDone(true);
+    } catch {
+      setSubmitError("Não foi possível guardar — verifique a ligação e tente novamente.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -36,12 +46,20 @@ export function VerbRunner({ verb }: { verb: IrregularVerb }) {
           </p>
           <p className="mb-3 text-xs text-inkNeutral/60 dark:text-linen/60">{verb.translationPt}</p>
 
+          {submitError && (
+            <p role="alert" className="mb-2 text-sm text-clay">
+              {submitError}
+            </p>
+          )}
+
           {!done ? (
             <div className="flex flex-wrap justify-end gap-2">
-              <Button variant="secondary" onClick={() => grade(false)}>
+              <Button variant="secondary" disabled={submitting} onClick={() => grade(false)}>
                 Não sabia
               </Button>
-              <Button onClick={() => grade(true)}>Sabia bem</Button>
+              <Button disabled={submitting} onClick={() => grade(true)}>
+                Sabia bem
+              </Button>
             </div>
           ) : (
             <p className="text-right text-sm text-verdigris">Registado — volte amanhã para outro verbo.</p>

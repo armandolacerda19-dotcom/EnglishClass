@@ -201,12 +201,22 @@ export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept, im
 function ExerciseStep({ exercise }: { exercise: ExerciseContent }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [result, setResult] = useState<{ isCorrect: boolean; explanation: string } | null>(null);
+  const [checking, setChecking] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const options = [...exercise.correct_answer, ...exercise.distractors].sort(() => 0.5 - Math.random());
 
   async function check() {
     if (!selected) return;
-    const res = await submitExerciseAnswer(exercise.id, selected);
-    setResult(res);
+    setChecking(true);
+    setSubmitError(null);
+    try {
+      const res = await submitExerciseAnswer(exercise.id, selected);
+      setResult(res);
+    } catch {
+      setSubmitError("Não foi possível verificar a resposta — verifique a ligação e tente novamente.");
+    } finally {
+      setChecking(false);
+    }
   }
 
   return (
@@ -221,8 +231,13 @@ function ExerciseStep({ exercise }: { exercise: ExerciseContent }) {
           </label>
         ))}
       </fieldset>
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
       {!result ? (
-        <Button className="mt-3" variant="secondary" onClick={check} disabled={!selected}>
+        <Button className="mt-3" variant="secondary" onClick={check} disabled={!selected || checking}>
           Verificar
         </Button>
       ) : (
@@ -240,6 +255,7 @@ function SpeakingStep({ prompt }: { prompt: string }) {
   const [attemptId, setAttemptId] = useState<string | null>(null);
   const [confidenceGiven, setConfidenceGiven] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   // Momento em que o prompt de speaking apareceu no ecrã — base para
   // SpeakingAttempt.responseTimeMs, campo que existia no schema desde a Fase 0
   // ("Automaticity Training / Quick Speak") mas nunca era escrito em lado
@@ -251,19 +267,31 @@ function SpeakingStep({ prompt }: { prompt: string }) {
   async function handleTranscript(text: string) {
     setTranscript(text);
     setLoading(true);
-    const responseTimeMs = Date.now() - promptShownAtRef.current;
-    const { feedback: feedbackText, attemptId: newAttemptId } = await submitSpeaking(prompt, text, responseTimeMs);
-    setFeedback(feedbackText);
-    setAttemptId(newAttemptId);
-    setLoading(false);
+    setSubmitError(null);
+    try {
+      const responseTimeMs = Date.now() - promptShownAtRef.current;
+      const { feedback: feedbackText, attemptId: newAttemptId } = await submitSpeaking(prompt, text, responseTimeMs);
+      setFeedback(feedbackText);
+      setAttemptId(newAttemptId);
+    } catch {
+      setSubmitError("Não foi possível avaliar a resposta — verifique a ligação e tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   // Métrica de confiança (auditoria secção 294) — perguntada só depois do
   // feedback aparecer, para não interromper o fluxo de gravar/avaliar.
   async function rateConfidence(rating: number) {
     if (!attemptId || confidenceGiven) return;
-    setConfidenceGiven(rating);
-    await submitSpeakingConfidence(attemptId, rating);
+    try {
+      await submitSpeakingConfidence(attemptId, rating);
+      setConfidenceGiven(rating);
+    } catch {
+      // Falha silenciosa deliberada: isto é um extra opcional (métrica de
+      // confiança), não vale a pena bloquear ou assustar o utilizador com um
+      // erro visível por um dado secundário não ter sido guardado.
+    }
   }
 
   return (
@@ -277,6 +305,11 @@ function SpeakingStep({ prompt }: { prompt: string }) {
         </p>
       )}
       {transcript && <p className="mt-3 text-sm italic">"{transcript}"</p>}
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
       {feedback && <p className="mt-2 rounded-card bg-verdigris/5 p-3 text-sm">{feedback}</p>}
       {feedback && attemptId && (
         <div className="mt-3 border-t border-ink/10 pt-3 dark:border-linen/10">
@@ -320,13 +353,20 @@ function WritingStep({ prompt }: { prompt: string }) {
   const [feedback, setFeedback] = useState<string | null>(null);
   const [rubric, setRubric] = useState<WritingRubric | null>(null);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function handleSubmit() {
     setLoading(true);
-    const result = await submitWriting(prompt, text);
-    setFeedback(result.feedback);
-    setRubric(result.rubric);
-    setLoading(false);
+    setSubmitError(null);
+    try {
+      const result = await submitWriting(prompt, text);
+      setFeedback(result.feedback);
+      setRubric(result.rubric);
+    } catch {
+      setSubmitError("Não foi possível avaliar o texto — verifique a ligação e tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -343,6 +383,11 @@ function WritingStep({ prompt }: { prompt: string }) {
           "Submeter"
         )}
       </Button>
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
       {feedback && <p className="mt-2 rounded-card bg-verdigris/5 p-3 text-sm">{feedback}</p>}
       {rubric && (
         <div className="mt-3 flex flex-col gap-2">
@@ -367,12 +412,19 @@ function TranslationStep({ exercise }: { exercise: ExerciseContent }) {
   const [text, setText] = useState("");
   const [result, setResult] = useState<{ feedback: string; referenceAnswer: string } | null>(null);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function handleSubmit() {
     setLoading(true);
-    const res = await submitTranslation(exercise.id, text);
-    setResult(res);
-    setLoading(false);
+    setSubmitError(null);
+    try {
+      const res = await submitTranslation(exercise.id, text);
+      setResult(res);
+    } catch {
+      setSubmitError("Não foi possível avaliar a tradução — verifique a ligação e tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -389,6 +441,11 @@ function TranslationStep({ exercise }: { exercise: ExerciseContent }) {
           "Submeter"
         )}
       </Button>
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
       {result && (
         <div className="mt-2 flex flex-col gap-1">
           <p className="rounded-card bg-verdigris/5 p-3 text-sm">{result.feedback}</p>

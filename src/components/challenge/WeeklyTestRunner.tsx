@@ -31,6 +31,7 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
   const [answers, setAnswers] = useState<WeeklyTestAnswer[]>([]);
   const [result, setResult] = useState<WeeklyTestResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const question = questions[index]!;
   const isLast = index === questions.length - 1;
@@ -51,9 +52,15 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
       return;
     }
     setChecking(true);
-    const res = await checkFreeTextAnswer(question.exerciseId, given);
-    setCheckResult(res);
-    setChecking(false);
+    setSubmitError(null);
+    try {
+      const res = await checkFreeTextAnswer(question.exerciseId, given);
+      setCheckResult(res);
+    } catch {
+      setSubmitError("Não foi possível verificar a resposta — verifique a ligação e tente novamente.");
+    } finally {
+      setChecking(false);
+    }
   }
 
   async function advance() {
@@ -69,9 +76,19 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
 
     if (isLast) {
       setSubmitting(true);
-      const res = await submitWeeklyTest(nextAnswers);
-      setResult(res);
-      setSubmitting(false);
+      setSubmitError(null);
+      try {
+        const res = await submitWeeklyTest(nextAnswers);
+        setResult(res);
+      } catch {
+        // Fase 8 (auditoria 2026-08-27, item 9) — este era o pior caso citado:
+        // sem isto, uma falha aqui deixava o utilizador preso num botão
+        // desativado no fim de um teste que só se pode repetir daqui a uma
+        // semana, sem mensagem nem forma de tentar de novo.
+        setSubmitError("Não foi possível terminar o diagnóstico — verifique a ligação e tente novamente.");
+      } finally {
+        setSubmitting(false);
+      }
     } else {
       setIndex((i) => i + 1);
       setSelected(null);
@@ -188,6 +205,12 @@ export function WeeklyTestRunner({ questions }: WeeklyTestRunnerProps) {
           </p>
         )}
       </Card>
+
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
 
       <div className="mt-4 flex justify-end">
         {!checkResult ? (

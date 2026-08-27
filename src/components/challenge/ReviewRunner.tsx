@@ -20,23 +20,36 @@ export function ReviewRunner({ reviews }: ReviewRunnerProps) {
   const [revealed, setRevealed] = useState(false);
   const [done, setDone] = useState(false);
   const [reviewedCount, setReviewedCount] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const item = reviews[index]!;
   const isLast = index === reviews.length - 1;
 
+  // Fase 8 (auditoria 2026-08-27, item 9) — sem try/catch, uma falha de rede
+  // a meio de uma sessão de revisão deixava o utilizador preso, sem
+  // mensagem, sem forma de tentar de novo.
   async function grade(quality: number) {
-    if (item.kind === "vocabulary_item") {
-      await submitReview("vocabulary_item", item.itemRefId, quality);
-    } else {
-      await submitReview("error", item.itemRefId, quality, item.userErrorId);
-    }
-    setReviewedCount((c) => c + 1);
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      if (item.kind === "vocabulary_item") {
+        await submitReview("vocabulary_item", item.itemRefId, quality);
+      } else {
+        await submitReview("error", item.itemRefId, quality, item.userErrorId);
+      }
+      setReviewedCount((c) => c + 1);
 
-    if (isLast) {
-      setDone(true);
-    } else {
-      setIndex((i) => i + 1);
-      setRevealed(false);
+      if (isLast) {
+        setDone(true);
+      } else {
+        setIndex((i) => i + 1);
+        setRevealed(false);
+      }
+    } catch {
+      setSubmitError("Não foi possível guardar a sua resposta — verifique a ligação e tente novamente.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -108,18 +121,26 @@ export function ReviewRunner({ reviews }: ReviewRunnerProps) {
         )}
       </Card>
 
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
+
       <div className="mt-4 flex flex-wrap justify-end gap-2">
         {!revealed ? (
           <Button onClick={() => setRevealed(true)}>Mostrar resposta</Button>
         ) : (
           <>
-            <Button variant="secondary" onClick={() => grade(1)}>
+            <Button variant="secondary" disabled={submitting} onClick={() => grade(1)}>
               Não sabia
             </Button>
-            <Button variant="secondary" onClick={() => grade(3)}>
+            <Button variant="secondary" disabled={submitting} onClick={() => grade(3)}>
               Custou
             </Button>
-            <Button onClick={() => grade(5)}>Sabia bem</Button>
+            <Button disabled={submitting} onClick={() => grade(5)}>
+              Sabia bem
+            </Button>
           </>
         )}
       </div>

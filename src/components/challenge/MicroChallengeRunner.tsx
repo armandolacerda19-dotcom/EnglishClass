@@ -34,7 +34,7 @@ export function MicroChallengeRunner({ challenge }: { challenge: MicroChallenge 
       <p className="mb-6 text-sm text-inkNeutral/70 dark:text-linen/70">{challenge.subtitle}</p>
 
       {challenge.kind === "shadow" ? (
-        <ShadowRunner sentence={challenge.sentence} translation={challenge.translation} onDone={() => setDone(true)} />
+        <ShadowRunner id={challenge.id} sentence={challenge.sentence} translation={challenge.translation} onDone={() => setDone(true)} />
       ) : (
         <ListenRunner challenge={challenge} onDone={() => setDone(true)} />
       )}
@@ -42,12 +42,31 @@ export function MicroChallengeRunner({ challenge }: { challenge: MicroChallenge 
   );
 }
 
-function ShadowRunner({ sentence, translation, onDone }: { sentence: string; translation: string; onDone: () => void }) {
+function ShadowRunner({
+  id,
+  sentence,
+  translation,
+  onDone,
+}: {
+  id: string;
+  sentence: string;
+  translation: string;
+  onDone: () => void;
+}) {
   const [transcript, setTranscript] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function finish() {
-    await completeMicroChallenge("SPEAKING", 65);
-    onDone();
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await completeMicroChallenge(id);
+      onDone();
+    } catch {
+      setSubmitError("Não foi possível guardar — verifique a ligação e tente novamente.");
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -59,7 +78,12 @@ function ShadowRunner({ sentence, translation, onDone }: { sentence: string; tra
         <RecordButton onTranscript={setTranscript} />
       </div>
       {transcript && <p className="mt-3 text-sm">Ouvimos: "{transcript}"</p>}
-      <Button className="mt-4" onClick={finish}>
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
+      <Button className="mt-4" onClick={finish} disabled={submitting}>
         Concluir
       </Button>
     </Card>
@@ -75,11 +99,21 @@ function ListenRunner({
 }) {
   const [selected, setSelected] = useState<number | null>(null);
   const [answered, setAnswered] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function confirm() {
     if (selected === null) return;
-    setAnswered(true);
-    await completeMicroChallenge("LISTENING", selected === challenge.correctIndex ? 100 : 20);
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await completeMicroChallenge(challenge.id, selected);
+      setAnswered(true);
+    } catch {
+      setSubmitError("Não foi possível guardar — verifique a ligação e tente novamente.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -95,8 +129,14 @@ function ListenRunner({
         ))}
       </fieldset>
 
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
+
       {!answered ? (
-        <Button className="mt-4" onClick={confirm} disabled={selected === null}>
+        <Button className="mt-4" onClick={confirm} disabled={selected === null || submitting}>
           Confirmar
         </Button>
       ) : (

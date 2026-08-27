@@ -33,14 +33,25 @@ export async function submitReview(
   // Verificação de dono ANTES de agendar: sem isto, era possível passar o
   // userErrorId de outro utilizador e plantá-lo na própria fila de revisão,
   // expondo texto privado dele (sourceText/correction) em /practice/review.
+  //
+  // Fase 8 (auditoria 2026-08-27, achado IDOR parcial): esta verificação só
+  // corria quando itemType === "error" — o ramo "vocabulary_item" aceitava
+  // `userErrorId` sem validação nenhuma e reenviava-o para scheduleReview,
+  // gravando uma FK alheia na própria linha. `getDueReviews` não expõe hoje
+  // esse campo no ramo de vocabulário, mas é uma FK não verificada a uma
+  // mudança de UI de distância de vazar. Corrigido: `userErrorId` só é
+  // encaminhado quando itemType === "error" E já foi confirmado como dono —
+  // em qualquer outro caso, é sempre `undefined`, nunca o valor recebido.
   let userError = null;
+  let verifiedUserErrorId: string | undefined;
   if (itemType === "error") {
     if (!userErrorId) return;
     userError = await prisma.userError.findUnique({ where: { id: userErrorId } });
     if (!userError || userError.userId !== user.id) return;
+    verifiedUserErrorId = userErrorId;
   }
 
-  await scheduleReview(user.id, itemType, itemRefId, safeQuality, userErrorId);
+  await scheduleReview(user.id, itemType, itemRefId, safeQuality, verifiedUserErrorId);
   await recordActivity(user.id, "REVIEW");
   await awardAchievement(user.id, "first_review");
 

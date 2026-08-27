@@ -11,13 +11,23 @@ import type { Idiom } from "@/content/idioms";
 export function IdiomRunner({ idiom, options }: { idiom: Idiom; options: string[] }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const isCorrect = selected === idiom.meaningEn;
 
   async function check() {
     if (!selected) return;
-    setChecked(true);
-    await completeIdiom(isCorrect);
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await completeIdiom(selected);
+      setChecked(true);
+    } catch {
+      setSubmitError("Não foi possível guardar — verifique a ligação e tente novamente.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -59,9 +69,15 @@ export function IdiomRunner({ idiom, options }: { idiom: Idiom; options: string[
         )}
       </Card>
 
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
+
       <div className="mt-4 flex justify-end">
         {!checked ? (
-          <Button onClick={check} disabled={!selected}>
+          <Button onClick={check} disabled={!selected || submitting}>
             Verificar
           </Button>
         ) : (

@@ -1586,3 +1586,7 @@ export const READING_PASSAGES: ReadingPassage[] = [
     ],
   },
 ];
+
+export function getReadingPassage(id: string): ReadingPassage | undefined {
+  return READING_PASSAGES.find((p) => p.id === id);
+}

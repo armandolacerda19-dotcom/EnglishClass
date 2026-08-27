@@ -30,8 +30,20 @@ export function generateDailyPlan(dailyMinutes: number, hasDueReviews: boolean):
   }
 
   if (dailyMinutes <= 30) {
+    // Fase 8 (auditoria 2026-08-27) — bug real encontrado ao escrever o
+    // primeiro teste automático deste ficheiro: para 16-19 min COM revisões
+    // pendentes, `dailyMinutes - 20` dava um valor negativo (revisão 10 +
+    // desafio diário 10 = 20, mais do que o total disponível nesses casos),
+    // mostrando ao utilizador um item de "-4 min". `Math.max(5, ...)` garante
+    // um mínimo de 5 minutos de tema mesmo nesse extremo — o total do dia
+    // pode ultrapassar ligeiramente `dailyMinutes` nesse caso raro, o que é
+    // preferível a um número sem sentido no ecrã.
     if (hasDueReviews) items.push({ label: "Revisão espaçada", minutes: 10, href: "/practice/review" });
-    items.push({ label: "Tema à escolha (pilar mais fraco)", minutes: hasDueReviews ? dailyMinutes - 20 : dailyMinutes - 10, href: "/practice/topic" });
+    items.push({
+      label: "Tema à escolha (pilar mais fraco)",
+      minutes: Math.max(5, hasDueReviews ? dailyMinutes - 20 : dailyMinutes - 10),
+      href: "/practice/topic",
+    });
     items.push({ label: "Desafio Diário de vocabulário", minutes: 10, href: "/practice/daily-challenge" });
     return items;
   }

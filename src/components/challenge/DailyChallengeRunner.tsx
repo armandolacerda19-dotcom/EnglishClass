@@ -20,6 +20,8 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const [alreadyDoneToday, setAlreadyDoneToday] = useState<boolean | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const word = words[index]!;
   const isLast = index === words.length - 1;
@@ -29,15 +31,25 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
     if (!selected) return;
     setChecked(true);
     setScore((s) => (isCorrect ? s + 1 : s));
-    void recordVocabExposure(word.id, isCorrect);
+    // Fire-and-forget: uma falha aqui só significa que esta palavra não entra
+    // na fila de revisão espaçada desta vez — não deve travar a sessão.
+    void recordVocabExposure(word.id, selected);
   }
 
   async function advance() {
     const nextScore = score;
     if (isLast) {
-      const result = await completeDailyChallenge(nextScore, words.length);
-      setAlreadyDoneToday(result.alreadyDoneToday);
-      setDone(true);
+      setSubmitting(true);
+      setSubmitError(null);
+      try {
+        const result = await completeDailyChallenge(nextScore, words.length);
+        setAlreadyDoneToday(result.alreadyDoneToday);
+        setDone(true);
+      } catch {
+        setSubmitError("Não foi possível guardar o resultado — verifique a ligação e tente novamente.");
+      } finally {
+        setSubmitting(false);
+      }
     } else {
       setIndex((i) => i + 1);
       setSelected(null);
@@ -133,13 +145,21 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
         )}
       </Card>
 
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
+
       <div className="mt-4 flex justify-end">
         {!checked ? (
           <Button onClick={check} disabled={!selected}>
             Verificar
           </Button>
         ) : (
-          <Button onClick={advance}>{isLast ? "Terminar" : "Seguinte"}</Button>
+          <Button onClick={advance} disabled={submitting}>
+            {isLast ? "Terminar" : "Seguinte"}
+          </Button>
         )}
       </div>
     </main>

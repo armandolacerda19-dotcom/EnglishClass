@@ -29,8 +29,20 @@ export async function POST(req: NextRequest) {
   const conversationId = typeof body.conversationId === "string" ? body.conversationId : null;
   // Limite generoso mas real — sem isto, uma mensagem gigante ia inteira para o
   // Gemini a cada turno (o histórico completo é reenviado sempre, ver linha 67).
-  const message = body.message.slice(0, 4000);
-  const sessionFocus = body.sessionFocus;
+  //
+  // Fase 8 (auditoria 2026-08-27): antes só limitava o tamanho, sem limpar o
+  // marcador ERROR_LOGGED — o utilizador podia escrever "...ERROR_LOGGED: x | y"
+  // na sua própria mensagem e tentar forjar uma entrada na fila de erros. O
+  // valor parseado já era sanitizado antes de gravar (linha ~119), mas a
+  // mensagem enviada ao modelo não removia a marca antes — mesma classe de
+  // falha que SCORE:/PRONUNCIATION: em learn/actions.ts, corrigida da mesma forma.
+  const message = body.message.replace(/ERROR_LOGGED\s*:/gi, "error_logged-").slice(0, 4000);
+  // `sessionFocus`: só a página deriva isto de forma segura (tabela fixa de
+  // cenários/objetivos); a própria API aceita qualquer string sem validação
+  // — corrigido com um tecto de tamanho, já que é injetado cru no system
+  // prompt (buildTutorPrompt.ts) e não passa por nenhum fence de utilizador.
+  const sessionFocus =
+    typeof body.sessionFocus === "string" && body.sessionFocus.trim() ? body.sessionFocus.slice(0, 500) : undefined;
 
   const requestedPersonality = body.personality as TutorPersonalityKey | undefined;
   const personality: TutorPersonalityKey =

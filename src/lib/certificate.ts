@@ -24,7 +24,9 @@ const PILLAR_FIELDS = [
 // registo histórico imutável, não é retroativamente reescrito, o que é o
 // comportamento correto para um documento já assinado/publicado. Ver
 // docs/decisions.md, auditoria 2026-08-26.
-function classify(average: number): string {
+// Exportada (Fase 8, auditoria 2026-08-27) para ter um teste unitário direto
+// sobre as fronteiras de classificação, sem precisar de mockar o Prisma.
+export function classify(average: number): string {
   if (average < 50) return "Ainda não pronto";
   if (average < 65) return "Em desenvolvimento";
   if (average < 80) return "Competente";

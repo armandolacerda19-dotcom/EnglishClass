@@ -33,6 +33,7 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
   const [answers, setAnswers] = useState<TopicPracticeAnswer[]>([]);
   const [result, setResult] = useState<TopicPracticeResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const question = questions[index]!;
   const isLast = index === questions.length - 1;
@@ -51,9 +52,15 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
       return;
     }
     setChecking(true);
-    const res = await checkFreeTextAnswer(question.exerciseId, given);
-    setCheckResult(res);
-    setChecking(false);
+    setSubmitError(null);
+    try {
+      const res = await checkFreeTextAnswer(question.exerciseId, given);
+      setCheckResult(res);
+    } catch {
+      setSubmitError("Não foi possível verificar a resposta — verifique a ligação e tente novamente.");
+    } finally {
+      setChecking(false);
+    }
   }
 
   async function advance() {
@@ -68,9 +75,15 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
 
     if (isLast) {
       setSubmitting(true);
-      const res = await submitTopicPractice(pillar, nextAnswers);
-      setResult(res);
-      setSubmitting(false);
+      setSubmitError(null);
+      try {
+        const res = await submitTopicPractice(pillar, nextAnswers);
+        setResult(res);
+      } catch {
+        setSubmitError("Não foi possível terminar a sessão — verifique a ligação e tente novamente.");
+      } finally {
+        setSubmitting(false);
+      }
     } else {
       setIndex((i) => i + 1);
       setSelected(null);
@@ -152,6 +165,12 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
           </p>
         )}
       </Card>
+
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
 
       <div className="mt-4 flex justify-end">
         {!checkResult ? (

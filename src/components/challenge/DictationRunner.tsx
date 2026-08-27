@@ -15,9 +15,14 @@ export function DictationRunner({ items }: { items: DictationItem[] }) {
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState("");
   const [checked, setChecked] = useState(false);
-  const [correctCount, setCorrectCount] = useState(0);
+  const [answers, setAnswers] = useState<{ itemId: string; given: string }[]>([]);
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  // Resultado final vem SEMPRE do servidor (submitDictation recalcula tudo a
+  // partir do texto real) — nunca da contagem local, que é só feedback
+  // imediato de UX, não a fonte de verdade. Ver docs/decisions.md, Fase 8.
+  const [finalScore, setFinalScore] = useState<{ correct: number; total: number } | null>(null);
 
   if (items.length === 0) {
     return (
@@ -38,17 +43,25 @@ export function DictationRunner({ items }: { items: DictationItem[] }) {
 
   function check() {
     if (!answer.trim()) return;
-    const res = checkDictation(answer, item.text);
     setChecked(true);
-    if (res.isCorrect) setCorrectCount((c) => c + 1);
   }
 
   async function advance() {
+    const nextAnswers = [...answers, { itemId: item.id, given: answer }];
+    setAnswers(nextAnswers);
+
     if (isLast) {
       setSubmitting(true);
-      await submitDictation(correctCount, items.length);
-      setSubmitting(false);
-      setDone(true);
+      setSubmitError(null);
+      try {
+        const score = await submitDictation(nextAnswers);
+        setFinalScore(score);
+        setDone(true);
+      } catch {
+        setSubmitError("Não foi possível guardar o resultado — verifique a ligação e tente novamente.");
+      } finally {
+        setSubmitting(false);
+      }
     } else {
       setIndex((i) => i + 1);
       setAnswer("");
@@ -60,7 +73,7 @@ export function DictationRunner({ items }: { items: DictationItem[] }) {
     return (
       <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <StampBadge code={`${correctCount}/${items.length}`} tone="verdigris" />
+          <StampBadge code={`${finalScore?.correct ?? 0}/${finalScore?.total ?? items.length}`} tone="verdigris" />
           <h1 className="font-display text-2xl">Ditado concluído!</h1>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -117,6 +130,12 @@ export function DictationRunner({ items }: { items: DictationItem[] }) {
           </div>
         )}
       </Card>
+
+      {submitError && (
+        <p role="alert" className="mb-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
 
       <div className="flex justify-end">
         {!checked ? (

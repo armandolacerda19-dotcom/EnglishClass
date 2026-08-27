@@ -13,9 +13,12 @@ export function ReadingRunner({ passage }: { passage: ReadingPassage }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
-  const [correctCount, setCorrectCount] = useState(0);
+  const [answers, setAnswers] = useState<{ questionId: string; selected: string }[]>([]);
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  // Fonte de verdade do resultado final é sempre o servidor — ver actions.ts, Fase 8.
+  const [finalScore, setFinalScore] = useState<{ correct: number; total: number } | null>(null);
 
   const question = passage.questions[index]!;
   const isLast = index === passage.questions.length - 1;
@@ -24,15 +27,24 @@ export function ReadingRunner({ passage }: { passage: ReadingPassage }) {
   function check() {
     if (!selected) return;
     setChecked(true);
-    if (isCorrect) setCorrectCount((c) => c + 1);
   }
 
   async function advance() {
+    const nextAnswers = [...answers, { questionId: question.id, selected: selected! }];
+    setAnswers(nextAnswers);
+
     if (isLast) {
       setSubmitting(true);
-      await submitReadingPractice(correctCount, passage.questions.length);
-      setSubmitting(false);
-      setDone(true);
+      setSubmitError(null);
+      try {
+        const score = await submitReadingPractice(passage.id, nextAnswers);
+        setFinalScore(score);
+        setDone(true);
+      } catch {
+        setSubmitError("Não foi possível guardar o resultado — verifique a ligação e tente novamente.");
+      } finally {
+        setSubmitting(false);
+      }
     } else {
       setIndex((i) => i + 1);
       setSelected(null);
@@ -44,7 +56,7 @@ export function ReadingRunner({ passage }: { passage: ReadingPassage }) {
     return (
       <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <StampBadge code={`${correctCount}/${passage.questions.length}`} tone="verdigris" />
+          <StampBadge code={`${finalScore?.correct ?? 0}/${finalScore?.total ?? passage.questions.length}`} tone="verdigris" />
           <h1 className="font-display text-2xl">Leitura concluída!</h1>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -103,6 +115,12 @@ export function ReadingRunner({ passage }: { passage: ReadingPassage }) {
           </p>
         )}
       </Card>
+
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm text-clay">
+          {submitError}
+        </p>
+      )}
 
       <div className="mt-4 flex justify-end">
         {!checked ? (
