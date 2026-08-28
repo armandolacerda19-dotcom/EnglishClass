@@ -200,7 +200,7 @@ const MODULE_FILES = [
   moduleNegativeInversion, // C2.1
   moduleFronting, // C2.1
   moduleAbsoluteConstructions, // C2.1
-  // Fase 19 (2026-08-28) — 2º lote de C2, fechando C2.2: inversão condicional
+  // Fase 20 (2026-08-28) — 2º lote de C2, fechando C2.2: inversão condicional
   // sem "if" (Were/Had/Should), conectores de coesão avançados (notwithstanding/
   // whereby/thereby/insofar as) e litotes (not uncommon, no small feat) — três
   // recursos estilísticos distintos dos já cobertos em C2.1/C1/B2.

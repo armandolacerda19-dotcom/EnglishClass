@@ -2,7 +2,9 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
-## 2026-08-28 — Fase 19: nível C2 fechado (2º lote, 3 módulos, C2.2 completo)
+## 2026-08-28 — Fase 20: nível C2 fechado (2º lote, 3 módulos, C2.2 completo)
+
+Nota de numeração: esta secção estava originalmente rotulada "Fase 19", colidindo com a Fase 19 já existente acima (áudio real + vocabulário). Corrigido para Fase 20 antes de qualquer trabalho depender do número.
 
 Pedido: "agora deve continuar com as atualizações" (continuação direta da Fase 18). Completa o nível C2 seguindo o mesmo padrão 3+3 usado em C1 (Fase 15): C2.1 já tinha 3 módulos, C2.2 estava vazio.
 
