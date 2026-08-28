@@ -2,6 +2,10 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 14 continuada: primeiros textos de nível B2
+
+4º lote em `readingPassages.ts`: `remote-work-debate-news` (B2, "news" — debate sobre políticas de trabalho remoto), `salary-negotiation-dialogue` (B2, "dialogue" — negociar um aumento salarial), `returning-a-parcel-email` (A2, "email" — devolver uma encomenda danificada). Os dois primeiros são os primeiros textos de nível B2 no currículo, coerente com o nível ter sido introduzido nesta mesma ronda. Total de textos de leitura: 70 → 73.
+
 ## 2026-08-27 — Placement test ganha perguntas de dificuldade B2 (fecha lacuna deixada em aberto)
 
 O commit anterior (introdução do nível B2) registou explicitamente como "trabalho futuro": o placement test não tinha perguntas de dificuldade B2 próprias, por isso alcançar B2.1/B2.2 dependia só de acertar tudo o resto — uma heurística razoável mas menos precisa. Em vez de deixar isto para uma sessão futura, fechado agora nesta mesma ronda, dado o pedido do utilizador para investir mais a fundo:
