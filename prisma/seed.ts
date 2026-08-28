@@ -38,6 +38,7 @@ import modulePresentPerfectVsPastSimple from "../content/curriculum/a2-module-11
 import modulePresentPerfectContinuous from "../content/curriculum/b1-module-09-present-perfect-continuous.json";
 import moduleWishClauses from "../content/curriculum/b1-module-10-wish-clauses.json";
 import moduleCausativeHaveGet from "../content/curriculum/b1-module-11-causative-have-get.json";
+import moduleSoNeitherAgreement from "../content/curriculum/b1-module-12-so-neither-agreement.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -116,6 +117,7 @@ const MODULE_FILES = [
   moduleSecondConditional, // B1.1
   modulePassiveVoice, // B1.1
   moduleUsedTo, // B1.1 — 4º módulo, reforço de densidade B1 (2026-08-27)
+  moduleSoNeitherAgreement, // B1.1 — último módulo B1.1, gap real: "so do I"/"neither do I" nunca tinha módulo próprio, apesar de muito comum na conversa (Fase 13, 2026-08-27)
   moduleReportedSpeech, // B1.2
   moduleFutureContinuous, // B1.2
   moduleModalsDeduction, // B1.2 — reforço de densidade B1 (2026-08-27)

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.1",
+  "module": {
+    "id": "mod_b1_12_so_neither_agreement",
+    "title": "So Do I / Neither Do I",
+    "theme": "structures",
+    "order": 6
+  },
+  "unit": {
+    "id": "unit_b1_12_so_neither_agreement",
+    "title": "Agreeing with Auxiliary Verbs",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_so_neither_agreement",
+    "title": "So / Neither for Agreement",
+    "rule": "Use 'So + auxiliary + subject' to agree with a positive statement, and 'Neither/Nor + auxiliary + subject' to agree with a negative statement. The auxiliary must match the tense used (do/does/did, have/has, am/is/are, can, will...), and the word order is inverted — auxiliary before subject, just like in a question.",
+    "simple_explanation": "Instead of repeating the whole sentence to say \"me too\" or \"me neither\", English uses a short structure built from the auxiliary verb of the original sentence. Which auxiliary you use depends entirely on what tense the other person used.",
+    "example": "I love pizza. — So do I. / I don't like coffee. — Neither do I. / I've never been to Japan. — Neither have I.",
+    "example_translation": "Eu adoro piza. — Eu também. / Não gosto de café. — Eu também não. / Nunca fui ao Japão. — Eu também não.",
+    "common_mistake_pt": "Em português, \"eu também\" serve tanto para concordar com afirmativas como \"também não\" para negativas — mas os alunos frequentemente confundem qual estrutura inglesa usar, ou colocam o sujeito antes do auxiliar (\"So I do\" em vez de \"So do I\") porque não reconhecem que esta estrutura exige inversão, tal como as perguntas.",
+    "correction": "A ordem é sempre auxiliar antes do sujeito (inversão): \"So do I\", nunca \"So I do\". Use \"So\" só para concordar com afirmativas; use \"Neither\"/\"Nor\" para concordar com negativas — nunca \"So\" com uma negativa.",
+    "real_world_example": "In conversation: \"I've never been to Japan.\" — \"Neither have I.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_neither_agreement",
+      "headword": "neither",
+      "type": "adverb",
+      "translation_pt": "também não (em concordância)",
+      "definition_en": "used to agree with a negative statement someone else made",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈniːðər/",
+      "related_forms": ["nor", "me neither"],
+      "example_sentences": ["\"I can't swim.\" \"Neither can I.\""],
+      "difficulty": 2,
+      "tags": ["agreement"]
+    },
+    {
+      "id": "vocab_b1_nor",
+      "headword": "nor",
+      "type": "conjunction",
+      "translation_pt": "nem (em concordância, mais formal que 'neither')",
+      "definition_en": "a slightly more formal alternative to 'neither' when agreeing with a negative",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/nɔːr/",
+      "related_forms": ["neither...nor"],
+      "example_sentences": ["\"I don't agree.\" \"Nor do I.\""],
+      "difficulty": 3,
+      "tags": ["agreement"]
+    },
+    {
+      "id": "vocab_b1_likewise",
+      "headword": "likewise",
+      "type": "adverb",
+      "translation_pt": "da mesma forma / igualmente",
+      "definition_en": "in the same way — a more formal way to say 'me too'",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈlaɪkwaɪz/",
+      "related_forms": ["and likewise"],
+      "example_sentences": ["\"Nice to meet you.\" \"Likewise!\""],
+      "difficulty": 2,
+      "tags": ["agreement", "politeness"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_soneither_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_so_neither_agreement",
+      "prompt": "Respond in agreement: \"I love pizza.\" — \"___ do I.\"",
+      "correct_answer": ["So"],
+      "distractors": ["Neither", "Also", "Too"],
+      "explanation": "Concordar com uma afirmativa pede \"So + auxiliar + sujeito\": \"So do I\".",
+      "common_mistake_pt": "Usar \"Also\" ou \"Too\" nesta posição (em vez de no fim da frase) é um erro comum de ordem de palavras.",
+      "audio_url": null,
+      "tags": ["so-neither-agreement"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_soneither_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_so_neither_agreement",
+      "prompt": "Respond in agreement: \"I don't like coffee.\" — \"___ do I.\"",
+      "correct_answer": ["Neither"],
+      "distractors": ["So", "Either", "Also"],
+      "explanation": "Concordar com uma negativa pede \"Neither + auxiliar + sujeito\": \"Neither do I\".",
+      "common_mistake_pt": "Usar \"So\" para concordar com uma negativa é o erro mais comum — \"So\" só serve para afirmativas.",
+      "audio_url": null,
+      "tags": ["so-neither-agreement"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_soneither_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What is a more formal way of saying \"me too\" when someone introduces themselves to you?",
+      "correct_answer": ["Likewise"],
+      "distractors": ["Neither", "Nor", "So do I"],
+      "explanation": "\"Likewise\" é uma resposta formal comum a \"Nice to meet you\" ou similares, mais curta do que \"So do I\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "agreement"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_soneither_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Has the second speaker ever been to Japan?",
+      "correct_answer": ["no", "no, she hasn't"],
+      "distractors": ["yes", "she doesn't say"],
+      "explanation": "No áudio, ouve-se: \"I've never been to Japan.\" \"Neither have I.\" — a segunda pessoa concorda com a negativa, por isso também nunca foi.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I've never been to Japan, have you? — No, neither have I, but I'd love to go one day.",
+      "tags": ["listening", "so-neither-agreement"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_soneither_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Sofia said she can't stand horror films. 'Neither can I,' replied Marco.\" Does Marco like horror films?",
+      "correct_answer": ["no", "no, he can't stand them either"],
+      "distractors": ["yes", "it doesn't say"],
+      "explanation": "\"Neither can I\" concorda com a afirmação negativa de Sofia (\"can't stand\") — Marco também não gosta.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "so-neither-agreement"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_soneither_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_so_neither_agreement",
+      "prompt": "Translate to English: \"Eu também não gosto de café.\" (em resposta a alguém que disse o mesmo)",
+      "correct_answer": ["Neither do I.", "Nor do I."],
+      "distractors": [],
+      "explanation": "Concordar com uma negativa pede \"Neither/Nor + auxiliar + sujeito\", nunca \"So\".",
+      "common_mistake_pt": "Traduzir para \"So don't I\" (que não existe em inglês) ou \"Also I don't\" são os erros mais comuns aqui.",
+      "audio_url": null,
+      "tags": ["translation", "so-neither-agreement"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m12_u1_so_neither_agreement",
+    "title": "Agreeing with Auxiliary Verbs",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_so_neither_agreement",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_so_neither_agreement#rule" },
+      { "type": "example", "content_ref": "gc_b1_so_neither_agreement#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_so_neither_agreement#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_neither_agreement", "vocab_b1_nor", "vocab_b1_likewise"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_soneither_001", "ex_b1_soneither_002", "ex_b1_soneither_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_soneither_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_soneither_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The auxiliary in these short responses carries the main stress, since it's the only new information: \"So DO I\", \"NEITHER have I\" — not flat, and not stressed on the pronoun."
+      },
+      { "type": "speaking", "prompt": "Say 3 true statements about yourself (things you like, have done, or can do) and practise how you'd expect a friend to agree with each one, using 'so'/'neither'." },
+      { "type": "writing", "prompt": "Write 4 short exchanges: a statement followed by an agreement using 'so' or 'neither' — 2 positive statements and 2 negative ones." },
+      { "type": "translation", "exercise_ids": ["ex_b1_soneither_translation_001"] }
+    ]
+  }
+}
