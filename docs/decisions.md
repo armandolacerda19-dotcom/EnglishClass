@@ -2,6 +2,10 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 14 continuada: mais 3 textos de leitura (6º lote)
+
+`ai-in-the-workplace-news` (B2, "news"), `borrowing-money-dialogue` (B1, "dialogue"), `changing-doctor-email` (A2, "email") — todos originais. Total de textos de leitura: 76 → 79.
+
 ## 2026-08-27 — Bug real: Diagnóstico Semanal e Sheets de tema misturavam qualquer nível CEFR
 
 Terceiro bug real desta ronda, encontrado pelo mesmo processo dos dois anteriores (rever o que muda de comportamento ao introduzir B2). `buildQuestionSet` (`src/lib/practiceQuestions.ts`) — o motor partilhado por trás do Diagnóstico Semanal e das Sheets de tema, as duas superfícies de "testa-me" da app — nunca filtrava exercícios por `Exercise.cefr`. Escolhia ao acaso entre **todos** os níveis seedados para qualquer pilar pedido, para qualquer utilizador. Com currículo só até B1 isto já era questionável (um Pre-A1 podia apanhar uma pergunta B1); com B2 a existir agora (estruturas claramente fora de alcance para um iniciante — inversão para ênfase, cleft sentences, orações de particípio), o problema deixou de ser teórico.
