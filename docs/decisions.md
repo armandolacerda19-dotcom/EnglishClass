@@ -14,7 +14,7 @@ O commit anterior (introdução do nível B2) registou explicitamente como "trab
 - `src/lib/placement/scoring.ts`: `DIFFICULTY_WEIGHT` ganha `B2: 4` — o peso mais alto, coerente com ser o nível mais difícil do banco de perguntas.
 - `src/lib/placement/scoring.test.ts`: novo teste — acertar tudo até B1 mas errar (ou não responder) às 5 perguntas B2 coloca o utilizador em B1, não em B2. Sem isto (i.e., antes desta correção), essas 5 perguntas nem existiam, por isso não havia nenhuma forma de o teste realmente diferenciar "domina B1" de "domina B2 a sério" — qualquer um dos dois perfis batia no mesmo teto.
 
-**Total de perguntas do placement test: 19 → 24.** Currículo e placement ficam agora totalmente consistentes: 48 lições seedadas e 24 perguntas de teste, ambos cobrindo Pre-A1 a B2.
+**Total de perguntas do placement test: 18 → 23** (confirmado por contagem exata de ids no ficheiro antes/depois do commit, não por uma estimativa via `grep -c` — essa técnica conta também a declaração do campo `difficultyLevel` na interface, inflacionando a contagem em 1). Currículo e placement ficam agora totalmente consistentes: 48 lições seedadas e 23 perguntas de teste, ambos cobrindo Pre-A1 a B2.
 
 ## 2026-08-27 — Fonologia de fala ligada (connected speech) na referência de pronúncia
 
