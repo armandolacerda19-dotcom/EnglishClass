@@ -2238,6 +2238,107 @@ export const READING_PASSAGES: ReadingPassage[] = [
       },
     ],
   },
+  // Fase 14 (continuação, 2026-08-27) — 7º lote. Originais, nunca copiados
+  // de fonte real.
+  {
+    id: "assembling-furniture-instructions",
+    title: "Assembling a Flat-Pack Bookshelf",
+    level: "A2",
+    genre: "instructions",
+    source: "original",
+    text: "Before you start, lay all the pieces on the floor and check them against the parts list — it's much easier to notice a missing piece now than halfway through. Begin by attaching the two side panels to the base using the long screws provided; don't tighten them fully yet, as you'll need some flexibility to fit the back panel. Next, slide the back panel into the grooves at the rear and secure it with the small nails included. Once everything is in place and square, go back and tighten all the screws firmly. Finally, attach the shelves at your preferred height using the metal pegs.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What should you do before starting to assemble the bookshelf?",
+        options: [
+          "Tighten all the screws first",
+          "Check the pieces against the parts list",
+          "Attach the shelves",
+          "Call for help",
+        ],
+        correctAnswer: "Check the pieces against the parts list",
+      },
+      {
+        id: "q2",
+        prompt: "Why shouldn't you tighten the first screws fully?",
+        options: [
+          "They might break",
+          "You need flexibility to fit the back panel",
+          "It's not necessary at all",
+          "The instructions don't say",
+        ],
+        correctAnswer: "You need flexibility to fit the back panel",
+      },
+      {
+        id: "q3",
+        prompt: "What is used to attach the shelves?",
+        options: ["Screws", "Nails", "Metal pegs", "Glue"],
+        correctAnswer: "Metal pegs",
+      },
+    ],
+  },
+  {
+    id: "surprise-party-dialogue",
+    title: "Planning a Surprise Party",
+    level: "A2",
+    genre: "dialogue",
+    source: "original",
+    text: "RITA: So, everything's set for Saturday — I've booked the restaurant for 8pm.\nTOMÁS: Perfect. Did you manage to keep it a secret from her?\nRITA: I think so! I told her we're just going out for a normal dinner, nothing special.\nTOMÁS: Good. I'll pick up the cake on my way, and I've already messaged everyone the address.\nRITA: Great. Can you also bring a speaker? I want to play some music when she arrives.\nTOMÁS: Sure, no problem. What time should everyone be there before her?\nRITA: Let's say 7:30 — that gives us thirty minutes to get ready before she shows up.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What time is the restaurant booked for?",
+        options: ["7pm", "7:30pm", "8pm", "9pm"],
+        correctAnswer: "8pm",
+      },
+      {
+        id: "q2",
+        prompt: "What is Tomás bringing?",
+        options: ["Balloons", "A cake and a speaker", "Drinks", "A gift"],
+        correctAnswer: "A cake and a speaker",
+      },
+      {
+        id: "q3",
+        prompt: "What time should everyone arrive before her?",
+        options: ["7pm", "7:30pm", "8pm", "8:30pm"],
+        correctAnswer: "7:30pm",
+      },
+    ],
+  },
+  {
+    id: "startup-funding-news",
+    title: "Local Startup Secures Major Investment",
+    level: "B1",
+    genre: "news",
+    source: "original",
+    text: "A local technology startup has secured significant investment from a group of private investors, the company announced this week. The funding will be used to expand the team and develop new features for their app, which currently has around 50,000 active users.\n\nThe founders said the investment came after months of negotiations and would allow them to compete more directly with larger companies in the same market. They also confirmed plans to hire at least fifteen new employees over the next year, mostly in engineering and customer support roles.\n\nIndustry experts say the deal reflects growing investor interest in smaller, specialised apps rather than only in large, general-purpose platforms.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What will the funding be used for?",
+        options: [
+          "Paying off debt",
+          "Expanding the team and developing new features",
+          "Moving to a new country",
+          "Buying another company",
+        ],
+        correctAnswer: "Expanding the team and developing new features",
+      },
+      {
+        id: "q2",
+        prompt: "How many active users does the app currently have?",
+        options: ["5,000", "50,000", "500,000", "It doesn't say"],
+        correctAnswer: "50,000",
+      },
+      {
+        id: "q3",
+        prompt: "How many new employees do the founders plan to hire?",
+        options: ["At least 5", "At least 15", "At least 50", "None"],
+        correctAnswer: "At least 15",
+      },
+    ],
+  },
 ];
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {
