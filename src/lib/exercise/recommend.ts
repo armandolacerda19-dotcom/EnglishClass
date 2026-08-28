@@ -12,7 +12,7 @@ const KINDS_BY_PILLAR: Record<Pillar, ExerciseKind[]> = {
   LISTENING: ["listen_and_choose", "dictation"],
   READING: ["reading_comprehension"],
   TRANSLATION: ["translation_pt_en", "translation_en_pt"],
-  SPEAKING: ["oral_repetition", "roleplay_simulation", "ai_conversation"],
+  SPEAKING: ["oral_repetition", "roleplay_simulation", "ai_conversation", "extended_speaking"],
   WRITING: ["free_writing_challenge"],
   PRONUNCIATION: ["read_aloud", "oral_repetition"],
 };
@@ -84,6 +84,7 @@ export const KIND_ROUTE: Partial<Record<ExerciseKind, string>> = {
   reading_comprehension: "/practice/reading",
   roleplay_simulation: "/speak",
   free_writing_challenge: "/practice/writing-challenge",
+  extended_speaking: "/practice/speaking-challenge",
 };
 
 export function recommendNextActivity(input: RecommendationInput): Recommendation {

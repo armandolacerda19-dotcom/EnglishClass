@@ -37,6 +37,7 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_translation_en_pt: "EN-PT",
   first_word_builder: "BUILD",
   first_writing_challenge: "WRITE",
+  first_speaking_challenge: "SPEAK",
   first_read_aloud: "READ",
   first_grammar_quiz: "GRAM",
   first_fill_blank: "BLANK",

@@ -2,6 +2,22 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Fase 21: 4ª auditoria (independente, crítica) + Desafio de Discurso Livre
+
+Pedido: auditoria completa e cética da app ("esta aplicação consegue fazer um utilizador aprender inglês e utilizá-lo eficazmente no mundo real?"), seguida de execução obrigatória das correções críticas/de alto impacto encontradas. Inspeção real via 5 agentes paralelos, cada um com evidência de ficheiro:linha (currículo/conteúdo, os 20 tipos de exercício, adaptive learning/SRS/progresso, listening/speaking/pronúncia/writing, UX/modo intensivo/gamificação) — não uma avaliação por suposição.
+
+**Achado crítico confirmado por dois ângulos independentes**: a escada de Speaking nunca chegava a discurso espontâneo e prolongado. Read Aloud repete texto dado; oral_repetition é shadowing (limitação já documentada); ai_conversation/roleplay são trocas curtas de chat, nunca 45-90s de fala contínua sobre um tema. Grep confirmou zero exercício "spontaneous"/"unscripted"/"monologue" em todo o `src/`.
+
+**Corrigido — Desafio de Discurso Livre** (`extended_speaking`, tipo 21, não fazia parte da lista original de 20):
+- `src/content/speakingChallenges.ts` — 9 temas, 3 tiers (beginner/intermediate/advanced), mesma estrutura de `writingChallenges.ts`.
+- `src/lib/ai/gradeSpeakingChallenge.ts` — Gemini JSON mode, mas instruído explicitamente a tratar o texto como FALA transcrita (tolerar falta de pontuação, hesitações, repetição — não são erros de escrita). `fluencyScore` combina metade julgamento da IA + metade WPM real medido no servidor (nunca inventado; mesma honestidade já usada em Read Aloud), para uma resposta de 3 palavras gramaticalmente perfeitas não pontuar como fluente.
+- `src/components/challenge/SpeakingChallengeRunner.tsx` — usa `SpeechRecognition` com `continuous=true`+`interimResults=true` (diferente de `RecordButton.tsx`/`ReadAloudRunner.tsx`, que usam `continuous=false` para uma frase única) — acumula segmentos finais em vez de substituir a cada pausa, para uma pausa natural para respirar não cortar a gravação. Auto-reinicia se o Chrome terminar o reconhecimento sozinho por silêncio prolongado, usando um `ref` (não `state`) para evitar o closure obsoleto clássico deste padrão.
+- Integração completa: `ExerciseKind` ganha `extended_speaking`; `KINDS_BY_PILLAR.SPEAKING` e `KIND_ROUTE` atualizados (`recommend.ts`); `SpeakingAttempt` real gravado (`audioUrl: ""`, mesmo padrão já estabelecido em `submitSpeaking`, sem fabricar áudio); `updateSkillScore` em SPEAKING/GRAMMAR/VOCABULARY; achievement novo `first_speaking_challenge` (`seed.ts` + `progress/page.tsx`); card no hub `/practice`.
+
+**Achado de honestidade corrigido na documentação**: `docs/12-exercise-engine.md` afirmava que o tipo 19 (Role-play) "já existia" como algo distinto — a auditoria confirmou que é a mesma implementação do tipo 9 (Conversação com IA) com uma personalidade diferente, sem cenários/UI próprios. Documentação corrigida para não reivindicar uma cobertura que não existe.
+
+**Achados não corrigidos nesta ronda, registados para priorização** (roadmap completo na resposta ao utilizador): vocabulário standalone muito enviesado para A1/A2 (929+760 de 1.962, B2=11/C1=2/C2=0, apesar de alimentar SRS/Daily Challenge "para todos os níveis"); mismatches id/headword em `vocabulary-bank.json` (ex. `vb_verb_borrow`→"owe") sugerindo edição descuidada; XP flat por tipo de atividade, sem multiplicador de dificuldade; lista "Os seus erros" em `/practice` é só de leitura, sem link direto para praticar o erro específico; ecrãs de conclusão dos Runners só têm "Voltar à Home", sem próxima ação recomendada.
+
 ## 2026-08-28 — Fase 20: nível C2 fechado (2º lote, 3 módulos, C2.2 completo)
 
 Nota de numeração: esta secção estava originalmente rotulada "Fase 19", colidindo com a Fase 19 já existente acima (áudio real + vocabulário). Corrigido para Fase 20 antes de qualquer trabalho depender do número.

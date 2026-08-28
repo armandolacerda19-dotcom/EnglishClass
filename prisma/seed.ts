@@ -484,6 +484,11 @@ const ACHIEVEMENTS = [
     description: "Completou o seu primeiro Desafio de Escrita Livre.",
   },
   {
+    code: "first_speaking_challenge",
+    title: "Primeiro Discurso Livre",
+    description: "Completou o seu primeiro Desafio de Discurso Livre — falou sem guião durante um tema inteiro.",
+  },
+  {
     code: "first_read_aloud",
     title: "Primeira Leitura em Voz Alta",
     description: "Completou o seu primeiro exercício de leitura em voz alta.",

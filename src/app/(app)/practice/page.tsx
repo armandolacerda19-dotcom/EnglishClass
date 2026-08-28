@@ -185,15 +185,25 @@ export default async function PracticePage() {
         </Link>
       </div>
 
-      <SectionLabel>Escrita Livre</SectionLabel>
-      <Link href="/practice/writing-challenge" className="block">
-        <Card className="border-2 border-ink/10 hover:border-brass dark:border-linen/10">
-          <p className="mb-1 font-display text-lg">Desafio de Escrita Livre</p>
-          <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
-            Escreva livremente — correções ❌⚠️✅ e como um nativo escreveria
-          </p>
-        </Card>
-      </Link>
+      <SectionLabel>Escrita e Discurso Livre</SectionLabel>
+      <div className="mb-6 flex flex-col gap-3">
+        <Link href="/practice/writing-challenge" className="block">
+          <Card className="border-2 border-ink/10 hover:border-brass dark:border-linen/10">
+            <p className="mb-1 font-display text-lg">Desafio de Escrita Livre</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+              Escreva livremente — correções ❌⚠️✅ e como um nativo escreveria
+            </p>
+          </Card>
+        </Link>
+        <Link href="/practice/speaking-challenge" className="block">
+          <Card className="border-2 border-ink/10 hover:border-brass dark:border-linen/10">
+            <p className="mb-1 font-display text-lg">Desafio de Discurso Livre</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+              Fale 45-90s sem guião sobre um tema — não é repetir nem shadowing
+            </p>
+          </Card>
+        </Link>
+      </div>
 
       <SectionLabel>Referência</SectionLabel>
       <div className="grid grid-cols-2 gap-3">

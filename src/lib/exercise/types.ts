@@ -28,7 +28,12 @@ export type ExerciseKind =
   | "reading_comprehension"
   | "video_comprehension"
   | "roleplay_simulation"
-  | "free_writing_challenge";
+  | "free_writing_challenge"
+  // Não fazia parte da lista original de 20 — acrescentado depois da
+  // auditoria de 2026-08-28 (achado crítico S1/S2 de Speaking): nenhum dos
+  // tipos existentes levava o utilizador a produzir 45-90s de discurso
+  // contínuo e não ensaiado. Ver src/lib/ai/gradeSpeakingChallenge.ts.
+  | "extended_speaking";
 
 // Camada de dificuldade DENTRO de um tópico/pilar — combina com o nível CEFR já
 // existente (Exercise.cefr), não o substitui. "practice" = com andaimes
