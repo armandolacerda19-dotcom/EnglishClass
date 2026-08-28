@@ -113,6 +113,12 @@ export default async function PracticePage() {
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Ouça e escreva a frase</p>
           </Card>
         </Link>
+        <Link href="/practice/ordering">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Ordenar Frases</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Monte a frase pela ordem certa</p>
+          </Card>
+        </Link>
       </div>
 
       <SectionLabel>Referência</SectionLabel>

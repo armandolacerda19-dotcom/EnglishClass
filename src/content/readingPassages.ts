@@ -2339,6 +2339,143 @@ export const READING_PASSAGES: ReadingPassage[] = [
       },
     ],
   },
+  // 2026-08-28 (achado da 3ª auditoria: currículo C1 introduzido na Fase 15,
+  // mas zero textos de leitura C1 — o único nível com módulos de gramática
+  // seedados sem nenhum texto correspondente). 1º lote de 3, originais,
+  // nunca copiados de fonte real. Registo léxico e sintático mais complexo
+  // do que B2 (subordinação mais densa, vocabulário mais abstrato), e onde
+  // fez sentido, uso natural das estruturas dos módulos C1 desta sessão
+  // (hedging language, passive reporting) — não como exercício de gramática,
+  // só porque é assim que um texto C1 genuíno soa.
+  {
+    id: "ai-generated-art-news",
+    title: "Who Owns a Picture No One Painted?",
+    level: "C1",
+    genre: "news",
+    source: "original",
+    text: "It is widely acknowledged that image-generating tools have moved from novelty to mainstream creative practice in remarkably little time, yet the question of authorship they raise remains as unresolved as ever. When a user types a few words and an algorithm produces something visually striking, it is far from obvious who, if anyone, should be credited — or paid — for the result: the person who wrote the prompt, the artists whose work trained the underlying model, or, arguably, no one at all in any meaningful creative sense.\n\nSome commentators have suggested that the debate mirrors earlier anxieties around photography, which was likewise dismissed by many nineteenth-century critics as a mechanical process incapable of true artistry. Others counter that the comparison understates the issue, since a camera does not draw on millions of existing images without the consent of those who made them. What can be said with more confidence is that courts and legislators in several countries are now being asked to settle questions that, only a few years ago, would have seemed purely philosophical.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What does the author say is genuinely uncertain about AI-generated images?",
+        options: [
+          "Whether the tools are technically capable of producing images",
+          "Who, if anyone, deserves credit or payment for the result",
+          "Whether the tools are legal to use at all",
+          "How much the tools cost to run",
+        ],
+        correctAnswer: "Who, if anyone, deserves credit or payment for the result",
+      },
+      {
+        id: "q2",
+        prompt: "According to the text, what argument do some people make against the photography comparison?",
+        options: [
+          "Photography was never controversial",
+          "AI models are trained on existing images without the creators' consent, unlike a camera",
+          "Cameras are more expensive than AI tools",
+          "It doesn't say",
+        ],
+        correctAnswer: "AI models are trained on existing images without the creators' consent, unlike a camera",
+      },
+      {
+        id: "q3",
+        prompt: "What does the final sentence suggest about the current situation?",
+        options: [
+          "The legal questions have already been fully resolved",
+          "Courts are now facing questions that used to seem only theoretical",
+          "No country has taken any interest in the issue",
+          "The debate has completely died down",
+        ],
+        correctAnswer: "Courts are now facing questions that used to seem only theoretical",
+      },
+    ],
+  },
+  {
+    id: "project-delay-email",
+    title: "Re: Timeline for the Client Portal",
+    level: "C1",
+    genre: "email",
+    source: "original",
+    text: "Dear Marcus,\n\nI'm writing to update you on the client portal project, as I know the original delivery date is fast approaching. Following last week's testing phase, a number of issues were identified that, in the team's judgement, cannot responsibly be left unresolved before launch — most notably around how payment data is handled.\n\nIt has therefore been decided, after some deliberation, to push the release back by three weeks. I recognise this is not the news you were hoping for, particularly given the commitments already made to the client, and I don't take the decision lightly. That said, releasing a portal with known weaknesses in its payment handling would, in my view, expose us to far greater risk than a short delay would.\n\nWould you be available sometime this week to discuss how best to communicate this to the client? I'd rather we agree on a joint approach than have this reach them piecemeal.\n\nBest,\nElena",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why is the release being delayed?",
+        options: [
+          "The client asked for extra features",
+          "Testing revealed issues, especially around payment data, that the team feels must be fixed first",
+          "The team ran out of budget",
+          "It doesn't say",
+        ],
+        correctAnswer: "Testing revealed issues, especially around payment data, that the team feels must be fixed first",
+      },
+      {
+        id: "q2",
+        prompt: "How does Elena appear to feel about the delay?",
+        options: [
+          "Indifferent — she doesn't mention how she feels",
+          "Reluctant, but convinced it is the right decision",
+          "Completely confident there will be no consequences",
+          "Angry with Marcus",
+        ],
+        correctAnswer: "Reluctant, but convinced it is the right decision",
+      },
+      {
+        id: "q3",
+        prompt: "What is Elena asking Marcus to do?",
+        options: [
+          "Approve a budget increase",
+          "Meet to agree on how to tell the client together",
+          "Fire someone from the team",
+          "Cancel the project entirely",
+        ],
+        correctAnswer: "Meet to agree on how to tell the client together",
+      },
+    ],
+  },
+  {
+    id: "ethical-dilemma-dialogue",
+    title: "A Difficult Reference",
+    level: "C1",
+    genre: "dialogue",
+    source: "original",
+    text: "SOFIA: Can I get your honest opinion on something? A former colleague has asked me to write him a reference, and I'm not sure I can, in good conscience.\nDANIEL: Why not? Didn't he work under you for a couple of years?\nSOFIA: He did, and for the most part he was reliable. But there was an incident near the end — nothing illegal, but a real lapse in judgement — and I keep coming back to it.\nDANIEL: Would you say it, and it alone, that changed how you saw his work overall?\nSOFIA: Honestly, no. If I'm fair about it, one mistake doesn't undo two years of solid contributions.\nDANIEL: Then maybe the answer isn't to refuse outright, but to write something accurate rather than glowing — focus on what you can genuinely stand behind.\nSOFIA: That's fair. I suppose I owe him honesty more than I owe him enthusiasm.\nDANIEL: Exactly. And frankly, most people reading a reference already know to read between the lines.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What is Sofia unsure about?",
+        options: [
+          "Whether to accept a job offer",
+          "Whether she can honestly write a reference for a former colleague",
+          "Whether to report a crime",
+          "Whether to hire someone new",
+        ],
+        correctAnswer: "Whether she can honestly write a reference for a former colleague",
+      },
+      {
+        id: "q2",
+        prompt: "Does Sofia think the incident should completely define her opinion of him?",
+        options: [
+          "Yes, it should outweigh everything else",
+          "No — she admits one mistake doesn't undo two years of good work",
+          "She refuses to say",
+          "She has never thought about it until now",
+        ],
+        correctAnswer: "No — she admits one mistake doesn't undo two years of good work",
+      },
+      {
+        id: "q3",
+        prompt: "What does Daniel suggest Sofia do instead of refusing outright?",
+        options: [
+          "Lie and write an entirely positive reference",
+          "Write something accurate, focused on what she can genuinely support",
+          "Ask someone else to write it",
+          "Ignore the request completely",
+        ],
+        correctAnswer: "Write something accurate, focused on what she can genuinely support",
+      },
+    ],
+  },
 ];
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {

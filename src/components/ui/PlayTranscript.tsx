@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useEnglishVariant } from "./EnglishVariantContext";
+import { loadVoices, englishVoices, getPreferredVoiceName } from "@/lib/voicePreference";
 
 const SPEEDS = [0.75, 1, 1.25];
 
@@ -18,6 +19,15 @@ const VARIANT_LANG_PREFERENCE: Record<string, string[]> = {
   INTERNATIONAL: [], // sem preferência de sotaque — só natural/neural, ver pickVoice
 };
 
+// Nomes de voz conhecidos por soarem melhor do que a voz robótica por
+// omissão de cada SO. "natural|neural|online" cobre as vozes "Online
+// (Natural)" do Windows/Edge; "google" cobre as vozes do Chrome/ChromeOS/
+// Android ("Google US English", "Google UK English Female"), que não têm
+// nenhuma dessas palavras no nome mas são visivelmente melhores do que o
+// motor `espeak` por omissão do Linux/Android — antes ficavam de fora do
+// critério de qualidade e nunca eram preferidas.
+const QUALITY_VOICE_RE = /natural|neural|online|google/i;
+
 // Substituto de listening sem ficheiros de áudio gravados (que ainda não existem —
 // ver docs/decisions.md): sintetiza o transcript no browser via Web Speech API.
 // Não mostra o texto ao utilizador — só o lê em voz alta, como um ficheiro de áudio.
@@ -25,40 +35,62 @@ export function PlayTranscript({ text }: { text: string }) {
   const [speed, setSpeed] = useState(1);
   const [playing, setPlaying] = useState(false);
   const [unsupported, setUnsupported] = useState(false);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const variant = useEnglishVariant();
+
+  // Pré-carrega a lista de vozes assim que o componente monta, em vez de só
+  // no clique — `getVoices()` costuma devolver [] antes de `voiceschanged`
+  // disparar (ver lib/voicePreference.ts), o que fazia o primeiro "Ouvir" de
+  // cada sessão cair sempre na voz por omissão do browser, ignorando o
+  // sotaque escolhido no onboarding e qualquer preferência de voz guardada.
+  useEffect(() => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    let cancelled = false;
+    loadVoices().then((v) => {
+      if (!cancelled) setVoices(englishVoices(v));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Item #8 da lista de melhorias (listening mais natural): a voz por defeito do
   // browser costuma ser a mais robótica das disponíveis. Preferimos explicitamente
-  // uma voz "Natural"/"Neural"/online quando o browser expõe uma (Edge e Chrome em
-  // muitos SO já trazem vozes deste tipo) — sem isso, cai na voz por defeito do
-  // browser como sempre fez.
+  // uma voz "Natural"/"Neural"/online/Google quando o browser expõe uma — sem
+  // isso, cai na voz por defeito do browser como sempre fez.
   //
   // Desde a Fase 9, também respeita `englishVariant` (LearningProfile, escolhido
-  // no onboarding) — antes esse campo existia, era usado no prompt do tutor de
-  // IA, mas nunca chegava a influenciar qual voz de TTS era escolhida: todos os
-  // utilizadores ouviam sempre a mesma voz americana, mesmo tendo pedido
-  // explicitamente inglês britânico.
+  // no onboarding). Desde esta ronda, respeita primeiro uma preferência de voz
+  // explícita guardada pelo utilizador em Definições (ver
+  // VoicePreferenceSettings.tsx) — nenhuma heurística automática acerta sempre
+  // qual voz soa melhor num dado browser/SO, por isso a escolha final fica
+  // disponível para o próprio utilizador decidir.
   function pickVoice(): SpeechSynthesisVoice | null {
-    const voices = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith("en"));
     if (voices.length === 0) return null;
+
+    const preferredName = getPreferredVoiceName();
+    if (preferredName) {
+      const exact = voices.find((v) => v.name === preferredName);
+      if (exact) return exact;
+    }
 
     const langPrefixes = VARIANT_LANG_PREFERENCE[variant] ?? [];
     const matchesVariant = (v: SpeechSynthesisVoice) =>
       langPrefixes.some((prefix) => v.lang.toLowerCase().startsWith(prefix));
 
-    // 1ª escolha: voz natural/neural QUE também corresponda ao sotaque pedido.
-    const naturalMatch = voices.find((v) => matchesVariant(v) && /natural|neural|online/i.test(v.name));
-    if (naturalMatch) return naturalMatch;
+    // 1ª escolha: voz de qualidade QUE também corresponda ao sotaque pedido.
+    const qualityMatch = voices.find((v) => matchesVariant(v) && QUALITY_VOICE_RE.test(v.name));
+    if (qualityMatch) return qualityMatch;
 
-    // 2ª escolha: qualquer voz do sotaque pedido, mesmo que não seja "natural".
+    // 2ª escolha: qualquer voz do sotaque pedido, mesmo que não seja de qualidade superior.
     const anyMatch = voices.find(matchesVariant);
     if (anyMatch) return anyMatch;
 
     // Sem correspondência (sotaque não instalado neste browser, ou INTERNATIONAL
-    // sem preferência): cai no comportamento anterior — qualquer voz natural, ou
-    // en-US, ou a primeira disponível.
-    const anyNatural = voices.find((v) => /natural|neural|online/i.test(v.name));
-    return anyNatural ?? voices.find((v) => v.lang.toLowerCase() === "en-us") ?? voices[0]!;
+    // sem preferência): cai no comportamento anterior — qualquer voz de
+    // qualidade, ou en-US, ou a primeira disponível.
+    const anyQuality = voices.find((v) => QUALITY_VOICE_RE.test(v.name));
+    return anyQuality ?? voices.find((v) => v.lang.toLowerCase() === "en-us") ?? voices[0]!;
   }
 
   function play() {

@@ -414,6 +414,11 @@ const ACHIEVEMENTS = [
     title: "Primeiro Ditado",
     description: "Completou o seu primeiro exercício de ditado (ouvir e escrever).",
   },
+  {
+    code: "first_ordering",
+    title: "Primeira Ordenação",
+    description: "Completou o seu primeiro exercício de ordenar frases.",
+  },
 ];
 
 async function seedAchievements() {

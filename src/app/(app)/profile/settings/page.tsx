@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/TextField";
 import { SettingsToggles } from "@/components/profile/SettingsToggles";
+import { VoicePreferenceSettings } from "@/components/profile/VoicePreferenceSettings";
 import { SwitchProfileButton } from "@/components/profile/SwitchProfileButton";
 import { renameProfile } from "./actions";
 
@@ -33,6 +34,10 @@ export default async function SettingsPage() {
           immersionMode={learningProfile.immersionMode}
           accessibleReadingMode={learningProfile.accessibleReadingMode}
         />
+      </Card>
+
+      <Card className="mb-4">
+        <VoicePreferenceSettings />
       </Card>
 
       <Card>
