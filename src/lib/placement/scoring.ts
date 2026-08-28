@@ -1,6 +1,6 @@
 import { PLACEMENT_QUESTIONS, type PlacementPillar } from "./questions";
 
-const DIFFICULTY_WEIGHT: Record<string, number> = { PRE_A1: 1, A1: 1, A2: 2, B1: 3 };
+const DIFFICULTY_WEIGHT: Record<string, number> = { PRE_A1: 1, A1: 1, A2: 2, B1: 3, B2: 4 };
 const LEVEL_ORDER = ["PRE_A1", "A1", "A2", "B1", "B2", "C1", "C2"] as const;
 
 export interface PlacementAnswer {
@@ -66,11 +66,10 @@ export function scorePlacementTest(answers: PlacementAnswer[]): PlacementResult 
 // incluindo as 5 de dificuldade B1 (peso 3, o mais alto em
 // `DIFFICULTY_WEIGHT`), continuava a ser colocado em A2.2, abaixo do seu
 // nível real. Achado ao introduzir B2 nesta sessão (Fase 13, 2026-08-27):
-// corrigido agora, estendendo os cortes até B2. Nota: o teste ainda não tem
-// perguntas de dificuldade B2 (`DIFFICULTY_WEIGHT` não define peso para B2),
-// por isso alcançar B2.1/B2.2 exige acertar tudo o resto — heurística
-// razoável na ausência de perguntas B2 dedicadas, mas fica registado como
-// trabalho futuro em docs/decisions.md.
+// corrigido agora, estendendo os cortes até B2, e `questions.ts` ganhou 5
+// perguntas de dificuldade B2 (uma por pilar com correção exata), com peso 4
+// em `DIFFICULTY_WEIGHT` — o mais alto, coerente com ser o nível mais
+// difícil do teste.
 function averageToLevel(average: number): { level: (typeof LEVEL_ORDER)[number]; sublevel: number } {
   if (average < 10) return { level: "PRE_A1", sublevel: 1 };
   if (average < 22) return { level: "A1", sublevel: 1 };

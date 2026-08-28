@@ -19,6 +19,17 @@ function noAnswers(): PlacementAnswer[] {
   return [];
 }
 
+// Acerta tudo EXCETO as perguntas B2 (nem responde a essas) — simula alguém
+// sólido até B1 mas que ainda não domina os pontos só ensinados em B2
+// (inversão, "denied doing", cleft sentences...).
+function allCorrectExceptB2(): PlacementAnswer[] {
+  return PLACEMENT_QUESTIONS.filter((q) => q.difficultyLevel !== "B2").map((q) => ({
+    questionId: q.id,
+    answer: q.correctAnswer,
+    aiScore: q.freeResponse ? 100 : undefined,
+  }));
+}
+
 describe("scorePlacementTest", () => {
   it("acertar tudo (incluindo as perguntas B1) coloca o utilizador em B1 ou B2, nunca preso em A2", () => {
     const result = scorePlacementTest(allCorrectAnswers());
@@ -35,5 +46,10 @@ describe("scorePlacementTest", () => {
     const result = scorePlacementTest(allCorrectAnswers());
     expect(result.resultSublevel).toBeGreaterThanOrEqual(1);
     expect(result.resultSublevel).toBeLessThanOrEqual(3);
+  });
+
+  it("as perguntas B2 discriminam de verdade: acertar tudo até B1 mas errar as B2 coloca em B1, não em B2", () => {
+    const result = scorePlacementTest(allCorrectExceptB2());
+    expect(result.resultLevel).toBe("B1");
   });
 });
