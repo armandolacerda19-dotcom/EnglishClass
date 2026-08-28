@@ -243,10 +243,19 @@ export default async function PracticePage() {
         </Card>
       ) : (
         <div className="flex flex-col gap-3">
+          {/* Achado #7 da 4ª auditoria (2026-08-28): a lista era só de leitura,
+              sem forma de ir praticar diretamente o erro mostrado. Aponta para
+              /practice/review — a fila de repetição espaçada é o mecanismo que
+              já resurge exatamente este erro (não uma prática genérica do
+              pilar), por isso funciona para os 8 pilares sem precisar de um
+              mapa pilar→rota (nem todos os pilares têm uma rota de tema
+              dedicada, ex. SPEAKING/WRITING/PRONUNCIATION). */}
           {errors.map((error) => (
-            <ErrorCallout key={error.id} label={`${error.pillar.toLowerCase()} · ${error.occurrences}x`}>
-              {error.commonMistakePt ?? error.correction}
-            </ErrorCallout>
+            <Link key={error.id} href="/practice/review" className="block">
+              <ErrorCallout label={`${error.pillar.toLowerCase()} · ${error.occurrences}x · toque para praticar`}>
+                {error.commonMistakePt ?? error.correction}
+              </ErrorCallout>
+            </Link>
           ))}
         </div>
       )}

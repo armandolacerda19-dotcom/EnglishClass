@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Fase 23: lista "Os seus erros" tornada acionável (R3 da 4ª auditoria)
+
+Pedido: continuação direta ("deve então agora avançar com as atualizações"). Corrige o achado #7 da 4ª auditoria: a lista de erros em `/practice` era só de leitura, sem forma de ir praticar o erro mostrado.
+
+`src/app/(app)/practice/page.tsx` — cada `ErrorCallout` passa a estar envolvido num `Link` para `/practice/review`. Decisão deliberada de apontar para a fila de repetição espaçada, não para uma rota de tema por pilar (`/practice/topic/{pillar}`): a fila SRS é o mecanismo que já resurge exatamente aquele erro (não uma prática genérica do pilar), e funciona igualmente para os 8 pilares — `/practice/topic/[pillar]/page.tsx` só suporta 5 (`GRAMMAR/VOCABULARY/LISTENING/READING/TRANSLATION`, linha 8), por isso um erro em SPEAKING/WRITING/PRONUNCIATION daria 404 se apontasse para lá. `ErrorCallout` (componente partilhado com `LessonRunner.tsx`) não foi alterado — só envolvido, mantendo-o genérico.
+
+**Avaliado e adiado conscientemente, não implementado**: multiplicador de XP por dificuldade (R4 do roadmap da 4ª auditoria). Investigação mostrou que `recordActivity`/`recordExerciseResult` não têm hoje nenhum conceito de `DifficultyTier` a fluir até à atribuição de XP — só `grammar-quiz` (Challenge/Apply) tem tiers reais. Implementar isto a sério exigiria threading do tier por quase todos os ~15 pontos de chamada de `recordExerciseResult`, um esforço muito maior do que a estimativa inicial de "esforço 2" no roadmap; uma versão parcial (só grammar-quiz) não moveria a agulha o suficiente para justificar o risco de regressão sem build/testes locais. Registado para uma ronda dedicada.
+
 ## 2026-08-28 — Fase 22: vocabulário standalone B2/C1/C2 (resposta ao R1 da 4ª auditoria)
 
 Pedido: "deve então agora avançar com as atualizações" — execução direta da "Próxima Ação" recomendada na 4ª auditoria (Fase 21): o vocabulário standalone (o que alimenta SRS/Daily Challenge) tinha só 11 palavras B2, 2 C1, 0 C2, contra quase 1.700 em A1/A2 — um utilizador que já chegou a C1/C2 pelo currículo (Fases 15/18/20) ficava sem SRS de vocabulário funcional acima de B1.
