@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 14 continuada: mais 3 textos de leitura (7º lote)
+
+`assembling-furniture-instructions` (A2, "instructions"), `surprise-party-dialogue` (A2, "dialogue"), `startup-funding-news` (B1, "news") — todos originais. Total de textos de leitura: 79 → 82.
+
+**Balanço da distribuição do currículo por nível**, depois de todo o trabalho de rebalanceamento desta sessão (Fase 13): Pre-A1 2 módulos, A1 15, A2 12, B1 13, B2 9 — 51 lições no total. A auditoria pedia especificamente fechar o fosso "A2 (7) vs. A1 (14)"; está agora em 12 vs. 15, muito mais equilibrado. Pre-A1 continua deliberadamente mais magro (2 módulos) — é o nível de "sobrevivência absoluta", esperado ser mais curto por natureza, não um gap real por preencher.
+
 ## 2026-08-27 — Fase 14 continuada: mais 3 textos de leitura (6º lote)
 
 `ai-in-the-workplace-news` (B2, "news"), `borrowing-money-dialogue` (B1, "dialogue"), `changing-doctor-email` (A2, "email") — todos originais. Total de textos de leitura: 76 → 79.
