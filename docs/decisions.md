@@ -2,6 +2,21 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fonologia de fala ligada (connected speech) na referência de pronúncia
+
+O veredito honesto da auditoria (secção 5.5) é direto: "o que falta para lá chegar [perceber letras de música e ver filmes sem legendas] é, por ordem: áudio humano real e graduado (Fase 9), currículo até B2 com fonologia de fala ligada (Fase 13) e material autêntico (Fase 14)". Os 8 itens em `src/content/pronunciationTips.ts` eram todos sobre sons individuais isolados (TH, R, vogais curtas/longas...) — nada sobre como as palavras se ligam e reduzem na fala corrida, que é especificamente o que separa "entender uma frase isolada e devagar" de "acompanhar um filme ou uma conversa real".
+
+5 itens novos, mesma estrutura dos existentes (título, explicação em português, exemplos, áudio via `PlayTranscript`):
+- **Linking**: consoante final + vogal seguinte soam coladas ("turn it off" → "tur-ni-toff").
+- **Weak forms**: palavras funcionais (to, for, of, was...) reduzem-se a schwa /ə/ na fala corrida, não à forma "cheia" ensinada isoladamente.
+- **Elision de T/D**: desaparecem quase por completo entre duas consoantes ("next day" → "nex day").
+- **Contrações informais faladas**: "going to"→"gonna", "want to"→"wanna" — normais em fala casual e filmes, nunca escritas assim formalmente.
+- **Sons de ligação intrusivos**: um /r/, /w/ ou /j/ quase impercetível entre duas vogais consecutivas ("law and order").
+
+Novo campo opcional `category: "sound" | "connected-speech"` em `PronunciationTip` — retrocompatível, os 8 itens antigos continuam sem o campo (tratados como "sound" por omissão no filtro da página, nunca precisaram de alteração). `/practice/pronunciation` agora mostra 2 secções separadas, com uma frase a explicar a diferença conceptual entre as duas.
+
+Nota honesta: isto não substitui os itens 1 e 3 do veredito (áudio real, material autêntico) — continuam bloqueados/parciais pelas razões já documentadas (Fase 9: decisão financeira do utilizador; Fase 14: só textos escritos, sem áudio/vídeo real). Isto fecha especificamente a parte "fonologia de fala ligada" da Fase 13, que era a única dos três itens totalmente executável a custo zero.
+
 ## 2026-08-27 — Nível B2 introduzido (6 módulos) + placement test corrigido (bug real)
 
 Pedido do utilizador: "deve continuar por mais uma ronda, mas deve ser bastante mais completa. deve investir no desenvolvimento de várias fases". O maior investimento desta ronda: introduzir o nível B2 no currículo, que faltava por completo (o schema suporta `CefrLevel.B2` desde a Fase 0, mas nunca tinha `Level`/`Sublevel`/módulos seedados — B1 era o teto real desde a Fase 4/9).
