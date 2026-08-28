@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.2",
+  "module": {
+    "id": "mod_b2_8_discourse_markers",
+    "title": "Discourse Markers",
+    "theme": "connectors",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_b2_8_discourse_markers",
+    "title": "However, Furthermore, As a Result",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_discourse_markers",
+    "title": "Discourse Markers",
+    "rule": "Use discourse markers (however, nevertheless, furthermore, in addition, on the other hand, as a result, therefore) to connect ideas clearly across sentences, especially in writing — each one signals a specific logical relationship (contrast, addition, or consequence).",
+    "simple_explanation": "Basic connectors like \"but\", \"and\" and \"so\" are fine in conversation, but formal writing uses more precise discourse markers to show exactly how one idea relates to the next — contrast, addition, or cause and effect.",
+    "example": "The plan was risky. However, it paid off. The company cut costs; as a result, profits increased.",
+    "example_translation": "O plano era arriscado. No entanto, valeu a pena. A empresa cortou custos; como resultado, os lucros aumentaram.",
+    "common_mistake_pt": "O português tem conectores equivalentes, mas os alunos tendem a usar sempre os mesmos 2-3 conectores básicos (\"but\", \"and\", \"so\") em vez de variar com opções mais formais e precisas — o que é normal em conversa, mas soa pouco sofisticado em escrita formal. A pontuação também costuma sair errada: muitos destes conectores pedem um ponto final ou ponto e vírgula antes, e uma vírgula depois (\"The plan was risky, however it paid off\" está mal pontuado).",
+    "correction": "Em escrita mais formal, varie os conectores consoante a relação lógica: \"however\"/\"nevertheless\" para contraste, \"furthermore\"/\"in addition\" para adicionar informação, \"as a result\"/\"therefore\" para consequência. Pontuação: normalmente ponto final ou ponto e vírgula antes do conector, vírgula logo a seguir.",
+    "real_world_example": "In a report: \"Sales declined in Q1. However, they recovered strongly in Q2.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_nevertheless",
+      "headword": "nevertheless",
+      "type": "adverb",
+      "translation_pt": "no entanto, apesar disso",
+      "definition_en": "in spite of what was just said, used to introduce a contrast",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˌnɛvərðəˈlɛs/",
+      "related_forms": ["however"],
+      "example_sentences": ["The task was difficult; nevertheless, she completed it on time."],
+      "difficulty": 3,
+      "tags": ["discourse-markers"]
+    },
+    {
+      "id": "vocab_b2_furthermore",
+      "headword": "furthermore",
+      "type": "adverb",
+      "translation_pt": "além disso, ademais",
+      "definition_en": "used to add extra information that supports the previous point",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˈfɜːrðərmɔːr/",
+      "related_forms": ["in addition", "moreover"],
+      "example_sentences": ["The report was late. Furthermore, it contained several errors."],
+      "difficulty": 3,
+      "tags": ["discourse-markers"]
+    },
+    {
+      "id": "vocab_b2_as_a_result",
+      "headword": "as a result",
+      "type": "expression",
+      "translation_pt": "como resultado, consequentemente",
+      "definition_en": "used to introduce the consequence of what was just said",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/æz ə rɪˈzʌlt/",
+      "related_forms": ["therefore", "consequently"],
+      "example_sentences": ["The company cut costs; as a result, profits increased."],
+      "difficulty": 3,
+      "tags": ["discourse-markers"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_discourse_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_discourse_markers",
+      "prompt": "Complete: The task was very difficult. ___, she finished it perfectly.",
+      "correct_answer": ["Nevertheless"],
+      "distractors": ["Furthermore", "As a result", "For example"],
+      "explanation": "A segunda frase contrasta com a dificuldade mencionada — pede um conector de contraste: \"Nevertheless\".",
+      "common_mistake_pt": "Usar \"Furthermore\" (adição) em vez de um conector de contraste é o erro mais comum, por não distinguir a relação lógica exigida.",
+      "audio_url": null,
+      "tags": ["discourse-markers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_discourse_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_discourse_markers",
+      "prompt": "Complete: The company cut costs. ___, profits increased significantly.",
+      "correct_answer": ["As a result"],
+      "distractors": ["However", "Nevertheless", "For instance"],
+      "explanation": "O aumento dos lucros é uma consequência de cortar custos — pede um conector de consequência: \"As a result\".",
+      "common_mistake_pt": "Usar \"However\" (contraste) em vez de um conector de consequência ignora a relação de causa-efeito entre as duas frases.",
+      "audio_url": null,
+      "tags": ["discourse-markers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_discourse_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "Which word adds extra information supporting what was just said?",
+      "correct_answer": ["Furthermore"],
+      "distractors": ["However", "Nevertheless", "As a result"],
+      "explanation": "\"Furthermore\" introduz informação adicional, no mesmo sentido do que já foi dito.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "discourse-markers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_discourse_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What happened as a result of the marketing campaign?",
+      "correct_answer": ["sales increased", "sales went up"],
+      "distractors": ["sales decreased", "the campaign was cancelled", "nothing changed"],
+      "explanation": "No áudio, ouve-se: \"As a result, sales increased by 20% that quarter.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "We launched a new marketing campaign in March. As a result, sales increased by 20% that quarter.",
+      "tags": ["listening", "discourse-markers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_discourse_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"The hotel was expensive. Furthermore, the service was disappointing.\" What is true about the service?",
+      "correct_answer": ["it was disappointing"],
+      "distractors": ["it was excellent", "it wasn't mentioned", "it was average"],
+      "explanation": "\"Furthermore\" adiciona um segundo problema — o serviço também foi mau.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "discourse-markers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_discourse_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_discourse_markers",
+      "prompt": "Translate to English (usando um conector formal de contraste): \"O voo atrasou. No entanto, chegámos a tempo para a reunião.\"",
+      "correct_answer": ["The flight was delayed. However, we arrived in time for the meeting."],
+      "distractors": [],
+      "explanation": "\"No entanto\" pede um conector de contraste formal como \"However\", com ponto final antes e vírgula depois.",
+      "common_mistake_pt": "Usar só \"but\" no meio da frase não está errado, mas é menos formal do que \"However\" como conector independente.",
+      "audio_url": null,
+      "tags": ["translation", "discourse-markers"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m8_u1_discourse_markers",
+    "title": "However, Furthermore, As a Result",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_discourse_markers",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_discourse_markers#rule" },
+      { "type": "example", "content_ref": "gc_b2_discourse_markers#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_discourse_markers#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_nevertheless", "vocab_b2_furthermore", "vocab_b2_as_a_result"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_discourse_001", "ex_b2_discourse_002", "ex_b2_discourse_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_discourse_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_discourse_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Discourse markers usually get their own short pause right after them in speech, and often a slight rise then fall in pitch — \"However, ↗↘ it paid off\" — setting them apart as a separate unit from the rest of the sentence."
+      },
+      { "type": "speaking", "prompt": "Describe a situation with a contrast and a consequence, using at least one discourse marker of each type (e.g. 'however' and 'as a result')." },
+      { "type": "writing", "prompt": "Write a short paragraph (4-5 sentences) about a decision and its outcome, using at least 3 different discourse markers." },
+      { "type": "translation", "exercise_ids": ["ex_b2_discourse_translation_001"] }
+    ]
+  }
+}

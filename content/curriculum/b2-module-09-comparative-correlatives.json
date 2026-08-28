@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.2",
+  "module": {
+    "id": "mod_b2_9_comparative_correlatives",
+    "title": "The More, The Better",
+    "theme": "comparatives",
+    "order": 5
+  },
+  "unit": {
+    "id": "unit_b2_9_comparative_correlatives",
+    "title": "Two Things Changing Together",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_comparative_correlatives",
+    "title": "The More..., The More...",
+    "rule": "Use 'The + comparative, the + comparative' to say that two things change together — as one increases or decreases, so does the other.",
+    "simple_explanation": "Both halves of the sentence need their own 'the' before the comparative — even though it can feel repetitive, dropping the second 'the' is not correct English.",
+    "example": "The more you practise, the more confident you become. The less you sleep, the harder it is to concentrate.",
+    "example_translation": "Quanto mais praticas, mais confiante te tornas. Quanto menos dormes, mais difícil é concentrar-te.",
+    "common_mistake_pt": "O português usa uma estrutura semelhante (\"quanto mais... mais\"), mas os alunos tentam frequentemente traduzir palavra a palavra sem repetir \"the\" na segunda parte quando ela tem sujeito e verbo completos (\"The more you practise, more confident you become\" — falta o segundo \"the\"), ou esquecem de usar a forma comparativa em ambas as partes da frase.",
+    "correction": "As duas partes da frase precisam sempre de \"the\" antes do comparativo: \"The more..., the more...\" — nunca omitir o segundo \"the\", mesmo que pareça repetitivo em relação ao português.",
+    "real_world_example": "Giving advice: \"The earlier you start, the easier it will be.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_confident",
+      "headword": "confident",
+      "type": "adjective",
+      "translation_pt": "confiante",
+      "definition_en": "feeling sure about your own abilities or about a situation",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˈkɒnfɪdənt/",
+      "related_forms": ["confidence"],
+      "example_sentences": ["The more you practise, the more confident you become."],
+      "difficulty": 2,
+      "tags": ["comparative-correlatives"]
+    },
+    {
+      "id": "vocab_b2_concentrate",
+      "headword": "concentrate",
+      "type": "verb",
+      "translation_pt": "concentrar-se",
+      "definition_en": "to give all your attention to one thing",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˈkɒnsəntreɪt/",
+      "related_forms": ["concentration"],
+      "example_sentences": ["It's hard to concentrate when you're tired."],
+      "difficulty": 2,
+      "tags": ["comparative-correlatives"]
+    },
+    {
+      "id": "vocab_b2_gradually",
+      "headword": "gradually",
+      "type": "adverb",
+      "translation_pt": "gradualmente, pouco a pouco",
+      "definition_en": "slowly, over a period of time, rather than suddenly",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˈɡrædʒuəli/",
+      "related_forms": ["gradual"],
+      "example_sentences": ["Her English improved gradually over the year."],
+      "difficulty": 2,
+      "tags": ["comparative-correlatives"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_comparcorrel_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_comparative_correlatives",
+      "prompt": "Complete: The more you practise, ___ you become.",
+      "correct_answer": ["the more confident"],
+      "distractors": ["more confident", "you more confident", "the confident more"],
+      "explanation": "A segunda parte também precisa de \"the\" antes do comparativo: \"the more confident\".",
+      "common_mistake_pt": "Omitir o segundo \"the\" (\"more confident you become\") é o erro mais comum nesta estrutura.",
+      "audio_url": null,
+      "tags": ["comparative-correlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_comparcorrel_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_comparative_correlatives",
+      "prompt": "Complete: The less you sleep, ___ it is to concentrate.",
+      "correct_answer": ["the harder"],
+      "distractors": ["harder", "more hard", "the more hard"],
+      "explanation": "\"Hard\" tem uma forma comparativa irregular curta (\"harder\"), não \"more hard\" — e precisa do \"the\" antes.",
+      "common_mistake_pt": "Usar \"more hard\" em vez de \"harder\" é um erro comum, mesmo entre alunos que já sabem a regra do \"the...the\".",
+      "audio_url": null,
+      "tags": ["comparative-correlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_comparcorrel_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"gradually\" mean?",
+      "correct_answer": ["slowly, over a period of time, rather than suddenly"],
+      "distractors": ["immediately", "with great difficulty", "by accident"],
+      "explanation": "\"Gradually\" descreve uma mudança lenta e progressiva, não repentina.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "comparative-correlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_comparcorrel_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker say happens the earlier you start?",
+      "correct_answer": ["it becomes easier", "it will be easier"],
+      "distractors": ["it becomes harder", "nothing changes", "it takes longer"],
+      "explanation": "No áudio, ouve-se: \"The earlier you start, the easier it will be.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "When it comes to learning a language, the earlier you start, the easier it will be — but it's never too late to begin.",
+      "tags": ["listening", "comparative-correlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_comparcorrel_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"The higher you climb, the colder and windier it gets.\" What happens as you climb higher?",
+      "correct_answer": ["it gets colder and windier"],
+      "distractors": ["it gets warmer", "nothing changes", "it gets easier"],
+      "explanation": "O texto diz diretamente que fica \"colder and windier\" à medida que se sobe mais alto.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "comparative-correlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_comparcorrel_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_comparative_correlatives",
+      "prompt": "Translate to English: \"Quanto mais cedo começares, mais fácil será.\"",
+      "correct_answer": ["The earlier you start, the easier it will be."],
+      "distractors": [],
+      "explanation": "As duas partes precisam de \"the\" antes do comparativo: \"The earlier..., the easier...\".",
+      "common_mistake_pt": "Omitir o segundo \"the\" (\"The earlier you start, easier it will be\") é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "comparative-correlatives"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m9_u1_comparative_correlatives",
+    "title": "Two Things Changing Together",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_comparative_correlatives",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_comparative_correlatives#rule" },
+      { "type": "example", "content_ref": "gc_b2_comparative_correlatives#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_comparative_correlatives#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_confident", "vocab_b2_concentrate", "vocab_b2_gradually"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_comparcorrel_001", "ex_b2_comparcorrel_002", "ex_b2_comparcorrel_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_comparcorrel_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_comparcorrel_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Both halves of \"the more..., the more...\" usually share a similar rising-then-falling melody, almost like a matched pair — native speakers often speed up slightly through the whole structure, treating it as one fluent unit rather than two separate clauses."
+      },
+      { "type": "speaking", "prompt": "Say 2-3 sentences about your own life using 'the more/less..., the more/less...' — about practice, sleep, work, or any habit." },
+      { "type": "writing", "prompt": "Write 3 sentences using comparative correlatives ('the more/less..., the more/less...'), each about a different topic." },
+      { "type": "translation", "exercise_ids": ["ex_b2_comparcorrel_translation_001"] }
+    ]
+  }
+}

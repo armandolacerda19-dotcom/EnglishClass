@@ -48,6 +48,9 @@ import modulePastModals from "../content/curriculum/b2-module-03-past-modals.jso
 import moduleCleftSentences from "../content/curriculum/b2-module-04-cleft-sentences.json";
 import moduleParticipleClauses from "../content/curriculum/b2-module-05-participle-clauses.json";
 import moduleAdvancedReportingVerbs from "../content/curriculum/b2-module-06-advanced-reporting-verbs.json";
+import moduleFuturePerfect from "../content/curriculum/b2-module-07-future-perfect.json";
+import moduleDiscourseMarkers from "../content/curriculum/b2-module-08-discourse-markers.json";
+import moduleComparativeCorrelatives from "../content/curriculum/b2-module-09-comparative-correlatives.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -142,9 +145,12 @@ const MODULE_FILES = [
   moduleMixedConditionals, // B2.1
   moduleInversionEmphasis, // B2.1
   modulePastModals, // B2.1
+  moduleFuturePerfect, // B2.1 — gap real: "will have done" nunca teve módulo próprio, só aparecia como distrator noutros exercícios (Fase 13, 2026-08-27)
   moduleCleftSentences, // B2.2
   moduleParticipleClauses, // B2.2
   moduleAdvancedReportingVerbs, // B2.2
+  moduleDiscourseMarkers, // B2.2 — however/furthermore/as a result, essencial para escrita formal (Fase 13, 2026-08-27)
+  moduleComparativeCorrelatives, // B2.2 — "the more..., the more...", gap real (Fase 13, 2026-08-27)
 ];
 
 async function seedLevels() {

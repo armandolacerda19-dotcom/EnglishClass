@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.1",
+  "module": {
+    "id": "mod_b2_7_future_perfect",
+    "title": "Future Perfect",
+    "theme": "tenses",
+    "order": 4
+  },
+  "unit": {
+    "id": "unit_b2_7_future_perfect",
+    "title": "Looking Back from the Future",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_future_perfect",
+    "title": "Future Perfect",
+    "rule": "Use 'will have + past participle' to talk about an action that will be completed BEFORE a specific point in the future — looking back from that future point, as if it were already the past.",
+    "simple_explanation": "The Future Perfect lets you talk about a deadline or future moment and describe what will already be finished by then — it's about completion before a point, not just something happening in the future.",
+    "example": "By next year, I will have finished my degree. She will have left by the time you arrive.",
+    "example_translation": "No próximo ano, já terei terminado a licenciatura. Ela já terá saído quando tu chegares.",
+    "common_mistake_pt": "O português tende a usar o futuro simples ou o presente para esta ideia (\"no próximo ano termino a licenciatura\"), sem marcar gramaticalmente que a ação estará CONCLUÍDA antes de um momento futuro específico. Isso leva a confundir o Future Perfect com o Future Simple (\"I will finish\" em vez de \"I will have finished\"), perdendo a noção de conclusão antes do prazo.",
+    "correction": "Use \"will have + particípio passado\" sempre que quiser enfatizar que algo estará terminado antes de um momento específico no futuro (\"by [time]\", \"before\", \"by the time\") — não apenas que vai acontecer algures no futuro.",
+    "real_world_example": "Project planning: \"By the end of the month, we will have completed the first phase.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_by_the_time",
+      "headword": "by the time",
+      "type": "expression",
+      "translation_pt": "até à altura em que, quando",
+      "definition_en": "used to say something will already have happened before another event",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/baɪ ðə taɪm/",
+      "related_forms": ["by then"],
+      "example_sentences": ["By the time you arrive, I'll have finished cooking."],
+      "difficulty": 3,
+      "tags": ["future-perfect"]
+    },
+    {
+      "id": "vocab_b2_deadline",
+      "headword": "deadline",
+      "type": "noun",
+      "translation_pt": "prazo",
+      "definition_en": "the latest time by which something must be finished",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˈdɛdlaɪn/",
+      "related_forms": ["meet a deadline", "miss a deadline"],
+      "example_sentences": ["We have a tight deadline this month."],
+      "difficulty": 2,
+      "tags": ["work"]
+    },
+    {
+      "id": "vocab_b2_complete_verb",
+      "headword": "complete",
+      "type": "verb",
+      "translation_pt": "concluir, completar",
+      "definition_en": "to finish doing or making something",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/kəmˈpliːt/",
+      "related_forms": ["completion"],
+      "example_sentences": ["We will have completed the first phase by June."],
+      "difficulty": 2,
+      "tags": ["future-perfect"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_futureperfect_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_future_perfect",
+      "prompt": "Complete: By next year, I ___ (finish) my degree.",
+      "correct_answer": ["will have finished"],
+      "distractors": ["will finish", "am finishing", "have finished"],
+      "explanation": "Conclusão antes de um momento futuro específico (\"by next year\") — pede Future Perfect: \"will have finished\".",
+      "common_mistake_pt": "Usar \"will finish\" (Future Simple) perde a ideia de que a ação já estará concluída nesse momento, não apenas a acontecer.",
+      "audio_url": null,
+      "tags": ["future-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_futureperfect_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_future_perfect",
+      "prompt": "Complete: She ___ (leave) by the time you arrive.",
+      "correct_answer": ["will have left"],
+      "distractors": ["will leave", "is leaving", "has left"],
+      "explanation": "\"By the time you arrive\" marca um momento futuro — a partida já estará concluída antes disso: \"will have left\".",
+      "common_mistake_pt": "Usar \"has left\" (Present Perfect) em vez de \"will have left\" ignora que a chegada ainda está no futuro.",
+      "audio_url": null,
+      "tags": ["future-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_futureperfect_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"deadline\" mean?",
+      "correct_answer": ["the latest time by which something must be finished"],
+      "distractors": ["a type of meeting", "a formal complaint", "a work schedule"],
+      "explanation": "\"Deadline\" é o prazo limite para terminar algo.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "future-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_futureperfect_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What will have happened by the end of the month, according to the speaker?",
+      "correct_answer": ["the first phase will be completed", "they will have completed the first phase"],
+      "distractors": ["the project will be cancelled", "the deadline will be extended", "nothing will change"],
+      "explanation": "No áudio, ouve-se: \"By the end of the month, we will have completed the first phase.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "By the end of the month, we will have completed the first phase of the project, assuming there are no major delays.",
+      "tags": ["listening", "future-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_futureperfect_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"By the time she turns 30, Ana will have visited more than twenty countries.\" How many countries will Ana have visited by then?",
+      "correct_answer": ["more than twenty"],
+      "distractors": ["exactly twenty", "fewer than ten", "It doesn't say"],
+      "explanation": "O texto diz diretamente \"more than twenty countries\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "future-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_futureperfect_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_future_perfect",
+      "prompt": "Translate to English: \"Até ao final do ano, já terei poupado o suficiente para a viagem.\"",
+      "correct_answer": ["By the end of the year, I will have saved enough for the trip."],
+      "distractors": [],
+      "explanation": "Conclusão antes de um momento futuro específico (\"by the end of the year\") — pede \"will have saved\", não \"will save\".",
+      "common_mistake_pt": "Traduzir para \"I will save enough\" (sem \"have\") é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "future-perfect"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m7_u1_future_perfect",
+    "title": "Looking Back from the Future",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_future_perfect",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_future_perfect#rule" },
+      { "type": "example", "content_ref": "gc_b2_future_perfect#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_future_perfect#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_by_the_time", "vocab_b2_deadline", "vocab_b2_complete_verb"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_futureperfect_001", "ex_b2_futureperfect_002", "ex_b2_futureperfect_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_futureperfect_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_futureperfect_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Will have\" contracts heavily in speech to /wɪləv/ or even /wɪlə/ before a consonant — rarely pronounced as two full separate words in natural conversation."
+      },
+      { "type": "speaking", "prompt": "Talk about something you will have achieved by a specific point in the future — this time next year, or by a certain age." },
+      { "type": "writing", "prompt": "Write 3 sentences using the Future Perfect about your own plans, each with a specific future deadline (by next month, by the time you're 40, etc.)." },
+      { "type": "translation", "exercise_ids": ["ex_b2_futureperfect_translation_001"] }
+    ]
+  }
+}
