@@ -2011,6 +2011,122 @@ export const READING_PASSAGES: ReadingPassage[] = [
       },
     ],
   },
+  // Fase 14 (continuação, 2026-08-27) — 5º lote. Originais, nunca copiados
+  // de fonte real.
+  {
+    id: "power-cut-instructions",
+    title: "What to Do During a Power Cut",
+    level: "A2",
+    genre: "instructions",
+    source: "original",
+    text: "First, stay calm — most power cuts last only a few minutes. Check whether the problem is only in your home or in the whole street; if your neighbours also have no power, it's likely a wider cut, not a problem with your own wiring. Turn off and unplug sensitive electronics, such as computers, to protect them from a sudden surge when power returns. If you have a torch or candles, use them instead of matches near anything flammable. Finally, wait at least thirty minutes before calling the electricity company, since most cuts are fixed automatically within that time.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "How can you tell if it's a wider power cut, not just your home?",
+        options: [
+          "Call the electricity company immediately",
+          "Check if your neighbours also have no power",
+          "Check your own wiring",
+          "Wait for a text message",
+        ],
+        correctAnswer: "Check if your neighbours also have no power",
+      },
+      {
+        id: "q2",
+        prompt: "Why should you unplug electronics like computers?",
+        options: [
+          "To save battery",
+          "To protect them from a power surge when it returns",
+          "Because they cause the power cut",
+          "It doesn't say",
+        ],
+        correctAnswer: "To protect them from a power surge when it returns",
+      },
+      {
+        id: "q3",
+        prompt: "How long should you wait before calling the electricity company?",
+        options: ["5 minutes", "At least 30 minutes", "24 hours", "You should call immediately"],
+        correctAnswer: "At least 30 minutes",
+      },
+    ],
+  },
+  {
+    id: "neighbour-noise-dialogue",
+    title: "Talking to a Neighbour About Noise",
+    level: "B1",
+    genre: "dialogue",
+    source: "original",
+    text: "SOFIA: Hi, sorry to bother you — I wanted to have a quick word about the noise late at night.\nPEDRO: Oh, I'm really sorry about that. Has it been a problem?\nSOFIA: A little, yes. My daughter has school in the mornings, and the music sometimes goes on until after midnight.\nPEDRO: I had no idea it was that loud through the walls. I'll definitely turn it down after 10pm from now on.\nSOFIA: I really appreciate that. I didn't want to make a big deal out of it, but it's been a rough couple of weeks.\nPEDRO: No, you did the right thing telling me directly. Let me know if it happens again.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why does the noise bother Sofia specifically?",
+        options: [
+          "She works night shifts",
+          "Her daughter has school in the mornings",
+          "She has a headache",
+          "She doesn't like music",
+        ],
+        correctAnswer: "Her daughter has school in the mornings",
+      },
+      {
+        id: "q2",
+        prompt: "What does Pedro agree to do?",
+        options: [
+          "Move to another flat",
+          "Turn the music down after 10pm",
+          "Stop playing music completely",
+          "Talk to the building manager",
+        ],
+        correctAnswer: "Turn the music down after 10pm",
+      },
+      {
+        id: "q3",
+        prompt: "How does Pedro react to Sofia raising the issue?",
+        options: ["He gets angry", "He says she did the right thing", "He ignores her", "He denies the problem"],
+        correctAnswer: "He says she did the right thing",
+      },
+    ],
+  },
+  {
+    id: "conference-registration-email",
+    title: "Confirming Conference Registration",
+    level: "B2",
+    genre: "email",
+    source: "original",
+    text: "Subject: Registration Confirmed — Annual Marketing Summit\n\nDear Ms. Ferreira,\n\nThank you for registering for this year's Annual Marketing Summit. This email confirms your place at the conference, taking place from the 14th to the 16th of next month at the Riverside Convention Centre.\n\nYour registration includes access to all keynote sessions, two workshops of your choice (to be selected closer to the date), and the networking dinner on the second evening. Please note that workshop places are limited and allocated on a first-come, first-served basis, so we recommend submitting your preferences as soon as the workshop schedule is published.\n\nShould your plans change, cancellations made more than two weeks in advance are eligible for a full refund; after that point, only partial refunds can be offered, in line with our terms and conditions.\n\nWe look forward to welcoming you.\n\nKind regards,\nThe Summit Team",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What is included in the registration, besides the keynote sessions?",
+        options: [
+          "Only one workshop",
+          "Two workshops and the networking dinner",
+          "A hotel stay",
+          "Travel expenses",
+        ],
+        correctAnswer: "Two workshops and the networking dinner",
+      },
+      {
+        id: "q2",
+        prompt: "How are workshop places allocated?",
+        options: ["Randomly", "First-come, first-served", "By seniority", "By payment amount"],
+        correctAnswer: "First-come, first-served",
+      },
+      {
+        id: "q3",
+        prompt: "What happens if Ms. Ferreira cancels less than two weeks before the event?",
+        options: [
+          "She gets a full refund",
+          "She can only get a partial refund",
+          "She gets no refund at all, always",
+          "It doesn't say",
+        ],
+        correctAnswer: "She can only get a partial refund",
+      },
+    ],
+  },
 ];
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {
