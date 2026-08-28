@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 continuada: Reflexive Pronouns (A1.1)
+
+Gap real na fundação mais básica de gramática: o módulo de pronomes existente (`a1-module-09-pronouns.json`) cobre pronomes objeto e adjetivos possessivos, mas nunca pronomes reflexivos (myself, yourself, himself, herself, itself, ourselves, yourselves, themselves). O português marca a reflexividade diretamente no verbo, com um pronome clítico colado a ele ("levanto-me", "veste-se") — sem um pronome reflexivo à parte como o inglês exige. Isto causa dois erros opostos e igualmente comuns: esquecer o reflexivo quando é mesmo necessário ("I cut" em vez de "I cut myself"), ou adicioná-lo a verbos ingleses do dia a dia que normalmente não precisam dele (wake up, feel, relax, get dressed) por transferência do verbo reflexivo equivalente em português. `a1-module-15-reflexive-pronouns.json`, A1.1, logo a seguir ao módulo de pronomes existente.
+
+Mesmo processo de sempre. **Currículo: 41 → 42 lições.**
+
 ## 2026-08-27 — Fase 13 continuada: Indirect Questions (B1.2) e Adjective Order (A2.2)
 
 Mais dois gaps reais, ambos de alto valor prático:
