@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 continuada: mais 3 módulos B2 (aprofundamento)
+
+Continuando a pedido do utilizador ("pode continuar com as próximas atualizações"), mais uma ronda de revisão de gramática, desta vez focada em aprofundar o nível B2 recém-introduzido (que tinha só 3+3 módulos, mais raso do que B1 com 13):
+
+- **Future Perfect** (`b2-module-07-future-perfect.json`, B2.1): "will have done" só aparecia como distrator (errado) em exercícios de Future Continuous e First Conditional — nunca teve o seu próprio módulo, apesar de ser um tempo verbal B2 genuíno com significado distinto (conclusão antes de um momento futuro específico).
+- **Discourse Markers** (`b2-module-08-discourse-markers.json`, B2.2): however/nevertheless/furthermore/in addition/as a result/therefore — o português tem conectores equivalentes, mas os alunos tendem a usar sempre but/and/so, e a pontuação destes conectores (ponto antes, vírgula depois) costuma sair errada.
+- **The More..., The More...** (`b2-module-09-comparative-correlatives.json`, B2.2): correlativos comparativos — o português tem "quanto mais... mais", mas os alunos esquecem o segundo "the" ao traduzir, ou usam a forma comparativa longa (\"more hard\") em vez da irregular curta (\"harder\").
+
+Mesmo processo de sempre: JSON validado com `ConvertFrom-Json`, ids confirmados únicos por grep, `seed.ts` atualizado. **Currículo: 48 → 51 lições** (B2 passa a ter 9 módulos: 4 em B2.1, 5 em B2.2). Verificação exaustiva: 665 ids em 51 módulos, zero duplicatas, zero referências partidas.
+
 ## 2026-08-27 — Fase 14 continuada: primeiros textos de nível B2
 
 4º lote em `readingPassages.ts`: `remote-work-debate-news` (B2, "news" — debate sobre políticas de trabalho remoto), `salary-negotiation-dialogue` (B2, "dialogue" — negociar um aumento salarial), `returning-a-parcel-email` (A2, "email" — devolver uma encomenda danificada). Os dois primeiros são os primeiros textos de nível B2 no currículo, coerente com o nível ter sido introduzido nesta mesma ronda. Total de textos de leitura: 70 → 73.
