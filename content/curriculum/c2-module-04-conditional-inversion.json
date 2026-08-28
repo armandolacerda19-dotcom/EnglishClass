@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C2.2",
+  "module": {
+    "id": "mod_c2_4_conditional_inversion",
+    "title": "Conditional Inversion Without \"If\"",
+    "theme": "formal-structures",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_c2_4_conditional_inversion",
+    "title": "Were I You",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c2_conditional_inversion",
+    "title": "Conditional Inversion Without \"If\"",
+    "rule": "In very formal or literary English, conditional clauses can drop \"if\" entirely and invert the subject and auxiliary instead: \"Were I you, I would resign\" (= \"If I were you...\"), \"Had I known, I would have called\" (= \"If I had known...\"), \"Should you need anything, let me know\" (= \"If you should need anything...\"). This only works with \"were\", \"had\", and \"should\" as the fronted auxiliary — not with ordinary present-tense verbs.",
+    "simple_explanation": "This is a different mechanism from the negative-adverb inversion of C2.1 (\"seldom have I...\") — here the inversion itself REPLACES \"if\", it doesn't follow a negative adverb. Three fixed patterns: \"Were + subject...\" (2nd conditional), \"Had + subject + past participle...\" (3rd conditional), \"Should + subject + verb...\" (1st conditional, more tentative/formal). No \"if\" appears anywhere in these clauses.",
+    "example": "Were I in your position, I would think twice. Had she arrived earlier, she would have caught the train. Should you have any questions, please do not hesitate to contact us.",
+    "example_translation": "Se eu estivesse na tua posição, pensaria duas vezes. Se ela tivesse chegado mais cedo, teria apanhado o comboio. Caso tenha alguma questão, não hesite em contactar-nos.",
+    "common_mistake_pt": "Falantes de português tendem a manter \"if\" mesmo depois de inverter (\"If were I you\") ou a inverter com verbos que não são \"were/had/should\" (\"Am I you, I would...\"), por transporem diretamente a inversão de negação já aprendida sem perceber que este é um mecanismo diferente e mais restrito.",
+    "correction": "A inversão condicional sem \"if\" só é possível com \"were\", \"had\" ou \"should\" no início — nunca coexiste com \"if\" na mesma oração, e não se estende a outros verbos ou tempos.",
+    "real_world_example": "In a formal letter: \"Should you require further information, please do not hesitate to contact our office.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c2_hesitate",
+      "headword": "hesitate",
+      "type": "verb",
+      "translation_pt": "hesitar",
+      "definition_en": "to pause before doing or saying something, often through uncertainty",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ˈhezɪteɪt/",
+      "related_forms": ["hesitation", "hesitant"],
+      "example_sentences": ["Should you have any questions, please do not hesitate to contact us."],
+      "difficulty": 3,
+      "tags": ["formal-register"]
+    },
+    {
+      "id": "vocab_c2_resign",
+      "headword": "resign",
+      "type": "verb",
+      "translation_pt": "demitir-se",
+      "definition_en": "to formally give up a position or job",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/rɪˈzaɪn/",
+      "related_forms": ["resignation"],
+      "example_sentences": ["Were I in your position, I would resign immediately."],
+      "difficulty": 4,
+      "tags": ["formal-register"]
+    },
+    {
+      "id": "vocab_c2_require",
+      "headword": "require",
+      "type": "verb",
+      "translation_pt": "requerer, necessitar",
+      "definition_en": "to need something, especially for a particular purpose",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/rɪˈkwaɪə/",
+      "related_forms": ["requirement"],
+      "example_sentences": ["Should you require further information, our office is at your disposal."],
+      "difficulty": 3,
+      "tags": ["conditional-inversion"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c2_condinv_001",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_conditional_inversion",
+      "prompt": "Rewrite without \"if\": \"If I were you, I would think twice.\"",
+      "correct_answer": ["Were I you, I would think twice."],
+      "distractors": ["I were you, I would think twice.", "Was I you, I would think twice.", "If were I you, I would think twice."],
+      "explanation": "\"Were\" avança para o início da frase, substituindo \"if\" completamente.",
+      "common_mistake_pt": "Manter \"if\" junto da inversão (\"If were I you\") é o erro mais comum — a inversão SUBSTITUI \"if\", não se junta a ele.",
+      "audio_url": null,
+      "tags": ["conditional-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_condinv_002",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_conditional_inversion",
+      "prompt": "Complete: ___ she arrived earlier, she would have caught the train.",
+      "correct_answer": ["Had"],
+      "distractors": ["If", "Would", "Was"],
+      "explanation": "\"Had she arrived\" é a forma invertida de \"If she had arrived\" — 3º condicional sem \"if\".",
+      "common_mistake_pt": "Usar \"If\" aqui deixaria a frase sem inversão nem sentido de formalidade elevada — não está errado gramaticalmente com \"if\" mantido, mas não seria a forma invertida pedida.",
+      "audio_url": null,
+      "tags": ["conditional-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_condinv_vocab_001",
+      "cefr_level": "C2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"to resign\" mean?",
+      "correct_answer": ["to formally give up a position or job"],
+      "distractors": ["to accept a new job offer", "to ask for a promotion", "to take a short break from work"],
+      "explanation": "\"Resign\" significa demitir-se formalmente de um cargo.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "formal-register"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_condinv_listening_001",
+      "cefr_level": "C2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker offer to do?",
+      "correct_answer": ["answer further questions", "help if there are more questions"],
+      "distractors": ["cancel the meeting", "reschedule the appointment", "send a refund"],
+      "explanation": "No áudio: \"Should you have any further questions, please do not hesitate to contact our office.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Should you have any further questions, please do not hesitate to contact our office.",
+      "tags": ["listening", "conditional-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_condinv_reading_001",
+      "cefr_level": "C2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Had the company invested earlier, it would now be the market leader.\" Did the company invest earlier?",
+      "correct_answer": ["No", "no"],
+      "distractors": ["Yes", "The text doesn't say", "Only partially"],
+      "explanation": "É um 3º condicional invertido (\"Had the company invested\" = \"If the company had invested\") — o facto real é que NÃO investiu mais cedo.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "conditional-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_condinv_translation_001",
+      "cefr_level": "C2",
+      "pillar": "translation",
+      "concept_ref": "gc_c2_conditional_inversion",
+      "prompt": "Translate to English (usando inversão condicional sem \"if\"): \"Caso precise de ajuda, contacte-nos.\"",
+      "correct_answer": ["Should you need help, contact us.", "Should you need any help, contact us."],
+      "distractors": [],
+      "explanation": "\"Should you need help\" é a forma invertida de \"If you should need help\", equivalente formal a \"caso precise\".",
+      "common_mistake_pt": "Traduzir \"caso\" literalmente por \"in case\" muda o sentido para uma precaução, não uma condição — \"should\" invertido é a forma correta aqui.",
+      "audio_url": null,
+      "tags": ["translation", "conditional-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c2_m4_u1_conditional_inversion",
+    "title": "Were I You",
+    "cefr_level": "C2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c2_conditional_inversion",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c2_conditional_inversion#rule" },
+      { "type": "example", "content_ref": "gc_c2_conditional_inversion#example" },
+      { "type": "common_mistake", "content_ref": "gc_c2_conditional_inversion#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c2_hesitate", "vocab_c2_resign", "vocab_c2_require"] },
+      { "type": "exercise", "exercise_ids": ["ex_c2_condinv_001", "ex_c2_condinv_002", "ex_c2_condinv_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c2_condinv_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c2_condinv_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "These inverted openers (\"Were I...\", \"Had I...\", \"Should you...\") are typically stressed on the auxiliary and followed by a brief pause before the rest of the clause, signalling the formal, literary register."
+      },
+      { "type": "speaking", "prompt": "Give formal advice using conditional inversion — e.g. 'Were I in your position, I would...' or 'Should you need help, I would...'." },
+      { "type": "writing", "prompt": "Write 3 formal sentences using different conditional inversions (Were.../Had.../Should...)." },
+      { "type": "translation", "exercise_ids": ["ex_c2_condinv_translation_001"] }
+    ]
+  }
+}

@@ -2,6 +2,19 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Fase 19: nível C2 fechado (2º lote, 3 módulos, C2.2 completo)
+
+Pedido: "agora deve continuar com as atualizações" (continuação direta da Fase 18). Completa o nível C2 seguindo o mesmo padrão 3+3 usado em C1 (Fase 15): C2.1 já tinha 3 módulos, C2.2 estava vazio.
+
+**3 módulos C2.2 novos**, verificados por grep contra todo o currículo antes de escrever para garantir que não duplicavam pontos já ensinados (ex.: cleft sentences já existiam em B2, por isso não repetidos):
+- **Conditional Inversion Without "If"** (`c2-module-04-conditional-inversion.json`) — Were I.../Had I known.../Should you need... — mecanismo diferente da inversão de advérbios negativos de C2.1: aqui a inversão SUBSTITUI "if" por completo, restrita a were/had/should.
+- **Advanced Cohesive Devices** (`c2-module-05-advanced-cohesion.json`) — notwithstanding/whereby/thereby/insofar as — vai além dos conectores B2 (`b2-module-08-discourse-markers.json`: nevertheless/furthermore/as a result), com regras gramaticais próprias de posição.
+- **Litotes and Understatement** (`c2-module-06-litotes-understatement.json`) — not uncommon/not unlikely/no small feat — figura de estilo distinta, "not" + adjetivo com prefixo negativo, para understatement deliberado.
+
+63 módulos no total agora (era 60). 39 ids novos, confirmados sem colisão contra os 2784 ids do currículo inteiro (verificação PowerShell recursiva por todos os campos `id`, não só à vista — 0 duplicados). `prisma/seed.ts` ganhou os 3 imports e as 3 entradas em `MODULE_FILES`, contagem confirmada (63 linhas de módulo) e chavetas/parênteses balanceados por regex antes do commit.
+
+Currículo C2 fica assim completo com 6 módulos (C2.1 + C2.2) — não há mais "trabalho de escala" pendente para este nível; o placement test (recalibrado na Fase 18) já cobre C2 nas 5 perguntas de dificuldade C2 existentes, sem necessidade de mais perguntas por este lote não ter introduzido novos pontos gramaticais fora do que as perguntas C2 já testam de forma representativa.
+
 ## 2026-08-28 — Fase 18: nível C2 introduzido (1º lote, 3 módulos) + placement test recalibrado
 
 Pedido: "agora deve continuar com as atualizações". A Fase 18 (currículo C2) tinha ficado pendente desde a 3ª auditoria como trabalho de escala sem urgência (P2) — o schema já suportava `CefrLevel.C2` desde a Fase 0, mas nunca tinha `Level`/`Sublevel`/módulos seedados, o único nível "de decoração" no enum.

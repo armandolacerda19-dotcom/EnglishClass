@@ -60,6 +60,9 @@ import moduleEllipsisSubstitution from "../content/curriculum/c1-module-06-ellip
 import moduleNegativeInversion from "../content/curriculum/c2-module-01-negative-inversion.json";
 import moduleFronting from "../content/curriculum/c2-module-02-fronting.json";
 import moduleAbsoluteConstructions from "../content/curriculum/c2-module-03-absolute-constructions.json";
+import moduleConditionalInversion from "../content/curriculum/c2-module-04-conditional-inversion.json";
+import moduleAdvancedCohesion from "../content/curriculum/c2-module-05-advanced-cohesion.json";
+import moduleLitotesUnderstatement from "../content/curriculum/c2-module-06-litotes-understatement.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -197,6 +200,13 @@ const MODULE_FILES = [
   moduleNegativeInversion, // C2.1
   moduleFronting, // C2.1
   moduleAbsoluteConstructions, // C2.1
+  // Fase 19 (2026-08-28) — 2º lote de C2, fechando C2.2: inversão condicional
+  // sem "if" (Were/Had/Should), conectores de coesão avançados (notwithstanding/
+  // whereby/thereby/insofar as) e litotes (not uncommon, no small feat) — três
+  // recursos estilísticos distintos dos já cobertos em C2.1/C1/B2.
+  moduleConditionalInversion, // C2.2
+  moduleAdvancedCohesion, // C2.2
+  moduleLitotesUnderstatement, // C2.2
 ];
 
 async function seedLevels() {

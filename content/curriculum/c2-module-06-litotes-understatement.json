@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C2.2",
+  "module": {
+    "id": "mod_c2_6_litotes_understatement",
+    "title": "Litotes and Understatement",
+    "theme": "formal-structures",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_c2_6_litotes_understatement",
+    "title": "No Small Feat",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c2_litotes_understatement",
+    "title": "Litotes and Understatement",
+    "rule": "Litotes is a figure of speech that affirms something by negating its opposite — \"not uncommon\" (= quite common), \"not unlikely\" (= fairly likely), \"no small feat\" (= a huge achievement). It is used for deliberate understatement, often to sound more measured, modest, or ironic than a direct positive statement would.",
+    "simple_explanation": "This is a fixed, idiomatic pattern: \"not\" + a negative-prefixed adjective (un-, in-, dis-) produces a WEAKER, more cautious version of the positive claim, not a true double negative that cancels out completely — \"not unlikely\" is softer than \"likely\", but still leans positive. It's a stylistic choice found in careful, formal or literary speech, distinct from ordinary negation.",
+    "example": "It is not uncommon for prices to rise in December. The result was not unlike what we expected. Winning three championships in a row was no small feat.",
+    "example_translation": "Não é invulgar os preços subirem em dezembro. O resultado não foi muito diferente do que esperávamos. Ganhar três campeonatos seguidos não foi pouca coisa.",
+    "common_mistake_pt": "Falantes de português tendem a interpretar estas construções como afirmações neutras ou fracas em vez de reconhecerem o efeito retórico — ou, ao produzir, usam negação dupla incorreta em inglês padrão (\"It's not no problem\") por transporem estruturas do português informal, quando litotes exige adjetivos com prefixo negativo específico (un-/in-/dis-), não \"not\" + \"no\".",
+    "correction": "Litotes usa sempre \"not\" + adjetivo/advérbio com prefixo negativo (unlikely, uncommon, insignificant, dishonest) — nunca dupla negação livre com \"no\" ou \"nothing\", que em inglês padrão continua a ser incorreta ou tem outro efeito.",
+    "real_world_example": "In a formal review: \"The team's turnaround this season was no small achievement, given where they started.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c2_uncommon",
+      "headword": "uncommon",
+      "type": "adjective",
+      "translation_pt": "invulgar",
+      "definition_en": "not common; unusual",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ʌnˈkɒmən/",
+      "related_forms": ["commonly", "commonness"],
+      "example_sentences": ["It is not uncommon for flights to be delayed in winter."],
+      "difficulty": 3,
+      "tags": ["litotes"]
+    },
+    {
+      "id": "vocab_c2_feat",
+      "headword": "feat",
+      "type": "noun",
+      "translation_pt": "façanha, feito",
+      "definition_en": "an achievement that requires great skill or effort",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/fiːt/",
+      "related_forms": [],
+      "example_sentences": ["Finishing the marathon in under three hours was no small feat."],
+      "difficulty": 4,
+      "tags": ["litotes"]
+    },
+    {
+      "id": "vocab_c2_insignificant",
+      "headword": "insignificant",
+      "type": "adjective",
+      "translation_pt": "insignificante",
+      "definition_en": "too small or unimportant to be worth considering",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ˌɪnsɪɡˈnɪfɪkənt/",
+      "related_forms": ["significance", "significant"],
+      "example_sentences": ["The savings were not insignificant, adding up to thousands per year."],
+      "difficulty": 4,
+      "tags": ["litotes"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c2_litotes_001",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_litotes_understatement",
+      "prompt": "Rewrite using litotes (not + negative-prefix adjective): \"It is fairly likely that prices will rise.\"",
+      "correct_answer": ["It is not unlikely that prices will rise."],
+      "distractors": ["It is not likely that prices will rise.", "It is no likely that prices will rise.", "It is not no likely that prices will rise."],
+      "explanation": "\"Not unlikely\" é a forma de litotes para \"fairly likely\" — \"not\" + adjetivo com prefixo negativo \"un-\".",
+      "common_mistake_pt": "\"Not likely\" inverteria completamente o sentido (significaria \"improvável\"), o oposto do que se pretende comunicar com litotes.",
+      "audio_url": null,
+      "tags": ["litotes"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_litotes_002",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_litotes_understatement",
+      "prompt": "Complete with litotes: Winning the championship three years running was no small ___.",
+      "correct_answer": ["feat"],
+      "distractors": ["problem", "surprise", "mistake"],
+      "explanation": "\"No small feat\" é uma expressão fixa de litotes que significa \"um grande feito\".",
+      "common_mistake_pt": "Substituir por outras palavras (\"no small problem\") quebra a expressão idiomática fixa, que só funciona com \"feat\" neste sentido elogioso.",
+      "audio_url": null,
+      "tags": ["litotes"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_litotes_vocab_001",
+      "cefr_level": "C2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "\"The savings were not insignificant\" implies the savings were:",
+      "correct_answer": ["actually quite large", "considerable"],
+      "distractors": ["completely worthless", "impossible to calculate", "very small"],
+      "explanation": "\"Not insignificant\" é litotes — significa que as poupanças eram, na verdade, consideráveis.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "litotes"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_litotes_listening_001",
+      "cefr_level": "C2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker imply about the delay?",
+      "correct_answer": ["it happens fairly often", "it is fairly common"],
+      "distractors": ["it never happens", "it is completely unacceptable", "it only happened once"],
+      "explanation": "No áudio: \"Delays like this are not uncommon during the holiday season.\" — litotes que implica que é bastante frequente.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Delays like this are not uncommon during the holiday season.",
+      "tags": ["listening", "litotes"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_litotes_reading_001",
+      "cefr_level": "C2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Recovering from that defeat to win the final was no small achievement.\" How does the writer view the achievement?",
+      "correct_answer": ["as very impressive", "as a great achievement"],
+      "distractors": ["as unimportant", "as expected and ordinary", "as lucky"],
+      "explanation": "\"No small achievement\" é litotes para \"a great achievement\" — o autor considera o feito impressionante.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "litotes"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_litotes_translation_001",
+      "cefr_level": "C2",
+      "pillar": "translation",
+      "concept_ref": "gc_c2_litotes_understatement",
+      "prompt": "Translate to English (usando litotes): \"Não é invulgar os clientes pedirem um desconto.\"",
+      "correct_answer": ["It is not uncommon for customers to ask for a discount."],
+      "distractors": [],
+      "explanation": "\"Not uncommon\" é a forma de litotes correspondente a \"não é invulgar\", mantendo o mesmo efeito de moderação.",
+      "common_mistake_pt": "Traduzir por \"It is not rare\" não está incorreto, mas perde a estrutura de litotes especificamente pedida (\"not\" + adjetivo com prefixo negativo).",
+      "audio_url": null,
+      "tags": ["translation", "litotes"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c2_m6_u1_litotes_understatement",
+    "title": "No Small Feat",
+    "cefr_level": "C2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c2_litotes_understatement",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c2_litotes_understatement#rule" },
+      { "type": "example", "content_ref": "gc_c2_litotes_understatement#example" },
+      { "type": "common_mistake", "content_ref": "gc_c2_litotes_understatement#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c2_uncommon", "vocab_c2_feat", "vocab_c2_insignificant"] },
+      { "type": "exercise", "exercise_ids": ["ex_c2_litotes_001", "ex_c2_litotes_002", "ex_c2_litotes_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c2_litotes_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c2_litotes_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In litotes, the negative prefix (un-, in-, dis-) usually carries a light stress of its own, and the whole phrase is often said more slowly and deliberately than a direct positive statement, reinforcing the understated, measured tone."
+      },
+      { "type": "speaking", "prompt": "Describe a recent achievement (yours or someone else's) using litotes — e.g. 'It was no small feat...' or 'That was not an insignificant...'." },
+      { "type": "writing", "prompt": "Write 3 formal sentences using different litotes expressions (not uncommon, not unlikely, no small feat, not insignificant)." },
+      { "type": "translation", "exercise_ids": ["ex_c2_litotes_translation_001"] }
+    ]
+  }
+}

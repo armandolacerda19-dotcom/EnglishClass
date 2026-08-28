@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C2.2",
+  "module": {
+    "id": "mod_c2_5_advanced_cohesion",
+    "title": "Advanced Cohesive Devices",
+    "theme": "formal-structures",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_c2_5_advanced_cohesion",
+    "title": "Notwithstanding the Circumstances",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c2_advanced_cohesion",
+    "title": "Advanced Cohesive Devices",
+    "rule": "Beyond everyday connectors like \"however\" or \"as a result\", formal and academic English uses a set of higher-register cohesive devices to link ideas precisely: \"notwithstanding\" (despite, in spite of), \"insofar as\" (to the extent that), \"whereby\" (by which, through which), and \"thereby\" (by that means, as a result of that action). Each has a specific grammatical slot and cannot simply substitute for a basic connector.",
+    "simple_explanation": "These go beyond the B2 connectors (\"nevertheless\", \"furthermore\", \"as a result\") already covered: \"notwithstanding\" often follows its noun (\"the delay notwithstanding\") or precedes it like a preposition (\"notwithstanding the delay\"); \"whereby\" introduces a relative clause explaining a mechanism (\"a system whereby...\"); \"thereby\" links an action to its consequence within the same sentence (\"..., thereby reducing costs\"); \"insofar as\" limits a claim to a specific extent (\"insofar as that is possible\").",
+    "example": "The policy, notwithstanding its critics, was approved. The company introduced a system whereby employees can work remotely. The team automated the process, thereby reducing errors. The plan is sound, insofar as it addresses the budget.",
+    "example_translation": "A política, apesar dos seus críticos, foi aprovada. A empresa introduziu um sistema através do qual os funcionários podem trabalhar remotamente. A equipa automatizou o processo, reduzindo assim os erros. O plano é sólido, na medida em que aborda o orçamento.",
+    "common_mistake_pt": "Falantes de português tendem a tratar estas palavras como sinónimos diretos de \"but\"/\"so\", usando-as em qualquer posição da frase (\"Notwithstanding, the policy was approved\" isolado, sem objeto) ou confundindo \"whereby\" com \"where\" por semelhança superficial, quando \"whereby\" introduz um mecanismo/processo, não um lugar.",
+    "correction": "\"Notwithstanding\" precisa de um objeto (nome ou oração) antes ou depois; \"whereby\" só se usa para descrever um sistema/processo pelo qual algo acontece, nunca um lugar físico; \"thereby\" liga sempre uma ação ao seu efeito na mesma frase, geralmente com um gerúndio a seguir.",
+    "real_world_example": "In a legal or corporate document: \"The board approved a mechanism whereby shareholders can vote remotely, thereby increasing participation.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c2_notwithstanding",
+      "headword": "notwithstanding",
+      "type": "preposition",
+      "translation_pt": "apesar de, não obstante",
+      "definition_en": "in spite of; without being affected by",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ˌnɒtwɪθˈstændɪŋ/",
+      "related_forms": [],
+      "example_sentences": ["Notwithstanding the delay, the project was completed on budget."],
+      "difficulty": 5,
+      "tags": ["cohesion", "formal-register"]
+    },
+    {
+      "id": "vocab_c2_whereby",
+      "headword": "whereby",
+      "type": "adverb",
+      "translation_pt": "pelo qual, através do qual",
+      "definition_en": "by which; through which (a process or system)",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/weəˈbaɪ/",
+      "related_forms": [],
+      "example_sentences": ["They created a system whereby customers can track their orders in real time."],
+      "difficulty": 5,
+      "tags": ["cohesion", "formal-register"]
+    },
+    {
+      "id": "vocab_c2_thereby",
+      "headword": "thereby",
+      "type": "adverb",
+      "translation_pt": "assim, deste modo",
+      "definition_en": "by that means; as a result of that",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ðeəˈbaɪ/",
+      "related_forms": [],
+      "example_sentences": ["They cut the budget, thereby delaying the launch."],
+      "difficulty": 5,
+      "tags": ["cohesion", "formal-register"]
+    },
+    {
+      "id": "vocab_c2_insofar_as",
+      "headword": "insofar as",
+      "type": "conjunction",
+      "translation_pt": "na medida em que",
+      "definition_en": "to the extent that",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": null,
+      "related_forms": [],
+      "example_sentences": ["The proposal is realistic, insofar as it respects the current budget."],
+      "difficulty": 5,
+      "tags": ["cohesion", "formal-register"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c2_cohesion_001",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_advanced_cohesion",
+      "prompt": "Complete: The company introduced a new system ___ employees can work from home two days a week.",
+      "correct_answer": ["whereby"],
+      "distractors": ["where", "which", "notwithstanding"],
+      "explanation": "\"Whereby\" introduz o mecanismo/processo pelo qual algo acontece — aqui, o sistema que permite trabalhar remotamente.",
+      "common_mistake_pt": "Usar \"where\" sugeriria um local físico, não um processo — \"whereby\" é a escolha correta para descrever um sistema ou mecanismo.",
+      "audio_url": null,
+      "tags": ["cohesion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_cohesion_002",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_advanced_cohesion",
+      "prompt": "Complete: The team automated the process, ___ reducing the number of errors by half.",
+      "correct_answer": ["thereby"],
+      "distractors": ["whereby", "notwithstanding", "insofar"],
+      "explanation": "\"Thereby\" liga a ação (automatizar) à sua consequência direta (reduzir erros) dentro da mesma frase, seguido de gerúndio.",
+      "common_mistake_pt": "\"Whereby\" não serve aqui porque não há um sistema a ser descrito, apenas uma consequência direta de uma ação — esse é o papel de \"thereby\".",
+      "audio_url": null,
+      "tags": ["cohesion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_cohesion_vocab_001",
+      "cefr_level": "C2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "\"Notwithstanding the criticism\" means:",
+      "correct_answer": ["despite the criticism"],
+      "distractors": ["because of the criticism", "in agreement with the criticism", "before the criticism"],
+      "explanation": "\"Notwithstanding\" significa \"apesar de\", equivalente formal a \"despite\"/\"in spite of\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "formal-register"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_cohesion_listening_001",
+      "cefr_level": "C2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does \"insofar as\" limit here?",
+      "correct_answer": ["the extent to which the plan is realistic", "how realistic the plan is"],
+      "distractors": ["the total cost of the plan", "who approved the plan", "when the plan will start"],
+      "explanation": "No áudio: \"The plan is realistic, insofar as it respects the current budget.\" — \"insofar as\" limita a afirmação a essa condição específica.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "The plan is realistic, insofar as it respects the current budget.",
+      "tags": ["listening", "cohesion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_cohesion_reading_001",
+      "cefr_level": "C2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Notwithstanding the budget cuts, the department met all of its targets.\" Did the budget cuts prevent the department from meeting its targets?",
+      "correct_answer": ["No", "no"],
+      "distractors": ["Yes", "The text doesn't say", "Only some of the targets"],
+      "explanation": "\"Notwithstanding\" = apesar de — os cortes orçamentais NÃO impediram o cumprimento das metas.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "cohesion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_cohesion_translation_001",
+      "cefr_level": "C2",
+      "pillar": "translation",
+      "concept_ref": "gc_c2_advanced_cohesion",
+      "prompt": "Translate to English (usando \"thereby\"): \"Eles simplificaram o processo, reduzindo assim os custos.\"",
+      "correct_answer": ["They simplified the process, thereby reducing costs."],
+      "distractors": [],
+      "explanation": "\"Thereby reducing costs\" liga a ação (simplificar) ao seu efeito direto (reduzir custos).",
+      "common_mistake_pt": "Traduzir \"assim\" por \"so\" produz uma frase gramaticalmente diferente (duas orações separadas) em vez da estrutura fluida com gerúndio que \"thereby\" permite.",
+      "audio_url": null,
+      "tags": ["translation", "cohesion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c2_m5_u1_advanced_cohesion",
+    "title": "Notwithstanding the Circumstances",
+    "cefr_level": "C2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c2_advanced_cohesion",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c2_advanced_cohesion#rule" },
+      { "type": "example", "content_ref": "gc_c2_advanced_cohesion#example" },
+      { "type": "common_mistake", "content_ref": "gc_c2_advanced_cohesion#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c2_notwithstanding", "vocab_c2_whereby", "vocab_c2_thereby", "vocab_c2_insofar_as"] },
+      { "type": "exercise", "exercise_ids": ["ex_c2_cohesion_001", "ex_c2_cohesion_002", "ex_c2_cohesion_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c2_cohesion_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c2_cohesion_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "These formal connectors carry primary stress on their first syllable (NOT-withstanding, WHERE-by, THERE-by) and are usually set off by commas, with a slight pause before and after in careful, formal speech."
+      },
+      { "type": "speaking", "prompt": "Describe a system or process at your work or school using 'whereby' — e.g. 'We have a system whereby...'." },
+      { "type": "writing", "prompt": "Write 3 formal sentences, one each using 'notwithstanding', 'thereby', and 'insofar as'." },
+      { "type": "translation", "exercise_ids": ["ex_c2_cohesion_translation_001"] }
+    ]
+  }
+}
