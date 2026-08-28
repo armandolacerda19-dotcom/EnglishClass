@@ -58,6 +58,34 @@ function pickPillar(input: RecommendationInput): Pillar {
   return sorted[0]?.pillar ?? "GRAMMAR";
 }
 
+// Rota real de cada tipo de exercício — para a recomendação nunca apontar
+// para um sítio que não existe. Tipos sem superfície dedicada própria
+// (multiple_choice, translation_pt_en, oral_repetition, roleplay_simulation)
+// caem nas superfícies existentes mais próximas (Sheets de tema por pilar,
+// Micro-Desafios, Falar com o Tutor) — `video_comprehension` fica de fora de
+// propósito: nunca é recomendado, porque não há superfície nenhuma para ele.
+export const KIND_ROUTE: Partial<Record<ExerciseKind, string>> = {
+  multiple_choice: "/practice/topic/GRAMMAR",
+  fill_blank: "/practice/fill-blank",
+  word_ordering: "/practice/ordering",
+  matching: "/practice/matching",
+  listen_and_choose: "/practice/listen-choose",
+  dictation: "/practice/dictation",
+  oral_repetition: "/practice/micro-challenges",
+  read_aloud: "/practice/read-aloud",
+  ai_conversation: "/speak",
+  error_correction: "/practice/error-correction",
+  translation_pt_en: "/practice/topic/TRANSLATION",
+  translation_en_pt: "/practice/translation-en-pt",
+  context_word_choice: "/practice/context-choice",
+  synonym_antonym: "/practice/synonyms",
+  word_builder: "/practice/word-builder",
+  grammar_topic_quiz: "/practice/grammar-quiz",
+  reading_comprehension: "/practice/reading",
+  roleplay_simulation: "/speak",
+  free_writing_challenge: "/practice/writing-challenge",
+};
+
 export function recommendNextActivity(input: RecommendationInput): Recommendation {
   const pillar = pickPillar(input);
   const skill = input.skills.find((s) => s.pillar === pillar);

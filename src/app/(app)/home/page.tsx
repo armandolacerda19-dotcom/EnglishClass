@@ -11,10 +11,27 @@ import { getNextLessonForUser } from "@/lib/lessons";
 import { getDueReviewCount } from "@/lib/srs/schedule";
 import { PILLAR_LABEL } from "@/lib/pillarDisplay";
 import { generateDailyPlan } from "@/lib/plan/dailyPlan";
+import { getRecommendationForUser, type HomeRecommendation } from "@/lib/exercise/recommendForUser";
 
 export default async function HomePage() {
   const { user, learningProfile } = await requireUserWithProfile();
   const dueReviews = await getDueReviewCount(user.id);
+
+  const recommendation = await getRecommendationForUser(
+    user.id,
+    learningProfile.weakAreas,
+    {
+      grammarScore: learningProfile.grammarScore,
+      vocabularyScore: learningProfile.vocabularyScore,
+      listeningScore: learningProfile.listeningScore,
+      speakingScore: learningProfile.speakingScore,
+      pronunciationScore: learningProfile.pronunciationScore,
+      readingScore: learningProfile.readingScore,
+      writingScore: learningProfile.writingScore,
+      translationScore: learningProfile.translationScore,
+    },
+    dueReviews
+  );
 
   if (learningProfile.track === "INTENSIVE") {
     const intensivePlan = await prisma.intensivePlan.findUnique({ where: { userId: user.id } });
@@ -29,6 +46,7 @@ export default async function HomePage() {
         streakFreezes={learningProfile.streakFreezes}
         dueReviews={dueReviews}
         dailyMinutesTarget={learningProfile.dailyMinutesTarget}
+        recommendation={recommendation}
       />
     );
   }
@@ -73,6 +91,8 @@ export default async function HomePage() {
           ))}
         </ul>
       </Card>
+
+      <RecommendationCard recommendation={recommendation} />
 
       <Link href="/practice/topic" className="mb-3 block">
         <Card className="border-2 border-ink/10 hover:border-verdigris dark:border-linen/10">
@@ -150,6 +170,22 @@ export default async function HomePage() {
   );
 }
 
+// Recomendação de adaptive learning (Exercise Engine, docs/12-exercise-engine.md)
+// — só aparece sem revisões pendentes (essas já são a prioridade certa).
+// Card discreto (não compete visualmente com "Inglês de hoje", que continua
+// a ser o plano principal) — a recomendação é um extra, não uma imposição.
+function RecommendationCard({ recommendation }: { recommendation: HomeRecommendation | null }) {
+  if (!recommendation) return null;
+  return (
+    <Link href={recommendation.href} className="mb-3 block">
+      <Card className="hover:border-verdigris">
+        <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Recomendado para si</p>
+        <p className="text-sm">{recommendation.reason}</p>
+      </Card>
+    </Link>
+  );
+}
+
 function IntensiveHome({
   levelCode: code,
   plan,
@@ -160,6 +196,7 @@ function IntensiveHome({
   streakFreezes,
   dueReviews,
   dailyMinutesTarget,
+  recommendation,
 }: {
   levelCode: string;
   plan: { startDate: Date; totalDays: number; weeklyThemesJson: unknown } | null;
@@ -170,6 +207,7 @@ function IntensiveHome({
   streakFreezes: number;
   dueReviews: number;
   dailyMinutesTarget: number;
+  recommendation: HomeRecommendation | null;
 }) {
   const dailyPlan = generateDailyPlan(dailyMinutesTarget, dueReviews > 0, weakAreas);
   // `currentDay` nunca era incrementado em lado nenhum — ficava preso em "Day 1"
@@ -220,6 +258,8 @@ function IntensiveHome({
           ))}
         </ul>
       </Card>
+
+      <RecommendationCard recommendation={recommendation} />
 
       {dueReviews > 0 && (
         <Link href="/practice/review" className="mb-3 block">

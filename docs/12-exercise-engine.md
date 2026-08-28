@@ -74,6 +74,14 @@ Este desenho cobre o pedido do utilizador ("se falhar, simplificar; se acertar f
 - `src/components/exercise/ExerciseShell.tsx` — shell visual partilhado (`ExerciseShell`, `ExerciseComplete`) para os tipos NOVOS.
 - `getGeminiModel(systemInstruction, jsonMode)` (`src/lib/ai/gemini.ts`) ganhou um 2º parâmetro opcional para respostas JSON estruturadas (Gemini 2.0 Flash suporta `responseMimeType`) — aditivo, não muda nenhuma chamada existente.
 
+## Fase 5 — adaptive learning ligado à Home (2026-08-28)
+
+**Achado corrigido**: `recommendNextActivity` (Fase 3) existia mas nunca era chamado por nada — uma "adaptive learning" que só funcionava em teoria, exatamente o tipo de funcionalidade sem integração que o utilizador pediu explicitamente para nunca deixar existir. Corrigido:
+
+- `src/lib/exercise/recommendForUser.ts` — liga o motor puro aos dados reais: `LearningProfile` (8 scores + `weakAreas`) + contagem de revisões pendentes (a recomendação só aparece quando não há revisões à espera — essas já são a prioridade certa) + "tipos já feitos nas últimas 24h" (novo: `recordExerciseResult` agora grava um evento `exercise_completed` via `logEvent`/`AnalyticsEvent`, para o "evitar repetir os últimos tipos" do motor ter dados reais em vez de ficar sempre vazio).
+- `KIND_ROUTE` (`recommend.ts`) — mapa de cada `ExerciseKind` para a rota real onde existe; `video_comprehension` fica de fora de propósito, nunca é recomendado.
+- Card "Recomendado para si" na Home (Standard e Intensivo) — discreto, não compete com "Inglês de hoje" (o plano principal continua a ser esse).
+
 ## Fase 4 — tipos de exercício, estado real (atualizado a cada lote)
 
 Ver `docs/decisions.md` ("Exercise Engine — Fase 3/4") para o registo de cada lote à medida que é construído. Estado por tipo (dos 20 pedidos):

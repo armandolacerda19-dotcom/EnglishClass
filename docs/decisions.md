@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Exercise Engine: liga o adaptive learning à Home (achado corrigido)
+
+Pedido: "agora deve continuar com as atualizações". Antes de acrescentar mais conteúdo, revi o que já estava construído e encontrei um achado real: `recommendNextActivity` (`src/lib/exercise/recommend.ts`, Fase 3) **nunca era chamado por nenhum ficheiro da app**. O motor de adaptive learning funcionava perfeitamente se fosse invocado — mas não estava ligado a nada, o que na prática o tornava uma funcionalidade fantasma, exatamente o que o utilizador pediu explicitamente para nunca acontecer ("não quero... funcionalidades simuladas sem integração").
+
+Corrigido:
+- `src/lib/exercise/recommendForUser.ts` (novo) — liga `recommendNextActivity` aos dados reais: os 8 scores + `weakAreas` de `LearningProfile`, e a contagem de revisões pendentes (`getDueReviewCount`, já existente) — se houver revisões pendentes, a recomendação não aparece, porque a fila de SRS já é a prioridade certa.
+- **"Tipos já feitos" deixou de ser um buraco silencioso**: o motor tinha um mecanismo para "evitar repetir os últimos 2 tipos", mas nada alimentava esse sinal. `recordExerciseResult` (`progress.ts`) passa agora a gravar um evento `exercise_completed` (`{kind, pillar}`) via `logEvent`/`AnalyticsEvent` (já existente, já escrito noutros pontos) sempre que um exercício do motor é concluído — `getRecentKinds` lê isso de volta. Cobre só os 11 tipos construídos sobre o Exercise Engine, não os Runners mais antigos (sinal parcial, documentado como tal).
+- `KIND_ROUTE` (`recommend.ts`) — mapa explícito de cada um dos 20 `ExerciseKind` para a rota real onde existe (ou para a superfície existente mais próxima, para os que ainda não têm rota dedicada); `video_comprehension` fica de fora de propósito.
+- Card "Recomendado para si" na Home (`src/app/(app)/home/page.tsx`), Standard e Intensivo — discreto, não substitui "Inglês de hoje".
+
 ## 2026-08-28 — Exercise Engine: fecho — Preencher Espaços + Ouvir e Escolher (🟡🟡)
 
 Continuação de "deve avançar para as próximas prioridades" / "pode continuar". Fecha os 2 últimos itens 🟡 do relatório — com isto, **19 dos 20 tipos de exercício pedidos estão confirmados funcionais**, o único que falta (compreensão de vídeo) continua genuinamente bloqueado por não haver infraestrutura de vídeo na app.

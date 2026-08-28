@@ -3,6 +3,7 @@ import { recordActivity } from "@/lib/gamification/recordActivity";
 import { awardAchievement } from "@/lib/gamification/awardAchievement";
 import { updateSkillScore } from "@/lib/skillProfile";
 import { scheduleReview } from "@/lib/srs/schedule";
+import { logEvent } from "@/lib/analytics";
 import type { ExerciseResultInput } from "./types";
 
 // Exercise Engine — ponto único onde um exercício NOVO regista o resultado.
@@ -14,11 +15,16 @@ import type { ExerciseResultInput } from "./types";
 // 4-5 chamadas à mão (o que já acontecia, ligeiramente diferente, em 11+
 // ficheiros de actions.ts espalhados pela app).
 export async function recordExerciseResult(input: ExerciseResultInput): Promise<void> {
-  const { userId, pillar, score, correct, errorSignal, achievementCode } = input;
+  const { userId, pillar, kind, score, correct, errorSignal, achievementCode } = input;
 
   await updateSkillScore(userId, pillar, score);
   await recordActivity(userId, correct ? "EXERCISE_CORRECT" : "EXERCISE_INCORRECT");
   if (achievementCode) await awardAchievement(userId, achievementCode);
+  // Alimenta `recommend.ts` (adaptive learning, via AnalyticsEvent) com um
+  // sinal real de "que tipos o utilizador já fez" — sem isto, o "evitar
+  // repetir os últimos tipos" da recomendação nunca teria dados nenhuns para
+  // trabalhar, uma funcionalidade só na aparência.
+  await logEvent(userId, "exercise_completed", { kind, pillar });
 
   if (!correct && errorSignal) {
     const existingError = await prisma.userError.findFirst({
