@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A1.1",
+  "module": {
+    "id": "mod_a1_15_reflexive_pronouns",
+    "title": "Reflexive Pronouns",
+    "theme": "grammar-basics",
+    "order": 6
+  },
+  "unit": {
+    "id": "unit_a1_15_reflexive_pronouns",
+    "title": "Myself, Yourself, Himself...",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a1_reflexive_pronouns",
+    "title": "Reflexive Pronouns",
+    "rule": "Use a reflexive pronoun (myself, yourself, himself, herself, itself, ourselves, yourselves, themselves) when the subject and the object of a verb are the same person or thing — the action 'reflects back' onto the subject.",
+    "simple_explanation": "Each subject pronoun has its own reflexive form: I → myself, you → yourself, he → himself, she → herself, it → itself, we → ourselves, you (plural) → yourselves, they → themselves.",
+    "example": "I cut myself while cooking. She looked at herself in the mirror.",
+    "example_translation": "Cortei-me a cozinhar. Ela olhou-se ao espelho.",
+    "common_mistake_pt": "O português marca a reflexividade diretamente no verbo, com um pronome colado a ele (\"eu levanto-me\", \"ela veste-se\"). Isso leva a dois erros opostos em inglês: (1) esquecer o pronome reflexivo quando ele é mesmo necessário (\"I cut\" em vez de \"I cut myself\"); (2) adicionar um pronome reflexivo a verbos ingleses comuns que normalmente NÃO precisam dele, como \"wake up\", \"feel\", \"relax\" ou \"get dressed\" (\"I feel myself good\" em vez de simplesmente \"I feel good\").",
+    "correction": "Use o pronome reflexivo só quando o sujeito e o objeto são mesmo a mesma pessoa/coisa e isso precisa de ser dito explicitamente (\"I hurt myself\", \"She taught herself Spanish\"). Muitos verbos do dia a dia em inglês (wake up, feel, relax, get dressed, sit down) não levam pronome reflexivo nenhum, mesmo quando o verbo equivalente em português é reflexivo.",
+    "real_world_example": "Talking about a minor accident: \"I cut myself with the kitchen knife.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a1_myself",
+      "headword": "myself",
+      "type": "pronoun",
+      "translation_pt": "eu mesmo/a, -me",
+      "definition_en": "the reflexive form of 'I', used when the subject and object are the same person",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/maɪˈsɛlf/",
+      "related_forms": ["by myself"],
+      "example_sentences": ["I hurt myself yesterday."],
+      "difficulty": 1,
+      "tags": ["reflexive-pronouns"]
+    },
+    {
+      "id": "vocab_a1_yourself",
+      "headword": "yourself",
+      "type": "pronoun",
+      "translation_pt": "tu mesmo/a, -te / você mesmo/a, -se",
+      "definition_en": "the reflexive form of 'you' (singular)",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/jɔːrˈsɛlf/",
+      "related_forms": ["yourselves (plural)"],
+      "example_sentences": ["Did you hurt yourself?"],
+      "difficulty": 1,
+      "tags": ["reflexive-pronouns"]
+    },
+    {
+      "id": "vocab_a1_by_myself",
+      "headword": "by myself",
+      "type": "expression",
+      "translation_pt": "sozinho/a, sem ajuda",
+      "definition_en": "alone, without anyone else's help",
+      "cefr_level": "A1",
+      "audio_url": null,
+      "ipa": "/baɪ maɪˈsɛlf/",
+      "related_forms": ["by yourself", "by himself"],
+      "example_sentences": ["I live by myself in a small flat."],
+      "difficulty": 1,
+      "tags": ["reflexive-pronouns"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a1_reflexive_001",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_reflexive_pronouns",
+      "prompt": "Complete: She looked at ___ in the mirror.",
+      "correct_answer": ["herself"],
+      "distractors": ["her", "she", "hers"],
+      "explanation": "O sujeito (\"she\") e o objeto são a mesma pessoa — pede o pronome reflexivo \"herself\".",
+      "common_mistake_pt": "Usar \"her\" (pronome objeto normal) em vez de \"herself\" é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["reflexive-pronouns"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reflexive_002",
+      "cefr_level": "A1",
+      "pillar": "grammar",
+      "concept_ref": "gc_a1_reflexive_pronouns",
+      "prompt": "Complete: I cut ___ while cutting vegetables.",
+      "correct_answer": ["myself"],
+      "distractors": ["me", "my", "I"],
+      "explanation": "O sujeito (\"I\") e o objeto são a mesma pessoa — pede o pronome reflexivo \"myself\".",
+      "common_mistake_pt": "Esquecer completamente o pronome reflexivo (\"I cut while cutting vegetables\") é um erro muito comum, por o português marcar isto diretamente no verbo.",
+      "audio_url": null,
+      "tags": ["reflexive-pronouns"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reflexive_vocab_001",
+      "cefr_level": "A1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"by myself\" mean?",
+      "correct_answer": ["alone, without anyone else's help"],
+      "distractors": ["next to me", "for myself", "about myself"],
+      "explanation": "\"By myself\" indica que a pessoa fez algo sozinha, sem ajuda de mais ninguém.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "reflexive-pronouns"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reflexive_listening_001",
+      "cefr_level": "A1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What happened to the speaker?",
+      "correct_answer": ["he hurt himself", "he cut himself"],
+      "distractors": ["he lost his keys", "he was late", "he broke his phone"],
+      "explanation": "No áudio, ouve-se: \"I hurt myself in the garden this morning.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I hurt myself in the garden this morning — I cut myself with some garden scissors. It's not serious, though.",
+      "tags": ["listening", "reflexive-pronouns"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reflexive_reading_001",
+      "cefr_level": "A1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Tomás lives by himself in a small apartment. He cooks for himself every day and enjoys the quiet.\" Does Tomás live with other people?",
+      "correct_answer": ["no", "no, he lives alone"],
+      "distractors": ["yes", "it doesn't say"],
+      "explanation": "\"By himself\" significa que ele vive sozinho, sem mais ninguém.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "reflexive-pronouns"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a1_reflexive_translation_001",
+      "cefr_level": "A1",
+      "pillar": "translation",
+      "concept_ref": "gc_a1_reflexive_pronouns",
+      "prompt": "Translate to English: \"Ele magoou-se a jogar futebol.\"",
+      "correct_answer": ["He hurt himself playing football."],
+      "distractors": [],
+      "explanation": "\"Magoou-se\" pede o pronome reflexivo \"himself\" depois de \"hurt\", para indicar que ele próprio se magoou.",
+      "common_mistake_pt": "Traduzir para \"He hurt playing football\" (sem o reflexivo) é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "reflexive-pronouns"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a1_m15_u1_reflexive_pronouns",
+    "title": "Myself, Yourself, Himself...",
+    "cefr_level": "A1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a1_reflexive_pronouns",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a1_reflexive_pronouns#rule" },
+      { "type": "example", "content_ref": "gc_a1_reflexive_pronouns#example" },
+      { "type": "common_mistake", "content_ref": "gc_a1_reflexive_pronouns#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a1_myself", "vocab_a1_yourself", "vocab_a1_by_myself"] },
+      { "type": "exercise", "exercise_ids": ["ex_a1_reflexive_001", "ex_a1_reflexive_002", "ex_a1_reflexive_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a1_reflexive_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a1_reflexive_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Reflexive pronouns are usually stressed a little more than normal object pronouns, because they carry extra meaning: \"I hurt MYSELF\" (not someone else), with a clear stress on the last syllable."
+      },
+      { "type": "speaking", "prompt": "Say 2-3 sentences about things you do by yourself, or a time you hurt yourself doing something." },
+      { "type": "writing", "prompt": "Write 3 sentences using reflexive pronouns (myself, yourself, himself, herself...), each about a different person." },
+      { "type": "translation", "exercise_ids": ["ex_a1_reflexive_translation_001"] }
+    ]
+  }
+}

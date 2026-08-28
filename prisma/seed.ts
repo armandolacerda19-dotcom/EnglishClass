@@ -41,6 +41,7 @@ import moduleCausativeHaveGet from "../content/curriculum/b1-module-11-causative
 import moduleSoNeitherAgreement from "../content/curriculum/b1-module-12-so-neither-agreement.json";
 import moduleIndirectQuestions from "../content/curriculum/b1-module-13-indirect-questions.json";
 import moduleAdjectiveOrder from "../content/curriculum/a2-module-12-adjective-order.json";
+import moduleReflexivePronouns from "../content/curriculum/a1-module-15-reflexive-pronouns.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -93,6 +94,7 @@ const MODULE_FILES = [
   moduleAboutMe,
   modulePresentContinuous, // A1.1 — depois de about-me
   modulePronouns, // A1.1
+  moduleReflexivePronouns, // A1.1 — logo a seguir aos pronomes objeto/possessivos; gap real: myself/yourself/himself nunca teve módulo próprio, e o português marca reflexividade no próprio verbo, não com um pronome à parte (Fase 13, 2026-08-27)
   moduleWhQuestions, // A1.1
   moduleShopping,
   moduleRestaurant,
