@@ -2,6 +2,20 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Exercise Engine: 3 prioridades seguintes (🔴🔴🟠)
+
+Pedido do utilizador: "deve avançar para as próximas prioridades" (relatório publicado no fim da ronda anterior). Ordem seguida: as 2 prioridades 🔴 primeiro, depois a 🟠 de menor esforço/maior impacto.
+
+**Tradução EN→PT** (`/practice/translation-en-pt`) — completa o par com PT→EN (já existia como `TranslationStep`). 18 frases Pre-A1→C1, correção semântica tolerante (`semanticGrade`, reaproveita `gradeFreeTextAnswer` — a mesma função já tinha suporte genérico a qualquer língua de referência, não precisou de alteração).
+
+**Word Builder** (`/practice/word-builder`) — 20 itens de morfologia (prefixos `un-`/`dis-`/`im-`/`il-`/`ir-`/`re-`, sufixos `-ness`/`-tion`/`-ment`/`-ity`/`-ful`/`-less`/`-al`/`-ly`/`-en`/`-or`), cada um com a regra explicada. Igualdade exata (`exactMatchGrade`) — a forma derivada correta é única.
+
+**Desafio de Escrita Livre com formato ❌⚠️✅** (`/practice/writing-challenge`) — 9 prompts (3 Iniciante/3 Intermédio/3 Avançado, exatamente como pedido). Função nova e autocontida `gradeWritingChallenge` (`src/lib/ai/gradeWritingChallenge.ts`) em vez de reaproveitar `getHolisticFeedback` (privada a `learn/actions.ts`, não exportada) — mais seguro do que extrair uma função já verificada em produção só para lhe acrescentar um formato de saída diferente. Modo JSON estruturado (mesmo padrão de `evaluateConversation.ts`), devolve `corrections: [{original, issue, corrected}]` + `nativeVersion` ("como um nativo escreveria") + 3 scores (Grammar/Vocabulary/Writing). Grava `WritingAttempt` real (`source: "PRACTICE"`).
+
+Achievements novos: `first_translation_en_pt`, `first_word_builder`, `first_writing_challenge`. (E `first_conversation_evaluation` do lote anterior, cujo código curto tinha ficado por adicionar em `/progress` — corrigido agora.)
+
+**Por fazer, na mesma lista de prioridades**: formalizar Challenge/Apply no quiz de gramática por tema (🟠), Leitura em voz alta (🟠, maior esforço — precisa de captura de duração da gravação, ainda não existe em `RecordButton`), progressão de velocidade/sotaque em listening (🟡).
+
 ## 2026-08-28 — Exercise Engine (Fase 3-4): arquitetura partilhada + 4 tipos novos
 
 Pedido explícito do utilizador: construir "uma verdadeira arquitetura de aprendizagem" com 20 tipos de exercício, motor de distribuição, adaptive learning e mastery tracking — não páginas isoladas. Processo pedido: Fase 1 (auditoria) → Fase 2 (arquitetura) → Fase 3 (core) → Fase 4 (tipos) → Fase 5 (adaptive) → Fase 6 (polimento). Detalhe completo em `docs/12-exercise-engine.md` — aqui só o essencial.

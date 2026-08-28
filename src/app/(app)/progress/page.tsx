@@ -33,6 +33,10 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_error_correction: "CORR",
   first_synonym_antonym: "SYN",
   first_context_choice: "CTX",
+  first_conversation_evaluation: "EVAL",
+  first_translation_en_pt: "EN-PT",
+  first_word_builder: "BUILD",
+  first_writing_challenge: "WRITE",
 };
 
 export default async function ProgressPage() {

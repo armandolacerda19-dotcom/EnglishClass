@@ -445,6 +445,21 @@ const ACHIEVEMENTS = [
     title: "Primeira Avaliação",
     description: "Terminou e avaliou a sua primeira conversa completa com o AI Tutor.",
   },
+  {
+    code: "first_translation_en_pt",
+    title: "Primeira Tradução Inversa",
+    description: "Completou o seu primeiro exercício de tradução de inglês para português.",
+  },
+  {
+    code: "first_word_builder",
+    title: "Primeira Construção",
+    description: "Completou o seu primeiro exercício de construção de palavras.",
+  },
+  {
+    code: "first_writing_challenge",
+    title: "Primeiro Desafio de Escrita",
+    description: "Completou o seu primeiro Desafio de Escrita Livre.",
+  },
 ];
 
 async function seedAchievements() {

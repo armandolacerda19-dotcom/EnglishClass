@@ -147,7 +147,29 @@ export default async function PracticePage() {
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Palavras fáceis de confundir</p>
           </Card>
         </Link>
+        <Link href="/practice/word-builder">
+          <Card className="hover:border-clay">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Word Builder</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Prefixos, sufixos, formação de palavras</p>
+          </Card>
+        </Link>
+        <Link href="/practice/translation-en-pt">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Tradução EN→PT</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">A direção inversa da tradução</p>
+          </Card>
+        </Link>
       </div>
+
+      <SectionLabel>Escrita Livre</SectionLabel>
+      <Link href="/practice/writing-challenge" className="block">
+        <Card className="border-2 border-ink/10 hover:border-brass dark:border-linen/10">
+          <p className="mb-1 font-display text-lg">Desafio de Escrita Livre</p>
+          <p className="text-xs text-inkNeutral/60 dark:text-linen/60">
+            Escreva livremente — correções ❌⚠️✅ e como um nativo escreveria
+          </p>
+        </Card>
+      </Link>
 
       <SectionLabel>Referência</SectionLabel>
       <div className="grid grid-cols-2 gap-3">

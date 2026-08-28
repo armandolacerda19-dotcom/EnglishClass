@@ -91,14 +91,14 @@ Ver `docs/decisions.md` ("Exercise Engine — Fase 3/4") para o registo de cada 
 | 9 | Conversação com IA | ✅ **novo nesta ronda** — avaliação estruturada de fim de conversa (`api/ai/tutor/evaluate`), 4-5 eixos, erros, palavras novas |
 | 10 | Correção de erros | ✅ **novo nesta ronda** (`/practice/error-correction`) |
 | 11 | Tradução PT→EN | ✅ já existia (`TranslationStep`) |
-| 12 | Tradução EN→PT | 🔴 não implementado — infraestrutura de correção semântica já existe (`semanticGrade`), falta conteúdo na direção inversa |
+| 12 | Tradução EN→PT | ✅ **novo** (`/practice/translation-en-pt`), correção semântica via `semanticGrade` |
 | 13 | Contexto | ✅ **novo nesta ronda** (`/practice/context-choice`) |
 | 14 | Sinónimos/antónimos | ✅ **novo nesta ronda** (`/practice/synonyms`) |
-| 15 | Word Builder | 🔴 não implementado |
+| 15 | Word Builder | ✅ **novo** (`/practice/word-builder`), 20 itens de morfologia |
 | 16 | Quiz de gramática por tema (Learn/Practice/Challenge/Apply) | ⚠️ Learn+Practice já existem (Lesson steps); Challenge/Apply como camadas formais ainda não |
 | 17 | Compreensão de texto | ✅ já existia (`/practice/reading`) |
 | 18 | Compreensão de vídeo | 🔴 bloqueado — zero conteúdo de vídeo na app, não viável a custo zero |
 | 19 | Role-play | ✅ já existia (personalidade "roleplay"), agora com avaliação de fim de conversa partilhada com o tipo 9 |
-| 20 | Desafio de escrita livre | ⚠️ já existia (`WritingStep`), mas sem o formato ❌⚠️✅ pedido — pendente |
+| 20 | Desafio de escrita livre | ✅ **novo** (`/practice/writing-challenge`), formato ❌⚠️✅ + "como um nativo escreveria" |
 
-**8/20 confirmados funcionais** (incluindo os já existentes antes desta ronda), **4 genuinamente novos e construídos nesta ronda** (Correção de Erros, Sinónimos/Antónimos, Contexto, avaliação de Conversação com IA), **1 vídeo genuinamente bloqueado** por falta de infraestrutura a custo zero, os restantes têm arquitetura pronta (o motor suporta-os) mas conteúdo/UI dedicados ainda por construir.
+**15/20 confirmados funcionais** (8 já existiam antes desta ronda + 7 genuinamente novos: Correção de Erros, Sinónimos/Antónimos, Contexto, avaliação de Conversação com IA, Tradução EN→PT, Word Builder, Desafio de Escrita com formato ❌⚠️✅), **1 vídeo genuinamente bloqueado** por falta de infraestrutura a custo zero, os 4 restantes (Preencher espaços dedicado, Ouvir e escolher com progressão de velocidade/sotaque, Leitura em voz alta, Challenge/Apply formal no quiz de gramática) têm arquitetura pronta (o motor suporta-os) mas conteúdo/UI dedicados ainda por construir.
