@@ -2,6 +2,26 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Nível B2 introduzido (6 módulos) + placement test corrigido (bug real)
+
+Pedido do utilizador: "deve continuar por mais uma ronda, mas deve ser bastante mais completa. deve investir no desenvolvimento de várias fases". O maior investimento desta ronda: introduzir o nível B2 no currículo, que faltava por completo (o schema suporta `CefrLevel.B2` desde a Fase 0, mas nunca tinha `Level`/`Sublevel`/módulos seedados — B1 era o teto real desde a Fase 4/9).
+
+**`content/curriculum/levels.json`**: novo nível B2 — "B2 — Vantage", 2 sublevels (B2.1 order 8, B2.2 order 9).
+
+**6 módulos novos**, cada um um ponto gramatical B2 genuíno (não uma repetição mais difícil de algo já ensinado em B1):
+- **Mixed Conditionals** (B2.1): misturar 2nd/3rd conditional quando a condição e o resultado pertencem a momentos diferentes ("If I had studied medicine, I would be a doctor now").
+- **Inversion for Emphasis** (B2.1): "Never have I seen...", "Not only did she..." — inversão sujeito/auxiliar depois de advérbios negativos no início da frase.
+- **Should Have / Needn't Have / Didn't Need To** (B2.1): 3 modais de passado que o português não distingue gramaticalmente (critica algo que não aconteceu vs. algo desnecessário que aconteceu vs. algo desnecessário que não chegou a acontecer).
+- **Cleft Sentences** (B2.2): "It was John who...", "What I need is..." — estruturas de ênfase que o português consegue só com entoação.
+- **Participle Clauses** (B2.2): "Having finished the report, she went home" — orações reduzidas com particípio, mais concisas do que a oração completa com conjunção que o português prefere sempre.
+- **Advanced Reporting Verbs** (B2.2): suggest/insist/deny/warn em vez de "said"/"told" para tudo, cada um com o seu próprio padrão gramatical.
+
+**Bug real encontrado ao introduzir B2** (não estava no radar antes de mexer neste código): `src/lib/placement/scoring.ts`, função `averageToLevel`, nunca devolvia nada acima de A2.2 — o corte mais alto do mapeamento 0-100→nível. Isto significa que, desde que B1 foi seedado (Fase 4/9), o placement test **nunca conseguiu colocar ninguém em B1**, mesmo que a pessoa acertasse todas as 19 perguntas do teste, incluindo as 5 de dificuldade B1 (peso 3, o mais alto em `DIFFICULTY_WEIGHT`) — um utilizador forte era sempre mal-colocado, poupado apenas pela existência de `getNextLessonForUser()` seguir sempre `Lesson.order` global (por isso conseguia eventualmente chegar às lições B1 avançando manualmente, só a colocação inicial estava errada). Corrigido: cortes estendidos até B2.2 (10 bandas no total). Novo `src/lib/placement/scoring.test.ts` com 3 testes, verificando especificamente que acertar tudo leva a B1/B2 (o cenário que estava partido), que não responder a nada leva a Pre-A1, e que `resultSublevel` fica sempre no intervalo válido.
+
+**Nota registada, não resolvida nesta ronda**: o teste de nivelamento ainda não tem perguntas de dificuldade B2 dedicadas (`DIFFICULTY_WEIGHT` não define peso para B2) — alcançar B2.1/B2.2 exige acertar tudo o resto, uma heurística razoável na ausência de perguntas B2 próprias, mas menos precisa do que teria com perguntas dedicadas. Fica para trabalho futuro.
+
+Mesmo processo de verificação de sempre: os 6 ficheiros JSON validados com `ConvertFrom-Json`, `levels.json` também. Verificação exaustiva final: **626 ids em 48 módulos, zero duplicatas, zero `concept_ref`/`vocabulary_ids`/`exercise_ids` partidos.** **Currículo: 42 → 48 lições, agora Pre-A1 a B2.**
+
 ## 2026-08-27 — Fase 14 continuada: mais 3 textos de leitura autênticos
 
 3º lote em `readingPassages.ts`, mesmo processo dos anteriores (originais, nunca copiados de fonte real, ids confirmados únicos por grep):
