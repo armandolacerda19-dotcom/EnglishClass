@@ -2,6 +2,18 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Fase 22: vocabulário standalone B2/C1/C2 (resposta ao R1 da 4ª auditoria)
+
+Pedido: "deve então agora avançar com as atualizações" — execução direta da "Próxima Ação" recomendada na 4ª auditoria (Fase 21): o vocabulário standalone (o que alimenta SRS/Daily Challenge) tinha só 11 palavras B2, 2 C1, 0 C2, contra quase 1.700 em A1/A2 — um utilizador que já chegou a C1/C2 pelo currículo (Fases 15/18/20) ficava sem SRS de vocabulário funcional acima de B1.
+
+**`content/curriculum/vocabulary-bank-21.json`**: 65 palavras novas, deliberadamente focadas em phrasal verbs, collocations e idiomas de registo profissional/formal (trabalho, negociação, reuniões) — a categoria mais citada como ausente na auditoria, e a mais útil para quem já domina o básico e precisa de soar natural em contexto real. Distribuição: B2 +26 (11→37), C1 +27 (2→29), C2 +12 (0→12).
+
+**Verificação de qualidade antes de registar no seed**: confirmado por `grep`/comparação PowerShell que nenhum headword novo duplicava um já existente noutro banco — 4 casos apanhados e removidos antes do commit (`bring up`, `set up`, `thorough`, `versatile` já existiam em bancos A2/B1 com o mesmo sentido central; ensinar a mesma palavra duas vezes sob ids diferentes duplicaria o item no SRS). 65 ids novos confirmados sem colisão contra os 2.853 ids do currículo inteiro.
+
+`prisma/seed.ts` ganhou o import e a entrada em `VOCABULARY_BANKS` (21 bancos agora), chavetas/parênteses balanceados por regex antes do commit.
+
+Vocabulário standalone total: 1.962 → 2.027 palavras (2ª auditoria tinha registado "2.004" como número histórico incorreto, corrigido para a contagem real na Fase 19).
+
 ## 2026-08-28 — Fase 21: 4ª auditoria (independente, crítica) + Desafio de Discurso Livre
 
 Pedido: auditoria completa e cética da app ("esta aplicação consegue fazer um utilizador aprender inglês e utilizá-lo eficazmente no mundo real?"), seguida de execução obrigatória das correções críticas/de alto impacto encontradas. Inspeção real via 5 agentes paralelos, cada um com evidência de ficheiro:linha (currículo/conteúdo, os 20 tipos de exercício, adaptive learning/SRS/progresso, listening/speaking/pronúncia/writing, UX/modo intensivo/gamificação) — não uma avaliação por suposição.
