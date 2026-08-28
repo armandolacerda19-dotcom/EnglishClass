@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.2",
+  "module": {
+    "id": "mod_b1_10_wish_clauses",
+    "title": "Wish Clauses",
+    "theme": "hypotheticals",
+    "order": 5
+  },
+  "unit": {
+    "id": "unit_b1_10_wish_clauses",
+    "title": "Wishes and Regrets",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_wish_clauses",
+    "title": "Wish Clauses",
+    "rule": "Use 'wish + Past Simple' to talk about wanting a present situation to be different, and 'wish + Past Perfect' to talk about regret about the past. In both cases, the verb after 'wish' goes one step further into the past than the real time you're talking about — the same logic as conditionals.",
+    "simple_explanation": "'Wish' is used for things that are NOT true: if you wish something, it means the opposite is the real situation right now (or was, in the past). It's the same idea as the Second and Third Conditionals, just built around the verb 'wish' instead of 'if'.",
+    "example": "I wish I spoke French. (but I don't) — I wish I had studied harder. (but I didn't)",
+    "example_translation": "Quem me dera falar francês. — Quem me dera ter estudado mais.",
+    "common_mistake_pt": "Falantes de português tendem a traduzir \"quem me dera\"/\"desejava que\" usando o tempo verbal \"real\" depois de \"wish\" (\"I wish I speak French\" em vez de \"I wish I spoke French\") — tal como nos condicionais, o verbo depois de \"wish\" tem sempre de recuar um tempo verbal em relação à situação real.",
+    "correction": "Depois de \"wish\", use sempre um tempo verbal \"mais passado\" do que a situação real: para o presente, wish + Past Simple; para o passado, wish + Past Perfect.",
+    "real_world_example": "Casual regret when it starts raining: \"I wish I had brought an umbrella.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_wish",
+      "headword": "wish",
+      "type": "verb",
+      "translation_pt": "desejar / \"quem me dera\"",
+      "definition_en": "to want a situation to be different from how it really is",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/wɪʃ/",
+      "related_forms": ["I wish", "wishful thinking"],
+      "example_sentences": ["I wish I had more free time."],
+      "difficulty": 2,
+      "tags": ["wish-clauses"]
+    },
+    {
+      "id": "vocab_b1_if_only",
+      "headword": "if only",
+      "type": "expression",
+      "translation_pt": "quem dera / se ao menos",
+      "definition_en": "used to express a strong wish, especially about something you cannot change",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ɪf ˈoʊnli/",
+      "related_forms": ["if only I had known"],
+      "example_sentences": ["If only I had listened to her advice!"],
+      "difficulty": 2,
+      "tags": ["wish-clauses"]
+    },
+    {
+      "id": "vocab_b1_daydream",
+      "headword": "daydream",
+      "type": "verb",
+      "translation_pt": "sonhar acordado",
+      "definition_en": "to think pleasant thoughts that take your mind away from what you're doing",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈdeɪdriːm/",
+      "related_forms": ["daydream about"],
+      "example_sentences": ["I sometimes daydream about living by the sea."],
+      "difficulty": 2,
+      "tags": ["wish-clauses"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_wish_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_wish_clauses",
+      "prompt": "Complete: I wish I ___ (speak) French.",
+      "correct_answer": ["spoke"],
+      "distractors": ["speak", "will speak", "have spoken"],
+      "explanation": "Desejo sobre o presente (não fala francês agora) — pede Past Simple depois de \"wish\": \"spoke\".",
+      "common_mistake_pt": "Usar \"speak\" (Presente Simples) é o erro mais comum, por traduzir diretamente do português.",
+      "audio_url": null,
+      "tags": ["wish-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_wish_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_wish_clauses",
+      "prompt": "Complete: I wish I ___ (study) harder for the exam last year.",
+      "correct_answer": ["had studied"],
+      "distractors": ["studied", "study", "would study"],
+      "explanation": "Arrependimento sobre o passado — pede Past Perfect depois de \"wish\": \"had studied\".",
+      "common_mistake_pt": "Usar só \"studied\" (Past Simple) em vez de \"had studied\" é um erro muito comum aqui.",
+      "audio_url": null,
+      "tags": ["wish-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_wish_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"if only\" express?",
+      "correct_answer": ["a strong wish, especially about something you cannot change"],
+      "distractors": ["a simple question", "a polite request", "a future plan"],
+      "explanation": "\"If only\" é uma forma mais emotiva/enfática de \"wish\", usada sobretudo para arrependimento.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "wish-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_wish_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker regret?",
+      "correct_answer": ["not bringing an umbrella", "not bringing a coat", "not bringing warmer clothes"],
+      "distractors": ["missing the bus", "forgetting his phone", "being late for work"],
+      "explanation": "No áudio, ouve-se: \"I wish I had brought a coat — it's freezing out here.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Ugh, I wish I had brought a coat — it's freezing out here. If only I had checked the weather this morning.",
+      "tags": ["listening", "wish-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_wish_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Ines wishes she lived closer to her family. She moved abroad for work five years ago, and now she regrets not visiting them more often.\" Where does Ines wish she lived?",
+      "correct_answer": ["closer to her family"],
+      "distractors": ["abroad", "in a bigger city", "It doesn't say"],
+      "explanation": "O texto diz diretamente \"Ines wishes she lived closer to her family\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "wish-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_wish_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_wish_clauses",
+      "prompt": "Translate to English: \"Quem me dera ter mais tempo.\"",
+      "correct_answer": ["I wish I had more time."],
+      "distractors": [],
+      "explanation": "Desejo sobre o presente (falta de tempo agora) — pede Past Simple depois de \"wish\". Aqui, \"had\" é o Past Simple do verbo \"have\" (não Past Perfect, que exigiria \"had had\").",
+      "common_mistake_pt": "Traduzir para \"I wish I have more time\" é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "wish-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m10_u1_wish_clauses",
+    "title": "Wishes and Regrets",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_wish_clauses",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_wish_clauses#rule" },
+      { "type": "example", "content_ref": "gc_b1_wish_clauses#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_wish_clauses#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_wish", "vocab_b1_if_only", "vocab_b1_daydream"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_wish_001", "ex_b1_wish_002", "ex_b1_wish_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_wish_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_wish_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Wish\" and \"witch\" sound identical in most accents — /wɪʃ/ — context is the only way listeners tell them apart, so don't expect any pronunciation difference to help you."
+      },
+      { "type": "speaking", "prompt": "Say 2-3 sentences about something you wish were different right now, and one thing you regret about the past (real or invented)." },
+      { "type": "writing", "prompt": "Write 3 sentences with \"wish\": one about the present (wish + Past Simple) and two about the past (wish + Past Perfect)." },
+      { "type": "translation", "exercise_ids": ["ex_b1_wish_translation_001"] }
+    ]
+  }
+}
