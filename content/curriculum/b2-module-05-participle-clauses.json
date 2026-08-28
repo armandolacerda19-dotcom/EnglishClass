@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.2",
+  "module": {
+    "id": "mod_b2_5_participle_clauses",
+    "title": "Participle Clauses",
+    "theme": "structures",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_b2_5_participle_clauses",
+    "title": "Having Finished the Report...",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_participle_clauses",
+    "title": "Participle Clauses",
+    "rule": "Use a participle clause (present participle '-ing' for active/simultaneous actions, past participle for passive meaning) instead of a full clause with its own subject and conjunction, to link two related actions or ideas more concisely — common in writing and formal speech.",
+    "simple_explanation": "When two clauses share the same subject, English often drops the repeated subject and conjunction (\"after\", \"because\", \"since\") and turns the first verb into a participle instead — the result is shorter and more fluent-sounding, especially in writing.",
+    "example": "Having finished the report, she went home early. Feeling exhausted, he decided to cancel the meeting. Written in a hurry, the email had several mistakes.",
+    "example_translation": "Tendo terminado o relatório, ela foi para casa mais cedo. Sentindo-se exausto, ele decidiu cancelar a reunião. Escrito à pressa, o email tinha vários erros.",
+    "common_mistake_pt": "O português normalmente prefere uma oração completa com conjunção (\"depois de ter terminado\", \"porque se sentia exausto\") a uma construção reduzida com particípio. Isto leva a evitar por completo as orações de particípio em inglês, optando sempre por frases mais longas e menos fluentes em registo formal/escrito (\"After she had finished the report, she went home\" em vez da versão mais concisa com particípio).",
+    "correction": "Para ligar duas ações relacionadas de forma mais concisa (sobretudo por escrito), use uma oração reduzida com particípio presente (\"Having done X, ...\") quando o sujeito realiza a ação, ou particípio passado (\"Done by X, ...\") quando o sujeito sofre a ação — desde que o sujeito das duas orações seja o mesmo.",
+    "real_world_example": "In a report: \"Having reviewed all the data, the team recommended a new approach.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_concise",
+      "headword": "concise",
+      "type": "adjective",
+      "translation_pt": "conciso",
+      "definition_en": "giving information clearly and in few words",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/kənˈsaɪs/",
+      "related_forms": ["concisely", "conciseness"],
+      "example_sentences": ["Please keep your email concise."],
+      "difficulty": 3,
+      "tags": ["participle-clauses"]
+    },
+    {
+      "id": "vocab_b2_in_a_hurry",
+      "headword": "in a hurry",
+      "type": "expression",
+      "translation_pt": "com pressa, à pressa",
+      "definition_en": "needing or wanting to do something quickly",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ɪn ə ˈhʌri/",
+      "related_forms": ["hurry up"],
+      "example_sentences": ["I wrote that email in a hurry, so it might have mistakes."],
+      "difficulty": 2,
+      "tags": ["participle-clauses"]
+    },
+    {
+      "id": "vocab_b2_recommend",
+      "headword": "recommend",
+      "type": "verb",
+      "translation_pt": "recomendar",
+      "definition_en": "to suggest that something is good or suitable",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/rɛkəˈmɛnd/",
+      "related_forms": ["recommendation"],
+      "example_sentences": ["The team recommended a new approach."],
+      "difficulty": 2,
+      "tags": ["work"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_participle_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_participle_clauses",
+      "prompt": "Complete: ___ the report, she went home early.",
+      "correct_answer": ["Having finished"],
+      "distractors": ["Having finish", "Finished", "After finish"],
+      "explanation": "Ação completa antes da segunda — pede o particípio presente composto \"Having finished\", indicando que aconteceu primeiro.",
+      "common_mistake_pt": "Usar só \"Finished\" (particípio passado, sentido passivo) sugere erradamente que o relatório foi terminado POR outra pessoa, não por ela.",
+      "audio_url": null,
+      "tags": ["participle-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_participle_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_participle_clauses",
+      "prompt": "Complete: ___ in a hurry, the email had several mistakes.",
+      "correct_answer": ["Written"],
+      "distractors": ["Writing", "Having write", "Wrote"],
+      "explanation": "O email não escreveu a si próprio (sentido passivo — foi escrito por alguém) — pede o particípio passado \"Written\".",
+      "common_mistake_pt": "Usar \"Writing\" (particípio presente, sentido ativo) sugeriria que o email estava a escrever-se a ele próprio, o que não faz sentido.",
+      "audio_url": null,
+      "tags": ["participle-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_participle_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"concise\" mean?",
+      "correct_answer": ["giving information clearly and in few words"],
+      "distractors": ["long and detailed", "confusing and unclear", "formal and polite"],
+      "explanation": "\"Concise\" descreve algo dito ou escrito de forma clara e breve.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "participle-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_participle_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What did the team do after reviewing the data?",
+      "correct_answer": ["recommended a new approach", "they recommended a new approach"],
+      "distractors": ["cancelled the project", "asked for more data", "delayed the decision"],
+      "explanation": "No áudio, ouve-se: \"Having reviewed all the data, the team recommended a new approach.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Having reviewed all the data carefully, the team recommended a new approach for next quarter.",
+      "tags": ["listening", "participle-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_participle_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Feeling exhausted after the flight, Marco decided to cancel the meeting and go straight to bed.\" Why did Marco cancel the meeting?",
+      "correct_answer": ["he felt exhausted", "he was tired from the flight"],
+      "distractors": ["he forgot about it", "the meeting was postponed", "It doesn't say"],
+      "explanation": "\"Feeling exhausted\" indica a razão para cancelar a reunião — o cansaço da viagem.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "participle-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_participle_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_participle_clauses",
+      "prompt": "Translate to English (usando uma oração de particípio): \"Tendo terminado o trabalho, foi para casa.\"",
+      "correct_answer": ["Having finished the work, she went home.", "Having finished the work, he went home."],
+      "distractors": [],
+      "explanation": "\"Tendo terminado\" corresponde exatamente a \"Having finished\" — o particípio presente composto que marca uma ação já concluída antes da segunda.",
+      "common_mistake_pt": "Traduzir com uma frase completa (\"After she had finished the work, she went home\") não está errado, mas perde a concisão que a oração de particípio oferece.",
+      "audio_url": null,
+      "tags": ["translation", "participle-clauses"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m5_u1_participle_clauses",
+    "title": "Having Finished the Report...",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_participle_clauses",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_participle_clauses#rule" },
+      { "type": "example", "content_ref": "gc_b2_participle_clauses#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_participle_clauses#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_concise", "vocab_b2_in_a_hurry", "vocab_b2_recommend"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_participle_001", "ex_b2_participle_002", "ex_b2_participle_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_participle_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_participle_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Having\" at the start of a participle clause is usually unstressed and quick — /hævɪŋ/ said lightly, with the real stress falling on the main verb that follows: \"having FINISHED the report\"."
+      },
+      { "type": "speaking", "prompt": "Describe your day so far using at least one participle clause (e.g. 'Having woken up late, I...' or 'Feeling tired, I...')." },
+      { "type": "writing", "prompt": "Write 3 sentences using participle clauses — at least one with a present participle (-ing) and one with a past participle." },
+      { "type": "translation", "exercise_ids": ["ex_b2_participle_translation_001"] }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.1",
+  "module": {
+    "id": "mod_b2_2_inversion_emphasis",
+    "title": "Inversion for Emphasis",
+    "theme": "emphasis",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_b2_2_inversion_emphasis",
+    "title": "Never Have I Seen...",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_inversion_emphasis",
+    "title": "Inversion for Emphasis",
+    "rule": "Move a negative or limiting adverbial (never, rarely, seldom, not only, no sooner, little) to the start of a sentence for emphasis, and invert the subject and auxiliary verb — just like in a question.",
+    "simple_explanation": "This is a formal, emphatic way of saying something, common in writing and in confident speech. The key rule: the moment you start a sentence with one of these adverbials, the subject and the auxiliary swap places.",
+    "example": "Never have I seen such a mess. Not only did she win the race, but she also broke the record.",
+    "example_translation": "Nunca vi tal bagunça. Não só ela ganhou a corrida, como também bateu o recorde.",
+    "common_mistake_pt": "O português cria ênfase através da entoação ou de reforços lexicais (\"nunca na vida vi\", \"foi mesmo aquela que\"), não através de uma estrutura gramatical fixa que exija inverter sujeito e verbo. Isto leva a manter a ordem normal de afirmação depois do advérbio inicial (\"Never I have seen\" em vez de \"Never have I seen\"), esquecendo a inversão obrigatória.",
+    "correction": "Depois de um advérbio negativo/restritivo no início da frase (Never, Rarely, Not only, No sooner, Little), inverta sempre o auxiliar e o sujeito, tal como numa pergunta: \"Never have I seen\", \"Rarely does he complain\".",
+    "real_world_example": "A formal complaint letter: \"Never have I experienced such poor service.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_rarely",
+      "headword": "rarely",
+      "type": "adverb",
+      "translation_pt": "raramente",
+      "definition_en": "not often; only a few times",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˈrɛrli/",
+      "related_forms": ["seldom"],
+      "example_sentences": ["Rarely does he arrive on time."],
+      "difficulty": 2,
+      "tags": ["inversion-emphasis"]
+    },
+    {
+      "id": "vocab_b2_not_only_but_also",
+      "headword": "not only...but also",
+      "type": "expression",
+      "translation_pt": "não só... como também",
+      "definition_en": "used to add emphasis by mentioning two facts, the second often more surprising",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/nɒt ˈoʊnli bʌt ˈɔːlsoʊ/",
+      "related_forms": ["not only did she..., but she also..."],
+      "example_sentences": ["Not only was the flight delayed, but our luggage was also lost."],
+      "difficulty": 3,
+      "tags": ["inversion-emphasis"]
+    },
+    {
+      "id": "vocab_b2_no_sooner",
+      "headword": "no sooner...than",
+      "type": "expression",
+      "translation_pt": "mal... quando / assim que",
+      "definition_en": "used to say that one thing happened immediately after another",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/noʊ ˈsuːnər ðæn/",
+      "related_forms": ["no sooner had I..., than..."],
+      "example_sentences": ["No sooner had I sat down than the phone rang."],
+      "difficulty": 3,
+      "tags": ["inversion-emphasis"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_inversion_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_inversion_emphasis",
+      "prompt": "Complete: Never ___ such a beautiful sunset.",
+      "correct_answer": ["have I seen"],
+      "distractors": ["I have seen", "I saw", "did I saw"],
+      "explanation": "Depois de \"Never\" no início, inverte-se o auxiliar e o sujeito: \"have I seen\".",
+      "common_mistake_pt": "Manter a ordem normal (\"I have seen\") depois de \"Never\" é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["inversion-emphasis"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_inversion_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_inversion_emphasis",
+      "prompt": "Complete: Rarely ___ so nervous before a presentation.",
+      "correct_answer": ["has she felt"],
+      "distractors": ["she has felt", "she felt", "did she felt"],
+      "explanation": "Depois de \"Rarely\" no início, inverte-se o auxiliar e o sujeito: \"has she felt\".",
+      "common_mistake_pt": "Usar \"did she felt\" (dupla marcação de passado, \"did\" + \"felt\") é um erro comum ao tentar formar a inversão.",
+      "audio_url": null,
+      "tags": ["inversion-emphasis"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_inversion_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "Which expression means one thing happened immediately after another, like \"___ had I sat down than the phone rang\"?",
+      "correct_answer": ["No sooner"],
+      "distractors": ["Not only", "Rarely", "Never"],
+      "explanation": "\"No sooner...than\" indica que uma coisa aconteceu logo a seguir a outra.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "inversion-emphasis"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_inversion_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What happened, according to the speaker?",
+      "correct_answer": ["the flight was delayed and the luggage was lost", "the flight was delayed"],
+      "distractors": ["the flight left early", "the luggage arrived early", "nothing went wrong"],
+      "explanation": "No áudio, ouve-se: \"Not only was the flight delayed, but our luggage was also lost.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "It was a disastrous trip. Not only was the flight delayed by six hours, but our luggage was also lost, and we never got it back.",
+      "tags": ["listening", "inversion-emphasis"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_inversion_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"No sooner had the meeting started than the fire alarm went off.\" What happened first?",
+      "correct_answer": ["the meeting started"],
+      "distractors": ["the fire alarm went off", "both at exactly the same time", "It doesn't say"],
+      "explanation": "\"No sooner...than\" indica que a reunião começou primeiro, e o alarme tocou logo a seguir.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "inversion-emphasis"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_inversion_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_inversion_emphasis",
+      "prompt": "Translate to English (usando a estrutura enfática com inversão): \"Nunca tinha ouvido uma história tão triste.\"",
+      "correct_answer": ["Never had I heard such a sad story."],
+      "distractors": [],
+      "explanation": "Depois de \"Never\" no início, inverte-se o auxiliar e o sujeito: \"had I heard\", nunca \"I had heard\".",
+      "common_mistake_pt": "Manter a ordem normal (\"Never I had heard\") em vez de inverter é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "inversion-emphasis"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m2_u1_inversion_emphasis",
+    "title": "Never Have I Seen...",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_inversion_emphasis",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_inversion_emphasis#rule" },
+      { "type": "example", "content_ref": "gc_b2_inversion_emphasis#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_inversion_emphasis#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_rarely", "vocab_b2_not_only_but_also", "vocab_b2_no_sooner"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_inversion_001", "ex_b2_inversion_002", "ex_b2_inversion_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_inversion_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_inversion_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The inverted auxiliary carries strong stress, since it's doing the emphatic work of the sentence: \"NEVER have I seen\", \"RARELY does he complain\" — flattening the stress removes the whole emphatic effect."
+      },
+      { "type": "speaking", "prompt": "Say 2 emphatic sentences about your own experiences, starting with 'Never' or 'Rarely', remembering to invert the subject and auxiliary." },
+      { "type": "writing", "prompt": "Write 3 emphatic sentences using inversion — one with 'Never', one with 'Not only...but also', and one with 'No sooner...than'." },
+      { "type": "translation", "exercise_ids": ["ex_b2_inversion_translation_001"] }
+    ]
+  }
+}

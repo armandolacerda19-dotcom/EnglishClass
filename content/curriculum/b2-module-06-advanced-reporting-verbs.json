@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.2",
+  "module": {
+    "id": "mod_b2_6_advanced_reporting_verbs",
+    "title": "Advanced Reporting Verbs",
+    "theme": "reported-speech",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_b2_6_advanced_reporting_verbs",
+    "title": "Beyond Said and Told",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_advanced_reporting_verbs",
+    "title": "Advanced Reporting Verbs",
+    "rule": "Use specific reporting verbs (suggest, insist, deny, admit, recommend, warn, refuse, offer) instead of always using 'say' or 'tell' — each one carries its own precise meaning and often its own grammatical pattern (suggest + -ing/that, deny + -ing, warn + object + to/not to).",
+    "simple_explanation": "Basic reported speech (backshifting tenses after 'said'/'told') is only the starting point — fluent English relies heavily on precise reporting verbs that communicate HOW something was said (as a suggestion, a denial, a warning...), not just WHAT was said.",
+    "example": "She suggested going to the beach. He denied breaking the vase. The doctor warned him not to smoke.",
+    "example_translation": "Ela sugeriu ir à praia. Ele negou ter partido o vaso. O médico avisou-o para não fumar.",
+    "common_mistake_pt": "Depois de aprenderem o reported speech básico, os alunos tendem a continuar a usar sempre \"said that\" para tudo, mesmo quando um verbo mais específico como \"suggested\", \"denied\" ou \"warned\" comunicaria o sentido de forma muito mais natural e precisa. Além disso, cada um destes verbos tem o seu próprio padrão gramatical — \"suggest\" nunca é seguido de objeto + infinitivo com \"to\" (\"suggested him to go\" está errado), ao contrário do que a tradução direta de \"sugeriu-lhe ir\" levaria a pensar.",
+    "correction": "Escolha o verbo de relato que melhor corresponde à intenção real da fala original (suggest = sugestão, deny = negação, warn = aviso, insist = insistência) e siga o padrão gramatical específico desse verbo, não o padrão genérico de \"say\"/\"tell\": suggest + -ing/that, deny + -ing, warn + objeto + to/not to.",
+    "real_world_example": "Summarizing a meeting: \"The manager suggested postponing the launch, but the client insisted on keeping the original date.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_insist",
+      "headword": "insist",
+      "type": "verb",
+      "translation_pt": "insistir",
+      "definition_en": "to say firmly that something must happen or is true, refusing to accept another view",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ɪnˈsɪst/",
+      "related_forms": ["insist on", "insist that"],
+      "example_sentences": ["She insisted on paying for dinner."],
+      "difficulty": 3,
+      "tags": ["reporting-verbs"]
+    },
+    {
+      "id": "vocab_b2_deny",
+      "headword": "deny",
+      "type": "verb",
+      "translation_pt": "negar",
+      "definition_en": "to say that something is not true, or that you didn't do something",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/dɪˈnaɪ/",
+      "related_forms": ["deny doing something"],
+      "example_sentences": ["He denied breaking the vase."],
+      "difficulty": 2,
+      "tags": ["reporting-verbs"]
+    },
+    {
+      "id": "vocab_b2_warn",
+      "headword": "warn",
+      "type": "verb",
+      "translation_pt": "avisar",
+      "definition_en": "to tell someone about a possible danger or problem in advance",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/wɔːrn/",
+      "related_forms": ["warn someone (not) to do something"],
+      "example_sentences": ["The doctor warned him not to smoke."],
+      "difficulty": 2,
+      "tags": ["reporting-verbs"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_reportverb_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_advanced_reporting_verbs",
+      "prompt": "Complete: She suggested ___ (go) to the beach.",
+      "correct_answer": ["going"],
+      "distractors": ["to go", "go", "went"],
+      "explanation": "\"Suggest\" é seguido de verbo-ing (ou \"that\" + oração), nunca de objeto + infinitivo com \"to\": \"suggested going\".",
+      "common_mistake_pt": "Usar \"suggested to go\" ou \"suggested him to go\" é o erro mais comum, por tradução direta de \"sugeriu ir\"/\"sugeriu-lhe ir\".",
+      "audio_url": null,
+      "tags": ["reporting-verbs"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_reportverb_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_advanced_reporting_verbs",
+      "prompt": "Complete: The doctor warned him ___ (not/smoke).",
+      "correct_answer": ["not to smoke"],
+      "distractors": ["to not smoke", "not smoking", "don't smoke"],
+      "explanation": "\"Warn\" segue o padrão \"warn + objeto + not to + verbo\": \"warned him not to smoke\".",
+      "common_mistake_pt": "Colocar \"not\" depois de \"to\" (\"to not smoke\") é um erro comum de ordem de palavras.",
+      "audio_url": null,
+      "tags": ["reporting-verbs"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_reportverb_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"deny\" mean?",
+      "correct_answer": ["to say that something is not true, or that you didn't do something"],
+      "distractors": ["to admit something happened", "to ask a question", "to suggest an idea"],
+      "explanation": "\"Deny\" é o oposto de \"admit\" — significa recusar que algo é verdade ou que se fez algo.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "reporting-verbs"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_reportverb_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What did the client insist on?",
+      "correct_answer": ["keeping the original date", "the original date"],
+      "distractors": ["postponing the launch", "cancelling the project", "changing the price"],
+      "explanation": "No áudio, ouve-se: \"the client insisted on keeping the original date.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "The manager suggested postponing the launch, but the client insisted on keeping the original date, so we had to find a way to make it work.",
+      "tags": ["listening", "reporting-verbs"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_reportverb_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"When questioned, the employee denied taking the money, but later admitted it under pressure.\" Did the employee tell the truth immediately?",
+      "correct_answer": ["no", "no, he denied it at first"],
+      "distractors": ["yes", "It doesn't say"],
+      "explanation": "O texto diz que ele primeiro \"denied taking the money\" e só depois \"admitted it\" — não disse a verdade de imediato.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "reporting-verbs"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_reportverb_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_advanced_reporting_verbs",
+      "prompt": "Translate to English: \"Ela negou ter perdido as chaves.\"",
+      "correct_answer": ["She denied losing the keys.", "She denied having lost the keys."],
+      "distractors": [],
+      "explanation": "\"Deny\" é seguido de verbo-ing (\"denied losing\"), nunca de \"that\" + infinitivo nem de \"to\" + verbo.",
+      "common_mistake_pt": "Traduzir para \"She denied to have lost the keys\" é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "reporting-verbs"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m6_u1_advanced_reporting_verbs",
+    "title": "Beyond Said and Told",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_advanced_reporting_verbs",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_advanced_reporting_verbs#rule" },
+      { "type": "example", "content_ref": "gc_b2_advanced_reporting_verbs#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_advanced_reporting_verbs#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_insist", "vocab_b2_deny", "vocab_b2_warn"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_reportverb_001", "ex_b2_reportverb_002", "ex_b2_reportverb_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_reportverb_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_reportverb_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Reporting verbs like \"insisted\", \"denied\" and \"warned\" usually carry the main stress of the reporting clause, since they replace a whole explanation of tone: \"She INSISTED on paying\", not a flat, evenly-stressed reading."
+      },
+      { "type": "speaking", "prompt": "Report a real or invented conversation using at least 2 different reporting verbs (suggest, insist, deny, warn, admit, refuse, offer)." },
+      { "type": "writing", "prompt": "Write 3 sentences reporting things people said, using 3 different reporting verbs instead of 'said'/'told' — pay attention to each verb's grammatical pattern." },
+      { "type": "translation", "exercise_ids": ["ex_b2_reportverb_translation_001"] }
+    ]
+  }
+}

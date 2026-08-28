@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.2",
+  "module": {
+    "id": "mod_b2_4_cleft_sentences",
+    "title": "Cleft Sentences",
+    "theme": "emphasis",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_b2_4_cleft_sentences",
+    "title": "It Was John Who...",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_cleft_sentences",
+    "title": "Cleft Sentences",
+    "rule": "Use cleft sentences ('It is/was + emphasized part + that/who...' or 'What + clause + is/was + emphasized part') to highlight one specific piece of information as the most important part of the sentence.",
+    "simple_explanation": "A 'cleft' sentence splits ('cleaves') one idea into two parts specifically to put the spotlight on one piece of information — useful for correcting a misunderstanding or making your main point unmistakable.",
+    "example": "It was John who broke the window, not Peter. What I need is a good night's sleep.",
+    "example_translation": "Foi o João que partiu a janela, não o Pedro. O que eu preciso é de uma boa noite de sono.",
+    "common_mistake_pt": "O português consegue dar ênfase só com entoação ou uma ligeira reordenação (\"foi o João que partiu a janela\" já soa natural sem uma estrutura gramatical fixa). Isso leva a traduzir frases enfáticas para inglês palavra a palavra sem usar \"It is/was...that\" ou \"What...is\", perdendo o efeito de ênfase ou produzindo uma frase gramaticalmente estranha.",
+    "correction": "Para dar ênfase a uma parte específica da frase em inglês, use \"It is/was + [parte enfatizada] + that/who + resto da frase\", ou \"What + [resto da frase] + is/was + [parte enfatizada]\" — não basta reordenar as palavras como em português.",
+    "real_world_example": "Clarifying a misunderstanding at work: \"It was the client who cancelled the meeting, not us.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_clarify",
+      "headword": "clarify",
+      "type": "verb",
+      "translation_pt": "esclarecer",
+      "definition_en": "to make something clearer or easier to understand",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˈklærɪfaɪ/",
+      "related_forms": ["clarification"],
+      "example_sentences": ["Let me clarify what I meant."],
+      "difficulty": 2,
+      "tags": ["cleft-sentences"]
+    },
+    {
+      "id": "vocab_b2_misunderstanding",
+      "headword": "misunderstanding",
+      "type": "noun",
+      "translation_pt": "mal-entendido",
+      "definition_en": "a situation where something is not understood correctly",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ˌmɪsʌndərˈstændɪŋ/",
+      "related_forms": ["misunderstand"],
+      "example_sentences": ["There's been a misunderstanding about the schedule."],
+      "difficulty": 3,
+      "tags": ["cleft-sentences"]
+    },
+    {
+      "id": "vocab_b2_to_blame",
+      "headword": "to blame",
+      "type": "verb",
+      "translation_pt": "culpar",
+      "definition_en": "to say or think that someone is responsible for something bad",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/tə bleɪm/",
+      "related_forms": ["to blame someone for something", "who's to blame"],
+      "example_sentences": ["It's not fair to blame him for this."],
+      "difficulty": 2,
+      "tags": ["cleft-sentences"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_cleft_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_cleft_sentences",
+      "prompt": "Complete: ___ broke the window, not Peter.",
+      "correct_answer": ["It was John who"],
+      "distractors": ["John was who", "John it was that", "It John was who"],
+      "explanation": "A estrutura de ênfase é \"It was + [parte enfatizada] + who\": \"It was John who\".",
+      "common_mistake_pt": "Trocar a ordem das partes (\"John was who\") é um erro comum ao tentar formar esta estrutura.",
+      "audio_url": null,
+      "tags": ["cleft-sentences"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_cleft_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_cleft_sentences",
+      "prompt": "Complete: ___ is a good night's sleep.",
+      "correct_answer": ["What I need"],
+      "distractors": ["What need I", "I need what", "That I need"],
+      "explanation": "A estrutura é \"What + sujeito + verbo + is/was + [parte enfatizada]\": \"What I need is...\".",
+      "common_mistake_pt": "Inverter sujeito e verbo depois de \"What\" (\"What need I\") é um erro comum, por confundir com uma pergunta.",
+      "audio_url": null,
+      "tags": ["cleft-sentences"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_cleft_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"to clarify\" mean?",
+      "correct_answer": ["to make something clearer or easier to understand"],
+      "distractors": ["to confuse someone", "to complain about something", "to blame someone"],
+      "explanation": "\"Clarify\" significa tornar algo mais claro, geralmente para resolver uma confusão.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "cleft-sentences"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_cleft_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Who cancelled the meeting?",
+      "correct_answer": ["the client", "the client, not us"],
+      "distractors": ["us", "nobody", "It doesn't say"],
+      "explanation": "No áudio, ouve-se: \"It was the client who cancelled the meeting, not us.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I just want to clarify a misunderstanding — it was the client who cancelled the meeting, not us. We were ready to go ahead as planned.",
+      "tags": ["listening", "cleft-sentences"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_cleft_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"What surprised everyone was not the result, but how quickly it happened.\" What surprised people?",
+      "correct_answer": ["how quickly it happened"],
+      "distractors": ["the result itself", "nothing surprised anyone", "It doesn't say"],
+      "explanation": "A estrutura de ênfase deixa claro que a surpresa foi a rapidez, não o resultado em si.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "cleft-sentences"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_cleft_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_cleft_sentences",
+      "prompt": "Translate to English (usando uma estrutura de ênfase): \"Foi a Maria que resolveu o problema, não o gestor.\"",
+      "correct_answer": ["It was Maria who solved the problem, not the manager."],
+      "distractors": [],
+      "explanation": "A estrutura \"It was + [parte enfatizada] + who\" destaca quem realmente resolveu o problema.",
+      "common_mistake_pt": "Traduzir apenas com ordem normal (\"Maria solved the problem, not the manager\") perde o efeito de ênfase e corrige o erro de forma menos direta.",
+      "audio_url": null,
+      "tags": ["translation", "cleft-sentences"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m4_u1_cleft_sentences",
+    "title": "It Was John Who...",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_cleft_sentences",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_cleft_sentences#rule" },
+      { "type": "example", "content_ref": "gc_b2_cleft_sentences#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_cleft_sentences#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_clarify", "vocab_b2_misunderstanding", "vocab_b2_to_blame"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_cleft_001", "ex_b2_cleft_002", "ex_b2_cleft_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_cleft_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_cleft_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The emphasized part of a cleft sentence gets the strongest stress in the whole sentence: \"It was JOHN who broke the window\" — the listener's ear is meant to land squarely on that one word."
+      },
+      { "type": "speaking", "prompt": "Correct a small misunderstanding using a cleft sentence — e.g. clarify who really did something, or what you actually meant." },
+      { "type": "writing", "prompt": "Write 3 emphatic sentences using cleft structures: 2 with 'It is/was...that/who' and 1 with 'What...is/was'." },
+      { "type": "translation", "exercise_ids": ["ex_b2_cleft_translation_001"] }
+    ]
+  }
+}

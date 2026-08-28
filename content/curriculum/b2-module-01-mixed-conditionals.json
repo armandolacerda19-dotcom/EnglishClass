@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.1",
+  "module": {
+    "id": "mod_b2_1_mixed_conditionals",
+    "title": "Mixed Conditionals",
+    "theme": "conditionals",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_b2_1_mixed_conditionals",
+    "title": "When Past and Present Mix",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_mixed_conditionals",
+    "title": "Mixed Conditionals",
+    "rule": "Mix the Second and Third Conditional when the time of the condition and the time of the result are different: use 'If + Past Perfect, ... would + base verb' for a past condition with a PRESENT result, or 'If + Past Simple, ... would have + past participle' for a present/permanent condition with a PAST result.",
+    "simple_explanation": "The 'standard' Second and Third Conditionals assume the condition and the result happen at the same time (both hypothetical present, or both hypothetical past). Mixed conditionals exist for the very common case where they don't — a past decision still affecting the present, or a permanent trait that would have changed a past event.",
+    "example": "If I had studied medicine, I would be a doctor now. (past condition, present result) — If I weren't so shy, I would have asked her out years ago. (present/permanent condition, past result)",
+    "example_translation": "Se tivesse estudado medicina, seria médico agora. — Se não fosse tão tímido, tinha-lhe pedido para sair há anos.",
+    "common_mistake_pt": "Depois de dominarem o Second e o Third Conditional separadamente, os alunos tendem a aplicar sempre o mesmo tempo verbal às duas orações, mesmo quando a condição e o resultado pertencem claramente a momentos diferentes — dizem \"If I had studied medicine, I would have been a doctor now\" (errado: mistura passado com passado quando o resultado é sobre AGORA).",
+    "correction": "Identifique separadamente o tempo da condição e o tempo do resultado antes de escolher a estrutura: condição no passado + resultado no presente = Past Perfect + would + verbo base; condição permanente/presente + resultado no passado = Past Simple + would have + particípio.",
+    "real_world_example": "Reflecting on a career choice: \"If I had taken that job offer, I would be living in London now.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_in_hindsight",
+      "headword": "in hindsight",
+      "type": "expression",
+      "translation_pt": "em retrospetiva, vendo bem agora",
+      "definition_en": "understanding a situation only after it has happened, with the benefit of later knowledge",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ɪn ˈhaɪndsaɪt/",
+      "related_forms": ["hindsight is 20/20"],
+      "example_sentences": ["In hindsight, I should have accepted that offer."],
+      "difficulty": 3,
+      "tags": ["mixed-conditionals"]
+    },
+    {
+      "id": "vocab_b2_career_path",
+      "headword": "career path",
+      "type": "noun",
+      "translation_pt": "percurso profissional",
+      "definition_en": "the sequence of jobs and choices that make up someone's professional life",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/kəˈrɪr pæθ/",
+      "related_forms": ["change career path"],
+      "example_sentences": ["She's thinking about changing her career path completely."],
+      "difficulty": 2,
+      "tags": ["work"]
+    },
+    {
+      "id": "vocab_b2_regretfully",
+      "headword": "regretfully",
+      "type": "adverb",
+      "translation_pt": "com pesar, infelizmente",
+      "definition_en": "in a way that shows sadness or regret about something",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/rɪˈɡrɛtfəli/",
+      "related_forms": ["regretful"],
+      "example_sentences": ["Regretfully, I turned down the opportunity."],
+      "difficulty": 3,
+      "tags": ["emotions"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_mixedcond_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_mixed_conditionals",
+      "prompt": "Complete: If I ___ (study) medicine, I would be a doctor now.",
+      "correct_answer": ["had studied"],
+      "distractors": ["studied", "would have studied", "have studied"],
+      "explanation": "Condição no passado + resultado no presente ('now') — pede Past Perfect na condição: \"had studied\".",
+      "common_mistake_pt": "Usar \"studied\" (Second Conditional puro) ignora que a condição é claramente sobre o passado, não sobre uma hipótese presente.",
+      "audio_url": null,
+      "tags": ["mixed-conditionals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_mixedcond_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_mixed_conditionals",
+      "prompt": "Complete: If she weren't so shy, she ___ (ask) him out years ago.",
+      "correct_answer": ["would have asked"],
+      "distractors": ["would ask", "asked", "had asked"],
+      "explanation": "Condição permanente (\"weren't so shy\", um traço de personalidade) + resultado no passado — pede \"would have asked\".",
+      "common_mistake_pt": "Usar \"would ask\" (Second Conditional puro) ignora que o resultado é claramente sobre um momento passado (\"years ago\").",
+      "audio_url": null,
+      "tags": ["mixed-conditionals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_mixedcond_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"in hindsight\" mean?",
+      "correct_answer": ["understanding a situation only after it has happened, with later knowledge"],
+      "distractors": ["planning carefully for the future", "acting without thinking", "asking for advice"],
+      "explanation": "\"In hindsight\" descreve uma compreensão que só existe depois do facto, olhando para trás.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "mixed-conditionals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_mixedcond_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Where would the speaker be living now, if they had taken the job offer?",
+      "correct_answer": ["London"],
+      "distractors": ["Paris", "New York", "It doesn't say"],
+      "explanation": "No áudio, ouve-se: \"If I had taken that job offer, I would be living in London now.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "In hindsight, if I had taken that job offer ten years ago, I would be living in London now, working in a completely different career path.",
+      "tags": ["listening", "mixed-conditionals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_mixedcond_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"If Marta hadn't dropped out of university, she would probably be a lawyer today. Regretfully, she never went back.\" What is true about Marta today?",
+      "correct_answer": ["She is not a lawyer", "She dropped out of university"],
+      "distractors": ["She is a successful lawyer", "She went back to university", "It doesn't say"],
+      "explanation": "O condicional misto indica que ela NÃO é advogada hoje (é hipotético) — ela desistiu da universidade e nunca voltou.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "mixed-conditionals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_mixedcond_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_mixed_conditionals",
+      "prompt": "Translate to English: \"Se eu tivesse aprendido inglês mais cedo, seria mais fácil agora.\"",
+      "correct_answer": ["If I had learned English earlier, it would be easier now.", "If I had learnt English earlier, it would be easier now."],
+      "distractors": [],
+      "explanation": "Condição no passado (\"tivesse aprendido\") + resultado no presente (\"agora\") — pede Past Perfect + would + verbo base, a mistura clássica.",
+      "common_mistake_pt": "Usar \"would have been easier\" (Third Conditional puro) ignora que o resultado é sobre AGORA, não sobre o passado.",
+      "audio_url": null,
+      "tags": ["translation", "mixed-conditionals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m1_u1_mixed_conditionals",
+    "title": "When Past and Present Mix",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_mixed_conditionals",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_mixed_conditionals#rule" },
+      { "type": "example", "content_ref": "gc_b2_mixed_conditionals#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_mixed_conditionals#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_in_hindsight", "vocab_b2_career_path", "vocab_b2_regretfully"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_mixedcond_001", "ex_b2_mixedcond_002", "ex_b2_mixedcond_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_mixedcond_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_mixedcond_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Would have\" in mixed conditionals is almost always contracted and reduced in natural speech to /wʊdəv/ — sounding like \"would of\" to many learners, though that spelling is always wrong in writing."
+      },
+      { "type": "speaking", "prompt": "Talk about one past decision that still affects your life today, using a mixed conditional (\"If I had/hadn't..., I would/wouldn't be...\")." },
+      { "type": "writing", "prompt": "Write 3 mixed conditional sentences about your own life — a past decision with a present result, or a permanent trait that would have changed a past event." },
+      { "type": "translation", "exercise_ids": ["ex_b2_mixedcond_translation_001"] }
+    ]
+  }
+}

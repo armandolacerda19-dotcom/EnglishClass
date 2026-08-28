@@ -38,6 +38,16 @@
         { "number": 1, "code": "B1.1", "order": 6 },
         { "number": 2, "code": "B1.2", "order": 7 }
       ]
+    },
+    {
+      "cefr": "B2",
+      "order": 4,
+      "title": "B2 — Vantage",
+      "description": "Comunicação fluente e espontânea com falantes nativos, argumentação clara sobre temas complexos, compreensão das ideias principais em texto e discurso técnico ou abstrato dentro da área de especialidade.",
+      "sublevels": [
+        { "number": 1, "code": "B2.1", "order": 8 },
+        { "number": 2, "code": "B2.2", "order": 9 }
+      ]
     }
   ]
 }

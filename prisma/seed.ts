@@ -42,6 +42,12 @@ import moduleSoNeitherAgreement from "../content/curriculum/b1-module-12-so-neit
 import moduleIndirectQuestions from "../content/curriculum/b1-module-13-indirect-questions.json";
 import moduleAdjectiveOrder from "../content/curriculum/a2-module-12-adjective-order.json";
 import moduleReflexivePronouns from "../content/curriculum/a1-module-15-reflexive-pronouns.json";
+import moduleMixedConditionals from "../content/curriculum/b2-module-01-mixed-conditionals.json";
+import moduleInversionEmphasis from "../content/curriculum/b2-module-02-inversion-emphasis.json";
+import modulePastModals from "../content/curriculum/b2-module-03-past-modals.json";
+import moduleCleftSentences from "../content/curriculum/b2-module-04-cleft-sentences.json";
+import moduleParticipleClauses from "../content/curriculum/b2-module-05-participle-clauses.json";
+import moduleAdvancedReportingVerbs from "../content/curriculum/b2-module-06-advanced-reporting-verbs.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -130,6 +136,15 @@ const MODULE_FILES = [
   moduleWishClauses, // B1.2 — logo a seguir a third-conditional (mesma lógica "recuar um tempo verbal"); gap real, "wish" nunca tinha módulo próprio (Fase 13, 2026-08-27)
   moduleCausativeHaveGet, // B1.2 — gap real: "have/get something done" nunca teve módulo próprio, apesar de comum no dia a dia (Fase 13, 2026-08-27)
   moduleIndirectQuestions, // B1.2 — último módulo B1, gap real: perguntas indiretas educadas ("Could you tell me where...") nunca tiveram módulo próprio (Fase 13, 2026-08-27)
+  // B2 — nível novo nesta sessão (Fase 13, 2026-08-27): o schema já suportava
+  // CefrLevel.B2 desde a Fase 0, mas nunca tinha Level/Sublevel nem módulos
+  // seedados. Ver levels.json e docs/decisions.md.
+  moduleMixedConditionals, // B2.1
+  moduleInversionEmphasis, // B2.1
+  modulePastModals, // B2.1
+  moduleCleftSentences, // B2.2
+  moduleParticipleClauses, // B2.2
+  moduleAdvancedReportingVerbs, // B2.2
 ];
 
 async function seedLevels() {

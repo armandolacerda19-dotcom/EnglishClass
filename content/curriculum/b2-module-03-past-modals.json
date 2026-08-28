@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B2.1",
+  "module": {
+    "id": "mod_b2_3_past_modals",
+    "title": "Should Have / Needn't Have",
+    "theme": "modals",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_b2_3_past_modals",
+    "title": "Criticizing and Looking Back",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b2_past_modals",
+    "title": "Should Have / Needn't Have / Didn't Need To",
+    "rule": "Use 'should have + past participle' to criticize a past action that DIDN'T happen (a missed opportunity or mistake), 'needn't have + past participle' for something unnecessary that WAS done anyway, and 'didn't need to' for something unnecessary that simply wasn't done.",
+    "simple_explanation": "These three structures let you comment on the past with real precision: regret about something that didn't happen, or judging whether an effort that was (or wasn't) made was actually necessary.",
+    "example": "You should have called me. (you didn't, and that was a mistake) — I needn't have brought an umbrella. (I brought it, but it didn't rain, so it was pointless) — I didn't need to buy milk. (we already had some, so I simply didn't buy it)",
+    "example_translation": "Devias ter-me ligado. — Não precisava de ter trazido um guarda-chuva. — Não precisei de comprar leite.",
+    "common_mistake_pt": "O português não distingue com clareza estas três situações — \"não precisava\" serve tanto para uma ação que se fez sem necessidade como para uma que simplesmente não se fez, ao contrário do inglês, que usa estruturas diferentes para cada caso: \"needn't have done\" (fez, mas não era preciso) vs. \"didn't need to do\" (não precisava, e por isso não fez).",
+    "correction": "Use \"should have\" para criticar algo que não aconteceu; \"needn't have\" quando a ação aconteceu mas era desnecessária; \"didn't need to\" quando a ação nem chegou a acontecer, porque não era necessária.",
+    "real_world_example": "After a stressful trip: \"We needn't have rushed — the train was delayed anyway.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b2_in_vain",
+      "headword": "in vain",
+      "type": "expression",
+      "translation_pt": "em vão",
+      "definition_en": "without success, achieving nothing despite the effort",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ɪn veɪn/",
+      "related_forms": ["try in vain"],
+      "example_sentences": ["We rushed to the station in vain — the train had already left."],
+      "difficulty": 3,
+      "tags": ["past-modals"]
+    },
+    {
+      "id": "vocab_b2_unnecessary",
+      "headword": "unnecessary",
+      "type": "adjective",
+      "translation_pt": "desnecessário",
+      "definition_en": "not needed; more than is required",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/ʌnˈnɛsəsɛri/",
+      "related_forms": ["necessary", "unnecessarily"],
+      "example_sentences": ["All that worry was completely unnecessary."],
+      "difficulty": 2,
+      "tags": ["past-modals"]
+    },
+    {
+      "id": "vocab_b2_rush",
+      "headword": "rush",
+      "type": "verb",
+      "translation_pt": "apressar-se",
+      "definition_en": "to move or act with great speed, often because of time pressure",
+      "cefr_level": "B2",
+      "audio_url": null,
+      "ipa": "/rʌʃ/",
+      "related_forms": ["rush hour", "in a rush"],
+      "example_sentences": ["We rushed to catch the last train."],
+      "difficulty": 2,
+      "tags": ["past-modals"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b2_pastmodal_001",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_past_modals",
+      "prompt": "Complete: You ___ (call) me — I was really worried!",
+      "correct_answer": ["should have called"],
+      "distractors": ["should call", "needn't have called", "didn't need to call"],
+      "explanation": "Crítica a algo que não aconteceu (não ligaste) — pede \"should have called\".",
+      "common_mistake_pt": "Usar \"should call\" (sem \"have\") perde a referência ao passado — soa a um conselho para o futuro, não a uma crítica sobre o passado.",
+      "audio_url": null,
+      "tags": ["past-modals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_pastmodal_002",
+      "cefr_level": "B2",
+      "pillar": "grammar",
+      "concept_ref": "gc_b2_past_modals",
+      "prompt": "Complete: It didn't rain at all, so I ___ (bring) an umbrella.",
+      "correct_answer": ["needn't have brought"],
+      "distractors": ["didn't need to bring", "shouldn't have brought", "mustn't have brought"],
+      "explanation": "A ação (trazer o guarda-chuva) aconteceu, mas era desnecessária — pede \"needn't have brought\", não \"didn't need to bring\" (que implicaria que ele não a trouxe).",
+      "common_mistake_pt": "Confundir \"needn't have brought\" (trouxe, sem necessidade) com \"didn't need to bring\" (não precisava, por isso não trouxe) é o erro central deste ponto gramatical.",
+      "audio_url": null,
+      "tags": ["past-modals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_pastmodal_vocab_001",
+      "cefr_level": "B2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"in vain\" mean?",
+      "correct_answer": ["without success, achieving nothing despite the effort"],
+      "distractors": ["very quickly", "with great confidence", "by accident"],
+      "explanation": "\"In vain\" descreve um esforço que não teve sucesso nenhum.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "past-modals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_pastmodal_listening_001",
+      "cefr_level": "B2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Was rushing to the station necessary, according to the speaker?",
+      "correct_answer": ["no", "no, it was unnecessary"],
+      "distractors": ["yes", "the speaker doesn't say"],
+      "explanation": "No áudio, ouve-se: \"We needn't have rushed — the train was delayed anyway.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "We needn't have rushed to the station like that — the train was delayed anyway, so we ended up waiting twenty minutes for nothing.",
+      "tags": ["listening", "past-modals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_pastmodal_reading_001",
+      "cefr_level": "B2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Ricardo studied all weekend for the test, but it was cancelled. He needn't have studied so hard.\" Did Ricardo take the test?",
+      "correct_answer": ["no", "no, it was cancelled"],
+      "distractors": ["yes", "It doesn't say"],
+      "explanation": "O texto diz diretamente que o teste \"was cancelled\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "past-modals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b2_pastmodal_translation_001",
+      "cefr_level": "B2",
+      "pillar": "translation",
+      "concept_ref": "gc_b2_past_modals",
+      "prompt": "Translate to English: \"Não precisei de comprar leite, já tínhamos.\" (não chegou a comprar)",
+      "correct_answer": ["I didn't need to buy milk, we already had some."],
+      "distractors": [],
+      "explanation": "Como a compra nem chegou a acontecer (não era preciso, por isso não comprou), pede \"didn't need to\", não \"needn't have\".",
+      "common_mistake_pt": "Usar \"needn't have bought\" aqui sugeriria que ele comprou o leite mesmo sem ser preciso, o que contradiz a frase original.",
+      "audio_url": null,
+      "tags": ["translation", "past-modals"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b2_m3_u1_past_modals",
+    "title": "Criticizing and Looking Back",
+    "cefr_level": "B2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b2_past_modals",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b2_past_modals#rule" },
+      { "type": "example", "content_ref": "gc_b2_past_modals#example" },
+      { "type": "common_mistake", "content_ref": "gc_b2_past_modals#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b2_in_vain", "vocab_b2_unnecessary", "vocab_b2_rush"] },
+      { "type": "exercise", "exercise_ids": ["ex_b2_pastmodal_001", "ex_b2_pastmodal_002", "ex_b2_pastmodal_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b2_pastmodal_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b2_pastmodal_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Should have\", \"needn't have\" and \"didn't need to\" are all heavily contracted in speech: \"should've\" /ʃʊdəv/, \"needn't've\" /ˈniːdntəv/ — listen for the weak /əv/ sound, not a clear \"have\"."
+      },
+      { "type": "speaking", "prompt": "Talk about something you should have done differently recently, and something you did that turned out to be unnecessary." },
+      { "type": "writing", "prompt": "Write 3 sentences: one with 'should have', one with 'needn't have', and one with 'didn't need to', each about a real or invented past situation." },
+      { "type": "translation", "exercise_ids": ["ex_b2_pastmodal_translation_001"] }
+    ]
+  }
+}
