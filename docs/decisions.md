@@ -2,6 +2,18 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Bug real: Diagnóstico Semanal e Sheets de tema misturavam qualquer nível CEFR
+
+Terceiro bug real desta ronda, encontrado pelo mesmo processo dos dois anteriores (rever o que muda de comportamento ao introduzir B2). `buildQuestionSet` (`src/lib/practiceQuestions.ts`) — o motor partilhado por trás do Diagnóstico Semanal e das Sheets de tema, as duas superfícies de "testa-me" da app — nunca filtrava exercícios por `Exercise.cefr`. Escolhia ao acaso entre **todos** os níveis seedados para qualquer pilar pedido, para qualquer utilizador. Com currículo só até B1 isto já era questionável (um Pre-A1 podia apanhar uma pergunta B1); com B2 a existir agora (estruturas claramente fora de alcance para um iniciante — inversão para ênfase, cleft sentences, orações de particípio), o problema deixou de ser teórico.
+
+Correção:
+- `buildQuestionSet(pillars, seed, perPillar, userId?, userLevel?)` — novo parâmetro opcional `userLevel`. Quando presente, usa `cefrLevelsUpTo(userLevel)` (nova função pura, exportada só para teste — mesmo padrão de `classify` em `certificate.ts`) para restringir a exercícios do nível do utilizador **ou abaixo**, nunca acima.
+- **Recuo seguro**: se não houver nenhum exercício dentro do nível do utilizador para um pilar (situação rara, mas possível para utilizadores muito iniciantes com pouco conteúdo ainda seedado nesse nível específico), volta a usar todos os níveis para esse pilar em particular — preferível a mostrar o ecrã "sem exercícios ainda" para algo que só é um problema de volume, não de nível.
+- `getWeeklyTest` (`weeklyTest.ts`) e as duas páginas que chamam `buildQuestionSet` diretamente (`practice/weekly-test/page.tsx`, `practice/topic/[pillar]/page.tsx`) passam agora `learningProfile.currentLevel`.
+- 4 testes unitários novos (`practiceQuestions.test.ts`) cobrindo `cefrLevelsUpTo`: Pre-A1 só inclui Pre-A1, B1 não inclui B2, B2 não inclui C1, um nível desconhecido (não deveria acontecer, mas não deve rebentar) devolve todos os níveis em vez de nenhum.
+
+Nota: como `currentLevel` agora também avança automaticamente (correção anterior nesta mesma ronda), este filtro acompanha o utilizador à medida que sobe de nível — nunca fica preso a um nível de placement desatualizado.
+
 ## 2026-08-27 — Fase 14 continuada: mais 3 textos de leitura
 
 5º lote em `readingPassages.ts`: `power-cut-instructions` (A2, "instructions"), `neighbour-noise-dialogue` (B1, "dialogue"), `conference-registration-email` (B2, "email"). Total de textos de leitura: 73 → 76.
