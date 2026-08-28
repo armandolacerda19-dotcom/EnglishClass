@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 continuada: So Do I / Neither Do I (B1.1)
+
+Mais um gap real, encontrado depois de reabrir a revisão de gramática a pedido do utilizador ("pode continuar as atualizações"): a estrutura de concordância curta com auxiliar — "So do I" (concordar com afirmativa), "Neither have I" (concordar com negativa) — nunca teve módulo próprio, apesar de ser uma das construções mais usadas na conversa do dia a dia. É também um ponto onde o português não ajuda: "eu também"/"eu também não" não mudam de estrutura consoante o tempo verbal da frase original, enquanto em inglês o auxiliar usado (do/does/did, have/has, am/is/are, can, will...) tem sempre de corresponder ao da frase que se está a concordar, com inversão obrigatória (auxiliar antes do sujeito, como numa pergunta). `b1-module-12-so-neither-agreement.json`, B1.1, último módulo dessa sublevel.
+
+Mesmo processo de sempre: JSON validado com `ConvertFrom-Json`, ids confirmados únicos por `grep`, `prisma/seed.ts` atualizado. Reverificação exaustiva de todo o currículo depois deste módulo: **509 ids em 39 módulos, zero duplicatas** — confirma que a disciplina de verificação por grep antes de cada commit continua a segurar a integridade dos dados mesmo com o currículo a crescer lote a lote. **Currículo: 38 → 39 lições.**
+
 ## 2026-08-27 — Fase 13 continuada: Have/Get Something Done — causativo (B1.2)
 
 Último gap encontrado nesta ronda de revisão de gramática: a estrutura causativa "have/get + objeto + particípio passado" — usada para dizer que outra pessoa faz algo por si ("I had my hair cut", "we're getting the roof fixed") — nunca teve módulo próprio, apesar de ser extremamente comum no dia a dia (cabeleireiro, oficina, obras em casa). É também um ponto onde o português não ajuda nada: usa-se o mesmo verbo na ativa quer a pessoa tenha feito o trabalho pessoalmente quer tenha mandado fazer ("cortei o cabelo" serve para os dois casos), o que faz muitos alunos dizerem "I cut my hair" quando querem dizer que foram ao cabeleireiro — frase que em inglês significa especificamente que a própria pessoa pegou na tesoura. `b1-module-11-causative-have-get.json`, B1.2, último módulo B1 na ordem do seed.
