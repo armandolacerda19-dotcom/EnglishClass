@@ -36,13 +36,31 @@ function seededPick<T>(items: T[], seed: number, count: number): T[] {
   return seededShuffle(items, seed).slice(0, count);
 }
 
+// Fase 13 (auditoria 2026-08-27, achado real ao introduzir B2 nesta sessão):
+// buildQuestionSet nunca filtrava por CEFR — misturava exercícios de
+// QUALQUER nível seedado (Pre-A1 a B2) na mesma seleção aleatória. Com só
+// Pre-A1→B1 isto já era discutível; com B2 a existir (estruturas como
+// inversão, cleft sentences, participle clauses), um utilizador Pre-A1
+// podia genuinamente receber uma pergunta B2 no Diagnóstico Semanal — o
+// oposto de um teste de nivelamento coerente. `cefrLevelsUpTo` devolve o
+// nível do utilizador e todos os anteriores, nunca os seguintes.
+const CEFR_ORDER = ["PRE_A1", "A1", "A2", "B1", "B2", "C1", "C2"] as const;
+// Exportada (mesmo padrão de `classify` em certificate.ts, Fase 8) só para ter
+// um teste unitário direto sem precisar de mockar o Prisma.
+export function cefrLevelsUpTo(level: string): Set<string> {
+  const index = CEFR_ORDER.indexOf(level as (typeof CEFR_ORDER)[number]);
+  return new Set(index >= 0 ? CEFR_ORDER.slice(0, index + 1) : CEFR_ORDER);
+}
+
 export async function buildQuestionSet(
   pillars: Pillar[],
   seed: number,
   perPillar: number,
-  userId?: string
+  userId?: string,
+  userLevel?: string
 ): Promise<PracticeQuestion[]> {
   const questions: PracticeQuestion[] = [];
+  const allowedLevels = userLevel ? cefrLevelsUpTo(userLevel) : null;
 
   // Uma query para todos os pilares, não uma por pilar — antes disto, o
   // Diagnóstico Semanal (5 pilares) fazia 5 idas sequenciais à base de dados
@@ -55,10 +73,17 @@ export async function buildQuestionSet(
     orderBy: { id: "asc" },
   });
   const byPillar = new Map<Pillar, typeof allExercises>();
+  const byPillarAtLevel = new Map<Pillar, typeof allExercises>();
   for (const ex of allExercises) {
     const bucket = byPillar.get(ex.pillar) ?? [];
     bucket.push(ex);
     byPillar.set(ex.pillar, bucket);
+
+    if (allowedLevels?.has(ex.cefr)) {
+      const levelBucket = byPillarAtLevel.get(ex.pillar) ?? [];
+      levelBucket.push(ex);
+      byPillarAtLevel.set(ex.pillar, levelBucket);
+    }
   }
 
   // Fase 11 (auditoria 2026-08-27, secção 3): antes, este motor — que alimenta
@@ -83,7 +108,12 @@ export async function buildQuestionSet(
   }
 
   for (const pillar of pillars) {
-    const exercises = byPillar.get(pillar) ?? [];
+    // Prefere o conjunto filtrado por nível; só recua para todos os níveis
+    // seedados se não houver NENHUM exercício deste pilar ao nível do
+    // utilizador (ou nível abaixo) — melhor mostrar algo ligeiramente acima
+    // do nível do que mostrar o ecrã "sem exercícios ainda".
+    const atLevel = byPillarAtLevel.get(pillar) ?? [];
+    const exercises = allowedLevels && atLevel.length > 0 ? atLevel : byPillar.get(pillar) ?? [];
     if (exercises.length === 0) continue;
 
     const take = Math.min(perPillar, exercises.length);

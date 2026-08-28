@@ -25,6 +25,6 @@ function weekSeed(date: Date) {
 
 export type WeeklyTestQuestion = PracticeQuestion;
 
-export async function getWeeklyTest(date: Date = new Date(), userId?: string): Promise<WeeklyTestQuestion[]> {
-  return buildQuestionSet(TESTABLE_PILLARS, weekSeed(date), PER_PILLAR, userId);
+export async function getWeeklyTest(date: Date = new Date(), userId?: string, userLevel?: string): Promise<WeeklyTestQuestion[]> {
+  return buildQuestionSet(TESTABLE_PILLARS, weekSeed(date), PER_PILLAR, userId, userLevel);
 }

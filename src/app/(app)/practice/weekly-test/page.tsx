@@ -13,7 +13,7 @@ function daysAgo(n: number) {
 
 // Diagnóstico Semanal — 1x por semana, para não competir com o Desafio Diário.
 export default async function WeeklyTestPage() {
-  const { user } = await requireUserWithProfile();
+  const { user, learningProfile } = await requireUserWithProfile();
 
   const recent = await prisma.assessmentResult.findFirst({
     where: { userId: user.id, type: "WEEKLY", createdAt: { gte: daysAgo(6) } },
@@ -36,7 +36,7 @@ export default async function WeeklyTestPage() {
     );
   }
 
-  const questions = await getWeeklyTest(new Date(), user.id);
+  const questions = await getWeeklyTest(new Date(), user.id, learningProfile.currentLevel);
 
   if (questions.length === 0) {
     return (
