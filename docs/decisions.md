@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Placement test ganha perguntas de dificuldade B2 (fecha lacuna deixada em aberto)
+
+O commit anterior (introdução do nível B2) registou explicitamente como "trabalho futuro": o placement test não tinha perguntas de dificuldade B2 próprias, por isso alcançar B2.1/B2.2 dependia só de acertar tudo o resto — uma heurística razoável mas menos precisa. Em vez de deixar isto para uma sessão futura, fechado agora nesta mesma ronda, dado o pedido do utilizador para investir mais a fundo:
+
+- `src/lib/placement/questions.ts`: `PlacementQuestion.difficultyLevel` ganha `"B2"`; 5 perguntas novas, uma por pilar com correção exata (grammar, vocabulary, listening, reading, translation), cada uma testando um ponto gramatical que só foi ensinado nos módulos B2 desta sessão — inversão para ênfase ("Never have I seen"), "deny doing something", uma oração de particípio no listening, uma cleft sentence no reading, "should have" na tradução.
+- `src/lib/placement/scoring.ts`: `DIFFICULTY_WEIGHT` ganha `B2: 4` — o peso mais alto, coerente com ser o nível mais difícil do banco de perguntas.
+- `src/lib/placement/scoring.test.ts`: novo teste — acertar tudo até B1 mas errar (ou não responder) às 5 perguntas B2 coloca o utilizador em B1, não em B2. Sem isto (i.e., antes desta correção), essas 5 perguntas nem existiam, por isso não havia nenhuma forma de o teste realmente diferenciar "domina B1" de "domina B2 a sério" — qualquer um dos dois perfis batia no mesmo teto.
+
+**Total de perguntas do placement test: 19 → 24.** Currículo e placement ficam agora totalmente consistentes: 48 lições seedadas e 24 perguntas de teste, ambos cobrindo Pre-A1 a B2.
+
 ## 2026-08-27 — Fonologia de fala ligada (connected speech) na referência de pronúncia
 
 O veredito honesto da auditoria (secção 5.5) é direto: "o que falta para lá chegar [perceber letras de música e ver filmes sem legendas] é, por ordem: áudio humano real e graduado (Fase 9), currículo até B2 com fonologia de fala ligada (Fase 13) e material autêntico (Fase 14)". Os 8 itens em `src/content/pronunciationTips.ts` eram todos sobre sons individuais isolados (TH, R, vogais curtas/longas...) — nada sobre como as palavras se ligam e reduzem na fala corrida, que é especificamente o que separa "entender uma frase isolada e devagar" de "acompanhar um filme ou uma conversa real".
