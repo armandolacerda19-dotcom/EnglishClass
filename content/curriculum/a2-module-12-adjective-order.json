@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "A2.2",
+  "module": {
+    "id": "mod_a2_12_adjective_order",
+    "title": "Adjective Order",
+    "theme": "descriptions",
+    "order": 5
+  },
+  "unit": {
+    "id": "unit_a2_12_adjective_order",
+    "title": "Describing Things in the Right Order",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_a2_adjective_order",
+    "title": "Adjective Order",
+    "rule": "When more than one adjective comes before a noun, they follow a fixed order: opinion, size, age, shape, colour, origin, material, purpose, then the noun. (\"a beautiful small old round French wooden dining table\")",
+    "simple_explanation": "Native speakers follow this order automatically, without thinking about it — but it's genuinely fixed, not flexible like it is in Portuguese. Getting it wrong doesn't usually block understanding, but it sounds noticeably foreign.",
+    "example": "She bought a beautiful old French chair. (opinion → age → origin, never any other order)",
+    "example_translation": "Ela comprou uma bela cadeira francesa antiga.",
+    "common_mistake_pt": "Em português, os adjetivos costumam vir DEPOIS do substantivo, numa ordem bastante livre (\"uma cadeira francesa antiga e bonita\", \"uma cadeira bonita e antiga francesa\" — várias ordens soam aceitáveis). Isso leva a colocar vários adjetivos em inglês numa ordem aleatória antes do substantivo (\"a French old beautiful chair\"), o que soa claramente estranho a um falante nativo, mesmo sendo perfeitamente compreensível.",
+    "correction": "Antes de um substantivo, coloque os adjetivos por esta ordem: opinião (beautiful, nice) → tamanho (small, big) → idade (old, new) → forma (round, square) → cor (red, blue) → origem (French, Chinese) → material (wooden, plastic) → finalidade (dining, sleeping) → substantivo.",
+    "real_world_example": "Describing an item for sale online: \"Selling a lovely small antique round wooden coffee table.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_a2_lovely",
+      "headword": "lovely",
+      "type": "adjective",
+      "translation_pt": "encantador, adorável",
+      "definition_en": "very pleasant or attractive (an opinion adjective)",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ˈlʌvli/",
+      "related_forms": ["a lovely day"],
+      "example_sentences": ["It's a lovely little house."],
+      "difficulty": 1,
+      "tags": ["adjective-order"]
+    },
+    {
+      "id": "vocab_a2_antique",
+      "headword": "antique",
+      "type": "adjective",
+      "translation_pt": "antigo, de época",
+      "definition_en": "very old and often valuable (an age adjective)",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/ænˈtiːk/",
+      "related_forms": ["an antique shop"],
+      "example_sentences": ["They bought an antique wooden clock."],
+      "difficulty": 2,
+      "tags": ["adjective-order"]
+    },
+    {
+      "id": "vocab_a2_rectangular",
+      "headword": "rectangular",
+      "type": "adjective",
+      "translation_pt": "retangular",
+      "definition_en": "shaped like a rectangle (a shape adjective)",
+      "cefr_level": "A2",
+      "audio_url": null,
+      "ipa": "/rɛkˈtæŋɡjələr/",
+      "related_forms": ["a rectangular table"],
+      "example_sentences": ["We need a large rectangular rug for the living room."],
+      "difficulty": 2,
+      "tags": ["adjective-order", "shapes"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_a2_adjorder_001",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_adjective_order",
+      "prompt": "Choose the correctly ordered sentence.",
+      "correct_answer": ["She bought a beautiful old French chair."],
+      "distractors": [
+        "She bought a French old beautiful chair.",
+        "She bought an old French beautiful chair.",
+        "She bought a French beautiful old chair."
+      ],
+      "explanation": "A ordem correta é opinião (beautiful) → idade (old) → origem (French) → substantivo.",
+      "common_mistake_pt": "Colocar a origem (\"French\") antes da opinião ou da idade é um erro muito comum, por o português não ter uma ordem tão rígida.",
+      "audio_url": null,
+      "tags": ["adjective-order"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_adjorder_002",
+      "cefr_level": "A2",
+      "pillar": "grammar",
+      "concept_ref": "gc_a2_adjective_order",
+      "prompt": "Choose the correctly ordered sentence.",
+      "correct_answer": ["We bought a lovely small round wooden table."],
+      "distractors": [
+        "We bought a wooden small round lovely table.",
+        "We bought a round wooden small lovely table.",
+        "We bought a small lovely wooden round table."
+      ],
+      "explanation": "A ordem correta é opinião (lovely) → tamanho (small) → forma (round) → material (wooden) → substantivo.",
+      "common_mistake_pt": "Colocar o material (\"wooden\") logo no início é um erro comum, quando devia vir quase no fim, mesmo antes do substantivo.",
+      "audio_url": null,
+      "tags": ["adjective-order"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_adjorder_vocab_001",
+      "cefr_level": "A2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "Which word describes something very old and often valuable, like a piece of furniture?",
+      "correct_answer": ["antique"],
+      "distractors": ["lovely", "rectangular", "modern"],
+      "explanation": "\"Antique\" descreve objetos antigos e frequentemente valiosos, tipicamente móveis ou objetos de decoração.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "adjective-order"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_adjorder_listening_001",
+      "cefr_level": "A2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What is the speaker describing?",
+      "correct_answer": ["a lovely small antique round wooden coffee table", "a coffee table"],
+      "distractors": ["a modern glass desk", "an old leather sofa", "a large plastic chair"],
+      "explanation": "No áudio, ouve-se: \"I'm selling a lovely small antique round wooden coffee table.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I'm selling a lovely small antique round wooden coffee table — it's in great condition and would look perfect in a cosy living room.",
+      "tags": ["listening", "adjective-order"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_adjorder_reading_001",
+      "cefr_level": "A2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"The shop window displayed a stunning large red Italian leather handbag, priced at 200 euros.\" Where was the handbag made?",
+      "correct_answer": ["Italy"],
+      "distractors": ["France", "Portugal", "It doesn't say"],
+      "explanation": "\"Italian\" no texto indica a origem do produto: feito em Itália.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "adjective-order"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_a2_adjorder_translation_001",
+      "cefr_level": "A2",
+      "pillar": "translation",
+      "concept_ref": "gc_a2_adjective_order",
+      "prompt": "Translate to English: \"Comprei uma bonita mesa redonda de madeira.\"",
+      "correct_answer": ["I bought a beautiful round wooden table.", "I bought a lovely round wooden table."],
+      "distractors": [],
+      "explanation": "A ordem em inglês é opinião (beautiful/lovely) → forma (round) → material (wooden) → substantivo — diferente da ordem livre em português.",
+      "common_mistake_pt": "Traduzir palavra a palavra na ordem do português (\"a wooden round beautiful table\") é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "adjective-order"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_a2_m12_u1_adjective_order",
+    "title": "Describing Things in the Right Order",
+    "cefr_level": "A2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_a2_adjective_order",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_a2_adjective_order#rule" },
+      { "type": "example", "content_ref": "gc_a2_adjective_order#example" },
+      { "type": "common_mistake", "content_ref": "gc_a2_adjective_order#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_a2_lovely", "vocab_a2_antique", "vocab_a2_rectangular"] },
+      { "type": "exercise", "exercise_ids": ["ex_a2_adjorder_001", "ex_a2_adjorder_002", "ex_a2_adjorder_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_a2_adjorder_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_a2_adjorder_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "When several adjectives are listed before a noun, each one usually gets a light rising intonation, with the whole list flowing quickly — native speakers don't pause between each adjective the way beginners often do."
+      },
+      { "type": "speaking", "prompt": "Describe an object near you (or one you own) using at least 2 adjectives in the correct order — try opinion + material, or size + colour." },
+      { "type": "writing", "prompt": "Write 3 sentences, each describing an object using 2-3 adjectives in the correct order (opinion, size, age, shape, colour, origin, material)." },
+      { "type": "translation", "exercise_ids": ["ex_a2_adjorder_translation_001"] }
+    ]
+  }
+}

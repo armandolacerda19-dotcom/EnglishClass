@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.2",
+  "module": {
+    "id": "mod_b1_13_indirect_questions",
+    "title": "Indirect Questions",
+    "theme": "politeness",
+    "order": 7
+  },
+  "unit": {
+    "id": "unit_b1_13_indirect_questions",
+    "title": "Asking Politely",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_indirect_questions",
+    "title": "Indirect Questions",
+    "rule": "When asking a question politely inside another sentence (after phrases like 'Could you tell me...', 'Do you know...', 'I wonder...'), use normal statement word order (subject before verb) — and don't use 'do/does/did' — even though the sentence is still, in meaning, a question.",
+    "simple_explanation": "Indirect questions sound more polite than direct ones, especially with strangers or in formal situations. The trick is that the word order INSIDE the question changes back to normal statement order once it's introduced by a polite phrase.",
+    "example": "Where is the station? → Could you tell me where the station is? / What time does the train leave? → Do you know what time the train leaves?",
+    "example_translation": "Onde é a estação? → Podia dizer-me onde é a estação? / A que horas parte o comboio? → Sabe a que horas parte o comboio?",
+    "common_mistake_pt": "Falantes de português tendem a manter a ordem de pergunta direta mesmo depois da frase introdutória (\"Could you tell me where is the station?\" em vez de \"Could you tell me where the station is?\"), porque em português a inversão sujeito/verbo em perguntas é menos rígida, e a mesma ordem \"de pergunta\" costuma soar natural em qualquer contexto.",
+    "correction": "Depois de uma frase introdutória como \"Could you tell me...\"/\"Do you know...\"/\"I wonder...\", volte à ordem normal de afirmação (sujeito antes do verbo) e nunca use \"do/does/did\" — mesmo que a frase continue a ser, no fundo, uma pergunta.",
+    "real_world_example": "Asking a stranger for directions politely: \"Excuse me, do you know where the nearest pharmacy is?\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_could_you_tell_me",
+      "headword": "could you tell me",
+      "type": "expression",
+      "translation_pt": "podia dizer-me",
+      "definition_en": "a polite way to introduce a question, especially with someone you don't know well",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/kʊd juː tɛl miː/",
+      "related_forms": ["do you know", "would you mind telling me"],
+      "example_sentences": ["Could you tell me how this machine works?"],
+      "difficulty": 2,
+      "tags": ["indirect-questions", "politeness"]
+    },
+    {
+      "id": "vocab_b1_i_wonder",
+      "headword": "I wonder",
+      "type": "expression",
+      "translation_pt": "pergunto-me / gostava de saber",
+      "definition_en": "used to introduce a question you're asking yourself or asking softly",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/aɪ ˈwʌndər/",
+      "related_forms": ["I wonder if", "I wonder whether"],
+      "example_sentences": ["I wonder what time it is."],
+      "difficulty": 2,
+      "tags": ["indirect-questions"]
+    },
+    {
+      "id": "vocab_b1_would_you_mind",
+      "headword": "would you mind",
+      "type": "expression",
+      "translation_pt": "importa-se de",
+      "definition_en": "a very polite way to make a request, often followed by a verb + -ing",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/wʊd juː maɪnd/",
+      "related_forms": ["would you mind + verb-ing"],
+      "example_sentences": ["Would you mind telling me the time?"],
+      "difficulty": 3,
+      "tags": ["indirect-questions", "politeness"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_indirectq_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_indirect_questions",
+      "prompt": "Complete politely: \"Could you tell me ___?\" (Where is the train station?)",
+      "correct_answer": ["where the train station is"],
+      "distractors": ["where is the train station", "where the train station be", "is where the train station"],
+      "explanation": "Depois de \"Could you tell me\", a ordem volta a ser sujeito antes de verbo: \"where the train station is\".",
+      "common_mistake_pt": "Manter a ordem de pergunta direta (\"where is the train station\") depois da frase introdutória é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["indirect-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_indirectq_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_indirect_questions",
+      "prompt": "Complete politely: \"Do you know ___?\" (What time does the museum close?)",
+      "correct_answer": ["what time the museum closes"],
+      "distractors": ["what time does the museum close", "what time closes the museum", "what time the museum does close"],
+      "explanation": "Numa pergunta indireta, \"do/does/did\" desaparece por completo: \"what time the museum closes\", não \"does the museum close\".",
+      "common_mistake_pt": "Manter \"does\" na pergunta indireta é um erro muito comum, mesmo entre alunos que já dominam a ordem sujeito/verbo.",
+      "audio_url": null,
+      "tags": ["indirect-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_indirectq_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "Which phrase softly introduces a question, often asked to yourself, like \"___ what time it is\"?",
+      "correct_answer": ["I wonder"],
+      "distractors": ["Please", "Excuse me", "Thank you"],
+      "explanation": "\"I wonder\" é usado para perguntas suaves ou dirigidas a si próprio, ao contrário de \"Could you tell me\", que se dirige a outra pessoa.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "indirect-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_indirectq_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the tourist want to know?",
+      "correct_answer": ["where the nearest pharmacy is", "where the pharmacy is"],
+      "distractors": ["what time it is", "where the train station is", "how much a ticket costs"],
+      "explanation": "No áudio, ouve-se: \"Excuse me, do you know where the nearest pharmacy is?\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Excuse me, do you know where the nearest pharmacy is? I've been walking around for twenty minutes and I can't find one anywhere.",
+      "tags": ["listening", "indirect-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_indirectq_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"At the reception desk, Marco politely asked, 'Could you tell me what time the pool opens?' The receptionist said it opens at 8am.\" How did Marco ask his question?",
+      "correct_answer": ["politely, using an indirect question", "politely", "using 'could you tell me'"],
+      "distractors": ["rudely", "in writing", "It doesn't say"],
+      "explanation": "O texto diz diretamente \"Marco politely asked\", usando a estrutura \"Could you tell me...\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "indirect-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_indirectq_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_indirect_questions",
+      "prompt": "Translate to English: \"Podia dizer-me onde fica a casa de banho?\"",
+      "correct_answer": ["Could you tell me where the bathroom is?", "Could you tell me where the toilet is?"],
+      "distractors": [],
+      "explanation": "Depois de \"Could you tell me\", a ordem volta ao normal (sujeito antes do verbo): \"where the bathroom is\", nunca \"where is the bathroom\".",
+      "common_mistake_pt": "Traduzir para \"Could you tell me where is the bathroom?\" é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "indirect-questions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m13_u1_indirect_questions",
+    "title": "Asking Politely",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_indirect_questions",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_indirect_questions#rule" },
+      { "type": "example", "content_ref": "gc_b1_indirect_questions#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_indirect_questions#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_could_you_tell_me", "vocab_b1_i_wonder", "vocab_b1_would_you_mind"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_indirectq_001", "ex_b1_indirectq_002", "ex_b1_indirectq_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_indirectq_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_indirectq_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Polite indirect questions are usually said with a softer, more level intonation than direct questions — direct questions like \"Where is it?\" often rise sharply at the end, while \"Could you tell me where it is?\" tends to stay flatter and end with a gentle fall, sounding more like a request than a demand."
+      },
+      { "type": "speaking", "prompt": "Practise asking 3 polite indirect questions you might need as a tourist (directions, opening times, prices), starting with 'Could you tell me...' or 'Do you know...'." },
+      { "type": "writing", "prompt": "Write 3 indirect questions you could ask a stranger politely, using 'Could you tell me', 'Do you know' and 'I wonder'." },
+      { "type": "translation", "exercise_ids": ["ex_b1_indirectq_translation_001"] }
+    ]
+  }
+}

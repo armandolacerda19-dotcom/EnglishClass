@@ -39,6 +39,8 @@ import modulePresentPerfectContinuous from "../content/curriculum/b1-module-09-p
 import moduleWishClauses from "../content/curriculum/b1-module-10-wish-clauses.json";
 import moduleCausativeHaveGet from "../content/curriculum/b1-module-11-causative-have-get.json";
 import moduleSoNeitherAgreement from "../content/curriculum/b1-module-12-so-neither-agreement.json";
+import moduleIndirectQuestions from "../content/curriculum/b1-module-13-indirect-questions.json";
+import moduleAdjectiveOrder from "../content/curriculum/a2-module-12-adjective-order.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -111,6 +113,7 @@ const MODULE_FILES = [
   moduleFirstConditional,
   moduleRelativeClauses, // A2.2 — logo a seguir a first-conditional
   modulePhrasalVerbs, // A2.2, achado explícito da auditoria ("módulo de phrasal verbs" em falta), Fase 13, 2026-08-27
+  moduleAdjectiveOrder, // A2.2 — gap real: ordem de adjetivos (opinião→tamanho→idade→forma→cor→origem→material) nunca teve módulo próprio, e o português tem ordem livre onde o inglês é rígido (Fase 13, 2026-08-27)
   modulePresentPerfectVsPastSimple, // A2.2 — último módulo A2, gap real: existia Present Perfect (experiences) e Past Simple isolados, mas nunca a distinção entre os dois, um dos pontos mais confusos para falantes de português (Fase 13, 2026-08-27)
   modulePastPerfect, // B1.1 — primeiro módulo do novo nível B1
   modulePresentPerfectContinuous, // B1.1 — logo a seguir a past-perfect, mesma família "aspeto perfeito"; gap real: só existia Present Perfect Simples (A2), nunca a forma contínua (Fase 13, 2026-08-27)
@@ -123,7 +126,8 @@ const MODULE_FILES = [
   moduleModalsDeduction, // B1.2 — reforço de densidade B1 (2026-08-27)
   moduleThirdConditional, // B1.2 — reforço de densidade B1 (2026-08-27)
   moduleWishClauses, // B1.2 — logo a seguir a third-conditional (mesma lógica "recuar um tempo verbal"); gap real, "wish" nunca tinha módulo próprio (Fase 13, 2026-08-27)
-  moduleCausativeHaveGet, // B1.2 — último módulo B1, gap real: "have/get something done" nunca teve módulo próprio, apesar de comum no dia a dia (Fase 13, 2026-08-27)
+  moduleCausativeHaveGet, // B1.2 — gap real: "have/get something done" nunca teve módulo próprio, apesar de comum no dia a dia (Fase 13, 2026-08-27)
+  moduleIndirectQuestions, // B1.2 — último módulo B1, gap real: perguntas indiretas educadas ("Could you tell me where...") nunca tiveram módulo próprio (Fase 13, 2026-08-27)
 ];
 
 async function seedLevels() {
