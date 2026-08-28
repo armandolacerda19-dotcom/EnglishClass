@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { formatLevelCode } from "@/lib/level";
 
 // Certificação interna — item #17 da lista de melhorias. O modelo Certificate já
 // existia no schema (Fase 0) mas nunca era escrito. Sem biblioteca de geração de
@@ -54,7 +55,7 @@ export async function maybeIssueCertificate(userId: string) {
   });
   if (existing) return null;
 
-  return prisma.certificate.create({
+  const certificate = await prisma.certificate.create({
     data: {
       userId,
       cefr: profile.currentLevel,
@@ -63,4 +64,31 @@ export async function maybeIssueCertificate(userId: string) {
       skillBreakdownJson: Object.fromEntries(PILLAR_FIELDS.map((f, i) => [f, scores[i]])),
     },
   });
+
+  // Fase 13 (auditoria 2026-08-27, achado real, o mesmo padrão de "conta mas
+  // não age" já corrigido para UserError.occurrences na Fase 11) —
+  // `currentLevel`/`currentSublevel` só eram escritos UMA vez, no placement
+  // test (`api/placement/submit/route.ts`), e nunca mais mudavam. Um
+  // utilizador podia completar o currículo inteiro de vários níveis a
+  // seguir ao seu, ganhar certificado atrás de certificado no MESMO nível
+  // congelado, e o crachá/nível mostrado em toda a app nunca avançava.
+  // Agora: ganhar o certificado do nível atual avança para o subnível
+  // seguinte, se existir (Sublevel.order é sequencial e único — ver
+  // levels.json). Sem próximo subnível seedado (hoje, depois de B2.2), fica
+  // no nível atual — não é um erro, só o teto do currículo por agora.
+  const currentSublevelRow = await prisma.sublevel.findUnique({ where: { code: formatLevelCode(profile) } });
+  if (currentSublevelRow) {
+    const nextSublevelRow = await prisma.sublevel.findUnique({
+      where: { order: currentSublevelRow.order + 1 },
+      include: { level: true },
+    });
+    if (nextSublevelRow) {
+      await prisma.learningProfile.update({
+        where: { userId },
+        data: { currentLevel: nextSublevelRow.level.cefr, currentSublevel: nextSublevelRow.number },
+      });
+    }
+  }
+
+  return certificate;
 }
