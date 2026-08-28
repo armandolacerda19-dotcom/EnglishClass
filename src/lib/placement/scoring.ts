@@ -1,6 +1,6 @@
 import { PLACEMENT_QUESTIONS, type PlacementPillar } from "./questions";
 
-const DIFFICULTY_WEIGHT: Record<string, number> = { PRE_A1: 1, A1: 1, A2: 2, B1: 3, B2: 4 };
+const DIFFICULTY_WEIGHT: Record<string, number> = { PRE_A1: 1, A1: 1, A2: 2, B1: 3, B2: 4, C1: 5 };
 const LEVEL_ORDER = ["PRE_A1", "A1", "A2", "B1", "B2", "C1", "C2"] as const;
 
 export interface PlacementAnswer {
@@ -57,28 +57,28 @@ export function scorePlacementTest(answers: PlacementAnswer[]): PlacementResult 
   return { skillProfile, weakAreas, resultLevel: level, resultSublevel: sublevel };
 }
 
-// Mapeamento 0-100 → nível/subnível, cobrindo agora os 10 subníveis com
-// conteúdo seedado (Pre-A1 a B2.2 — ver content/curriculum/levels.json).
+// Mapeamento 0-100 → nível/subnível, cobrindo agora os 12 subníveis com
+// conteúdo seedado (Pre-A1 a C1.2 — ver content/curriculum/levels.json).
 // Histórico: até 2026-08-26, qualquer resultado acima de A1 ficava preso em
 // A1.3 mesmo já existindo currículo de A2. Corrigido nessa altura, mas o
 // corte ficou preso em A2.2 mesmo depois de o currículo ganhar 13 módulos de
-// B1 (Fases 4/9) — um utilizador que acertasse TODAS as perguntas do teste,
-// incluindo as 5 de dificuldade B1 (peso 3, o mais alto em
-// `DIFFICULTY_WEIGHT`), continuava a ser colocado em A2.2, abaixo do seu
-// nível real. Achado ao introduzir B2 nesta sessão (Fase 13, 2026-08-27):
-// corrigido agora, estendendo os cortes até B2, e `questions.ts` ganhou 5
-// perguntas de dificuldade B2 (uma por pilar com correção exata), com peso 4
-// em `DIFFICULTY_WEIGHT` — o mais alto, coerente com ser o nível mais
-// difícil do teste.
+// B1 (Fases 4/9) — um utilizador que acertasse TODAS as perguntas do teste
+// continuava a ser colocado em A2.2, abaixo do seu nível real. Corrigido ao
+// introduzir B2 (Fase 13, 2026-08-27), estendendo os cortes até B2, com 5
+// perguntas de dificuldade B2 dedicadas. Ao introduzir C1 (Fase 15,
+// 2026-08-27), os cortes foram estendidos outra vez até C1.2, com o mesmo
+// cuidado — evitar reintroduzir exatamente o mesmo bug um nível acima.
 function averageToLevel(average: number): { level: (typeof LEVEL_ORDER)[number]; sublevel: number } {
-  if (average < 10) return { level: "PRE_A1", sublevel: 1 };
-  if (average < 22) return { level: "A1", sublevel: 1 };
-  if (average < 34) return { level: "A1", sublevel: 2 };
-  if (average < 46) return { level: "A1", sublevel: 3 };
-  if (average < 58) return { level: "A2", sublevel: 1 };
-  if (average < 68) return { level: "A2", sublevel: 2 };
-  if (average < 78) return { level: "B1", sublevel: 1 };
-  if (average < 86) return { level: "B1", sublevel: 2 };
-  if (average < 93) return { level: "B2", sublevel: 1 };
-  return { level: "B2", sublevel: 2 };
+  if (average < 8) return { level: "PRE_A1", sublevel: 1 };
+  if (average < 18) return { level: "A1", sublevel: 1 };
+  if (average < 28) return { level: "A1", sublevel: 2 };
+  if (average < 38) return { level: "A1", sublevel: 3 };
+  if (average < 48) return { level: "A2", sublevel: 1 };
+  if (average < 58) return { level: "A2", sublevel: 2 };
+  if (average < 68) return { level: "B1", sublevel: 1 };
+  if (average < 76) return { level: "B1", sublevel: 2 };
+  if (average < 83) return { level: "B2", sublevel: 1 };
+  if (average < 89) return { level: "B2", sublevel: 2 };
+  if (average < 95) return { level: "C1", sublevel: 1 };
+  return { level: "C1", sublevel: 2 };
 }

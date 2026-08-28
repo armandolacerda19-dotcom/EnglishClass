@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C1.1",
+  "module": {
+    "id": "mod_c1_3_passive_reporting",
+    "title": "Passive Reporting Structures",
+    "theme": "reported-speech",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_c1_3_passive_reporting",
+    "title": "It Is Believed That...",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c1_passive_reporting",
+    "title": "Passive Reporting Structures",
+    "rule": "Use 'It is + past participle + that...' or 'Subject + is/are + past participle + to + infinitive' to report what people believe, say or think in general, without naming who — common in formal/academic writing and news.",
+    "simple_explanation": "Both structures avoid naming a specific source (\"people say\", \"experts believe\") when it's not known, not important, or deliberately kept vague. They're two ways of saying exactly the same thing, and both are extremely common in news reporting and academic writing.",
+    "example": "It is believed that the fire started accidentally. He is said to have left the country.",
+    "example_translation": "Acredita-se que o incêndio começou acidentalmente. Diz-se que ele saiu do país.",
+    "common_mistake_pt": "O português usa estruturas impessoais equivalentes (\"acredita-se que\", \"diz-se que\"), mas normalmente só com essa ordem — o que leva a usar sempre a estrutura \"It is + particípio + that\" em inglês, ignorando a segunda variante, com sujeito pessoal (\"He is said to have left\"), mais comum em jornalismo e biografias.",
+    "correction": "Ambas as estruturas existem e significam o mesmo: \"It is said/believed/thought/reported + that + oração\" OU \"Sujeito + is/are said/believed/thought + to + infinitivo\" (infinitivo simples para o presente, \"to have\" + particípio para o passado).",
+    "real_world_example": "In a news report: \"The company is reported to have lost millions in the deal.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c1_allegedly",
+      "headword": "allegedly",
+      "type": "adverb",
+      "translation_pt": "alegadamente",
+      "definition_en": "according to what people say, without proof that it's true",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/əˈlɛdʒɪdli/",
+      "related_forms": ["alleged", "allegation"],
+      "example_sentences": ["He allegedly took the money, but nothing has been proven."],
+      "difficulty": 3,
+      "tags": ["passive-reporting"]
+    },
+    {
+      "id": "vocab_c1_widely",
+      "headword": "widely",
+      "type": "adverb",
+      "translation_pt": "amplamente",
+      "definition_en": "by a large number of people; over a large area",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/ˈwaɪdli/",
+      "related_forms": ["it is widely believed"],
+      "example_sentences": ["It is widely believed that the plan will fail."],
+      "difficulty": 2,
+      "tags": ["passive-reporting"]
+    },
+    {
+      "id": "vocab_c1_report_verb",
+      "headword": "report",
+      "type": "verb",
+      "translation_pt": "relatar, noticiar",
+      "definition_en": "to give an official or published account of something",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/rɪˈpɔːrt/",
+      "related_forms": ["reportedly", "report on"],
+      "example_sentences": ["The company is reported to have lost millions in the deal."],
+      "difficulty": 2,
+      "tags": ["passive-reporting"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c1_passivereport_001",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_passive_reporting",
+      "prompt": "Complete: It ___ that the fire started accidentally.",
+      "correct_answer": ["is believed"],
+      "distractors": ["believes", "is believing", "believed"],
+      "explanation": "Estrutura impessoal \"It is + particípio + that\": \"It is believed that...\".",
+      "common_mistake_pt": "Usar \"believes\" (voz ativa, sem sujeito claro) em vez da estrutura passiva \"is believed\" é o erro mais comum.",
+      "audio_url": null,
+      "tags": ["passive-reporting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_passivereport_002",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_passive_reporting",
+      "prompt": "Complete (about the past): He is said ___ the country last year.",
+      "correct_answer": ["to have left"],
+      "distractors": ["to leave", "to left", "leaving"],
+      "explanation": "Para o passado, usa-se \"to have + particípio\": \"to have left\", não \"to leave\" (que indicaria o presente/futuro).",
+      "common_mistake_pt": "Usar \"to leave\" em vez de \"to have left\" perde a referência ao passado (\"last year\").",
+      "audio_url": null,
+      "tags": ["passive-reporting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_passivereport_vocab_001",
+      "cefr_level": "C1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"allegedly\" mean?",
+      "correct_answer": ["according to what people say, without proof that it's true"],
+      "distractors": ["definitely and proven", "rarely", "according to official records"],
+      "explanation": "\"Allegedly\" marca que algo é dito mas ainda não está provado.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "passive-reporting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_passivereport_listening_001",
+      "cefr_level": "C1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What is the company reported to have done?",
+      "correct_answer": ["lost millions in the deal", "lost millions"],
+      "distractors": ["made a large profit", "gone bankrupt completely", "cancelled the deal"],
+      "explanation": "No áudio, ouve-se: \"The company is reported to have lost millions in the deal.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "According to industry sources, the company is reported to have lost millions in the deal, though officials have not confirmed the exact figure.",
+      "tags": ["listening", "passive-reporting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_passivereport_reading_001",
+      "cefr_level": "C1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"It is widely believed that the ancient bridge was built over two thousand years ago, although the exact date remains uncertain.\" How old is the bridge believed to be?",
+      "correct_answer": ["over two thousand years old", "more than 2,000 years"],
+      "distractors": ["exactly two thousand years old", "less than a thousand years old", "It doesn't say"],
+      "explanation": "O texto diz \"built over two thousand years ago\" — mais de dois mil anos.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "passive-reporting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_passivereport_translation_001",
+      "cefr_level": "C1",
+      "pillar": "translation",
+      "concept_ref": "gc_c1_passive_reporting",
+      "prompt": "Translate to English (usando a estrutura com sujeito pessoal): \"Diz-se que ele é o melhor engenheiro da empresa.\"",
+      "correct_answer": ["He is said to be the best engineer in the company."],
+      "distractors": [],
+      "explanation": "Estrutura com sujeito pessoal + infinitivo simples (presente): \"He is said to be\", não \"It is said that he is\" (que também seria válido, mas não é a estrutura pedida aqui).",
+      "common_mistake_pt": "Usar só \"People say he is the best engineer\" (voz ativa) ignora a estrutura passiva de relato pedida no exercício.",
+      "audio_url": null,
+      "tags": ["translation", "passive-reporting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c1_m3_u1_passive_reporting",
+    "title": "It Is Believed That...",
+    "cefr_level": "C1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c1_passive_reporting",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c1_passive_reporting#rule" },
+      { "type": "example", "content_ref": "gc_c1_passive_reporting#example" },
+      { "type": "common_mistake", "content_ref": "gc_c1_passive_reporting#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c1_allegedly", "vocab_c1_widely", "vocab_c1_report_verb"] },
+      { "type": "exercise", "exercise_ids": ["ex_c1_passivereport_001", "ex_c1_passivereport_002", "ex_c1_passivereport_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c1_passivereport_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c1_passivereport_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In \"is said to have left\", the whole chain of small words (\"is\", \"to\", \"have\") is said quickly and lightly — the stress lands on \"SAID\" and on the main verb (\"LEFT\"), not evenly across every word."
+      },
+      { "type": "speaking", "prompt": "Report a rumour or general belief about something (real or invented) using a passive reporting structure — 'It is said/believed that...' or 'X is said to...'." },
+      { "type": "writing", "prompt": "Write 3 sentences using passive reporting structures, using at least 2 different reporting verbs (believe, say, think, report)." },
+      { "type": "translation", "exercise_ids": ["ex_c1_passivereport_translation_001"] }
+    ]
+  }
+}

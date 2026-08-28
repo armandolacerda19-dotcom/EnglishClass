@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C1.1",
+  "module": {
+    "id": "mod_c1_2_emphatic_do",
+    "title": "Emphatic Do/Does/Did",
+    "theme": "emphasis",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_c1_2_emphatic_do",
+    "title": "I DO Understand",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c1_emphatic_do",
+    "title": "Emphatic Do/Does/Did",
+    "rule": "Use 'do/does/did' before the base form of the verb, with strong stress, to add emphasis to an affirmative statement — especially to contradict a doubt or correct a false impression.",
+    "simple_explanation": "Normal affirmative sentences don't need 'do'/'does'/'did' at all (\"I like it\", not \"I do like it\") — adding it deliberately is a specific tool for emphasis, almost always spoken with heavy stress on the auxiliary itself.",
+    "example": "I DO like your idea. She DID call, I promise. He DOES understand, he just needs time.",
+    "example_translation": "Eu gosto mesmo da tua ideia. Ela ligou mesmo, prometo. Ele entende mesmo, só precisa de tempo.",
+    "common_mistake_pt": "O português dá ênfase com advérbios ou entoação (\"eu gosto MESMO\", \"ela ligou A SÉRIO\"), o que leva a traduzir sempre com \"really\"/\"actually\" e a não reconhecer que o inglês tem também esta ferramenta gramatical específica — inserir \"do/does/did\" antes do verbo numa frase afirmativa que normalmente não teria auxiliar nenhum.",
+    "correction": "Para enfatizar uma afirmação (contradizer uma dúvida, corrigir uma impressão errada), insira \"do/does/did\" antes da forma base do verbo principal, com forte acento tónico nesse auxiliar: \"I DO understand\", \"She DID finish it\".",
+    "real_world_example": "Reassuring someone: \"I know it doesn't look like it, but I do care about this project.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c1_reassure",
+      "headword": "reassure",
+      "type": "verb",
+      "translation_pt": "tranquilizar",
+      "definition_en": "to say or do something to remove someone's doubts or fears",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/riːəˈʃʊr/",
+      "related_forms": ["reassurance", "reassuring"],
+      "example_sentences": ["She reassured him that everything would be fine."],
+      "difficulty": 3,
+      "tags": ["emphatic-do"]
+    },
+    {
+      "id": "vocab_c1_genuinely",
+      "headword": "genuinely",
+      "type": "adverb",
+      "translation_pt": "genuinamente, verdadeiramente",
+      "definition_en": "in a real, sincere way, not pretending",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/ˈdʒɛnjuɪnli/",
+      "related_forms": ["genuine"],
+      "example_sentences": ["I'm genuinely sorry for the confusion."],
+      "difficulty": 3,
+      "tags": ["emphatic-do"]
+    },
+    {
+      "id": "vocab_c1_doubt_noun",
+      "headword": "doubt",
+      "type": "noun",
+      "translation_pt": "dúvida",
+      "definition_en": "a feeling of uncertainty about whether something is true or will happen",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/daʊt/",
+      "related_forms": ["doubtful", "no doubt"],
+      "example_sentences": ["There's no doubt she did do the work herself."],
+      "difficulty": 2,
+      "tags": ["emphatic-do"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c1_emphaticdo_001",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_emphatic_do",
+      "prompt": "Complete (to strongly emphasize agreement): \"I ___ like your idea, I just need more time to plan it.\"",
+      "correct_answer": ["do"],
+      "distractors": ["am", "really am", "have"],
+      "explanation": "Para enfatizar uma afirmação simples (\"like\"), usa-se \"do\" antes do verbo base: \"I do like\".",
+      "common_mistake_pt": "Usar \"am\" em vez de \"do\" é o erro mais comum, por confundir esta estrutura com o Present Continuous.",
+      "audio_url": null,
+      "tags": ["emphatic-do"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_emphaticdo_002",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_emphatic_do",
+      "prompt": "Complete (to correct a doubt): \"She ___ call yesterday — I have the message to prove it.\"",
+      "correct_answer": ["did"],
+      "distractors": ["does", "was", "has"],
+      "explanation": "Para enfatizar uma afirmação no passado, usa-se \"did\" antes do verbo base: \"did call\", nunca \"called\" com um verbo extra.",
+      "common_mistake_pt": "Usar \"does\" (presente) numa frase claramente sobre o passado (\"yesterday\") é um erro comum.",
+      "audio_url": null,
+      "tags": ["emphatic-do"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_emphaticdo_vocab_001",
+      "cefr_level": "C1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"reassure\" mean?",
+      "correct_answer": ["to say or do something to remove someone's doubts or fears"],
+      "distractors": ["to argue with someone", "to ignore someone's concerns", "to make someone more worried"],
+      "explanation": "\"Reassure\" significa acalmar as dúvidas ou medos de alguém.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "emphatic-do"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_emphaticdo_listening_001",
+      "cefr_level": "C1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Does the speaker actually care about the project?",
+      "correct_answer": ["yes", "yes, genuinely"],
+      "distractors": ["no", "the speaker doesn't say"],
+      "explanation": "No áudio, ouve-se: \"I do care about this project, genuinely.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I know it doesn't always look like it, but I do care about this project, genuinely — I just have a strange way of showing stress.",
+      "tags": ["listening", "emphatic-do"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_emphaticdo_reading_001",
+      "cefr_level": "C1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Everyone assumed Marta had forgotten the deadline. In fact, she did submit the report — it was simply lost in the system.\" Did Marta submit the report?",
+      "correct_answer": ["yes", "yes, she did"],
+      "distractors": ["no", "It doesn't say"],
+      "explanation": "\"She did submit the report\" confirma, com ênfase, que ela submeteu — contradizendo a suposição de que se tinha esquecido.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "emphatic-do"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_emphaticdo_translation_001",
+      "cefr_level": "C1",
+      "pillar": "translation",
+      "concept_ref": "gc_c1_emphatic_do",
+      "prompt": "Translate to English (usando 'do/does/did' enfático): \"Ele entende mesmo, só precisa de mais tempo.\"",
+      "correct_answer": ["He does understand, he just needs more time."],
+      "distractors": [],
+      "explanation": "Para enfatizar \"entende\", usa-se \"does\" antes de \"understand\": \"he does understand\", não só \"really understands\".",
+      "common_mistake_pt": "Traduzir \"mesmo\" só com \"really\" (\"He really understands\") não está errado, mas ignora a estrutura gramatical específica pedida neste exercício.",
+      "audio_url": null,
+      "tags": ["translation", "emphatic-do"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c1_m2_u1_emphatic_do",
+    "title": "I DO Understand",
+    "cefr_level": "C1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c1_emphatic_do",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c1_emphatic_do#rule" },
+      { "type": "example", "content_ref": "gc_c1_emphatic_do#example" },
+      { "type": "common_mistake", "content_ref": "gc_c1_emphatic_do#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c1_reassure", "vocab_c1_genuinely", "vocab_c1_doubt_noun"] },
+      { "type": "exercise", "exercise_ids": ["ex_c1_emphaticdo_001", "ex_c1_emphaticdo_002", "ex_c1_emphaticdo_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c1_emphaticdo_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c1_emphaticdo_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The whole point of emphatic do/does/did is heavy stress: \"I DO like it\" — said flat and unstressed, it just sounds like a grammar mistake (extra unnecessary 'do'), not like emphasis at all."
+      },
+      { "type": "speaking", "prompt": "Reassure someone about a doubt they might have about you, using emphatic do/does/did (e.g. 'I do care', 'I did finish it')." },
+      { "type": "writing", "prompt": "Write 3 sentences using emphatic do/does/did to contradict a doubt or correct a false impression." },
+      { "type": "translation", "exercise_ids": ["ex_c1_emphaticdo_translation_001"] }
+    ]
+  }
+}

@@ -5,8 +5,11 @@ import { PLACEMENT_QUESTIONS } from "./questions";
 // Fase 13 (auditoria 2026-08-27) — antes desta correção, `averageToLevel`
 // nunca devolvia nada acima de A2.2, mesmo que todas as respostas (incluindo
 // as de dificuldade B1, peso 3) estivessem certas. Estes testes existem
-// especificamente para garantir que um utilizador forte a sério chega a B1/B2
-// — o bug real que motivou a correção.
+// especificamente para garantir que um utilizador forte a sério chega a
+// B1/B2/C1 — o bug real que motivou a correção, e que se repetiria um nível
+// acima a cada nível novo introduzido se não fosse verificado outra vez.
+const DIFFICULTY_ORDER = ["PRE_A1", "A1", "A2", "B1", "B2", "C1"] as const;
+
 function allCorrectAnswers(): PlacementAnswer[] {
   return PLACEMENT_QUESTIONS.map((q) => ({
     questionId: q.id,
@@ -19,21 +22,24 @@ function noAnswers(): PlacementAnswer[] {
   return [];
 }
 
-// Acerta tudo EXCETO as perguntas B2 (nem responde a essas) — simula alguém
-// sólido até B1 mas que ainda não domina os pontos só ensinados em B2
-// (inversão, "denied doing", cleft sentences...).
-function allCorrectExceptB2(): PlacementAnswer[] {
-  return PLACEMENT_QUESTIONS.filter((q) => q.difficultyLevel !== "B2").map((q) => ({
-    questionId: q.id,
-    answer: q.correctAnswer,
-    aiScore: q.freeResponse ? 100 : undefined,
-  }));
+// Acerta tudo até `maxLevel` (inclusive) e não responde a nada acima disso —
+// simula alguém sólido até um certo nível, mas que ainda não domina os
+// pontos só ensinados no(s) nível(is) seguinte(s).
+function allCorrectUpTo(maxLevel: (typeof DIFFICULTY_ORDER)[number]): PlacementAnswer[] {
+  const maxIndex = DIFFICULTY_ORDER.indexOf(maxLevel);
+  return PLACEMENT_QUESTIONS.filter((q) => DIFFICULTY_ORDER.indexOf(q.difficultyLevel as any) <= maxIndex).map(
+    (q) => ({
+      questionId: q.id,
+      answer: q.correctAnswer,
+      aiScore: q.freeResponse ? 100 : undefined,
+    })
+  );
 }
 
 describe("scorePlacementTest", () => {
-  it("acertar tudo (incluindo as perguntas B1) coloca o utilizador em B1 ou B2, nunca preso em A2", () => {
+  it("acertar tudo (incluindo as perguntas C1) coloca o utilizador em B1 ou acima, nunca preso em A2", () => {
     const result = scorePlacementTest(allCorrectAnswers());
-    expect(["B1", "B2"]).toContain(result.resultLevel);
+    expect(["B1", "B2", "C1"]).toContain(result.resultLevel);
   });
 
   it("não responder a nada coloca o utilizador em Pre-A1", () => {
@@ -48,8 +54,13 @@ describe("scorePlacementTest", () => {
     expect(result.resultSublevel).toBeLessThanOrEqual(3);
   });
 
-  it("as perguntas B2 discriminam de verdade: acertar tudo até B1 mas errar as B2 coloca em B1, não em B2", () => {
-    const result = scorePlacementTest(allCorrectExceptB2());
+  it("as perguntas B2 discriminam de verdade: acertar tudo até B1 mas não responder B2/C1 coloca em B1, não em B2/C1", () => {
+    const result = scorePlacementTest(allCorrectUpTo("B1"));
     expect(result.resultLevel).toBe("B1");
+  });
+
+  it("as perguntas C1 discriminam de verdade: acertar tudo até B2 mas não responder C1 coloca em B2, não em C1", () => {
+    const result = scorePlacementTest(allCorrectUpTo("B2"));
+    expect(result.resultLevel).toBe("B2");
   });
 });

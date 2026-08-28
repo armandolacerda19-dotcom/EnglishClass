@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C1.2",
+  "module": {
+    "id": "mod_c1_5_hedging_language",
+    "title": "Hedging Language",
+    "theme": "formal-register",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_c1_5_hedging_language",
+    "title": "It Could Be Argued That...",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c1_hedging_language",
+    "title": "Hedging Language",
+    "rule": "Use hedging language (it could be argued that, there seems to be, tends to, arguably, to some extent) to soften a claim, making it sound more careful and academic — standard practice in formal writing, where blunt certainty often reads as unconvincing or unsupported.",
+    "simple_explanation": "In academic or professional English, stating something as an absolute fact without evidence can sound naive or overconfident. Hedging language signals that a claim is reasoned but not proven beyond doubt — a sign of rigour, not weakness.",
+    "example": "It could be argued that the policy failed. The results tend to support this theory, though further research is needed.",
+    "example_translation": "Pode argumentar-se que a política falhou. Os resultados tendem a apoiar esta teoria, embora seja necessária mais investigação.",
+    "common_mistake_pt": "Falantes de português, especialmente em registo mais direto, tendem a fazer afirmações categóricas em inglês formal (\"The policy failed\") onde o inglês académico prefere suavizar com linguagem de mitigação — o resultado soa mais confiante do que o contexto justifica, o que em escrita académica/profissional inglesa pode ser lido como falta de rigor, não como confiança.",
+    "correction": "Em escrita formal/académica, suavize afirmações fortes com expressões como \"it could be argued that\", \"there seems to be\", \"tends to\", \"arguably\", \"to some extent\" — não é fraqueza, é a norma esperada quando não há certeza absoluta.",
+    "real_world_example": "In an essay: \"It could be argued that social media has changed how young people communicate.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c1_arguably",
+      "headword": "arguably",
+      "type": "adverb",
+      "translation_pt": "possivelmente, pode argumentar-se que",
+      "definition_en": "used to say that something can be reasonably claimed, though not proven with certainty",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/ˈɑːrɡjuəbli/",
+      "related_forms": ["arguable"],
+      "example_sentences": ["This is arguably her best piece of work."],
+      "difficulty": 3,
+      "tags": ["hedging-language"]
+    },
+    {
+      "id": "vocab_c1_tend_to",
+      "headword": "tend to",
+      "type": "verb",
+      "translation_pt": "tender a",
+      "definition_en": "to usually do something, or to be likely to do or be something",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/tɛnd tuː/",
+      "related_forms": ["tendency"],
+      "example_sentences": ["The results tend to support this theory."],
+      "difficulty": 2,
+      "tags": ["hedging-language"]
+    },
+    {
+      "id": "vocab_c1_to_some_extent",
+      "headword": "to some extent",
+      "type": "expression",
+      "translation_pt": "até certo ponto",
+      "definition_en": "used to say something is partly true, but not completely",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/tə sʌm ɪkˈstɛnt/",
+      "related_forms": ["to a great extent", "to a certain extent"],
+      "example_sentences": ["The plan succeeded, to some extent."],
+      "difficulty": 3,
+      "tags": ["hedging-language"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c1_hedging_001",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_hedging_language",
+      "prompt": "Choose the more appropriately hedged academic sentence.",
+      "correct_answer": ["It could be argued that the policy failed."],
+      "distractors": ["The policy failed, obviously.", "Everyone knows the policy failed.", "The policy failed, no question about it."],
+      "explanation": "\"It could be argued that\" suaviza a afirmação, apropriado para registo académico/formal.",
+      "common_mistake_pt": "Usar uma afirmação categórica (\"obviously\", \"no question about it\") em vez de linguagem de mitigação é o erro mais comum neste registo.",
+      "audio_url": null,
+      "tags": ["hedging-language"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_hedging_002",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_hedging_language",
+      "prompt": "Complete: The results ___ support this theory, though further research is needed.",
+      "correct_answer": ["tend to"],
+      "distractors": ["definitely", "completely", "absolutely"],
+      "explanation": "\"Tend to\" suaviza a afirmação, coerente com \"further research is needed\" logo a seguir.",
+      "common_mistake_pt": "Usar \"definitely\"/\"absolutely\" contradiz o resto da frase, que reconhece incerteza.",
+      "audio_url": null,
+      "tags": ["hedging-language"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_hedging_vocab_001",
+      "cefr_level": "C1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"to some extent\" mean?",
+      "correct_answer": ["something is partly true, but not completely"],
+      "distractors": ["something is completely true", "something is completely false", "something is impossible to know"],
+      "explanation": "\"To some extent\" indica verdade parcial, não total nem nula.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "hedging-language"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_hedging_listening_001",
+      "cefr_level": "C1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Is the speaker completely certain about their claim?",
+      "correct_answer": ["no", "no, they hedge the claim"],
+      "distractors": ["yes, completely certain", "the speaker doesn't say"],
+      "explanation": "No áudio, ouve-se: \"It could be argued that remote work has changed office culture, though the full impact is still unclear.\" — linguagem de mitigação.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "It could be argued that remote work has changed office culture significantly, though the full impact is still unclear and arguably too early to measure.",
+      "tags": ["listening", "hedging-language"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_hedging_reading_001",
+      "cefr_level": "C1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"There seems to be a correlation between the two variables, although the sample size was limited.\" How confident is the writer about the correlation?",
+      "correct_answer": ["cautiously, not fully certain", "not completely confident"],
+      "distractors": ["completely confident", "not confident at all", "It doesn't say"],
+      "explanation": "\"There seems to be\" e a menção à limitação da amostra indicam confiança cautelosa, não certeza absoluta.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "hedging-language"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_hedging_translation_001",
+      "cefr_level": "C1",
+      "pillar": "translation",
+      "concept_ref": "gc_c1_hedging_language",
+      "prompt": "Translate to English (usando linguagem de mitigação académica): \"Pode argumentar-se que as redes sociais mudaram a forma como os jovens comunicam.\"",
+      "correct_answer": ["It could be argued that social media has changed how young people communicate."],
+      "distractors": [],
+      "explanation": "\"Pode argumentar-se que\" traduz-se diretamente por \"it could be argued that\", a expressão de mitigação mais comum em registo académico.",
+      "common_mistake_pt": "Traduzir com uma afirmação categórica (\"Social media changed how young people communicate\") perde o tom académico cauteloso do original.",
+      "audio_url": null,
+      "tags": ["translation", "hedging-language"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c1_m5_u1_hedging_language",
+    "title": "It Could Be Argued That...",
+    "cefr_level": "C1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c1_hedging_language",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c1_hedging_language#rule" },
+      { "type": "example", "content_ref": "gc_c1_hedging_language#example" },
+      { "type": "common_mistake", "content_ref": "gc_c1_hedging_language#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c1_arguably", "vocab_c1_tend_to", "vocab_c1_to_some_extent"] },
+      { "type": "exercise", "exercise_ids": ["ex_c1_hedging_001", "ex_c1_hedging_002", "ex_c1_hedging_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c1_hedging_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c1_hedging_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Hedging phrases are usually said slightly faster and less stressed than the claim they introduce — the important information (the actual claim) gets the emphasis, while \"it could be argued that\" flows past almost like a formality."
+      },
+      { "type": "speaking", "prompt": "State an opinion about a topic using hedging language ('it could be argued that', 'there seems to be', 'to some extent'), instead of a blunt, categorical statement." },
+      { "type": "writing", "prompt": "Write 3 sentences on a topic of your choice, each using a different piece of hedging language (arguably, tend to, to some extent, it could be argued that, there seems to be)." },
+      { "type": "translation", "exercise_ids": ["ex_c1_hedging_translation_001"] }
+    ]
+  }
+}

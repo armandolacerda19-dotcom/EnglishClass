@@ -48,6 +48,16 @@
         { "number": 1, "code": "B2.1", "order": 8 },
         { "number": 2, "code": "B2.2", "order": 9 }
       ]
+    },
+    {
+      "cefr": "C1",
+      "order": 5,
+      "title": "C1 — Effective Operational Proficiency",
+      "description": "Uso da língua fluente, flexível e eficaz para fins sociais, académicos e profissionais — texto complexo bem estruturado, registo e nuance controlados de forma consciente.",
+      "sublevels": [
+        { "number": 1, "code": "C1.1", "order": 10 },
+        { "number": 2, "code": "C1.2", "order": 11 }
+      ]
     }
   ]
 }

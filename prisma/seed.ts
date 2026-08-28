@@ -51,6 +51,12 @@ import moduleAdvancedReportingVerbs from "../content/curriculum/b2-module-06-adv
 import moduleFuturePerfect from "../content/curriculum/b2-module-07-future-perfect.json";
 import moduleDiscourseMarkers from "../content/curriculum/b2-module-08-discourse-markers.json";
 import moduleComparativeCorrelatives from "../content/curriculum/b2-module-09-comparative-correlatives.json";
+import moduleSubjunctive from "../content/curriculum/c1-module-01-subjunctive.json";
+import moduleEmphaticDo from "../content/curriculum/c1-module-02-emphatic-do.json";
+import modulePassiveReporting from "../content/curriculum/c1-module-03-passive-reporting.json";
+import moduleNominalisation from "../content/curriculum/c1-module-04-nominalisation.json";
+import moduleHedgingLanguage from "../content/curriculum/c1-module-05-hedging-language.json";
+import moduleEllipsisSubstitution from "../content/curriculum/c1-module-06-ellipsis-substitution.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -151,6 +157,14 @@ const MODULE_FILES = [
   moduleAdvancedReportingVerbs, // B2.2
   moduleDiscourseMarkers, // B2.2 — however/furthermore/as a result, essencial para escrita formal (Fase 13, 2026-08-27)
   moduleComparativeCorrelatives, // B2.2 — "the more..., the more...", gap real (Fase 13, 2026-08-27)
+  // C1 — nível novo (Fase 15, 2026-08-27): o schema já suportava CefrLevel.C1
+  // desde a Fase 0, tal como B2 estava antes desta sessão. Ver levels.json.
+  moduleSubjunctive, // C1.1
+  moduleEmphaticDo, // C1.1
+  modulePassiveReporting, // C1.1
+  moduleNominalisation, // C1.2
+  moduleHedgingLanguage, // C1.2
+  moduleEllipsisSubstitution, // C1.2
 ];
 
 async function seedLevels() {

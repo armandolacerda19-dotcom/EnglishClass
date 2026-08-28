@@ -2,6 +2,21 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 14 fechada (até onde é possível a custo zero) — arranque da Fase 15
+
+Pedido do utilizador: "pode continuar e terminar a fase 14 e avançar para a 15". A Fase 14 do roadmap original (`docs/AUDITORIA-2026-08-27.md`, secção 5.4) tinha 4 itens: notícias e podcasts graduados, letras de música, clipes com legendas em 3 camadas, e campo `genre`/`source` em `ReadingPassage`.
+
+**Balanço honesto, não uma alegação de "100% feito"**: dos 4 itens, **1 está genuinamente concluído** (campo `genre`/`source`, usado em 22 textos originais desta sessão, 82 no total) e **3 continuam estruturalmente bloqueados**, não por falta de esforço mas por dependerem de infraestrutura fora do alcance de código:
+- **Notícias/podcasts graduados de verdade**: exigem ingestão de fontes reais licenciadas (RSS de notícias, podcasts com transcrição) — os textos "news" desta sessão são originais, não ingestão de fontes reais.
+- **Letras de música**: bloqueado por direitos de autor — nunca se deve reproduzir letras reais sem licença, e escrever "letras originais" falsas não serve o objetivo real do utilizador (aprender a perceber música existente).
+- **Legendas em 3 camadas**: exige vídeo, que a app não tem de todo — depende por completo da Fase 9 (áudio/vídeo real), bloqueada por decisão financeira do utilizador ainda não tomada.
+
+**Isto está registado como o teto real da Fase 14 a custo zero** — não fica "por preguiça", fica porque exige ou dinheiro (Fase 9) ou uma decisão de scope (ingestão de fontes externas, ainda não pedida). A Fase 14 é declarada fechada nestes termos: o que dava para fazer a custo zero, foi feito (género/formato de texto, 82 textos, 5 géneros).
+
+**Fase 15 — arranque**, dado não existir no roadmap original (que terminava na Fase 14): definida agora como continuação natural do trabalho desta sessão em duas frentes, ambas já validadas como de alto valor nesta sessão:
+1. **Currículo C1** — o schema já suporta `CefrLevel.C1`/`C2` desde a Fase 0 (nunca usados), tal como B2 estava antes desta sessão. Introduzir C1 com um primeiro lote de módulos, mesmo processo rigoroso já usado para B2 (JSON validado, ids únicos por grep, `seed.ts` atualizado, `levels.json` com novo nível/sublevels).
+2. **Auditoria de continuidade** — o mesmo processo que encontrou 3 bugs reais nesta sessão (placement test preso em A2.2, nível nunca avançava, testes misturavam qualquer nível CEFR) continua a aplicar-se: rever sistematicamente o que muda de comportamento com cada adição, à procura de mais "dados que existem mas nunca alimentam a decisão que deviam alimentar".
+
 ## 2026-08-27 — Fase 14 continuada: mais 3 textos de leitura (7º lote)
 
 `assembling-furniture-instructions` (A2, "instructions"), `surprise-party-dialogue` (A2, "dialogue"), `startup-funding-news` (B1, "news") — todos originais. Total de textos de leitura: 79 → 82.

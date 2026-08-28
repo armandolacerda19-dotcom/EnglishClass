@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C1.2",
+  "module": {
+    "id": "mod_c1_6_ellipsis_substitution",
+    "title": "Ellipsis and Substitution",
+    "theme": "formal-register",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_c1_6_ellipsis_substitution",
+    "title": "Avoiding Repetition",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c1_ellipsis_substitution",
+    "title": "Ellipsis and Substitution",
+    "rule": "Avoid repeating a word or phrase already mentioned by omitting it entirely (ellipsis) or replacing it with a short substitute word (one/ones, so, not) — a key feature of natural, non-repetitive English.",
+    "simple_explanation": "Repeating the exact same words in a reply sounds unnatural and clumsy in English. Instead, native speakers either drop the repeated part completely, or swap it for a small substitute word that carries the same meaning.",
+    "example": "I'd like to go, but I can't [go]. — \"Will it rain tomorrow?\" \"I hope not.\" — \"Which shoes do you want?\" \"The red ones.\"",
+    "example_translation": "Gostava de ir, mas não posso. — \"Vai chover amanhã?\" \"Espero que não.\" — \"Que sapatos queres?\" \"Os vermelhos.\"",
+    "common_mistake_pt": "O português tolera mais repetição direta ou resolve isto de outras formas (pronomes clíticos), o que leva a repetir a frase inteira em inglês (\"I hope it will not rain\" em vez de \"I hope not\") ou a esquecer substitutos curtos como \"one\"/\"ones\" para não repetir um substantivo já mencionado (\"Which shoes?\" \"The red shoes\" em vez de \"The red ones\").",
+    "correction": "Depois de um substantivo contável já mencionado, substitua-o por \"one\"/\"ones\" em vez de o repetir. Para respostas curtas sobre uma opinião ou expectativa, use \"I think so\"/\"I hope so\"/\"I hope not\"/\"I'm afraid not\" em vez de repetir a oração inteira.",
+    "real_world_example": "In conversation: \"Do you think she'll come?\" \"I hope so.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c1_one_substitute",
+      "headword": "one / ones",
+      "type": "pronoun",
+      "translation_pt": "o/a (substituto de um substantivo já mencionado)",
+      "definition_en": "used to avoid repeating a countable noun already mentioned",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/wʌn/",
+      "related_forms": ["the red one", "the big ones"],
+      "example_sentences": ["I don't like this shirt — do you have a bigger one?"],
+      "difficulty": 3,
+      "tags": ["ellipsis-substitution"]
+    },
+    {
+      "id": "vocab_c1_i_hope_so",
+      "headword": "I hope so",
+      "type": "expression",
+      "translation_pt": "espero que sim",
+      "definition_en": "used to say you hope something already mentioned is true, without repeating it",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/aɪ hoʊp soʊ/",
+      "related_forms": ["I hope not", "I think so"],
+      "example_sentences": ["\"Will the flight be on time?\" \"I hope so.\""],
+      "difficulty": 2,
+      "tags": ["ellipsis-substitution"]
+    },
+    {
+      "id": "vocab_c1_im_afraid_not",
+      "headword": "I'm afraid not",
+      "type": "expression",
+      "translation_pt": "receio que não",
+      "definition_en": "a polite way to say no to something already mentioned, without repeating it",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/aɪm əˈfreɪd nɒt/",
+      "related_forms": ["I'm afraid so"],
+      "example_sentences": ["\"Is there any left?\" \"I'm afraid not.\""],
+      "difficulty": 2,
+      "tags": ["ellipsis-substitution"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c1_ellipsis_001",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_ellipsis_substitution",
+      "prompt": "Complete: \"Which shoes do you want?\" \"The red ___.\"",
+      "correct_answer": ["ones"],
+      "distractors": ["shoes", "it", "some"],
+      "explanation": "\"Ones\" substitui \"shoes\" (plural), evitando repeti-lo: \"The red ones\".",
+      "common_mistake_pt": "Repetir o substantivo (\"the red shoes\") em vez de usar \"ones\" é comum, por transferência do português.",
+      "audio_url": null,
+      "tags": ["ellipsis-substitution"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_ellipsis_002",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_ellipsis_substitution",
+      "prompt": "Complete: \"Will it rain tomorrow?\" \"I hope ___.\"",
+      "correct_answer": ["not"],
+      "distractors": ["that not", "it will not", "no"],
+      "explanation": "\"I hope not\" substitui toda a oração (\"I hope it will not rain\") de forma curta e natural.",
+      "common_mistake_pt": "Responder só \"no\" (em vez de \"I hope not\") não erra a gramática, mas perde a estrutura de substituição pedida aqui.",
+      "audio_url": null,
+      "tags": ["ellipsis-substitution"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_ellipsis_vocab_001",
+      "cefr_level": "C1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What is a polite way to say \"no\" to a question, without repeating it, like \"Is there any left?\"?",
+      "correct_answer": ["I'm afraid not"],
+      "distractors": ["I hope so", "As far as I know", "By all means"],
+      "explanation": "\"I'm afraid not\" é uma forma educada de dizer \"não\" sem repetir a pergunta.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "ellipsis-substitution"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_ellipsis_listening_001",
+      "cefr_level": "C1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Does the speaker think Sofia will come to the party?",
+      "correct_answer": ["yes, they hope so", "yes"],
+      "distractors": ["no, they hope not", "the speaker doesn't know"],
+      "explanation": "No áudio, ouve-se: \"Do you think Sofia will come?\" \"I hope so — I really want her to be there.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Do you think Sofia will come to the party? I hope so — I really want her to be there.",
+      "tags": ["listening", "ellipsis-substitution"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_ellipsis_reading_001",
+      "cefr_level": "C1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"I wanted to buy the blue jacket, but the shop only had small ones left.\" What size were the jackets left in the shop?",
+      "correct_answer": ["small"],
+      "distractors": ["large", "medium", "It doesn't say"],
+      "explanation": "\"Small ones\" substitui \"small jackets\" — o tamanho disponível era pequeno.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "ellipsis-substitution"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_ellipsis_translation_001",
+      "cefr_level": "C1",
+      "pillar": "translation",
+      "concept_ref": "gc_c1_ellipsis_substitution",
+      "prompt": "Translate to English (evitando repetir o substantivo): \"Não gosto deste casaco, tens um mais quente?\"",
+      "correct_answer": ["I don't like this jacket, do you have a warmer one?"],
+      "distractors": [],
+      "explanation": "\"One\" substitui \"jacket\" na segunda parte da frase, evitando repeti-lo: \"a warmer one\".",
+      "common_mistake_pt": "Repetir \"jacket\" (\"a warmer jacket\") em vez de usar \"one\" é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["translation", "ellipsis-substitution"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c1_m6_u1_ellipsis_substitution",
+    "title": "Avoiding Repetition",
+    "cefr_level": "C1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c1_ellipsis_substitution",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c1_ellipsis_substitution#rule" },
+      { "type": "example", "content_ref": "gc_c1_ellipsis_substitution#example" },
+      { "type": "common_mistake", "content_ref": "gc_c1_ellipsis_substitution#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c1_one_substitute", "vocab_c1_i_hope_so", "vocab_c1_im_afraid_not"] },
+      { "type": "exercise", "exercise_ids": ["ex_c1_ellipsis_001", "ex_c1_ellipsis_002", "ex_c1_ellipsis_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c1_ellipsis_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c1_ellipsis_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Short substitute answers like \"I hope so\" and \"I'm afraid not\" usually carry falling intonation at the end, sounding complete and confident despite being so short — not trailing off as if the sentence were unfinished."
+      },
+      { "type": "speaking", "prompt": "Answer 3 hypothetical questions using short substitutes instead of full repeated sentences — 'I hope so', 'I'm afraid not', 'the [adjective] one(s)'." },
+      { "type": "writing", "prompt": "Write 3 short exchanges (a question and an answer) that use ellipsis or substitution to avoid repeating a noun or a full clause." },
+      { "type": "translation", "exercise_ids": ["ex_c1_ellipsis_translation_001"] }
+    ]
+  }
+}

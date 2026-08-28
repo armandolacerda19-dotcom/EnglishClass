@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C1.2",
+  "module": {
+    "id": "mod_c1_4_nominalisation",
+    "title": "Nominalisation",
+    "theme": "formal-register",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_c1_4_nominalisation",
+    "title": "Turning Verbs into Nouns",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c1_nominalisation",
+    "title": "Nominalisation",
+    "rule": "Turn verbs and adjectives into nouns (nominalisation) to create a more formal, dense, 'academic' style, common in reports, essays and news — 'decide' becomes 'decision', 'analyse' becomes 'analysis', 'available' becomes 'availability'.",
+    "simple_explanation": "Formal English often prefers a noun + a general verb (make a decision, conduct an analysis, reach a conclusion) over the plain verb (decide, analyse, conclude). This isn't just style for its own sake — it's the expected register in reports, essays and news writing.",
+    "example": "We need to make a decision. (formal, nominalised) vs. We need to decide. (plain verb) — The analysis of the data revealed a clear pattern.",
+    "example_translation": "Precisamos de tomar uma decisão. vs. Precisamos de decidir. — A análise dos dados revelou um padrão claro.",
+    "common_mistake_pt": "O português também nominaliza, mas ao escrever em inglês formal os alunos tendem a manter sempre a estrutura mais simples com verbo (\"We need to decide\") mesmo quando o registo pede o substantivo (\"make a decision\"), ou tentam criar formas nominais erradas por analogia direta (\"the decide\" em vez de \"the decision\").",
+    "correction": "Em registo formal/académico, prefira o substantivo derivado + um verbo genérico (make/reach/come to a decision, conduct an analysis) em vez do verbo direto — mas aprenda a forma nominal certa de cada verbo, porque muitas são irregulares (decide → decision, analyse → analysis, know → knowledge).",
+    "real_world_example": "In a report: \"The team conducted a thorough analysis before reaching a final decision.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c1_conduct_verb",
+      "headword": "conduct",
+      "type": "verb",
+      "translation_pt": "conduzir, realizar",
+      "definition_en": "to organize and carry out a particular activity, such as research or an analysis",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/kənˈdʌkt/",
+      "related_forms": ["conduct research", "conduct an analysis"],
+      "example_sentences": ["The team conducted a thorough analysis of the results."],
+      "difficulty": 3,
+      "tags": ["nominalisation"]
+    },
+    {
+      "id": "vocab_c1_analysis",
+      "headword": "analysis",
+      "type": "noun",
+      "translation_pt": "análise",
+      "definition_en": "detailed examination of something in order to understand it",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/əˈnæləsɪs/",
+      "related_forms": ["analyse", "analytical"],
+      "example_sentences": ["The analysis revealed a clear pattern."],
+      "difficulty": 3,
+      "tags": ["nominalisation"]
+    },
+    {
+      "id": "vocab_c1_availability",
+      "headword": "availability",
+      "type": "noun",
+      "translation_pt": "disponibilidade",
+      "definition_en": "the state of being able to be used or obtained",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/əveɪləˈbɪləti/",
+      "related_forms": ["available"],
+      "example_sentences": ["Please confirm your availability for next week."],
+      "difficulty": 3,
+      "tags": ["nominalisation"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c1_nominal_001",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_nominalisation",
+      "prompt": "Choose the more formal version: \"The board needs to ___ before Friday.\"",
+      "correct_answer": ["make a decision"],
+      "distractors": ["decide-ment", "do a decide", "have a decide"],
+      "explanation": "\"Make a decision\" é a forma nominalizada formal de \"decide\".",
+      "common_mistake_pt": "Inventar formas como \"decide-ment\" por analogia é comum ao tentar nominalizar verbos irregulares.",
+      "audio_url": null,
+      "tags": ["nominalisation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_nominal_002",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_nominalisation",
+      "prompt": "Choose the more formal version: \"We need to ___ of the data before proceeding.\"",
+      "correct_answer": ["conduct an analysis"],
+      "distractors": ["do an analyse", "make an analyse", "have an analysing"],
+      "explanation": "A forma nominal correta de \"analyse\" é \"analysis\", combinada com o verbo genérico \"conduct\": \"conduct an analysis\".",
+      "common_mistake_pt": "Usar \"analyse\" como substantivo (\"do an analyse\") é o erro mais comum aqui.",
+      "audio_url": null,
+      "tags": ["nominalisation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_nominal_vocab_001",
+      "cefr_level": "C1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What is the noun form of \"available\"?",
+      "correct_answer": ["availability"],
+      "distractors": ["availableness", "availation", "availity"],
+      "explanation": "A forma nominal correta é \"availability\", não uma forma inventada por analogia direta.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "nominalisation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_nominal_listening_001",
+      "cefr_level": "C1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What did the team do before reaching a decision?",
+      "correct_answer": ["conducted a thorough analysis", "conducted an analysis"],
+      "distractors": ["skipped the analysis entirely", "asked for more funding", "cancelled the project"],
+      "explanation": "No áudio, ouve-se: \"The team conducted a thorough analysis before reaching a final decision.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "The team conducted a thorough analysis of all the available data before reaching a final decision on the new strategy.",
+      "tags": ["listening", "nominalisation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_nominal_reading_001",
+      "cefr_level": "C1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Please confirm your availability for a meeting next Tuesday.\" What is being requested?",
+      "correct_answer": ["confirmation of availability for a meeting", "whether the person is free next Tuesday"],
+      "distractors": ["a formal complaint", "a change of date", "a cancellation"],
+      "explanation": "O texto pede a confirmação da disponibilidade para uma reunião.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "nominalisation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_nominal_translation_001",
+      "cefr_level": "C1",
+      "pillar": "translation",
+      "concept_ref": "gc_c1_nominalisation",
+      "prompt": "Translate to English (usando a forma nominalizada, mais formal): \"A equipa vai realizar uma análise completa dos resultados.\"",
+      "correct_answer": ["The team will conduct a thorough analysis of the results."],
+      "distractors": [],
+      "explanation": "\"Realizar uma análise\" corresponde a \"conduct an analysis\", a forma nominalizada e formal, em vez de \"analyse the results\" (verbo direto).",
+      "common_mistake_pt": "Traduzir apenas com o verbo (\"The team will analyse the results\") não está errado, mas não é a forma nominalizada formal pedida.",
+      "audio_url": null,
+      "tags": ["translation", "nominalisation"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c1_m4_u1_nominalisation",
+    "title": "Turning Verbs into Nouns",
+    "cefr_level": "C1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c1_nominalisation",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c1_nominalisation#rule" },
+      { "type": "example", "content_ref": "gc_c1_nominalisation#example" },
+      { "type": "common_mistake", "content_ref": "gc_c1_nominalisation#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c1_conduct_verb", "vocab_c1_analysis", "vocab_c1_availability"] },
+      { "type": "exercise", "exercise_ids": ["ex_c1_nominal_001", "ex_c1_nominal_002", "ex_c1_nominal_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c1_nominal_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c1_nominal_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Nominalised words often shift their stress compared to the verb they come from: DEcide → deCIsion, aNAlyse → aNAlysis stays similar, but many nominalisations move stress toward the new suffix (-tion, -sion, -ity) — listen for the syllable that changes."
+      },
+      { "type": "speaking", "prompt": "Describe a decision you made recently using formal nominalised language ('I made a decision to...', 'After conducting an analysis of...')." },
+      { "type": "writing", "prompt": "Write 3 formal sentences using nominalisation instead of the plain verb (e.g. 'make a decision' instead of 'decide')." },
+      { "type": "translation", "exercise_ids": ["ex_c1_nominal_translation_001"] }
+    ]
+  }
+}

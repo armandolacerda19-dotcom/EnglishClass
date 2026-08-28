@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C1.1",
+  "module": {
+    "id": "mod_c1_1_subjunctive",
+    "title": "The Subjunctive Mood",
+    "theme": "formal-structures",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_c1_1_subjunctive",
+    "title": "It Is Essential That...",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c1_subjunctive",
+    "title": "The Subjunctive Mood",
+    "rule": "After certain verbs and expressions of necessity, recommendation or importance (suggest, recommend, insist, essential, important, vital, it's crucial), use the base form of the verb for all subjects — with no -s, no 'to', and no change for tense.",
+    "simple_explanation": "The subjunctive looks almost like a mistake to intermediate learners, because it ignores the normal 3rd-person -s and doesn't shift with tense — 'It is essential that he BE present' (not 'is'), 'I suggest that she GO' (not 'goes'). It survives mainly in formal writing and speech, and after a specific set of verbs and expressions.",
+    "example": "It is essential that he be present at the meeting. The committee recommended that the policy be reviewed.",
+    "example_translation": "É essencial que ele esteja presente na reunião. A comissão recomendou que a política fosse revista.",
+    "common_mistake_pt": "O português usa o conjuntivo de forma muito mais ampla e com concordância normal de pessoa (\"é essencial que ele ESTEJA presente\", \"recomendo que ela VÁ\") — isso ajuda a reconhecer QUANDO usar o subjuntivo inglês, mas leva a esquecer que a forma inglesa nunca muda, mesmo para ele/ela/it (\"it is essential that he is present\" é o erro mais comum, usando a concordância normal em vez da forma base invariável).",
+    "correction": "Depois de verbos como \"suggest\"/\"recommend\"/\"insist\" ou expressões como \"it's essential/important/vital that\", use sempre a forma BASE do verbo (be, go, do...) para qualquer sujeito — nunca \"is\", \"goes\", \"does\", mesmo com he/she/it.",
+    "real_world_example": "In a formal email: \"We recommend that the report be submitted by Friday.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c1_essential",
+      "headword": "essential",
+      "type": "adjective",
+      "translation_pt": "essencial",
+      "definition_en": "absolutely necessary; extremely important",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/ɪˈsɛnʃəl/",
+      "related_forms": ["essentially", "essence"],
+      "example_sentences": ["It is essential that everyone attend the briefing."],
+      "difficulty": 3,
+      "tags": ["subjunctive"]
+    },
+    {
+      "id": "vocab_c1_recommend",
+      "headword": "recommend",
+      "type": "verb",
+      "translation_pt": "recomendar",
+      "definition_en": "to suggest that something is good, suitable, or should be done",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/rɛkəˈmɛnd/",
+      "related_forms": ["recommendation"],
+      "example_sentences": ["The doctor recommended that she rest for a week."],
+      "difficulty": 3,
+      "tags": ["subjunctive"]
+    },
+    {
+      "id": "vocab_c1_mandatory",
+      "headword": "mandatory",
+      "type": "adjective",
+      "translation_pt": "obrigatório",
+      "definition_en": "required by law or a rule; compulsory",
+      "cefr_level": "C1",
+      "audio_url": null,
+      "ipa": "/ˈmændətɔːri/",
+      "related_forms": ["mandate"],
+      "example_sentences": ["Attendance at the safety briefing is mandatory."],
+      "difficulty": 3,
+      "tags": ["formal-register"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c1_subjunctive_001",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_subjunctive",
+      "prompt": "Complete: It is essential that he ___ present at the meeting.",
+      "correct_answer": ["be"],
+      "distractors": ["is", "will be", "being"],
+      "explanation": "Depois de \"it is essential that\", usa-se a forma base do verbo, invariável: \"be\", nunca \"is\".",
+      "common_mistake_pt": "Usar \"is\" (concordância normal com \"he\") é o erro mais comum, por transferência do padrão habitual do inglês.",
+      "audio_url": null,
+      "tags": ["subjunctive"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_subjunctive_002",
+      "cefr_level": "C1",
+      "pillar": "grammar",
+      "concept_ref": "gc_c1_subjunctive",
+      "prompt": "Complete: The committee recommended that the policy ___ reviewed.",
+      "correct_answer": ["be"],
+      "distractors": ["is", "was", "will be"],
+      "explanation": "Depois de \"recommend that\", usa-se a forma base (aqui, na voz passiva, \"be reviewed\"), não \"is reviewed\".",
+      "common_mistake_pt": "Usar \"is reviewed\" ou \"was reviewed\" ignora que o subjuntivo não muda de forma consoante o tempo.",
+      "audio_url": null,
+      "tags": ["subjunctive"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_subjunctive_vocab_001",
+      "cefr_level": "C1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"mandatory\" mean?",
+      "correct_answer": ["required by law or a rule; compulsory"],
+      "distractors": ["optional and flexible", "forbidden", "recommended but not required"],
+      "explanation": "\"Mandatory\" significa obrigatório, exigido por lei ou regra — o oposto de opcional.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "formal-register"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_subjunctive_listening_001",
+      "cefr_level": "C1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker insist on?",
+      "correct_answer": ["that the contract be reviewed by a lawyer", "that a lawyer review the contract"],
+      "distractors": ["that the deal be cancelled", "that the price be lowered", "that they wait another month"],
+      "explanation": "No áudio, ouve-se: \"I insist that the contract be reviewed by a lawyer before we sign anything.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Before we go any further, I insist that the contract be reviewed by a lawyer before we sign anything.",
+      "tags": ["listening", "subjunctive"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_subjunctive_reading_001",
+      "cefr_level": "C1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"The board proposed that the budget be increased for the next fiscal year.\" What did the board propose?",
+      "correct_answer": ["increasing the budget for next year", "that the budget be increased"],
+      "distractors": ["decreasing the budget", "keeping the budget the same", "cancelling the budget entirely"],
+      "explanation": "O texto diz diretamente que propuseram \"the budget be increased\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "subjunctive"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c1_subjunctive_translation_001",
+      "cefr_level": "C1",
+      "pillar": "translation",
+      "concept_ref": "gc_c1_subjunctive",
+      "prompt": "Translate to English (usando o subjuntivo formal): \"É vital que ela esteja informada imediatamente.\"",
+      "correct_answer": ["It is vital that she be informed immediately."],
+      "distractors": [],
+      "explanation": "Depois de \"it is vital that\", usa-se a forma base invariável \"be\", nunca \"is\".",
+      "common_mistake_pt": "Traduzir para \"It is vital that she is informed immediately\" é o erro mais comum, embora não esteja necessariamente incorreto em registo menos formal — só o subjuntivo formal exige \"be\".",
+      "audio_url": null,
+      "tags": ["translation", "subjunctive"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c1_m1_u1_subjunctive",
+    "title": "It Is Essential That...",
+    "cefr_level": "C1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c1_subjunctive",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c1_subjunctive#rule" },
+      { "type": "example", "content_ref": "gc_c1_subjunctive#example" },
+      { "type": "common_mistake", "content_ref": "gc_c1_subjunctive#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c1_essential", "vocab_c1_recommend", "vocab_c1_mandatory"] },
+      { "type": "exercise", "exercise_ids": ["ex_c1_subjunctive_001", "ex_c1_subjunctive_002", "ex_c1_subjunctive_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c1_subjunctive_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c1_subjunctive_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Because the subjunctive verb looks identical to the base form, it carries no special stress of its own — the emphasis in these sentences falls on the verb of necessity or recommendation instead: \"I INSIST that he be present\", not on \"be\"."
+      },
+      { "type": "speaking", "prompt": "Give a formal recommendation using the subjunctive — e.g. 'I recommend that...' or 'It is essential that...' about a real or invented workplace situation." },
+      { "type": "writing", "prompt": "Write 3 formal sentences using the subjunctive, each with a different trigger expression (suggest, recommend, it's essential/important/vital that)." },
+      { "type": "translation", "exercise_ids": ["ex_c1_subjunctive_translation_001"] }
+    ]
+  }
+}
