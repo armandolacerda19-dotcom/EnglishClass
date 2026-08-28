@@ -2,6 +2,29 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Exercise Engine (Fase 3-4): arquitetura partilhada + 4 tipos novos
+
+Pedido explícito do utilizador: construir "uma verdadeira arquitetura de aprendizagem" com 20 tipos de exercício, motor de distribuição, adaptive learning e mastery tracking — não páginas isoladas. Processo pedido: Fase 1 (auditoria) → Fase 2 (arquitetura) → Fase 3 (core) → Fase 4 (tipos) → Fase 5 (adaptive) → Fase 6 (polimento). Detalhe completo em `docs/12-exercise-engine.md` — aqui só o essencial.
+
+**Fase 1 (auditoria, 3 investigações independentes)** — achado principal: a app tem hoje **duas pipelines de conteúdo em paralelo** — `Exercise.contentJson` (BD, seedado, forma plana "escolha múltipla ou texto livre") vs. módulos estáticos em `src/content/*.ts` (ditado, ordenar, emparelhar, verbos, idiomas, leitura...). Não existia um motor único — 11+ implementações paralelas do mesmo ciclo (buscar conteúdo → mostrar → corrigir no servidor → `updateSkillScore`+`recordActivity`+`awardAchievement`).
+
+**Decisão de arquitetura (Fase 2)**: não reescrever os 11 Runners já em produção (risco de regressão sem build/testes locais, sem ganho proporcional). Construir um motor partilhado (`src/lib/exercise/`) que os tipos de exercício NOVOS usam, chamando sempre as mesmas funções já verificadas (`updateSkillScore`/`recordActivity`/`awardAchievement`/`scheduleReview`) — nunca reimplementando-as.
+
+**Fase 3 (core)**:
+- `src/lib/exercise/types.ts`, `grading.ts` (`exactMatchGrade`/`semanticGrade`/`sequenceGrade`/`wordAccuracyGrade`), `progress.ts` (`recordExerciseResult`), `recommend.ts` (adaptive learning por regras — não ML, desenho proporcional ao volume de dados real da app).
+- `src/components/exercise/ExerciseShell.tsx` — shell visual partilhado, reduz a duplicação de layout dos novos Runners.
+- `getGeminiModel(systemInstruction, jsonMode)` (`src/lib/ai/gemini.ts`) ganha um 2º parâmetro opcional para `responseMimeType: "application/json"` — aditivo, as 4 chamadas existentes não mudam.
+
+**Fase 4 (4 tipos de exercício genuinamente novos, construídos sobre o motor)**:
+1. **Correção de Erros** (`/practice/error-correction`) — 20 frases com erros reais e comuns de falantes de português, corrigidas por reescrita, correção semântica tolerante (`semanticGrade`).
+2. **Sinónimos e Antónimos** (`/practice/synonyms`) — 22 itens, alterna sinónimo/antónimo/intensidade.
+3. **Escolher pelo Contexto** (`/practice/context-choice`) — 18 pares de palavras facilmente confundíveis (interested/interesting, raise/rise...).
+4. **Avaliação estruturada de conversa com IA** (`api/ai/tutor/evaluate`, nova rota + UI em `TutorChat.tsx`) — fecha os tipos #9 (Conversação) e #19 (Role-play) de uma vez: `AIConversation.feedbackJson` existia no schema desde sempre mas nunca era escrito. Botão "Terminar e avaliar" → Gemini em modo JSON devolve Grammar/Vocabulary/Fluency/Confidence (+ Pronunciation só se o utilizador usou o microfone nesta conversa — **sem áudio real, uma conversa só por texto não tem NENHUM sinal de pronúncia, nem indireto; mostrar um número aí seria inventar dados**, exatamente o que o utilizador pediu para nunca fazer) + até 3 erros principais + palavras novas + resumo. As 3-4 dimensões avaliadas substituem, com sinal muito melhor, o `SPEAKING=65` fixo já atribuído por mensagem.
+
+**Achievements novos**: `first_error_correction`, `first_synonym_antonym`, `first_context_choice`, `first_conversation_evaluation`.
+
+**Estado honesto dos 20 tipos**: tabela completa em `docs/12-exercise-engine.md`. Resumo: 8/20 já existiam e continuam a funcionar; 4 são genuinamente novos desta ronda; 1 (compreensão de vídeo) está bloqueado por não haver conteúdo de vídeo nem ser viável produzi-lo a custo zero; os restantes têm o motor pronto para os suportar mas conteúdo/UI dedicados ainda por construir em rondas seguintes.
+
 ## 2026-08-28 — Fase 19: áudio real (dentro do custo zero), tipo de exercício novo, textos C1
 
 Pedido explícito do utilizador: "deve criar mais conteúdo, tipos de exercícios diferentes, audio real." Perguntado se "áudio real" significava autorizar um serviço pago (Azure/ElevenLabs — decisão financeira, nunca tomada unilateralmente) ou melhorar o que já é gratuito — o utilizador escolheu **só melhorar o que é gratuito**. Três frentes:

@@ -127,6 +127,28 @@ export default async function PracticePage() {
         </Link>
       </div>
 
+      <SectionLabel>Gramática e Vocabulário</SectionLabel>
+      <div className="grid grid-cols-2 gap-3">
+        <Link href="/practice/error-correction">
+          <Card className="hover:border-clay">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Correção de Erros</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Encontre e corrija o erro</p>
+          </Card>
+        </Link>
+        <Link href="/practice/synonyms">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Sinónimos e Antónimos</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Amplie o vocabulário por relação</p>
+          </Card>
+        </Link>
+        <Link href="/practice/context-choice">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Escolher pelo Contexto</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Palavras fáceis de confundir</p>
+          </Card>
+        </Link>
+      </div>
+
       <SectionLabel>Referência</SectionLabel>
       <div className="grid grid-cols-2 gap-3">
         <Link href="/practice/verbs">

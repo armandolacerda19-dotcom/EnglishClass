@@ -30,6 +30,9 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_dictation: "DICT",
   first_ordering: "ORD",
   first_matching: "MATCH",
+  first_error_correction: "CORR",
+  first_synonym_antonym: "SYN",
+  first_context_choice: "CTX",
 };
 
 export default async function ProgressPage() {

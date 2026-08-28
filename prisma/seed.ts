@@ -425,6 +425,26 @@ const ACHIEVEMENTS = [
     title: "Primeiro Emparelhamento",
     description: "Completou o seu primeiro exercício de emparelhar vocabulário.",
   },
+  {
+    code: "first_error_correction",
+    title: "Primeira Correção",
+    description: "Completou o seu primeiro exercício de correção de erros.",
+  },
+  {
+    code: "first_synonym_antonym",
+    title: "Primeiro Sinónimo",
+    description: "Completou o seu primeiro exercício de sinónimos e antónimos.",
+  },
+  {
+    code: "first_context_choice",
+    title: "Primeira Escolha em Contexto",
+    description: "Completou o seu primeiro exercício de escolher a palavra certa pelo contexto.",
+  },
+  {
+    code: "first_conversation_evaluation",
+    title: "Primeira Avaliação",
+    description: "Terminou e avaliou a sua primeira conversa completa com o AI Tutor.",
+  },
 ];
 
 async function seedAchievements() {
