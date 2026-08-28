@@ -93,10 +93,18 @@ export async function buildQuestionSet(
   // `userId`, os erros ainda por resolver desse utilizador (por pilar) são
   // usados para dar prioridade a exercícios cujas tags tocam nesse tópico
   // concreto — o resto das vagas continua a ser escolhido ao acaso como antes.
+  //
+  // Fase 17 (auditoria 2026-08-28): o filtro só exigia `resolvedAt: null`,
+  // sem olhar para `occurrences` — um erro cometido uma única vez tinha a
+  // mesma prioridade que um repetido 10x, apesar do texto acima falar
+  // explicitamente de "erro persistente". `getDueReviews` (srs/schedule.ts,
+  // também Fase 11) já usa `occurrences >= 3` como o limiar real de
+  // "persistente" nesta app — alinhado aqui para os dois sítios que
+  // implementam a mesma ideia concordarem.
   const errorTagsByPillar = new Map<Pillar, Set<string>>();
   if (userId) {
     const errors = await prisma.userError.findMany({
-      where: { userId, pillar: { in: pillars }, resolvedAt: null },
+      where: { userId, pillar: { in: pillars }, resolvedAt: null, occurrences: { gte: 3 } },
       select: { pillar: true, errorType: true },
     });
     for (const e of errors) {
