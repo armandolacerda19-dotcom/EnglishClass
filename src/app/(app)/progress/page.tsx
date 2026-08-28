@@ -29,6 +29,7 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_verb: "VERB",
   first_dictation: "DICT",
   first_ordering: "ORD",
+  first_matching: "MATCH",
 };
 
 export default async function ProgressPage() {

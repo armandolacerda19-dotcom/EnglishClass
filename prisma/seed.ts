@@ -419,6 +419,11 @@ const ACHIEVEMENTS = [
     title: "Primeira Ordenação",
     description: "Completou o seu primeiro exercício de ordenar frases.",
   },
+  {
+    code: "first_matching",
+    title: "Primeiro Emparelhamento",
+    description: "Completou o seu primeiro exercício de emparelhar vocabulário.",
+  },
 ];
 
 async function seedAchievements() {

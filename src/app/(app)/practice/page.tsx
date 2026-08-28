@@ -119,6 +119,12 @@ export default async function PracticePage() {
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Monte a frase pela ordem certa</p>
           </Card>
         </Link>
+        <Link href="/practice/matching">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Emparelhar</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Palavra inglesa ↔ tradução</p>
+          </Card>
+        </Link>
       </div>
 
       <SectionLabel>Referência</SectionLabel>
