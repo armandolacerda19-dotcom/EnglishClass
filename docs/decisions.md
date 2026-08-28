@@ -2,6 +2,10 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 14 continuada: mais 3 textos de leitura
+
+5º lote em `readingPassages.ts`: `power-cut-instructions` (A2, "instructions"), `neighbour-noise-dialogue` (B1, "dialogue"), `conference-registration-email` (B2, "email"). Total de textos de leitura: 73 → 76.
+
 ## 2026-08-27 — Bug real: currentLevel nunca avançava depois do placement test
 
 Achado ao rever o fluxo de certificação, na sequência de ter introduzido B2 nesta sessão (o mesmo tipo de revisão que encontrou o bug do placement test preso em A2.2). `LearningProfile.currentLevel`/`currentSublevel` são escritos em exatamente um sítio de todo o código: `api/placement/submit/route.ts`, na submissão do teste de nivelamento inicial. Depois disso, nada em lado nenhum os volta a escrever — nem `completeLesson`, nem `updateSkillScore`, nem `maybeIssueCertificate` (antes desta correção).
