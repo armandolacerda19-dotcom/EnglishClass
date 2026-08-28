@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.2",
+  "module": {
+    "id": "mod_b1_11_causative_have_get",
+    "title": "Have/Get Something Done",
+    "theme": "structures",
+    "order": 6
+  },
+  "unit": {
+    "id": "unit_b1_11_causative_have_get",
+    "title": "Getting Someone Else to Do It",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_causative_have_get",
+    "title": "Causative: Have/Get Something Done",
+    "rule": "Use 'have/get + object + past participle' to say that someone else does something for you — you arrange it or pay for it, but you don't do the action yourself.",
+    "simple_explanation": "This structure exists specifically to mark that YOU didn't personally do the action — a professional or someone else did it, usually because you asked or paid them to. 'Get' is more informal than 'have', but both work the same way.",
+    "example": "I had my hair cut yesterday. She's getting her car repaired this week.",
+    "example_translation": "Cortei o cabelo ontem (no cabeleireiro). Ela vai arranjar o carro esta semana (na oficina).",
+    "common_mistake_pt": "Em português, usa-se o mesmo verbo na voz ativa mesmo quando foi outra pessoa que fez o trabalho (\"cortei o cabelo\", \"vou arranjar o carro\"), sem marcar gramaticalmente se foi a própria pessoa ou um profissional contratado. Isso leva a dizer \"I cut my hair\" quando na verdade se quer dizer que foi ao cabeleireiro — em inglês, \"I cut my hair\" significa especificamente que a PRÓPRIA pessoa pegou numa tesoura e cortou, sozinha, o que muda completamente o sentido.",
+    "correction": "Sempre que um profissional ou outra pessoa faz algo por si (cortar o cabelo, arranjar o carro, pintar a casa), use \"have/get + objeto + particípio passado\" (\"I had my hair cut\", \"I got the car fixed\") — nunca o verbo simples na ativa, que implica ter feito o trabalho pessoalmente.",
+    "real_world_example": "Talking about home repairs: \"We're getting the roof fixed next month.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_have_something_done",
+      "headword": "have something done",
+      "type": "expression",
+      "translation_pt": "mandar fazer / ter algo feito (por outra pessoa)",
+      "definition_en": "to arrange for someone else to do something for you",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/hæv ˈsʌmθɪŋ dʌn/",
+      "related_forms": ["get something done"],
+      "example_sentences": ["I need to have my car serviced soon."],
+      "difficulty": 2,
+      "tags": ["causative"]
+    },
+    {
+      "id": "vocab_b1_hairdresser",
+      "headword": "hairdresser",
+      "type": "noun",
+      "translation_pt": "cabeleireiro/a",
+      "definition_en": "a person whose job is to cut and style hair",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈhɛrdrɛsər/",
+      "related_forms": ["at the hairdresser's"],
+      "example_sentences": ["I have an appointment at the hairdresser's tomorrow."],
+      "difficulty": 1,
+      "tags": ["services"]
+    },
+    {
+      "id": "vocab_b1_repair",
+      "headword": "repair",
+      "type": "verb",
+      "translation_pt": "reparar, consertar",
+      "definition_en": "to fix something that is broken or damaged",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/rɪˈpɛr/",
+      "related_forms": ["repair shop", "under repair"],
+      "example_sentences": ["The mechanic repaired the engine in one day."],
+      "difficulty": 2,
+      "tags": ["services"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_causative_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_causative_have_get",
+      "prompt": "Complete: I ___ (have) my hair cut yesterday.",
+      "correct_answer": ["had"],
+      "distractors": ["have", "was having", "has"],
+      "explanation": "\"Had my hair cut\" = alguém cortou o cabelo por mim, no passado — \"had\" é a forma correta de \"have\" no Past Simple aqui.",
+      "common_mistake_pt": "Usar \"I cut my hair\" para dizer que foi ao cabeleireiro é o erro mais comum — essa frase significa que a pessoa cortou o cabelo sozinha.",
+      "audio_url": null,
+      "tags": ["causative"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_causative_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_causative_have_get",
+      "prompt": "Complete: We ___ (get) the roof fixed next month.",
+      "correct_answer": ["are getting"],
+      "distractors": ["get", "got", "will got"],
+      "explanation": "Plano combinado para o futuro próximo — Present Continuous com valor de futuro: \"are getting\".",
+      "common_mistake_pt": "\"Will got\" não existe em inglês (\"will\" nunca é seguido de um verbo no passado) — erro comum ao tentar formar o futuro.",
+      "audio_url": null,
+      "tags": ["causative"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_causative_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"have something done\" mean?",
+      "correct_answer": ["to arrange for someone else to do something for you"],
+      "distractors": ["to do something yourself", "to refuse to do something", "to plan to do something in the future"],
+      "explanation": "A estrutura marca especificamente que outra pessoa faz a ação, não o próprio falante.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "causative"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_causative_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What is the speaker having done to their car?",
+      "correct_answer": ["repaired", "fixed", "having it repaired"],
+      "distractors": ["painted", "cleaned", "sold"],
+      "explanation": "No áudio, ouve-se: \"I'm having my car repaired at the garage down the street.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I'm having my car repaired at the garage down the street — it should be ready by Friday, so I've booked a rental car for the rest of the week.",
+      "tags": ["listening", "causative"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_causative_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Marta had her kitchen redecorated last month. She didn't do any of the work herself — she hired a local company to do it.\" Who actually did the decorating work?",
+      "correct_answer": ["a local company", "the company she hired"],
+      "distractors": ["Marta", "Marta's neighbour", "It doesn't say"],
+      "explanation": "O texto diz diretamente que ela \"hired a local company to do it\" — não fez o trabalho pessoalmente.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "causative"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_causative_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_causative_have_get",
+      "prompt": "Translate to English: \"Vou cortar o cabelo amanhã, no cabeleireiro.\"",
+      "correct_answer": ["I'm having my hair cut tomorrow.", "I'm getting my hair cut tomorrow."],
+      "distractors": [],
+      "explanation": "Como é o cabeleireiro que corta, não a própria pessoa, usa-se a estrutura causativa \"having/getting my hair cut\", nunca \"I'm cutting my hair\".",
+      "common_mistake_pt": "Traduzir para \"I'm cutting my hair tomorrow\" é o erro mais comum — essa frase significaria que a pessoa vai cortar o próprio cabelo sozinha.",
+      "audio_url": null,
+      "tags": ["translation", "causative"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m11_u1_causative_have_get",
+    "title": "Getting Someone Else to Do It",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_causative_have_get",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_causative_have_get#rule" },
+      { "type": "example", "content_ref": "gc_b1_causative_have_get#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_causative_have_get#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_have_something_done", "vocab_b1_hairdresser", "vocab_b1_repair"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_causative_001", "ex_b1_causative_002", "ex_b1_causative_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_causative_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_causative_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "In fast speech, \"have\" in this structure is very weak — \"I have my car fixed\" often sounds like /aɪv mi kɑːr fɪkst/, almost merging into the pronoun, unlike when \"have\" is the main verb meaning \"to possess\"."
+      },
+      { "type": "speaking", "prompt": "Talk about something you have had done recently (a haircut, a repair, a service) — who did it, and why you didn't do it yourself." },
+      { "type": "writing", "prompt": "Write 3 sentences about things you have had done, are having done, or plan to have done, using \"have/get + object + past participle\"." },
+      { "type": "translation", "exercise_ids": ["ex_b1_causative_translation_001"] }
+    ]
+  }
+}

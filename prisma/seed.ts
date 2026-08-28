@@ -37,6 +37,7 @@ import moduleZeroConditional from "../content/curriculum/a2-module-10-zero-condi
 import modulePresentPerfectVsPastSimple from "../content/curriculum/a2-module-11-present-perfect-vs-past-simple.json";
 import modulePresentPerfectContinuous from "../content/curriculum/b1-module-09-present-perfect-continuous.json";
 import moduleWishClauses from "../content/curriculum/b1-module-10-wish-clauses.json";
+import moduleCausativeHaveGet from "../content/curriculum/b1-module-11-causative-have-get.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -120,6 +121,7 @@ const MODULE_FILES = [
   moduleModalsDeduction, // B1.2 — reforço de densidade B1 (2026-08-27)
   moduleThirdConditional, // B1.2 — reforço de densidade B1 (2026-08-27)
   moduleWishClauses, // B1.2 — logo a seguir a third-conditional (mesma lógica "recuar um tempo verbal"); gap real, "wish" nunca tinha módulo próprio (Fase 13, 2026-08-27)
+  moduleCausativeHaveGet, // B1.2 — último módulo B1, gap real: "have/get something done" nunca teve módulo próprio, apesar de comum no dia a dia (Fase 13, 2026-08-27)
 ];
 
 async function seedLevels() {
