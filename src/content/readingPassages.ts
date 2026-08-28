@@ -1904,6 +1904,113 @@ export const READING_PASSAGES: ReadingPassage[] = [
       },
     ],
   },
+  // Fase 14 (continuação, 2026-08-27) — 4º lote. Inclui os primeiros textos
+  // de nível B2, agora que esse nível existe no currículo (Fase 13, mesma
+  // sessão). Originais, nunca copiados de fonte real.
+  {
+    id: "remote-work-debate-news",
+    title: "Companies Rethink Remote Work Policies",
+    level: "B2",
+    genre: "news",
+    source: "original",
+    text: "Several major companies have announced changes to their remote work policies this year, requiring employees to return to the office for at least three days a week. Executives argue that in-person collaboration boosts innovation and helps younger employees learn from more experienced colleagues, something they say is harder to replicate over video calls.\n\nNot everyone agrees. Employee surveys conducted by independent researchers suggest that many workers value the flexibility of remote work more than almost any other benefit, and some have even said they would consider changing jobs rather than give it up entirely. A few companies have taken a middle path, letting individual teams decide what works best for them rather than imposing a single company-wide rule.\n\nWhat's clear is that neither side has definitive data proving their case, and the debate is likely to continue for years, shaped as much by the labour market as by any research.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why do executives want employees back in the office?",
+        options: [
+          "To reduce office costs",
+          "They believe it boosts innovation and helps junior staff learn",
+          "Because remote work is against the law",
+          "It doesn't say",
+        ],
+        correctAnswer: "They believe it boosts innovation and helps junior staff learn",
+      },
+      {
+        id: "q2",
+        prompt: "According to the surveys mentioned, what do many workers value most?",
+        options: ["Higher salaries", "The flexibility of remote work", "Free lunches", "Shorter working hours"],
+        correctAnswer: "The flexibility of remote work",
+      },
+      {
+        id: "q3",
+        prompt: "What approach have some companies taken instead of a single company-wide rule?",
+        options: [
+          "Banning remote work completely",
+          "Letting individual teams decide",
+          "Paying workers extra to come in",
+          "Closing their offices"
+        ],
+        correctAnswer: "Letting individual teams decide",
+      },
+    ],
+  },
+  {
+    id: "salary-negotiation-dialogue",
+    title: "Negotiating a Pay Rise",
+    level: "B2",
+    genre: "dialogue",
+    source: "original",
+    text: "EMPLOYEE: Thanks for meeting with me. I wanted to talk about my salary, given everything I've taken on this year.\nMANAGER: Of course. Walk me through it — what would you say has changed since your last review?\nEMPLOYEE: I've been leading the onboarding process for new hires, on top of my usual responsibilities, and I've also mentored two junior colleagues.\nMANAGER: That's fair, and I have noticed the extra effort. I can't promise anything today, but I'll bring this to the next budget meeting and get back to you within two weeks.\nEMPLOYEE: That works for me. Is there anything else you'd need from me to make the case?\nMANAGER: If you could put together a short summary of your achievements this year, that would definitely help me argue for it.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What extra responsibilities does the employee mention?",
+        options: [
+          "Managing the budget",
+          "Leading onboarding and mentoring colleagues",
+          "Hiring new staff",
+          "Travelling for work",
+        ],
+        correctAnswer: "Leading onboarding and mentoring colleagues",
+      },
+      {
+        id: "q2",
+        prompt: "When will the manager get back to the employee?",
+        options: ["Immediately", "Within two weeks", "Next year", "Never"],
+        correctAnswer: "Within two weeks",
+      },
+      {
+        id: "q3",
+        prompt: "What does the manager ask the employee to prepare?",
+        options: [
+          "A resignation letter",
+          "A summary of their achievements",
+          "A new job application",
+          "A list of complaints",
+        ],
+        correctAnswer: "A summary of their achievements",
+      },
+    ],
+  },
+  {
+    id: "returning-a-parcel-email",
+    title: "Returning a Damaged Parcel",
+    level: "A2",
+    genre: "email",
+    source: "original",
+    text: "Subject: Damaged item — Order #48213\n\nHello,\n\nI received my order yesterday, but unfortunately the item arrived damaged — there's a large crack on one side. I've attached two photos showing the damage.\n\nCould you please let me know how to proceed? I would prefer a replacement rather than a refund, if that's possible. I can send the damaged item back once I receive a return label.\n\nThank you for your help, and I look forward to hearing from you soon.\n\nBest regards,\nBeatriz",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What is wrong with the item Beatriz received?",
+        options: ["It's the wrong colour", "It arrived damaged, with a crack", "It never arrived", "It's the wrong size"],
+        correctAnswer: "It arrived damaged, with a crack",
+      },
+      {
+        id: "q2",
+        prompt: "What does Beatriz prefer: a refund or a replacement?",
+        options: ["A refund", "A replacement", "Neither, just an apology", "Both"],
+        correctAnswer: "A replacement",
+      },
+      {
+        id: "q3",
+        prompt: "What does Beatriz need before she can send the item back?",
+        options: ["A new address", "A return label", "A phone call", "Nothing"],
+        correctAnswer: "A return label",
+      },
+    ],
+  },
 ];
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {
