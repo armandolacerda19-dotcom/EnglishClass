@@ -2,6 +2,15 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 continuada: Indirect Questions (B1.2) e Adjective Order (A2.2)
+
+Mais dois gaps reais, ambos de alto valor prático:
+
+- **Indirect Questions** (`b1-module-13-indirect-questions.json`, B1.2, último módulo B1): pedir informação educadamente ("Could you tell me where the station is?", "Do you know what time it closes?") sem inverter sujeito/verbo e sem `do/does/did` — a estrutura de cortesia mais usada em viagens e atendimento ao público, e nunca tinha módulo próprio. Cobre `could you tell me`/`I wonder`/`would you mind` como vocabulário de apoio.
+- **Adjective Order** (`a2-module-12-adjective-order.json`, A2.2): ordem fixa de adjetivos antes do substantivo — opinião → tamanho → idade → forma → cor → origem → material ("a beautiful small old round French wooden table"). O português coloca adjetivos tipicamente depois do substantivo, numa ordem bastante livre, o que leva a ordenar os adjetivos em inglês ao acaso quando há mais do que um — som "estrangeiro" mesmo quando perfeitamente compreensível.
+
+Mesmo processo de sempre. **Currículo: 39 → 41 lições.** Verificação exaustiva repetida sobre os 41 módulos: 535 ids, zero duplicatas, zero `concept_ref`/`vocabulary_ids`/`exercise_ids` partidos.
+
 ## 2026-08-27 — Fase 13 continuada: So Do I / Neither Do I (B1.1)
 
 Mais um gap real, encontrado depois de reabrir a revisão de gramática a pedido do utilizador ("pode continuar as atualizações"): a estrutura de concordância curta com auxiliar — "So do I" (concordar com afirmativa), "Neither have I" (concordar com negativa) — nunca teve módulo próprio, apesar de ser uma das construções mais usadas na conversa do dia a dia. É também um ponto onde o português não ajuda: "eu também"/"eu também não" não mudam de estrutura consoante o tempo verbal da frase original, enquanto em inglês o auxiliar usado (do/does/did, have/has, am/is/are, can, will...) tem sempre de corresponder ao da frase que se está a concordar, com inversão obrigatória (auxiliar antes do sujeito, como numa pergunta). `b1-module-12-so-neither-agreement.json`, B1.1, último módulo dessa sublevel.
