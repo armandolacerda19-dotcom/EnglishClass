@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 14 continuada: mais 4 textos de leitura autênticos
+
+2º lote de textos em `readingPassages.ts`, mesmo processo do 1º (originais, nunca copiados de fonte real, ids confirmados únicos por grep antes do commit):
+- `recipe-instructions` (A1, `genre: "instructions"` — 1ª vez que este género é usado)
+- `job-interview-dialogue` (B1, `genre: "dialogue"`)
+- `gym-membership-email` (A2, `genre: "email"`)
+- `weather-warning-news` (B1, `genre: "news"`)
+
+Total de textos de leitura: 63 → 67. Com isto, os 5 géneros declarados na interface `ReadingPassage` (`story`/`dialogue`/`email`/`news`/`instructions`) têm todos pelo menos um exemplo real no currículo.
+
 ## 2026-08-27 — Ação #4 (Top 5 imediatas): plano diário liga a sério ao pilar mais fraco
 
 Última das "Top 5 ações imediatas" da auditoria (secção 5.3) ainda por fazer: "Fazer o plano diário cumprir o que promete. Passar `weakAreas` a `generateDailyPlan` e ligar a `/practice/topic/[pillar]` — a rota já existe". Confirmado por leitura: `dailyPlan.ts` gerava o item "Tema à escolha (pilar mais fraco)" mas o texto entre parênteses era decorativo — `generateDailyPlan` nunca recebia `weakAreas`, e o `href` era sempre `/practice/topic` (o seletor genérico), nunca `/practice/topic/[pillar]` (que já existia e já filtra corretamente, desde a Fase 8).
