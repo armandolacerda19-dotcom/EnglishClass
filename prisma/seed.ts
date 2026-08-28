@@ -460,6 +460,16 @@ const ACHIEVEMENTS = [
     title: "Primeiro Desafio de Escrita",
     description: "Completou o seu primeiro Desafio de Escrita Livre.",
   },
+  {
+    code: "first_read_aloud",
+    title: "Primeira Leitura em Voz Alta",
+    description: "Completou o seu primeiro exercício de leitura em voz alta.",
+  },
+  {
+    code: "first_grammar_quiz",
+    title: "Primeiro Quiz de Gramática",
+    description: "Completou a camada Apply de um Quiz de Gramática por Tema.",
+  },
 ];
 
 async function seedAchievements() {

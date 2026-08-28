@@ -87,7 +87,7 @@ Ver `docs/decisions.md` ("Exercise Engine — Fase 3/4") para o registo de cada 
 | 5 | Ouvir e escolher | ⚠️ coberto parcialmente (listening steps/leitura usam PlayTranscript+MCQ); progressão de velocidade/sotaque por nível ainda não formalizada |
 | 6 | Ditado | ✅ já existia (`/practice/dictation`) |
 | 7 | Repetição oral | ✅ já existia (shadowing em micro-desafios), com o limite honesto já documentado (Web Speech API, sem áudio real) |
-| 8 | Leitura em voz alta | 🔴 não implementado — precisa de gravação+transcript scoring, nenhuma superfície existe hoje |
+| 8 | Leitura em voz alta | ✅ **novo** (`/practice/read-aloud`) — precisão real (diff palavra a palavra) + fluência real (palavras/minuto, duração medida no cliente); Pronúncia deliberadamente sem número — Web Speech API não expõe confiança por palavra |
 | 9 | Conversação com IA | ✅ **novo nesta ronda** — avaliação estruturada de fim de conversa (`api/ai/tutor/evaluate`), 4-5 eixos, erros, palavras novas |
 | 10 | Correção de erros | ✅ **novo nesta ronda** (`/practice/error-correction`) |
 | 11 | Tradução PT→EN | ✅ já existia (`TranslationStep`) |
@@ -95,10 +95,10 @@ Ver `docs/decisions.md` ("Exercise Engine — Fase 3/4") para o registo de cada 
 | 13 | Contexto | ✅ **novo nesta ronda** (`/practice/context-choice`) |
 | 14 | Sinónimos/antónimos | ✅ **novo nesta ronda** (`/practice/synonyms`) |
 | 15 | Word Builder | ✅ **novo** (`/practice/word-builder`), 20 itens de morfologia |
-| 16 | Quiz de gramática por tema (Learn/Practice/Challenge/Apply) | ⚠️ Learn+Practice já existem (Lesson steps); Challenge/Apply como camadas formais ainda não |
+| 16 | Quiz de gramática por tema (Learn/Practice/Challenge/Apply) | ✅ Learn+Practice já existiam (Lesson steps); **Challenge/Apply formalizados nesta ronda** (`/practice/grammar-quiz`) — reaproveita os `GrammarConcept`/`Exercise` reais, zero conteúdo novo |
 | 17 | Compreensão de texto | ✅ já existia (`/practice/reading`) |
 | 18 | Compreensão de vídeo | 🔴 bloqueado — zero conteúdo de vídeo na app, não viável a custo zero |
 | 19 | Role-play | ✅ já existia (personalidade "roleplay"), agora com avaliação de fim de conversa partilhada com o tipo 9 |
 | 20 | Desafio de escrita livre | ✅ **novo** (`/practice/writing-challenge`), formato ❌⚠️✅ + "como um nativo escreveria" |
 
-**15/20 confirmados funcionais** (8 já existiam antes desta ronda + 7 genuinamente novos: Correção de Erros, Sinónimos/Antónimos, Contexto, avaliação de Conversação com IA, Tradução EN→PT, Word Builder, Desafio de Escrita com formato ❌⚠️✅), **1 vídeo genuinamente bloqueado** por falta de infraestrutura a custo zero, os 4 restantes (Preencher espaços dedicado, Ouvir e escolher com progressão de velocidade/sotaque, Leitura em voz alta, Challenge/Apply formal no quiz de gramática) têm arquitetura pronta (o motor suporta-os) mas conteúdo/UI dedicados ainda por construir.
+**17/20 confirmados funcionais** (8 já existiam antes desta ronda + 9 genuinamente novos: Correção de Erros, Sinónimos/Antónimos, Contexto, avaliação de Conversação com IA, Tradução EN→PT, Word Builder, Desafio de Escrita com formato ❌⚠️✅, Leitura em Voz Alta, Challenge/Apply do Quiz de Gramática), **1 vídeo genuinamente bloqueado** por falta de infraestrutura a custo zero, **2 restantes** (Preencher espaços dedicado com dica/revelação, progressão formal de velocidade/sotaque em listening) têm arquitetura pronta (o motor suporta-os, os componentes-base — `PlayTranscript`, seletor de voz — já existem) mas ainda não foram formalizados numa superfície própria.

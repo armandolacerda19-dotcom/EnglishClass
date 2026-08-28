@@ -107,6 +107,12 @@ export default async function PracticePage() {
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Phrasal verbs, expressões</p>
           </Card>
         </Link>
+        <Link href="/practice/read-aloud">
+          <Card className="hover:border-verdigris">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Leitura em Voz Alta</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Leia e grave — precisão e ritmo</p>
+          </Card>
+        </Link>
         <Link href="/practice/dictation">
           <Card className="hover:border-clay">
             <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Ditado</p>
@@ -157,6 +163,12 @@ export default async function PracticePage() {
           <Card className="hover:border-verdigris">
             <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Tradução EN→PT</p>
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">A direção inversa da tradução</p>
+          </Card>
+        </Link>
+        <Link href="/practice/grammar-quiz">
+          <Card className="hover:border-brass">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Quiz por Tema</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Challenge sem ajudas + Apply em contexto</p>
           </Card>
         </Link>
       </div>

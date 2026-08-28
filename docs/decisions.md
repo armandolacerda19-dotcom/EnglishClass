@@ -2,6 +2,18 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Exercise Engine: mais 2 prioridades 🟠 (Leitura em Voz Alta, Challenge/Apply)
+
+Continuação de "deve avançar para as próximas prioridades". Fecha as duas prioridades 🟠 de maior valor que restavam.
+
+**Leitura em Voz Alta** (`/practice/read-aloud`) — o único tipo dos 20 sem NENHUMA superfície antes desta ronda. `RecordButton.tsx` não expõe duração de gravação, por isso não foi reaproveitado diretamente — um novo componente autocontido (`ReadAloudRunner.tsx`) cronometra a própria gravação (`Date.now()` no início do clique até ao `onend` do `SpeechRecognition`) para conseguir uma **Fluência real** (palavras/minuto medidas, não inventadas) além da **Precisão real** (diff palavra a palavra contra o texto real, `lib/readAloud.ts`). **Pronúncia foi deixada deliberadamente sem número** — a Web Speech API não expõe confiança por palavra nesta implementação (`interimResults: false`, `maxAlternatives: 1`), por isso não há nenhum dado, nem indireto, para lhe atribuir uma percentagem; o ecrã diz isso explicitamente em vez de inventar um valor.
+
+**Challenge/Apply do Quiz de Gramática** (`/practice/grammar-quiz`) — Learn/Practice já existiam dentro da lição (rule/exercise steps); esta ronda formaliza as duas camadas que faltavam, reaproveitando os `GrammarConcept`/`Exercise` já seedados (zero conteúdo novo a escrever): **Challenge** mostra os exercícios reais do tópico sem a regra à frente e só com 2 opções em vez de 4 (força decisão, não eliminação); **Apply** pede uma frase própria a usar a estrutura, avaliada por uma função nova (`gradeGrammarApply`) que verifica especificamente se a estrutura-alvo foi usada — não é correção geral de gramática, uma frase pode estar certa e mesmo assim não contar (não usou o ponto pedido).
+
+Achievements novos: `first_read_aloud`, `first_grammar_quiz`.
+
+**Estado final dos 20 tipos**: 17/20 confirmados funcionais, 1 bloqueado (vídeo), 2 por formalizar (preencher espaços dedicado, progressão de velocidade/sotaque em listening — ambos 🟡, menor prioridade). Tabela completa em `docs/12-exercise-engine.md`.
+
 ## 2026-08-28 — Exercise Engine: 3 prioridades seguintes (🔴🔴🟠)
 
 Pedido do utilizador: "deve avançar para as próximas prioridades" (relatório publicado no fim da ronda anterior). Ordem seguida: as 2 prioridades 🔴 primeiro, depois a 🟠 de menor esforço/maior impacto.
