@@ -2127,6 +2127,117 @@ export const READING_PASSAGES: ReadingPassage[] = [
       },
     ],
   },
+  // Fase 14 (continuação, 2026-08-27) — 6º lote. Originais, nunca copiados
+  // de fonte real.
+  {
+    id: "ai-in-the-workplace-news",
+    title: "How AI Tools Are Changing Everyday Office Work",
+    level: "B2",
+    genre: "news",
+    source: "original",
+    text: "A growing number of office workers now use AI tools daily for tasks such as drafting emails, summarising long documents, and preparing first drafts of reports, according to a recent survey of workers across several industries. Most respondents said the tools saved them time on repetitive writing tasks, freeing them up to focus on more complex parts of their jobs.\n\nHowever, the survey also found notable concerns. Around a third of respondents worried about becoming too dependent on these tools, and several mentioned occasionally catching factual errors that the AI had confidently presented as correct. Companies are responding differently: some have introduced clear guidelines on when AI-generated content must be reviewed by a human before being sent externally, while others have left the decision entirely up to individual employees.\n\nAnalysts suggest that, regardless of company policy, the ability to check and edit AI output critically is quickly becoming as important a skill as writing itself.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What did most survey respondents say about AI tools?",
+        options: [
+          "They made mistakes too often to be useful",
+          "They saved time on repetitive writing tasks",
+          "They were banned at their workplace",
+          "It doesn't say",
+        ],
+        correctAnswer: "They saved time on repetitive writing tasks",
+      },
+      {
+        id: "q2",
+        prompt: "What concern did about a third of respondents mention?",
+        options: [
+          "Losing their jobs",
+          "Becoming too dependent on the tools",
+          "The tools being too expensive",
+          "Not having enough training",
+        ],
+        correctAnswer: "Becoming too dependent on the tools",
+      },
+      {
+        id: "q3",
+        prompt: "What skill do analysts say is becoming increasingly important?",
+        options: [
+          "Typing speed",
+          "Checking and editing AI output critically",
+          "Avoiding AI tools completely",
+          "Learning to code"
+        ],
+        correctAnswer: "Checking and editing AI output critically",
+      },
+    ],
+  },
+  {
+    id: "borrowing-money-dialogue",
+    title: "Asking a Friend for a Small Loan",
+    level: "B1",
+    genre: "dialogue",
+    source: "original",
+    text: "MIGUEL: Hey, this is a bit awkward to ask, but could you lend me fifty euros until Friday? My card's not working and I still need to pay for groceries this week.\nJOANA: Sure, that's not a problem. Do you want me to transfer it now?\nMIGUEL: That would be great, thank you so much. I'll pay you back as soon as my salary comes in.\nJOANA: Honestly, don't worry about the exact day — just whenever works for you.\nMIGUEL: I really appreciate it. I promise I wouldn't ask if it wasn't a bit of an emergency.\nJOANA: I know, it's fine. That's what friends are for.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why does Miguel need to borrow money?",
+        options: ["His card isn't working and he needs groceries", "He lost his wallet", "He wants to buy a gift", "He needs to pay rent"],
+        correctAnswer: "His card isn't working and he needs groceries",
+      },
+      {
+        id: "q2",
+        prompt: "When does Miguel say he will pay Joana back?",
+        options: ["Tomorrow", "When his salary comes in", "Never", "Next year"],
+        correctAnswer: "When his salary comes in",
+      },
+      {
+        id: "q3",
+        prompt: "How does Joana react to the request?",
+        options: ["She refuses", "She agrees without any problem", "She asks for more details first", "She gets upset"],
+        correctAnswer: "She agrees without any problem",
+      },
+    ],
+  },
+  {
+    id: "changing-doctor-email",
+    title: "Requesting to Change Family Doctor",
+    level: "A2",
+    genre: "email",
+    source: "original",
+    text: "Subject: Request to change doctor\n\nHello,\n\nI would like to request a change of family doctor, if possible. I've been a patient at this clinic for three years, but I recently moved to a different part of the city, and my current doctor's office is now quite far from my new home.\n\nCould you let me know which doctors are currently accepting new patients closer to my new address? I've included my new postcode below for reference.\n\nThank you very much for your help.\n\nKind regards,\nCatarina",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why does Catarina want to change doctor?",
+        options: [
+          "She's unhappy with her current doctor",
+          "She moved to a different part of the city",
+          "Her doctor retired",
+          "It doesn't say",
+        ],
+        correctAnswer: "She moved to a different part of the city",
+      },
+      {
+        id: "q2",
+        prompt: "How long has Catarina been a patient at this clinic?",
+        options: ["One year", "Three years", "Five years", "It doesn't say"],
+        correctAnswer: "Three years",
+      },
+      {
+        id: "q3",
+        prompt: "What does Catarina ask the clinic to tell her?",
+        options: [
+          "Her test results",
+          "Which doctors are accepting new patients near her new address",
+          "Her appointment history",
+          "The clinic's opening hours",
+        ],
+        correctAnswer: "Which doctors are accepting new patients near her new address",
+      },
+    ],
+  },
 ];
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {
