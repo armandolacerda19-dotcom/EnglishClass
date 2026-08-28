@@ -33,6 +33,21 @@ export async function completeMicroChallenge(challengeId: string, selectedIndex?
     // a nota reflete agora quantas palavras bateram certo, com um mínimo de
     // 30 para não penalizar demasiado erros normais de reconhecimento de
     // voz (nomes próprios, ruído de fundo) que não são culpa do utilizador.
+    // Fase 16 (auditoria 2026-08-28, achado S3, risco aceite e documentado
+    // conscientemente, não corrigido): `challenge.sentence` é mostrado no
+    // ecrã E lido por TTS (ver MicroChallengeRunner.tsx) antes de o
+    // utilizador falar — por design, é exatamente isso que "shadowing"
+    // significa (repetir o que se vê/ouve). Um pedido direto à action com
+    // `transcript = challenge.sentence` (sem nunca usar o microfone) recebe
+    // sempre a nota máxima, porque não há forma de o servidor distinguir
+    // "pronunciou bem" de "enviou a string alvo" sem áudio real gravado — e
+    // penalizar coincidências exatas penalizaria também quem genuinamente
+    // pronunciou bem. Mesma raiz do teto da Fase 9 (áudio real bloqueado por
+    // decisão financeira do utilizador, não por esquecimento): sem gravação
+    // e verificação de áudio pagas, este canal continua a ser, na prática,
+    // um autorrelato — como `submitSpeaking`'s `confidenceSelfRating`. Não
+    // corrigido aqui porque não há correção honesta possível a custo zero;
+    // registado para não ser confundido com um bug esquecido.
     const score = transcript ? shadowScoreFromTranscript(transcript, challenge.sentence) : 30;
     await updateSkillScore(user.id, "SPEAKING", score);
     return;

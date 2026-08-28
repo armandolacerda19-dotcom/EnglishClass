@@ -3,22 +3,31 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { TextField } from "@/components/ui/TextField";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
-import { completeVerbOfTheDay } from "@/app/(app)/practice/verbs/actions";
+import { completeVerbOfTheDay, type VerbCheckResult } from "@/app/(app)/practice/verbs/actions";
 import type { IrregularVerb } from "@/content/irregularVerbs";
 
+// Fase 16 (auditoria 2026-08-28, achado S2): antes disto era "revelar as
+// respostas, depois autoavaliar-se num botão Sabia bem/Não sabia" — o
+// servidor confiava cegamente nesse booleano. Agora é um recall a sério:
+// escreve-se Past Simple/Participle de memória, o servidor corrige contra
+// `getVerbOfTheDay()` (puramente determinístico pela data) e só depois se
+// revelam as respostas certas.
 export function VerbRunner({ verb }: { verb: IrregularVerb }) {
-  const [revealed, setRevealed] = useState(false);
-  const [done, setDone] = useState(false);
+  const [pastSimple, setPastSimple] = useState("");
+  const [pastParticiple, setPastParticiple] = useState("");
+  const [result, setResult] = useState<VerbCheckResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  async function grade(knewIt: boolean) {
+  async function check() {
+    if (!pastSimple.trim() || !pastParticiple.trim()) return;
     setSubmitting(true);
     setSubmitError(null);
     try {
-      await completeVerbOfTheDay(knewIt);
-      setDone(true);
+      const res = await completeVerbOfTheDay(pastSimple, pastParticiple);
+      setResult(res);
     } catch {
       setSubmitError("Não foi possível guardar — verifique a ligação e tente novamente.");
     } finally {
@@ -32,38 +41,51 @@ export function VerbRunner({ verb }: { verb: IrregularVerb }) {
       <p className="mb-4 font-display text-2xl">{verb.base}</p>
       <PlayTranscript text={verb.base} />
 
-      {!revealed ? (
-        <div className="mt-4 flex justify-end">
-          <Button onClick={() => setRevealed(true)}>Mostrar Past Simple / Participle</Button>
-        </div>
-      ) : (
-        <div className="mt-4 border-t border-ink/10 pt-4 dark:border-linen/10">
-          <p className="mb-1 text-sm">
-            Past Simple: <span className="font-semibold">{verb.pastSimple}</span>
-          </p>
-          <p className="mb-1 text-sm">
-            Past Participle: <span className="font-semibold">{verb.pastParticiple}</span>
-          </p>
-          <p className="mb-3 text-xs text-inkNeutral/60 dark:text-linen/60">{verb.translationPt}</p>
+      {!result ? (
+        <div className="mt-4 flex flex-col gap-3 border-t border-ink/10 pt-4 dark:border-linen/10">
+          <label className="flex flex-col gap-1.5 text-sm">
+            Past Simple
+            <TextField
+              value={pastSimple}
+              onChange={(e) => setPastSimple(e.target.value)}
+              disabled={submitting}
+              placeholder="ex.: went"
+            />
+          </label>
+          <label className="flex flex-col gap-1.5 text-sm">
+            Past Participle
+            <TextField
+              value={pastParticiple}
+              onChange={(e) => setPastParticiple(e.target.value)}
+              disabled={submitting}
+              placeholder="ex.: gone"
+            />
+          </label>
 
           {submitError && (
-            <p role="alert" className="mb-2 text-sm text-clay">
+            <p role="alert" className="text-sm text-clay">
               {submitError}
             </p>
           )}
 
-          {!done ? (
-            <div className="flex flex-wrap justify-end gap-2">
-              <Button variant="secondary" disabled={submitting} onClick={() => grade(false)}>
-                Não sabia
-              </Button>
-              <Button disabled={submitting} onClick={() => grade(true)}>
-                Sabia bem
-              </Button>
-            </div>
-          ) : (
-            <p className="text-right text-sm text-verdigris">Registado — volte amanhã para outro verbo.</p>
-          )}
+          <div className="flex justify-end">
+            <Button disabled={submitting || !pastSimple.trim() || !pastParticiple.trim()} onClick={check}>
+              Verificar
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="mt-4 border-t border-ink/10 pt-4 dark:border-linen/10">
+          <p role="status" aria-live="polite" className={`mb-1 text-sm ${result.pastSimpleCorrect ? "text-verdigris" : "text-clay"}`}>
+            Past Simple: <span className="font-semibold">{result.pastSimple}</span>
+            {!result.pastSimpleCorrect && " — a sua resposta não bateu certo"}
+          </p>
+          <p className={`mb-1 text-sm ${result.pastParticipleCorrect ? "text-verdigris" : "text-clay"}`}>
+            Past Participle: <span className="font-semibold">{result.pastParticiple}</span>
+            {!result.pastParticipleCorrect && " — a sua resposta não bateu certo"}
+          </p>
+          <p className="mb-3 text-xs text-inkNeutral/60 dark:text-linen/60">{result.translationPt}</p>
+          <p className="text-right text-sm text-inkNeutral/60 dark:text-linen/60">Registado — volte amanhã para outro verbo.</p>
         </div>
       )}
     </Card>

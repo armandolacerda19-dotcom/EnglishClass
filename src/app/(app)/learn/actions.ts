@@ -363,15 +363,22 @@ async function getHolisticFeedback(
     );
     let raw = result.response.text();
 
-    const scoreMatch = raw.match(/SCORE:\s*(\d{1,3})\s*$/i);
+    // Fase 17 (auditoria 2026-08-28): SCORE/PRONUNCIATION usavam `$` sem
+    // flag `/m` (âncora ao fim absoluto da string), ao contrário dos 5 campos
+    // da rubrica abaixo, que já usam `/im` (fim de qualquer linha). Se o
+    // modelo terminasse com uma linha em branco a mais, ou não respeitasse a
+    // ordem exata pedida, o match falhava — e como o replace usa o mesmo
+    // padrão, "SCORE: 78" ficava por remover e vazava para o feedback visível
+    // ao utilizador. Alinhado com `/m`, igual aos outros 5 campos.
+    const scoreMatch = raw.match(/SCORE:\s*(\d{1,3})\s*$/im);
     const score = scoreMatch?.[1] ? Math.max(0, Math.min(100, parseInt(scoreMatch[1], 10))) : null;
-    raw = raw.replace(/\n?SCORE:\s*\d{1,3}\s*$/i, "");
+    raw = raw.replace(/\n?SCORE:\s*\d{1,3}\s*$/im, "");
 
     let pronunciationScore: number | null = null;
     if (kind === "speaking") {
-      const pronMatch = raw.match(/PRONUNCIATION:\s*(\d{1,3})\s*$/i);
+      const pronMatch = raw.match(/PRONUNCIATION:\s*(\d{1,3})\s*$/im);
       pronunciationScore = pronMatch?.[1] ? Math.max(0, Math.min(100, parseInt(pronMatch[1], 10))) : null;
-      raw = raw.replace(/\n?PRONUNCIATION:\s*\d{1,3}\s*$/i, "");
+      raw = raw.replace(/\n?PRONUNCIATION:\s*\d{1,3}\s*$/im, "");
     }
 
     let rubric: WritingRubric | null = null;

@@ -23,3 +23,24 @@ export async function checkFreeTextAnswer(exerciseId: string, given: string): Pr
 
   return { isCorrect, referenceAnswer: referenceAnswers[0] ?? "" };
 }
+
+// Fase 16 (auditoria 2026-08-28, achado S4): correção de perguntas de escolha
+// múltipla (kind: "choice") no Diagnóstico Semanal e nas Sheets de tema.
+// Antes, `PracticeQuestion.correctAnswers` ia embutido no payload de TODAS as
+// perguntas do teste, enviado ao cliente logo no carregamento da página —
+// bastava abrir as devtools/ver o código-fonte para ler as respostas certas
+// das 10 perguntas antes de responder a qualquer uma. `submitWeeklyTest` já
+// corrigia a sério no servidor (não era forjável), mas o "diagnóstico" em si
+// deixava de testar nada para quem olhasse. Mesmo padrão de round-trip já
+// usado em `checkFreeTextAnswer` acima: o exercício é lido de novo da BD,
+// nunca confiado no cliente.
+export async function checkChoiceAnswer(exerciseId: string, given: string): Promise<CheckFreeTextResult> {
+  await requireUser();
+
+  const exercise = await prisma.exercise.findUniqueOrThrow({ where: { id: exerciseId } });
+  const content = exercise.contentJson as any;
+  const referenceAnswers = (content.correct_answer as string[]) ?? [];
+  const isCorrect = referenceAnswers.some((c) => c.trim().toLowerCase() === given.trim().toLowerCase());
+
+  return { isCorrect, referenceAnswer: referenceAnswers[0] ?? "" };
+}

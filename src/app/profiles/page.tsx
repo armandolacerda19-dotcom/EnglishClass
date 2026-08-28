@@ -7,6 +7,11 @@ import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/TextField";
 import { selectProfile, createProfile } from "./actions";
 
+// Tem de ficar em sincronia com MAX_PROFILES_PER_ACCOUNT em ./actions.ts —
+// não pode ser importado daqui porque um ficheiro "use server" só pode
+// exportar funções async (restrição do Next.js), nunca uma constante.
+const MAX_PROFILES_PER_ACCOUNT = 6;
+
 const AVATAR_BG: Record<string, string> = {
   verdigris: "bg-verdigris",
   brass: "bg-brass",
@@ -70,22 +75,28 @@ export default async function ProfilesPage({
         </div>
       )}
 
-      <Card>
-        <p className="mb-3 font-mono text-xs uppercase tracking-wide text-verdigris">Adicionar pessoa</p>
-        <form action={createProfile} className="flex flex-col gap-3">
-          <label className="flex flex-col gap-1.5 text-sm">
-            Nome
-            <TextField name="name" required maxLength={60} />
-          </label>
-          <label className="flex items-center gap-2 text-sm text-inkNeutral/70 dark:text-linen/70">
-            <input type="checkbox" name="isChild" className="h-4 w-4" />
-            É uma criança (ajusta o tom das explicações)
-          </label>
-          <Button type="submit" variant="secondary">
-            Criar perfil
-          </Button>
-        </form>
-      </Card>
+      {profiles.length < MAX_PROFILES_PER_ACCOUNT ? (
+        <Card>
+          <p className="mb-3 font-mono text-xs uppercase tracking-wide text-verdigris">Adicionar pessoa</p>
+          <form action={createProfile} className="flex flex-col gap-3">
+            <label className="flex flex-col gap-1.5 text-sm">
+              Nome
+              <TextField name="name" required maxLength={60} />
+            </label>
+            <label className="flex items-center gap-2 text-sm text-inkNeutral/70 dark:text-linen/70">
+              <input type="checkbox" name="isChild" className="h-4 w-4" />
+              É uma criança (ajusta o tom das explicações)
+            </label>
+            <Button type="submit" variant="secondary">
+              Criar perfil
+            </Button>
+          </form>
+        </Card>
+      ) : (
+        <p className="text-center text-sm text-inkNeutral/60 dark:text-linen/60">
+          Limite de {MAX_PROFILES_PER_ACCOUNT} perfis por conta atingido.
+        </p>
+      )}
 
       {canGoBack && (
         <Link href="/home" className="mt-6 text-center text-sm text-inkNeutral/60 hover:text-verdigris dark:text-linen/60">

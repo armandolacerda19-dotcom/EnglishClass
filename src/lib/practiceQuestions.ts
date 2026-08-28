@@ -15,7 +15,6 @@ export interface PracticeQuestion {
   kind: "choice" | "text";
   prompt: string;
   options: string[]; // só relevante quando kind === "choice"; inclui a resposta certa, baralhada
-  correctAnswers: string[]; // todas as respostas aceites — usado para corrigir e para mostrar a correção
   transcript: string | null; // exercícios LISTENING têm isto — lido em voz alta via PlayTranscript
 }
 
@@ -146,13 +145,20 @@ export async function buildQuestionSet(
           ? seededPick([primary, ...distractors], seed + ex.id.length, Math.min(4, distractors.length + 1))
           : [];
 
+      // Fase 16 (auditoria 2026-08-28, achado S4): `correctAnswers` NÃO vai
+      // para o objeto devolvido — este chega diretamente a um componente
+      // cliente (WeeklyTestRunner/TopicPracticeRunner) e ficava visível no
+      // payload da página antes de o utilizador responder a nada. A correção
+      // (choice e text) passou a ser um round-trip ao servidor —
+      // checkChoiceAnswer/checkFreeTextAnswer em checkAnswer.ts — que lê o
+      // Exercise de novo da BD em vez de confiar num valor já enviado ao
+      // cliente.
       questions.push({
         exerciseId: ex.id,
         pillar,
         kind,
         prompt: content.prompt as string,
         options,
-        correctAnswers,
         transcript: (content.transcript as string) ?? null,
       });
     }

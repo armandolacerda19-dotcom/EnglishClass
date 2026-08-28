@@ -109,8 +109,14 @@ const MODULE_FILES = [
   moduleAboutMe,
   modulePresentContinuous, // A1.1 — depois de about-me
   modulePronouns, // A1.1
-  moduleReflexivePronouns, // A1.1 — logo a seguir aos pronomes objeto/possessivos; gap real: myself/yourself/himself nunca teve módulo próprio, e o português marca reflexividade no próprio verbo, não com um pronome à parte (Fase 13, 2026-08-27)
   moduleWhQuestions, // A1.1
+  // Fase 17 (auditoria 2026-08-28): reflexive-pronouns tem module.order=6 (o
+  // último da A1.1), mas estava posicionado logo a seguir aos pronomes
+  // objeto/possessivos (antes de wh-questions, order=5) — a ordem real de
+  // conclusão (Lesson.order, derivado da posição neste array) não batia com
+  // a ordem exibida em /learn (que usa module.order via orderBy). Corrigido:
+  // movido para depois de wh-questions.
+  moduleReflexivePronouns, // A1.1 — último módulo A1.1; gap real: myself/yourself/himself nunca teve módulo próprio, e o português marca reflexividade no próprio verbo, não com um pronome à parte (Fase 13, 2026-08-27)
   moduleShopping,
   moduleRestaurant,
   moduleArticles, // A1.2
@@ -122,21 +128,33 @@ const MODULE_FILES = [
   moduleFutureWill, // A1.3 — logo a seguir a future-plans (going to vs. will)
   moduleExperiences,
   moduleObligation,
-  moduleModalsAbility, // A2.1 — logo a seguir a obligation (must/have to → can/could/be able to), reforço de densidade (Fase 13, 2026-08-27)
   modulePastContinuous, // A2.1
   moduleGerundsInfinitives, // A2.1
   moduleQuestionTags, // A2.1
-  moduleZeroConditional, // A2.1 — logo antes de first-conditional (0→1→2→3, mais simples primeiro), gap encontrado na Fase 13 (2026-08-27): only 1st/2nd/3rd existiam
+  // Fase 17 (auditoria 2026-08-28): modals-ability tem module.order=6, mas
+  // estava logo a seguir a obligation (order=2), à frente de past-continuous/
+  // gerunds-infinitives/question-tags (order 3/4/5) — mesma classe de bug de
+  // ordem de reflexive-pronouns acima. Corrigido: movido para depois de
+  // question-tags.
+  moduleModalsAbility, // A2.1 — depois de question-tags (must/have to → can/could/be able to), reforço de densidade (Fase 13, 2026-08-27)
+  moduleZeroConditional, // A2.1 — último módulo A2.1, logo antes de first-conditional (0→1→2→3, mais simples primeiro), gap encontrado na Fase 13 (2026-08-27): only 1st/2nd/3rd existiam
   moduleFirstConditional,
   moduleRelativeClauses, // A2.2 — logo a seguir a first-conditional
   modulePhrasalVerbs, // A2.2, achado explícito da auditoria ("módulo de phrasal verbs" em falta), Fase 13, 2026-08-27
-  moduleAdjectiveOrder, // A2.2 — gap real: ordem de adjetivos (opinião→tamanho→idade→forma→cor→origem→material) nunca teve módulo próprio, e o português tem ordem livre onde o inglês é rígido (Fase 13, 2026-08-27)
-  modulePresentPerfectVsPastSimple, // A2.2 — último módulo A2, gap real: existia Present Perfect (experiences) e Past Simple isolados, mas nunca a distinção entre os dois, um dos pontos mais confusos para falantes de português (Fase 13, 2026-08-27)
+  modulePresentPerfectVsPastSimple, // A2.2 — gap real: existia Present Perfect (experiences) e Past Simple isolados, mas nunca a distinção entre os dois, um dos pontos mais confusos para falantes de português (Fase 13, 2026-08-27)
+  // Fase 17 (auditoria 2026-08-28): adjective-order tem module.order=5
+  // (último da A2.2), mas estava antes de present-perfect-vs-past-simple
+  // (order=4) — mesma classe de bug de ordem das duas correções acima.
+  moduleAdjectiveOrder, // A2.2 — último módulo A2, gap real: ordem de adjetivos (opinião→tamanho→idade→forma→cor→origem→material) nunca teve módulo próprio, e o português tem ordem livre onde o inglês é rígido (Fase 13, 2026-08-27)
   modulePastPerfect, // B1.1 — primeiro módulo do novo nível B1
-  modulePresentPerfectContinuous, // B1.1 — logo a seguir a past-perfect, mesma família "aspeto perfeito"; gap real: só existia Present Perfect Simples (A2), nunca a forma contínua (Fase 13, 2026-08-27)
   moduleSecondConditional, // B1.1
   modulePassiveVoice, // B1.1
   moduleUsedTo, // B1.1 — 4º módulo, reforço de densidade B1 (2026-08-27)
+  // Fase 17 (auditoria 2026-08-28): present-perfect-continuous tem
+  // module.order=5, mas estava logo a seguir a past-perfect (order=1), à
+  // frente de second-conditional/passive-voice/used-to (order 2/3/4) —
+  // mesma classe de bug de ordem das três correções acima.
+  modulePresentPerfectContinuous, // B1.1 — depois de used-to, mesma família "aspeto perfeito" de past-perfect; gap real: só existia Present Perfect Simples (A2), nunca a forma contínua (Fase 13, 2026-08-27)
   moduleSoNeitherAgreement, // B1.1 — último módulo B1.1, gap real: "so do I"/"neither do I" nunca tinha módulo próprio, apesar de muito comum na conversa (Fase 13, 2026-08-27)
   moduleReportedSpeech, // B1.2
   moduleFutureContinuous, // B1.2

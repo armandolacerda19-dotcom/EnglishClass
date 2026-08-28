@@ -10,7 +10,7 @@ import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { TextAreaField } from "@/components/ui/TextAreaField";
 import { Spinner } from "@/components/ui/Spinner";
 import { submitTopicPractice, type TopicPracticeAnswer, type TopicPracticeResult } from "@/app/(app)/practice/topic/actions";
-import { checkFreeTextAnswer } from "@/app/(app)/practice/checkAnswer";
+import { checkFreeTextAnswer, checkChoiceAnswer } from "@/app/(app)/practice/checkAnswer";
 import type { PracticeQuestion } from "@/lib/practiceQuestions";
 import { PILLAR_LABEL, PILLAR_ACCENT, DEFAULT_ACCENT } from "@/lib/pillarDisplay";
 
@@ -40,21 +40,20 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
   const given = question.kind === "text" ? textAnswer : selected;
   const accent = PILLAR_ACCENT[pillar] ?? DEFAULT_ACCENT;
 
-  // Escolha múltipla: correção exata local. Texto livre (tradução): correção
-  // tolerante por IA no servidor — ver checkAnswer.ts/gradeAnswer.ts.
+  // Escolha múltipla e texto livre (tradução) corrigem os dois no servidor —
+  // ver checkAnswer.ts/gradeAnswer.ts.
+  //
+  // Fase 16 (auditoria 2026-08-28, achado S4): a correção de escolha múltipla
+  // era feita localmente contra `question.correctAnswers`, campo que ia
+  // embutido no payload de TODAS as perguntas da sheet — dava para ler as
+  // respostas certas antes de responder a qualquer uma. Passou a round-trip
+  // ao servidor, tal como o texto livre já era.
   async function check() {
     if (!given) return;
-    if (question.kind === "choice") {
-      setCheckResult({
-        isCorrect: question.correctAnswers.some((c) => c.trim().toLowerCase() === given.trim().toLowerCase()),
-        referenceAnswer: question.correctAnswers[0] ?? "",
-      });
-      return;
-    }
     setChecking(true);
     setSubmitError(null);
     try {
-      const res = await checkFreeTextAnswer(question.exerciseId, given);
+      const res = question.kind === "choice" ? await checkChoiceAnswer(question.exerciseId, given) : await checkFreeTextAnswer(question.exerciseId, given);
       setCheckResult(res);
     } catch {
       setSubmitError("Não foi possível verificar a resposta — verifique a ligação e tente novamente.");

@@ -51,6 +51,19 @@ export async function submitReview(
     verifiedUserErrorId = userErrorId;
   }
 
+  // Fase 16 (auditoria 2026-08-28, achado crítico): o ramo "vocabulary_item"
+  // aceitava qualquer `itemRefId` sem confirmar que corresponde a um
+  // VocabularyItem real — um pedido direto ao Server Action com um id
+  // inventado e quality=5 subia VOCABULARY para 100 sem nunca ter existido
+  // uma palavra por trás. Como `maybeIssueCertificate` agora avança
+  // currentLevel/currentSublevel a sério (Fase 15), isto deixou de ser só um
+  // certificado cosmético — passou a falsificar progressão real de nível.
+  // Mesma validação de existência já usada no ramo "error" acima.
+  if (itemType === "vocabulary_item") {
+    const vocabularyItem = await prisma.vocabularyItem.findUnique({ where: { id: itemRefId } });
+    if (!vocabularyItem) return;
+  }
+
   await scheduleReview(user.id, itemType, itemRefId, safeQuality, verifiedUserErrorId);
   await recordActivity(user.id, "REVIEW");
   await awardAchievement(user.id, "first_review");

@@ -7,6 +7,14 @@ import { prisma } from "@/lib/prisma";
 
 const AVATAR_COLORS = ["verdigris", "brass", "clay"];
 
+// Fase 16 (auditoria 2026-08-28, achado S5, residual da 2ª auditoria): sem
+// teto, uma conta podia chamar createProfile em loop e criar perfis sem
+// limite — cada um arrasta ~15 tabelas de progresso (LearningProfile, XP,
+// streak, erros, certificados...), um vetor real de esgotamento de espaço em
+// BD, não só cosmético. 6 é generoso para o uso real (família alargada),
+// mesmo critério de "estilo Netflix" já citado no histórico da Fase 6.
+const MAX_PROFILES_PER_ACCOUNT = 6;
+
 // Escolhe um perfil como ativo para o resto da sessão do browser — Fase 6
 // ("Família"). `findFirst` com `userId: account.id` garante que ninguém
 // consegue ativar um perfil de outra conta adivinhando o id (o mesmo
@@ -40,6 +48,9 @@ export async function createProfile(formData: FormData) {
   if (!name) redirect("/profiles?error=Escreva um nome.");
 
   const existing = await prisma.profile.count({ where: { userId: account.id } });
+  if (existing >= MAX_PROFILES_PER_ACCOUNT) {
+    redirect(`/profiles?error=Limite de ${MAX_PROFILES_PER_ACCOUNT} perfis por conta atingido.`);
+  }
   const avatarColor = AVATAR_COLORS[existing % AVATAR_COLORS.length]!;
 
   const profile = await prisma.profile.create({
