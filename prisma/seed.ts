@@ -76,6 +76,7 @@ import vocabularyBank16 from "../content/curriculum/vocabulary-bank-16.json";
 import vocabularyBank17 from "../content/curriculum/vocabulary-bank-17.json";
 import vocabularyBank18 from "../content/curriculum/vocabulary-bank-18.json";
 import vocabularyBank19 from "../content/curriculum/vocabulary-bank-19.json";
+import vocabularyBank20 from "../content/curriculum/vocabulary-bank-20.json";
 
 const prisma = new PrismaClient();
 
@@ -443,7 +444,7 @@ async function seedAchievements() {
 // separados (vocabulary-bank-2.json, -3.json...) para cada Write ficar
 // gerível — basta adicionar ao array VOCABULARY_BANKS abaixo. Ver
 // docs/decisions.md 2026-08-26 sobre a decisão de escala responsável.
-const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2, vocabularyBank3, vocabularyBank4, vocabularyBank5, vocabularyBank6, vocabularyBank7, vocabularyBank8, vocabularyBank9, vocabularyBank10, vocabularyBank11, vocabularyBank12, vocabularyBank13, vocabularyBank14, vocabularyBank15, vocabularyBank16, vocabularyBank17, vocabularyBank18, vocabularyBank19];
+const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2, vocabularyBank3, vocabularyBank4, vocabularyBank5, vocabularyBank6, vocabularyBank7, vocabularyBank8, vocabularyBank9, vocabularyBank10, vocabularyBank11, vocabularyBank12, vocabularyBank13, vocabularyBank14, vocabularyBank15, vocabularyBank16, vocabularyBank17, vocabularyBank18, vocabularyBank19, vocabularyBank20];
 
 async function seedVocabularyBank() {
   // Achado N6 (auditoria 2026-08-27): eram 2.000+ upserts sequenciais, o
