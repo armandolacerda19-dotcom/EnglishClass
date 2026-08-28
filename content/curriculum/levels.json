@@ -58,6 +58,16 @@
         { "number": 1, "code": "C1.1", "order": 10 },
         { "number": 2, "code": "C1.2", "order": 11 }
       ]
+    },
+    {
+      "cefr": "C2",
+      "order": 6,
+      "title": "C2 — Mastery",
+      "description": "Compreensão sem esforço de praticamente tudo o que se ouve ou lê; capacidade de resumir informação de fontes diferentes, reconstruindo argumentos de forma coerente; expressão espontânea, muito fluente e precisa, distinguindo nuances subtis de significado mesmo em situações complexas.",
+      "sublevels": [
+        { "number": 1, "code": "C2.1", "order": 12 },
+        { "number": 2, "code": "C2.2", "order": 13 }
+      ]
     }
   ]
 }

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C2.1",
+  "module": {
+    "id": "mod_c2_1_negative_inversion",
+    "title": "Formal Inversion with Negative Adverbials",
+    "theme": "formal-structures",
+    "order": 1
+  },
+  "unit": {
+    "id": "unit_c2_1_negative_inversion",
+    "title": "Rarely Have I Seen...",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c2_negative_inversion",
+    "title": "Formal Inversion with Negative Adverbials",
+    "rule": "When a negative or limiting adverbial (rarely, seldom, never, little, under no circumstances, on no account, not only, no sooner...than) opens a sentence for emphasis in formal register, the subject and auxiliary verb invert, as in a question. If there is no auxiliary, add 'do/does/did'.",
+    "simple_explanation": "This is the more advanced cousin of the B2 'Never have I seen' pattern — the difference is the range of triggers is wider (seldom, little, under no circumstances, on no account, no sooner...than), and at C2 you're expected to recognise and produce it fluently in formal writing and speech, not just with 'never'.",
+    "example": "Seldom has a policy caused so much debate. Under no circumstances should this door be left unlocked. No sooner had she sat down than the phone rang.",
+    "example_translation": "Raramente uma política causou tanto debate. Em nenhuma circunstância esta porta deve ser deixada destrancada. Mal se tinha sentado quando o telefone tocou.",
+    "common_mistake_pt": "O português não exige inversão depois de advérbios negativos no início da frase — \"raramente eu vi\" mantém a ordem normal. Falantes de português tendem a manter essa ordem em inglês (\"Seldom a policy has caused...\"), esquecendo que o inglês formal exige auxiliar antes do sujeito nestes casos.",
+    "correction": "Depois de um advérbio negativo/limitativo no início da frase (rarely, seldom, never, little, under no circumstances, on no account, no sooner), inverte-se: auxiliar + sujeito + verbo principal — nunca a ordem normal.",
+    "real_world_example": "In a formal policy document: \"Under no circumstances should personal data be shared with third parties.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c2_seldom",
+      "headword": "seldom",
+      "type": "adverb",
+      "translation_pt": "raramente",
+      "definition_en": "not often; rarely",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ˈsɛldəm/",
+      "related_forms": [],
+      "example_sentences": ["Seldom has the team performed so well."],
+      "difficulty": 3,
+      "tags": ["negative-inversion"]
+    },
+    {
+      "id": "vocab_c2_unprecedented",
+      "headword": "unprecedented",
+      "type": "adjective",
+      "translation_pt": "sem precedentes",
+      "definition_en": "never having happened or existed before",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ʌnˈprɛsɪdɛntɪd/",
+      "related_forms": ["precedent"],
+      "example_sentences": ["The company faced an unprecedented level of demand."],
+      "difficulty": 4,
+      "tags": ["formal-register"]
+    },
+    {
+      "id": "vocab_c2_circumstance",
+      "headword": "under no circumstances",
+      "type": "phrase",
+      "translation_pt": "em nenhuma circunstância",
+      "definition_en": "never, no matter what happens — used to give a strong warning or rule",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": null,
+      "related_forms": ["circumstance"],
+      "example_sentences": ["Under no circumstances should you leave the machine unattended."],
+      "difficulty": 4,
+      "tags": ["negative-inversion", "formal-register"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c2_negative_inversion_001",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_negative_inversion",
+      "prompt": "Complete: Seldom ___ such dedication among new employees.",
+      "correct_answer": ["has he seen", "have we seen", "has she seen"],
+      "distractors": ["he has seen", "he saw", "did he see such"],
+      "explanation": "Depois de \"seldom\" no início, inverte-se: auxiliar (\"has\") + sujeito + particípio (\"seen\").",
+      "common_mistake_pt": "Manter a ordem normal (\"he has seen\") é o erro mais comum, por transferência da ordem livre do português.",
+      "audio_url": null,
+      "tags": ["negative-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_negative_inversion_002",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_negative_inversion",
+      "prompt": "Complete: Under no circumstances ___ this door left unlocked.",
+      "correct_answer": ["should", "must"],
+      "distractors": ["you should", "is", "will"],
+      "explanation": "\"Under no circumstances\" exige inversão: \"should\" (auxiliar) vem antes de \"this door\" (sujeito) — nunca \"you should\" antes disso.",
+      "common_mistake_pt": "Inserir o sujeito antes do auxiliar (\"you should never\") em vez de inverter corretamente.",
+      "audio_url": null,
+      "tags": ["negative-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_negative_inversion_vocab_001",
+      "cefr_level": "C2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"unprecedented\" mean?",
+      "correct_answer": ["never having happened or existed before"],
+      "distractors": ["extremely common", "planned well in advance", "officially cancelled"],
+      "explanation": "\"Unprecedented\" significa sem precedentes — algo que nunca tinha acontecido antes.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "formal-register"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_negative_inversion_listening_001",
+      "cefr_level": "C2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. Under what condition does the speaker say the system should be shut down?",
+      "correct_answer": ["if there is any sign of a fault", "under no circumstances should it run with a fault"],
+      "distractors": ["only on Fridays", "if the manager approves it", "never, no matter what"],
+      "explanation": "No áudio: \"Under no circumstances should this system be left running if there is any sign of a fault.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Under no circumstances should this system be left running if there is any sign of a fault — shut it down immediately and call the technician.",
+      "tags": ["listening", "negative-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_negative_inversion_reading_001",
+      "cefr_level": "C2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"No sooner had the announcement been made than shares in the company began to fall.\" What happened first?",
+      "correct_answer": ["the announcement", "the announcement was made"],
+      "distractors": ["the shares falling", "both happened at the same time", "the text doesn't say"],
+      "explanation": "\"No sooner...than\" indica que o primeiro evento (o anúncio) aconteceu mesmo antes do segundo (a queda das ações).",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "negative-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_negative_inversion_translation_001",
+      "cefr_level": "C2",
+      "pillar": "translation",
+      "concept_ref": "gc_c2_negative_inversion",
+      "prompt": "Translate to English (usando inversão formal): \"Em nenhuma circunstância se deve partilhar esta palavra-passe.\"",
+      "correct_answer": ["Under no circumstances should this password be shared."],
+      "distractors": [],
+      "explanation": "\"Under no circumstances\" no início exige inversão: \"should\" antes de \"this password\".",
+      "common_mistake_pt": "Traduzir mantendo a ordem normal (\"This password should under no circumstances be shared\") é gramaticalmente possível mas perde o registo formal enfático do original com o advérbio no início.",
+      "audio_url": null,
+      "tags": ["translation", "negative-inversion"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c2_m1_u1_negative_inversion",
+    "title": "Rarely Have I Seen...",
+    "cefr_level": "C2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c2_negative_inversion",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c2_negative_inversion#rule" },
+      { "type": "example", "content_ref": "gc_c2_negative_inversion#example" },
+      { "type": "common_mistake", "content_ref": "gc_c2_negative_inversion#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c2_seldom", "vocab_c2_unprecedented", "vocab_c2_circumstance"] },
+      { "type": "exercise", "exercise_ids": ["ex_c2_negative_inversion_001", "ex_c2_negative_inversion_002", "ex_c2_negative_inversion_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c2_negative_inversion_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c2_negative_inversion_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The inverted auxiliary carries extra stress for emphasis: \"SELDOM has such dedication been shown\" — the fronted adverbial and the auxiliary are the two most stressed words in the sentence, not the main verb."
+      },
+      { "type": "speaking", "prompt": "Give a formal warning or rule using inversion — e.g. 'Under no circumstances should...' or 'On no account must...' about a real or invented workplace safety rule." },
+      { "type": "writing", "prompt": "Write 3 formal sentences using different negative-adverbial inversions (seldom, under no circumstances, no sooner...than)." },
+      { "type": "translation", "exercise_ids": ["ex_c2_negative_inversion_translation_001"] }
+    ]
+  }
+}

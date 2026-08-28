@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C2.1",
+  "module": {
+    "id": "mod_c2_2_fronting",
+    "title": "Fronting for Emphasis",
+    "theme": "formal-structures",
+    "order": 2
+  },
+  "unit": {
+    "id": "unit_c2_2_fronting",
+    "title": "This I Cannot Accept",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c2_fronting",
+    "title": "Fronting for Emphasis",
+    "rule": "In formal or literary English, an object, complement, or adverbial phrase can be moved to the front of the sentence to emphasise it, ahead of the subject. Unlike negative-adverbial inversion, the subject and verb usually keep their normal order after a fronted object or complement — only the element being emphasised moves.",
+    "simple_explanation": "Fronting is about word order, not verb form: instead of 'I cannot accept this', you say 'This I cannot accept' — the object 'this' moves to the front, but 'I cannot accept' stays in normal order. It's a stylistic tool for formal writing, speeches and literary register, used to highlight the most important idea in the sentence.",
+    "example": "This I cannot accept. Such was the level of noise that nobody could concentrate. Gone are the days when a handshake was enough.",
+    "example_translation": "Isto não posso aceitar. Tal era o nível de ruído que ninguém conseguia concentrar-se. Já lá vão os dias em que um aperto de mão era suficiente.",
+    "common_mistake_pt": "Falantes de português tendem a não reconhecer a fronting como uma estrutura deliberada e a tentar traduzi-la literalmente sem perceber a função enfática, ou a evitá-la por completo em produção, mesmo quando o registo formal a pede.",
+    "correction": "Para dar ênfase formal a um objeto ou complemento, coloca-o no início da frase — o resto da frase mantém, regra geral, a ordem normal sujeito-verbo (\"This I cannot accept\", não \"This cannot I accept\").",
+    "real_world_example": "In a formal speech: \"Such was the impact of the discovery that the entire field of research changed direction.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c2_impact",
+      "headword": "impact",
+      "type": "noun",
+      "translation_pt": "impacto",
+      "definition_en": "a powerful effect that something has on a situation or person",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ˈɪmpækt/",
+      "related_forms": ["to impact"],
+      "example_sentences": ["The report had a significant impact on public opinion."],
+      "difficulty": 3,
+      "tags": ["fronting"]
+    },
+    {
+      "id": "vocab_c2_startling",
+      "headword": "startling",
+      "type": "adjective",
+      "translation_pt": "surpreendente/assustador",
+      "definition_en": "very surprising or shocking",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ˈstɑːtlɪŋ/",
+      "related_forms": ["to startle"],
+      "example_sentences": ["Such was the startling nature of the news that no one spoke for a minute."],
+      "difficulty": 4,
+      "tags": ["formal-register"]
+    },
+    {
+      "id": "vocab_c2_wholeheartedly",
+      "headword": "wholeheartedly",
+      "type": "adverb",
+      "translation_pt": "de todo o coração/inteiramente",
+      "definition_en": "completely and sincerely",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ˌhəʊlˈhɑːtɪdli/",
+      "related_forms": ["wholehearted"],
+      "example_sentences": ["Wholeheartedly do I agree with this proposal."],
+      "difficulty": 4,
+      "tags": ["fronting"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c2_fronting_001",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_fronting",
+      "prompt": "Complete with the fronted version: \"I cannot accept this.\" → \"___ I cannot accept.\"",
+      "correct_answer": ["This"],
+      "distractors": ["That is what", "It is this that", "Here"],
+      "explanation": "\"This\" (o objeto) move-se para o início — o resto (\"I cannot accept\") mantém a ordem normal.",
+      "common_mistake_pt": "Tentar inverter também o sujeito e o verbo (\"This cannot I accept\"), aplicando por engano a regra de inversão de advérbios negativos a este caso diferente.",
+      "audio_url": null,
+      "tags": ["fronting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_fronting_002",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_fronting",
+      "prompt": "Complete: ___ was the level of noise that nobody could concentrate.",
+      "correct_answer": ["Such"],
+      "distractors": ["So", "Very", "That"],
+      "explanation": "\"Such was the level of noise that...\" é uma estrutura fixa de fronting com \"such\" + substantivo, seguida de \"that\" para a consequência.",
+      "common_mistake_pt": "Usar \"So\" em vez de \"Such\" — \"so\" pede um adjetivo (\"so noisy that\"), \"such\" pede um substantivo (\"such noise that\").",
+      "audio_url": null,
+      "tags": ["fronting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_fronting_vocab_001",
+      "cefr_level": "C2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"startling\" mean?",
+      "correct_answer": ["very surprising or shocking"],
+      "distractors": ["completely expected", "slightly annoying", "very slow"],
+      "explanation": "\"Startling\" significa surpreendente ou chocante, algo que apanha alguém desprevenido.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "formal-register"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_fronting_listening_001",
+      "cefr_level": "C2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What does the speaker say is now gone?",
+      "correct_answer": ["the days when a handshake was enough", "the era of simple handshake deals"],
+      "distractors": ["the entire company", "all written contracts", "the need for meetings"],
+      "explanation": "No áudio: \"Gone are the days when a handshake was enough to seal a deal.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "Gone are the days when a handshake was enough to seal a deal — everything now needs to be in writing.",
+      "tags": ["listening", "fronting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_fronting_reading_001",
+      "cefr_level": "C2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Wholeheartedly do I support this initiative, and I urge the board to approve it without delay.\" What is the writer's attitude to the initiative?",
+      "correct_answer": ["strongly supportive", "fully in favour of it"],
+      "distractors": ["cautiously doubtful", "completely opposed", "the text doesn't say"],
+      "explanation": "\"Wholeheartedly do I support\" e \"urge... without delay\" mostram apoio forte e claro.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "fronting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_fronting_translation_001",
+      "cefr_level": "C2",
+      "pillar": "translation",
+      "concept_ref": "gc_c2_fronting",
+      "prompt": "Translate to English (usando fronting): \"Tal foi o impacto da descoberta que toda a área de investigação mudou de direção.\"",
+      "correct_answer": ["Such was the impact of the discovery that the entire field of research changed direction."],
+      "distractors": [],
+      "explanation": "\"Such was the impact...that\" é a tradução direta da estrutura enfática com \"tal foi...que\" do português.",
+      "common_mistake_pt": "Traduzir literalmente sem usar fronting (\"The impact of the discovery was such that...\") não está errado, mas perde a ênfase formal do original colocado no início.",
+      "audio_url": null,
+      "tags": ["translation", "fronting"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c2_m2_u1_fronting",
+    "title": "This I Cannot Accept",
+    "cefr_level": "C2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c2_fronting",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c2_fronting#rule" },
+      { "type": "example", "content_ref": "gc_c2_fronting#example" },
+      { "type": "common_mistake", "content_ref": "gc_c2_fronting#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c2_impact", "vocab_c2_startling", "vocab_c2_wholeheartedly"] },
+      { "type": "exercise", "exercise_ids": ["ex_c2_fronting_001", "ex_c2_fronting_002", "ex_c2_fronting_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c2_fronting_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c2_fronting_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "The fronted element carries the main sentence stress, since it's the whole point of the structure: \"THIS I cannot accept\", \"SUCH was the impact...\" — without stress on the fronted word, the emphasis effect is lost entirely."
+      },
+      { "type": "speaking", "prompt": "Use fronting to emphasise a strong opinion — e.g. 'This I firmly believe...' or 'Such was the effect that...' about something you feel strongly about." },
+      { "type": "writing", "prompt": "Write 3 formal sentences using fronting to emphasise different elements (an object, a degree with 'such', and an adverbial like 'gone are the days')." },
+      { "type": "translation", "exercise_ids": ["ex_c2_fronting_translation_001"] }
+    ]
+  }
+}

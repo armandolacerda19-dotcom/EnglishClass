@@ -57,6 +57,9 @@ import modulePassiveReporting from "../content/curriculum/c1-module-03-passive-r
 import moduleNominalisation from "../content/curriculum/c1-module-04-nominalisation.json";
 import moduleHedgingLanguage from "../content/curriculum/c1-module-05-hedging-language.json";
 import moduleEllipsisSubstitution from "../content/curriculum/c1-module-06-ellipsis-substitution.json";
+import moduleNegativeInversion from "../content/curriculum/c2-module-01-negative-inversion.json";
+import moduleFronting from "../content/curriculum/c2-module-02-fronting.json";
+import moduleAbsoluteConstructions from "../content/curriculum/c2-module-03-absolute-constructions.json";
 import vocabularyBank from "../content/curriculum/vocabulary-bank.json";
 import vocabularyBank2 from "../content/curriculum/vocabulary-bank-2.json";
 import vocabularyBank3 from "../content/curriculum/vocabulary-bank-3.json";
@@ -184,6 +187,16 @@ const MODULE_FILES = [
   moduleNominalisation, // C1.2
   moduleHedgingLanguage, // C1.2
   moduleEllipsisSubstitution, // C1.2
+  // C2 — nível novo (Fase 18, 2026-08-28): o schema já suportava
+  // CefrLevel.C2 desde a Fase 0, mas nunca tinha Level/Sublevel/módulos
+  // seedados — era o único nível "de decoração" no enum. 1º lote de 3
+  // módulos C2.1, genuinamente distintos dos pontos B2/C1 já cobertos
+  // (inversão com advérbios negativos vai além do "never" básico de B2,
+  // fronting de objeto/complemento e construções absolutas com sujeito
+  // próprio nunca tinham módulo). Ver levels.json.
+  moduleNegativeInversion, // C2.1
+  moduleFronting, // C2.1
+  moduleAbsoluteConstructions, // C2.1
 ];
 
 async function seedLevels() {

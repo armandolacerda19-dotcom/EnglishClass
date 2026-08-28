@@ -2,6 +2,25 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Fase 18: nível C2 introduzido (1º lote, 3 módulos) + placement test recalibrado
+
+Pedido: "agora deve continuar com as atualizações". A Fase 18 (currículo C2) tinha ficado pendente desde a 3ª auditoria como trabalho de escala sem urgência (P2) — o schema já suportava `CefrLevel.C2` desde a Fase 0, mas nunca tinha `Level`/`Sublevel`/módulos seedados, o único nível "de decoração" no enum.
+
+**`content/curriculum/levels.json`**: novo `Level` C2 ("Mastery"), 2 sublevels (C2.1 order=12, C2.2 order=13) — totalmente orientado a dados, `seedLevels()` não precisou de nenhuma alteração de código.
+
+**3 módulos C2.1 novos**, genuinamente distintos dos pontos B2/C1 já cobertos (confirmado por revisão antes de escrever, não por assunção):
+- **Formal Inversion with Negative Adverbials** — vai além do "never have I seen" básico de B2: seldom, under no circumstances, on no account, no sooner...than.
+- **Fronting for Emphasis** — mover objeto/complemento para o início da frase ("This I cannot accept", "Such was the impact that..."), mantendo a ordem normal sujeito-verbo depois (ao contrário da inversão de advérbios negativos).
+- **Absolute Constructions** — particípio com sujeito próprio, diferente do particípio de B2 (mesmo sujeito da oração principal): "Weather permitting, we'll go", "All things considered,...".
+
+60 módulos no total agora (era 57). 39 ids novos (module/unit/grammar_concept/3×vocabulary/6×exercise/lesson por módulo), confirmados sem colisão contra o resto do currículo por grep antes do commit — mesmo processo de sempre.
+
+**Placement test recalibrado — o cuidado que evitou repetir o mesmo bug pela 3ª vez.** Adicionar C2 não era só "acrescentar mais 5 perguntas e comprimir as bandas de topo": `DIFFICULTY_WEIGHT` ganhou um 6º patamar (peso 6) nos 5 pilares com perguntas por nível (grammar/vocabulary/listening/reading/translation), o que aumenta o denominador (`possible`) de TODOS os utilizadores nesses pilares — não só de quem chega a C2. Um utilizador "perfeito até B1" via a sua própria percentagem cair de 40% para ~28,6%, só por o teste ter ficado maior. As 14 bandas de `averageToLevel` foram recalculadas à mão a partir da fórmula real (não por tentativa e erro): correto-até-B1 ≈ 55,36%, até-B2 ≈ 67,26%, até-C1 ≈ 82,14%, tudo certo = 100%. Verificado com testes unitários novos em `scoring.test.ts` (`allCorrectUpTo("C1")` → C1, nunca C2; `allCorrectAnswers()` → C2 exato).
+
+**Bug apanhado no próprio ficheiro de testes antes do commit**: `DIFFICULTY_ORDER` local ao `scoring.test.ts` não incluía `"C2"` — como `Array.indexOf("C2")` devolve `-1`, e `-1 <= qualquer maxIndex` é sempre verdadeiro, `allCorrectUpTo(qualquer coisa)` estava a incluir SEMPRE as perguntas C2 como respondidas corretamente, independentemente do nível pedido, o que teria feito os testes de "até B1"/"até B2" passarem por acidente com valores errados. Corrigido antes de qualquer verificação de valores.
+
+Placement test: 28→33 perguntas (5 novas, uma por pilar — mesmo padrão das rondas B2/C1).
+
 ## 2026-08-28 — Exercise Engine: liga o adaptive learning à Home (achado corrigido)
 
 Pedido: "agora deve continuar com as atualizações". Antes de acrescentar mais conteúdo, revi o que já estava construído e encontrei um achado real: `recommendNextActivity` (`src/lib/exercise/recommend.ts`, Fase 3) **nunca era chamado por nenhum ficheiro da app**. O motor de adaptive learning funcionava perfeitamente se fosse invocado — mas não estava ligado a nada, o que na prática o tornava uma funcionalidade fantasma, exatamente o que o utilizador pediu explicitamente para nunca acontecer ("não quero... funcionalidades simuladas sem integração").

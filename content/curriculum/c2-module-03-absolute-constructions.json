@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "C2.1",
+  "module": {
+    "id": "mod_c2_3_absolute_constructions",
+    "title": "Absolute Constructions",
+    "theme": "formal-structures",
+    "order": 3
+  },
+  "unit": {
+    "id": "unit_c2_3_absolute_constructions",
+    "title": "Weather Permitting",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_c2_absolute_constructions",
+    "title": "Absolute Constructions",
+    "rule": "An absolute construction is a phrase, often with its own implied subject and a participle (-ing or -ed) or 'with/without', that adds background information, a condition, or a reason to a sentence without a linking conjunction like 'because' or 'if'. It stands grammatically apart from the main clause, connected only by a comma.",
+    "simple_explanation": "This goes further than the participle clauses taught at B2 (where the subject of the participle is the same as the main clause's subject): here, the participle phrase can have its OWN subject, different from the main clause — 'Weather permitting, we'll go' means 'IF the weather permits', even though 'we' is the subject of 'go', not of 'permitting'. It's a compact, formal way to pack in a condition, reason or circumstance.",
+    "example": "Weather permitting, the ceremony will take place outdoors. All things considered, the project was a success. With prices rising, many families are cutting back on spending.",
+    "example_translation": "Se o tempo permitir, a cerimónia vai realizar-se ao ar livre. Considerando tudo, o projeto foi um sucesso. Com os preços a subir, muitas famílias estão a cortar nos gastos.",
+    "common_mistake_pt": "O português tende a preferir uma oração completa com conjunção (\"se o tempo permitir\", \"considerando que\") em vez desta forma compacta sem conjunção — falantes de português muitas vezes inserem \"if\"/\"because\" mesmo quando a estrutura absoluta já os torna desnecessários (\"If weather permitting, we'll go\"), o que é redundante/incorreto.",
+    "correction": "Numa construção absoluta, não se usa conjunção antes do particípio — a própria estrutura (substantivo/pronome + particípio, ou \"with/without\" + substantivo) já indica a relação de condição/razão/circunstância, sem \"if\"/\"because\".",
+    "real_world_example": "In a formal announcement: \"All things considered, the board has decided to proceed with the merger.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_c2_permit",
+      "headword": "permit",
+      "type": "verb",
+      "translation_pt": "permitir",
+      "definition_en": "to allow something to happen",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/pəˈmɪt/",
+      "related_forms": ["permission", "permissible"],
+      "example_sentences": ["Weather permitting, the flight will leave on time."],
+      "difficulty": 3,
+      "tags": ["absolute-constructions"]
+    },
+    {
+      "id": "vocab_c2_merger",
+      "headword": "merger",
+      "type": "noun",
+      "translation_pt": "fusão (de empresas)",
+      "definition_en": "the joining of two or more companies into one",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": "/ˈmɜːdʒə/",
+      "related_forms": ["to merge"],
+      "example_sentences": ["The merger was approved by both boards."],
+      "difficulty": 4,
+      "tags": ["formal-register"]
+    },
+    {
+      "id": "vocab_c2_provided",
+      "headword": "provided that",
+      "type": "conjunction",
+      "translation_pt": "desde que",
+      "definition_en": "on condition that; if",
+      "cefr_level": "C2",
+      "audio_url": null,
+      "ipa": null,
+      "related_forms": ["provide"],
+      "example_sentences": ["The plan will go ahead, provided that funding is approved."],
+      "difficulty": 3,
+      "tags": ["absolute-constructions"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_c2_absolute_001",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_absolute_constructions",
+      "prompt": "Complete: ___ permitting, the ceremony will take place outdoors.",
+      "correct_answer": ["Weather"],
+      "distractors": ["If weather", "Because weather", "When weather"],
+      "explanation": "\"Weather permitting\" é uma construção absoluta fixa — sem conjunção antes.",
+      "common_mistake_pt": "Acrescentar \"if\" antes (\"If weather permitting\") é redundante — a estrutura absoluta já contém a ideia condicional.",
+      "audio_url": null,
+      "tags": ["absolute-constructions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_absolute_002",
+      "cefr_level": "C2",
+      "pillar": "grammar",
+      "concept_ref": "gc_c2_absolute_constructions",
+      "prompt": "Complete: All things ___, the project was a success.",
+      "correct_answer": ["considered"],
+      "distractors": ["considering", "to consider", "having considered"],
+      "explanation": "\"All things considered\" usa o particípio passado (\"considered\") — o sujeito implícito é \"tudo\", que É considerado (voz passiva implícita).",
+      "common_mistake_pt": "Usar \"considering\" (particípio presente) inverteria o sentido — sugeriria que \"tudo\" está a considerar algo, não a ser considerado.",
+      "audio_url": null,
+      "tags": ["absolute-constructions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_absolute_vocab_001",
+      "cefr_level": "C2",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "What does \"merger\" mean?",
+      "correct_answer": ["the joining of two or more companies into one"],
+      "distractors": ["the closure of a company", "a company's yearly profit", "a type of business loan"],
+      "explanation": "\"Merger\" significa a fusão de duas ou mais empresas numa só.",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["vocabulary", "formal-register"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_absolute_listening_001",
+      "cefr_level": "C2",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. What condition does the speaker mention?",
+      "correct_answer": ["that funding is approved", "provided that funding is approved"],
+      "distractors": ["that the weather is good", "that everyone agrees", "there is no condition mentioned"],
+      "explanation": "No áudio: \"The plan will go ahead, provided that funding is approved by the board next week.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "The plan will go ahead, provided that funding is approved by the board next week.",
+      "tags": ["listening", "absolute-constructions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_absolute_reading_001",
+      "cefr_level": "C2",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"With prices rising sharply, many families are cutting back on non-essential spending.\" Why are families cutting back?",
+      "correct_answer": ["because prices are rising", "rising prices"],
+      "distractors": ["because they are saving for a holiday", "the text doesn't say", "because of a new law"],
+      "explanation": "\"With prices rising sharply\" é a construção absoluta que dá a razão — equivale a \"because prices are rising sharply\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "absolute-constructions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_c2_absolute_translation_001",
+      "cefr_level": "C2",
+      "pillar": "translation",
+      "concept_ref": "gc_c2_absolute_constructions",
+      "prompt": "Translate to English (usando uma construção absoluta): \"Considerando tudo, a fusão foi um sucesso.\"",
+      "correct_answer": ["All things considered, the merger was a success."],
+      "distractors": [],
+      "explanation": "\"All things considered\" é a construção absoluta fixa correspondente a \"considerando tudo\".",
+      "common_mistake_pt": "Traduzir literalmente como \"Considering everything\" não está errado, mas \"all things considered\" é a expressão idiomática fixa mais natural em registo formal.",
+      "audio_url": null,
+      "tags": ["translation", "absolute-constructions"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_c2_m3_u1_absolute_constructions",
+    "title": "Weather Permitting",
+    "cefr_level": "C2",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_c2_absolute_constructions",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_c2_absolute_constructions#rule" },
+      { "type": "example", "content_ref": "gc_c2_absolute_constructions#example" },
+      { "type": "common_mistake", "content_ref": "gc_c2_absolute_constructions#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_c2_permit", "vocab_c2_merger", "vocab_c2_provided"] },
+      { "type": "exercise", "exercise_ids": ["ex_c2_absolute_001", "ex_c2_absolute_002", "ex_c2_absolute_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_c2_absolute_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_c2_absolute_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "Absolute constructions are typically set off with a brief pause (reflected by the comma) — \"Weather permitting, [pause] we'll go\" — the pause signals that a self-contained condition or circumstance has just been added, before the main clause continues."
+      },
+      { "type": "speaking", "prompt": "Use an absolute construction to add a condition or reason to a plan you have — e.g. 'Weather permitting,...' or 'All things considered,...'." },
+      { "type": "writing", "prompt": "Write 3 formal sentences using different absolute constructions (weather permitting, all things considered, with + noun + -ing)." },
+      { "type": "translation", "exercise_ids": ["ex_c2_absolute_translation_001"] }
+    ]
+  }
+}
