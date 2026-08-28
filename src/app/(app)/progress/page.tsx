@@ -39,6 +39,8 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
   first_writing_challenge: "WRITE",
   first_read_aloud: "READ",
   first_grammar_quiz: "GRAM",
+  first_fill_blank: "BLANK",
+  first_listen_choose: "LSTN",
 };
 
 export default async function ProgressPage() {

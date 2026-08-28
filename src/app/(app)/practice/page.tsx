@@ -131,6 +131,12 @@ export default async function PracticePage() {
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Palavra inglesa ↔ tradução</p>
           </Card>
         </Link>
+        <Link href="/practice/listen-choose">
+          <Card className="hover:border-clay">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Ouvir e Escolher</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">3 níveis de velocidade/complexidade</p>
+          </Card>
+        </Link>
       </div>
 
       <SectionLabel>Gramática e Vocabulário</SectionLabel>
@@ -169,6 +175,12 @@ export default async function PracticePage() {
           <Card className="hover:border-brass">
             <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">Quiz por Tema</p>
             <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Challenge sem ajudas + Apply em contexto</p>
+          </Card>
+        </Link>
+        <Link href="/practice/fill-blank">
+          <Card className="hover:border-clay">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wide text-clay">Preencher Espaços</p>
+            <p className="text-xs text-inkNeutral/60 dark:text-linen/60">Com dica e revelação progressiva</p>
           </Card>
         </Link>
       </div>

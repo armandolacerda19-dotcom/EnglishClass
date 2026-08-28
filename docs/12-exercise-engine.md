@@ -81,10 +81,10 @@ Ver `docs/decisions.md` ("Exercise Engine — Fase 3/4") para o registo de cada 
 | # | Tipo | Estado |
 |---|---|---|
 | 1 | Escolha múltipla | ✅ já existia (lição/Diagnóstico/Sheets) |
-| 2 | Preencher espaços | ⚠️ coberto parcialmente pelo "text kind" existente; UI dedicada com dica/revelação ainda por construir |
+| 2 | Preencher espaços | ✅ **novo** (`/practice/fill-blank`), com dica e revelação letra a letra |
 | 3 | Ordenar palavras | ✅ já existia (`/practice/ordering`) |
 | 4 | Associar palavras | ✅ já existia, EN↔PT (`/practice/matching`) |
-| 5 | Ouvir e escolher | ⚠️ coberto parcialmente (listening steps/leitura usam PlayTranscript+MCQ); progressão de velocidade/sotaque por nível ainda não formalizada |
+| 5 | Ouvir e escolher | ✅ **novo** (`/practice/listen-choose`), progressão formal por camada — Iniciante (0.75x por omissão), Intermédio (1x, frase completa), Avançado (1x, mini-diálogo) |
 | 6 | Ditado | ✅ já existia (`/practice/dictation`) |
 | 7 | Repetição oral | ✅ já existia (shadowing em micro-desafios), com o limite honesto já documentado (Web Speech API, sem áudio real) |
 | 8 | Leitura em voz alta | ✅ **novo** (`/practice/read-aloud`) — precisão real (diff palavra a palavra) + fluência real (palavras/minuto, duração medida no cliente); Pronúncia deliberadamente sem número — Web Speech API não expõe confiança por palavra |
@@ -101,4 +101,4 @@ Ver `docs/decisions.md` ("Exercise Engine — Fase 3/4") para o registo de cada 
 | 19 | Role-play | ✅ já existia (personalidade "roleplay"), agora com avaliação de fim de conversa partilhada com o tipo 9 |
 | 20 | Desafio de escrita livre | ✅ **novo** (`/practice/writing-challenge`), formato ❌⚠️✅ + "como um nativo escreveria" |
 
-**17/20 confirmados funcionais** (8 já existiam antes desta ronda + 9 genuinamente novos: Correção de Erros, Sinónimos/Antónimos, Contexto, avaliação de Conversação com IA, Tradução EN→PT, Word Builder, Desafio de Escrita com formato ❌⚠️✅, Leitura em Voz Alta, Challenge/Apply do Quiz de Gramática), **1 vídeo genuinamente bloqueado** por falta de infraestrutura a custo zero, **2 restantes** (Preencher espaços dedicado com dica/revelação, progressão formal de velocidade/sotaque em listening) têm arquitetura pronta (o motor suporta-os, os componentes-base — `PlayTranscript`, seletor de voz — já existem) mas ainda não foram formalizados numa superfície própria.
+**19/20 confirmados funcionais** (8 já existiam antes desta ronda + 11 genuinamente novos, construídos ao longo de 4 lotes: Correção de Erros, Sinónimos/Antónimos, Contexto, avaliação de Conversação com IA, Tradução EN→PT, Word Builder, Desafio de Escrita com formato ❌⚠️✅, Leitura em Voz Alta, Challenge/Apply do Quiz de Gramática, Preencher Espaços, Ouvir e Escolher com progressão por camada). **1 vídeo genuinamente bloqueado** por falta de infraestrutura de vídeo — zero conteúdo, zero streaming, não viável a custo zero. Todos os 19 tipos funcionais partilham o mesmo Exercise Engine (`src/lib/exercise/`), a mesma integração com progresso/gamificação, e a mesma consistência visual (`ExerciseShell`).

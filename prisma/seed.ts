@@ -470,6 +470,16 @@ const ACHIEVEMENTS = [
     title: "Primeiro Quiz de Gramática",
     description: "Completou a camada Apply de um Quiz de Gramática por Tema.",
   },
+  {
+    code: "first_fill_blank",
+    title: "Primeiro Espaço Preenchido",
+    description: "Completou o seu primeiro exercício de preencher espaços.",
+  },
+  {
+    code: "first_listen_choose",
+    title: "Primeira Escuta",
+    description: "Completou o seu primeiro exercício de Ouvir e Escolher.",
+  },
 ];
 
 async function seedAchievements() {

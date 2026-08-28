@@ -31,8 +31,14 @@ const QUALITY_VOICE_RE = /natural|neural|online|google/i;
 // Substituto de listening sem ficheiros de áudio gravados (que ainda não existem —
 // ver docs/decisions.md): sintetiza o transcript no browser via Web Speech API.
 // Não mostra o texto ao utilizador — só o lê em voz alta, como um ficheiro de áudio.
-export function PlayTranscript({ text }: { text: string }) {
-  const [speed, setSpeed] = useState(1);
+// `defaultSpeed`: opcional, aditivo — usado pela progressão de dificuldade de
+// Ouvir e Escolher (Exercise Engine, 2026-08-28): Iniciante começa a 0.75x
+// (lento e claro), Intermédio a 1x (velocidade natural), Avançado a 1x sem
+// desaceleração disponível como "ajuda por omissão" (o utilizador ainda pode
+// mudar manualmente). Nenhuma chamada existente passa isto, por isso o
+// comportamento delas não muda.
+export function PlayTranscript({ text, defaultSpeed = 1 }: { text: string; defaultSpeed?: number }) {
+  const [speed, setSpeed] = useState(defaultSpeed);
   const [playing, setPlaying] = useState(false);
   const [unsupported, setUnsupported] = useState(false);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);

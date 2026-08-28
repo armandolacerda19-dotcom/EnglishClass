@@ -2,6 +2,18 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-28 — Exercise Engine: fecho — Preencher Espaços + Ouvir e Escolher (🟡🟡)
+
+Continuação de "deve avançar para as próximas prioridades" / "pode continuar". Fecha os 2 últimos itens 🟡 do relatório — com isto, **19 dos 20 tipos de exercício pedidos estão confirmados funcionais**, o único que falta (compreensão de vídeo) continua genuinamente bloqueado por não haver infraestrutura de vídeo na app.
+
+**Preencher Espaços** (`/practice/fill-blank`) — 15 frases Pre-A1→C1 (misturando espaços de uma palavra e de expressões completas, tal como pedido). Novidade real face ao "text kind" já usado noutros exercícios: botão de **Dica** e botão de **revelação letra a letra** (`revealCount`, incrementa 1 carácter por clique, sem penalizar a nota — é uma ferramenta de aprendizagem, a nota reflete sempre a resposta final submetida). Correção semântica (`semanticGrade`).
+
+**Ouvir e Escolher** (`/practice/listen-choose`) — progressão formal por camada, tal como pedido: Iniciante (frase curta, `defaultSpeed=0.75`), Intermédio (frase completa, `defaultSpeed=1`), Avançado (mini-diálogo A/B com mais naturalidade — hesitações, "honestly?", "sure, but..." —, `defaultSpeed=1` sem desaceleração por omissão). `PlayTranscript.tsx` ganhou um prop `defaultSpeed` opcional e aditivo (nenhuma chamada existente muda de comportamento) para suportar isto — a variedade de sotaque já existia via o seletor de voz em Definições (Fase 19), aqui só faltava formalizar velocidade/complexidade.
+
+Achievements novos: `first_fill_blank`, `first_listen_choose`.
+
+**Nota de arquitetura**: com estes dois, todos os tipos de exercício construídos nesta série de rondas (11 no total) partilham exatamente o mesmo Exercise Engine (`recordExerciseResult`, `exactMatchGrade`/`semanticGrade`, `ExerciseShell`) — nenhum reinventa a integração com progresso/gamificação à sua maneira, ao contrário dos 11 Runners que já existiam antes desta série.
+
 ## 2026-08-28 — Exercise Engine: mais 2 prioridades 🟠 (Leitura em Voz Alta, Challenge/Apply)
 
 Continuação de "deve avançar para as próximas prioridades". Fecha as duas prioridades 🟠 de maior valor que restavam.
