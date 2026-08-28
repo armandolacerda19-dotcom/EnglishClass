@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 continuada: Wish Clauses (B1.2)
+
+Outro gap real: "wish" (desejo sobre o presente — "I wish I spoke French" — e arrependimento sobre o passado — "I wish I had studied harder") nunca teve módulo próprio, apesar de ser um ponto gramatical B1 clássico, intimamente ligado ao Second Conditional (mesma estrutura "wish + Past Simple" ↔ "if + Past Simple") e ao Third Conditional (mesma estrutura "wish + Past Perfect" ↔ "if + Past Perfect"), já ambos seedados. `b1-module-10-wish-clauses.json`, B1.2, logo a seguir a third-conditional.
+
+**Nota de processo, prova de que a verificação por grep funciona**: o primeiro rascunho definia um item de vocabulário com o id `vocab_b1_regret` — sem verificar, teria colidido com o `vocab_b1_regret` já existente em `b1-module-08-third-conditional.json` (mesma palavra, "regret", já coberta lá). Apanhado pelo grep de verificação de ids feito antes de todo commit de conteúdo nesta sessão; corrigido substituindo por um item novo ("daydream", verbo temático — "sonhar acordado" — que se encaixa bem no tema de desejos/wishes). Isto confirma que vocabulário é uma tabela global partilhada entre módulos (resolvido por id em runtime, não precisa de estar duplicado por módulo) — reaproveitar um id existente teria sido tecnicamente inofensivo (o upsert simplesmente atualizaria a mesma linha), mas ter dois módulos a "possuir" a mesma definição de vocabulário, com texto ligeiramente diferente entre rascunhos, seria confuso de manter.
+
+**Currículo: 36 → 37 lições.**
+
 ## 2026-08-27 — Fase 13 continuada: Present Perfect Continuous (B1.1)
 
 Outro gap real encontrado ao rever a cobertura de gramática (mesmo processo dos gaps A2 anteriores): existia Present Perfect Simples (`a2-module-01-experiences.json`) e, adicionado nesta sessão, a distinção Present Perfect vs. Past Simple — mas nunca a forma **contínua** (`have/has been + -ing`), um tempo verbal tipicamente introduzido a B1, sem equivalente direto em português (que usa Presente Simples + "há"/"desde" para a mesma ideia de duração — "trabalho aqui há cinco anos" vs. "I've been working here for five years"). `b1-module-09-present-perfect-continuous.json`, inserido em B1.1 logo a seguir a past-perfect (mesma família "aspeto perfeito"). Cobre `for`/`since`/`lately` como vocabulário de apoio, e contrasta explicitamente com o Present Perfect Simples ("I've painted the fence" = resultado; "I've been painting the fence" = atividade/duração).
