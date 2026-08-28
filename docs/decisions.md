@@ -2,6 +2,14 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 continuada: Have/Get Something Done — causativo (B1.2)
+
+Último gap encontrado nesta ronda de revisão de gramática: a estrutura causativa "have/get + objeto + particípio passado" — usada para dizer que outra pessoa faz algo por si ("I had my hair cut", "we're getting the roof fixed") — nunca teve módulo próprio, apesar de ser extremamente comum no dia a dia (cabeleireiro, oficina, obras em casa). É também um ponto onde o português não ajuda nada: usa-se o mesmo verbo na ativa quer a pessoa tenha feito o trabalho pessoalmente quer tenha mandado fazer ("cortei o cabelo" serve para os dois casos), o que faz muitos alunos dizerem "I cut my hair" quando querem dizer que foram ao cabeleireiro — frase que em inglês significa especificamente que a própria pessoa pegou na tesoura. `b1-module-11-causative-have-get.json`, B1.2, último módulo B1 na ordem do seed.
+
+Mesmo processo de verificação: JSON validado com `ConvertFrom-Json`, ids confirmados únicos por `grep` (desta vez sem colisões, ao contrário do lote anterior). **Currículo: 37 → 38 lições.**
+
+Com isto, fecha-se esta ronda de revisão da cobertura de gramática iniciada com o 1º lote da Fase 13 — 8 módulos novos ao todo nesta sessão (numbers/time, modais de capacidade, phrasal verbs, zero conditional, present perfect vs. past simple, present perfect continuous, wish clauses, causativo), currículo de 30 para 38 lições. O resto do alvo de 80-120 lições da Fase 13 continua a ser trabalho de escala para sessões futuras — não faltam mais gaps óbvios de gramática facilmente identificáveis por esta revisão.
+
 ## 2026-08-27 — Fase 13 continuada: Wish Clauses (B1.2)
 
 Outro gap real: "wish" (desejo sobre o presente — "I wish I spoke French" — e arrependimento sobre o passado — "I wish I had studied harder") nunca teve módulo próprio, apesar de ser um ponto gramatical B1 clássico, intimamente ligado ao Second Conditional (mesma estrutura "wish + Past Simple" ↔ "if + Past Simple") e ao Third Conditional (mesma estrutura "wish + Past Perfect" ↔ "if + Past Perfect"), já ambos seedados. `b1-module-10-wish-clauses.json`, B1.2, logo a seguir a third-conditional.
