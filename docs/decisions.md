@@ -2,6 +2,18 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Bug real: currentLevel nunca avançava depois do placement test
+
+Achado ao rever o fluxo de certificação, na sequência de ter introduzido B2 nesta sessão (o mesmo tipo de revisão que encontrou o bug do placement test preso em A2.2). `LearningProfile.currentLevel`/`currentSublevel` são escritos em exatamente um sítio de todo o código: `api/placement/submit/route.ts`, na submissão do teste de nivelamento inicial. Depois disso, nada em lado nenhum os volta a escrever — nem `completeLesson`, nem `updateSkillScore`, nem `maybeIssueCertificate` (antes desta correção).
+
+Consequência prática: um utilizador colocado em A2 pelo placement test podia completar o currículo inteiro de B1 e B2 a seguir, manter os 8 pilares do octógono acima de 65 de média, e continuar a ganhar sempre o MESMO certificado de A2 — bloqueado de ganhar um segundo certificado A2 pelo `existing` check, mas sem nunca progredir para B1/B2. O crachá de nível mostrado em `/home`, `/progress` e no próprio `/verify/[code]` também nunca mudava. É exatamente o mesmo padrão "conta mas não age" já corrigido para `UserError.occurrences` na Fase 11 — dados que existem e são atualizados (skill scores) mas nunca alimentam a decisão que deviam alimentar (o nível mostrado ao utilizador).
+
+Corrigido em `maybeIssueCertificate` (`src/lib/certificate.ts`): depois de emitir um certificado para o nível atual, avança `currentLevel`/`currentSublevel` para o subnível seguinte, usando `Sublevel.order` (sequencial e `@unique` no schema) para encontrar o próximo sem precisar de uma tabela de mapeamento à parte — reutiliza `formatLevelCode` (`lib/level.ts`) para construir o código do subnível atual a procurar. Sem próximo subnível seedado (hoje, depois de B2.2, já que C1/C2 não têm conteúdo), fica no nível atual — não é um erro, só o teto atual do currículo, e vai simplesmente passar a avançar mais quando C1 for introduzido no futuro.
+
+Nota honesta sobre o comportamento resultante: como os skill scores (EMA por pilar) não são "por nível" nem resetam ao subir de nível, um utilizador que suba de nível pode, em diagnósticos seguintes, subir vários níveis seguidos rapidamente se a média dos 8 pilares já estiver acima de 65 — é uma simplificação aceitável (o problema anterior, nível congelado para sempre, era estritamente pior), não uma tentativa de modelar progressão perfeita por nível.
+
+`maybeIssueCertificate` depende do Prisma (não é função pura), por isso não tem teste automático — verificado por leitura cuidada e 2 cenários traçados manualmente: avanço normal (A2.2 → B1.1) e teto sem próximo subnível (B2.2, sem crash).
+
 ## 2026-08-27 — Fase 13 continuada: mais 3 módulos B2 (aprofundamento)
 
 Continuando a pedido do utilizador ("pode continuar com as próximas atualizações"), mais uma ronda de revisão de gramática, desta vez focada em aprofundar o nível B2 recém-introduzido (que tinha só 3+3 módulos, mais raso do que B1 com 13):
