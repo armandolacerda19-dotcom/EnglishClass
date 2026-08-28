@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "sublevel_code": "B1.1",
+  "module": {
+    "id": "mod_b1_9_present_perfect_continuous",
+    "title": "Present Perfect Continuous",
+    "theme": "tenses",
+    "order": 5
+  },
+  "unit": {
+    "id": "unit_b1_9_present_perfect_continuous",
+    "title": "How Long Has This Been Happening?",
+    "order": 1,
+    "skippable": true
+  },
+  "grammar_concept": {
+    "id": "gc_b1_present_perfect_continuous",
+    "title": "Present Perfect Continuous",
+    "rule": "Use 'have/has been + verb-ing' to talk about an action that started in the past and is still continuing now (or has only just stopped), emphasizing the duration or the activity itself — not the result.",
+    "simple_explanation": "This tense answers \"how long has this been going on?\". Compare: \"I've painted the fence\" (finished, the result matters) vs. \"I've been painting the fence\" (that's why my hands are dirty — the activity and its duration matter, not whether it's finished).",
+    "example": "I've been working here for five years. She's been studying English since she was a teenager.",
+    "example_translation": "Tenho trabalhado aqui há cinco anos. Ela tem estudado inglês desde que era adolescente.",
+    "common_mistake_pt": "O português exprime esta mesma ideia de duração até agora com o Presente Simples e \"há\"/\"desde\" (\"Trabalho aqui há cinco anos\") — não existe um tempo verbal equivalente ao Present Perfect Continuous. Isso leva falantes de português a dizer \"I work here for five years\" em vez de \"I've been working here for five years\", esquecendo por completo a estrutura \"have/has been + -ing\".",
+    "correction": "Sempre que falar de uma duração que começou no passado e continua agora — normalmente com \"for\" (um período) ou \"since\" (um ponto de partida) — use \"have/has been + verbo-ing\", nunca o Presente Simples como se faz em português.",
+    "real_world_example": "In a job interview: \"I've been working in customer service for three years now.\""
+  },
+  "vocabulary": [
+    {
+      "id": "vocab_b1_for_duration",
+      "headword": "for",
+      "type": "preposition",
+      "translation_pt": "durante / há",
+      "definition_en": "used before a period of time to say how long something has lasted",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/fɔːr/",
+      "related_forms": ["for two years", "for a while"],
+      "example_sentences": ["I've been living here for two years."],
+      "difficulty": 2,
+      "tags": ["present-perfect-continuous"]
+    },
+    {
+      "id": "vocab_b1_since_starting_point",
+      "headword": "since",
+      "type": "preposition",
+      "translation_pt": "desde",
+      "definition_en": "used before a specific point in time to say when something started",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/sɪns/",
+      "related_forms": ["since 2020", "since I was a child"],
+      "example_sentences": ["She's been working here since 2020."],
+      "difficulty": 2,
+      "tags": ["present-perfect-continuous"]
+    },
+    {
+      "id": "vocab_b1_lately",
+      "headword": "lately",
+      "type": "adverb",
+      "translation_pt": "ultimamente",
+      "definition_en": "recently, in the period up to now",
+      "cefr_level": "B1",
+      "audio_url": null,
+      "ipa": "/ˈleɪtli/",
+      "related_forms": ["recently"],
+      "example_sentences": ["I've been feeling quite tired lately."],
+      "difficulty": 2,
+      "tags": ["present-perfect-continuous"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex_b1_ppc_001",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_present_perfect_continuous",
+      "prompt": "Complete: I ___ (wait) for the bus for twenty minutes.",
+      "correct_answer": ["have been waiting"],
+      "distractors": ["wait", "waited", "am waiting"],
+      "explanation": "Ação com duração desde o passado até agora, ligada a \"for\" — pede Present Perfect Continuous: \"have been waiting\".",
+      "common_mistake_pt": "Usar o Presente Simples (\"I wait\") é o erro mais comum, por transferência direta do português \"espero há vinte minutos\".",
+      "audio_url": null,
+      "tags": ["present-perfect-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ppc_002",
+      "cefr_level": "B1",
+      "pillar": "grammar",
+      "concept_ref": "gc_b1_present_perfect_continuous",
+      "prompt": "Complete: She ___ (work) at that company since 2020.",
+      "correct_answer": ["has been working"],
+      "distractors": ["works", "worked", "is working"],
+      "explanation": "\"Since 2020\" marca um ponto de partida específico — pede Present Perfect Continuous: \"has been working\".",
+      "common_mistake_pt": "Usar \"works\" (Presente Simples) em vez da forma composta é comum, sobretudo com \"since\".",
+      "audio_url": null,
+      "tags": ["present-perfect-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ppc_vocab_001",
+      "cefr_level": "B1",
+      "pillar": "vocabulary",
+      "concept_ref": null,
+      "prompt": "Which word introduces a specific starting point in time, like \"___ 2020\"?",
+      "correct_answer": ["since"],
+      "distractors": ["for", "ago", "during"],
+      "explanation": "\"Since\" introduz um ponto de partida (\"since 2020\", \"since Monday\"); \"for\" introduz uma duração (\"for two years\").",
+      "common_mistake_pt": "Confundir \"since\" com \"for\" é um erro muito comum.",
+      "audio_url": null,
+      "tags": ["vocabulary", "present-perfect-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ppc_listening_001",
+      "cefr_level": "B1",
+      "pillar": "listening",
+      "concept_ref": null,
+      "prompt": "Listen to the audio. How long has Marta been learning English?",
+      "correct_answer": ["for six years", "six years"],
+      "distractors": ["for six months", "for one year", "since last week"],
+      "explanation": "No áudio, ouve-se: \"I've been learning English for six years now.\"",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "transcript": "I've been learning English for six years now, and I've been feeling much more confident lately, especially since I started talking to an AI tutor every day.",
+      "tags": ["listening", "present-perfect-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ppc_reading_001",
+      "cefr_level": "B1",
+      "pillar": "reading",
+      "concept_ref": null,
+      "prompt": "Read: \"Tiago has been working as a nurse since 2018. Lately, he has also been studying for a management certificate at night.\" What has Tiago been doing lately, besides working?",
+      "correct_answer": ["studying for a management certificate", "studying for a certificate"],
+      "distractors": ["looking for a new job", "travelling abroad", "teaching English"],
+      "explanation": "O texto diz diretamente \"he has also been studying for a management certificate at night\".",
+      "common_mistake_pt": null,
+      "audio_url": null,
+      "tags": ["reading", "present-perfect-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    },
+    {
+      "id": "ex_b1_ppc_translation_001",
+      "cefr_level": "B1",
+      "pillar": "translation",
+      "concept_ref": "gc_b1_present_perfect_continuous",
+      "prompt": "Translate to English: \"Tenho estudado inglês há dois anos.\"",
+      "correct_answer": ["I have been studying English for two years.", "I've been studying English for two years."],
+      "distractors": [],
+      "explanation": "Duração desde o passado até agora, com \"for\" — pede \"have been studying\", não o Presente Simples.",
+      "common_mistake_pt": "Traduzir \"tenho estudado\" como \"I study\" ou \"I have studied\" (sem o \"-ing\") são os erros mais comuns aqui.",
+      "audio_url": null,
+      "tags": ["translation", "present-perfect-continuous"],
+      "generated_by_ai": false,
+      "qa_status": "approved"
+    }
+  ],
+  "lesson": {
+    "id": "lesson_b1_m9_u1_present_perfect_continuous",
+    "title": "How Long Has This Been Happening?",
+    "cefr_level": "B1",
+    "pillars": ["grammar", "vocabulary", "listening", "reading", "speaking", "writing", "translation", "pronunciation"],
+    "grammar_concept_ref": "gc_b1_present_perfect_continuous",
+    "steps": [
+      { "type": "rule", "content_ref": "gc_b1_present_perfect_continuous#rule" },
+      { "type": "example", "content_ref": "gc_b1_present_perfect_continuous#example" },
+      { "type": "common_mistake", "content_ref": "gc_b1_present_perfect_continuous#common_mistake_pt" },
+      { "type": "vocabulary", "vocabulary_ids": ["vocab_b1_for_duration", "vocab_b1_since_starting_point", "vocab_b1_lately"] },
+      { "type": "exercise", "exercise_ids": ["ex_b1_ppc_001", "ex_b1_ppc_002", "ex_b1_ppc_vocab_001"] },
+      { "type": "listening", "exercise_ids": ["ex_b1_ppc_listening_001"] },
+      { "type": "reading", "exercise_ids": ["ex_b1_ppc_reading_001"] },
+      {
+        "type": "pronunciation",
+        "content": "\"Been\" in this structure is usually pronounced as the weak form /bɪn/ in natural speech (not the stressed /biːn/), and \"have\"/\"has\" contract heavily: \"I've been\", \"she's been\" — almost never said in full in conversation."
+      },
+      { "type": "speaking", "prompt": "Talk about something you have been doing lately — learning something, working on a project, or a habit — and say how long you've been doing it." },
+      { "type": "writing", "prompt": "Write 3 sentences about things you have been doing recently, using \"have/has been + -ing\", with at least one using \"for\" and one using \"since\"." },
+      { "type": "translation", "exercise_ids": ["ex_b1_ppc_translation_001"] }
+    ]
+  }
+}
