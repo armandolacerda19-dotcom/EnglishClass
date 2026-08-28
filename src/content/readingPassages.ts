@@ -1813,6 +1813,97 @@ export const READING_PASSAGES: ReadingPassage[] = [
       },
     ],
   },
+  // Fase 14 (continuação, 2026-08-27) — 3º lote de formatos autênticos.
+  // Originais, nunca copiados de fonte real.
+  {
+    id: "flat-share-dialogue",
+    title: "Looking for a Flatmate",
+    level: "A2",
+    genre: "dialogue",
+    source: "original",
+    text: "ANA: Hi, thanks for coming to see the room. So, it's a two-bedroom flat, and you'd be sharing the kitchen and living room with me.\nCARLOS: Great. How much is the rent, and does it include bills?\nANA: It's 450 euros a month, but bills are separate — usually around 60 euros between the two of us.\nCARLOS: That works for me. Is it okay if I have a cat? I should have mentioned that earlier.\nANA: Actually, yes, that's fine — I love cats. When would you be able to move in?\nCARLOS: I could move in next weekend, if that's not too soon.\nANA: That's perfect, actually. I was hoping to find someone before the end of the month.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Are bills included in the rent?",
+        options: ["Yes, always", "No, they're separate", "Only electricity is included", "It doesn't say"],
+        correctAnswer: "No, they're separate",
+      },
+      {
+        id: "q2",
+        prompt: "What does Carlos ask permission for?",
+        options: ["Having a cat", "Painting the room", "Having guests", "Working from home"],
+        correctAnswer: "Having a cat",
+      },
+      {
+        id: "q3",
+        prompt: "When could Carlos move in?",
+        options: ["Tomorrow", "Next weekend", "Next month", "He can't move in"],
+        correctAnswer: "Next weekend",
+      },
+    ],
+  },
+  {
+    id: "library-instructions",
+    title: "How to Borrow a Book from the Library",
+    level: "A1",
+    genre: "instructions",
+    source: "original",
+    text: "First, find the book you want using the computer or the shelves. Then, take the book to the front desk. Show the librarian your library card — if you don't have one, you can get one for free with proof of address. The librarian will scan the book and your card. You can borrow up to five books at a time, for three weeks. Finally, remember to return the books before the due date, or you may have to pay a small fine.",
+    questions: [
+      {
+        id: "q1",
+        prompt: "What do you need to get a library card?",
+        options: ["Proof of address", "A passport", "Money", "A photo"],
+        correctAnswer: "Proof of address",
+      },
+      {
+        id: "q2",
+        prompt: "How many books can you borrow at a time?",
+        options: ["Two", "Three", "Five", "Ten"],
+        correctAnswer: "Five",
+      },
+      {
+        id: "q3",
+        prompt: "What happens if you return a book late?",
+        options: ["Nothing happens", "You may have to pay a fine", "You lose your card", "You can't borrow again"],
+        correctAnswer: "You may have to pay a fine",
+      },
+    ],
+  },
+  {
+    id: "office-relocation-email",
+    title: "Office Moving to a New Building",
+    level: "B1",
+    genre: "email",
+    source: "original",
+    text: "Subject: Important — Office Relocation Next Month\n\nDear Team,\n\nAs some of you may already know, we will be moving to our new office on Elm Street starting the 15th of next month. The new building is closer to the train station, which should make the commute easier for most of us.\n\nA few things to keep in mind: please pack your personal belongings by the end of this week, as the moving company will collect boxes from all desks on Friday. IT will handle all computer equipment separately, so please don't unplug anything yourself.\n\nWe'll be closed for two working days during the actual move, and I'll send a reminder with the exact schedule closer to the date. Please let me know if you have any questions or concerns.\n\nBest,\nRicardo",
+    questions: [
+      {
+        id: "q1",
+        prompt: "Why might the new office make commuting easier?",
+        options: [
+          "It has free parking",
+          "It's closer to the train station",
+          "It's in the city centre",
+          "It has a gym",
+        ],
+        correctAnswer: "It's closer to the train station",
+      },
+      {
+        id: "q2",
+        prompt: "Who will handle the computer equipment?",
+        options: ["Each employee individually", "The moving company", "IT", "Ricardo"],
+        correctAnswer: "IT",
+      },
+      {
+        id: "q3",
+        prompt: "By when should employees pack their personal belongings?",
+        options: ["By the 15th of next month", "By the end of this week", "By Friday next month", "It doesn't say"],
+        correctAnswer: "By the end of this week",
+      },
+    ],
+  },
 ];
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {
