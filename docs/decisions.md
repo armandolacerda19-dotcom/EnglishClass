@@ -2,6 +2,12 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-08-27 — Fase 13 continuada: Present Perfect Continuous (B1.1)
+
+Outro gap real encontrado ao rever a cobertura de gramática (mesmo processo dos gaps A2 anteriores): existia Present Perfect Simples (`a2-module-01-experiences.json`) e, adicionado nesta sessão, a distinção Present Perfect vs. Past Simple — mas nunca a forma **contínua** (`have/has been + -ing`), um tempo verbal tipicamente introduzido a B1, sem equivalente direto em português (que usa Presente Simples + "há"/"desde" para a mesma ideia de duração — "trabalho aqui há cinco anos" vs. "I've been working here for five years"). `b1-module-09-present-perfect-continuous.json`, inserido em B1.1 logo a seguir a past-perfect (mesma família "aspeto perfeito"). Cobre `for`/`since`/`lately` como vocabulário de apoio, e contrasta explicitamente com o Present Perfect Simples ("I've painted the fence" = resultado; "I've been painting the fence" = atividade/duração).
+
+Mesmo processo de verificação de todos os lotes anteriores: JSON validado com `ConvertFrom-Json`, ids confirmados únicos por `grep`, `prisma/seed.ts` atualizado. **Currículo: 35 → 36 lições.**
+
 ## 2026-08-27 — Fase 14 continuada: mais 4 textos de leitura autênticos
 
 2º lote de textos em `readingPassages.ts`, mesmo processo do 1º (originais, nunca copiados de fonte real, ids confirmados únicos por grep antes do commit):
