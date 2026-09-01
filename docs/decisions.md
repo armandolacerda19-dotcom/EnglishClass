@@ -22,6 +22,15 @@ Pedido: "deve então agora avançar com as atualizações" — execução direta
 
 Vocabulário standalone total: 1.962 → 2.027 palavras (2ª auditoria tinha registado "2.004" como número histórico incorreto, corrigido para a contagem real na Fase 19).
 
+## 2026-08-28 — Fase 25: CTA "próxima ação recomendada" nos ecrãs de conclusão (R2 da 4ª auditoria)
+
+Pedido: continuação direta ("deve continuar com todas as atualizações"). Corrige o achado #6 do roadmap da 4ª auditoria: os ecrãs de conclusão dos Runners só tinham "Voltar à Home", sem indicar a próxima ação.
+
+Em vez de editar cada um dos 9 Runners que usam `ExerciseComplete` (`ExerciseShell.tsx`), a recomendação foi acrescentada ao próprio componente partilhado — todos os Runners existentes e futuros que o usem ganham o botão automaticamente, sem duplicar lógica.
+
+- `src/lib/exercise/nextActionAction.ts` (novo): server action que reutiliza exatamente o mesmo motor já usado na Home (`getRecommendationForUser`) — revisões pendentes têm sempre prioridade sobre uma recomendação de exercício novo, mesma regra já estabelecida.
+- `src/components/exercise/ExerciseShell.tsx`: `ExerciseComplete` busca a recomendação uma vez no cliente (`useEffect`), mostra um botão "Continuar: {pilar} →" acima do que cada Runner já passa em `children` — nunca substitui, só acrescenta.
+
 ## 2026-08-28 — Fase 24: +510 palavras de vocabulário standalone (pedido explícito do utilizador)
 
 Pedido: "deve continuar com todas as atualizações [...] acrescentar no mínimo mais 500 palavras no vocabulario. 65 palavras é muito pouco." — a Fase 22 (65 palavras) foi considerada insuficiente pelo utilizador.

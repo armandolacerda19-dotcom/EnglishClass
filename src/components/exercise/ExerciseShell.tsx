@@ -1,7 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import Link from "next/link";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { getNextExerciseAction } from "@/lib/exercise/nextActionAction";
 
 // Exercise Engine — shell visual partilhado (docs/12-exercise-engine.md).
 // Reduz a duplicação de layout que hoje se repete em cada Runner
@@ -62,6 +65,13 @@ export function ExerciseShell({
 
 // Ecrã de conclusão partilhado (carimbo + título + CTA "Voltar à Home") — o
 // mesmo padrão repetido em todos os Runners existentes.
+//
+// Achado #6 da 4ª auditoria (2026-08-28): nenhum ecrã de conclusão indicava a
+// próxima ação recomendada, só "Voltar à Home" — o utilizador tinha de voltar
+// a navegar manualmente para descobrir o que fazer a seguir. Busca a
+// recomendação (mesmo motor já usado na Home, revisões pendentes em primeiro
+// lugar) uma vez, no cliente, e mostra-a acima do que cada Runner já passa em
+// `children` — não substitui nada, só acrescenta um atalho.
 export function ExerciseComplete({
   badge,
   title,
@@ -71,12 +81,33 @@ export function ExerciseComplete({
   title: string;
   children?: ReactNode;
 }) {
+  const [nextAction, setNextAction] = useState<{ href: string; label: string } | null | undefined>(undefined);
+
+  useEffect(() => {
+    let cancelled = false;
+    getNextExerciseAction()
+      .then((result) => {
+        if (!cancelled) setNextAction(result);
+      })
+      .catch(() => {
+        if (!cancelled) setNextAction(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
       <div className="mb-6 flex flex-col items-center gap-3 text-center">
         {badge}
         <h1 className="font-display text-2xl">{title}</h1>
       </div>
+      {nextAction && (
+        <Link href={nextAction.href} className="mb-4 block">
+          <Button className="w-full">{nextAction.label} →</Button>
+        </Link>
+      )}
       {children}
     </main>
   );
