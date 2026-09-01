@@ -23,6 +23,12 @@ interface PillarAccent {
   bg: string;
   border: string;
   hoverBorder: string;
+  // Pré-compostas para o estado "já correto"/"desativado" que alguns Runners
+  // precisam (ex. MatchingRunner) — nunca interpolar `${accent.bg}/10` em tempo
+  // de execução: o JIT do Tailwind só gera classes que aparecem completas e
+  // literais no código-fonte (mesma regra do comentário acima do ficheiro).
+  bgSoft: string;
+  textSoft: string;
 }
 
 // 5ª auditoria (2026-09-01, docs/09-sistema-design.md "Cor por pilar") — antes só
@@ -33,14 +39,14 @@ interface PillarAccent {
 // decorativo. Cada pilar tem agora a sua própria cor; Clay deixa de aparecer
 // aqui. Ver tailwind.config.ts para os hex.
 export const PILLAR_ACCENT: Record<string, PillarAccent> = {
-  GRAMMAR: { text: "text-verdigris", bg: "bg-verdigris", border: "border-verdigris/30", hoverBorder: "hover:border-verdigris" },
-  VOCABULARY: { text: "text-brass", bg: "bg-brass", border: "border-brass/30", hoverBorder: "hover:border-brass" },
-  LISTENING: { text: "text-teal", bg: "bg-teal", border: "border-teal/30", hoverBorder: "hover:border-teal" },
-  READING: { text: "text-moss", bg: "bg-moss", border: "border-moss/30", hoverBorder: "hover:border-moss" },
-  TRANSLATION: { text: "text-berry", bg: "bg-berry", border: "border-berry/30", hoverBorder: "hover:border-berry" },
-  SPEAKING: { text: "text-indigo", bg: "bg-indigo", border: "border-indigo/30", hoverBorder: "hover:border-indigo" },
-  PRONUNCIATION: { text: "text-plum", bg: "bg-plum", border: "border-plum/30", hoverBorder: "hover:border-plum" },
-  WRITING: { text: "text-slate", bg: "bg-slate", border: "border-slate/30", hoverBorder: "hover:border-slate" },
+  GRAMMAR: { text: "text-verdigris", bg: "bg-verdigris", border: "border-verdigris/30", hoverBorder: "hover:border-verdigris", bgSoft: "bg-verdigris/10", textSoft: "text-verdigris/50" },
+  VOCABULARY: { text: "text-brass", bg: "bg-brass", border: "border-brass/30", hoverBorder: "hover:border-brass", bgSoft: "bg-brass/10", textSoft: "text-brass/50" },
+  LISTENING: { text: "text-teal", bg: "bg-teal", border: "border-teal/30", hoverBorder: "hover:border-teal", bgSoft: "bg-teal/10", textSoft: "text-teal/50" },
+  READING: { text: "text-moss", bg: "bg-moss", border: "border-moss/30", hoverBorder: "hover:border-moss", bgSoft: "bg-moss/10", textSoft: "text-moss/50" },
+  TRANSLATION: { text: "text-berry", bg: "bg-berry", border: "border-berry/30", hoverBorder: "hover:border-berry", bgSoft: "bg-berry/10", textSoft: "text-berry/50" },
+  SPEAKING: { text: "text-indigo", bg: "bg-indigo", border: "border-indigo/30", hoverBorder: "hover:border-indigo", bgSoft: "bg-indigo/10", textSoft: "text-indigo/50" },
+  PRONUNCIATION: { text: "text-plum", bg: "bg-plum", border: "border-plum/30", hoverBorder: "hover:border-plum", bgSoft: "bg-plum/10", textSoft: "text-plum/50" },
+  WRITING: { text: "text-slate", bg: "bg-slate", border: "border-slate/30", hoverBorder: "hover:border-slate", bgSoft: "bg-slate/10", textSoft: "text-slate/50" },
 };
 
 export const DEFAULT_ACCENT: PillarAccent = PILLAR_ACCENT.GRAMMAR!;
