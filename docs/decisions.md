@@ -22,6 +22,12 @@ Pedido: "deve então agora avançar com as atualizações" — execução direta
 
 Vocabulário standalone total: 1.962 → 2.027 palavras (2ª auditoria tinha registado "2.004" como número histórico incorreto, corrigido para a contagem real na Fase 19).
 
+## 2026-08-28 — R8 do roadmap da 4ª auditoria: investigado, decisão de não corrigir agora
+
+`vocabulary-bank.json` tem pelo menos 4 casos onde o `id` não corresponde ao `headword` atual (`vb_work_colleague`→"supervisor", `vb_verb_borrow`→"owe", `vb_verb_suggest`→"propose", `vb_adj_crowded`→"packed") — sinal de que a palavra foi editada numa sessão anterior sem renomear o id. Cosmético, não funcional: `headword`/`translation_pt`/`definition_en`/`example_sentences` estão todos internamente consistentes entre si, só o `id` ficou como artefacto da edição.
+
+**Decisão: não corrigir às cegas.** `seedVocabularyBank()` (`prisma/seed.ts`) faz `upsert({ where: { id: v.id } })` — se o site já tiver sido semeado alguma vez com estes ids (histórico de deploy incerto, "pausados por falta de créditos" segundo o utilizador, mas não confirmado como zero deploys bem-sucedidos), renomear o id criaria uma linha nova em vez de atualizar a existente, deixando a linha antiga órfã na base de dados para sempre (upsert nunca apaga). Risco desproporcional para uma correção cosmética. Fica registado para ser corrigido numa altura em que se possa confirmar o estado real da base de dados de produção (ou aceite como está, se nunca vier a interferir com nada).
+
 ## 2026-08-28 — Fase 25: CTA "próxima ação recomendada" nos ecrãs de conclusão (R2 da 4ª auditoria)
 
 Pedido: continuação direta ("deve continuar com todas as atualizações"). Corrige o achado #6 do roadmap da 4ª auditoria: os ecrãs de conclusão dos Runners só tinham "Voltar à Home", sem indicar a próxima ação.
