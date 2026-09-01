@@ -2,6 +2,16 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-09-01 — Fase 31: 5ª auditoria — todas as funcionalidades avaliadas por IA quebradas em produção (`gemini-2.0-flash` descontinuado)
+
+Continuação do teste real em produção pedido pelo utilizador. Ao testar o Apply do Quiz de Gramática (`/practice/grammar-quiz/gc_a2_modals_ability`) com uma frase que claramente usava a estrutura pedida, a app respondeu "Ainda não usou a estrutura pedida" + "Não foi possível verificar agora". Testado também o Desafio de Escrita Livre (`/practice/writing-challenge/wc-01`) com um texto válido: mesma falha ("Não foi possível avaliar este texto agora").
+
+**Causa raiz confirmada nos logs de funções do Netlify** (`___netlify-server-handler`, 2026-09-01 23:27-23:28): `[GoogleGenerativeAI Error]: ... [404 Not Found] This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.6-flash`. Não é falta de quota nem chave inválida — o modelo em si deixou de existir na API da Google entre a altura em que foi escolhido (`docs/06-arquitetura-ia.md`/Fase inicial) e hoje.
+
+**Impacto**: todas as chamadas que passam por `getGeminiModel()` (`src/lib/ai/gemini.ts`) ficam sempre no `catch` com uma mensagem de erro genérica — não só o Apply do Quiz e a Escrita Livre testados diretamente, mas por extensão qualquer funcionalidade que use o mesmo helper: Desafio de Discurso Livre, Tutor (`api/ai/tutor/route.ts`), `scoreFreeResponse` (placement test). Um utilizador via a mensagem de erro e podia razoavelmente concluir que a app estava genuinamente avariada, não perceber que era um nome de modelo desatualizado.
+
+**Corrigido**: `GEMINI_MODEL` em `src/lib/ai/gemini.ts` atualizado de `"gemini-2.0-flash"` para `"gemini-3.6-flash"` — único sítio no código onde o nome do modelo está hardcoded (confirmado por grep, nenhuma outra ocorrência em `src/`). A verificar após o próximo deploy com o mesmo teste real (Apply + Escrita Livre), não só reler os logs.
+
 ## 2026-08-28 — Fase 23: lista "Os seus erros" tornada acionável (R3 da 4ª auditoria)
 
 Pedido: continuação direta ("deve então agora avançar com as atualizações"). Corrige o achado #7 da 4ª auditoria: a lista de erros em `/practice` era só de leitura, sem forma de ir praticar o erro mostrado.
@@ -60,6 +70,8 @@ Corrigido: `suppressHydrationWarning` adicionado ao `<html>` em `layout.tsx`. A 
 **Causa real (Fase 30)**: `layout.tsx` escrevia um `<head>` manual com filhos (o `<script>` de tema) no layout raiz, em simultâneo com os exports `metadata`/`viewport` da App Router — a Next.js gere o `<head>` pelo seu próprio streaming interno, e um `<head>` explícito com filhos entra em conflito com essa gestão (padrão documentado da própria Next.js). Corrigido removendo o `<head>` manual e substituindo o `<script dangerouslySetInnerHTML>` por `next/script` com `strategy="beforeInteractive"` dentro do `<body>` — a forma oficialmente suportada de injetar um script antes da hidratação sem escrever `<head>` à mão. `suppressHydrationWarning` mantido no `<html>` como salvaguarda (não faz mal, só deixa de ser tratado como "a" correção).
 
 **Lição**: um deploy com sucesso ("Published") prova que o build compilou, não que o bug em produção ficou resolvido — é preciso reabrir o site publicado e verificar a consola de novo antes de declarar um bug de runtime corrigido. Ver a mesma lição já registada acima para achados de auditoria de sub-agentes; aplica-se igualmente a autocorreções.
+
+**Confirmação (`main@62c5345`, publicado 2026-09-01, "Deployed in 5m 34s")**: reaberto o site em separador novo (sessão limpa, sem estado anterior) e verificada a consola em `/` e `/login` — zero ocorrências de #418/#423/#329. Só ruído de uma extensão MetaMask do browser de teste (`chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn`), sem relação com a app. Bug de hidratação dado como resolvido, desta vez com verificação real, não só o deploy ter passado.
 
 ## 2026-08-28 — Fase 28 (fecho): primeiro deploy real publicado com sucesso
 
