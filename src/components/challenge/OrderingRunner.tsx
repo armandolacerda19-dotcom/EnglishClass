@@ -3,12 +3,15 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
+import { ExerciseShell, ExerciseComplete } from "@/components/exercise/ExerciseShell";
 import { submitOrdering } from "@/app/(app)/practice/ordering/actions";
 import { shuffleWords } from "@/lib/sentenceOrdering";
+import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 import type { OrderingItem } from "@/content/sentenceOrdering";
+
+const accent = PILLAR_ACCENT.GRAMMAR!;
 
 // Ordenar Frases — pedido do utilizador (2026-08-28): "tipos de exercícios
 // diferentes". Palavras baralhadas em fichas tocáveis; o utilizador reconstrói
@@ -16,6 +19,12 @@ import type { OrderingItem } from "@/content/sentenceOrdering";
 // ativamente ordem sintática — os outros testam reconhecimento (escolha
 // múltipla) ou produção livre (tradução/ditado), nenhum força a construir a
 // sequência com as próprias mãos.
+//
+// Migrado para ExerciseShell/ExerciseComplete (5ª auditoria, Fase 2 do roteiro
+// visual/UX, 2026-09-02) — segundo dos ~20 Runners antigos a passar para o
+// layout partilhado (ver MatchingRunner.tsx para o primeiro). Zero mudança de
+// lógica/estado; a cor visível não muda (Grammar já era verdigris), mas passa
+// a vir do sistema central em vez de estar hardcoded aqui.
 export function OrderingRunner({ items }: { items: OrderingItem[] }) {
   const [index, setIndex] = useState(0);
   const [built, setBuilt] = useState<{ word: string; poolIndex: number }[]>([]);
@@ -35,12 +44,9 @@ export function OrderingRunner({ items }: { items: OrderingItem[] }) {
 
   if (!item) {
     return (
-      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-        <h1 className="mb-4 font-display text-2xl">Ordenar Frases</h1>
-        <Card>
-          <p className="text-sm text-inkNeutral/70 dark:text-linen/70">Não há frases disponíveis de momento.</p>
-        </Card>
-      </main>
+      <ExerciseShell label="Ordenar Frases" current={0} total={0}>
+        <p className="text-sm text-inkNeutral/70 dark:text-linen/70">Não há frases disponíveis de momento.</p>
+      </ExerciseShell>
     );
   }
 
@@ -99,106 +105,29 @@ export function OrderingRunner({ items }: { items: OrderingItem[] }) {
 
   if (done) {
     return (
-      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-        <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <StampBadge code={`${finalScore?.correct ?? 0}/${finalScore?.total ?? items.length}`} tone="verdigris" />
-          <h1 className="font-display text-2xl">Ordenar Frases concluído!</h1>
-        </div>
+      <ExerciseComplete
+        badge={<StampBadge code={`${finalScore?.correct ?? 0}/${finalScore?.total ?? items.length}`} tone="verdigris" />}
+        title="Ordenar Frases concluído!"
+      >
         <div className="flex flex-wrap gap-2">
           <Link href="/home">
             <Button>Voltar à Home</Button>
           </Link>
         </div>
-      </main>
+      </ExerciseComplete>
     );
   }
 
   return (
-    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-      <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">
-        Ordenar Frases · {item.level} · {index + 1} de {items.length}
-      </p>
-      <div className="mb-6 h-1 w-full rounded-full bg-ink/10 dark:bg-linen/10">
-        <div
-          className="h-1 rounded-full bg-verdigris transition-[width]"
-          style={{ width: `${((index + 1) / items.length) * 100}%` }}
-        />
-      </div>
-
-      <Card className="mb-4">
-        <p className="mb-3 text-sm text-inkNeutral/70 dark:text-linen/70">Toque nas palavras pela ordem certa para formar a frase.</p>
-
-        <div className="mb-4 min-h-[3.5rem] rounded-control border-2 border-dashed border-ink/15 p-3 dark:border-linen/15">
-          {built.length === 0 ? (
-            <p className="text-sm text-inkNeutral/40 dark:text-linen/40">A sua frase aparece aqui...</p>
-          ) : (
-            <div className="flex flex-wrap gap-2">
-              {built.map((b, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => removeWord(i)}
-                  disabled={checked}
-                  className={`rounded-control px-3 py-1.5 text-sm ${
-                    checked
-                      ? item.words[i] === b.word
-                        ? "bg-verdigris/15 text-verdigris"
-                        : "bg-clay/15 text-clay line-through"
-                      : "bg-ink text-linen hover:opacity-80 dark:bg-linen dark:text-ink"
-                  }`}
-                >
-                  {b.word}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {pool.map((word, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => tapWord(word, i)}
-              disabled={checked || usedPoolIndexes.has(i)}
-              className={`rounded-control border border-ink/10 px-3 py-1.5 text-sm dark:border-linen/10 ${
-                usedPoolIndexes.has(i) ? "opacity-25" : "hover:border-verdigris"
-              }`}
-            >
-              {word}
-            </button>
-          ))}
-        </div>
-
-        {built.length > 0 && !checked && (
-          <button type="button" onClick={reset} className="mt-3 font-mono text-xs text-inkNeutral/50 underline dark:text-linen/50">
-            limpar
-          </button>
-        )}
-
-        {checked && (
-          <div role="status" aria-live="polite" className="mt-4 border-t border-ink/10 pt-4 dark:border-linen/10">
-            <p className={`text-sm ${isCorrect ? "text-verdigris" : "text-clay"}`}>
-              {isCorrect ? "Correto!" : "Quase — a ordem certa era:"}
-            </p>
-            {!isCorrect && <p className="mt-1 text-sm font-semibold">{item.words.join(" ")}</p>}
-            <p className="mt-2 text-xs italic text-inkNeutral/60 dark:text-linen/60">{item.translationPt}</p>
-            <p className="mt-1 text-xs text-inkNeutral/50 dark:text-linen/50">{item.focus}</p>
-            <div className="mt-2">
-              <PlayTranscript text={item.words.join(" ")} />
-            </div>
-          </div>
-        )}
-      </Card>
-
-      {submitError && (
-        <p role="alert" className="mb-3 text-sm text-clay">
-          {submitError}
-        </p>
-      )}
-
-      <div className="flex justify-end">
-        {!checked ? (
+    <ExerciseShell
+      label={`Ordenar Frases · ${item.level}`}
+      current={index + 1}
+      total={items.length}
+      accentClass={accent.bg}
+      labelAccentClass={accent.text}
+      submitError={submitError}
+      footer={
+        !checked ? (
           <Button onClick={check} disabled={!isFull}>
             Verificar
           </Button>
@@ -206,8 +135,72 @@ export function OrderingRunner({ items }: { items: OrderingItem[] }) {
           <Button onClick={advance} disabled={submitting}>
             {isLast ? "Terminar" : "Seguinte"}
           </Button>
+        )
+      }
+    >
+      <p className="mb-3 text-sm text-inkNeutral/70 dark:text-linen/70">Toque nas palavras pela ordem certa para formar a frase.</p>
+
+      <div className="mb-4 min-h-[3.5rem] rounded-control border-2 border-dashed border-ink/15 p-3 dark:border-linen/15">
+        {built.length === 0 ? (
+          <p className="text-sm text-inkNeutral/40 dark:text-linen/40">A sua frase aparece aqui...</p>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {built.map((b, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => removeWord(i)}
+                disabled={checked}
+                className={`rounded-control px-3 py-1.5 text-sm ${
+                  checked
+                    ? item.words[i] === b.word
+                      ? `${accent.bgSoft} ${accent.text}`
+                      : "bg-clay/15 text-clay line-through"
+                    : "bg-ink text-linen hover:opacity-80 dark:bg-linen dark:text-ink"
+                }`}
+              >
+                {b.word}
+              </button>
+            ))}
+          </div>
         )}
       </div>
-    </main>
+
+      <div className="flex flex-wrap gap-2">
+        {pool.map((word, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => tapWord(word, i)}
+            disabled={checked || usedPoolIndexes.has(i)}
+            className={`rounded-control border border-ink/10 px-3 py-1.5 text-sm dark:border-linen/10 ${
+              usedPoolIndexes.has(i) ? "opacity-25" : accent.hoverBorder
+            }`}
+          >
+            {word}
+          </button>
+        ))}
+      </div>
+
+      {built.length > 0 && !checked && (
+        <button type="button" onClick={reset} className="mt-3 font-mono text-xs text-inkNeutral/50 underline dark:text-linen/50">
+          limpar
+        </button>
+      )}
+
+      {checked && (
+        <div role="status" aria-live="polite" className="mt-4 border-t border-ink/10 pt-4 dark:border-linen/10">
+          <p className={`text-sm ${isCorrect ? accent.text : "text-clay"}`}>
+            {isCorrect ? "Correto!" : "Quase — a ordem certa era:"}
+          </p>
+          {!isCorrect && <p className="mt-1 text-sm font-semibold">{item.words.join(" ")}</p>}
+          <p className="mt-2 text-xs italic text-inkNeutral/60 dark:text-linen/60">{item.translationPt}</p>
+          <p className="mt-1 text-xs text-inkNeutral/50 dark:text-linen/50">{item.focus}</p>
+          <div className="mt-2">
+            <PlayTranscript text={item.words.join(" ")} />
+          </div>
+        </div>
+      )}
+    </ExerciseShell>
   );
 }
