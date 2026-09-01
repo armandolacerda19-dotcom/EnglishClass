@@ -19,6 +19,18 @@ const config: Config = {
         brass: "#B8863B",
         clay: "#B34B3C",
         inkNeutral: "#2B2E33",
+        // Sistema de cor por pilar (5ª auditoria, 2026-09-01) — antes só 3 cores
+        // (verdigris/brass/clay) cobriam os 8 pilares, com GRAMMAR/READING e
+        // VOCABULARY/TRANSLATION indistinguíveis entre si, e LISTENING a
+        // reutilizar Clay (violando a regra do próprio docs/09-sistema-design.md
+        // de que Clay é exclusivo para erros PT→EN). 6 cores novas, mesma família
+        // tonal muted/editorial (saturação/luminosidade próximas das existentes).
+        moss: "#4F7A52", // READING
+        teal: "#2E7A8C", // LISTENING
+        slate: "#46607A", // WRITING
+        indigo: "#5A5FA0", // SPEAKING
+        plum: "#96477A", // PRONUNCIATION
+        berry: "#A83E5C", // TRANSLATION
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],

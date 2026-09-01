@@ -15,6 +15,21 @@ Direção visual guiada pela skill `frontend-design`: escolhas deliberadas para 
 
 Regra: **Clay é reservado a erros de transferência PT→EN** em todo o produto — cria um código de cor consistente que o utilizador aprende a reconhecer ("vejo Clay = é um erro típico de falante de português"), reforçando o eixo de diferenciação "ponte português-inglês".
 
+### Cor por pilar (5ª auditoria, 2026-09-01)
+
+`src/lib/pillarDisplay.ts` (`PILLAR_ACCENT`/`PILLAR_ICON`) atribui uma cor e um ícone próprios a cada um dos 8 pilares — usado em qualquer sítio da app que liste tipos de exercício (Home, Practice, futuras superfícies), para o utilizador reconhecer visualmente "isto é Speaking" antes de ler a palavra. Antes desta ronda só existiam 3 cores utilizáveis (verdigris/brass/clay) para 8 pilares, com pares indistinguíveis (GRAMMAR=READING, VOCABULARY=TRANSLATION) e LISTENING a pedir Clay emprestado — violando a regra acima. Corrigido: Clay volta a ser exclusivo de erros; 6 cores novas (`moss`/`teal`/`slate`/`indigo`/`plum`/`berry`) preenchem os pilares em falta.
+
+| Pilar | Cor | Hex |
+|---|---|---|
+| Grammar | Verdigris | `#3E7C6B` |
+| Vocabulary | Brass | `#B8863B` |
+| Listening | Teal | `#2E7A8C` |
+| Speaking | Indigo | `#5A5FA0` |
+| Pronunciation | Plum | `#96477A` |
+| Reading | Moss | `#4F7A52` |
+| Writing | Slate | `#46607A` |
+| Translation | Berry | `#A83E5C` |
+
 ## Tipografia
 
 | Papel | Tipo de letra | Nota |
