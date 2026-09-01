@@ -84,6 +84,19 @@ import vocabularyBank18 from "../content/curriculum/vocabulary-bank-18.json";
 import vocabularyBank19 from "../content/curriculum/vocabulary-bank-19.json";
 import vocabularyBank20 from "../content/curriculum/vocabulary-bank-20.json";
 import vocabularyBank21 from "../content/curriculum/vocabulary-bank-21.json";
+import vocabularyBank22 from "../content/curriculum/vocabulary-bank-22.json";
+import vocabularyBank23 from "../content/curriculum/vocabulary-bank-23.json";
+import vocabularyBank24 from "../content/curriculum/vocabulary-bank-24.json";
+import vocabularyBank25 from "../content/curriculum/vocabulary-bank-25.json";
+import vocabularyBank26 from "../content/curriculum/vocabulary-bank-26.json";
+import vocabularyBank27 from "../content/curriculum/vocabulary-bank-27.json";
+import vocabularyBank28 from "../content/curriculum/vocabulary-bank-28.json";
+import vocabularyBank29 from "../content/curriculum/vocabulary-bank-29.json";
+import vocabularyBank30 from "../content/curriculum/vocabulary-bank-30.json";
+import vocabularyBank31 from "../content/curriculum/vocabulary-bank-31.json";
+import vocabularyBank32 from "../content/curriculum/vocabulary-bank-32.json";
+import vocabularyBank33 from "../content/curriculum/vocabulary-bank-33.json";
+import vocabularyBank34 from "../content/curriculum/vocabulary-bank-34.json";
 
 const prisma = new PrismaClient();
 
@@ -528,7 +541,7 @@ async function seedAchievements() {
 // separados (vocabulary-bank-2.json, -3.json...) para cada Write ficar
 // gerível — basta adicionar ao array VOCABULARY_BANKS abaixo. Ver
 // docs/decisions.md 2026-08-26 sobre a decisão de escala responsável.
-const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2, vocabularyBank3, vocabularyBank4, vocabularyBank5, vocabularyBank6, vocabularyBank7, vocabularyBank8, vocabularyBank9, vocabularyBank10, vocabularyBank11, vocabularyBank12, vocabularyBank13, vocabularyBank14, vocabularyBank15, vocabularyBank16, vocabularyBank17, vocabularyBank18, vocabularyBank19, vocabularyBank20, vocabularyBank21];
+const VOCABULARY_BANKS = [vocabularyBank, vocabularyBank2, vocabularyBank3, vocabularyBank4, vocabularyBank5, vocabularyBank6, vocabularyBank7, vocabularyBank8, vocabularyBank9, vocabularyBank10, vocabularyBank11, vocabularyBank12, vocabularyBank13, vocabularyBank14, vocabularyBank15, vocabularyBank16, vocabularyBank17, vocabularyBank18, vocabularyBank19, vocabularyBank20, vocabularyBank21, vocabularyBank22, vocabularyBank23, vocabularyBank24, vocabularyBank25, vocabularyBank26, vocabularyBank27, vocabularyBank28, vocabularyBank29, vocabularyBank30, vocabularyBank31, vocabularyBank32, vocabularyBank33, vocabularyBank34];
 
 async function seedVocabularyBank() {
   // Achado N6 (auditoria 2026-08-27): eram 2.000+ upserts sequenciais, o

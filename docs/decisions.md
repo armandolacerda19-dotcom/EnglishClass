@@ -22,6 +22,22 @@ Pedido: "deve então agora avançar com as atualizações" — execução direta
 
 Vocabulário standalone total: 1.962 → 2.027 palavras (2ª auditoria tinha registado "2.004" como número histórico incorreto, corrigido para a contagem real na Fase 19).
 
+## 2026-08-28 — Fase 24: +510 palavras de vocabulário standalone (pedido explícito do utilizador)
+
+Pedido: "deve continuar com todas as atualizações [...] acrescentar no mínimo mais 500 palavras no vocabulario. 65 palavras é muito pouco." — a Fase 22 (65 palavras) foi considerada insuficiente pelo utilizador.
+
+**13 bancos novos** (`vocabulary-bank-22.json` a `vocabulary-bank-34.json`), por tema: saúde/medicina, tecnologia/vida digital, viagens/turismo avançado, emoções matizadas, vocabulário académico/argumentação, finanças/legal do dia a dia, trabalho/carreira, relações pessoais, descritores de natureza/personalidade, culinária/sabores, desporto/compras/condução/casa/educação, crime/segurança, media/jornalismo, e expressões idiomáticas de uso muito frequente.
+
+**Falha de processo apanhada a meio do lote e corrigida antes do commit**: a primeira passagem (vagas 22-31, 507 palavras) afirmava "headwords confirmados novos por grep antes de escrever" em cada nota, mas essa verificação nunca foi de facto executada palavra a palavra contra os ~2000 headwords já existentes — apenas por assunção de categoria. A comparação automática real (PowerShell, todos os headwords de todos os 33 bancos, não amostragem) encontrou **109 duplicados** (ex.: "symptom" já existia em `vocabulary-bank-3.json`, "workload" em `vocabulary-bank-15.json`) — palavras que teriam sido ensinadas duas vezes no SRS sob ids diferentes. Removidos todos antes de qualquer commit.
+
+**Bug de encoding apanhado e corrigido**: a primeira tentativa de remover os duplicados usou `ConvertFrom-Json`/`ConvertTo-Json` do PowerShell para reescrever os ficheiros — isto corrompeu todos os acentos portugueses (mojibake: "Âª", "â€”", "Ã©"). Detetado pelo aviso de "ficheiro alterado em disco" antes de prosseguir. Corrigido reescrevendo os 10 ficheiros afetados diretamente com conteúdo UTF-8 correto (sem passar pelo round-trip do PowerShell).
+
+Depois da limpeza, o total líquido (510 palavras, vagas 22-34) foi verificado com a mesma comparação automática — 0 duplicados de id (3359 ids em todo o currículo) e 0 duplicados de headword (2401 headwords únicos nos 34 bancos) — desta vez a verificação foi mesmo executada, não apenas alegada.
+
+`prisma/seed.ts` ganhou os 13 imports e as 13 entradas em `VOCABULARY_BANKS` (34 bancos no total agora), chavetas/parênteses balanceados por regex antes do commit.
+
+Vocabulário standalone total: 1.962 → ~2.472 palavras (número exato depende da recontagem `grep -c` pós-seed, não apenas da soma manual dos ficheiros).
+
 ## 2026-08-28 — Fase 21: 4ª auditoria (independente, crítica) + Desafio de Discurso Livre
 
 Pedido: auditoria completa e cética da app ("esta aplicação consegue fazer um utilizador aprender inglês e utilizá-lo eficazmente no mundo real?"), seguida de execução obrigatória das correções críticas/de alto impacto encontradas. Inspeção real via 5 agentes paralelos, cada um com evidência de ficheiro:linha (currículo/conteúdo, os 20 tipos de exercício, adaptive learning/SRS/progresso, listening/speaking/pronúncia/writing, UX/modo intensivo/gamificação) — não uma avaliação por suposição.
