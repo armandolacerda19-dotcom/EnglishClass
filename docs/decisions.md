@@ -45,6 +45,14 @@ Em vez de editar cada um dos 9 Runners que usam `ExerciseComplete` (`ExerciseShe
 - `src/lib/exercise/nextActionAction.ts` (novo): server action que reutiliza exatamente o mesmo motor já usado na Home (`getRecommendationForUser`) — revisões pendentes têm sempre prioridade sobre uma recomendação de exercício novo, mesma regra já estabelecida.
 - `src/components/exercise/ExerciseShell.tsx`: `ExerciseComplete` busca a recomendação uma vez no cliente (`useEffect`), mostra um botão "Continuar: {pilar} →" acima do que cada Runner já passa em `children` — nunca substitui, só acrescenta.
 
+## 2026-08-28 — Fase 28 (fecho): primeiro deploy real publicado com sucesso
+
+`main@2e495bc` publicado às 22:44, "Deployed in 5m 47s" — `english-platafform.netlify.app` está agora a servir todo o trabalho desta sessão (Fases 18-28): nível C2 completo, Desafio de Discurso Livre, +510 palavras de vocabulário, CTA de próxima ação, e as 4 falhas de build corrigidas (FK órfã, `WritingRubric`/`Prisma.InputJsonValue` ×7 sítios, `OrderingRunner` narrowing).
+
+Cronologia completa desta ronda de deploy (referência futura, para não repetir a mesma investigação): créditos esgotados desde 2026-08-28 → 8 deploys "Skipped" → créditos restaurados hoje → 4 falhas reais em sequência, cada uma corrigida e reenviada (FK de perfil órfão → tipo `WritingRubric` → `OrderingRunner` → varredura preventiva de `Json`) → build limpo ao 5º deploy real.
+
+Próximo passo (pedido explícito do utilizador): testar a app publicada a sério e refazer uma 5ª auditoria completa sobre o estado real em produção — não sobre código nunca antes deployado.
+
 ## 2026-08-28 — Fase 28: varredura preventiva de todos os campos Json do Prisma
 
 Continuação da Fase 27. Em vez de continuar a apanhar erros de tipo "InputJsonValue" um a um por ciclo de deploy (cada um ~5-6 min, sem `tsc` local para verificar antes), foi feita uma varredura de todos os 12 campos `Json`/`Json?` do schema (`grep -n "Json" prisma/schema.prisma`) e de todos os sítios em `src/` que escrevem literais tipados diretamente nesses campos, sem `as any`/`as Prisma.InputJsonValue`.
