@@ -45,6 +45,16 @@ Em vez de editar cada um dos 9 Runners que usam `ExerciseComplete` (`ExerciseShe
 - `src/lib/exercise/nextActionAction.ts` (novo): server action que reutiliza exatamente o mesmo motor já usado na Home (`getRecommendationForUser`) — revisões pendentes têm sempre prioridade sobre uma recomendação de exercício novo, mesma regra já estabelecida.
 - `src/components/exercise/ExerciseShell.tsx`: `ExerciseComplete` busca a recomendação uma vez no cliente (`useEffect`), mostra um botão "Continuar: {pilar} →" acima do que cada Runner já passa em `children` — nunca substitui, só acrescenta.
 
+## 2026-08-28 — Fase 29: 5ª auditoria — erro de hidratação React em produção (todas as páginas)
+
+Pedido: "depois de atualizar, deve voltar a testar toda a app e voltar a refazer nova auditoria completa". Primeiro passo: abrir o site publicado (`english-platafform.netlify.app`) e verificar a consola do browser antes de qualquer outra coisa — nunca antes verificado em produção real (todo o trabalho anterior desta sessão nunca tinha chegado a produção, ver Fase 26-28).
+
+**Achado real, confirmado em duas páginas diferentes (landing + login)**: erros React #418/#423 (mismatch de hidratação) em TODAS as páginas, mais um #329 ("Cannot update a component while rendering a different component") só na página de login — provavelmente uma consequência em cascata do #418/#423, não uma causa independente (investigado `TextField.tsx`/`LoginPage` — nenhum dos dois tem lógica de estado que pudesse causar isto sozinho).
+
+**Causa raiz**: `src/app/layout.tsx` tem um `<script>` inline no `<head>` que adiciona a classe `dark` ao `<html>` antes do primeiro paint (para evitar o "flash" de tema claro) — corre ANTES de o React hidratar, fazendo o `className` real do `<html>` no DOM divergir do que o servidor enviou. Este é o padrão clássico documentado pela própria Next.js para scripts de tema fora do React — a correção oficial é `suppressHydrationWarning` no elemento `<html>`, que faltava.
+
+Corrigido: `suppressHydrationWarning` adicionado ao `<html>` em `layout.tsx`. A verificar após o próximo deploy: se o #329 desaparece também (esperado, se for mesmo em cascata) ou se precisa de investigação própria.
+
 ## 2026-08-28 — Fase 28 (fecho): primeiro deploy real publicado com sucesso
 
 `main@2e495bc` publicado às 22:44, "Deployed in 5m 47s" — `english-platafform.netlify.app` está agora a servir todo o trabalho desta sessão (Fases 18-28): nível C2 completo, Desafio de Discurso Livre, +510 palavras de vocabulário, CTA de próxima ação, e as 4 falhas de build corrigidas (FK órfã, `WritingRubric`/`Prisma.InputJsonValue` ×7 sítios, `OrderingRunner` narrowing).

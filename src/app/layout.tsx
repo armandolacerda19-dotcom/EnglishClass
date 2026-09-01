@@ -44,7 +44,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-PT" className={`${fraunces.variable} ${inter.variable} ${plexMono.variable}`}>
+    <html
+      lang="pt-PT"
+      className={`${fraunces.variable} ${inter.variable} ${plexMono.variable}`}
+      // O script no <head> abaixo adiciona a classe "dark" ao <html> ANTES de o
+      // React hidratar (de propósito, para evitar o "flash" do tema claro) —
+      // isso faz o className do <html> no DOM real divergir do que o servidor
+      // enviou, disparando o aviso de hidratação do React (erros #418/#423 em
+      // produção, confirmados na 5ª auditoria ao verificar o site publicado).
+      // `suppressHydrationWarning` é a correção oficialmente recomendada pela
+      // Next.js exatamente para este padrão (script de tema fora do React).
+      suppressHydrationWarning
+    >
       <head>
         {/* Aplica o tema guardado antes do primeiro paint, para não haver um
             "flash" do tema claro por defeito seguido de escuro (ou vice-versa).
