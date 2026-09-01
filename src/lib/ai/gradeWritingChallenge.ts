@@ -37,11 +37,13 @@ export async function gradeWritingChallenge(prompt: string, text: string, userId
         "Reply with a single JSON object, no markdown, matching exactly this shape: " +
         '{ "grammarScore": <0-100>, "vocabularyScore": <0-100>, "writingScore": <0-100, overall task ' +
         'achievement and coherence>, "corrections": [{ "original": "<exact wrong phrase from the text>", ' +
-        '"issue": "<one short sentence in Portuguese explaining the problem>", "corrected": "<fixed version>" }] ' +
+        '"issue": "<one short sentence in European Portuguese (Portugal, not Brazilian Portuguese) explaining the ' +
+        'problem>", "corrected": "<fixed version>" }] ' +
         '(at most 5, only genuine errors, empty array if the text is already correct), ' +
         '"nativeVersion": "<a short rewrite of 1-2 of the learner\'s sentences the way a native speaker would ' +
         'more naturally phrase them — skip if the text is already natural>", ' +
-        '"summary": "<2-3 sentences in Portuguese, encouraging but honest>" }',
+        '"summary": "<2-3 sentences in European Portuguese (Portugal, not Brazilian Portuguese), encouraging but ' +
+        'honest>" }',
       true
     );
 

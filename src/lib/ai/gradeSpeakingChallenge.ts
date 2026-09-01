@@ -63,10 +63,11 @@ export async function gradeSpeakingChallenge(
         'did they develop the topic with connected ideas, not just a list of disconnected sentences>, ' +
         '"fluencyScore": <0-100, apparent fluency from how naturally the ideas flow in the transcript, tolerant of ' +
         'normal spoken hesitation>, "speakingScore": <0-100, overall task achievement>, "corrections": ' +
-        '[{ "original": "<exact wrong phrase>", "issue": "<one short sentence in Portuguese explaining the ' +
-        'problem>", "corrected": "<fixed version>" }] (at most 4, only genuine grammar/vocabulary errors, never ' +
-        "flag missing punctuation or filler words as errors), " +
-        '"summary": "<2-3 sentences in Portuguese, encouraging but honest, mentioning how well they developed the topic">' +
+        '[{ "original": "<exact wrong phrase>", "issue": "<one short sentence in European Portuguese (Portugal, ' +
+        'not Brazilian Portuguese) explaining the problem>", "corrected": "<fixed version>" }] (at most 4, only ' +
+        "genuine grammar/vocabulary errors, never flag missing punctuation or filler words as errors), " +
+        '"summary": "<2-3 sentences in European Portuguese (Portugal, not Brazilian Portuguese), encouraging but ' +
+        'honest, mentioning how well they developed the topic">' +
         " }",
       true
     );

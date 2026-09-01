@@ -62,10 +62,12 @@ export async function evaluateConversation(
         `{ "grammar": <0-100>, "vocabulary": <0-100>, "fluency": <0-100 — coherence, response length, willingness ` +
         `to attempt complex structures>, "confidence": <0-100 — hedging language, message length, self-correction ` +
         `patterns>, ${pronunciationField} "topErrors": [{ "original": "<learner's exact wrong phrase>", ` +
-        `"correct": "<corrected version>", "tip": "<one short sentence in Portuguese explaining why>" }] ` +
+        `"correct": "<corrected version>", "tip": "<one short sentence in European Portuguese (Portugal, not ` +
+        `Brazilian Portuguese) explaining why>" }] ` +
         "(at most 3, only genuine errors, empty array if none), " +
         '"newWords": ["<words/phrases the tutor introduced that the learner had not used before>"] (at most 5), ' +
-        '"summary": "<2-3 sentences in Portuguese, encouraging but honest, naming the single most useful thing to work on next>" }' +
+        '"summary": "<2-3 sentences in European Portuguese (Portugal, not Brazilian Portuguese), encouraging but ' +
+        'honest, naming the single most useful thing to work on next>" }' +
         (usedVoice ? "" : ' Do NOT include a "pronunciation" field — this conversation was text-only, there is no audio signal at all.'),
       true
     );

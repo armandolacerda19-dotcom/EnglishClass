@@ -10,7 +10,11 @@ Continuação do teste real em produção pedido pelo utilizador. Ao testar o Ap
 
 **Impacto**: todas as chamadas que passam por `getGeminiModel()` (`src/lib/ai/gemini.ts`) ficam sempre no `catch` com uma mensagem de erro genérica — não só o Apply do Quiz e a Escrita Livre testados diretamente, mas por extensão qualquer funcionalidade que use o mesmo helper: Desafio de Discurso Livre, Tutor (`api/ai/tutor/route.ts`), `scoreFreeResponse` (placement test). Um utilizador via a mensagem de erro e podia razoavelmente concluir que a app estava genuinamente avariada, não perceber que era um nome de modelo desatualizado.
 
-**Corrigido**: `GEMINI_MODEL` em `src/lib/ai/gemini.ts` atualizado de `"gemini-2.0-flash"` para `"gemini-3.6-flash"` — único sítio no código onde o nome do modelo está hardcoded (confirmado por grep, nenhuma outra ocorrência em `src/`). A verificar após o próximo deploy com o mesmo teste real (Apply + Escrita Livre), não só reler os logs.
+**Corrigido**: `GEMINI_MODEL` em `src/lib/ai/gemini.ts` atualizado de `"gemini-2.0-flash"` para `"gemini-3.6-flash"` — único sítio no código onde o nome do modelo está hardcoded (confirmado por grep, nenhuma outra ocorrência em `src/`).
+
+**Verificado após o deploy (`main@688cb41`)**: reteste real do Desafio de Escrita Livre com um texto válido (`wc-02`) devolveu `Gramática 100% · Vocabulário 100% · Escrita 100%` com feedback genuíno — corrigido de facto, não só o deploy ter passado.
+
+**Achado secundário no mesmo teste**: o feedback devolvido veio em português do Brasil ("Você usou...", "Parabéns pelo ótimo trabalho!"), não português europeu — a app promete 100% PT-PT (`docs/decisions.md`, várias entradas anteriores). Causa: os prompts de sistema em `src/lib/ai/gradeWritingChallenge.ts`, `gradeSpeakingChallenge.ts`, `gradeGrammarApply.ts`, `evaluateConversation.ts` e a regra partilhada do Tutor (`personalities.ts:102`) pediam só "in Portuguese", sem especificar a variante — o Gemini por defeito tende para PT-BR (mais representado nos dados de treino). Corrigido em todos os 5 sítios para "European Portuguese (Portugal, not Brazilian Portuguese)". Nenhum outro ficheiro de IA tinha uma instrução de idioma de saída equivalente (`scoreFreeResponse.ts`/`gradeAnswer.ts` só descrevem o aluno como "Portuguese-speaking", não pedem feedback em português).
 
 ## 2026-08-28 — Fase 23: lista "Os seus erros" tornada acionável (R3 da 4ª auditoria)
 

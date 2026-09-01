@@ -21,8 +21,8 @@ export async function gradeGrammarApply(ruleTitle: string, rule: string, given: 
       `You are checking whether a sentence written by a Portuguese-speaking English learner correctly uses a ` +
         `specific grammar structure: "${ruleTitle}" (${rule}). Reply with a single JSON object, no markdown: ` +
         '{ "usesStructure": <true/false — true only if the sentence genuinely demonstrates this specific structure, ' +
-        'correctly formed>, "tip": "<one short sentence in Portuguese: if true, brief encouragement naming what was ' +
-        'done well; if false, what to fix>" }',
+        'correctly formed>, "tip": "<one short sentence in European Portuguese (Portugal, not Brazilian ' +
+        'Portuguese): if true, brief encouragement naming what was done well; if false, what to fix>" }',
       true
     );
     const safeGiven = given.slice(0, 500);
