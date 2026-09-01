@@ -45,6 +45,12 @@ Em vez de editar cada um dos 9 Runners que usam `ExerciseComplete` (`ExerciseShe
 - `src/lib/exercise/nextActionAction.ts` (novo): server action que reutiliza exatamente o mesmo motor já usado na Home (`getRecommendationForUser`) — revisões pendentes têm sempre prioridade sobre uma recomendação de exercício novo, mesma regra já estabelecida.
 - `src/components/exercise/ExerciseShell.tsx`: `ExerciseComplete` busca a recomendação uma vez no cliente (`useEffect`), mostra um botão "Continuar: {pilar} →" acima do que cada Runner já passa em `children` — nunca substitui, só acrescenta.
 
+## 2026-08-28 — Fase 27: 3ª falha de build corrigida (OrderingRunner.tsx)
+
+Continuação direta da Fase 26. Segunda tentativa de deploy passou pela Falha #2 (rubric) mas encontrou uma terceira: `src/components/challenge/OrderingRunner.tsx:73` — `Type error: 'item' is possibly 'undefined'` dentro de `async function advance()`. `item` (`items[index]`) já tinha uma guarda `if (!item) return early` no topo do componente, mas o TypeScript não propaga essa narrowing para dentro de funções aninhadas declaradas mais abaixo — limitação conhecida do compilador, não um bug de lógica.
+
+Corrigido com uma segunda guarda redundante (`if (!item) return;`) logo no início de `advance()`, mesmo padrão já usado (via `if (!question || result) return`) em `checkChallenge()` de `GrammarQuizRunner.tsx` — só que aqui faltava. Verificado por grep que nenhum outro Runner tem este problema: todos os outros 8 usam `items[index]!` (non-null assertion, contorna esta classe de erro por completo) em vez do padrão guard-and-narrow que só o `OrderingRunner` usava.
+
 ## 2026-08-28 — Fase 26: deploy real na Netlify — 2 falhas de produção corrigidas
 
 Pedido: "já está operacional. deve continuar com todas as atualizações. depois no final deve atualizar no netlify". Créditos Netlify restaurados (dia 1 do mês); build automático por push para `main` estava configurado desde sempre (`Auto publishing is on`), mas todos os deploys entre 2026-08-28 e hoje tinham sido "Skipped due to account credit usage exceeded" — nenhum dos commits desta sessão (Fase 18 em diante) tinha chegado à produção real até este momento.

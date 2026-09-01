@@ -70,6 +70,11 @@ export function OrderingRunner({ items }: { items: OrderingItem[] }) {
   }
 
   async function advance() {
+    // TS não propaga o "if (!item) return" do topo do componente para dentro
+    // desta closure — reafirmar aqui é só para o compilador, `item` já está
+    // garantidamente definido neste ponto (o early return já correu antes de
+    // este botão sequer existir na árvore).
+    if (!item) return;
     const nextAnswers = [...answers, { itemId: item.id, given }];
     setAnswers(nextAnswers);
 
