@@ -1,5 +1,6 @@
 "use server";
 
+import type { Prisma } from "@prisma/client";
 import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { getGeminiModel } from "@/lib/ai/gemini";
@@ -99,7 +100,7 @@ export async function submitWriting(prompt: string, text: string) {
     // feedbackJson passou a guardar { text, rubric } em vez de só a string —
     // campo Json?, nunca lido em lado nenhum antes desta correção, por isso
     // mudar a forma não quebra nada. Ver docs/decisions.md.
-    data: { userId: user.id, prompt, text, source: "LESSON", feedbackJson: { text: feedback, rubric }, score },
+    data: { userId: user.id, prompt, text, source: "LESSON", feedbackJson: { text: feedback, rubric } as Prisma.InputJsonValue, score },
   });
   await recordActivity(user.id, "WRITING");
   if (score !== null) await updateSkillScore(user.id, "WRITING", score);
@@ -136,7 +137,7 @@ export async function submitSpeaking(prompt: string, transcript: string, respons
       // Fase 10: feedbackJson passa a guardar { text, rubric }, mesmo padrão
       // já usado em WritingAttempt — campo Json?, nunca lido a torto/direito
       // em lado nenhum antes disto, por isso mudar a forma não quebra nada.
-      feedbackJson: { text: feedback, rubric },
+      feedbackJson: { text: feedback, rubric } as Prisma.InputJsonValue,
       fluencyScore: score,
       pronunciationScore,
       responseTimeMs: safeResponseTimeMs,
