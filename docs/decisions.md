@@ -55,6 +55,12 @@ Pedido: "depois de atualizar, deve voltar a testar toda a app e voltar a refazer
 
 Corrigido: `suppressHydrationWarning` adicionado ao `<html>` em `layout.tsx`. A verificar após o próximo deploy: se o #329 desaparece também (esperado, se for mesmo em cascata) ou se precisa de investigação própria.
 
+**Correção (mesmo dia, após reteste real): este diagnóstico estava errado.** `main@4a0ed13` foi publicado com sucesso ("Deployed in 5m 32s"), mas reabrir o site em separador novo e verificar a consola mostrou os mesmos #418 (×3) e #423 (×1) — `suppressHydrationWarning` sozinho não resolveu nada. Investigação adicional: `localStorage.getItem('theme')` estava `null` no ambiente de teste, o que significa que o ramo do script que muta `document.documentElement.classList` nem sequer chegou a correr — a causa suspeita original (o script a mutar o `<html>` antes da hidratação) está desmentida pelos próprios dados, não só por teoria.
+
+**Causa real (Fase 30)**: `layout.tsx` escrevia um `<head>` manual com filhos (o `<script>` de tema) no layout raiz, em simultâneo com os exports `metadata`/`viewport` da App Router — a Next.js gere o `<head>` pelo seu próprio streaming interno, e um `<head>` explícito com filhos entra em conflito com essa gestão (padrão documentado da própria Next.js). Corrigido removendo o `<head>` manual e substituindo o `<script dangerouslySetInnerHTML>` por `next/script` com `strategy="beforeInteractive"` dentro do `<body>` — a forma oficialmente suportada de injetar um script antes da hidratação sem escrever `<head>` à mão. `suppressHydrationWarning` mantido no `<html>` como salvaguarda (não faz mal, só deixa de ser tratado como "a" correção).
+
+**Lição**: um deploy com sucesso ("Published") prova que o build compilou, não que o bug em produção ficou resolvido — é preciso reabrir o site publicado e verificar a consola de novo antes de declarar um bug de runtime corrigido. Ver a mesma lição já registada acima para achados de auditoria de sub-agentes; aplica-se igualmente a autocorreções.
+
 ## 2026-08-28 — Fase 28 (fecho): primeiro deploy real publicado com sucesso
 
 `main@2e495bc` publicado às 22:44, "Deployed in 5m 47s" — `english-platafform.netlify.app` está agora a servir todo o trabalho desta sessão (Fases 18-28): nível C2 completo, Desafio de Discurso Livre, +510 palavras de vocabulário, CTA de próxima ação, e as 4 falhas de build corrigidas (FK órfã, `WritingRubric`/`Prisma.InputJsonValue` ×7 sítios, `OrderingRunner` narrowing).

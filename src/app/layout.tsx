@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 import { PwaRegister } from "@/components/PwaRegister";
 import "./globals.css";
@@ -47,28 +48,27 @@ export default function RootLayout({
     <html
       lang="pt-PT"
       className={`${fraunces.variable} ${inter.variable} ${plexMono.variable}`}
-      // O script no <head> abaixo adiciona a classe "dark" ao <html> ANTES de o
-      // React hidratar (de propósito, para evitar o "flash" do tema claro) —
-      // isso faz o className do <html> no DOM real divergir do que o servidor
-      // enviou, disparando o aviso de hidratação do React (erros #418/#423 em
-      // produção, confirmados na 5ª auditoria ao verificar o site publicado).
-      // `suppressHydrationWarning` é a correção oficialmente recomendada pela
-      // Next.js exatamente para este padrão (script de tema fora do React).
+      // O script de tema abaixo pode adicionar a classe "dark" ao <html> antes
+      // da hidratação do React (de propósito, para evitar o "flash" do tema
+      // claro) — mantido como salvaguarda mesmo depois da correção real
+      // (ver nota abaixo), para o caso de o utilizador ter "dark" guardado.
       suppressHydrationWarning
     >
-      <head>
-        {/* Aplica o tema guardado antes do primeiro paint, para não haver um
-            "flash" do tema claro por defeito seguido de escuro (ou vice-versa).
-            Default é sempre claro a não ser que o utilizador tenha escolhido
-            escuro explicitamente via ThemeToggle — ver docs/decisions.md 2026-08-26. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');}}catch(e){}",
-          }}
-        />
-      </head>
       <body className="font-sans">
+        {/* Fase 29/30 (5ª auditoria, 2026-08-28): a causa real dos erros de
+            hidratação #418/#423 em produção (confirmados em todas as páginas,
+            mesmo com "theme" vazio no localStorage — por isso não era o script
+            em si a mutar o DOM) era escrever um <head> manual no layout raiz
+            enquanto também se usa a API `metadata`/`viewport` — a Next.js gere
+            o <head> por streaming próprio, e um <head> explícito com filhos
+            entra em conflito com essa gestão (problema documentado da App
+            Router). Corrigido removendo o <head> manual e usando
+            next/script com strategy="beforeInteractive" — a forma
+            oficialmente suportada de injetar um script antes da hidratação,
+            sem escrever <head> à mão. */}
+        <Script id="theme-init" strategy="beforeInteractive">
+          {"try{if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');}}catch(e){}"}
+        </Script>
         <PwaRegister />
         {children}
       </body>
