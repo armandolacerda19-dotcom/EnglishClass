@@ -22,6 +22,14 @@ Pedido: "deve então agora avançar com as atualizações" — execução direta
 
 Vocabulário standalone total: 1.962 → 2.027 palavras (2ª auditoria tinha registado "2.004" como número histórico incorreto, corrigido para a contagem real na Fase 19).
 
+## 2026-08-28 — Correção de um achado errado da própria Fase 21 (Role-play É distinto)
+
+Ao investigar o R5 do roadmap ("cenários dedicados de role-play"), inspeção direta de `src/app/(app)/speak/page.tsx` e `speak/tutor/page.tsx` mostrou que o achado "Role-play não é distinto de Conversação com IA" (registado na Fase 21, atribuído a um sub-agente de auditoria) estava **errado**: `ROLEPLAY_SCENARIOS` já tem 4 cenários reais (restaurante/hotel/aeroporto/reunião), cada um com o seu próprio `SCENARIO_FOCUS` (system prompt específico) que genuinamente chega ao servidor via `sessionFocus` (`api/ai/tutor/route.ts:44-45,82`) e molda a personagem que o Gemini encarna — construído na Fase 4 desta sessão (auditoria "secção 294"), antes da 4ª auditoria correr.
+
+O sub-agente que auditou os 20 tipos de exercício na Fase 21 não verificou esta ligação (parou em `TutorChat.tsx`/`evaluateConversation.ts`, sem seguir a cadeia `speak/page.tsx` → `speak/tutor/page.tsx` → `api/ai/tutor/route.ts`) e a correção que eu apliquei à documentação nessa altura propagou o erro sem verificação independente. `docs/12-exercise-engine.md` corrigido de volta: 21/21 tipos confirmados funcionais (não 20/21). R5 do roadmap fica sem trabalho por fazer — o que faltava já existia.
+
+**Lição de processo**: um achado de auditoria (mesmo com citação de ficheiro:linha) não é automaticamente verdade só por vir de um sub-agente dedicado — vale a pena uma verificação direta antes de o gravar como facto na documentação principal, especialmente quando motiva uma correção "de honestidade" que muda o que a app afirma sobre si própria.
+
 ## 2026-08-28 — R8 do roadmap da 4ª auditoria: investigado, decisão de não corrigir agora
 
 `vocabulary-bank.json` tem pelo menos 4 casos onde o `id` não corresponde ao `headword` atual (`vb_work_colleague`→"supervisor", `vb_verb_borrow`→"owe", `vb_verb_suggest`→"propose", `vb_adj_crowded`→"packed") — sinal de que a palavra foi editada numa sessão anterior sem renomear o id. Cosmético, não funcional: `headword`/`translation_pt`/`definition_en`/`example_sentences` estão todos internamente consistentes entre si, só o `id` ficou como artefacto da edição.
