@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 // Item #16 da lista de melhorias — o modelo AnalyticsEvent existia no schema
@@ -7,7 +8,7 @@ import { prisma } from "@/lib/prisma";
 export async function logEvent(userId: string, eventName: string, props?: Record<string, unknown>) {
   try {
     await prisma.analyticsEvent.create({
-      data: { userId, eventName, propsJson: props ?? {} },
+      data: { userId, eventName, propsJson: (props ?? {}) as unknown as Prisma.InputJsonValue },
     });
   } catch (error) {
     // Analytics nunca deve quebrar uma ação do utilizador.

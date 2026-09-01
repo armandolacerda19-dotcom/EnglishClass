@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import type { Prisma } from "@prisma/client";
 import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { getGeminiModel } from "@/lib/ai/gemini";
@@ -147,11 +148,11 @@ export async function POST(req: NextRequest) {
   if (conversation) {
     conversation = await prisma.aIConversation.update({
       where: { id: conversation.id },
-      data: { messagesJson: newHistory },
+      data: { messagesJson: newHistory as unknown as Prisma.InputJsonValue },
     });
   } else {
     conversation = await prisma.aIConversation.create({
-      data: { userId: user.id, personality: personality.toUpperCase() as any, messagesJson: newHistory },
+      data: { userId: user.id, personality: personality.toUpperCase() as any, messagesJson: newHistory as unknown as Prisma.InputJsonValue },
     });
   }
 

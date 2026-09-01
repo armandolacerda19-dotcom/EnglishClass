@@ -45,6 +45,21 @@ Em vez de editar cada um dos 9 Runners que usam `ExerciseComplete` (`ExerciseShe
 - `src/lib/exercise/nextActionAction.ts` (novo): server action que reutiliza exatamente o mesmo motor já usado na Home (`getRecommendationForUser`) — revisões pendentes têm sempre prioridade sobre uma recomendação de exercício novo, mesma regra já estabelecida.
 - `src/components/exercise/ExerciseShell.tsx`: `ExerciseComplete` busca a recomendação uma vez no cliente (`useEffect`), mostra um botão "Continuar: {pilar} →" acima do que cada Runner já passa em `children` — nunca substitui, só acrescenta.
 
+## 2026-08-28 — Fase 28: varredura preventiva de todos os campos Json do Prisma
+
+Continuação da Fase 27. Em vez de continuar a apanhar erros de tipo "InputJsonValue" um a um por ciclo de deploy (cada um ~5-6 min, sem `tsc` local para verificar antes), foi feita uma varredura de todos os 12 campos `Json`/`Json?` do schema (`grep -n "Json" prisma/schema.prisma`) e de todos os sítios em `src/` que escrevem literais tipados diretamente nesses campos, sem `as any`/`as Prisma.InputJsonValue`.
+
+Corrigidos (mesma causa raiz em todos: um objeto/array literal com campos tipados, sem assinatura de índice, não é estruturalmente atribuível a `Prisma.InputJsonValue`):
+- `src/app/(app)/practice/daily-challenge/actions.ts` — `scoreJson`
+- `src/app/(app)/practice/weekly-test/actions.ts` — `scoreJson` (contém `Pillar`, enum — usado `as unknown as` para evitar erro de "conversão pode ser um erro")
+- `src/app/api/ai/tutor/route.ts` — `messagesJson` (2 sítios: update e create)
+- `src/app/api/placement/submit/route.ts` — `skillProfileJson` e o `learningPlan.upsert` inteiro (que já tinha o mesmo padrão sem cast, ao contrário do `intensivePlan.upsert` ao lado, que já usava `as any`)
+- `src/lib/certificate.ts` — `skillBreakdownJson` (provavelmente já seguro por ter assinatura de índice via `Object.fromEntries`, mas corrigido por precaução — sem `tsc` local, mais vale um cast a mais do que outro ciclo de deploy perdido)
+
+Todas as correções anteriores (`learn/actions.ts`, `analytics.ts`, `tutor/route.ts`) uniformizadas para `as unknown as Prisma.InputJsonValue` em vez de `as Prisma.InputJsonValue` direto — mais seguro sem verificação local, evita um possível erro adicional de "conversion may be a mistake" em tipos sem sobreposição suficiente.
+
+**Risco identificado mas não corrigido, por falta de evidência de erro real**: `tsconfig.json` inclui `**/*.ts` sem exclusão de `prisma/` — `npm run build` tipa também `prisma/seed.ts`, que importa ~63 módulos + 34 bancos de vocabulário como JSON (`resolveJsonModule: true`), cada um com a sua forma literal inferida. Isto já funcionava antes desta sessão (build bem-sucedido em `b583b7a`), e as adições desta sessão seguem exatamente o mesmo formato dos ficheiros existentes, por isso o risco é considerado baixo — mas fica registado como suspeito caso surja um próximo erro de build sem explicação óbvia noutro ficheiro.
+
 ## 2026-08-28 — Fase 27: 3ª falha de build corrigida (OrderingRunner.tsx)
 
 Continuação direta da Fase 26. Segunda tentativa de deploy passou pela Falha #2 (rubric) mas encontrou uma terceira: `src/components/challenge/OrderingRunner.tsx:73` — `Type error: 'item' is possibly 'undefined'` dentro de `async function advance()`. `item` (`items[index]`) já tinha uma guarda `if (!item) return early` no topo do componente, mas o TypeScript não propaga essa narrowing para dentro de funções aninhadas declaradas mais abaixo — limitação conhecida do compilador, não um bug de lógica.

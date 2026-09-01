@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
       track: learningProfile.track,
       resultLevel: result.resultLevel as any,
       resultSublevel: result.resultSublevel,
-      skillProfileJson: result.skillProfile,
+      skillProfileJson: result.skillProfile as any,
       weakAreas: result.weakAreas.map((p) => p.toUpperCase()) as Pillar[],
       completedAt: new Date(),
     },
@@ -105,8 +105,8 @@ export async function POST(req: NextRequest) {
 
     await prisma.learningPlan.upsert({
       where: { userId: user.id },
-      update: plan,
-      create: { userId: user.id, ...plan },
+      update: plan as any,
+      create: { userId: user.id, ...plan } as any,
     });
   }
 

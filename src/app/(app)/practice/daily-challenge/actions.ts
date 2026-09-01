@@ -1,5 +1,6 @@
 "use server";
 
+import type { Prisma } from "@prisma/client";
 import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { recordActivity } from "@/lib/gamification/recordActivity";
@@ -60,7 +61,7 @@ export async function completeDailyChallenge(score: number, total: number) {
     data: {
       userId: user.id,
       type: "DAILY",
-      scoreJson: { kind: "vocabulary_challenge", score: safeScore, total: safeTotal },
+      scoreJson: { kind: "vocabulary_challenge", score: safeScore, total: safeTotal } as unknown as Prisma.InputJsonValue,
       passed: safeTotal > 0 && safeScore === safeTotal,
     },
   });

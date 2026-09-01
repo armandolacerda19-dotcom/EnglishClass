@@ -61,7 +61,7 @@ export async function maybeIssueCertificate(userId: string) {
       cefr: profile.currentLevel,
       overallScore: average,
       classification: classify(average),
-      skillBreakdownJson: Object.fromEntries(PILLAR_FIELDS.map((f, i) => [f, scores[i]])),
+      skillBreakdownJson: Object.fromEntries(PILLAR_FIELDS.map((f, i) => [f, scores[i]])) as any,
     },
   });
 

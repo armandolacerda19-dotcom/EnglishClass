@@ -2,7 +2,7 @@
 
 import { requireUser } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
-import type { Pillar } from "@prisma/client";
+import type { Pillar, Prisma } from "@prisma/client";
 import { recordActivity } from "@/lib/gamification/recordActivity";
 import { awardAchievement } from "@/lib/gamification/awardAchievement";
 import { updateSkillScore } from "@/lib/skillProfile";
@@ -91,7 +91,7 @@ export async function submitWeeklyTest(answers: WeeklyTestAnswer[]): Promise<Wee
     data: {
       userId: user.id,
       type: "WEEKLY",
-      scoreJson: { kind: "weekly_diagnostic", overallScore, breakdown },
+      scoreJson: { kind: "weekly_diagnostic", overallScore, breakdown } as unknown as Prisma.InputJsonValue,
       passed: overallScore >= 70,
     },
   });
