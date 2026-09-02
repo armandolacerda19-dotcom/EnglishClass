@@ -33,6 +33,7 @@ export default async function LessonPage({ params }: { params: { id: string } })
       vocabulary={vocabulary}
       grammarConcept={grammarConcept}
       immersionMode={learningProfile.immersionMode}
+      cefrLevel={learningProfile.currentLevel}
     />
   );
 }

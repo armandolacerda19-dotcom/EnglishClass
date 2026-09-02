@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import type { CefrLevel } from "@prisma/client";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { ErrorCallout } from "@/components/ui/ErrorCallout";
@@ -10,6 +11,7 @@ import { RecordButton } from "@/components/ui/RecordButton";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { TextAreaField } from "@/components/ui/TextAreaField";
 import { Spinner } from "@/components/ui/Spinner";
+import { TappableText } from "@/components/wordAssist/TappableText";
 import {
   submitExerciseAnswer,
   submitWriting,
@@ -69,6 +71,7 @@ interface LessonRunnerProps {
   vocabulary: VocabularyItem[];
   grammarConcept: GrammarConcept | null;
   immersionMode: boolean;
+  cefrLevel?: CefrLevel;
 }
 
 // Modo Imersão (#12 da lista de melhorias) — esconde a tradução PT atrás de um
@@ -89,7 +92,7 @@ function RevealPt({ text, immersionMode, className = "" }: { text: string; immer
   );
 }
 
-export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept, immersionMode }: LessonRunnerProps) {
+export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept, immersionMode, cefrLevel }: LessonRunnerProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const isLast = stepIndex === lesson.steps.length - 1;
   const done = stepIndex >= lesson.steps.length;
@@ -125,10 +128,15 @@ export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept, im
             </Card>
           )}
 
+          {/* Smart Word Assist (2026-09-02, Fase 2) — expandido de Prática de
+              Leitura para os dois blocos de texto EN puro das lições
+              (exemplo de gramática, frase-exemplo de vocabulário). Não
+              aplicado a `ExerciseStep`/prompts de exercício: lá o toque
+              competiria com a seleção de resposta. */}
           {step.type === "example" && grammarConcept && (
             <Card>
               <p className="mb-1 font-mono text-xs uppercase tracking-wide text-verdigris">Exemplo</p>
-              <p className="text-sm">{grammarConcept.example}</p>
+              <TappableText text={grammarConcept.example} cefrLevel={cefrLevel} className="text-sm" />
               <div className="mt-1">
                 <RevealPt
                   text={grammarConcept.exampleTranslation}
@@ -161,7 +169,9 @@ export function LessonRunner({ lesson, exercises, vocabulary, grammarConcept, im
                         {v.translationPt} — {v.definitionEn}
                       </p>
                     )}
-                    {v.exampleSentences[0] && <p className="text-sm italic">"{v.exampleSentences[0]}"</p>}
+                    {v.exampleSentences[0] && (
+                      <TappableText text={`"${v.exampleSentences[0]}"`} cefrLevel={cefrLevel} className="text-sm italic" />
+                    )}
                   </li>
                 ))}
               </ul>
