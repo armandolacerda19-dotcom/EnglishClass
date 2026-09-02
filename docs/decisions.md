@@ -2,6 +2,24 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-09-02 — Fase 37: Smart Word Assist / Tap to Understand (Fase 1)
+
+Pedido explícito e muito extenso do utilizador (tocar em qualquer palavra de qualquer texto → significado contextual, sem sair do conteúdo, com progressão pedagógica por CEFR, perfil "Palavras que descobri", geração de exercícios personalizados, deteção de vocabulário profissional, métricas agregadas). Do tamanho de uma funcionalidade core de um produto como Duolingo/LingQ — entrou-se em modo de planeamento antes de codificar (mesma disciplina das Fases 33/35).
+
+**Restrição dura descoberta na investigação, que o pedido original não conhecia**: `checkAiRateLimit` (`src/lib/ai/rateLimit.ts`) limita o Gemini (free tier) a 800 chamadas/dia PARA TODA A APP, partilhadas com todas as funcionalidades de IA já existentes (correção de Writing/Speaking Challenge, tutor, Apply do Quiz de Gramática). Tocar numa palavra é uma ação de altíssima frequência dentro de uma sessão de leitura — se cada toque chamasse a IA, a quota esgotar-se-ia em minutos e desligaria a IA para toda a gente. Desenho: **dicionário local (`VocabularyItem`, 2537 palavras já seedadas) primeiro, cache partilhada entre utilizadores segundo (`WordContextCache`, por par palavra+frase), Gemini só como exceção rara e cacheada**.
+
+**Reaproveitamento em vez de nova infraestrutura**: o SRS (`ReviewScheduleItem`/`scheduleReview`, `src/lib/srs/schedule.ts`) já suporta nativamente `itemType: "vocabulary_item"` — não precisou de nenhuma alteração para agendar revisões de palavras descobertas. A pronúncia reaproveita a Web Speech API já usada em `PlayTranscript.tsx` (sem gravar áudio novo).
+
+**Schema**: dois modelos novos — `DiscoveredWord` (progresso pessoal, "Palavras que descobri", distinto do dicionário partilhado `VocabularyItem`) e `WordContextCache` (cache partilhada IA por palavra+contexto).
+
+**Componentes novos**: `TappableText.tsx` (quebra texto em frases → palavras clicáveis, único ficheiro que tokeniza), `WordAssistSheet.tsx` (primeiro modal/bottom-sheet do design system — não existia nenhum), `GuessAttempt.tsx` (passo "Tentar adivinhar").
+
+**Simplificação deliberada face ao pedido**: o painel é sempre um modal fixo (bottom sheet em mobile, centrado em desktop) aberto por clique — não um popover ancorado à palavra com hover em desktop, que exigiria lógica de posicionamento/deteção de borda de viewport não essencial ao MVP.
+
+**Piloto desta ronda**: só `ReadingRunner.tsx` (Prática de Leitura) — o ponto onde o texto já era uma string simples e o caso de uso mais direto ("estou a ler e bloqueei"). Outros pontos de texto da app (diálogos, lições, desafios de escrita/discurso) ficam para uma fase seguinte, reutilizando o mesmo `TappableText`.
+
+**Fora de alcance desta ronda** (não esquecido, roteiro para depois): geração automática de mini-exercícios a partir de palavras descobertas (além de alimentar o SRS existente), deteção dedicada de vocabulário por profissão, painel de métricas agregadas (os dados já ficam todos gravados desde o Dia 1), fluxo "Aprender agora" completo de 7 passos.
+
 ## 2026-09-02 — Fase 35: redesenho visual completo ("quase uma app nova")
 
 Pedido explícito do utilizador, depois de ver a Fase 33 (cor+ícone por pilar) e achar a mudança demasiado subtil: "quero que avance com a grande mudança que tenha impacto visual... termine toda a reestrutura de layout da app desde o início. não gosto da forma como é feito o login, cores pesadas... quero uma revisão total, como quase fosse uma app nova". Entrei em modo de planeamento antes de mexer em código (mesma disciplina da Fase 33), mapeei o estado atual de login/signup/layout/nav/globals.css e escrevi um plano de 6 fases, cada uma com o seu próprio commit + deploy + reteste visual real antes da seguinte — nenhuma fase avançou sem confirmação visual da anterior.

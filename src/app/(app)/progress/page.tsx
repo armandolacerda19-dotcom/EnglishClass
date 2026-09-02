@@ -50,8 +50,19 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
 export default async function ProgressPage() {
   const { user, learningProfile } = await requireUserWithProfile();
 
-  const [exerciseAttempts, standaloneExerciseCount, resolvedErrors, achievements, checkpoints, certificates, recentConfidence, weeklyActivity, retention] =
-    await Promise.all([
+  const [
+    exerciseAttempts,
+    standaloneExerciseCount,
+    resolvedErrors,
+    achievements,
+    checkpoints,
+    certificates,
+    recentConfidence,
+    weeklyActivity,
+    retention,
+    discoveredWordCount,
+    recentDiscoveredWords,
+  ] = await Promise.all([
       prisma.exerciseAttempt.count({ where: { userId: user.id } }),
       // 2ª auditoria pós-redesign (achado P0): `ExerciseAttempt` só é escrito
       // por exercícios DENTRO de uma lição (learn/actions.ts) — os ~13 tipos
@@ -81,6 +92,14 @@ export default async function ProgressPage() {
       // Fase 5 da auditoria ("Personalização"), item "métricas" — src/lib/metrics.ts.
       getWeeklyActivity(user.id),
       getRetentionSnapshot(user.id),
+      // Smart Word Assist (2026-09-02) — "Palavras que descobri", ver
+      // src/lib/wordAssist/lookupWord.ts e docs/decisions.md.
+      prisma.discoveredWord.count({ where: { userId: user.id } }),
+      prisma.discoveredWord.findMany({
+        where: { userId: user.id },
+        orderBy: { lastQueriedAt: "desc" },
+        take: 8,
+      }),
     ]);
 
   const totalExerciseAttempts = exerciseAttempts + standaloneExerciseCount;
@@ -212,6 +231,26 @@ export default async function ProgressPage() {
               <p className="font-mono text-xl">{retention.averageEase?.toFixed(1) ?? "—"}</p>
               <p className="text-xs text-inkNeutral/60 dark:text-linen/60">facilidade média</p>
             </div>
+          </div>
+        </Card>
+      )}
+
+      {discoveredWordCount > 0 && (
+        <Card className="mb-4">
+          <div className="mb-3 flex items-center justify-between">
+            <p className="font-mono text-xs uppercase tracking-wide text-verdigris">Palavras que descobri</p>
+            <p className="font-mono text-xs text-inkNeutral/60 dark:text-linen/60">{discoveredWordCount} no total</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {recentDiscoveredWords.map((w) => (
+              <span
+                key={w.id}
+                title={w.contextualMeaning}
+                className="rounded-control border border-verdigris/20 bg-verdigris/5 px-3 py-1.5 text-sm"
+              >
+                {w.headword}
+              </span>
+            ))}
           </div>
         </Card>
       )}

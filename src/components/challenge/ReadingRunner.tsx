@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import type { CefrLevel } from "@prisma/client";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
+import { TappableText } from "@/components/wordAssist/TappableText";
 import { ExerciseComplete } from "@/components/exercise/ExerciseShell";
 import { submitReadingPractice } from "@/app/(app)/practice/reading/actions";
 import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
@@ -19,7 +21,7 @@ const accent = PILLAR_ACCENT.READING!;
 // passa a vir de PILLAR_ACCENT.READING em vez de verdigris fixo). O ecrã de
 // conclusão migra para ExerciseComplete, que ganha o CTA "Continuar: {pilar}"
 // que este exercício não tinha (Fase 25).
-export function ReadingRunner({ passage }: { passage: ReadingPassage }) {
+export function ReadingRunner({ passage, cefrLevel }: { passage: ReadingPassage; cefrLevel?: CefrLevel }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
@@ -94,12 +96,12 @@ export function ReadingRunner({ passage }: { passage: ReadingPassage }) {
         <div className="mb-3">
           <PlayTranscript text={passage.text} />
         </div>
-        {/* Fase 14 — whitespace-pre-line preserva quebras de linha (`\n`) sem
-            quebrar os 60 textos existentes, que são um único parágrafo
-            contínuo sem `\n` nenhum: essencial para os novos géneros
-            "dialogue"/"email", onde a formatação em linhas faz parte de como
-            o texto se lê (falas separadas, "Subject:" numa linha própria). */}
-        <p className="whitespace-pre-line text-sm leading-relaxed">{passage.text}</p>
+        {/* Smart Word Assist (2026-09-02) — cada palavra do texto fica clicável
+            (TappableText mantém whitespace-pre-line, ver Fase 14 acima, e
+            preserva quebras de linha dos géneros "dialogue"/"email"). Piloto
+            desta funcionalidade: primeiro ponto de integração, ver
+            docs/decisions.md. */}
+        <TappableText text={passage.text} cefrLevel={cefrLevel} />
       </Card>
 
       <Card>

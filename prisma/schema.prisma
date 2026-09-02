@@ -152,6 +152,7 @@ model Profile {
   learningPlan       LearningPlan?
   intensivePlan      IntensivePlan?
   analyticsEvents    AnalyticsEvent[]
+  discoveredWords    DiscoveredWord[]
 
   @@index([userId])
 }
@@ -317,7 +318,56 @@ model VocabularyItem {
 
   createdAt     DateTime @default(now())
 
+  discoveredBy  DiscoveredWord[]
+
   @@index([cefr])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// SMART WORD ASSIST — "toca numa palavra, percebe sem sair do texto"
+// ─────────────────────────────────────────────────────────────────────────
+
+// "Palavras que descobri" do utilizador — progresso pessoal, distinto de
+// VocabularyItem (dicionário partilhado, sem dono). Uma linha por palavra
+// única consultada por utilizador; toques repetidos incrementam queryCount
+// em vez de duplicar. Ver src/lib/wordAssist/lookupWord.ts.
+model DiscoveredWord {
+  id                  String    @id @default(cuid())
+  userId              String    // aponta para Profile.id, mesmo padrão de LearningProfile/UserError
+  profile             Profile   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabularyItemId    String?   // preenchido quando resolvido a partir do dicionário partilhado
+  vocabularyItem      VocabularyItem? @relation(fields: [vocabularyItemId], references: [id])
+  headword            String    // sempre preenchido, mesmo sem match em VocabularyItem
+  contextualMeaning   String    // significado tal como resolvido no contexto da descoberta
+  contextSentence     String
+  cefr                CefrLevel?
+  queryCount          Int       @default(1)
+  correctGuessCount   Int       @default(0)
+  incorrectGuessCount Int       @default(0)
+  masteryLevel        Int       @default(0) // 0-3, sobe com revisões corretas no SRS (ReviewScheduleItem)
+  discoveredAt        DateTime  @default(now())
+  lastQueriedAt        DateTime @default(now())
+
+  @@unique([userId, headword])
+  @@index([userId, lastQueriedAt])
+}
+
+// Cache partilhada (entre TODOS os utilizadores) das desambiguações feitas
+// pela IA para um par (palavra, frase) — existe para nunca pagar duas vezes a
+// mesma chamada ao Gemini. A quota diária é global (ver checkAiRateLimit,
+// src/lib/ai/rateLimit.ts): sem este cache, a mesma palavra ambígua consultada
+// por utilizadores diferentes no mesmo texto (ex. todos leem o mesmo passage
+// de Prática de Leitura) chamaria a IA uma vez por utilizador, em vez de uma
+// vez no total.
+model WordContextCache {
+  id            String   @id @default(cuid())
+  headword      String
+  contextHash   String   // hash da frase normalizada (lowercase, trim, sem pontuação)
+  meaningEn     String
+  translationPt String
+  createdAt     DateTime @default(now())
+
+  @@unique([headword, contextHash])
 }
 
 // ─────────────────────────────────────────────────────────────────────────
