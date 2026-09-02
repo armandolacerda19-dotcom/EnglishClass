@@ -162,7 +162,7 @@ export function MatchingRunner({ pairs }: { pairs: MatchingPair[] }) {
                   : wrongPair?.left === p.itemId
                   ? "bg-clay/20 text-clay"
                   : selectedLeft === p.itemId
-                  ? "bg-ink text-linen dark:bg-linen dark:text-ink"
+                  ? "bg-verdigris text-white dark:bg-verdigris"
                   : `border border-ink/10 ${accent.hoverBorder} dark:border-linen/10`
               }`}
             >
@@ -183,7 +183,7 @@ export function MatchingRunner({ pairs }: { pairs: MatchingPair[] }) {
                   : wrongPair?.right === p.itemId
                   ? "bg-clay/20 text-clay"
                   : selectedRight === p.itemId
-                  ? "bg-ink text-linen dark:bg-linen dark:text-ink"
+                  ? "bg-verdigris text-white dark:bg-verdigris"
                   : `border border-ink/10 ${accent.hoverBorder} dark:border-linen/10`
               }`}
             >

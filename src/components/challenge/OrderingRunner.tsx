@@ -156,7 +156,7 @@ export function OrderingRunner({ items }: { items: OrderingItem[] }) {
                     ? item.words[i] === b.word
                       ? `${accent.bgSoft} ${accent.text}`
                       : "bg-clay/15 text-clay line-through"
-                    : "bg-ink text-linen hover:opacity-80 dark:bg-linen dark:text-ink"
+                    : "bg-verdigris text-white hover:opacity-90 dark:bg-verdigris"
                 }`}
               >
                 {b.word}
