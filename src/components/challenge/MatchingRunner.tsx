@@ -9,10 +9,26 @@ import { submitMatching } from "@/app/(app)/practice/matching/actions";
 import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 import type { MatchingPair } from "@/lib/vocabularyMatching";
 
-function shuffle<T>(items: T[]): T[] {
+// Baralho SEEDADO, não Math.random() (5ª auditoria, achado real 2026-09-02) —
+// `Math.random()` dentro de `useMemo` corre tanto na renderização de
+// servidor como na hidratação do cliente, com resultados diferentes a cada
+// vez: React #422/#425 (mismatch de hidratação) confirmado em produção ao
+// interagir com o exercício. Mesmo padrão já usado em `sentenceOrdering.ts`/
+// `dictation.ts` (hash determinístico, sem Math.random) — aqui semeado pelos
+// ids reais dos pares, por isso servidor e cliente calculam sempre a mesma
+// ordem para o mesmo conjunto de palavras.
+function seedFromString(key: string): number {
+  let hash = 0;
+  for (let i = 0; i < key.length; i++) hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
+  return hash || 1;
+}
+
+function shuffle<T>(items: T[], seed: number): T[] {
   const arr = [...items];
+  let s = seed;
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    s = (s * 1664525 + 1013904223) >>> 0;
+    const j = s % (i + 1);
     [arr[i], arr[j]] = [arr[j]!, arr[i]!];
   }
   return arr;
@@ -34,8 +50,9 @@ const accent = PILLAR_ACCENT.VOCABULARY!;
 // — usa a cor do pilar Vocabulary (docs/09-sistema-design.md) em vez do
 // verdigris fixo que tinha antes.
 export function MatchingRunner({ pairs }: { pairs: MatchingPair[] }) {
-  const left = useMemo(() => shuffle(pairs), [pairs]);
-  const right = useMemo(() => shuffle(pairs), [pairs]);
+  const idsKey = useMemo(() => pairs.map((p) => p.itemId).join(","), [pairs]);
+  const left = useMemo(() => shuffle(pairs, seedFromString(idsKey)), [pairs, idsKey]);
+  const right = useMemo(() => shuffle(pairs, seedFromString(`${idsKey}|right`)), [pairs, idsKey]);
 
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
   const [selectedRight, setSelectedRight] = useState<string | null>(null);
