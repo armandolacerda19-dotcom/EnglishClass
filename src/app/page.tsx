@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { PillarIcon } from "@/components/ui/PillarIcon";
+import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 
 // Redesenho 2026-09-02 (pedido do utilizador: "cores pesadas", "quase uma
 // app nova") — antes era um bloco `bg-ink` sólido (Atlantic Ink em navy
@@ -34,14 +35,14 @@ export default function LandingPage() {
         <div className="mt-10 grid w-full grid-cols-2 gap-4 sm:grid-cols-4">
           {(
             [
-              { icon: "grammar", label: "Gramática" },
-              { icon: "vocabulary", label: "Vocabulário" },
-              { icon: "speaking", label: "Fala" },
-              { icon: "listening", label: "Compreensão" },
+              { icon: "grammar", label: "Gramática", pillar: "GRAMMAR" },
+              { icon: "vocabulary", label: "Vocabulário", pillar: "VOCABULARY" },
+              { icon: "speaking", label: "Fala", pillar: "SPEAKING" },
+              { icon: "listening", label: "Compreensão", pillar: "LISTENING" },
             ] as const
           ).map((item) => (
             <div key={item.icon} className="flex flex-col items-center gap-2 rounded-card border border-ink/10 bg-white/50 p-4 text-center dark:border-linen/10 dark:bg-white/5">
-              <PillarIcon name={item.icon} className="h-6 w-6 text-verdigris" />
+              <PillarIcon name={item.icon} className={`h-6 w-6 ${PILLAR_ACCENT[item.pillar]!.text}`} />
               <span className="text-sm text-inkNeutral/70 dark:text-linen/70">{item.label}</span>
             </div>
           ))}
