@@ -3,14 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { TextField } from "@/components/ui/TextField";
+import { ExerciseShell, ExerciseComplete } from "@/components/exercise/ExerciseShell";
 import { submitDictation } from "@/app/(app)/practice/dictation/actions";
 import { checkDictation } from "@/lib/dictation";
+import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 import type { DictationItem } from "@/content/dictation";
 
+const accent = PILLAR_ACCENT.LISTENING!;
+
+// Migrado para ExerciseShell/ExerciseComplete (5ª auditoria, Fase 2 do roteiro
+// visual/UX, 2026-09-02) — terceiro dos ~20 Runners antigos (ver
+// MatchingRunner.tsx/OrderingRunner.tsx para os dois primeiros). Zero mudança
+// de lógica/estado, cor passa de verdigris fixo para a cor real do pilar
+// Listening.
 export function DictationRunner({ items }: { items: DictationItem[] }) {
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState("");
@@ -26,14 +34,9 @@ export function DictationRunner({ items }: { items: DictationItem[] }) {
 
   if (items.length === 0) {
     return (
-      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-        <h1 className="mb-4 font-display text-2xl">Ditado</h1>
-        <Card>
-          <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
-            Não há frases de ditado disponíveis de momento.
-          </p>
-        </Card>
-      </main>
+      <ExerciseShell label="Ditado" current={0} total={0}>
+        <p className="text-sm text-inkNeutral/70 dark:text-linen/70">Não há frases de ditado disponíveis de momento.</p>
+      </ExerciseShell>
     );
   }
 
@@ -71,74 +74,29 @@ export function DictationRunner({ items }: { items: DictationItem[] }) {
 
   if (done) {
     return (
-      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-        <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <StampBadge code={`${finalScore?.correct ?? 0}/${finalScore?.total ?? items.length}`} tone="verdigris" />
-          <h1 className="font-display text-2xl">Ditado concluído!</h1>
-        </div>
+      <ExerciseComplete
+        badge={<StampBadge code={`${finalScore?.correct ?? 0}/${finalScore?.total ?? items.length}`} tone="verdigris" />}
+        title="Ditado concluído!"
+      >
         <div className="flex flex-wrap gap-2">
           <Link href="/home">
             <Button>Voltar à Home</Button>
           </Link>
         </div>
-      </main>
+      </ExerciseComplete>
     );
   }
 
   return (
-    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-      <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">
-        Ditado · {item.level} · {index + 1} de {items.length}
-      </p>
-      <div className="mb-6 h-1 w-full rounded-full bg-ink/10 dark:bg-linen/10">
-        <div
-          className="h-1 rounded-full bg-verdigris transition-[width]"
-          style={{ width: `${((index + 1) / items.length) * 100}%` }}
-        />
-      </div>
-
-      <Card className="mb-4">
-        <p className="mb-3 text-sm text-inkNeutral/70 dark:text-linen/70">
-          Ouça a frase e escreva exatamente o que ouviu.
-        </p>
-        <PlayTranscript text={item.text} />
-
-        <div className="mt-4">
-          <TextField
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-            disabled={checked}
-            placeholder="Escreva aqui o que ouviu..."
-          />
-        </div>
-
-        {result && (
-          <div role="status" aria-live="polite" className="mt-3">
-            <p className={`text-sm ${result.isCorrect ? "text-verdigris" : "text-clay"}`}>
-              {result.isCorrect ? "Correto!" : "Quase — compare com a frase certa:"}
-            </p>
-            {!result.isCorrect && (
-              <p className="mt-2 text-sm leading-relaxed">
-                {result.diff.map((w, i) => (
-                  <span key={i} className={w.correct ? "text-verdigris" : "font-semibold text-clay underline"}>
-                    {w.word}{" "}
-                  </span>
-                ))}
-              </p>
-            )}
-            <p className="mt-2 text-xs italic text-inkNeutral/60 dark:text-linen/60">{item.translationPt}</p>
-          </div>
-        )}
-      </Card>
-
-      {submitError && (
-        <p role="alert" className="mb-3 text-sm text-clay">
-          {submitError}
-        </p>
-      )}
-
-      <div className="flex justify-end">
-        {!checked ? (
+    <ExerciseShell
+      label={`Ditado · ${item.level}`}
+      current={index + 1}
+      total={items.length}
+      accentClass={accent.bg}
+      labelAccentClass={accent.text}
+      submitError={submitError}
+      footer={
+        !checked ? (
           <Button onClick={check} disabled={!answer.trim()}>
             Verificar
           </Button>
@@ -146,8 +104,38 @@ export function DictationRunner({ items }: { items: DictationItem[] }) {
           <Button onClick={advance} disabled={submitting}>
             {isLast ? "Terminar" : "Seguinte"}
           </Button>
-        )}
+        )
+      }
+    >
+      <p className="mb-3 text-sm text-inkNeutral/70 dark:text-linen/70">Ouça a frase e escreva exatamente o que ouviu.</p>
+      <PlayTranscript text={item.text} />
+
+      <div className="mt-4">
+        <TextField
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+          disabled={checked}
+          placeholder="Escreva aqui o que ouviu..."
+        />
       </div>
-    </main>
+
+      {result && (
+        <div role="status" aria-live="polite" className="mt-3">
+          <p className={`text-sm ${result.isCorrect ? accent.text : "text-clay"}`}>
+            {result.isCorrect ? "Correto!" : "Quase — compare com a frase certa:"}
+          </p>
+          {!result.isCorrect && (
+            <p className="mt-2 text-sm leading-relaxed">
+              {result.diff.map((w, i) => (
+                <span key={i} className={w.correct ? accent.text : "font-semibold text-clay underline"}>
+                  {w.word}{" "}
+                </span>
+              ))}
+            </p>
+          )}
+          <p className="mt-2 text-xs italic text-inkNeutral/60 dark:text-linen/60">{item.translationPt}</p>
+        </div>
+      )}
+    </ExerciseShell>
   );
 }
