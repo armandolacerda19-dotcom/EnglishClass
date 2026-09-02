@@ -27,8 +27,8 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 // tem sempre a mesma cor+forma em toda a app, e a página deixa de parecer uma
 // grelha uniforme de cards idênticos.
 function PillarLabel({ pillar, children }: { pillar: keyof typeof PILLAR_ACCENT; children: React.ReactNode }) {
-  const accent = PILLAR_ACCENT[pillar];
-  const iconName = PILLAR_ICON[pillar];
+  const accent = PILLAR_ACCENT[pillar]!;
+  const iconName = PILLAR_ICON[pillar]!;
   return (
     <div className="mb-1 flex items-center gap-1.5">
       <PillarIcon name={iconName} className={`h-3.5 w-3.5 shrink-0 ${accent.text}`} />
@@ -38,7 +38,7 @@ function PillarLabel({ pillar, children }: { pillar: keyof typeof PILLAR_ACCENT;
 }
 
 function pillarHover(pillar: keyof typeof PILLAR_ACCENT) {
-  return PILLAR_ACCENT[pillar].hoverBorder;
+  return PILLAR_ACCENT[pillar]!.hoverBorder;
 }
 
 export default async function PracticePage() {

@@ -18,10 +18,10 @@ import { getRecommendationForUser, type HomeRecommendation } from "@/lib/exercis
 // ideia (cor+ícone do pilar real, não cor escolhida à mão por posição), só que
 // aqui aparece em dois sítios com formas diferentes: badge de card e item de lista.
 function PillarLabel({ pillar, children }: { pillar: keyof typeof PILLAR_ACCENT; children: React.ReactNode }) {
-  const accent = PILLAR_ACCENT[pillar];
+  const accent = PILLAR_ACCENT[pillar]!;
   return (
     <div className="mb-1 flex items-center gap-1.5">
-      <PillarIcon name={PILLAR_ICON[pillar]} className={`h-3.5 w-3.5 shrink-0 ${accent.text}`} />
+      <PillarIcon name={PILLAR_ICON[pillar]!} className={`h-3.5 w-3.5 shrink-0 ${accent.text}`} />
       <p className={`font-mono text-xs uppercase tracking-wide ${accent.text}`}>{children}</p>
     </div>
   );
