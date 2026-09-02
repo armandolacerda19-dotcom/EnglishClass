@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/TextField";
+import { AuthShell } from "@/components/ui/AuthShell";
 import { updatePassword } from "./actions";
 
 export default function ResetPasswordPage({ searchParams }: { searchParams: { error?: string } }) {
   return (
-    <main className="mx-auto flex min-h-screen max-w-sm flex-col justify-center gap-6 px-6">
-      <h1 className="font-display text-2xl">Definir nova palavra-passe</h1>
-
+    <AuthShell title="Definir nova palavra-passe">
       {searchParams.error && (
-        <p role="alert" className="rounded-card border-l-4 border-clay bg-clay/5 p-3 text-sm text-clay">
+        <p role="alert" className="mb-4 rounded-card border-l-4 border-clay bg-clay/5 p-3 text-sm text-clay">
           {searchParams.error}
         </p>
       )}
@@ -18,8 +17,10 @@ export default function ResetPasswordPage({ searchParams }: { searchParams: { er
           Nova palavra-passe
           <TextField name="password" type="password" minLength={8} required />
         </label>
-        <Button type="submit">Guardar</Button>
+        <Button type="submit" className="mt-2 w-full">
+          Guardar
+        </Button>
       </form>
-    </main>
+    </AuthShell>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/TextField";
+import { AuthShell } from "@/components/ui/AuthShell";
 import { signIn } from "./actions";
 
 export default function LoginPage({
@@ -9,11 +10,19 @@ export default function LoginPage({
   searchParams: { error?: string; next?: string };
 }) {
   return (
-    <main className="mx-auto flex min-h-screen max-w-sm flex-col justify-center gap-6 px-6">
-      <h1 className="font-display text-2xl">Iniciar sessão</h1>
-
+    <AuthShell
+      title="Iniciar sessão"
+      footer={
+        <p className="text-inkNeutral/70 dark:text-linen/70">
+          Ainda não tem conta?{" "}
+          <Link href="/signup" className="font-semibold text-verdigris underline">
+            Criar conta
+          </Link>
+        </p>
+      }
+    >
       {searchParams.error && (
-        <p role="alert" className="rounded-card border-l-4 border-clay bg-clay/5 p-3 text-sm text-clay">
+        <p role="alert" className="mb-4 rounded-card border-l-4 border-clay bg-clay/5 p-3 text-sm text-clay">
           {searchParams.error}
         </p>
       )}
@@ -28,19 +37,14 @@ export default function LoginPage({
           Palavra-passe
           <TextField name="password" type="password" required />
         </label>
-        <Button type="submit">Entrar</Button>
+        <Button type="submit" className="mt-2 w-full">
+          Entrar
+        </Button>
       </form>
 
-      <Link href="/forgot-password" className="text-sm text-verdigris underline">
+      <Link href="/forgot-password" className="mt-5 block text-center text-sm text-verdigris underline">
         Esqueceu-se da palavra-passe?
       </Link>
-
-      <p className="text-sm text-inkNeutral/70">
-        Ainda não tem conta?{" "}
-        <Link href="/signup" className="text-verdigris underline">
-          Criar conta
-        </Link>
-      </p>
-    </main>
+    </AuthShell>
   );
 }
