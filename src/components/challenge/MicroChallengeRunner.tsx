@@ -8,10 +8,22 @@ import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { RecordButton } from "@/components/ui/RecordButton";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { completeMicroChallenge } from "@/app/(app)/practice/micro-challenges/actions";
+import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 import type { MicroChallenge } from "@/lib/microChallenges";
+
+// 5ª auditoria (Fase 2 do roteiro visual, 2026-09-02) — não migrado para
+// ExerciseShell: ShadowRunner/ListenRunner são dois sub-componentes com o seu
+// próprio Card e ações internas; encaixá-los num único ExerciseShell exigiria
+// desmontar essa estrutura (Card dentro de Card, ou reescrever para expor as
+// ações via prop), risco desproporcional para um exercício sem numeração de
+// sequência. Só a cor de identidade passa a depender do tipo: "shadow"
+// (repetir em voz alta) usa Speaking, "listen" (compreensão) usa Listening —
+// antes ambos usavam verdigris fixo, sem ligação a nenhum pilar.
+const KIND_ACCENT = { shadow: PILLAR_ACCENT.SPEAKING!, listen: PILLAR_ACCENT.LISTENING! };
 
 export function MicroChallengeRunner({ challenge }: { challenge: MicroChallenge }) {
   const [done, setDone] = useState(false);
+  const accent = KIND_ACCENT[challenge.kind];
 
   if (done) {
     return (
@@ -30,7 +42,7 @@ export function MicroChallengeRunner({ challenge }: { challenge: MicroChallenge 
 
   return (
     <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-      <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">{challenge.title}</p>
+      <p className={`mb-1 font-mono text-xs uppercase tracking-widest ${accent.text}`}>{challenge.title}</p>
       <p className="mb-6 text-sm text-inkNeutral/70 dark:text-linen/70">{challenge.subtitle}</p>
 
       {challenge.kind === "shadow" ? (
@@ -144,7 +156,7 @@ function ListenRunner({
         </Button>
       ) : (
         <>
-          <p role="status" aria-live="polite" className={`mt-3 text-sm ${selected === challenge.correctIndex ? "text-verdigris" : "text-clay"}`}>
+          <p role="status" aria-live="polite" className={`mt-3 text-sm ${selected === challenge.correctIndex ? PILLAR_ACCENT.LISTENING!.text : "text-clay"}`}>
             {selected === challenge.correctIndex ? "Correto!" : `A resposta certa era: ${challenge.options[challenge.correctIndex]}`}
           </p>
           <Button className="mt-4" onClick={onDone}>
