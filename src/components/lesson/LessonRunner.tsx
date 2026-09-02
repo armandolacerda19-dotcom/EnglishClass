@@ -19,6 +19,7 @@ import {
   completeLesson,
   type WritingRubric,
 } from "@/app/(app)/learn/actions";
+import { getNextExerciseAction } from "@/lib/exercise/nextActionAction";
 
 interface LessonStep {
   type: string;
@@ -513,18 +514,46 @@ function TranslationStep({ exercise }: { exercise: ExerciseContent }) {
   );
 }
 
+// 2ª auditoria pós-redesign (2026-09-02, achado P0): este era o ecrã de
+// conclusão mais usado da app (fim de CADA lição de /learn) e o único "dead
+// end" puro — só "Voltar à Home", sem nenhuma sugestão do que fazer a
+// seguir, ao contrário de todos os exercícios de /practice (que já usam
+// `ExerciseComplete`/`getNextExerciseAction` desde a Fase 25). Mesmo padrão
+// aplicado aqui: busca a recomendação uma vez no cliente, mostra-a acima do
+// "Voltar à Home" sem o substituir.
 function LessonComplete({ lessonId, sublevelCode }: { lessonId: string; sublevelCode: string }) {
+  const [nextAction, setNextAction] = useState<{ href: string; label: string } | null | undefined>(undefined);
+
   useEffect(() => {
     completeLesson(lessonId);
   }, [lessonId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    getNextExerciseAction()
+      .then((result) => {
+        if (!cancelled) setNextAction(result);
+      })
+      .catch(() => {
+        if (!cancelled) setNextAction(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <div className="flex flex-col items-center gap-4 py-12 text-center">
       {/* Antes mostrava sempre "A1.1", seja qual fosse a lição real. */}
       <StampBadge code={sublevelCode} tone="brass" />
       <h2 className="font-display text-xl">Lição concluída.</h2>
+      {nextAction && (
+        <Link href={nextAction.href} className="w-full max-w-xs">
+          <Button className="w-full">{nextAction.label} →</Button>
+        </Link>
+      )}
       <Link href="/home">
-        <Button>Voltar à Home</Button>
+        <Button variant={nextAction ? "secondary" : "primary"}>Voltar à Home</Button>
       </Link>
     </div>
   );

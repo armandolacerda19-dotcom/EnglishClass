@@ -21,9 +21,15 @@ const PILLAR_LABELS: Record<string, string> = {
 const ORDER = ["grammar", "vocabulary", "listening", "speaking", "pronunciation", "reading", "writing", "translation"];
 
 export function SkillOctagon({ scores }: { scores: Record<string, number> }) {
-  const size = 220;
+  // 2ª auditoria pós-redesign (achado P0, confirmado em produção): os
+  // rótulos horizontais ("Escrita", "Audição") ficavam cortados a meio —
+  // labelX chegava perto do limite do viewBox (110+86+14=210 num canvas de
+  // 220), e a letra maior da Fase 35 (redesenho) piorou isto. O polígono
+  // mantém-se com o mesmo raio de sempre (86px); só o canvas cresce para dar
+  // margem real ao texto.
+  const size = 260;
   const center = size / 2;
-  const maxRadius = size / 2 - 24;
+  const maxRadius = 86;
 
   const points = ORDER.map((pillar, i) => {
     const angle = (Math.PI * 2 * i) / ORDER.length - Math.PI / 2;

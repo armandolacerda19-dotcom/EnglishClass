@@ -6,9 +6,12 @@ import { SkillOctagon } from "@/components/ui/SkillOctagon";
 import { CefrLevelTag } from "@/components/ui/CefrLevelTag";
 import { formatLevelCode } from "@/lib/level";
 import { StampBadge } from "@/components/ui/StampBadge";
+import { Button } from "@/components/ui/Button";
 import { getCheckpointSummary } from "@/lib/checkpoints";
 import { getWeeklyActivity, getRetentionSnapshot } from "@/lib/metrics";
 import { GOAL_LABEL } from "@/lib/goalLabels";
+import { getDueReviewCount } from "@/lib/srs/schedule";
+import { getRecommendationForUser } from "@/lib/exercise/recommendForUser";
 
 const WEEKDAY_LABEL_PT = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
@@ -47,9 +50,21 @@ const ACHIEVEMENT_SHORT_CODE: Record<string, string> = {
 export default async function ProgressPage() {
   const { user, learningProfile } = await requireUserWithProfile();
 
-  const [exerciseAttempts, resolvedErrors, achievements, checkpoints, certificates, recentConfidence, weeklyActivity, retention] =
+  const [exerciseAttempts, standaloneExerciseCount, resolvedErrors, achievements, checkpoints, certificates, recentConfidence, weeklyActivity, retention] =
     await Promise.all([
       prisma.exerciseAttempt.count({ where: { userId: user.id } }),
+      // 2ª auditoria pós-redesign (achado P0): `ExerciseAttempt` só é escrito
+      // por exercícios DENTRO de uma lição (learn/actions.ts) — os ~13 tipos
+      // de exercício standalone em /practice/* (Matching, Ordering, Writing
+      // Challenge, etc.) nunca lá tocam, por isso "exercícios tentados"
+      // mostrava sempre um número muito abaixo da atividade real (confirmado:
+      // 0 mesmo depois de completar exercícios reais nesta conta). Somado
+      // aqui ao evento "exercise_completed" (`AnalyticsEvent`, já escrito por
+      // `recordExerciseResult`/algumas actions de /practice) para um número
+      // mais próximo da verdade — ainda não é 100% dos tipos (alguns
+      // actions.ts mais antigos não chamam nenhum dos dois), fica registado
+      // em docs/decisions.md como P1 seguinte: instrumentar os que faltam.
+      prisma.analyticsEvent.count({ where: { userId: user.id, eventName: "exercise_completed" } }),
       prisma.userError.count({ where: { userId: user.id, resolvedAt: { not: null } } }),
       prisma.userAchievement.findMany({ where: { userId: user.id }, include: { achievement: true }, orderBy: { earnedAt: "desc" } }),
       getCheckpointSummary(user.id),
@@ -67,6 +82,30 @@ export default async function ProgressPage() {
       getWeeklyActivity(user.id),
       getRetentionSnapshot(user.id),
     ]);
+
+  const totalExerciseAttempts = exerciseAttempts + standaloneExerciseCount;
+
+  // 2ª auditoria pós-redesign (achado P0, "dead ends"): a página terminava
+  // sempre nas Conquistas, sem nenhuma ação seguinte — dados estáticos sem
+  // sugestão do que fazer a seguir. Mesmo motor já usado na Home
+  // (`getRecommendationForUser`), para a Home e o Progresso nunca
+  // discordarem sobre "o que fazer agora".
+  const dueReviews = await getDueReviewCount(user.id);
+  const recommendation = await getRecommendationForUser(
+    user.id,
+    learningProfile.weakAreas,
+    {
+      grammarScore: learningProfile.grammarScore,
+      vocabularyScore: learningProfile.vocabularyScore,
+      listeningScore: learningProfile.listeningScore,
+      speakingScore: learningProfile.speakingScore,
+      pronunciationScore: learningProfile.pronunciationScore,
+      readingScore: learningProfile.readingScore,
+      writingScore: learningProfile.writingScore,
+      translationScore: learningProfile.translationScore,
+    },
+    dueReviews
+  );
 
   const avgConfidence =
     recentConfidence.length > 0
@@ -179,7 +218,7 @@ export default async function ProgressPage() {
 
       <div className="grid grid-cols-2 gap-4">
         <Card>
-          <p className="font-mono text-2xl">{exerciseAttempts}</p>
+          <p className="font-mono text-2xl">{totalExerciseAttempts}</p>
           <p className="text-xs text-inkNeutral/60 dark:text-linen/60">exercícios tentados</p>
         </Card>
         <Card>
@@ -234,6 +273,16 @@ export default async function ProgressPage() {
           </div>
         </Card>
       )}
+
+      <Link href={dueReviews > 0 ? "/practice/review" : recommendation?.href ?? "/home"} className="mt-6 block">
+        <Button className="w-full">
+          {dueReviews > 0
+            ? `Rever ${dueReviews} ${dueReviews === 1 ? "item" : "itens"} pendentes →`
+            : recommendation
+              ? `Continuar: ${recommendation.pillarLabel} →`
+              : "Continuar a aprender →"}
+        </Button>
+      </Link>
     </main>
   );
 }

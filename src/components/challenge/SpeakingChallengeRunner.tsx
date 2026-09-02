@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Spinner } from "@/components/ui/Spinner";
 import { submitSpeakingChallenge } from "@/app/(app)/practice/speaking-challenge/actions";
+import { getNextExerciseAction } from "@/lib/exercise/nextActionAction";
 import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 import type { SpeakingChallengeItem } from "@/content/speakingChallenges";
 import type { SpeakingChallengeResult } from "@/lib/ai/gradeSpeakingChallenge";
@@ -27,6 +28,7 @@ export function SpeakingChallengeRunner({ item }: { item: SpeakingChallengeItem 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [result, setResult] = useState<SpeakingChallengeResult | null>(null);
+  const [nextAction, setNextAction] = useState<{ href: string; label: string } | null>(null);
 
   const recognitionRef = useRef<any>(null);
   const finalTranscriptRef = useRef("");
@@ -45,6 +47,23 @@ export function SpeakingChallengeRunner({ item }: { item: SpeakingChallengeItem 
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, []);
+
+  // 2ª auditoria pós-redesign (achado P0): terminava sempre num link fixo
+  // "Outro desafio", sem a recomendação dinâmica que os outros exercícios já
+  // têm desde a Fase 25 — mesmo padrão de ExerciseComplete, adaptado porque
+  // este Runner não usa ExerciseShell (vários Cards após o resultado).
+  useEffect(() => {
+    if (!result) return;
+    let cancelled = false;
+    getNextExerciseAction()
+      .then((r) => {
+        if (!cancelled) setNextAction(r);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [result]);
 
   function startRecording() {
     setRecordError(null);
@@ -238,9 +257,16 @@ export function SpeakingChallengeRunner({ item }: { item: SpeakingChallengeItem 
             </Card>
           )}
 
-          <Link href="/practice/speaking-challenge">
-            <Button>Outro desafio</Button>
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            {nextAction && (
+              <Link href={nextAction.href}>
+                <Button>{nextAction.label} →</Button>
+              </Link>
+            )}
+            <Link href="/practice/speaking-challenge">
+              <Button variant={nextAction ? "secondary" : "primary"}>Outro desafio</Button>
+            </Link>
+          </div>
         </>
       )}
     </main>
