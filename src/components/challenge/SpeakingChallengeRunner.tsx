@@ -6,8 +6,11 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Spinner } from "@/components/ui/Spinner";
 import { submitSpeakingChallenge } from "@/app/(app)/practice/speaking-challenge/actions";
+import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 import type { SpeakingChallengeItem } from "@/content/speakingChallenges";
 import type { SpeakingChallengeResult } from "@/lib/ai/gradeSpeakingChallenge";
+
+const accent = PILLAR_ACCENT.SPEAKING!;
 
 // Desafio de Discurso Livre — diferente de RecordButton.tsx e
 // ReadAloudRunner.tsx: aqueles usam `continuous = false` (para uma frase
@@ -135,7 +138,7 @@ export function SpeakingChallengeRunner({ item }: { item: SpeakingChallengeItem 
 
   return (
     <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-      <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">Desafio de Discurso Livre · {item.level}</p>
+      <p className={`mb-1 font-mono text-xs uppercase tracking-widest ${accent.text}`}>Desafio de Discurso Livre · {item.level}</p>
       <p className="mb-1 font-display text-xl">{item.prompt}</p>
       <p className="mb-6 text-xs italic text-inkNeutral/60 dark:text-linen/60">{item.promptPt}</p>
 

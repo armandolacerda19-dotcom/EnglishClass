@@ -7,12 +7,23 @@ import { Card } from "@/components/ui/Card";
 import { TextAreaField } from "@/components/ui/TextAreaField";
 import { Spinner } from "@/components/ui/Spinner";
 import { submitWritingChallenge } from "@/app/(app)/practice/writing-challenge/actions";
+import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 import type { WritingChallengeItem } from "@/content/writingChallenges";
 import type { WritingChallengeResult } from "@/lib/ai/gradeWritingChallenge";
+
+const accent = PILLAR_ACCENT.WRITING!;
 
 // Desafio de Escrita Livre — formato ❌⚠️✅ pedido explicitamente (relatório
 // de 2026-08-28, prioridade 🟠): frase original, problema, versão correta —
 // além da sugestão de como um nativo escreveria.
+//
+// Não migrado para ExerciseShell (5ª auditoria, Fase 2 do roteiro visual,
+// 2026-09-02) — tem vários Cards lado a lado (input, scores, resumo,
+// correções, versão nativa), incompatível com o Card único que ExerciseShell
+// fornece; aninhar cards dentro de cards pioraria a UI. Só a cor de
+// identidade é corrigida: o rótulo e a caixa "como um nativo escreveria"
+// usavam brass (a cor de Vocabulary) por engano — passa a usar a cor real do
+// pilar Writing.
 export function WritingChallengeRunner({ item }: { item: WritingChallengeItem }) {
   const [text, setText] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -35,7 +46,7 @@ export function WritingChallengeRunner({ item }: { item: WritingChallengeItem })
 
   return (
     <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-      <p className="mb-1 font-mono text-xs uppercase tracking-widest text-verdigris">Desafio de Escrita Livre · {item.level}</p>
+      <p className={`mb-1 font-mono text-xs uppercase tracking-widest ${accent.text}`}>Desafio de Escrita Livre · {item.level}</p>
       <p className="mb-1 font-display text-xl">{item.prompt}</p>
       <p className="mb-6 text-xs italic text-inkNeutral/60 dark:text-linen/60">{item.promptPt}</p>
 
@@ -111,8 +122,8 @@ export function WritingChallengeRunner({ item }: { item: WritingChallengeItem })
           )}
 
           {result.nativeVersion && (
-            <Card className="mb-4 border-brass">
-              <p className="mb-2 font-mono text-xs uppercase tracking-wide text-brass">Como um nativo escreveria</p>
+            <Card className={`mb-4 ${accent.border}`}>
+              <p className={`mb-2 font-mono text-xs uppercase tracking-wide ${accent.text}`}>Como um nativo escreveria</p>
               <p className="text-sm italic">{result.nativeVersion}</p>
             </Card>
           )}
