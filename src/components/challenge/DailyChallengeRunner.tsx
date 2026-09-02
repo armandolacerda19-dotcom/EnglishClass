@@ -5,14 +5,23 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
+import { ExerciseShell, ExerciseComplete } from "@/components/exercise/ExerciseShell";
 import { completeDailyChallenge, recordVocabExposure } from "@/app/(app)/practice/daily-challenge/actions";
+import { PILLAR_ACCENT } from "@/lib/pillarDisplay";
 import type { DailyChallengeWord } from "@/lib/dailyChallenge";
+
+const accent = PILLAR_ACCENT.VOCABULARY!;
 
 interface DailyChallengeRunnerProps {
   words: DailyChallengeWord[];
   practiceSentences: { sentence: string; headword: string }[];
 }
 
+// Migrado para ExerciseShell/ExerciseComplete (5ª auditoria, Fase 2 do roteiro
+// visual/UX, 2026-09-02) — quinto dos ~20 Runners antigos (ver
+// MatchingRunner.tsx para o primeiro). Zero mudança de lógica/estado; a cor
+// visível não muda (Desafio Diário já era brass, a cor real de Vocabulary),
+// passa a vir do sistema central.
 export function DailyChallengeRunner({ words, practiceSentences }: DailyChallengeRunnerProps) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
@@ -59,16 +68,12 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
 
   if (done) {
     return (
-      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-        <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <StampBadge code={`${score}/${words.length}`} tone="brass" />
-          <h1 className="font-display text-2xl">Desafio de hoje concluído!</h1>
-          <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
-            {alreadyDoneToday
-              ? "Já tinha feito o desafio de hoje — este resultado não conta XP extra, mas continue a praticar."
-              : "Acertou " + score + " de " + words.length + " palavras."}
-          </p>
-        </div>
+      <ExerciseComplete badge={<StampBadge code={`${score}/${words.length}`} tone="brass" />} title="Desafio de hoje concluído!">
+        <p className="mb-4 text-center text-sm text-inkNeutral/70 dark:text-linen/70">
+          {alreadyDoneToday
+            ? "Já tinha feito o desafio de hoje — este resultado não conta XP extra, mas continue a praticar."
+            : "Acertou " + score + " de " + words.length + " palavras."}
+        </p>
 
         {practiceSentences.length > 0 && (
           <Card className="mb-4">
@@ -86,7 +91,7 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
 
         {words.some((w) => w.collocations.length > 0) && (
           <Card className="mb-4">
-            <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brass">Também pode dizer</p>
+            <p className={`mb-3 font-mono text-xs uppercase tracking-wide ${accent.text}`}>Também pode dizer</p>
             <ul className="flex flex-col gap-2">
               {words
                 .filter((w) => w.collocations.length > 0)
@@ -103,56 +108,20 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
         <Link href="/home">
           <Button>Voltar à Home</Button>
         </Link>
-      </main>
+      </ExerciseComplete>
     );
   }
 
   return (
-    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-      <p className="mb-1 font-mono text-xs uppercase tracking-widest text-brass">
-        Desafio Diário · {index + 1} de {words.length}
-      </p>
-      <div className="mb-6 h-1 w-full rounded-full bg-ink/10 dark:bg-linen/10">
-        <div
-          className="h-1 rounded-full bg-brass transition-[width]"
-          style={{ width: `${((index + 1) / words.length) * 100}%` }}
-        />
-      </div>
-
-      <Card className="border-brass/30">
-        <p className="mb-1 font-mono text-xs uppercase tracking-wide text-brass">O que significa...</p>
-        <p className="mb-4 font-display text-2xl">{word.headword}</p>
-
-        <fieldset className="flex flex-col gap-2">
-          {word.options.map((opt) => (
-            <label key={opt} className="flex items-center gap-2 rounded-control border border-ink/10 p-3 text-sm">
-              <input
-                type="radio"
-                name={word.id}
-                checked={selected === opt}
-                onChange={() => setSelected(opt)}
-                disabled={checked}
-              />
-              {opt}
-            </label>
-          ))}
-        </fieldset>
-
-        {checked && (
-          <p role="status" aria-live="polite" className={`mt-3 text-sm ${isCorrect ? "text-verdigris" : "text-clay"}`}>
-            {isCorrect ? "Correto." : `Incorreto. Era: ${word.translationPt}`}
-          </p>
-        )}
-      </Card>
-
-      {submitError && (
-        <p role="alert" className="mt-3 text-sm text-clay">
-          {submitError}
-        </p>
-      )}
-
-      <div className="mt-4 flex justify-end">
-        {!checked ? (
+    <ExerciseShell
+      label="Desafio Diário"
+      current={index + 1}
+      total={words.length}
+      accentClass={accent.bg}
+      labelAccentClass={accent.text}
+      submitError={submitError}
+      footer={
+        !checked ? (
           <Button onClick={check} disabled={!selected}>
             Verificar
           </Button>
@@ -160,8 +129,32 @@ export function DailyChallengeRunner({ words, practiceSentences }: DailyChalleng
           <Button onClick={advance} disabled={submitting}>
             {isLast ? "Terminar" : "Seguinte"}
           </Button>
-        )}
-      </div>
-    </main>
+        )
+      }
+    >
+      <p className={`mb-1 font-mono text-xs uppercase tracking-wide ${accent.text}`}>O que significa...</p>
+      <p className="mb-4 font-display text-2xl">{word.headword}</p>
+
+      <fieldset className="flex flex-col gap-2">
+        {word.options.map((opt) => (
+          <label key={opt} className="flex items-center gap-2 rounded-control border border-ink/10 p-3 text-sm">
+            <input
+              type="radio"
+              name={word.id}
+              checked={selected === opt}
+              onChange={() => setSelected(opt)}
+              disabled={checked}
+            />
+            {opt}
+          </label>
+        ))}
+      </fieldset>
+
+      {checked && (
+        <p role="status" aria-live="polite" className={`mt-3 text-sm ${isCorrect ? accent.text : "text-clay"}`}>
+          {isCorrect ? "Correto." : `Incorreto. Era: ${word.translationPt}`}
+        </p>
+      )}
+    </ExerciseShell>
   );
 }
