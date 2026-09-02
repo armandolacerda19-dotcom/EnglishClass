@@ -4,11 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Pillar } from "@prisma/client";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { StampBadge } from "@/components/ui/StampBadge";
 import { PlayTranscript } from "@/components/ui/PlayTranscript";
 import { TextAreaField } from "@/components/ui/TextAreaField";
 import { Spinner } from "@/components/ui/Spinner";
+import { ExerciseShell, ExerciseComplete } from "@/components/exercise/ExerciseShell";
 import { submitTopicPractice, type TopicPracticeAnswer, type TopicPracticeResult } from "@/app/(app)/practice/topic/actions";
 import { checkFreeTextAnswer, checkChoiceAnswer } from "@/app/(app)/practice/checkAnswer";
 import type { PracticeQuestion } from "@/lib/practiceQuestions";
@@ -24,6 +24,10 @@ interface CheckResult {
   referenceAnswer: string;
 }
 
+// Migrado para ExerciseShell/ExerciseComplete (5ª auditoria, Fase 2 do
+// roteiro visual, 2026-09-02) — décimo primeiro dos ~20 Runners antigos. Já
+// tinha um sistema de cor por pilar bem feito; zero mudança de
+// lógica/estado, só de apresentação.
 export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerProps) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
@@ -93,14 +97,10 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
 
   if (result) {
     return (
-      <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-        <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <StampBadge code={`${result.correct}/${result.total}`} tone="brass" />
-          <h1 className="font-display text-2xl">Sessão concluída!</h1>
-          <p className="text-sm text-inkNeutral/70 dark:text-linen/70">
-            {PILLAR_LABEL[pillar] ?? pillar.toLowerCase()} — pode repetir quando quiser, com perguntas novas.
-          </p>
-        </div>
+      <ExerciseComplete badge={<StampBadge code={`${result.correct}/${result.total}`} tone="brass" />} title="Sessão concluída!">
+        <p className="mb-4 text-center text-sm text-inkNeutral/70 dark:text-linen/70">
+          {PILLAR_LABEL[pillar] ?? pillar.toLowerCase()} — pode repetir quando quiser, com perguntas novas.
+        </p>
         <div className="flex flex-wrap gap-2">
           <Link href="/practice/topic">
             <Button variant="secondary">Outro tema</Button>
@@ -109,70 +109,20 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
             <Button>Voltar à Home</Button>
           </Link>
         </div>
-      </main>
+      </ExerciseComplete>
     );
   }
 
   return (
-    <main className="mx-auto max-w-lg lg:max-w-2xl px-6 py-10">
-      <p className={`mb-1 font-mono text-xs uppercase tracking-widest ${accent.text}`}>
-        {PILLAR_LABEL[pillar] ?? pillar.toLowerCase()} · {index + 1} de {questions.length}
-      </p>
-      <div className="mb-6 h-1 w-full rounded-full bg-ink/10 dark:bg-linen/10">
-        <div
-          className={`h-1 rounded-full ${accent.bg} transition-[width]`}
-          style={{ width: `${((index + 1) / questions.length) * 100}%` }}
-        />
-      </div>
-
-      <Card className={accent.border}>
-        <p className="mb-4 text-lg">{question.prompt}</p>
-        {question.transcript && (
-          <div className="mb-4">
-            <PlayTranscript text={question.transcript} />
-          </div>
-        )}
-
-        {question.kind === "choice" ? (
-          <fieldset className="flex flex-col gap-2">
-            {question.options.map((opt) => (
-              <label key={opt} className="flex items-center gap-2 rounded-control border border-ink/10 p-3 text-sm">
-                <input
-                  type="radio"
-                  name={question.exerciseId}
-                  checked={selected === opt}
-                  onChange={() => setSelected(opt)}
-                  disabled={!!checkResult}
-                />
-                {opt}
-              </label>
-            ))}
-          </fieldset>
-        ) : (
-          <TextAreaField
-            rows={2}
-            value={textAnswer}
-            onChange={(e) => setTextAnswer(e.target.value)}
-            disabled={!!checkResult}
-            placeholder="Escreva a sua resposta..."
-          />
-        )}
-
-        {checkResult && (
-          <p role="status" aria-live="polite" className={`mt-3 text-sm ${checkResult.isCorrect ? "text-verdigris" : "text-clay"}`}>
-            {checkResult.isCorrect ? "Correto." : `Incorreto. Resposta certa: ${checkResult.referenceAnswer}`}
-          </p>
-        )}
-      </Card>
-
-      {submitError && (
-        <p role="alert" className="mt-3 text-sm text-clay">
-          {submitError}
-        </p>
-      )}
-
-      <div className="mt-4 flex justify-end">
-        {!checkResult ? (
+    <ExerciseShell
+      label={`${PILLAR_LABEL[pillar] ?? pillar.toLowerCase()}`}
+      current={index + 1}
+      total={questions.length}
+      accentClass={accent.bg}
+      labelAccentClass={accent.text}
+      submitError={submitError}
+      footer={
+        !checkResult ? (
           <Button onClick={check} disabled={!given || checking}>
             {checking ? (
               <span className="flex items-center gap-2">
@@ -186,8 +136,46 @@ export function TopicPracticeRunner({ pillar, questions }: TopicPracticeRunnerPr
           <Button onClick={advance} disabled={submitting}>
             {isLast ? "Terminar" : "Seguinte"}
           </Button>
-        )}
-      </div>
-    </main>
+        )
+      }
+    >
+      <p className="mb-4 text-lg">{question.prompt}</p>
+      {question.transcript && (
+        <div className="mb-4">
+          <PlayTranscript text={question.transcript} />
+        </div>
+      )}
+
+      {question.kind === "choice" ? (
+        <fieldset className="flex flex-col gap-2">
+          {question.options.map((opt) => (
+            <label key={opt} className="flex items-center gap-2 rounded-control border border-ink/10 p-3 text-sm">
+              <input
+                type="radio"
+                name={question.exerciseId}
+                checked={selected === opt}
+                onChange={() => setSelected(opt)}
+                disabled={!!checkResult}
+              />
+              {opt}
+            </label>
+          ))}
+        </fieldset>
+      ) : (
+        <TextAreaField
+          rows={2}
+          value={textAnswer}
+          onChange={(e) => setTextAnswer(e.target.value)}
+          disabled={!!checkResult}
+          placeholder="Escreva a sua resposta..."
+        />
+      )}
+
+      {checkResult && (
+        <p role="status" aria-live="polite" className={`mt-3 text-sm ${checkResult.isCorrect ? accent.text : "text-clay"}`}>
+          {checkResult.isCorrect ? "Correto." : `Incorreto. Resposta certa: ${checkResult.referenceAnswer}`}
+        </p>
+      )}
+    </ExerciseShell>
   );
 }
