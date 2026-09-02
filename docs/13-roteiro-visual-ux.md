@@ -10,7 +10,11 @@ Origem: pedido do utilizador de 2026-09-02 ("MASTER PROMPT — AUDITORIA VISUAL,
 
 **Porque não foi feito agora**: são ~20 ficheiros, cada um com lógica de estado própria já testada em produção; reescrever todos de uma vez sem build/testes locais (confirmado nesta sessão: sem Node/npm nesta máquina) é o mesmo risco de regressão que já impediu esta unificação em rondas anteriores.
 
-**Abordagem recomendada para quando for feito**: migrar um Runner de cada vez, não todos juntos. Cada migração é um commit isolado + deploy + reteste real (mesmo processo desta sessão), para isolar qualquer regressão ao Runner certo. Ordem sugerida: começar pelos mais simples/isolados (Matching, Ordering) antes dos mais complexos com áudio/microfone (Dictation, ReadAloud, Speaking).
+**Abordagem recomendada para quando for feito**: migrar um Runner de cada vez, não todos juntos. Cada migração é um commit isolado + deploy + reteste real (mesmo processo desta sessão), para isolar qualquer regressão ao Runner certo.
+
+**Progresso (2026-09-02)**: migrados `MatchingRunner`, `OrderingRunner`, `DictationRunner`, `IdiomRunner`, `DailyChallengeRunner` (5 de ~11 ainda por fazer nessa altura) — todos por commits separados, ainda sem deploy/reteste real (pendente). `VerbRunner.tsx` avaliado e **deliberadamente excluído**: não é uma página de exercício autónoma, está embutido em `/practice/verbs` junto de uma tabela de referência — envolvê-lo em `ExerciseShell` duplicaria o `<main>` da página. `MicroChallengeRunner.tsx` avaliado e **adiado**: duas variantes condicionais (shadow/listen) sem conceito de sequência numerada e com fluxo de gravação de voz — mais arriscado, melhor como lote isolado.
+
+**Ainda por avaliar/migrar**: `ReviewRunner`, `ReadingRunner`, `WeeklyTestRunner`, `TopicPracticeRunner`, `WritingChallengeRunner`, `SpeakingChallengeRunner` (estes dois últimos podem já ter um shell próprio adequado ao formato de pontuação por IA — confirmar antes de assumir que precisam de migração).
 
 ## Fase 3 — Riqueza visual: objetos interativos e ícones de vocabulário
 
