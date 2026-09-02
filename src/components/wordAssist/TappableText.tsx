@@ -10,13 +10,20 @@ import { WordAssistSheet } from "./WordAssistSheet";
 // palavra viram <button>. `\n` sobrevive dentro dos tokens "resto" porque o
 // contentor mantém a classe `whitespace-pre-line` já usada por este texto
 // antes do Smart Word Assist (ver ReadingRunner.tsx).
+// `split` com lookbehind descarta o espaço que separava as frases (ele fica
+// "consumido" pelo match, sem entrar em nenhum dos dois pedaços) — por isso
+// cada frase mantém o espaço a seguir (se existir no texto original), em vez
+// de o remover como o `.trim()` ingénuo fazia antes.
 function splitSentences(text: string): string[] {
-  return text.split(/(?<=[.!?])\s+/).filter(Boolean);
+  return text.split(/(?<=[.!?])(?=\s)/).filter(Boolean);
 }
 
+// Unicode-aware: \p{L} apanha também letras acentuadas ("café", "à", "naïve")
+// como parte da palavra — a versão anterior (A-Za-z) cortava "café" em
+// "caf" + "é", tornando a palavra inteira impossível de tocar corretamente.
 function tokenize(sentence: string): { word: boolean; value: string }[] {
-  return Array.from(sentence.matchAll(/[A-Za-z']+|[^A-Za-z']+/g)).map((m) => ({
-    word: /[A-Za-z]/.test(m[0]),
+  return Array.from(sentence.matchAll(/[\p{L}']+|[^\p{L}']+/gu)).map((m) => ({
+    word: /\p{L}/u.test(m[0]),
     value: m[0],
   }));
 }
