@@ -12,9 +12,13 @@ Origem: pedido do utilizador de 2026-09-02 ("MASTER PROMPT — AUDITORIA VISUAL,
 
 **Abordagem recomendada para quando for feito**: migrar um Runner de cada vez, não todos juntos. Cada migração é um commit isolado + deploy + reteste real (mesmo processo desta sessão), para isolar qualquer regressão ao Runner certo.
 
-**Progresso (2026-09-02)**: migrados `MatchingRunner`, `OrderingRunner`, `DictationRunner`, `IdiomRunner`, `DailyChallengeRunner` (5 de ~11 ainda por fazer nessa altura) — todos por commits separados, ainda sem deploy/reteste real (pendente). `VerbRunner.tsx` avaliado e **deliberadamente excluído**: não é uma página de exercício autónoma, está embutido em `/practice/verbs` junto de uma tabela de referência — envolvê-lo em `ExerciseShell` duplicaria o `<main>` da página. `MicroChallengeRunner.tsx` avaliado e **adiado**: duas variantes condicionais (shadow/listen) sem conceito de sequência numerada e com fluxo de gravação de voz — mais arriscado, melhor como lote isolado.
+**Concluído (2026-09-02)** — ronda completa de revisão dos ~20 Runners, um commit por ficheiro, ainda sem deploy/reteste real (pendente):
+- **Migrados para `ExerciseShell`/`ExerciseComplete`** (9): `MatchingRunner`, `OrderingRunner`, `DictationRunner`, `IdiomRunner`, `DailyChallengeRunner`, `ReadingRunner` (só o ecrã de conclusão — o principal mantém 2 Cards próprios), `ReviewRunner`, `WeeklyTestRunner`, `TopicPracticeRunner`.
+- **Avaliados e corrigidos só na cor** (3), por serem estruturalmente incompatíveis com o Card único de `ExerciseShell` (múltiplos Cards lado a lado após o resultado, ou sub-componentes com Card próprio): `WritingChallengeRunner`, `SpeakingChallengeRunner`, `MicroChallengeRunner`.
+- **Avaliado e excluído** (1): `VerbRunner.tsx` — não é uma página de exercício autónoma, está embutido em `/practice/verbs` junto de uma tabela de referência.
+- **Já usavam `ExerciseShell` desde a criação** (9): `FillBlankRunner`, `GrammarQuizRunner`, `ReadAloudRunner`, `WordBuilderRunner`, `TranslationEnPtRunner`, `ContextWordChoiceRunner`, `SynonymAntonymRunner`, `ErrorCorrectionRunner`, `ListenChooseRunner`.
 
-**Ainda por avaliar/migrar**: `ReviewRunner`, `ReadingRunner`, `WeeklyTestRunner`, `TopicPracticeRunner`, `WritingChallengeRunner`, `SpeakingChallengeRunner` (estes dois últimos podem já ter um shell próprio adequado ao formato de pontuação por IA — confirmar antes de assumir que precisam de migração).
+Com isto, todos os ~21 Runners de `src/components/challenge/` foram revistos individualmente — não há mais nenhum a avaliar. O que falta agora é só **verificar** (deploy + reteste real de uma amostra, sobretudo os que usam gravação de voz/microfone, que não podem ser testados por leitura de código) e, se algum caso justificar, revisitar os 3 "corrigidos só na cor" para uma unificação mais profunda (exigiria desenhar um segundo padrão de shell para "múltiplos cards", não o `ExerciseShell` atual).
 
 ## Fase 3 — Riqueza visual: objetos interativos e ícones de vocabulário
 
