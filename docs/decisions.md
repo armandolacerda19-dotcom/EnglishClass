@@ -2,6 +2,28 @@
 
 Log vivo — atualizar sempre que uma decisão de stack, schema ou convenção for tomada, para que fases futuras (ou outra sessão) não repitam a análise.
 
+## 2026-09-02 — Fase 35: redesenho visual completo ("quase uma app nova")
+
+Pedido explícito do utilizador, depois de ver a Fase 33 (cor+ícone por pilar) e achar a mudança demasiado subtil: "quero que avance com a grande mudança que tenha impacto visual... termine toda a reestrutura de layout da app desde o início. não gosto da forma como é feito o login, cores pesadas... quero uma revisão total, como quase fosse uma app nova". Entrei em modo de planeamento antes de mexer em código (mesma disciplina da Fase 33), mapeei o estado atual de login/signup/layout/nav/globals.css e escrevi um plano de 6 fases, cada uma com o seu próprio commit + deploy + reteste visual real antes da seguinte — nenhuma fase avançou sem confirmação visual da anterior.
+
+**Achado real que explica a queixa "cores pesadas"**: `bg-ink` (#1B2A4A, Atlantic Ink) era usado tanto como acento subtil (`border-ink/10`, 99 ocorrências) como bloco sólido pesado — fundo inteiro em modo escuro (`globals.css`), a landing page inteira, a página de certificado, itens selecionados em Matching/Ordering. Sem distinção entre os dois usos.
+
+**1/6 — Fundação**: escala tipográfica sobe outra vez (base 17px→18px, `tailwind.config.ts`) e cada nível ganha `line-height` próprio (corpo a 1.65) — antes só o tamanho mudava. Fundo em modo escuro deixa de ser Atlantic Ink sólido — passa a Ink Neutral (`#2B2E33`), a mesma cor já usada como texto de corpo em modo claro.
+
+**2/6 — Autenticação**: login/signup/forgot-password/reset-password/check-email eram formulários nus (`max-w-sm` sem `Card`, sem marca, sem hierarquia). Novo `AuthShell.tsx` partilhado (eyebrow "Plataforma de Inglês" + título grande + card com sombra e barra de gradiente decorativa — Verdigris/Indigo/Plum, nunca Clay) usado pelas 5 páginas.
+
+**3/6 — Cabeçalho + Navegação**: `BottomNav.tsx` era só texto — ganha ícones SVG (reutiliza `PillarIcon.tsx` para Learn/Speak via Reading/Speaking; 3 novos simples para Home/Practice/Progress). Cabeçalho de `(app)/layout.tsx` ganha o nome do produto ao lado do utilizador + borda subtil.
+
+**4/6 — Landing + cores residuais**: `src/app/page.tsx` deixa de ter `bg-ink` sólido — herda o fundo normal da app, com uma faixa de gradiente decorativa no topo e 4 cards de preview com ícone+cor por pilar. Estados "selecionado" em Matching/Ordering trocam `bg-ink` sólido por Verdigris.
+
+**5/6 — Home/Practice**: avaliado depois das Fases 1-4 já em produção — o efeito cumulativo (tipografia maior + ícones/cores da Fase 33 + nav/cabeçalho novos) já resolve a monotonia sem precisar de mudanças adicionais; confirmado por screenshot real em claro e escuro, sem alterações de código necessárias.
+
+**6/6 — Verificação final**: todas as páginas alteradas reabertas em produção (não só as últimas) — `/`, `/login`, `/home`, `/practice` — em claro e escuro, consola sem erros novos (só ruído de extensão MetaMask do browser de teste).
+
+**Bug apanhado e corrigido no reteste real**: os 4 ícones de preview da landing saíam todos verdes (`text-verdigris` fixo, copiado sem adaptar) em vez da cor real de cada pilar — corrigido para `PILLAR_ACCENT[pillar].text`, mesmo padrão já estabelecido na Fase 33.
+
+**Fora de alcance desta ronda** (roteiro `docs/13-roteiro-visual-ux.md`): unificação dos Runners de exercício, objetos interativos, imagens/vídeo reais (continua bloqueado por orçamento).
+
 ## 2026-09-02 — Fase 33: sistema de cor+ícone por pilar (auditoria visual/UX/UI/multimédia)
 
 Pedido: auditoria visual/UX/UI/interatividade/multimédia completa + implementação direta. Dado o alcance enorme do pedido (imagens, vídeo, objetos interativos, cenários por profissão, unificação de ~20 Runners) e duas restrições reais confirmadas com o utilizador — **orçamento zero** (sem foto/vídeo/geração de imagem por IA pagos) e **sem Node/npm local** (risco de regressão em qualquer refactor grande sem build/testes) — entrou-se em modo de planeamento antes de tocar em código: `AskUserQuestion` confirmou (1) substituir foto/vídeo por SVG próprio + TTS já existente, (2) implementar agora só uma Fase 1 segura, deixando o resto documentado como roteiro (`docs/13-roteiro-visual-ux.md`).
