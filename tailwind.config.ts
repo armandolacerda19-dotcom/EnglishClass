@@ -37,18 +37,22 @@ const config: Config = {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         mono: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
       },
-      // Aumentado ~10% em toda a escala (2026-08-26) — pedido do utilizador: "deve
-      // aumentar o tamanho da letra, para uma leitura mais fácil". Mantém a mesma
-      // proporção entre níveis (escala modular), só desloca a base para cima.
+      // Escala aumentada uma 2ª vez (5ª auditoria, redesenho 2026-09-02) — pedido
+      // explícito do utilizador: "letra maior, para mais fácil leitura". Já tinha
+      // subido ~10% em 2026-08-26; esta ronda sobe outra vez (base 17px→18px) E
+      // acrescenta `line-height` generoso por nível (antes só o tamanho mudava, a
+      // altura de linha ficava ao critério de cada componente) — texto de corpo a
+      // 1.65 em vez do 1.5 implícito do Tailwind, mais fácil de seguir em blocos
+      // longos (regras de gramática, feedback de IA).
       fontSize: {
-        xs: "0.8125rem",
-        sm: "0.9375rem",
-        base: "1.0625rem",
-        lg: "1.3125rem",
-        xl: "1.6875rem",
-        "2xl": "2.0625rem",
-        "3xl": "2.5625rem",
-        "4xl": "3.1875rem",
+        xs: ["0.875rem", { lineHeight: "1.4" }],
+        sm: ["1rem", { lineHeight: "1.5" }],
+        base: ["1.125rem", { lineHeight: "1.65" }],
+        lg: ["1.375rem", { lineHeight: "1.5" }],
+        xl: ["1.75rem", { lineHeight: "1.35" }],
+        "2xl": ["2.25rem", { lineHeight: "1.25" }],
+        "3xl": ["2.75rem", { lineHeight: "1.15" }],
+        "4xl": ["3.5rem", { lineHeight: "1.1" }],
       },
       // Raio de canto aumentado (2026-08-26) — pedido explícito do utilizador:
       // "estilo profissional, mais semelhante ao Busuu". docs/09-sistema-design.md

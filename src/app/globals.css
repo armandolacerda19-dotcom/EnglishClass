@@ -14,8 +14,15 @@ body {
   @apply bg-linen text-inkNeutral antialiased;
 }
 
+/* Redesenho 2026-09-02 — pedido do utilizador: "cores pesadas". O fundo
+   escuro usava `ink` (Atlantic Ink, #1B2A4A) em bloco sólido — a mesma cor
+   que serve de texto/acento em todo o resto da app, sem distinção entre uso
+   "subtil" (bordas a 10% opacidade) e "bloco pesado" (fundo inteiro). Passa a
+   usar `inkNeutral` (#2B2E33, já usado como cor de texto de corpo em modo
+   claro) — mais neutro, menos azul saturado, mesma sensação de "escuro
+   sóbrio" sem pesar tanto visualmente. */
 .dark body {
-  @apply bg-ink text-linen;
+  @apply bg-inkNeutral text-linen;
 }
 
 :focus-visible {

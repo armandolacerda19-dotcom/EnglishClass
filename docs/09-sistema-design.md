@@ -38,7 +38,7 @@ Regra: **Clay é reservado a erros de transferência PT→EN** em todo o produto
 | UI / Corpo | **Inter** | Legibilidade máxima para exercícios, botões, navegação |
 | Dados / Utilitário | **IBM Plex Mono** | Códigos de nível (`B1.2`), XP, temporizadores (Quick Speak), scores — dá uma sensação de "instrumento de precisão / carimbo" |
 
-Escala tipográfica (base 16px, ratio 1.25): 12 / 14 / 16 / 20 / 25 / 31 / 39 / 49px.
+Escala tipográfica: 14 / 16 / **18** / 22 / 28 / 36 / 44 / 56px (base, 2ª subida — 2026-09-02, pedido do utilizador "letra maior, para mais fácil leitura"). Cada nível tem `line-height` próprio, não só o tamanho (corpo a 1.65, títulos mais apertados) — `tailwind.config.ts`.
 
 ## Layout
 
@@ -59,7 +59,7 @@ Este é o único elemento decorativo "assinatura" do produto — todo o resto do
 
 ## Modo escuro
 
-Atlantic Ink torna-se o fundo (não preto puro), Linen recua a texto secundário claro; Verdigris e Brass mantêm-se quase inalterados (ambos já têm contraste suficiente em fundo escuro); Clay sobe ligeiramente de luminosidade para manter contraste AA.
+**Atualizado 2026-09-02** (pedido do utilizador: "cores pesadas"): o fundo deixou de ser Atlantic Ink sólido — passou a Ink Neutral (`#2B2E33`), a mesma cor já usada como texto de corpo em modo claro. Atlantic Ink mantém-se como cor de acento/texto/borda no escuro (nunca preto puro), Linen recua a texto secundário claro; Verdigris e Brass mantêm-se quase inalterados (ambos já têm contraste suficiente em fundo escuro); Clay sobe ligeiramente de luminosidade para manter contraste AA.
 
 ## Acessibilidade (obrigatório desde MVP1, secção 10 do master prompt)
 
